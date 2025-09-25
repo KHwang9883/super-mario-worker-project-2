@@ -1,0 +1,9 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# C# and MSBuild specific
+*.DotSettings.user
+
+# editors
+.idea/
