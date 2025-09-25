@@ -1,13 +1,37 @@
-using System;
+using System.IO;
 using Godot;
 using SMWP.Level.Data;
 
 namespace SMWP.Level;
 
 public partial class SmwlLevel : Node2D {
+    [ExportGroup("References")]
     [Export] public TileMapLayer ObstacleTileMap { get; private set; } = null!;
     [Export] public Vector2I ObstacleTileId { get; private set; }    
-    [Export] public PackedScene UnalignedObstaclePrefab { get; set; } = null!;
+    [Export] public PackedScene UnalignedObstaclePrefab { get; private set; } = null!;
+    [Export] public SmwlLoader SmwlLoader { get; private set; } = null!;
+    [Export] public FileDialog OpenSmwlDialog { get; private set; } = null!;
+
+    public override void _Ready() {
+        base._Ready();
+        // 测试用
+        OpenSmwlDialog.FileSelected += OnOpenSmwlDialogFileSelected;
+        OpenSmwlDialog.Visible = true;
+    }
+
+    private async void OnOpenSmwlDialogFileSelected(string file) {
+        if (File.Exists(file)) {
+            if (await SmwlLoader.Load(File.OpenRead(file)) is { } data) {
+                Install(data);
+            } else {
+                foreach (var error in SmwlLoader.ErrorMessage) {
+                    GD.PrintErr(error);
+                }
+            }
+        } else {
+            GD.PrintErr($"File {file} does not exist");
+        }
+    }
 
     public void Install(SmwlLevelData data) {
         foreach (var @object in data.Objects) {

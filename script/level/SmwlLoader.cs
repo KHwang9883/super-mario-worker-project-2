@@ -17,24 +17,6 @@ public partial class SmwlLoader : Node {
     public Array<string> ErrorMessage { get; } = [];
     public volatile int LineNum;
 
-    public override void _Ready() {
-        base._Ready();
-        Callable.From(TestSmwlLoading).CallDeferred();
-    }
-
-    private async void TestSmwlLoading() {
-        if (GetParent() is SmwlLevel level) {
-            if (await Load(File.Open("./test.smwl", FileMode.Open)) is { } loaded) {
-                level.Install(loaded);
-            } else {
-                foreach (var error in ErrorMessage)
-                {
-                    GD.PrintErr(error);
-                }
-            }
-        }
-    }
-
     public ValueTask<SmwlLevelData?> Load(string content) {
         return Load0(new StringReader(content));
     }
