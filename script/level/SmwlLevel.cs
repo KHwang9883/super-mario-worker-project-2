@@ -21,7 +21,8 @@ public partial class SmwlLevel : Node2D {
 
     private async void OnOpenSmwlDialogFileSelected(string file) {
         if (File.Exists(file)) {
-            if (await SmwlLoader.Load(File.OpenRead(file)) is { } data) {
+            await using var input = File.OpenRead(file);
+            if (await SmwlLoader.Load(input) is { } data) {
                 Install(data);
             } else {
                 foreach (var error in SmwlLoader.ErrorMessage) {
