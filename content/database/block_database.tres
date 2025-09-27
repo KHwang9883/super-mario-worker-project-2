@@ -1,0 +1,143 @@
+[gd_resource type="Resource" script_class="SmwpBlockDatabase" load_steps=23 format=3 uid="uid://dg3a08a8q43kb"]
+
+[ext_resource type="Script" uid="uid://1wklxg1y4p3y" path="res://script/level/data/SmwpBlockDatabaseEntry.cs" id="1_5s5k5"]
+[ext_resource type="Script" uid="uid://pdhdk6xuqfgb" path="res://script/level/data/SmwpBlockDatabase.cs" id="1_8lkue"]
+
+[sub_resource type="Resource" id="Resource_o8mcl"]
+script = ExtResource("1_5s5k5")
+Id = "01"
+SerialNumber = 1
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_5s5k5"]
+script = ExtResource("1_5s5k5")
+Id = "02"
+SerialNumber = 2
+TileCoord = Vector2i(1, 0)
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_kdt3w"]
+script = ExtResource("1_5s5k5")
+Id = "03"
+SerialNumber = 3
+TileCoord = Vector2i(2, 0)
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_2r6do"]
+script = ExtResource("1_5s5k5")
+Id = "04"
+SerialNumber = 4
+TileCoord = Vector2i(3, 3)
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_w0msd"]
+script = ExtResource("1_5s5k5")
+Id = "05"
+SerialNumber = 5
+TileCoord = Vector2i(3, 0)
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_3e36j"]
+script = ExtResource("1_5s5k5")
+Id = "06"
+SerialNumber = 6
+TileCoord = Vector2i(4, 0)
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_o2l87"]
+script = ExtResource("1_5s5k5")
+Id = "07"
+SerialNumber = 7
+TileCoord = Vector2i(3, 1)
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_s5ukw"]
+script = ExtResource("1_5s5k5")
+Id = "08"
+SerialNumber = 8
+TileCoord = Vector2i(4, 1)
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_dh1j7"]
+script = ExtResource("1_5s5k5")
+Id = "09"
+SerialNumber = 9
+TileCoord = Vector2i(8, 3)
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_y6ngs"]
+script = ExtResource("1_5s5k5")
+Id = "10"
+SerialNumber = 10
+TileCoord = Vector2i(9, 5)
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_yyqfc"]
+script = ExtResource("1_5s5k5")
+Id = "11"
+SerialNumber = 11
+TileCoord = Vector2i(10, 5)
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_gtxpu"]
+script = ExtResource("1_5s5k5")
+Id = "12"
+SerialNumber = 12
+TileCoord = Vector2i(11, 5)
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_8bjfo"]
+script = ExtResource("1_5s5k5")
+Id = "13"
+SerialNumber = 13
+TileCoord = Vector2i(0, 1)
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_hkrcq"]
+script = ExtResource("1_5s5k5")
+Id = "14"
+SerialNumber = 14
+TileCoord = Vector2i(1, 1)
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_c5x6u"]
+script = ExtResource("1_5s5k5")
+Id = "15"
+SerialNumber = 15
+TileCoord = Vector2i(2, 1)
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_w7tg1"]
+script = ExtResource("1_5s5k5")
+Id = "16"
+SerialNumber = 16
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_4wj0d"]
+script = ExtResource("1_5s5k5")
+Id = "17"
+SerialNumber = 17
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_u7all"]
+script = ExtResource("1_5s5k5")
+Id = "18"
+SerialNumber = 18
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_yues7"]
+script = ExtResource("1_5s5k5")
+Id = "19"
+SerialNumber = 19
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[sub_resource type="Resource" id="Resource_wfm1k"]
+script = ExtResource("1_5s5k5")
+Id = "20"
+SerialNumber = 20
+metadata/_custom_type_script = "uid://1wklxg1y4p3y"
+
+[resource]
+script = ExtResource("1_8lkue")
+Entries = Array[Object]([SubResource("Resource_o8mcl"), SubResource("Resource_5s5k5"), SubResource("Resource_kdt3w"), SubResource("Resource_2r6do"), SubResource("Resource_w0msd"), SubResource("Resource_3e36j"), SubResource("Resource_o2l87"), SubResource("Resource_s5ukw"), SubResource("Resource_dh1j7"), SubResource("Resource_y6ngs"), SubResource("Resource_yyqfc"), SubResource("Resource_gtxpu"), SubResource("Resource_8bjfo"), SubResource("Resource_hkrcq"), SubResource("Resource_c5x6u"), SubResource("Resource_w7tg1"), SubResource("Resource_4wj0d"), SubResource("Resource_u7all"), SubResource("Resource_yues7"), SubResource("Resource_wfm1k")])
+metadata/_custom_type_script = "uid://pdhdk6xuqfgb"

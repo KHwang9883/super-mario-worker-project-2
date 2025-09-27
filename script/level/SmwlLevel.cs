@@ -5,10 +5,22 @@ using SMWP.Level.Data;
 namespace SMWP.Level;
 
 public partial class SmwlLevel : Node2D {
+    /// <summary>
+    /// 坐标为 32 的整数倍的实心所用的 TileMap
+    /// </summary>
     [ExportGroup("References")]
     [Export] public TileMapLayer ObstacleTileMap { get; private set; } = null!;
-    [Export] public Vector2I ObstacleTileId { get; private set; }    
+    
+    /// <summary>
+    /// 坐标为 32 的整数倍的实心所用的 Tile 在 <see cref="ObstacleTileMap"/> 的 TileSet 的第 0 个 TileSource 中的坐标
+    /// </summary>
+    [Export] public Vector2I ObstacleTileCoord { get; private set; }    
+    
+    /// <summary>
+    /// 坐标不为 32 的整数倍的实心的原型
+    /// </summary>
     [Export] public PackedScene UnalignedObstaclePrefab { get; private set; } = null!;
+    
     [Export] public SmwlLoader SmwlLoader { get; private set; } = null!;
     [Export] public FileDialog OpenSmwlDialog { get; private set; } = null!;
 
@@ -40,7 +52,7 @@ public partial class SmwlLevel : Node2D {
                 var pos = @object.Position;
                 if (pos.X % 32 == 0 && pos.Y % 32 == 0) {
                     var tileCoord = (Vector2I)pos / 32;
-                    ObstacleTileMap.SetCell(tileCoord, 0, ObstacleTileId);
+                    ObstacleTileMap.SetCell(tileCoord, 0, ObstacleTileCoord);
                 } else {
                     var obstacle = UnalignedObstaclePrefab.Instantiate<Node2D>();
                     obstacle.GlobalPosition = pos;
