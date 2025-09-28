@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://dwkukt5v4t3p5"]
+
+[ext_resource type="Script" uid="uid://cwf1kwcspdui2" path="res://script/level/player/Mario.cs" id="1_lsr3k"]
+[ext_resource type="Texture2D" uid="uid://c4jyjy2jpwdvy" path="res://content/mario/s_smallmariorun_1.png" id="2_2tlcd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsr3k"]
+size = Vector2(23.5, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2tlcd"]
+size = Vector2(22, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g008s"]
+size = Vector2(20, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7tvwt"]
+size = Vector2(18, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ayxe7"]
+size = Vector2(16, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_al6pk"]
+size = Vector2(14, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fykw4"]
+size = Vector2(12, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7rh3"]
+size = Vector2(10, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6dp7"]
+size = Vector2(8, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jff0l"]
+size = Vector2(6, 1)
+
+[node name="Mario" type="CharacterBody2D"]
+script = ExtResource("1_lsr3k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -12)
+texture = ExtResource("2_2tlcd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-12, 0, -12, -15, -3, -24, 3, -24, 12, -15, 12, 0, -0.13819885, 0)
+disabled = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, -7.5)
+shape = SubResource("RectangleShape2D_lsr3k")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_2tlcd")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_g008s")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_7tvwt")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_ayxe7")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="."]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_al6pk")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_fykw4")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="."]
+position = Vector2(0, -21)
+shape = SubResource("RectangleShape2D_v7rh3")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="."]
+position = Vector2(0, -22)
+shape = SubResource("RectangleShape2D_e6dp7")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="."]
+position = Vector2(0, -23)
+shape = SubResource("RectangleShape2D_jff0l")
