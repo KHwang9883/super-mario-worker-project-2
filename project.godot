@@ -13,7 +13,8 @@ config_version=5
 config/name="SuperMarioWorkerProject2"
 run/main_scene="uid://idlqpw776tt6"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://d1efjf687jw0q"
+config/windows_native_icon="res://smwp.ico"
 
 [display]
 
