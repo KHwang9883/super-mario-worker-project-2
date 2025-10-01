@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://2vuxafdyyhgx"]
+
+[ext_resource type="Texture2D" uid="uid://hgmroqnhbecu" path="res://content/water/s_woda_sheet.png" id="1_8j37s"]
+[ext_resource type="Script" uid="uid://ckibo4ofkc75a" path="res://script/level/water/Water.cs" id="1_opojc"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8j37s"]
+normal = Vector2(0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opojc"]
+atlas = ExtResource("1_8j37s")
+region = Rect2(0, 0, 640, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md3cs"]
+atlas = ExtResource("1_8j37s")
+region = Rect2(0, 18, 640, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ycmq"]
+atlas = ExtResource("1_8j37s")
+region = Rect2(0, 36, 640, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thbh0"]
+atlas = ExtResource("1_8j37s")
+region = Rect2(0, 54, 640, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxfpb"]
+atlas = ExtResource("1_8j37s")
+region = Rect2(0, 72, 640, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g2rda"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opojc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md3cs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ycmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thbh0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxfpb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Water" type="Area2D" node_paths=PackedStringArray("_parallaxWater", "_waterSurfaceSprite", "_waterRect")]
+script = ExtResource("1_opojc")
+_parallaxWater = NodePath("WaterSprite/WaterParallax2D")
+_waterSurfaceSprite = NodePath("WaterSprite/WaterSurfaceParallax2D/AnimatedSprite2D")
+_waterRect = NodePath("WaterSprite/WaterParallax2D/ColorRect")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_8j37s")
+
+[node name="WaterSprite" type="Node2D" parent="."]
+
+[node name="WaterSurfaceParallax2D" type="Parallax2D" parent="WaterSprite"]
+repeat_size = Vector2(640, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WaterSprite/WaterSurfaceParallax2D"]
+self_modulate = Color(1, 1, 1, 0.5294118)
+position = Vector2(320, 9)
+sprite_frames = SubResource("SpriteFrames_g2rda")
+autoplay = "default"
+frame_progress = 1.0
+
+[node name="WaterParallax2D" type="Parallax2D" parent="WaterSprite"]
+repeat_size = Vector2(640, 480)
+
+[node name="ColorRect" type="ColorRect" parent="WaterSprite/WaterParallax2D"]
+self_modulate = Color(1, 1, 1, 0.5294118)
+offset_top = 16.0
+offset_right = 640.0
+offset_bottom = 496.0
+color = Color(0.3529412, 0.54901963, 0.90588236, 1)
