@@ -4,24 +4,18 @@
 [ext_resource type="Script" uid="uid://c8yu81i46jf4r" path="res://script/level/SmwlLoader.cs" id="1_wc7qm"]
 [ext_resource type="TileSet" uid="uid://bnf7dwxlyydri" path="res://content/obstacles.tileset.tres" id="2_dugl1"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/obstacle.tscn" id="2_y2vn4"]
-[ext_resource type="Script" uid="uid://bsg2x1q80u5ee" path="res://script/level/SmwlBlockHolder.cs" id="5_y2vn4"]
+[ext_resource type="Script" uid="uid://bsg2x1q80u5ee" path="res://script/level/SmwlBlockDataHolder.cs" id="5_y2vn4"]
 [ext_resource type="Resource" uid="uid://dg3a08a8q43kb" path="res://content/database/block_database.tres" id="6_4alqs"]
 [ext_resource type="TileSet" uid="uid://obv64rtoaukf" path="res://content/blocks.tileset.tres" id="7_fn8k0"]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("ObstacleTileMap", "SmwlLoader", "OpenSmwlDialog")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("BlocksTilemap", "BlocksDatabase", "ObstacleTileMap", "SmwlLoader", "OpenSmwlDialog")]
 script = ExtResource("1_rpefo")
+BlocksTilemap = NodePath("Block Tile Map")
+BlocksDatabase = NodePath("Block Holder")
 ObstacleTileMap = NodePath("Obstacle Tile Map")
 UnalignedObstaclePrefab = ExtResource("2_y2vn4")
 SmwlLoader = NodePath("SMWL Loader")
 OpenSmwlDialog = NodePath("Open SMWL File")
-
-[node name="SMWL Loader" type="Node" parent="."]
-script = ExtResource("1_wc7qm")
-metadata/_custom_type_script = "uid://c8yu81i46jf4r"
-
-[node name="Block Holder" type="Node" parent="."]
-script = ExtResource("5_y2vn4")
-Database = ExtResource("6_4alqs")
 
 [node name="Obstacle Tile Map" type="TileMapLayer" parent="."]
 visible = false
@@ -31,8 +25,18 @@ tile_set = ExtResource("2_dugl1")
 tile_set = ExtResource("7_fn8k0")
 collision_enabled = false
 
+[node name="SMWL Loader" type="Node" parent="."]
+script = ExtResource("1_wc7qm")
+metadata/_custom_type_script = "uid://c8yu81i46jf4r"
+
+[node name="Block Holder" type="Node" parent="."]
+script = ExtResource("5_y2vn4")
+Database = ExtResource("6_4alqs")
+
 [node name="Open SMWL File" type="FileDialog" parent="."]
 oversampling_override = 1.0
 title = "Open a File"
 file_mode = 0
+access = 2
+filters = PackedStringArray("*.smwl")
 use_native_dialog = true

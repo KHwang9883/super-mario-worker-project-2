@@ -5,10 +5,13 @@ using SMWP.Level.Data;
 namespace SMWP.Level;
 
 public partial class SmwlLevel : Node2D {
+    [ExportGroup("References")]
+    [Export] public TileMapLayer BlocksTilemap { get; private set; } = null!;
+    [Export] public SmwlBlockDataHolder BlocksDatabase { get; private set; } = null!;
+    
     /// <summary>
     /// 坐标为 32 的整数倍的实心所用的 TileMap
     /// </summary>
-    [ExportGroup("References")]
     [Export] public TileMapLayer ObstacleTileMap { get; private set; } = null!;
     
     /// <summary>
@@ -47,6 +50,7 @@ public partial class SmwlLevel : Node2D {
     }
 
     public void Install(SmwlLevelData data) {
+        InstallBlocks(data);
         foreach (var @object in data.Objects) {
             if (@object.Id == 218) {
                 var pos = @object.Position;
@@ -59,6 +63,30 @@ public partial class SmwlLevel : Node2D {
                     AddChild(obstacle);
                 }
             }
+        }
+    }
+
+    private void InstallBlocks(SmwlLevelData data) {
+        var blocks = data.Blocks;
+        var width = blocks.Width;
+        var values = blocks.BlockValues;
+        int y = 0;
+        while (true) {
+            var line = values[y];
+            for (int x = 0; x < width; x++) {
+                var id = new BlockId(line[2 * x], line[2 * x + 1]);
+                InstallBlock(new Vector2I(x, y), id);
+            }
+            ++y;
+            if (y >= values.Count) {
+                break;
+            }
+        }
+    }
+
+    private void InstallBlock(Vector2I pos, BlockId id) {
+        if (BlocksDatabase.TryGetBlock(id, out var block)) {
+            BlocksTilemap.SetCell(pos, block.TileSource, block.TileCoord);
         }
     }
 }
