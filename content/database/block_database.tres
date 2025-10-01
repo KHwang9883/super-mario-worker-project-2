@@ -132,8 +132,7 @@ metadata/_custom_type_script = "uid://1wklxg1y4p3y"
 script = ExtResource("1_5s5k5")
 Id = "19"
 SerialNumber = 19
-TileSource = 3
-TileCoord = Vector2i(2, 0)
+TileCoord = Vector2i(3, 2)
 metadata/_custom_type_script = "uid://1wklxg1y4p3y"
 
 [sub_resource type="Resource" id="Resource_wfm1k"]
@@ -546,8 +545,7 @@ metadata/_custom_type_script = "uid://1wklxg1y4p3y"
 script = ExtResource("1_5s5k5")
 Id = "78"
 SerialNumber = 78
-TileSource = 5
-TileCoord = Vector2i(16, 0)
+TileCoord = Vector2i(5, 16)
 metadata/_custom_type_script = "uid://1wklxg1y4p3y"
 
 [sub_resource type="Resource" id="Resource_q2v63"]
@@ -1695,7 +1693,7 @@ metadata/_custom_type_script = "uid://1wklxg1y4p3y"
 script = ExtResource("1_5s5k5")
 Id = "O2"
 SerialNumber = 242
-TileCoord = Vector2i(0, 25)
+TileCoord = Vector2i(3, 25)
 metadata/_custom_type_script = "uid://1wklxg1y4p3y"
 
 [sub_resource type="Resource" id="Resource_h8huh"]
@@ -1912,28 +1910,28 @@ metadata/_custom_type_script = "uid://1wklxg1y4p3y"
 script = ExtResource("1_5s5k5")
 Id = "T4"
 SerialNumber = 294
-TileCoord = Vector2i(0, 17)
+TileCoord = Vector2i(0, 18)
 metadata/_custom_type_script = "uid://1wklxg1y4p3y"
 
 [sub_resource type="Resource" id="Resource_dhp4c"]
 script = ExtResource("1_5s5k5")
 Id = "T5"
 SerialNumber = 295
-TileCoord = Vector2i(1, 17)
+TileCoord = Vector2i(0, 17)
 metadata/_custom_type_script = "uid://1wklxg1y4p3y"
 
 [sub_resource type="Resource" id="Resource_c1jlp"]
 script = ExtResource("1_5s5k5")
 Id = "T6"
 SerialNumber = 296
-TileCoord = Vector2i(0, 18)
+TileCoord = Vector2i(1, 18)
 metadata/_custom_type_script = "uid://1wklxg1y4p3y"
 
 [sub_resource type="Resource" id="Resource_rrn5a"]
 script = ExtResource("1_5s5k5")
 Id = "T7"
 SerialNumber = 297
-TileCoord = Vector2i(1, 18)
+TileCoord = Vector2i(1, 17)
 metadata/_custom_type_script = "uid://1wklxg1y4p3y"
 
 [sub_resource type="Resource" id="Resource_ya8iu"]
