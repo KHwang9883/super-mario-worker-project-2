@@ -6,4 +6,7 @@
     <Nullable>enable</Nullable>
     <RootNamespace>SMWP</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="docs\resource_naming.md" />
+  </ItemGroup>
 </Project>
