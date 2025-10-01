@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hgmroqnhbecu"
-path="res://.godot/imported/s_woda_sheet.png-cc7553e657731013747bfe2fcf56c19d.ctex"
+path="res://.godot/imported/water_surface.png-13a08cccc234c063862265d61912c7aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/water/s_woda_sheet.png"
-dest_files=["res://.godot/imported/s_woda_sheet.png-cc7553e657731013747bfe2fcf56c19d.ctex"]
+source_file="res://content/water/water_surface.png"
+dest_files=["res://.godot/imported/water_surface.png-13a08cccc234c063862265d61912c7aa.ctex"]
 
 [params]
 
