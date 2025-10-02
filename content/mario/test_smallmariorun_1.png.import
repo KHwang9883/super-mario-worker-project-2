@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4jyjy2jpwdvy"
-path="res://.godot/imported/s_smallmariorun_1.png-07cb353763ce92dc00fd1766f4ac523a.ctex"
+path="res://.godot/imported/test_smallmariorun_1.png-155f8ed099757bbdce9c0aaa73c76ac2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/mario/s_smallmariorun_1.png"
-dest_files=["res://.godot/imported/s_smallmariorun_1.png-07cb353763ce92dc00fd1766f4ac523a.ctex"]
+source_file="res://content/mario/test_smallmariorun_1.png"
+dest_files=["res://.godot/imported/test_smallmariorun_1.png-155f8ed099757bbdce9c0aaa73c76ac2.ctex"]
 
 [params]
 
