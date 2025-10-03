@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=14 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="Script" uid="uid://cwf1kwcspdui2" path="res://script/level/player/Mario.cs" id="1_lsr3k"]
-[ext_resource type="Texture2D" uid="uid://c4jyjy2jpwdvy" path="res://content/mario/s_smallmariorun_1.png" id="2_2tlcd"]
+[ext_resource type="Texture2D" uid="uid://c4jyjy2jpwdvy" path="res://content/mario/test_smallmariorun_1.png" id="2_2tlcd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lsr3k"]
 size = Vector2(23.5, 15)
@@ -33,10 +33,16 @@ size = Vector2(8, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jff0l"]
 size = Vector2(6, 1)
 
-[node name="Mario" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lsr3k"]
+radius = 8.0
+
+[node name="Mario" type="CharacterBody2D" node_paths=PackedStringArray("_waterDetect")]
+collision_layer = 8
+collision_mask = 123
 floor_block_on_wall = false
 platform_on_leave = 2
 script = ExtResource("1_lsr3k")
+_waterDetect = NodePath("WaterDetectArea2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -12)
@@ -87,3 +93,11 @@ shape = SubResource("RectangleShape2D_e6dp7")
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="."]
 position = Vector2(0, -23)
 shape = SubResource("RectangleShape2D_jff0l")
+
+[node name="WaterDetectArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetectArea2D"]
+position = Vector2(0, -40)
+shape = SubResource("CircleShape2D_lsr3k")
