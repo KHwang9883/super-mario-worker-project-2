@@ -1,10 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://2vuxafdyyhgx"]
 
-[ext_resource type="Texture2D" uid="uid://hgmroqnhbecu" path="res://content/water/s_woda_sheet.png" id="1_8j37s"]
+[ext_resource type="Texture2D" uid="uid://hgmroqnhbecu" path="res://content/water/water_surface.png" id="1_8j37s"]
 [ext_resource type="Script" uid="uid://ckibo4ofkc75a" path="res://script/level/water/Water.cs" id="1_opojc"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8j37s"]
-normal = Vector2(0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_opojc"]
 atlas = ExtResource("1_8j37s")
@@ -49,8 +48,11 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Water" type="Area2D" node_paths=PackedStringArray("_parallaxWater", "_waterSurfaceSprite", "_waterRect")]
+[node name="Water" type="Area2D" node_paths=PackedStringArray("_parallaxWater", "_waterSurfaceSprite", "_waterRect") groups=["water"]]
+collision_layer = 64
+collision_mask = 56
 script = ExtResource("1_opojc")
+waterBoundary = SubResource("WorldBoundaryShape2D_8j37s")
 _parallaxWater = NodePath("WaterSprite/WaterParallax2D")
 _waterSurfaceSprite = NodePath("WaterSprite/WaterSurfaceParallax2D/AnimatedSprite2D")
 _waterRect = NodePath("WaterSprite/WaterParallax2D/ColorRect")
@@ -75,7 +77,7 @@ repeat_size = Vector2(640, 480)
 
 [node name="ColorRect" type="ColorRect" parent="WaterSprite/WaterParallax2D"]
 self_modulate = Color(1, 1, 1, 0.5294118)
-offset_top = 16.0
+offset_top = 17.0
 offset_right = 640.0
-offset_bottom = 496.0
+offset_bottom = 497.0
 color = Color(0.3529412, 0.54901963, 0.90588236, 1)
