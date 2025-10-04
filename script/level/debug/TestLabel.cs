@@ -8,6 +8,10 @@ public partial class TestLabel : Label {
     public override void _Process(double delta) {
         Text = $"Position: ({_mario.Position.X,9:00000.00}, {_mario.Position.Y,9:00000.00})\n" +
                $"Velocity: ({_mario.Velocity.X,7:000.00}, {_mario.Velocity.Y,7:000.00})\n" +
-               $"InWater: {_mario.InWater}";
+               $"IsOnFloor: {_mario.IsOnFloor()}\n" +
+               $"IsOnCeiling: {_mario.IsOnCeiling()}\n" +
+               $"IsOnWall: {_mario.IsOnWall()}\n" +
+               $"InWater: {_mario.InWater}\n" +
+               $"OnWaterSurface: {_mario.OnWaterSurface}";
     }
 }
