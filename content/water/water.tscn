@@ -58,6 +58,7 @@ _waterSurfaceSprite = NodePath("WaterSprite/WaterSurfaceParallax2D/AnimatedSprit
 _waterRect = NodePath("WaterSprite/WaterParallax2D/ColorRect")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("WorldBoundaryShape2D_8j37s")
 
 [node name="WaterSprite" type="Node2D" parent="."]
