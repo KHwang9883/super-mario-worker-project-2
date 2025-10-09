@@ -1,7 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=17 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="Script" uid="uid://cwf1kwcspdui2" path="res://script/level/player/Mario.cs" id="1_lsr3k"]
 [ext_resource type="Texture2D" uid="uid://c4jyjy2jpwdvy" path="res://content/mario/test_smallmariorun_1.png" id="2_2tlcd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phbj6"]
+size = Vector2(24, 14)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64xww"]
+radius = 4.0
+height = 15.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vqhjw"]
+radius = 4.0
+height = 15.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lsr3k"]
 size = Vector2(23.5, 15)
@@ -39,6 +50,7 @@ radius = 8.0
 [node name="Mario" type="CharacterBody2D" node_paths=PackedStringArray("_waterDetect")]
 collision_layer = 8
 collision_mask = 123
+slide_on_ceiling = false
 floor_block_on_wall = false
 platform_on_leave = 2
 script = ExtResource("1_lsr3k")
@@ -47,9 +59,41 @@ _waterDetect = NodePath("OutWaterDetect")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -12)
 texture = ExtResource("2_2tlcd")
+metadata/_edit_lock_ = true
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_phbj6")
+target_position = Vector2(0, 0)
+max_results = 4
+collision_mask = 123
+collide_with_areas = true
+
+[node name="ShapeCast2D2" type="ShapeCast2D" parent="."]
+position = Vector2(-8, -8)
+shape = SubResource("CapsuleShape2D_64xww")
+target_position = Vector2(8, -8)
+max_results = 16
+collision_mask = 123
+collide_with_areas = true
+
+[node name="ShapeCast2D3" type="ShapeCast2D" parent="."]
+position = Vector2(8, -8)
+shape = SubResource("CapsuleShape2D_vqhjw")
+target_position = Vector2(-8, -8)
+max_results = 16
+collision_mask = 123
+collide_with_areas = true
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-12, 0, -12, -14, -3, -23, 3, -23, 12, -14, 12, 0)
+disabled = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-11, -15, -11, -16, -10, -16, -10, -17, -9, -17, -9, -18, -8, -18, -8, -19, -7, -19, -7, -20, -6, -20, -6, -21, -5, -21, -5, -22, -4, -22, -4, -23, -3, -23, -3, -24, 3, -24, 3, -23, 4, -23, 4, -22, 5, -22, 5, -21, 6, -21, 6, -20, 7, -20, 7, -19, 8, -19, 8, -18, 9, -18, 9, -17, 10, -17, 10, -16, 11, -16, 11, -15, 12, -15, 12, 0, -12, 0, -12, -15)
+disabled = true
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -57,60 +101,70 @@ visible = false
 position = Vector2(-0.25, -7.5)
 shape = SubResource("RectangleShape2D_lsr3k")
 disabled = true
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_2tlcd")
 disabled = true
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_g008s")
 disabled = true
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, -17)
 shape = SubResource("RectangleShape2D_7tvwt")
 disabled = true
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_ayxe7")
 disabled = true
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, -19)
 shape = SubResource("RectangleShape2D_al6pk")
 disabled = true
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_fykw4")
 disabled = true
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, -21)
 shape = SubResource("RectangleShape2D_v7rh3")
 disabled = true
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, -22)
 shape = SubResource("RectangleShape2D_e6dp7")
 disabled = true
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, -23)
 shape = SubResource("RectangleShape2D_jff0l")
 disabled = true
+metadata/_edit_lock_ = true
 
 [node name="OutWaterDetect" type="Area2D" parent="."]
 collision_layer = 8
