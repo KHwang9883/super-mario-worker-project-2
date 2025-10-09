@@ -10,8 +10,8 @@ public partial class Water : Area2D {
 
     // 测试水块跟随用，可以删除
     //private double _testWaterPhase = 233f;
-
-    public override void _Process(double delta) {
+    
+    public override void _PhysicsProcess(double delta) {
         
         string currentAnim = _waterSurfaceSprite.Animation;
         int currentFrame = _waterSurfaceSprite.Frame;
