@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level.Debug;
 
 public partial class Mario : CharacterBody2D {
     [Export] private Area2D _waterDetect = null!;
@@ -38,6 +39,7 @@ public partial class Mario : CharacterBody2D {
     private int _jumpBoostTimer;
     //private bool _doubleFrameProcess;
     //private bool _lastJumpBoostState;
+    
     public override void _Ready() {
         Area2D waterArea = GetTree().GetFirstNodeInGroup("water") as Area2D;
         _waterArea = waterArea;
@@ -57,7 +59,7 @@ public partial class Mario : CharacterBody2D {
     private void OnWaterBodyEntered(Node2D body) {
         if (body == this) {
             InWater = true;
-            _speedY = 0f;
+            _speedY = Mathf.Min(0f, _speedY);
         }
         if (body == _waterArea) {
             OnWaterSurface = false;
@@ -117,6 +119,11 @@ public partial class Mario : CharacterBody2D {
         }
             
         // y 速度
+        // 落地或顶头
+        if ((IsOnFloor() || (IsOnCeiling() && _speedY < 0f))) {
+            _speedY = 0f;
+        }
+        
         // 起跳
         
         if (!_jump) { _jumped = false; }
@@ -127,7 +134,7 @@ public partial class Mario : CharacterBody2D {
                 _jumped = true;
             } else if (InWater && !_jumped) {
                 _speedY = OnWaterSurface
-                    ? -(6f + Mathf.Abs(_speedX) / 5f)
+                    ? -(6f + Mathf.Abs(_speedX) / 5f) + 0.4f    // 原表达式没有+0.2，此处是根据测试结果补数值抵消差异
                     : -(4f + Mathf.Abs(_speedX) / 10f);
                 _jumped = true;
             }
@@ -159,14 +166,6 @@ public partial class Mario : CharacterBody2D {
         
         // 重力
         _speedY += (InWater ? 0.2f : 1.0f);
-        
-        // 落地或顶头
-        if ((IsOnFloor() || (IsOnCeiling() && _speedY < 0f))) {
-            _speedY = 0f;
-            /*if (InWater) {
-                _jumped = true;
-            }*/
-        }
         
         // GM8版注释：尝试性修复非整格实心穿墙
         // 为保持精确性，故各自方向速度为零分别进行一次取整
