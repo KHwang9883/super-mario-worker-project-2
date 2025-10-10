@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/obstacle.png" id="8_1mjcm"]
 [ext_resource type="PackedScene" uid="uid://dwkukt5v4t3p5" path="res://content/mario/mario.tscn" id="9_hgnsp"]
 [ext_resource type="Script" uid="uid://dsl20o7a2l7a0" path="res://script/level/debug/TestLabel.cs" id="10_g7257"]
-[ext_resource type="FontFile" uid="uid://dsadmtfiyu2yc" path="res://content/hud/mw/mw_hud.fnt" id="11_lwtrl"]
+[ext_resource type="FontFile" uid="uid://em53psx0nwwf" path="res://content/hud/mw/mw_hud.fnt" id="11_lwtrl"]
 [ext_resource type="PackedScene" uid="uid://2vuxafdyyhgx" path="res://content/water/water.tscn" id="11_o3hmp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d7yf6"]
@@ -99,6 +99,7 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 344.0
 offset_bottom = 40.0
+theme_override_constants/paragraph_spacing = 7
 theme_override_fonts/font = ExtResource("11_lwtrl")
 theme_override_font_sizes/font_size = 10
 text = "Mario Position and Velocity."
@@ -112,14 +113,25 @@ visible = false
 [node name="Control" type="Control" parent="TestNode2D/HUD"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 640.0
+offset_bottom = 480.0
+metadata/_edit_lock_ = true
 
 [node name="HUD" type="Label" parent="TestNode2D/HUD/Control"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 640.0
+offset_bottom = 480.0
+theme_override_constants/paragraph_spacing = 7
 theme_override_fonts/font = ExtResource("11_lwtrl")
 theme_override_font_sizes/font_size = 10
-text = "HUD Test"
+text = "HUD Test
+
+aaa
+bbb
+iii
+ai bi ib ia
+abcdefghijklmnopqrstuvwxyz
+
+0123456789"
+horizontal_alignment = 1
 uppercase = true
