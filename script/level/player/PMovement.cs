@@ -1,9 +1,12 @@
 using Godot;
+using Godot.Collections;
 using System;
+using System.Text.RegularExpressions;
 using SMWP.Level.Debug;
 
-public partial class Mario : CharacterBody2D {
-    [Export] private Area2D _waterDetect = null!;
+public partial class PMovement : CharacterBody2D {
+    [Export] private Area2D _inWaterDetect = null!;
+    [Export] private Area2D _outWaterDetect = null!;
 
     // 关卡引力
     private float _gravity = 5f / 5f;
@@ -25,8 +28,8 @@ public partial class Mario : CharacterBody2D {
     private float _waterMaxRunningSpeed = 3f;
     private float _waterMaxFallingSpeed = 6f;
     
-    public bool InWater;
-    public bool OnWaterSurface = true;
+    public bool IsInWater;
+    public bool IsOnWaterSurface = true;
     private Area2D _waterArea;
 
     private bool _up;
@@ -41,37 +44,30 @@ public partial class Mario : CharacterBody2D {
     //private bool _lastJumpBoostState;
     
     public override void _Ready() {
-        Area2D waterArea = GetTree().GetFirstNodeInGroup("water") as Area2D;
-        _waterArea = waterArea;
         
-        if (waterArea == null) {
-            GD.PrintErr("Water Not Found.");
-            return;
-        }
+        //waterArea.BodyEntered += OnWaterBodyEntered;
+        //waterArea.BodyExited += OnWaterBodyExited;
         
-        waterArea.BodyEntered += OnWaterBodyEntered;
-        waterArea.BodyExited += OnWaterBodyExited;
-        
-        _waterDetect.AreaEntered += OnWaterBodyEntered;
-        _waterDetect.AreaExited += OnWaterBodyExited;
+        //_waterDetect.AreaEntered += OnWaterBodyEntered;
+        //_waterDetect.AreaExited += OnWaterBodyExited;
     }
 
     private void OnWaterBodyEntered(Node2D body) {
         if (body == this) {
-            InWater = true;
+            IsInWater = true;
             _speedY = Mathf.Min(0f, _speedY);
         }
         if (body == _waterArea) {
-            OnWaterSurface = false;
+            IsOnWaterSurface = false;
         }
     }
 
     private void OnWaterBodyExited(Node2D body) {
         if (body == this) {
-            InWater = false;
+            IsInWater = false;
         }
         if (body == _waterArea) {
-            OnWaterSurface = true;
+            IsOnWaterSurface = true;
         }
     }
     
@@ -85,13 +81,13 @@ public partial class Mario : CharacterBody2D {
         _jump = Input.IsActionPressed("move_jump");
             
         // x 速度
-        float acceleration = InWater 
+        float acceleration = IsInWater 
             ? _waterHorizontalAcceleration
             : (_fire ? _runningAcceleration : _walkingAcceleration);
 
         float maxSpeed;
         
-        if (InWater) {
+        if (IsInWater) {
             maxSpeed = _fire ? _waterMaxRunningSpeed : _waterMaxWalkingSpeed;
         } else {
             if (_fire) {
@@ -111,7 +107,7 @@ public partial class Mario : CharacterBody2D {
         }
 
         if (!_left && !_right) {
-            _speedX /= InWater ? 1.03f : 1.05f;
+            _speedX /= IsInWater ? 1.03f : 1.05f;
         }
         
         if (_speedX > -0.04f && _speedX < 0.04f) {
@@ -129,12 +125,12 @@ public partial class Mario : CharacterBody2D {
         if (!_jump) { _jumped = false; }
         
         if (_jump) {
-            if (!InWater && IsOnFloor()) {
+            if (!IsInWater && IsOnFloor()) {
                 _speedY = -(8f + Mathf.Abs(_speedX) / 5f);
                 _jumped = true;
-            } else if (InWater && !_jumped) {
-                _speedY = OnWaterSurface
-                    ? -(6f + Mathf.Abs(_speedX) / 5f) + 0.4f    // 原表达式没有+0.2，此处是根据测试结果补数值抵消差异
+            } else if (IsInWater && !_jumped) {
+                _speedY = IsOnWaterSurface
+                    ? -(6f + Mathf.Abs(_speedX) / 5f)
                     : -(4f + Mathf.Abs(_speedX) / 10f);
                 _jumped = true;
             }
@@ -143,7 +139,7 @@ public partial class Mario : CharacterBody2D {
         // 空中跳跃按跳跃键有速度加成
         _jumpBoostTimer = Math.Clamp(_jumpBoostTimer + 1, 0, 2);
 
-        if (_jump && _speedY < 0f && !InWater) {
+        if (_jump && _speedY < 0f && !IsInWater) {
             if (_jumpBoostTimer > 1) {
                 _speedY -= 1.5f;
                 _jumpBoostTimer = 0;
@@ -152,7 +148,7 @@ public partial class Mario : CharacterBody2D {
         
         // 最大下落速度
         if (!IsOnFloor()) {
-            float maxFallSpeed = InWater ? _waterMaxFallingSpeed : _maxFallingSpeed;
+            float maxFallSpeed = IsInWater ? _waterMaxFallingSpeed : _maxFallingSpeed;
     
             if (_speedY > maxFallSpeed) {
                 _speedY = maxFallSpeed;
@@ -164,8 +160,30 @@ public partial class Mario : CharacterBody2D {
         
         MoveAndSlide();
         
+        // 重叠物件检测
+        var results = ShapeQueryResult.ShapeQuery(this, GetNode<ShapeCast2D>("AreaBodyCollision"));
+        var resultsOutWater = ShapeQueryResult.ShapeQuery(this, GetNode<ShapeCast2D>("OutWaterDetect"));
+        
+        // 水中状态检测
+        IsInWater = false;
+        foreach (var result in results) {
+            if (result.IsInGroup("water")) {
+                IsInWater = true;
+            }
+        }
+
+        IsOnWaterSurface = true;
+        foreach (var resultOutWater in resultsOutWater) {
+            if (resultOutWater.IsInGroup("water")) {
+                IsOnWaterSurface = false;
+            }
+        }
+        
+        // Debug
+        //GD.Print(ShapeQueryResult.ShapeQuery(this, GetNode<ShapeCast2D>("AreaBodyCollision")));
+        
         // 重力
-        _speedY += (InWater ? 0.2f : 1.0f);
+        _speedY += (IsInWater ? 0.2f : 1.0f);
         
         // GM8版注释：尝试性修复非整格实心穿墙
         // 为保持精确性，故各自方向速度为零分别进行一次取整

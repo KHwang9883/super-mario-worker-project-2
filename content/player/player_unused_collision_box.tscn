@@ -1,0 +1,128 @@
+[gd_scene load_steps=14 format=3 uid="uid://c8nt6uso1i8tp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vath"]
+size = Vector2(23.5, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1kmhu"]
+size = Vector2(22, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebd7v"]
+size = Vector2(20, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhja2"]
+size = Vector2(18, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6a1fj"]
+size = Vector2(16, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2h8jb"]
+size = Vector2(14, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6aq4"]
+size = Vector2(12, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3j78j"]
+size = Vector2(10, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jrbx"]
+size = Vector2(8, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_052ip"]
+size = Vector2(6, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qyn4d"]
+size = Vector2(24, 14)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xomjm"]
+radius = 4.0
+height = 15.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_buf8i"]
+radius = 4.0
+height = 15.0
+
+[node name="UnusedCollisionBox" type="Node"]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node"]
+position = Vector2(-0.25, -7.5)
+shape = SubResource("RectangleShape2D_1vath")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_1kmhu")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_ebd7v")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node"]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_uhja2")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Node"]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_6a1fj")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Node"]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_2h8jb")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Node"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_y6aq4")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Node"]
+position = Vector2(0, -21)
+shape = SubResource("RectangleShape2D_3j78j")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Node"]
+position = Vector2(0, -22)
+shape = SubResource("RectangleShape2D_0jrbx")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Node"]
+position = Vector2(0, -23)
+shape = SubResource("RectangleShape2D_052ip")
+metadata/_edit_lock_ = true
+
+[node name="Node2" type="Node" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2"]
+polygon = PackedVector2Array(-11, -15, -11, -16, -10, -16, -10, -17, -9, -17, -9, -18, -8, -18, -8, -19, -7, -19, -7, -20, -6, -20, -6, -21, -5, -21, -5, -22, -4, -22, -4, -23, -3, -23, -3, -24, 3, -24, 3, -23, 4, -23, 4, -22, 5, -22, 5, -21, 6, -21, 6, -20, 7, -20, 7, -19, 8, -19, 8, -18, 9, -18, 9, -17, 10, -17, 10, -16, 11, -16, 11, -15, 12, -15, 12, 0, -12, 0, -12, -15)
+metadata/_edit_lock_ = true
+
+[node name="Node3" type="Node" parent="."]
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="Node3"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_qyn4d")
+target_position = Vector2(0, 0)
+max_results = 4
+collision_mask = 123
+collide_with_areas = true
+
+[node name="ShapeCast2D2" type="ShapeCast2D" parent="Node3"]
+position = Vector2(-8, -8)
+shape = SubResource("CapsuleShape2D_xomjm")
+target_position = Vector2(8, -8)
+max_results = 16
+collision_mask = 123
+collide_with_areas = true
+
+[node name="ShapeCast2D3" type="ShapeCast2D" parent="Node3"]
+position = Vector2(8, -8)
+shape = SubResource("CapsuleShape2D_buf8i")
+target_position = Vector2(-8, -8)
+max_results = 16
+collision_mask = 123
+collide_with_areas = true

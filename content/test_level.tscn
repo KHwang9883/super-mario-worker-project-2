@@ -8,7 +8,7 @@
 [ext_resource type="TileSet" uid="uid://bnf7dwxlyydri" path="res://content/obstacles.tileset.tres" id="6_nyv2h"]
 [ext_resource type="TileSet" uid="uid://obv64rtoaukf" path="res://content/blocks.tileset.tres" id="7_3v1lj"]
 [ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/obstacle.png" id="8_1mjcm"]
-[ext_resource type="PackedScene" uid="uid://dwkukt5v4t3p5" path="res://content/mario/mario.tscn" id="9_hgnsp"]
+[ext_resource type="PackedScene" uid="uid://dwkukt5v4t3p5" path="res://content/player/player.tscn" id="9_hgnsp"]
 [ext_resource type="Script" uid="uid://dsl20o7a2l7a0" path="res://script/level/debug/TestLabel.cs" id="10_g7257"]
 [ext_resource type="FontFile" uid="uid://em53psx0nwwf" path="res://content/hud/mw/mw_hud.fnt" id="11_lwtrl"]
 [ext_resource type="PackedScene" uid="uid://2vuxafdyyhgx" path="res://content/water/water.tscn" id="11_o3hmp"]
@@ -61,7 +61,8 @@ tile_map_data = PackedByteArray("AAACAA4AAQAAAAAAAAADAA4AAQAAAAAAAAAEAA4AAQAAAAA
 tile_set = SubResource("TileSet_d7yf6")
 
 [node name="Mario" parent="TestNode2D" instance=ExtResource("9_hgnsp")]
-position = Vector2(624, 256)
+unique_name_in_owner = true
+position = Vector2(624, 192)
 
 [node name="TestCamera2D" type="Camera2D" parent="TestNode2D/Mario"]
 limit_left = 0
@@ -79,12 +80,12 @@ position = Vector2(640, 254)
 [node name="Obstacle3" parent="TestNode2D/Solid" instance=ExtResource("2_676rr")]
 position = Vector2(864, 376)
 
-[node name="DebugWaterArea2D" type="Area2D" parent="TestNode2D"]
+[node name="DebugWaterArea2D" type="Area2D" parent="TestNode2D" groups=["water"]]
 collision_layer = 64
 collision_mask = 56
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestNode2D/DebugWaterArea2D"]
-position = Vector2(720, 320)
+position = Vector2(784, 320)
 shape = SubResource("RectangleShape2D_la3m6")
 debug_color = Color(0, 0.26666668, 0.69803923, 0.41960785)
 
@@ -94,7 +95,7 @@ _camera = NodePath("../Mario/TestCamera2D")
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="TestNode2D"]
 
-[node name="DebugLabel" type="Label" parent="TestNode2D/DebugCanvasLayer" node_paths=PackedStringArray("_mario")]
+[node name="DebugLabel" type="Label" parent="TestNode2D/DebugCanvasLayer" node_paths=PackedStringArray("_player")]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 344.0
@@ -105,12 +106,12 @@ theme_override_font_sizes/font_size = 10
 text = "Mario Position and Velocity."
 uppercase = true
 script = ExtResource("10_g7257")
-_mario = NodePath("../../Mario")
+_player = NodePath("../../Mario")
 
 [node name="HUD" type="CanvasLayer" parent="TestNode2D"]
-visible = false
 
 [node name="Control" type="Control" parent="TestNode2D/HUD"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 640.0
