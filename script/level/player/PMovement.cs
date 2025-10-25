@@ -29,6 +29,7 @@ public partial class PMovement : CharacterBody2D {
     private float _waterMaxFallingSpeed = 6f;
     
     public bool IsInWater;
+    private bool _wasInWater;
     public bool IsOnWaterSurface = true;
     private Area2D _waterArea;
 
@@ -155,7 +156,7 @@ public partial class PMovement : CharacterBody2D {
             }
         }
 
-        // 根据GM8版执行顺序在这里进行 MoveAndSlide()
+        // 根据GM8版执行顺序在这里进行速度计算并 MoveAndSlide()
         Velocity = new Vector2(_speedX * FRAMERATE_ORIGIN, (_speedY + _gravity) * FRAMERATE_ORIGIN);
         
         MoveAndSlide();
@@ -171,6 +172,10 @@ public partial class PMovement : CharacterBody2D {
                 IsInWater = true;
             }
         }
+        if (_wasInWater != IsInWater) {
+            _speedY = Mathf.Min(0f, _speedY);
+        }
+        _wasInWater = IsInWater;
 
         IsOnWaterSurface = true;
         foreach (var resultOutWater in resultsOutWater) {

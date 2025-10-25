@@ -89,6 +89,14 @@ position = Vector2(784, 320)
 shape = SubResource("RectangleShape2D_la3m6")
 debug_color = Color(0, 0.26666668, 0.69803923, 0.41960785)
 
+[node name="ColorRect" type="ColorRect" parent="TestNode2D/DebugWaterArea2D"]
+self_modulate = Color(1, 1, 1, 0.6)
+offset_left = 736.0
+offset_top = 288.0
+offset_right = 832.0
+offset_bottom = 352.0
+color = Color(0.17254902, 0.28627452, 0.46666667, 1)
+
 [node name="Water" parent="TestNode2D" node_paths=PackedStringArray("_camera") instance=ExtResource("11_o3hmp")]
 position = Vector2(0, 448)
 _camera = NodePath("../Mario/TestCamera2D")
