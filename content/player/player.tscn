@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=8 format=3 uid="uid://dwkukt5v4t3p5"]
 
-[ext_resource type="Script" uid="uid://cwf1kwcspdui2" path="res://script/level/player/PMovement.cs" id="1_lsr3k"]
 [ext_resource type="Texture2D" uid="uid://c4jyjy2jpwdvy" path="res://content/player/test_smallmariorun_1.png" id="2_2tlcd"]
+[ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
+[ext_resource type="Script" uid="uid://cwf1kwcspdui2" path="res://script/level/player/PlayerMovement.cs" id="3_i4jjh"]
+[ext_resource type="Script" uid="uid://dq38nbqklr26h" path="res://script/level/player/PlayerDie.cs" id="4_i4jjh"]
+[ext_resource type="PackedScene" uid="uid://dfiukm6ibgibj" path="res://content/player/player_dead.tscn" id="5_3ac0f"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_y66qv"]
 points = PackedVector2Array(-12, 0, -12, -14, -3, -23, 3, -23, 12, -14, 12, 0)
@@ -9,25 +12,23 @@ points = PackedVector2Array(-12, 0, -12, -14, -3, -23, 3, -23, 12, -14, 12, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_y66qv"]
 radius = 8.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_inWaterDetect", "_outWaterDetect")]
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 115
 slide_on_ceiling = false
 floor_block_on_wall = false
 platform_on_leave = 2
-script = ExtResource("1_lsr3k")
-_inWaterDetect = NodePath("")
-_outWaterDetect = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -12)
+position = Vector2(1, 0)
 texture = ExtResource("2_2tlcd")
-metadata/_edit_lock_ = true
 
 [node name="BlocksPhysicsCollision" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 12)
 polygon = PackedVector2Array(-12, 0, -12, -14, -3, -23, 3, -23, 12, -14, 12, 0)
 
 [node name="AreaBodyCollision" type="ShapeCast2D" parent="."]
+position = Vector2(0, 12)
 shape = SubResource("ConvexPolygonShape2D_y66qv")
 target_position = Vector2(0, 0)
 max_results = 6
@@ -35,9 +36,26 @@ collision_mask = 115
 collide_with_areas = true
 
 [node name="OutWaterDetect" type="ShapeCast2D" parent="."]
-position = Vector2(0, -40)
+position = Vector2(0, -28)
 shape = SubResource("CircleShape2D_y66qv")
 target_position = Vector2(0, 0)
 max_results = 3
 collision_mask = 115
 collide_with_areas = true
+
+[node name="PlayerMediator" type="Node" parent="." node_paths=PackedStringArray("playerMovement", "playerDie")]
+script = ExtResource("2_3ac0f")
+playerMovement = NodePath("PlayerMovement")
+playerDie = NodePath("PlayerDie")
+
+[node name="PlayerMovement" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player")]
+script = ExtResource("3_i4jjh")
+_playerMediator = NodePath("..")
+_player = NodePath("../..")
+
+[node name="PlayerDie" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player")]
+process_mode = 1
+script = ExtResource("4_i4jjh")
+_playerMediator = NodePath("..")
+_player = NodePath("../..")
+_playerDeadScene = ExtResource("5_3ac0f")
