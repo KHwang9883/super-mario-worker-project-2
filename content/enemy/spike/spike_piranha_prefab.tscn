@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlfbxnforjjvx"]
+
+[ext_resource type="Texture2D" uid="uid://b7ol2hory2nw4" path="res://content/enemy/spike/spike_piranha.png" id="1_e1duw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xxvc"]
+atlas = ExtResource("1_e1duw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3pav"]
+atlas = ExtResource("1_e1duw")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bsmg"]
+atlas = ExtResource("1_e1duw")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u7x2d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xxvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3pav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bsmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bsmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3pav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xxvc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbywh"]
+size = Vector2(32, 32)
+
+[node name="SpikePiranhaPrefab" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_u7x2d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tbywh")
