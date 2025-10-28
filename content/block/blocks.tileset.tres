@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://obv64rtoaukf"]
 
-[ext_resource type="Texture2D" uid="uid://c5hcbuioe0gi6" path="res://content/blocks.png" id="1_avvn6"]
+[ext_resource type="Texture2D" uid="uid://c5hcbuioe0gi6" path="res://content/block/blocks.png" id="1_avvn6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4xb8r"]
 resource_name = "Builtin"
