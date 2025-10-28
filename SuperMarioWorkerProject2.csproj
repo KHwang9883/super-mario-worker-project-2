@@ -9,4 +9,8 @@
   <ItemGroup>
     <Content Include="docs\resource_naming.md" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="content\enemy\" />
+    <Folder Include="script\level\enemy\spike\" />
+  </ItemGroup>
 </Project>
