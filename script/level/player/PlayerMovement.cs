@@ -4,9 +4,11 @@ using System;
 using System.Text.RegularExpressions;
 using SMWP.Level.Debug;
 
-public partial class PMovement : CharacterBody2D {
-    [Export] private Area2D _inWaterDetect = null!;
-    [Export] private Area2D _outWaterDetect = null!;
+namespace SMWP.Level.Player;
+
+public partial class PlayerMovement : Node {
+    [Export] private PlayerMediator _playerMediator = null!;
+    [Export] private CharacterBody2D _player = null!;
 
     // 关卡引力
     private float _gravity = 5f / 5f;
@@ -31,7 +33,6 @@ public partial class PMovement : CharacterBody2D {
     public bool IsInWater;
     private bool _wasInWater;
     public bool IsOnWaterSurface = true;
-    private Area2D _waterArea;
 
     private bool _up;
     private bool _down;
@@ -41,36 +42,8 @@ public partial class PMovement : CharacterBody2D {
     private bool _jump;
     private bool _jumped;
     private int _jumpBoostTimer;
-    //private bool _doubleFrameProcess;
-    //private bool _lastJumpBoostState;
-    
-    public override void _Ready() {
-        
-        //waterArea.BodyEntered += OnWaterBodyEntered;
-        //waterArea.BodyExited += OnWaterBodyExited;
-        
-        //_waterDetect.AreaEntered += OnWaterBodyEntered;
-        //_waterDetect.AreaExited += OnWaterBodyExited;
-    }
 
-    private void OnWaterBodyEntered(Node2D body) {
-        if (body == this) {
-            IsInWater = true;
-            _speedY = Mathf.Min(0f, _speedY);
-        }
-        if (body == _waterArea) {
-            IsOnWaterSurface = false;
-        }
-    }
-
-    private void OnWaterBodyExited(Node2D body) {
-        if (body == this) {
-            IsInWater = false;
-        }
-        if (body == _waterArea) {
-            IsOnWaterSurface = true;
-        }
-    }
+    private Array<Node2D> _results = null!;
     
     public override void _PhysicsProcess(double delta) {
         // 输入处理
@@ -117,7 +90,7 @@ public partial class PMovement : CharacterBody2D {
             
         // y 速度
         // 落地或顶头
-        if ((IsOnFloor() || (IsOnCeiling() && _speedY < 0f))) {
+        if ((_player.IsOnFloor() || (_player.IsOnCeiling() && _speedY < 0f))) {
             _speedY = 0f;
         }
         
@@ -126,7 +99,7 @@ public partial class PMovement : CharacterBody2D {
         if (!_jump) { _jumped = false; }
         
         if (_jump) {
-            if (!IsInWater && IsOnFloor()) {
+            if (!IsInWater && _player.IsOnFloor()) {
                 _speedY = -(8f + Mathf.Abs(_speedX) / 5f);
                 _jumped = true;
             } else if (IsInWater && !_jumped) {
@@ -148,7 +121,7 @@ public partial class PMovement : CharacterBody2D {
         }
         
         // 最大下落速度
-        if (!IsOnFloor()) {
+        if (!_player.IsOnFloor()) {
             float maxFallSpeed = IsInWater ? _waterMaxFallingSpeed : _maxFallingSpeed;
     
             if (_speedY > maxFallSpeed) {
@@ -157,17 +130,17 @@ public partial class PMovement : CharacterBody2D {
         }
 
         // 根据GM8版执行顺序在这里进行速度计算并 MoveAndSlide()
-        Velocity = new Vector2(_speedX * FRAMERATE_ORIGIN, (_speedY + _gravity) * FRAMERATE_ORIGIN);
+        _player.Velocity = new Vector2(_speedX * FRAMERATE_ORIGIN, (_speedY + _gravity) * FRAMERATE_ORIGIN);
         
-        MoveAndSlide();
+        _player.MoveAndSlide();
         
         // 重叠物件检测
-        var results = ShapeQueryResult.ShapeQuery(this, GetNode<ShapeCast2D>("AreaBodyCollision"));
-        var resultsOutWater = ShapeQueryResult.ShapeQuery(this, GetNode<ShapeCast2D>("OutWaterDetect"));
+        _results = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>("AreaBodyCollision"));
+        var resultsOutWater = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>("OutWaterDetect"));
         
         // 水中状态检测
         IsInWater = false;
-        foreach (var result in results) {
+        foreach (var result in _results) {
             if (result.IsInGroup("water")) {
                 IsInWater = true;
             }
@@ -191,12 +164,16 @@ public partial class PMovement : CharacterBody2D {
         _speedY += (IsInWater ? 0.2f : 1.0f);
         
         // GM8版注释：尝试性修复非整格实心穿墙
-        // 为保持精确性，故各自方向速度为零分别进行一次取整
-        if (_speedX == 0f) {
-            Position = new Vector2(Mathf.Round(Position.X), Position.Y);
+        // 为保持精确性，故各自方向速度为零分别进行一次取整，但是该做法会导致楼梯地形贴墙原地起跳边缘卡脚，因此禁用
+        /*if (_speedX == 0f) {
+            _player.Position = new Vector2(Mathf.Round(_player.Position.X), _player.Position.Y);
         }
         if (_speedY == 0f) {
-            Position = new Vector2(Position.X, Mathf.Round(Position.Y));
-        }
+            _player.Position = new Vector2(_player.Position.X, Mathf.Round(_player.Position.Y));
+        }*/
+    }
+
+    public Array<Node2D> GetShapeQueryResults() {
+        return _results;
     }
 }
