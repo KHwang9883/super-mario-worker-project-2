@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c7tmtblk2krab" path="res://script/level/player/PlayerDead.cs" id="1_lsddu"]
 
 [node name="PlayerDead" type="Node2D"]
+z_index = 50
 script = ExtResource("1_lsddu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
