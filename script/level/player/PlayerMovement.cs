@@ -7,6 +7,9 @@ using SMWP.Level.Debug;
 namespace SMWP.Level.Player;
 
 public partial class PlayerMovement : Node {
+    [Signal]
+    public delegate void JumpStartedEventHandler();
+    
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
 
@@ -14,15 +17,15 @@ public partial class PlayerMovement : Node {
     private float _gravity = 5f / 5f;
     
     // 运动参数先用 GM8 单位（px/f），计算 Velocity 的时候转换为 Godot 单位（px/s）
-    private const float FRAMERATE_ORIGIN = 50f;
+    private const float FramerateOrigin = 50f;
     private int _direction = 1;
-    private float _speedX;
+    public float SpeedX;
     private float _walkingAcceleration = 0.1f;
     private float _runningAcceleration = 0.3f;
     private float _maxWalkingSpeed = 3f;
     private float _maxRunningSpeed = 8f;
     
-    private float _speedY;
+    public float SpeedY;
     private float _maxFallingSpeed = 13f;
     
     private float _waterHorizontalAcceleration = 0.05f;
@@ -40,10 +43,11 @@ public partial class PlayerMovement : Node {
     private bool _right;
     private bool _fire;
     private bool _jump;
-    private bool _jumped;
+    public bool Jumped;
     private int _jumpBoostTimer;
 
     private Array<Node2D> _results = null!;
+    private Array<Node2D> _resultsOutWater = null!; 
     
     public override void _PhysicsProcess(double delta) {
         // 输入处理
@@ -67,55 +71,57 @@ public partial class PlayerMovement : Node {
             if (_fire) {
                 maxSpeed = _maxRunningSpeed;
             } else {
-                maxSpeed = Mathf.Abs(_speedX) > _maxWalkingSpeed 
+                maxSpeed = Mathf.Abs(SpeedX) > _maxWalkingSpeed 
                     ? _maxRunningSpeed 
                     : _maxWalkingSpeed;
             }
         }
 
         if (_left) {
-            _speedX = Mathf.Clamp(_speedX - acceleration, -maxSpeed, maxSpeed);
+            SpeedX = Mathf.Clamp(SpeedX - acceleration, -maxSpeed, maxSpeed);
         }
         if (_right) {
-            _speedX = Mathf.Clamp(_speedX + acceleration, -maxSpeed, maxSpeed);
+            SpeedX = Mathf.Clamp(SpeedX + acceleration, -maxSpeed, maxSpeed);
         }
 
         if (!_left && !_right) {
-            _speedX /= IsInWater ? 1.03f : 1.05f;
+            SpeedX /= IsInWater ? 1.03f : 1.05f;
         }
         
-        if (_speedX > -0.04f && _speedX < 0.04f) {
-            _speedX = 0f;
+        if (SpeedX > -0.04f && SpeedX < 0.04f) {
+            SpeedX = 0f;
         }
             
         // y 速度
         // 落地或顶头
-        if ((_player.IsOnFloor() || (_player.IsOnCeiling() && _speedY < 0f))) {
-            _speedY = 0f;
+        if ((_player.IsOnFloor() || (_player.IsOnCeiling() && SpeedY < 0f))) {
+            SpeedY = 0f;
         }
         
         // 起跳
         
-        if (!_jump) { _jumped = false; }
+        if (!_jump) { Jumped = false; }
         
         if (_jump) {
             if (!IsInWater && _player.IsOnFloor()) {
-                _speedY = -(8f + Mathf.Abs(_speedX) / 5f);
-                _jumped = true;
-            } else if (IsInWater && !_jumped) {
-                _speedY = IsOnWaterSurface
-                    ? -(6f + Mathf.Abs(_speedX) / 5f)
-                    : -(4f + Mathf.Abs(_speedX) / 10f);
-                _jumped = true;
+                SpeedY = -(8f + Mathf.Abs(SpeedX) / 5f);
+                Jumped = true;
+                EmitSignal(SignalName.JumpStarted);
+            } else if (IsInWater && !Jumped) {
+                SpeedY = IsOnWaterSurface
+                    ? -(6f + Mathf.Abs(SpeedX) / 5f)
+                    : -(4f + Mathf.Abs(SpeedX) / 10f);
+                Jumped = true;
+                EmitSignal(SignalName.JumpStarted);
             }
         }
         
         // 空中跳跃按跳跃键有速度加成
         _jumpBoostTimer = Math.Clamp(_jumpBoostTimer + 1, 0, 2);
 
-        if (_jump && _speedY < 0f && !IsInWater) {
+        if (_jump && SpeedY < 0f && !IsInWater) {
             if (_jumpBoostTimer > 1) {
-                _speedY -= 1.5f;
+                SpeedY -= 1.5f;
                 _jumpBoostTimer = 0;
             }
         }
@@ -124,19 +130,26 @@ public partial class PlayerMovement : Node {
         if (!_player.IsOnFloor()) {
             float maxFallSpeed = IsInWater ? _waterMaxFallingSpeed : _maxFallingSpeed;
     
-            if (_speedY > maxFallSpeed) {
-                _speedY = maxFallSpeed;
+            if (SpeedY > maxFallSpeed) {
+                SpeedY = maxFallSpeed;
             }
         }
 
         // 根据GM8版执行顺序在这里进行速度计算并 MoveAndSlide()
-        _player.Velocity = new Vector2(_speedX * FRAMERATE_ORIGIN, (_speedY + _gravity) * FRAMERATE_ORIGIN);
+        _player.Velocity = new Vector2(SpeedX * FramerateOrigin, (SpeedY + _gravity) * FramerateOrigin);
         
         _player.MoveAndSlide();
         
         // 重叠物件检测
-        _results = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>("AreaBodyCollision"));
-        var resultsOutWater = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>("OutWaterDetect"));
+        try {
+            // TODO: 替换硬编码为NodePath以支持不同状态下的碰撞箱
+            _results = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>("AreaBodyCollisionSmall"));
+            _resultsOutWater = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>("OutWaterDetectSmall"));
+        } catch {
+            GD.PrintErr("重叠物件检测失败");
+            GD.Print("启用临时重力修正");
+            SpeedY += (IsInWater ? 0.2f : 1.0f);
+        } 
         
         // 水中状态检测
         IsInWater = false;
@@ -146,31 +159,25 @@ public partial class PlayerMovement : Node {
             }
         }
         if (_wasInWater != IsInWater) {
-            _speedY = Mathf.Min(0f, _speedY);
+            SpeedY = Mathf.Min(0f, SpeedY);
         }
         _wasInWater = IsInWater;
 
         IsOnWaterSurface = true;
-        foreach (var resultOutWater in resultsOutWater) {
+        foreach (var resultOutWater in _resultsOutWater) {
             if (resultOutWater.IsInGroup("water")) {
                 IsOnWaterSurface = false;
             }
         }
-        
+
         // Debug
         //GD.Print(ShapeQueryResult.ShapeQuery(this, GetNode<ShapeCast2D>("AreaBodyCollision")));
-        
+
         // 重力
-        _speedY += (IsInWater ? 0.2f : 1.0f);
-        
+        SpeedY += (IsInWater ? 0.2f : 1.0f);
+            
         // GM8版注释：尝试性修复非整格实心穿墙
         // 为保持精确性，故各自方向速度为零分别进行一次取整，但是该做法会导致楼梯地形贴墙原地起跳边缘卡脚，因此禁用
-        /*if (_speedX == 0f) {
-            _player.Position = new Vector2(Mathf.Round(_player.Position.X), _player.Position.Y);
-        }
-        if (_speedY == 0f) {
-            _player.Position = new Vector2(_player.Position.X, Mathf.Round(_player.Position.Y));
-        }*/
     }
 
     public Array<Node2D> GetShapeQueryResults() {

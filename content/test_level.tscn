@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=18 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/block/obstacle.tscn" id="2_676rr"]
@@ -12,7 +12,8 @@
 [ext_resource type="Script" uid="uid://dsl20o7a2l7a0" path="res://script/level/debug/TestLabel.cs" id="10_g7257"]
 [ext_resource type="FontFile" uid="uid://em53psx0nwwf" path="res://content/hud/mw/mw_hud.fnt" id="11_lwtrl"]
 [ext_resource type="PackedScene" uid="uid://2vuxafdyyhgx" path="res://content/water/water.tscn" id="11_o3hmp"]
-[ext_resource type="PackedScene" uid="uid://dm7wuafwjjq1w" path="res://content/enemy/spike/spike.tscn" id="13_dhetq"]
+[ext_resource type="PackedScene" uid="uid://dm7wuafwjjq1w" path="res://content/enemy/spike/spike_mw.tscn" id="13_dhetq"]
+[ext_resource type="PackedScene" uid="uid://dlfbxnforjjvx" path="res://content/enemy/spike/spike_piranha.tscn" id="14_ii7j2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d7yf6"]
 texture = ExtResource("8_1mjcm")
@@ -107,12 +108,13 @@ tile_set = SubResource("TileSet_d7yf6")
 
 [node name="Mario" parent="TestNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(384, 436)
+position = Vector2(528, 340)
 
 [node name="TestCamera2D" type="Camera2D" parent="TestNode2D/Mario"]
 limit_left = 0
 limit_top = 0
 limit_bottom = 544
+metadata/_edit_lock_ = true
 
 [node name="Solid" type="Node2D" parent="TestNode2D"]
 
@@ -153,3 +155,9 @@ position = Vector2(752, 400)
 
 [node name="Spike2" parent="TestNode2D/Enemies" instance=ExtResource("13_dhetq")]
 position = Vector2(432, 432)
+
+[node name="SpikePiranha" parent="TestNode2D" instance=ExtResource("14_ii7j2")]
+position = Vector2(208, 432)
+
+[node name="SpikePiranha2" parent="TestNode2D" instance=ExtResource("14_ii7j2")]
+position = Vector2(240, 432)

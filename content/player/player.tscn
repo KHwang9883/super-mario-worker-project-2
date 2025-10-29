@@ -1,41 +1,58 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=16 format=3 uid="uid://dwkukt5v4t3p5"]
 
-[ext_resource type="Texture2D" uid="uid://c4jyjy2jpwdvy" path="res://content/player/test_smallmariorun_1.png" id="2_2tlcd"]
+[ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/player/mario_small.tres" id="1_o23i7"]
 [ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
 [ext_resource type="Script" uid="uid://cwf1kwcspdui2" path="res://script/level/player/PlayerMovement.cs" id="3_i4jjh"]
 [ext_resource type="Script" uid="uid://dq38nbqklr26h" path="res://script/level/player/PlayerDie.cs" id="4_i4jjh"]
 [ext_resource type="PackedScene" uid="uid://dfiukm6ibgibj" path="res://content/player/player_dead.tscn" id="5_3ac0f"]
+[ext_resource type="Script" uid="uid://bc2odwcafhf0w" path="res://script/level/player/PlayerAnimation.cs" id="6_o23i7"]
+[ext_resource type="SpriteFrames" uid="uid://b85b6tckcoib1" path="res://content/player/mario_super.tres" id="7_cvehv"]
+[ext_resource type="SpriteFrames" uid="uid://d11sjnlbqehpu" path="res://content/player/mario_fireball.tres" id="8_vx4xa"]
+[ext_resource type="SpriteFrames" uid="uid://dg3ftfs0smrbt" path="res://content/player/mario_beetroot.tres" id="9_5unhu"]
+[ext_resource type="SpriteFrames" uid="uid://v113q2c6k865" path="res://content/player/mario_lui.tres" id="10_tpspr"]
+[ext_resource type="Script" uid="uid://bjsu3xt78gy5t" path="res://script/level/player/PlayerSuit.cs" id="11_vx4xa"]
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_y66qv"]
-points = PackedVector2Array(-12, 0, -12, -14, -3, -23, 3, -23, 12, -14, 12, 0)
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_gdtqi"]
+points = PackedVector2Array(-12, 0, -12, -14, -2, -24, 2, -24, 12, -14, 12, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y66qv"]
 radius = 8.0
 
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_y66qv"]
+points = PackedVector2Array(-12, 0, -12, -38, -2, -48, 2, -48, 12, -38, 12, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rmk25"]
+radius = 8.0
+
 [node name="Player" type="CharacterBody2D"]
+z_index = 50
 collision_layer = 8
 collision_mask = 115
 slide_on_ceiling = false
 floor_block_on_wall = false
 platform_on_leave = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, 0)
-texture = ExtResource("2_2tlcd")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_o23i7")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(0, -19)
 
-[node name="BlocksPhysicsCollision" type="CollisionPolygon2D" parent="."]
+[node name="BlocksPhysicsCollisionSmall" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(0, 12)
-polygon = PackedVector2Array(-12, 0, -12, -14, -3, -23, 3, -23, 12, -14, 12, 0)
+polygon = PackedVector2Array(-12, 0, -12, -14, -2, -24, 2, -24, 12, -14, 12, 0)
 
-[node name="AreaBodyCollision" type="ShapeCast2D" parent="."]
+[node name="AreaBodyCollisionSmall" type="ShapeCast2D" parent="."]
 position = Vector2(0, 12)
-shape = SubResource("ConvexPolygonShape2D_y66qv")
+shape = SubResource("ConvexPolygonShape2D_gdtqi")
 target_position = Vector2(0, 0)
 max_results = 6
 collision_mask = 115
 collide_with_areas = true
 
-[node name="OutWaterDetect" type="ShapeCast2D" parent="."]
+[node name="OutWaterDetectSmall" type="ShapeCast2D" parent="."]
+visible = false
 position = Vector2(0, -28)
 shape = SubResource("CircleShape2D_y66qv")
 target_position = Vector2(0, 0)
@@ -43,10 +60,12 @@ max_results = 3
 collision_mask = 115
 collide_with_areas = true
 
-[node name="PlayerMediator" type="Node" parent="." node_paths=PackedStringArray("playerMovement", "playerDie")]
+[node name="PlayerMediator" type="Node" parent="." node_paths=PackedStringArray("playerMovement", "playerDie", "playerAnimation", "playerSuit")]
 script = ExtResource("2_3ac0f")
 playerMovement = NodePath("PlayerMovement")
 playerDie = NodePath("PlayerDie")
+playerAnimation = NodePath("PlayerAnimation")
+playerSuit = NodePath("PlayerSuit")
 
 [node name="PlayerMovement" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player")]
 script = ExtResource("3_i4jjh")
@@ -59,3 +78,46 @@ script = ExtResource("4_i4jjh")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
 _playerDeadScene = ExtResource("5_3ac0f")
+
+[node name="PlayerAnimation" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_animatedSprite2D", "_player")]
+script = ExtResource("6_o23i7")
+_playerMediator = NodePath("..")
+_animatedSprite2D = NodePath("../../AnimatedSprite2D")
+_player = NodePath("../..")
+_marioSmall = ExtResource("1_o23i7")
+_marioSuper = ExtResource("7_cvehv")
+_marioFireball = ExtResource("8_vx4xa")
+_marioBeetroot = ExtResource("9_5unhu")
+_marioLui = ExtResource("10_tpspr")
+
+[node name="PlayerSuit" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator")]
+script = ExtResource("11_vx4xa")
+_playerMediator = NodePath("..")
+
+[node name="PlayerSuperCollisionBox" type="Node" parent="."]
+process_mode = 4
+
+[node name="BlocksPhysicsCollisionSuper" type="CollisionPolygon2D" parent="PlayerSuperCollisionBox"]
+visible = false
+position = Vector2(0, 12)
+polygon = PackedVector2Array(-12, 0, -12, -38, -2, -48, 2, -48, 12, -38, 12, 0)
+
+[node name="AreaBodyCollisionSuper" type="ShapeCast2D" parent="PlayerSuperCollisionBox"]
+visible = false
+position = Vector2(0, 12)
+shape = SubResource("ConvexPolygonShape2D_y66qv")
+target_position = Vector2(0, 0)
+max_results = 6
+collision_mask = 115
+collide_with_areas = true
+
+[node name="OutWaterDetectSuper" type="ShapeCast2D" parent="PlayerSuperCollisionBox"]
+visible = false
+position = Vector2(0, -52)
+shape = SubResource("CircleShape2D_rmk25")
+target_position = Vector2(0, 0)
+max_results = 3
+collision_mask = 115
+collide_with_areas = true
+
+[connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerAnimation" method="OnJumpStarted"]

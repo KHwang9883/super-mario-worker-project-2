@@ -22,6 +22,7 @@ public partial class TestLabel : Label {
         }
         Text = $"Position: ({_player.Position.X,9:00000.00}, {_player.Position.Y,9:00000.00})\n" +
                $"Velocity: ({_player.Velocity.X,7:000.00}, {_player.Velocity.Y,7:000.00})\n" +
+               $"Speed: ({_playerMovement.SpeedX,7:000.00}, {_playerMovement.SpeedY,7:000.00})\n" +
                $"IsOnFloor: {_player.IsOnFloor()}\n" +
                $"IsOnCeiling: {_player.IsOnCeiling()}\n" +
                $"IsOnWall: {_player.IsOnWall()}\n" +

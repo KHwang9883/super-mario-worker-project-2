@@ -33,27 +33,27 @@ public partial class PlayerDie : Node {
         
         foreach (var result in results) {
             var trueNode = result.GetNodeOrNull<EnemyBase>("EnemySet");
-            if (trueNode == null) { continue; }
-            if (trueNode is EnemyBase node) {
-                // TODO: 敌人碰撞处理
-                if (
-                    (node.Stompability == EnemyBase.StompabilityEnum.Unstompable)
-                    ||
-                    (
-                        node.Stompability == EnemyBase.StompabilityEnum.Stompable
-                        &&
-                        _player.GlobalPosition > node.GlobalPosition
-                    )
-                ) {
-                    switch (node.HurtType)
-                    {
-                        case EnemyBase.HurtEnum.Die:
-                            Die();
-                            break;
-                        case EnemyBase.HurtEnum.Hurt:
-                            //Hurt;
-                            break;
-                    }
+            // 检查的 Node2D 没有或不是 EnemySet 组件，跳过
+            if (trueNode is not EnemyBase node) continue;
+            
+            // TODO: 敌人碰撞处理
+            if (
+                (node.Stompability == EnemyBase.StompabilityEnum.Unstompable)
+                ||
+                (
+                    node.Stompability == EnemyBase.StompabilityEnum.Stompable
+                    &&
+                    _player.GlobalPosition > node.GlobalPosition
+                )
+            ) {
+                switch (node.HurtType)
+                {
+                    case EnemyBase.HurtEnum.Die:
+                        Die();
+                        break;
+                    case EnemyBase.HurtEnum.Hurt:
+                        //Hurt;
+                        break;
                 }
             }
         }
