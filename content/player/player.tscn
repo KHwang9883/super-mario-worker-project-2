@@ -33,10 +33,11 @@ floor_block_on_wall = false
 platform_on_leave = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 13)
 sprite_frames = ExtResource("1_o23i7")
 animation = &"idle"
 autoplay = "idle"
-offset = Vector2(0, -19)
+offset = Vector2(0, -32)
 
 [node name="BlocksPhysicsCollisionSmall" type="CollisionPolygon2D" parent="."]
 visible = false
@@ -55,6 +56,32 @@ collide_with_areas = true
 visible = false
 position = Vector2(0, -28)
 shape = SubResource("CircleShape2D_y66qv")
+target_position = Vector2(0, 0)
+max_results = 3
+collision_mask = 115
+collide_with_areas = true
+
+[node name="BlocksPhysicsCollisionSuper" type="CollisionPolygon2D" parent="."]
+process_mode = 4
+visible = false
+position = Vector2(0, 12)
+polygon = PackedVector2Array(-12, 0, -12, -38, -2, -48, 2, -48, 12, -38, 12, 0)
+
+[node name="AreaBodyCollisionSuper" type="ShapeCast2D" parent="."]
+process_mode = 4
+visible = false
+position = Vector2(0, 12)
+shape = SubResource("ConvexPolygonShape2D_y66qv")
+target_position = Vector2(0, 0)
+max_results = 6
+collision_mask = 115
+collide_with_areas = true
+
+[node name="OutWaterDetectSuper" type="ShapeCast2D" parent="."]
+process_mode = 4
+visible = false
+position = Vector2(0, -52)
+shape = SubResource("CircleShape2D_rmk25")
 target_position = Vector2(0, 0)
 max_results = 3
 collision_mask = 115
@@ -93,31 +120,8 @@ _marioLui = ExtResource("10_tpspr")
 [node name="PlayerSuit" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator")]
 script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
-
-[node name="PlayerSuperCollisionBox" type="Node" parent="."]
-process_mode = 4
-
-[node name="BlocksPhysicsCollisionSuper" type="CollisionPolygon2D" parent="PlayerSuperCollisionBox"]
-visible = false
-position = Vector2(0, 12)
-polygon = PackedVector2Array(-12, 0, -12, -38, -2, -48, 2, -48, 12, -38, 12, 0)
-
-[node name="AreaBodyCollisionSuper" type="ShapeCast2D" parent="PlayerSuperCollisionBox"]
-visible = false
-position = Vector2(0, 12)
-shape = SubResource("ConvexPolygonShape2D_y66qv")
-target_position = Vector2(0, 0)
-max_results = 6
-collision_mask = 115
-collide_with_areas = true
-
-[node name="OutWaterDetectSuper" type="ShapeCast2D" parent="PlayerSuperCollisionBox"]
-visible = false
-position = Vector2(0, -52)
-shape = SubResource("CircleShape2D_rmk25")
-target_position = Vector2(0, 0)
-max_results = 3
-collision_mask = 115
-collide_with_areas = true
+Suit = 1
 
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerAnimation" method="OnJumpStarted"]
+[connection signal="PlayerHurt" from="PlayerMediator/PlayerDie" to="PlayerMediator/PlayerAnimation" method="OnPlayerHurt"]
+[connection signal="PlayerInvincibleEnded" from="PlayerMediator/PlayerDie" to="PlayerMediator/PlayerAnimation" method="OnPlayerInvincibleEnded"]
