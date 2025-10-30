@@ -4,4 +4,24 @@ using SMWP.Level.Player;
 
 public partial class PlayerSuit : Node {
     [Export] private PlayerMediator _playerMediator = null!;
+    
+    public enum SuitEnum {
+        Small,
+        Super,
+        Powered
+    }
+    [Export] public SuitEnum Suit = SuitEnum.Small;
+    public enum PowerupEnum {
+        Fireball,
+        Beetroot,
+        Lui
+    }
+    [Export] public PowerupEnum Powerup = PowerupEnum.Fireball;
+
+    /*public override void _Ready() {
+        _playerMediator.playerDie.PlayerHurt += OnPlayerHurt;
+    }
+    public void OnPlayerHurt() {
+
+    }*/
 }
