@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=24 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/block/obstacle.tscn" id="2_676rr"]
@@ -8,12 +8,43 @@
 [ext_resource type="TileSet" uid="uid://bnf7dwxlyydri" path="res://content/block/obstacles.tileset.tres" id="6_nyv2h"]
 [ext_resource type="TileSet" uid="uid://obv64rtoaukf" path="res://content/block/blocks.tileset.tres" id="7_3v1lj"]
 [ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/block/obstacle.png" id="8_1mjcm"]
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/hud/mw/mw_hud.tres" id="8_bfx67"]
+[ext_resource type="Texture2D" uid="uid://celf82o4sjyxr" path="res://content/hud/mw/hud_mw_coin.png" id="8_lgciv"]
 [ext_resource type="PackedScene" uid="uid://dwkukt5v4t3p5" path="res://content/player/player.tscn" id="9_hgnsp"]
 [ext_resource type="Script" uid="uid://dsl20o7a2l7a0" path="res://script/level/debug/TestLabel.cs" id="10_g7257"]
-[ext_resource type="FontFile" uid="uid://em53psx0nwwf" path="res://content/hud/mw/mw_hud.fnt" id="11_lwtrl"]
 [ext_resource type="PackedScene" uid="uid://2vuxafdyyhgx" path="res://content/water/water.tscn" id="11_o3hmp"]
 [ext_resource type="PackedScene" uid="uid://dm7wuafwjjq1w" path="res://content/enemy/spike/spike_mw.tscn" id="13_dhetq"]
 [ext_resource type="PackedScene" uid="uid://dlfbxnforjjvx" path="res://content/enemy/spike/spike_piranha.tscn" id="14_ii7j2"]
+[ext_resource type="PackedScene" uid="uid://d2kvp8mnj0j4u" path="res://content/enemy/goomba/goomba.tscn" id="16_lgciv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
+atlas = ExtResource("8_lgciv")
+region = Rect2(0, 0, 50, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xv5h"]
+atlas = ExtResource("8_lgciv")
+region = Rect2(0, 20, 50, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iae4c"]
+atlas = ExtResource("8_lgciv")
+region = Rect2(0, 40, 50, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_venmc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2gt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xv5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iae4c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d7yf6"]
 texture = ExtResource("8_1mjcm")
@@ -59,21 +90,87 @@ use_native_dialog = true
 [node name="TestNode2D" type="Node2D" parent="."]
 
 [node name="HUD" type="CanvasLayer" parent="TestNode2D"]
+visible = false
 
 [node name="Control" type="Control" parent="TestNode2D/HUD"]
-visible = false
 layout_mode = 3
-anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 480.0
-metadata/_edit_lock_ = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 10.0
+offset_right = -22.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="HUD" type="Label" parent="TestNode2D/HUD/Control"]
-layout_mode = 0
-offset_right = 640.0
-offset_bottom = 480.0
-theme_override_constants/paragraph_spacing = 7
-theme_override_fonts/font = ExtResource("11_lwtrl")
+[node name="Life" type="Label" parent="TestNode2D/HUD/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_bfx67")
+text = "Mario 3
+0"
+uppercase = true
+
+[node name="LevelTitle" type="Label" parent="TestNode2D/HUD/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_bfx67")
+text = "LEGEND
+?-?"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Time" type="Label" parent="TestNode2D/HUD/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.92
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_bfx67")
+text = "Time
+233"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Coin" type="Label" parent="TestNode2D/HUD/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.303
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_bfx67")
+text = "0"
+uppercase = true
+
+[node name="HUDCoin" type="AnimatedSprite2D" parent="TestNode2D/HUD/Control"]
+position = Vector2(167, 14)
+sprite_frames = SubResource("SpriteFrames_venmc")
+autoplay = "default"
+
+[node name="HUDFontTest" type="Label" parent="TestNode2D/HUD/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_bfx67")
 theme_override_font_sizes/font_size = 10
 text = "HUD Test
 
@@ -94,9 +191,7 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 344.0
 offset_bottom = 40.0
-theme_override_constants/paragraph_spacing = 7
-theme_override_fonts/font = ExtResource("11_lwtrl")
-theme_override_font_sizes/font_size = 10
+theme = ExtResource("8_bfx67")
 text = "Mario Position and Velocity."
 uppercase = true
 script = ExtResource("10_g7257")
@@ -161,3 +256,6 @@ position = Vector2(208, 432)
 
 [node name="SpikePiranha2" parent="TestNode2D" instance=ExtResource("14_ii7j2")]
 position = Vector2(240, 432)
+
+[node name="Goomba" parent="TestNode2D" instance=ExtResource("16_lgciv")]
+position = Vector2(612, 236)
