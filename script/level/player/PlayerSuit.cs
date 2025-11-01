@@ -17,11 +17,4 @@ public partial class PlayerSuit : Node {
         Lui
     }
     [Export] public PowerupEnum Powerup = PowerupEnum.Fireball;
-
-    /*public override void _Ready() {
-        _playerMediator.playerDie.PlayerHurt += OnPlayerHurt;
-    }
-    public void OnPlayerHurt() {
-
-    }*/
 }

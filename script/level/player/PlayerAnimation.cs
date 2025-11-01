@@ -22,6 +22,8 @@ public partial class PlayerAnimation : Node {
 
     private int _hurtFlashCounter;
 
+    private bool _powerupChanging;
+
     public override void _Ready() {
         _playerMovement = _playerMediator.GetNode<PlayerMovement>("PlayerMovement");
         _playerMovement.JumpStarted += OnJumpStarted;
@@ -87,7 +89,7 @@ public partial class PlayerAnimation : Node {
                     _animatedSprite2D.Animation = "idle";
                 } else {
                     _animatedSprite2D.Animation = "walk";
-                    if (!_hurting) {
+                    if (!_hurting && !_powerupChanging) {
                         _imageIndex += _playerMovement.SpeedX / 20f;
                         int frameCount = _animatedSprite2D.SpriteFrames.GetFrameCount("walk");
                         if (frameCount > 0) {
@@ -99,7 +101,7 @@ public partial class PlayerAnimation : Node {
             }
         }
         // Hurting Animation
-        if (_hurting) {
+        if (_hurting || _powerupChanging) {
             _hurtEffectSinePhase += 10f;
             _animatedSprite2D.Scale = new Vector2(1f, (float)(1f + Mathf.Sin(Mathf.DegToRad(_hurtEffectSinePhase)) / 3f));
             _hurtAnimationTimer++;
@@ -110,10 +112,11 @@ public partial class PlayerAnimation : Node {
                 ProcessMode = ProcessModeEnum.Inherit;
                 GetTree().Paused = false;
                 _hurting = false;
+                _powerupChanging = false;
             }
         }
         // Hurt Animation
-        if (_playerMediator.playerDieAndHurt.IsInvicible && !_hurting) {
+        if (_playerMediator.playerDieAndHurt.IsInvicible && !_hurting && !_powerupChanging) {
             _hurtFlashCounter++;
             _animatedSprite2D.Visible = ((_hurtFlashCounter / 4) % 2 == 0);
         }
@@ -129,5 +132,10 @@ public partial class PlayerAnimation : Node {
     public void OnPlayerInvincibleEnded() {
         _animatedSprite2D.Visible = true;
         _hurtFlashCounter = 0;
+    }
+    public void OnPLayerChangingSuit() {
+        GetTree().Paused = true;
+        ProcessMode = ProcessModeEnum.Always;
+        _powerupChanging = true;
     }
 }

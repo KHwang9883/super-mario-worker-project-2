@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=26 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/block/obstacle.tscn" id="2_676rr"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://dm7wuafwjjq1w" path="res://content/enemy/spike/spike_mw.tscn" id="13_dhetq"]
 [ext_resource type="PackedScene" uid="uid://dlfbxnforjjvx" path="res://content/enemy/spike/spike_piranha.tscn" id="14_ii7j2"]
 [ext_resource type="PackedScene" uid="uid://d2kvp8mnj0j4u" path="res://content/enemy/goomba/goomba.tscn" id="16_lgciv"]
+[ext_resource type="PackedScene" uid="uid://cb81b1j6kxba1" path="res://content/bonus/fire_flower/fire_flower.tscn" id="17_d2gt5"]
+[ext_resource type="PackedScene" uid="uid://bppnp31u6nq6s" path="res://content/bonus/beetroot/beetroot.tscn" id="18_6xv5h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
 atlas = ExtResource("8_lgciv")
@@ -90,9 +92,9 @@ use_native_dialog = true
 [node name="TestNode2D" type="Node2D" parent="."]
 
 [node name="HUD" type="CanvasLayer" parent="TestNode2D"]
-visible = false
 
 [node name="Control" type="Control" parent="TestNode2D/HUD"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -252,10 +254,30 @@ position = Vector2(752, 400)
 position = Vector2(432, 432)
 
 [node name="SpikePiranha" parent="TestNode2D/Enemies" instance=ExtResource("14_ii7j2")]
-position = Vector2(208, 432)
+position = Vector2(112, 432)
 
 [node name="SpikePiranha2" parent="TestNode2D/Enemies" instance=ExtResource("14_ii7j2")]
-position = Vector2(240, 432)
+position = Vector2(144, 432)
 
 [node name="Goomba" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
 position = Vector2(612, 236)
+
+[node name="Goomba2" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
+position = Vector2(484, 368)
+
+[node name="Powerups" type="Node2D" parent="TestNode2D"]
+
+[node name="FireFlower" parent="TestNode2D/Powerups" instance=ExtResource("17_d2gt5")]
+position = Vector2(176, 432)
+
+[node name="FireFlower2" parent="TestNode2D/Powerups" instance=ExtResource("17_d2gt5")]
+position = Vector2(368, 432)
+
+[node name="FireFlower3" parent="TestNode2D/Powerups" instance=ExtResource("17_d2gt5")]
+position = Vector2(400, 432)
+
+[node name="Beetroot" parent="TestNode2D/Powerups" instance=ExtResource("18_6xv5h")]
+position = Vector2(304, 432)
+
+[node name="Beetroot2" parent="TestNode2D/Powerups" instance=ExtResource("18_6xv5h")]
+position = Vector2(240, 432)

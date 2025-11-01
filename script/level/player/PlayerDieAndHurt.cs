@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using SMWP.Level.Enemy;
 
 namespace SMWP.Level.Player;
 

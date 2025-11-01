@@ -121,7 +121,6 @@ _marioLui = ExtResource("10_tpspr")
 [node name="PlayerSuit" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator")]
 script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
-Suit = 1
 
 [node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player")]
 script = ExtResource("12_tpspr")
@@ -133,4 +132,5 @@ _player = NodePath("../..")
 [connection signal="PlayerInvincibleEnded" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerInvincibleEnded"]
 [connection signal="PlayerDie" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerDieAndHurt" method="Die"]
 [connection signal="PlayerHurt" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerDieAndHurt" method="Hurt"]
+[connection signal="PlayerPowerup" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerAnimation" method="OnPLayerChangingSuit"]
 [connection signal="PlayerStomp" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerMovement" method="OnPlayerStomp"]

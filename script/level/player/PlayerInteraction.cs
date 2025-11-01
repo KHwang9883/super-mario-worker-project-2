@@ -1,7 +1,7 @@
 using Godot;
 using System;
-using SMWP.Level.Enemy;
 using SMWP.Level.Player;
+using SMWP.Interface;
 
 public partial class PlayerInteraction : Node
 {
@@ -11,6 +11,8 @@ public partial class PlayerInteraction : Node
     public delegate void PlayerHurtEventHandler();
     [Signal]
     public delegate void PlayerStompEventHandler();
+    [Signal]
+    public delegate void PlayerPowerupEventHandler();
     
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
@@ -21,19 +23,17 @@ public partial class PlayerInteraction : Node
         
         foreach (var result in results) {
             // 踩踏可踩踏物件
-            var interactionNode = result.GetNodeOrNull<Node>("InteractionWithPlayer");
-            if (interactionNode == null) {
-                continue;
-            }
-            if (interactionNode is IStompable stompable) {
+            var interactionWithPlayerNode = result.GetNodeOrNull<Node>("InteractionWithPlayer");
+            if (interactionWithPlayerNode is IStompable stompable) {
                 if (_player.GlobalPosition.Y < result.GlobalPosition.Y + stompable.StompOffset && _player.Velocity.Y > 0f) {
                     stompable.Stomped(_player);
                     EmitSignal(SignalName.PlayerStomp);
                 }
+                break;
             }
-            
+
             // 有伤害物件，不可踩或者踩踏失败
-            if (interactionNode is IHurtableAndKillable hurtableAndKillable) {
+            if (interactionWithPlayerNode is IHurtableAndKillable hurtableAndKillable) {
                 if (hurtableAndKillable is IStompable stompableAndHurtable) {
                     if (_player.GlobalPosition.Y >= result.GlobalPosition.Y + stompableAndHurtable.StompOffset) {
                         switch (hurtableAndKillable.HurtType) {
@@ -54,6 +54,32 @@ public partial class PlayerInteraction : Node
                             EmitSignal(SignalName.PlayerHurt);
                             break;
                     }
+                }
+            }
+            
+            // 奖励物
+            var powerupSetNode = result.GetNodeOrNull<PowerupSet>("PowerupSet");
+            if (powerupSetNode != null) {
+                powerupSetNode.OnCollected();
+                
+                var originalSuit = _playerMediator.playerSuit.Suit;
+                var originalPowerup = _playerMediator.playerSuit.Powerup;
+                
+                if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small) {
+                    _playerMediator.playerSuit.Powerup = powerupSetNode.PowerupType switch {
+                        PowerupSet.PowerupEnum.FireFlower => PlayerSuit.PowerupEnum.Fireball,
+                        PowerupSet.PowerupEnum.Beetroot => PlayerSuit.PowerupEnum.Beetroot,
+                        PowerupSet.PowerupEnum.Lui => PlayerSuit.PowerupEnum.Lui,
+                        _ => _playerMediator.playerSuit.Powerup,
+                    };
+                    _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Powered;
+                }
+                if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Small) {
+                    _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Super;
+                }
+                if (_playerMediator.playerSuit.Suit != originalSuit 
+                    || _playerMediator.playerSuit.Powerup != originalPowerup) {
+                    EmitSignal(SignalName.PlayerPowerup);
                 }
             }
         }
