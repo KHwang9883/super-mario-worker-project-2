@@ -9,6 +9,8 @@ public partial class PlayerDie : Node {
     public delegate void PlayerHurtEventHandler();
     [Signal]
     public delegate void PlayerInvincibleEndedEventHandler();
+    [Signal]
+    public delegate void PlayerStompEventHandler();
     
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
@@ -39,31 +41,44 @@ public partial class PlayerDie : Node {
         var results = _playerMediator.playerMovement.GetShapeQueryResults();
         
         foreach (var result in results) {
-            var trueNode = result.GetNodeOrNull<EnemyBase>("EnemySet");
-            // 检查的 Node2D 没有或不是 EnemySet 组件，跳过
-            if (trueNode is not EnemyBase node) continue;
+            // 踩踏可踩踏物件
+            var interactionNode = result.GetNodeOrNull<Node>("InteractionWithPlayer");
+            if (interactionNode == null) {
+                continue;
+            }
+            if (interactionNode is IStompable stompable) {
+                if (_player.GlobalPosition.Y < result.GlobalPosition.Y + stompable.StompOffset && _player.Velocity.Y > 0f) {
+                    stompable.Stomped(_player);
+                    EmitSignal(SignalName.PlayerStomp);
+                }
+            }
             
-            // TODO: 敌人碰撞处理
-            if (
-                (node.Stompability == EnemyBase.StompabilityEnum.Unstompable)
-                ||
-                (
-                    node.Stompability == EnemyBase.StompabilityEnum.Stompable
-                    &&
-                    _player.GlobalPosition > node.GlobalPosition
-                )
-            ) {
-                switch (node.HurtType)
-                {
-                    case EnemyBase.HurtEnum.Die:
-                        Die();
-                        break;
-                    case EnemyBase.HurtEnum.Hurt:
-                        Hurt();
-                        break;
+            // 有伤害物件，不可踩或者踩踏失败
+            if (interactionNode is IHurtableAndKillable hurtableAndKillable) {
+                if (hurtableAndKillable is IStompable stompableAndHurtable) {
+                    if (_player.GlobalPosition.Y >= result.GlobalPosition.Y + stompableAndHurtable.StompOffset) {
+                        switch (hurtableAndKillable.HurtType) {
+                            case IHurtableAndKillable.HurtEnum.Die:
+                                Die();
+                                break;
+                            case IHurtableAndKillable.HurtEnum.Hurt:
+                                Hurt();
+                                break;
+                        }
+                    }
+                } else {
+                    switch (hurtableAndKillable.HurtType) {
+                        case IHurtableAndKillable.HurtEnum.Die:
+                            Die();
+                            break;
+                        case IHurtableAndKillable.HurtEnum.Hurt:
+                            Hurt();
+                            break;
+                    }
                 }
             }
         }
+        
         // 无敌计时
         if (IsInvicible) {
             _invincibleTimer++;
@@ -73,11 +88,9 @@ public partial class PlayerDie : Node {
             }
         }
     }
-
     public CharacterBody2D GetPlayer() {
         return _player;
     }
-
     public void Die() {
         if (!_dead) {
             _dead = true;
@@ -95,7 +108,6 @@ public partial class PlayerDie : Node {
             };
         }
     }
-
     public void Hurt() {
         switch (IsInvicible) {
             case true:

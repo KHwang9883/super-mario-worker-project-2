@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dlfbxnforjjvx"]
 
 [ext_resource type="Texture2D" uid="uid://b7ol2hory2nw4" path="res://content/enemy/spike/spike_piranha.png" id="1_e1duw"]
-[ext_resource type="Script" uid="uid://bw5a70wjy7lsw" path="res://script/level/enemy/EnemyBase.cs" id="2_0xxvc"]
+[ext_resource type="Script" uid="uid://cw367ogdt4ny" path="res://script/level/enemy/spike/SpikePlayerInteraction.cs" id="2_gnd3y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xxvc"]
 atlas = ExtResource("1_e1duw")
@@ -46,6 +46,8 @@ size = Vector2(32, 32)
 
 [node name="SpikePiranha" type="Area2D"]
 z_index = 30
+collision_layer = 16
+collision_mask = 8
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_u7x2d")
@@ -54,7 +56,5 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tbywh")
 
-[node name="EnemySet" type="Node2D" parent="."]
-script = ExtResource("2_0xxvc")
-Stompability = 1
-metadata/_edit_lock_ = true
+[node name="InteractionWithPlayer" type="Node" parent="."]
+script = ExtResource("2_gnd3y")

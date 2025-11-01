@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dm7wuafwjjq1w"]
 
+[ext_resource type="Script" uid="uid://cw367ogdt4ny" path="res://script/level/enemy/spike/SpikePlayerInteraction.cs" id="2_2sbk1"]
 [ext_resource type="Texture2D" uid="uid://d1wy24w5drx2a" path="res://content/enemy/spike/spike_mw.png" id="2_dwh6n"]
-[ext_resource type="Script" uid="uid://bw5a70wjy7lsw" path="res://script/level/enemy/EnemyBase.cs" id="3_aukrq"]
 
 [node name="SpikeMW" type="Area2D"]
 z_index = 30
@@ -16,7 +16,5 @@ metadata/_edit_lock_ = true
 position = Vector2(0, -16)
 polygon = PackedVector2Array(0, 0, 15, 32, -16, 32)
 
-[node name="EnemySet" type="Node2D" parent="."]
-script = ExtResource("3_aukrq")
-Stompability = 1
-metadata/_edit_lock_ = true
+[node name="InteractionWithPlayer" type="Node" parent="."]
+script = ExtResource("2_2sbk1")

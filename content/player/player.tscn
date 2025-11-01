@@ -27,7 +27,7 @@ radius = 8.0
 [node name="Player" type="CharacterBody2D"]
 z_index = 50
 collision_layer = 8
-collision_mask = 115
+collision_mask = 3
 slide_on_ceiling = false
 floor_block_on_wall = false
 platform_on_leave = 2
@@ -49,7 +49,7 @@ position = Vector2(0, 12)
 shape = SubResource("ConvexPolygonShape2D_gdtqi")
 target_position = Vector2(0, 0)
 max_results = 6
-collision_mask = 115
+collision_mask = 112
 collide_with_areas = true
 
 [node name="OutWaterDetectSmall" type="ShapeCast2D" parent="."]
@@ -58,7 +58,7 @@ position = Vector2(0, -28)
 shape = SubResource("CircleShape2D_y66qv")
 target_position = Vector2(0, 0)
 max_results = 3
-collision_mask = 115
+collision_mask = 64
 collide_with_areas = true
 
 [node name="BlocksPhysicsCollisionSuper" type="CollisionPolygon2D" parent="."]
@@ -74,7 +74,7 @@ position = Vector2(0, 12)
 shape = SubResource("ConvexPolygonShape2D_y66qv")
 target_position = Vector2(0, 0)
 max_results = 6
-collision_mask = 115
+collision_mask = 112
 collide_with_areas = true
 
 [node name="OutWaterDetectSuper" type="ShapeCast2D" parent="."]
@@ -84,7 +84,7 @@ position = Vector2(0, -52)
 shape = SubResource("CircleShape2D_rmk25")
 target_position = Vector2(0, 0)
 max_results = 3
-collision_mask = 115
+collision_mask = 112
 collide_with_areas = true
 
 [node name="PlayerMediator" type="Node" parent="." node_paths=PackedStringArray("playerMovement", "playerDie", "playerAnimation", "playerSuit")]
@@ -125,3 +125,4 @@ Suit = 1
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerAnimation" method="OnJumpStarted"]
 [connection signal="PlayerHurt" from="PlayerMediator/PlayerDie" to="PlayerMediator/PlayerAnimation" method="OnPlayerHurt"]
 [connection signal="PlayerInvincibleEnded" from="PlayerMediator/PlayerDie" to="PlayerMediator/PlayerAnimation" method="OnPlayerInvincibleEnded"]
+[connection signal="PlayerStomp" from="PlayerMediator/PlayerDie" to="PlayerMediator/PlayerMovement" method="OnPlayerStomp"]

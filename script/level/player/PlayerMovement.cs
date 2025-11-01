@@ -225,8 +225,10 @@ public partial class PlayerMovement : Node {
         _areaBodyCollisionSmall.Visible = _areaBodyCollisionSmall.Enabled;
         _areaBodyCollisionSuper.Visible = _areaBodyCollisionSuper.Enabled;
     }
-
     public Array<Node2D> GetShapeQueryResults() {
         return _results;
+    }
+    public void OnPlayerStomp() {
+        SpeedY = -8f;
     }
 }

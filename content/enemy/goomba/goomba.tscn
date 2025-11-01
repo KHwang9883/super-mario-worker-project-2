@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="1_siph3"]
 [ext_resource type="Texture2D" uid="uid://c30tfd1s6hvdn" path="res://content/enemy/goomba/goomba.png" id="1_w821v"]
-[ext_resource type="Script" uid="uid://bw5a70wjy7lsw" path="res://script/level/enemy/EnemyBase.cs" id="2_pmmx7"]
+[ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/goomba/GoombaPlayerInteraction.cs" id="3_w821v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0x71s"]
 atlas = ExtResource("1_w821v")
@@ -31,7 +31,7 @@ size = Vector2(31, 32)
 
 [node name="Goomba" type="CharacterBody2D"]
 collision_layer = 16
-collision_mask = 13
+collision_mask = 5
 slide_on_ceiling = false
 floor_block_on_wall = false
 
@@ -47,5 +47,7 @@ shape = SubResource("RectangleShape2D_r467r")
 script = ExtResource("1_siph3")
 _moveObject = NodePath("..")
 
-[node name="EnemySet" type="Node2D" parent="."]
-script = ExtResource("2_pmmx7")
+[node name="InteractionWithPlayer" type="Node" parent="."]
+script = ExtResource("3_w821v")
+
+[node name="Die" type="Node" parent="."]
