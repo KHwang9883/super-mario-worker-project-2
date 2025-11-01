@@ -13,7 +13,7 @@ public partial class PlayerAnimation : Node {
     [Export] private SpriteFrames _marioBeetroot = null!;
     [Export] private SpriteFrames _marioLui = null!;
     
-    private PlayerMovement _playerMovement;
+    private PlayerMovement _playerMovement = null!;
     private float _imageIndex;
 
     private bool _hurting;
@@ -25,7 +25,7 @@ public partial class PlayerAnimation : Node {
     public override void _Ready() {
         _playerMovement = _playerMediator.GetNode<PlayerMovement>("PlayerMovement");
         _playerMovement.JumpStarted += OnJumpStarted;
-        _playerMediator.playerDie.PlayerHurt += OnPlayerHurt;
+        _playerMediator.playerDieAndHurt.PlayerHurt += OnPlayerHurt;
     }
     public override void _PhysicsProcess(double delta) {
         // Powerup SpriteFrames
@@ -113,7 +113,7 @@ public partial class PlayerAnimation : Node {
             }
         }
         // Hurt Animation
-        if (_playerMediator.playerDie.IsInvicible && !_hurting) {
+        if (_playerMediator.playerDieAndHurt.IsInvicible && !_hurting) {
             _hurtFlashCounter++;
             _animatedSprite2D.Visible = ((_hurtFlashCounter / 4) % 2 == 0);
         }

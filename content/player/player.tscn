@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=17 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/player/mario_small.tres" id="1_o23i7"]
 [ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
 [ext_resource type="Script" uid="uid://cwf1kwcspdui2" path="res://script/level/player/PlayerMovement.cs" id="3_i4jjh"]
-[ext_resource type="Script" uid="uid://dq38nbqklr26h" path="res://script/level/player/PlayerDie.cs" id="4_i4jjh"]
+[ext_resource type="Script" uid="uid://dq38nbqklr26h" path="res://script/level/player/PlayerDieAndHurt.cs" id="4_5unhu"]
 [ext_resource type="PackedScene" uid="uid://dfiukm6ibgibj" path="res://content/player/player_dead.tscn" id="5_3ac0f"]
 [ext_resource type="Script" uid="uid://bc2odwcafhf0w" path="res://script/level/player/PlayerAnimation.cs" id="6_o23i7"]
 [ext_resource type="SpriteFrames" uid="uid://b85b6tckcoib1" path="res://content/player/mario_super.tres" id="7_cvehv"]
@@ -11,6 +11,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dg3ftfs0smrbt" path="res://content/player/mario_beetroot.tres" id="9_5unhu"]
 [ext_resource type="SpriteFrames" uid="uid://v113q2c6k865" path="res://content/player/mario_lui.tres" id="10_tpspr"]
 [ext_resource type="Script" uid="uid://bjsu3xt78gy5t" path="res://script/level/player/PlayerSuit.cs" id="11_vx4xa"]
+[ext_resource type="Script" uid="uid://bm450h41n7dlb" path="res://script/level/player/PlayerInteraction.cs" id="12_tpspr"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_gdtqi"]
 points = PackedVector2Array(-12, 0, -12, -14, -2, -24, 2, -24, 12, -14, 12, 0)
@@ -87,10 +88,10 @@ max_results = 3
 collision_mask = 112
 collide_with_areas = true
 
-[node name="PlayerMediator" type="Node" parent="." node_paths=PackedStringArray("playerMovement", "playerDie", "playerAnimation", "playerSuit")]
+[node name="PlayerMediator" type="Node" parent="." node_paths=PackedStringArray("playerMovement", "playerDieAndHurt", "playerAnimation", "playerSuit")]
 script = ExtResource("2_3ac0f")
 playerMovement = NodePath("PlayerMovement")
-playerDie = NodePath("PlayerDie")
+playerDieAndHurt = NodePath("PlayerDieAndHurt")
 playerAnimation = NodePath("PlayerAnimation")
 playerSuit = NodePath("PlayerSuit")
 
@@ -99,9 +100,9 @@ script = ExtResource("3_i4jjh")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
 
-[node name="PlayerDie" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player")]
+[node name="PlayerDieAndHurt" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player")]
 process_mode = 1
-script = ExtResource("4_i4jjh")
+script = ExtResource("4_5unhu")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
 _playerDeadScene = ExtResource("5_3ac0f")
@@ -122,7 +123,14 @@ script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
 Suit = 1
 
+[node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player")]
+script = ExtResource("12_tpspr")
+_playerMediator = NodePath("..")
+_player = NodePath("../..")
+
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerAnimation" method="OnJumpStarted"]
-[connection signal="PlayerHurt" from="PlayerMediator/PlayerDie" to="PlayerMediator/PlayerAnimation" method="OnPlayerHurt"]
-[connection signal="PlayerInvincibleEnded" from="PlayerMediator/PlayerDie" to="PlayerMediator/PlayerAnimation" method="OnPlayerInvincibleEnded"]
-[connection signal="PlayerStomp" from="PlayerMediator/PlayerDie" to="PlayerMediator/PlayerMovement" method="OnPlayerStomp"]
+[connection signal="PlayerHurt" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerHurt"]
+[connection signal="PlayerInvincibleEnded" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerInvincibleEnded"]
+[connection signal="PlayerDie" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerDieAndHurt" method="Die"]
+[connection signal="PlayerHurt" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerDieAndHurt" method="Hurt"]
+[connection signal="PlayerStomp" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerMovement" method="OnPlayerStomp"]
