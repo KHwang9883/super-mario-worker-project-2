@@ -1,7 +1,7 @@
 using Godot;
 using System;
-using SMWP.Level.Enemy;
-using static SMWP.Level.Enemy.IHurtableAndKillable;
+using SMWP.Interface;
+using static SMWP.Interface.IHurtableAndKillable;
 
 public partial class SpikePlayerInteraction : Node, IHurtableAndKillable {
 }

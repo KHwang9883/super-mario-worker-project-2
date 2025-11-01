@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2kvp8mnj0j4u"]
+[gd_scene load_steps=10 format=3 uid="uid://d2kvp8mnj0j4u"]
 
 [ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="1_siph3"]
 [ext_resource type="Texture2D" uid="uid://c30tfd1s6hvdn" path="res://content/enemy/goomba/goomba.png" id="1_w821v"]
 [ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/goomba/GoombaPlayerInteraction.cs" id="3_w821v"]
+[ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="4_0x71s"]
+[ext_resource type="PackedScene" uid="uid://cguk5ao66bepv" path="res://content/enemy/goomba/goomba_dead.tscn" id="5_0ouly"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0x71s"]
 atlas = ExtResource("1_w821v")
@@ -46,8 +48,14 @@ shape = SubResource("RectangleShape2D_r467r")
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("_moveObject")]
 script = ExtResource("1_siph3")
 _moveObject = NodePath("..")
+_speedX = -1.0
 
 [node name="InteractionWithPlayer" type="Node" parent="."]
 script = ExtResource("3_w821v")
 
 [node name="Die" type="Node" parent="."]
+script = ExtResource("4_0x71s")
+_enemyDieType = 1
+_enemyDeadPackedScene = ExtResource("5_0ouly")
+
+[connection signal="CreateDead" from="InteractionWithPlayer" to="Die" method="OnCreateDeadInstance"]
