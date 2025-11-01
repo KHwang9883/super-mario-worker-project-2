@@ -3,7 +3,7 @@ using System;
 
 public partial class BasicMovement : Node {
     [Export] private CharacterBody2D _moveObject = null!;
-    [Export] private float _speedX = -1f;
+    [Export] private float _speedX;
     [Export] private float _gravity = 0.5f;
     [Export] private bool _edgeDetect;
     private const float FramerateOrigin = 50f;
