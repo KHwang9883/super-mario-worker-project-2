@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://c24jyaqc5v1nt"]
+
+[ext_resource type="Script" uid="uid://bwxvnvv2a7xsg" path="res://script/level/component/MetadataToAncestorNode.cs" id="1_c0ydn"]
+
+[node name="EnemyMetadata" type="Node"]
+metadata/Stompable = true
+metadata/Hurtable = true
+metadata/Dieable = false
+metadata/FireballHit = true
+metadata/FireballHitDamage = true
+metadata/BeetrootHit = true
+metadata/BeetrootHitDamage = true
+metadata/StarmanHit = true
+metadata/StarmanHitDamage = true
+metadata/CeilingHit = true
+metadata/ShellHit = true
+metadata/HardshellHit = true
+
+[node name="MetadataToAncestorNode" type="Node" parent="."]
+script = ExtResource("1_c0ydn")
