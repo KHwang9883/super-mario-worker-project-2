@@ -1,6 +1,4 @@
-using Godot;
-
-namespace SMWP.Level.Enemy;
+namespace SMWP.Interface;
 
 public interface IHurtableAndKillable {
     enum HurtEnum {

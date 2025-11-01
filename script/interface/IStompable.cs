@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace SMWP.Interface;
 
 public interface IStompable {
     [Signal]
