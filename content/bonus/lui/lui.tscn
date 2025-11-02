@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://506l0hik3qda"]
+
+[ext_resource type="Texture2D" uid="uid://bn7qbcsp3xe51" path="res://content/bonus/lui/lui.png" id="1_xt8tc"]
+[ext_resource type="Script" uid="uid://b5yntrwmtxv27" path="res://script/level/bonus/PowerupSet.cs" id="2_axt7w"]
+[ext_resource type="Script" uid="uid://0hr7vtv3pq4n" path="res://script/level/bonus/lui/LuiMovement.cs" id="3_e2dpt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axt7w"]
+atlas = ExtResource("1_xt8tc")
+region = Rect2(0, 0, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2dpt"]
+atlas = ExtResource("1_xt8tc")
+region = Rect2(0, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3glp3"]
+atlas = ExtResource("1_xt8tc")
+region = Rect2(0, 64, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v8og"]
+atlas = ExtResource("1_xt8tc")
+region = Rect2(0, 96, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vssa5"]
+atlas = ExtResource("1_xt8tc")
+region = Rect2(0, 96, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5xrc"]
+atlas = ExtResource("1_xt8tc")
+region = Rect2(0, 64, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxjlw"]
+atlas = ExtResource("1_xt8tc")
+region = Rect2(0, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0bh6"]
+atlas = ExtResource("1_xt8tc")
+region = Rect2(0, 0, 33, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8l0l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axt7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2dpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3glp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5v8og")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vssa5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5xrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxjlw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0bh6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5vc0"]
+size = Vector2(30, 31)
+
+[node name="Lui" type="Area2D"]
+collision_layer = 32
+collision_mask = 8
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h8l0l")
+autoplay = "default"
+offset = Vector2(-1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a5vc0")
+
+[node name="PowerupSet" type="Node" parent="." node_paths=PackedStringArray("_powerup")]
+script = ExtResource("2_axt7w")
+_powerup = NodePath("..")
+PowerupType = 3
+
+[node name="LuiMovement" type="Node" parent="." node_paths=PackedStringArray("_lui")]
+script = ExtResource("3_e2dpt")
+_lui = NodePath("..")
