@@ -72,7 +72,9 @@ public partial class PlayerInteraction : Node
                         PowerupSet.PowerupEnum.Lui => PlayerSuit.PowerupEnum.Lui,
                         _ => _playerMediator.playerSuit.Powerup,
                     };
-                    _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Powered;
+                    if (powerupSetNode.PowerupType != PowerupSet.PowerupEnum.Mushroom) {
+                        _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Powered;
+                    }
                 }
                 if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Small) {
                     _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Super;
