@@ -44,10 +44,11 @@ public partial class PlayerMovement : Node {
     private bool _fire;
     private bool _jump;
     public bool Jumped;
+    public bool Crouched;
+    public bool Stuck;
     private int _jumpBoostTimer;
 
-    // TODO: 绿果状态与冰块状态
-    private bool _lui;
+    // TODO: 冰块状态
     private bool _onIce;
 
     private Array<Node2D> _results = null!;
@@ -97,36 +98,57 @@ public partial class PlayerMovement : Node {
             }
         }
 
-        if (_left) {
-            SpeedX = Mathf.Clamp(SpeedX - acceleration, -maxSpeed, maxSpeed);
+        if (!Crouched && !Stuck) {
+            if (_left) {
+                SpeedX = Mathf.Clamp(SpeedX - acceleration, -maxSpeed, maxSpeed);
+            }
+            if (_right) {
+                SpeedX = Mathf.Clamp(SpeedX + acceleration, -maxSpeed, maxSpeed);
+            }
         }
-        if (_right) {
-            SpeedX = Mathf.Clamp(SpeedX + acceleration, -maxSpeed, maxSpeed);
-        }
-
-        if (!_left && !_right) {
+        if (!_left && !_right || Crouched) {
             SpeedX /= IsInWater ? 1.03f : 1.05f;
         }
-
         if (SpeedX > -0.04f && SpeedX < 0.04f) {
             SpeedX = 0f;
         }
+        
+        // 方向记录
+        _direction = SpeedX switch {
+            < 0f => -1,
+            > 0f => 1,
+            _ => _direction,
+        };
 
         // y 速度
         // 落地或顶头
         if ((_player.IsOnFloor() || (_player.IsOnCeiling() && SpeedY < 0f))) {
             SpeedY = 0f;
         }
+        
+        // 大个子下蹲与起身
+        if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small) {
+            if (_player.IsOnFloor() && _down && !Stuck) {
+                Crouched = true;
+            }
+            if (!_down) {
+                Crouched = false;
+            }
+        }
 
         // 起跳
-
         if (!_jump) {
             Jumped = false;
         }
 
-        if (_jump) {
+        if (_jump && !Crouched && !Stuck) {
             if (!IsInWater && _player.IsOnFloor()) {
-                SpeedY = -(8f + Mathf.Abs(SpeedX) / 5f);
+                if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Powered
+                    && _playerMediator.playerSuit.Powerup == PlayerSuit.PowerupEnum.Lui) {
+                    SpeedY = -(9f + Mathf.Abs(SpeedX) / 5f);
+                } else {
+                    SpeedY = -(8f + Mathf.Abs(SpeedX) / 5f);
+                }
                 Jumped = true;
                 EmitSignal(SignalName.JumpStarted);
             } else if (IsInWater && !Jumped) {
@@ -156,12 +178,25 @@ public partial class PlayerMovement : Node {
                 SpeedY = maxFallSpeed;
             }
         }
-
+        
         // 根据GM8版执行顺序在这里进行速度计算并 MoveAndSlide()
         _player.Velocity = new Vector2(SpeedX * FramerateOrigin, (SpeedY + _gravity) * FramerateOrigin);
 
-        _player.MoveAndSlide();
-
+        // 在 MoveAndSlide() 之前执行下蹲起立卡墙的挤出方法
+        var collision = _player.MoveAndCollide(Vector2.Zero, true);
+        if (collision != null) {
+            Stuck = true;
+        } else {
+            Stuck = false;
+        }
+        if (Stuck) {
+            SpeedX = 0f;
+            // 蹲滑起立卡墙挤出
+            _player.Position = new Vector2(_player.Position.X - 1f * _direction, _player.Position.Y);
+        } else {
+            _player.MoveAndSlide();
+        }
+        
         // 重叠物件检测
         try {
             // TODO: 替换硬编码为NodePath以支持不同状态下的碰撞箱
@@ -204,7 +239,7 @@ public partial class PlayerMovement : Node {
 
         // 不同状态的碰撞箱切换
         Callable.From(() => {
-            if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Small) {
+            if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Small || Crouched) {
                 _blocksPhysicsCollisionSmall.Disabled = false;
                 _areaBodyCollisionSmall.Enabled = true;
                 _outWaterDetectSmall.Enabled = true;

@@ -71,7 +71,7 @@ public partial class PlayerAnimation : Node {
                     _animatedSprite2D.Animation = "idle";
                 } else {
                     _animatedSprite2D.Animation = "walk";
-                    if (!_hurting) {
+                    if (!_hurting && !_powerupChanging) {
                         _imageIndex += _playerMovement.SpeedX / 10f;
                         int frameCount = _animatedSprite2D.SpriteFrames.GetFrameCount("walk");
                         if (frameCount > 0) {
@@ -80,6 +80,10 @@ public partial class PlayerAnimation : Node {
                         }
                     }
                 }
+            }
+            if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small
+                && _playerMovement.Crouched) {
+                _animatedSprite2D.Animation = "crouch";
             }
         } else {
             if (!_player.IsOnFloor()) {
@@ -98,6 +102,10 @@ public partial class PlayerAnimation : Node {
                         }
                     }
                 }
+            }
+            if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small
+                && _playerMovement.Crouched) {
+                _animatedSprite2D.Animation = "crouch";
             }
         }
         // Hurting Animation
