@@ -1,0 +1,127 @@
+[gd_scene load_steps=18 format=3 uid="uid://06fvxuvjbor0"]
+
+[ext_resource type="Texture2D" uid="uid://dm27nawonnxyh" path="res://content/bonus/mushroom/input.png" id="1_7s0v6"]
+[ext_resource type="Script" uid="uid://b5yntrwmtxv27" path="res://script/level/bonus/PowerupSet.cs" id="1_lbpvd"]
+[ext_resource type="Script" uid="uid://br3a3a746vl0y" path="res://script/level/bonus/mushroom/MushroomAnimation.cs" id="3_klnhy"]
+[ext_resource type="Script" uid="uid://brqbgelfy4s1w" path="res://script/level/bonus/mushroom/MushroomMovement.cs" id="4_dponk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klnhy"]
+atlas = ExtResource("1_7s0v6")
+region = Rect2(0, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dponk"]
+atlas = ExtResource("1_7s0v6")
+region = Rect2(0, 32, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8tt7"]
+atlas = ExtResource("1_7s0v6")
+region = Rect2(0, 64, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgohy"]
+atlas = ExtResource("1_7s0v6")
+region = Rect2(0, 96, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hqmq"]
+atlas = ExtResource("1_7s0v6")
+region = Rect2(0, 128, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdaej"]
+atlas = ExtResource("1_7s0v6")
+region = Rect2(0, 128, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8lge"]
+atlas = ExtResource("1_7s0v6")
+region = Rect2(0, 96, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0y2o"]
+atlas = ExtResource("1_7s0v6")
+region = Rect2(0, 64, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfxq5"]
+atlas = ExtResource("1_7s0v6")
+region = Rect2(0, 32, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hsy1"]
+atlas = ExtResource("1_7s0v6")
+region = Rect2(0, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytc4c"]
+atlas = ExtResource("1_7s0v6")
+region = Rect2(0, 160, 31, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lbpvd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klnhy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dponk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8tt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgohy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hqmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdaej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8lge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0y2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfxq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hsy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytc4c")
+}],
+"loop": false,
+"name": &"default",
+"speed": 25.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugk4p"]
+size = Vector2(31, 32)
+
+[node name="Mushroom" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 16)
+sprite_frames = SubResource("SpriteFrames_lbpvd")
+frame = 10
+frame_progress = 1.0
+offset = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ugk4p")
+
+[node name="PowerupSet" type="Node" parent="." node_paths=PackedStringArray("_powerup")]
+script = ExtResource("1_lbpvd")
+_powerup = NodePath("..")
+
+[node name="MushroomAnimation" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D", "_mushroomMovement", "_mushroom")]
+script = ExtResource("3_klnhy")
+_animatedSprite2D = NodePath("../AnimatedSprite2D")
+_mushroomMovement = NodePath("../MushroomMovement")
+_mushroom = NodePath("..")
+
+[node name="MushroomMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
+script = ExtResource("4_dponk")
+MoveObject = NodePath("..")
+SpeedX = -1.0
+MaxFallSpeed = 7.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="MushroomAnimation" method="OnAnimationFinished"]
+[connection signal="SideTurned" from="MushroomAnimation" to="MushroomMovement" method="OnTurned"]

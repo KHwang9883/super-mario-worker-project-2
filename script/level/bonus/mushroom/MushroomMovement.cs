@@ -1,19 +1,13 @@
 using Godot;
 using System;
 
-public partial class BasicMovement : Node {
-    [Export] public CharacterBody2D MoveObject = null!;
-    [Export] public float SpeedX;
-    [Export] public float Gravity = 0.5f;
-    [Export] public float MaxFallSpeed = 999f;
-    [Export] public float JumpSpeed;
-    [Export] public bool EdgeDetect;
-    protected const float FramerateOrigin = 50f;
-    protected float SpeedY;
+public partial class MushroomMovement : BasicMovement {
+    public bool Turning;
     
     public override void _PhysicsProcess(double delta) {
         // x 速度
         if (MoveObject.IsOnWall()) {
+            Turning = true;
             SpeedX *= -1f;
         }
         
@@ -27,5 +21,8 @@ public partial class BasicMovement : Node {
         MoveObject.Velocity = new Vector2(SpeedX * FramerateOrigin, SpeedY * FramerateOrigin);
         
         MoveObject.MoveAndSlide();
+    }
+    public void OnTurned() {
+        Turning = false;
     }
 }
