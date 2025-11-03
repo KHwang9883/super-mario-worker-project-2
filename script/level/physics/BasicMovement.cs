@@ -21,7 +21,7 @@ public partial class BasicMovement : Node {
         if (!MoveObject.IsOnFloor()) {
             SpeedY = Mathf.Clamp(SpeedY + Gravity, -999f, MaxFallSpeed);
         } else {
-            SpeedY = 0f;
+            SpeedY = Mathf.Min(0f, JumpSpeed);
         }
         
         MoveObject.Velocity = new Vector2(SpeedX * FramerateOrigin, SpeedY * FramerateOrigin);
