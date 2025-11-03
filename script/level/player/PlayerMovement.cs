@@ -45,12 +45,16 @@ public partial class PlayerMovement : Node {
     private bool _jump;
     public bool Jumped;
     public bool Crouched;
+    private bool _wasCrouched;
     public bool Stuck;
     private int _jumpBoostTimer;
 
     // TODO: 冰块状态
     private bool _onIce;
 
+    private NodePath _areaBodyCollision = "AreaBodyCollisionSmall";
+    private NodePath _outWaterDetect = "OutWaterDetectSmall";
+    
     private Array<Node2D> _results = null!;
     private Array<Node2D> _resultsOutWater = null!;
 
@@ -141,7 +145,7 @@ public partial class PlayerMovement : Node {
             Jumped = false;
         }
 
-        if (_jump && !Crouched && !Stuck) {
+        if (_jump && !Crouched && !Stuck && !_wasCrouched) {
             if (!IsInWater && _player.IsOnFloor()) {
                 if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Powered
                     && _playerMediator.playerSuit.Powerup == PlayerSuit.PowerupEnum.Lui) {
@@ -159,6 +163,8 @@ public partial class PlayerMovement : Node {
                 EmitSignal(SignalName.JumpStarted);
             }
         }
+        
+        _wasCrouched = Crouched;
 
         // 空中跳跃按跳跃键有速度加成
         _jumpBoostTimer = Math.Clamp(_jumpBoostTimer + 1, 0, 2);
@@ -189,9 +195,27 @@ public partial class PlayerMovement : Node {
         } else {
             Stuck = false;
         }
+
         if (Stuck) {
-            SpeedX = 0f;
+            // 空中卡天花板挤出
+            for (var i = 0; i <= 48; i++) {
+                var originPosition = _player.Position;
+                _player.Position = new Vector2(_player.Position.X, _player.Position.Y + i);
+                var collisionInAir = _player.MoveAndCollide(new Vector2(0f, 0f), false);
+                //GD.Print("向下移动 " + i + " 像素");
+                if (collisionInAir == null) {
+                    _player.Position = new Vector2(_player.Position.X, _player.Position.Y + i);
+                    //GetTree().Paused = true;
+                    Stuck = false;
+                    break;
+                }
+                _player.Position = originPosition;
+            }
+        }
+        if (Stuck) {
             // 蹲滑起立卡墙挤出
+            SpeedX = 0f;
+            SpeedY = 0f;
             _player.Position = new Vector2(_player.Position.X - 1f * _direction, _player.Position.Y);
         } else {
             _player.MoveAndSlide();
@@ -199,10 +223,9 @@ public partial class PlayerMovement : Node {
         
         // 重叠物件检测
         try {
-            // TODO: 替换硬编码为NodePath以支持不同状态下的碰撞箱
-            _results = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>("AreaBodyCollisionSmall"));
+            _results = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>(_areaBodyCollision));
             _resultsOutWater =
-                ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>("OutWaterDetectSmall"));
+                ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>(_outWaterDetect));
         } catch {
             GD.PrintErr("重叠物件检测失败");
             GD.Print("启用临时重力修正");
@@ -240,6 +263,8 @@ public partial class PlayerMovement : Node {
         // 不同状态的碰撞箱切换
         Callable.From(() => {
             if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Small || Crouched) {
+                _areaBodyCollision = "AreaBodyCollisionSmall";
+                _outWaterDetect = "OutWaterDetectSmall";
                 _blocksPhysicsCollisionSmall.Disabled = false;
                 _areaBodyCollisionSmall.Enabled = true;
                 _outWaterDetectSmall.Enabled = true;
@@ -247,6 +272,8 @@ public partial class PlayerMovement : Node {
                 _areaBodyCollisionSuper.Enabled = false;
                 _outWaterDetectSuper.Enabled = false;
             } else {
+                _areaBodyCollision = "AreaBodyCollisionSuper";
+                _outWaterDetect = "OutWaterDetectSuper";
                 _blocksPhysicsCollisionSmall.Disabled = true;
                 _areaBodyCollisionSmall.Enabled = false;
                 _outWaterDetectSmall.Enabled = false;
