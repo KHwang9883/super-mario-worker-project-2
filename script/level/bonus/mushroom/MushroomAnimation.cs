@@ -14,16 +14,24 @@ public partial class MushroomAnimation : Node {
     private RandomNumberGenerator _random = new RandomNumberGenerator();
     private bool _playingAnimation;
 
-    private bool _wasOnFloor = true;
-    private enum ScaleStatus 
-    {
+    private enum ScaleXStatus {
         Idle = 0,
         Prepare = 1,
         ScalingUp = 2,
         ScalingDown = 3
     }
-    private ScaleStatus _animationFrameScaleYStatus;
-    private int _animationFrameScaleY;
+    private ScaleXStatus _animationFrameScaleXStatus = ScaleXStatus.Idle;
+    public int AnimationFrameScaleX;
+    
+    private bool _wasOnFloor = true;
+    private enum ScaleYStatus {
+        Idle = 0,
+        Prepare = 1,
+        ScalingUp = 2,
+        ScalingDown = 3
+    }
+    private ScaleYStatus _animationFrameScaleYStatus;
+    public int AnimationFrameScaleY;
     
     public override void _PhysicsProcess(double delta) {
         // 眨眼动画
@@ -41,39 +49,62 @@ public partial class MushroomAnimation : Node {
 
         // 撞墙动画
         if (_mushroomMovement.Turning) {
-            // ...
-            EmitSignal(SignalName.SideTurned);
+            if (_animationFrameScaleXStatus == ScaleXStatus.Idle) {
+                _animationFrameScaleXStatus = ScaleXStatus.Prepare;
+            }
         }
         
-        // 落地动画 - 检测从空中到地面的瞬间
+        switch (_animationFrameScaleXStatus) {
+            case ScaleXStatus.Prepare:
+                _animationFrameScaleXStatus = ScaleXStatus.ScalingUp;
+                AnimationFrameScaleX = 0;
+                break;
+            case ScaleXStatus.ScalingUp when AnimationFrameScaleX < 10:
+                AnimationFrameScaleX += 1;
+                break;
+            case ScaleXStatus.ScalingUp:
+                _animationFrameScaleXStatus = ScaleXStatus.ScalingDown;
+                break;
+            case ScaleXStatus.ScalingDown when AnimationFrameScaleX > 0:
+                AnimationFrameScaleX -= 1;
+                break;
+            case ScaleXStatus.ScalingDown:
+                _animationFrameScaleXStatus = ScaleXStatus.Idle;
+                EmitSignal(SignalName.SideTurned);
+                break;
+        }
+        
+        // 落地动画
         bool isOnFloor = _mushroom.IsOnFloor();
         if (isOnFloor && !_wasOnFloor) {
-            _animationFrameScaleYStatus = ScaleStatus.Prepare;
+            _animationFrameScaleYStatus = ScaleYStatus.Prepare;
         }
         _wasOnFloor = isOnFloor;
         
-        // 缩放动画状态机
         switch (_animationFrameScaleYStatus) {
-            case ScaleStatus.Prepare:
-                _animationFrameScaleYStatus = ScaleStatus.ScalingUp;
-                _animationFrameScaleY = 0;
+            case ScaleYStatus.Prepare:
+                _animationFrameScaleYStatus = ScaleYStatus.ScalingUp;
+                AnimationFrameScaleY = 0;
                 break;
-            case ScaleStatus.ScalingUp when _animationFrameScaleY < 10:
-                _animationFrameScaleY += 1;
+            case ScaleYStatus.ScalingUp when AnimationFrameScaleY < 10:
+                AnimationFrameScaleY += 1;
                 break;
-            case ScaleStatus.ScalingUp:
-                _animationFrameScaleYStatus = ScaleStatus.ScalingDown;
+            case ScaleYStatus.ScalingUp:
+                _animationFrameScaleYStatus = ScaleYStatus.ScalingDown;
                 break;
-            case ScaleStatus.ScalingDown when _animationFrameScaleY > 0:
-                _animationFrameScaleY -= 1;
+            case ScaleYStatus.ScalingDown when AnimationFrameScaleY > 0:
+                AnimationFrameScaleY -= 1;
                 break;
-            case ScaleStatus.ScalingDown:
-                _animationFrameScaleYStatus = ScaleStatus.Idle;
+            case ScaleYStatus.ScalingDown:
+                _animationFrameScaleYStatus = ScaleYStatus.Idle;
                 break;
         }
         
-        // 应用 Scale 变化
-        _animatedSprite2D.Scale = new Vector2(1f, 1f - _animationFrameScaleY / 20f);
+        // 应用 Scale 和 Position 变化
+        _animatedSprite2D.Scale = new Vector2(1f - AnimationFrameScaleX / 20f, 1f - AnimationFrameScaleY / 20f);
+        _animatedSprite2D.GlobalPosition = new Vector2(
+            _mushroom.GlobalPosition.X + AnimationFrameScaleX * 1.0f * Mathf.Sign(_mushroomMovement.SpeedX),
+            _animatedSprite2D.GlobalPosition.Y);
     }
     
     // 眨眼动画结束回调

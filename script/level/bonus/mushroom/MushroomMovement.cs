@@ -2,14 +2,33 @@ using Godot;
 using System;
 
 public partial class MushroomMovement : BasicMovement {
+    [Export] private MushroomMovement _mushroomMovement = null!;
+    [Export] private CollisionShape2D _collisionShape2D = null!;
+    [Export] private MushroomAnimation _mushroomAnimation = null!;
+    
     public bool Turning;
+    private bool _turned;
+    private float _originalSpeedX;
     
     public override void _PhysicsProcess(double delta) {
         // x 速度
-        if (MoveObject.IsOnWall()) {
+        if (MoveObject.IsOnWall() && !_turned) {
             Turning = true;
-            SpeedX *= -1f;
+            _originalSpeedX = SpeedX;
         }
+
+        if (_turned) {
+            _turned = false;
+        }
+        
+        // 转向中
+        // 应用 Scale 和 Position 变化
+        var shape = _collisionShape2D.Shape;
+        
+        _collisionShape2D.Scale = new Vector2(1f - _mushroomAnimation.AnimationFrameScaleX / 20f, 1f/* - _mushroomAnimation.AnimationFrameScaleY / 20f*/);
+        _collisionShape2D.GlobalPosition = new Vector2(
+            MoveObject.GlobalPosition.X + _mushroomAnimation.AnimationFrameScaleX * 1.0f * Mathf.Sign(_mushroomMovement.SpeedX),
+            _collisionShape2D.GlobalPosition.Y);
         
         // y 速度
         if (!MoveObject.IsOnFloor()) {
@@ -24,5 +43,7 @@ public partial class MushroomMovement : BasicMovement {
     }
     public void OnTurned() {
         Turning = false;
+        _turned = true;
+        SpeedX = _originalSpeedX * -1f;
     }
 }

@@ -30,7 +30,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r467r"]
-size = Vector2(31, 32)
+size = Vector2(31, 31)
 
 [node name="Goomba" type="CharacterBody2D"]
 collision_layer = 16

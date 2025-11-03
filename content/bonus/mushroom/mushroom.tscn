@@ -91,7 +91,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ugk4p"]
-size = Vector2(31, 32)
+size = Vector2(31, 31)
 
 [node name="Mushroom" type="CharacterBody2D"]
 collision_layer = 32
@@ -117,8 +117,11 @@ _animatedSprite2D = NodePath("../AnimatedSprite2D")
 _mushroomMovement = NodePath("../MushroomMovement")
 _mushroom = NodePath("..")
 
-[node name="MushroomMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
+[node name="MushroomMovement" type="Node" parent="." node_paths=PackedStringArray("_mushroomMovement", "_collisionShape2D", "_mushroomAnimation", "MoveObject")]
 script = ExtResource("4_dponk")
+_mushroomMovement = NodePath(".")
+_collisionShape2D = NodePath("../CollisionShape2D")
+_mushroomAnimation = NodePath("../MushroomAnimation")
 MoveObject = NodePath("..")
 SpeedX = -1.0
 MaxFallSpeed = 7.0
