@@ -266,7 +266,7 @@ position = Vector2(112, 432)
 position = Vector2(144, 432)
 
 [node name="Goomba" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
-position = Vector2(528, 336)
+position = Vector2(1264, 400)
 
 [node name="Goomba2" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
 position = Vector2(484, 368)

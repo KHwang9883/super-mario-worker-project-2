@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=20 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/player/mario_small.tres" id="1_o23i7"]
 [ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
@@ -10,8 +10,11 @@
 [ext_resource type="SpriteFrames" uid="uid://d11sjnlbqehpu" path="res://content/player/mario_fireball.tres" id="8_vx4xa"]
 [ext_resource type="SpriteFrames" uid="uid://dg3ftfs0smrbt" path="res://content/player/mario_beetroot.tres" id="9_5unhu"]
 [ext_resource type="SpriteFrames" uid="uid://v113q2c6k865" path="res://content/player/mario_lui.tres" id="10_tpspr"]
+[ext_resource type="PackedScene" uid="uid://ch220vg7m45nb" path="res://content/player/player_effect.tscn" id="11_q05y8"]
 [ext_resource type="Script" uid="uid://bjsu3xt78gy5t" path="res://script/level/player/PlayerSuit.cs" id="11_vx4xa"]
 [ext_resource type="Script" uid="uid://bm450h41n7dlb" path="res://script/level/player/PlayerInteraction.cs" id="12_tpspr"]
+[ext_resource type="Script" uid="uid://824gdwbiqkl3" path="res://script/level/player/PlayerShoot.cs" id="13_v250f"]
+[ext_resource type="PackedScene" uid="uid://ddqu2ik76sdd8" path="res://content/projectile​/player/fireball/player_fireball.tscn" id="14_q05y8"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_gdtqi"]
 points = PackedVector2Array(-12, 0, -12, -14, -2, -24, 2, -24, 12, -14, 12, 0)
@@ -35,8 +38,8 @@ platform_on_leave = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 13)
-sprite_frames = ExtResource("1_o23i7")
-animation = &"idle"
+sprite_frames = ExtResource("8_vx4xa")
+animation = &"shoot"
 autoplay = "idle"
 offset = Vector2(0, -32)
 
@@ -88,8 +91,9 @@ max_results = 3
 collision_mask = 112
 collide_with_areas = true
 
-[node name="PlayerMediator" type="Node" parent="." node_paths=PackedStringArray("playerMovement", "playerDieAndHurt", "playerAnimation", "playerSuit")]
+[node name="PlayerMediator" type="Node" parent="." node_paths=PackedStringArray("player", "playerMovement", "playerDieAndHurt", "playerAnimation", "playerSuit")]
 script = ExtResource("2_3ac0f")
+player = NodePath("..")
 playerMovement = NodePath("PlayerMovement")
 playerDieAndHurt = NodePath("PlayerDieAndHurt")
 playerAnimation = NodePath("PlayerAnimation")
@@ -117,17 +121,24 @@ _marioSuper = ExtResource("7_cvehv")
 _marioFireball = ExtResource("8_vx4xa")
 _marioBeetroot = ExtResource("9_5unhu")
 _marioLui = ExtResource("10_tpspr")
+_playerEffectScene = ExtResource("11_q05y8")
 
 [node name="PlayerSuit" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator")]
 script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
-Suit = 1
+Suit = 2
 
 [node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player")]
 script = ExtResource("12_tpspr")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
 
+[node name="PlayerShoot" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator")]
+script = ExtResource("13_v250f")
+_playerMediator = NodePath("..")
+_fireballScene = ExtResource("14_q05y8")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="PlayerMediator/PlayerAnimation" method="OnAnimationFinished"]
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerAnimation" method="OnJumpStarted"]
 [connection signal="PlayerHurt" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerHurt"]
 [connection signal="PlayerInvincibleEnded" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerInvincibleEnded"]

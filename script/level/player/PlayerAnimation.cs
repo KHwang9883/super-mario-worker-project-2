@@ -13,6 +13,8 @@ public partial class PlayerAnimation : Node {
     [Export] private SpriteFrames _marioBeetroot = null!;
     [Export] private SpriteFrames _marioLui = null!;
     
+    [Export] private PackedScene _playerEffectScene = null!;
+    
     private PlayerMovement _playerMovement = null!;
     private float _imageIndex;
 
@@ -23,6 +25,7 @@ public partial class PlayerAnimation : Node {
     private int _hurtFlashCounter;
 
     private bool _powerupChanging;
+    public bool Fire;
 
     public override void _Ready() {
         _playerMovement = _playerMediator.GetNode<PlayerMovement>("PlayerMovement");
@@ -69,6 +72,8 @@ public partial class PlayerAnimation : Node {
             } else {
                 if (Mathf.Abs(_player.Velocity.X) < 0.1f) {
                     _animatedSprite2D.Animation = "idle";
+                } else if (Fire) {
+                    _animatedSprite2D.Play("shoot");
                 } else {
                     _animatedSprite2D.Animation = "walk";
                     if (!_hurting && !_powerupChanging) {
@@ -91,6 +96,8 @@ public partial class PlayerAnimation : Node {
             } else {
                 if (Mathf.Abs(_player.Velocity.X) < 0.1f) {
                     _animatedSprite2D.Animation = "idle";
+                } else if (Fire) {
+                    _animatedSprite2D.Play("shoot");
                 } else {
                     _animatedSprite2D.Animation = "walk";
                     if (!_hurting && !_powerupChanging) {
@@ -128,6 +135,20 @@ public partial class PlayerAnimation : Node {
             _hurtFlashCounter++;
             _animatedSprite2D.Visible = ((_hurtFlashCounter / 4) % 2 == 0);
         }
+        
+        // 尝试性加入玩家阴影特效，但是参数不会调，所以暂时禁用
+        // Player Effect
+        /*
+        if (_hurtAnimationTimer == 0) {
+            var playerEffect = _playerEffectScene.Instantiate<Sprite2D>();
+            playerEffect.Texture = _animatedSprite2D.SpriteFrames.GetFrameTexture(_animatedSprite2D.Animation, _animatedSprite2D.Frame);
+            playerEffect.Position = new Vector2(_player.Position.X, _player.Position.Y + 13f);
+            playerEffect.FlipH = _animatedSprite2D.FlipH;
+            playerEffect.Modulate = playerEffect.Modulate with { A = 0.1f };
+            playerEffect.Offset = _animatedSprite2D.Offset;
+            _player.AddSibling(playerEffect);
+        }
+        */
     }
     public void OnJumpStarted() {
         _animatedSprite2D.Frame = 0;
@@ -145,5 +166,10 @@ public partial class PlayerAnimation : Node {
         GetTree().Paused = true;
         ProcessMode = ProcessModeEnum.Always;
         _powerupChanging = true;
+    }
+    public void OnAnimationFinished() {
+        if (_animatedSprite2D.Animation == "shoot") {
+            Fire = false;
+        }
     }
 }

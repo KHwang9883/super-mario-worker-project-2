@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlfbxnforjjvx"]
+[gd_scene load_steps=9 format=3 uid="uid://dlfbxnforjjvx"]
 
 [ext_resource type="Texture2D" uid="uid://b7ol2hory2nw4" path="res://content/enemy/spike/spike_piranha.png" id="1_e1duw"]
 [ext_resource type="Script" uid="uid://cw367ogdt4ny" path="res://script/level/enemy/spike/SpikePlayerInteraction.cs" id="2_gnd3y"]
+[ext_resource type="Script" uid="uid://c0p5jj8tgceob" path="res://script/level/enemy/spike/SpikeFireballInteraction.cs" id="3_gytce"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xxvc"]
 atlas = ExtResource("1_e1duw")
@@ -58,3 +59,6 @@ shape = SubResource("RectangleShape2D_tbywh")
 
 [node name="InteractionWithPlayer" type="Node" parent="."]
 script = ExtResource("2_gnd3y")
+
+[node name="InteractionWithFireball" type="Node" parent="."]
+script = ExtResource("3_gytce")

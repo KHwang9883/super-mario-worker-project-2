@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm7wuafwjjq1w"]
+[gd_scene load_steps=4 format=3 uid="uid://dm7wuafwjjq1w"]
 
 [ext_resource type="Script" uid="uid://cw367ogdt4ny" path="res://script/level/enemy/spike/SpikePlayerInteraction.cs" id="2_2sbk1"]
 [ext_resource type="Texture2D" uid="uid://d1wy24w5drx2a" path="res://content/enemy/spike/spike_mw.png" id="2_dwh6n"]
+[ext_resource type="Script" uid="uid://c0p5jj8tgceob" path="res://script/level/enemy/spike/SpikeFireballInteraction.cs" id="3_quiyr"]
 
 [node name="SpikeMW" type="Area2D"]
 z_index = 30
@@ -18,3 +19,6 @@ polygon = PackedVector2Array(0, 0, 15, 32, -16, 32)
 
 [node name="InteractionWithPlayer" type="Node" parent="."]
 script = ExtResource("2_2sbk1")
+
+[node name="InteractionWithFireball" type="Node" parent="."]
+script = ExtResource("3_quiyr")

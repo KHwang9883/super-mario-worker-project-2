@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddqu2ik76sdd8"]
+
+[ext_resource type="Texture2D" uid="uid://caoo0e1qx46vn" path="res://content/projectile​/fireball.png" id="1_l3dqx"]
+[ext_resource type="Script" uid="uid://oqtimqyv38fd" path="res://script/level/projectile​/player/player_fireball/FireballMovement.cs" id="2_u5ybu"]
+[ext_resource type="Script" uid="uid://ctpnsx7awriaq" path="res://script/level/projectile​/player/player_fireball/FireballInteraction.cs" id="3_u5ybu"]
+[ext_resource type="PackedScene" uid="uid://5mmyew6mh71p" path="res://content/projectile​/fireball_explosion.tscn" id="4_w5s1o"]
+[ext_resource type="Script" uid="uid://bchyfxjjtbl83" path="res://script/level/projectile​/player/player_fireball/FireballSprite.cs" id="5_ef5ss"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3dqx"]
+size = Vector2(15, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5s1o"]
+size = Vector2(15, 16)
+
+[node name="PlayerFireball" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_l3dqx")
+
+[node name="AreaBodyCollision" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_l3dqx")
+target_position = Vector2(0, 0)
+max_results = 6
+collision_mask = 16
+collide_with_areas = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_w5s1o")
+
+[node name="FireballMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
+script = ExtResource("2_u5ybu")
+MoveObject = NodePath("..")
+SpeedX = 5.0
+MaxFallSpeed = 10.0
+JumpSpeed = -4.0
+
+[node name="FireballInteraction" type="Node" parent="." node_paths=PackedStringArray("_fireball")]
+script = ExtResource("3_u5ybu")
+_fireball = NodePath("..")
+_fireballExplosionPackedScene = ExtResource("4_w5s1o")
+
+[node name="FireballSprite" type="Node" parent="." node_paths=PackedStringArray("_sprite", "_fireballMovement")]
+script = ExtResource("5_ef5ss")
+_sprite = NodePath("../Sprite2D")
+_fireballMovement = NodePath("../FireballMovement")
+
+[connection signal="FireballExplode" from="FireballMovement" to="FireballInteraction" method="Explode"]

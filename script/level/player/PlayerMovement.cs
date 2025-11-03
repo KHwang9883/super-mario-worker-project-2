@@ -18,7 +18,7 @@ public partial class PlayerMovement : Node {
     
     // 运动参数先用 GM8 单位（px/f），计算 Velocity 的时候转换为 Godot 单位（px/s）
     private const float FramerateOrigin = 50f;
-    private int _direction = 1;
+    public int Direction = 1;
     public float SpeedX;
     private float _walkingAcceleration = 0.1f;
     private float _runningAcceleration = 0.3f;
@@ -41,7 +41,7 @@ public partial class PlayerMovement : Node {
     private bool _down;
     private bool _left;
     private bool _right;
-    private bool _fire;
+    public bool Fire;
     private bool _jump;
     public bool Jumped;
     public bool Crouched;
@@ -80,20 +80,20 @@ public partial class PlayerMovement : Node {
         _down = Input.IsActionPressed("move_down");
         _left = Input.IsActionPressed("move_left");
         _right = Input.IsActionPressed("move_right");
-        _fire = Input.IsActionPressed("move_fire");
+        Fire = Input.IsActionPressed("move_fire");
         _jump = Input.IsActionPressed("move_jump");
 
         // x 速度
         float acceleration = IsInWater
             ? _waterHorizontalAcceleration
-            : (_fire ? _runningAcceleration : _walkingAcceleration);
+            : (Fire ? _runningAcceleration : _walkingAcceleration);
 
         float maxSpeed;
 
         if (IsInWater) {
-            maxSpeed = _fire ? _waterMaxRunningSpeed : _waterMaxWalkingSpeed;
+            maxSpeed = Fire ? _waterMaxRunningSpeed : _waterMaxWalkingSpeed;
         } else {
-            if (_fire) {
+            if (Fire) {
                 maxSpeed = _maxRunningSpeed;
             } else {
                 maxSpeed = Mathf.Abs(SpeedX) > _maxWalkingSpeed
@@ -118,10 +118,10 @@ public partial class PlayerMovement : Node {
         }
         
         // 方向记录
-        _direction = SpeedX switch {
+        Direction = SpeedX switch {
             < 0f => -1,
             > 0f => 1,
-            _ => _direction,
+            _ => Direction,
         };
 
         // y 速度
@@ -216,7 +216,7 @@ public partial class PlayerMovement : Node {
             // 蹲滑起立卡墙挤出
             SpeedX = 0f;
             SpeedY = 0f;
-            _player.Position = new Vector2(_player.Position.X - 1f * _direction, _player.Position.Y);
+            _player.Position = new Vector2(_player.Position.X - 1f * Direction, _player.Position.Y);
         } else {
             _player.MoveAndSlide();
         }
