@@ -38,8 +38,8 @@ platform_on_leave = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 13)
-sprite_frames = ExtResource("8_vx4xa")
-animation = &"shoot"
+sprite_frames = ExtResource("1_o23i7")
+animation = &"idle"
 autoplay = "idle"
 offset = Vector2(0, -32)
 
@@ -57,7 +57,6 @@ collision_mask = 112
 collide_with_areas = true
 
 [node name="OutWaterDetectSmall" type="ShapeCast2D" parent="."]
-visible = false
 position = Vector2(0, -28)
 shape = SubResource("CircleShape2D_y66qv")
 target_position = Vector2(0, 0)
@@ -84,7 +83,7 @@ collide_with_areas = true
 [node name="OutWaterDetectSuper" type="ShapeCast2D" parent="."]
 process_mode = 4
 visible = false
-position = Vector2(0, -52)
+position = Vector2(0, -28)
 shape = SubResource("CircleShape2D_rmk25")
 target_position = Vector2(0, 0)
 max_results = 3

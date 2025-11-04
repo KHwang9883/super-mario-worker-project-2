@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bpojdmxt2cqp6" path="res://script/level/projectile​/FireballExplosion.cs" id="1_hp3kp"]
 
 [node name="FireballExplosion" type="Node2D"]
+z_index = 80
 script = ExtResource("1_hp3kp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -17,6 +17,7 @@ public partial class PlayerAnimation : Node {
     
     private PlayerMovement _playerMovement = null!;
     private float _imageIndex;
+    private int _frameCount;
 
     private bool _hurting;
     private int _hurtAnimationTimer;
@@ -65,22 +66,22 @@ public partial class PlayerAnimation : Node {
             _animatedSprite2D.FlipH = true;
         }
         
-        // Walk Jump Idle
+        // Walk Jump Idle Fire
         if (!_playerMovement.IsInWater) {
             if (!_player.IsOnFloor()) {
                 _animatedSprite2D.Animation = "jump";
             } else {
-                if (Mathf.Abs(_player.Velocity.X) < 0.1f) {
-                    _animatedSprite2D.Animation = "idle";
-                } else if (Fire) {
+                if (Fire) {
                     _animatedSprite2D.Play("shoot");
+                } else if (Mathf.Abs(_playerMovement.SpeedX) < 0.01f) {
+                    _animatedSprite2D.Animation = "idle";
                 } else {
                     _animatedSprite2D.Animation = "walk";
                     if (!_hurting && !_powerupChanging) {
                         _imageIndex += _playerMovement.SpeedX / 10f;
-                        int frameCount = _animatedSprite2D.SpriteFrames.GetFrameCount("walk");
-                        if (frameCount > 0) {
-                            int frame = (int)Mathf.Abs(_imageIndex) % frameCount;
+                        _frameCount = _animatedSprite2D.SpriteFrames.GetFrameCount("walk");
+                        if (_frameCount > 0) {
+                            int frame = (int)Mathf.Abs(_imageIndex) % _frameCount;
                             _animatedSprite2D.Frame = frame;
                         }
                     }
@@ -94,17 +95,17 @@ public partial class PlayerAnimation : Node {
             if (!_player.IsOnFloor()) {
                 _animatedSprite2D.Play("swim");
             } else {
-                if (Mathf.Abs(_player.Velocity.X) < 0.1f) {
-                    _animatedSprite2D.Animation = "idle";
-                } else if (Fire) {
+                if (Fire) {
                     _animatedSprite2D.Play("shoot");
+                } else if (Mathf.Abs(_playerMovement.SpeedX) < 0.01f) {
+                    _animatedSprite2D.Animation = "idle";
                 } else {
                     _animatedSprite2D.Animation = "walk";
                     if (!_hurting && !_powerupChanging) {
                         _imageIndex += _playerMovement.SpeedX / 20f;
-                        int frameCount = _animatedSprite2D.SpriteFrames.GetFrameCount("walk");
-                        if (frameCount > 0) {
-                            int frame = (int)Mathf.Abs(_imageIndex) % frameCount;
+                        _frameCount = _animatedSprite2D.SpriteFrames.GetFrameCount("walk");
+                        if (_frameCount > 0) {
+                            int frame = (int)Mathf.Abs(_imageIndex) % _frameCount;
                             _animatedSprite2D.Frame = frame;
                         }
                     }
