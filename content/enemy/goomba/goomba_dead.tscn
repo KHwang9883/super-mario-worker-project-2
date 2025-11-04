@@ -19,9 +19,9 @@ offset = Vector2(0, 8)
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_7dr6a")
 
-[node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("_moveObject")]
+[node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("2_cw1kt")
-_moveObject = NodePath("..")
+MoveObject = NodePath("..")
 
 [node name="AutoQueueFreeAfterDelay" type="Node" parent="." node_paths=PackedStringArray("_ancestor")]
 script = ExtResource("3_cw1kt")

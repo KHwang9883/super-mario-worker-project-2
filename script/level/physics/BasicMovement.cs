@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.InteropServices.Swift;
 
 public partial class BasicMovement : Node {
     [Export] public CharacterBody2D MoveObject = null!;
@@ -10,6 +11,10 @@ public partial class BasicMovement : Node {
     [Export] public bool EdgeDetect;
     protected const float FramerateOrigin = 50f;
     protected float SpeedY;
+    
+    public override void _Ready() {
+        MoveObject = (CharacterBody2D)GetParent();
+    }
     
     public override void _PhysicsProcess(double delta) {
         // x 速度
