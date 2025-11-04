@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2kvp8mnj0j4u"]
+[gd_scene load_steps=13 format=3 uid="uid://d2kvp8mnj0j4u"]
 
 [ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="1_siph3"]
 [ext_resource type="Texture2D" uid="uid://c30tfd1s6hvdn" path="res://content/enemy/goomba/goomba.png" id="1_w821v"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cguk5ao66bepv" path="res://content/enemy/goomba/goomba_dead.tscn" id="5_0ouly"]
 [ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/goomba/GoombaFireballInteraction.cs" id="5_2uvs2"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="6_7qvs1"]
+[ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="8_dcvjf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0x71s"]
 atlas = ExtResource("1_w821v")
@@ -34,6 +35,7 @@ animations = [{
 size = Vector2(31, 31)
 
 [node name="Goomba" type="CharacterBody2D"]
+z_index = 30
 collision_layer = 16
 collision_mask = 5
 slide_on_ceiling = false
@@ -66,6 +68,10 @@ script = ExtResource("5_2uvs2")
 script = ExtResource("4_0x71s")
 _enemyDieType = 1
 _enemyDeadPackedScene = ExtResource("5_0ouly")
+
+[node name="OutOfBoundsQueueFree" type="Node" parent="." node_paths=PackedStringArray("ParentNode")]
+script = ExtResource("8_dcvjf")
+ParentNode = NodePath("..")
 
 [connection signal="CreateDead" from="InteractionWithPlayer" to="Die" method="OnCreateDeadInstance"]
 [connection signal="CreateDead" from="InteractionWithFireball" to="Die" method="OnCreateDeadInstance"]

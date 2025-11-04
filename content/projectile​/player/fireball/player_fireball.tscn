@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddqu2ik76sdd8"]
+[gd_scene load_steps=9 format=3 uid="uid://ddqu2ik76sdd8"]
 
 [ext_resource type="Texture2D" uid="uid://caoo0e1qx46vn" path="res://content/projectile​/fireball.png" id="1_l3dqx"]
 [ext_resource type="Script" uid="uid://oqtimqyv38fd" path="res://script/level/projectile​/player/player_fireball/FireballMovement.cs" id="2_u5ybu"]
 [ext_resource type="Script" uid="uid://ctpnsx7awriaq" path="res://script/level/projectile​/player/player_fireball/FireballInteraction.cs" id="3_u5ybu"]
 [ext_resource type="PackedScene" uid="uid://5mmyew6mh71p" path="res://content/projectile​/fireball_explosion.tscn" id="4_w5s1o"]
 [ext_resource type="Script" uid="uid://bchyfxjjtbl83" path="res://script/level/projectile​/player/player_fireball/FireballSprite.cs" id="5_ef5ss"]
+[ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="6_tc1ec"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3dqx"]
 size = Vector2(15, 16)
@@ -12,7 +13,8 @@ size = Vector2(15, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5s1o"]
 size = Vector2(15, 16)
 
-[node name="PlayerFireball" type="CharacterBody2D"]
+[node name="PlayerFireball" type="CharacterBody2D" groups=["fireball"]]
+z_index = 80
 collision_layer = 0
 collision_mask = 5
 
@@ -46,5 +48,14 @@ _fireballExplosionPackedScene = ExtResource("4_w5s1o")
 script = ExtResource("5_ef5ss")
 _sprite = NodePath("../Sprite2D")
 _fireballMovement = NodePath("../FireballMovement")
+
+[node name="OutOfBoundsQueueFree" type="Node" parent="." node_paths=PackedStringArray("ParentNode")]
+script = ExtResource("6_tc1ec")
+ParentNode = NodePath("..")
+OutOfScreenDetection = true
+ScreenLeftOffset = 10.0
+ScreenRightOffset = 10.0
+RoomLeftOffset = 10.0
+RoomRightOffset = 10.0
 
 [connection signal="FireballExplode" from="FireballMovement" to="FireballInteraction" method="Explode"]
