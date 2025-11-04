@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace  SMWP.Level.Tool;
+namespace SMWP.Level.Tool;
 
 public static class ScreenUtils {
     public static Rect2 GetScreenRect(Node node) {
