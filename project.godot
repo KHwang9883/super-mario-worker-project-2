@@ -20,10 +20,6 @@ boot_splash/image="uid://d1efjf687jw0q"
 config/icon="uid://d1efjf687jw0q"
 config/windows_native_icon="res://smwp.ico"
 
-[autoload]
-
-ScreenUtils="*res://script/tool/ScreenUtils.cs"
-
 [display]
 
 window/size/viewport_width=640
