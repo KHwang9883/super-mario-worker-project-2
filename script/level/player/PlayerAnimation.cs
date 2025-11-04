@@ -143,11 +143,12 @@ public partial class PlayerAnimation : Node {
         if (_hurtAnimationTimer == 0) {
             var playerEffect = _playerEffectScene.Instantiate<Sprite2D>();
             playerEffect.Texture = _animatedSprite2D.SpriteFrames.GetFrameTexture(_animatedSprite2D.Animation, _animatedSprite2D.Frame);
-            playerEffect.Position = new Vector2(_player.Position.X, _player.Position.Y + 13f);
+            _player.AddSibling(playerEffect);
+            playerEffect.GlobalPosition = new Vector2(_animatedSprite2D.GlobalPosition.X, _animatedSprite2D.GlobalPosition.Y);
+            playerEffect.ResetPhysicsInterpolation();
             playerEffect.FlipH = _animatedSprite2D.FlipH;
             playerEffect.Modulate = playerEffect.Modulate with { A = 0.1f };
             playerEffect.Offset = _animatedSprite2D.Offset;
-            _player.AddSibling(playerEffect);
         }
         */
     }
