@@ -8,19 +8,21 @@ public partial class PlayerShoot : Node {
     [Export] private PackedScene _beetrootScene = null!;
     
     public override void _PhysicsProcess(double delta) {
-        if (_playerMediator.playerMovement.Fire &&
+        if (Input.IsActionJustPressed("move_fire") && /*_playerMediator.playerMovement.Fire &&*/
             _playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Powered) {
             switch (_playerMediator.playerSuit.Powerup) {
                 case PlayerSuit.PowerupEnum.Fireball:
-                    var fireballInstance = _fireballScene.Instantiate<CharacterBody2D>();
-                    var fireballMovement = fireballInstance.GetNode<FireballMovement>("FireballMovement");
-                    fireballInstance.Position = new Vector2(
-                        _playerMediator.player.Position.X + _playerMediator.playerMovement.Direction * 10f,
-                        _playerMediator.player.Position.Y - 24f
+                    if (GetTree().GetNodesInGroup("fireball").Count < 2) {
+                        var fireballInstance = _fireballScene.Instantiate<CharacterBody2D>();
+                        var fireballMovement = fireballInstance.GetNode<FireballMovement>("FireballMovement");
+                        fireballInstance.Position = new Vector2(
+                            _playerMediator.player.Position.X + _playerMediator.playerMovement.Direction * 10f,
+                            _playerMediator.player.Position.Y - 24f
                         );
-                    fireballMovement.Direction = _playerMediator.playerMovement.Direction;
-                    _playerMediator.player.AddSibling(fireballInstance);
-                    _playerMediator.playerAnimation.Fire = true;
+                        fireballMovement.Direction = _playerMediator.playerMovement.Direction;
+                        _playerMediator.player.AddSibling(fireballInstance);
+                        _playerMediator.playerAnimation.Fire = true;
+                    }
                     break;
                 case PlayerSuit.PowerupEnum.Beetroot:
                     var beetrootInstance = _beetrootScene.Instantiate<CharacterBody2D>();
