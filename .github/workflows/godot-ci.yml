@@ -1,0 +1,37 @@
+name: "Export binaries"
+on: push
+
+# NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
+
+env:
+  GODOT_VERSION: 4.5
+  EXPORT_NAME: SuperMarioWorkerProject2
+  PROJECT_PATH: .
+
+jobs:
+  export-windows:
+    name: Windows Export
+    runs-on: ubuntu-22.04  # Use 22.04 with godot 4
+    container:
+      image: barichello/godot-ci:mono-4.5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mkdir -v -p ~/.config/
+          mv /root/.config/godot ~/.config/godot
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono
+      - name: Windows Build
+        run: |
+          mkdir -v -p build/windows
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
+          echo "SMWP2 Build: [$(echo "${{ github.sha }}" | cut -c 1-7)](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) from $(date '+%d-%b-%Y %T')" > "$EXPORT_DIR/windows/Readme.md"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: build/windows
