@@ -41,8 +41,6 @@ public partial class OutOfBoundsQueueFree : Node
     }
 
     public override void _PhysicsProcess(double delta) {
-        //
-        
         bool destroy = false;
         
         // 出屏检测（核心修改：按方向偏移量判断）
