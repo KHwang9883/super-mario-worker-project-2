@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=31 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/block/obstacle.tscn" id="2_676rr"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bppnp31u6nq6s" path="res://content/bonus/beetroot/beetroot.tscn" id="18_6xv5h"]
 [ext_resource type="PackedScene" uid="uid://506l0hik3qda" path="res://content/bonus/lui/lui.tscn" id="19_iae4c"]
 [ext_resource type="PackedScene" uid="uid://dhq4p7f4dvkh4" path="res://content/bonus/poisonous_mushroom/poisonous_mushroom.tscn" id="21_dwm8j"]
+[ext_resource type="PackedScene" uid="uid://b4b6pch7u4iem" path="res://content/bonus/brick/brick.tscn" id="23_dmmuc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
 atlas = ExtResource("8_lgciv")
@@ -235,7 +236,7 @@ position = Vector2(864, 376)
 [node name="Obstacle4" parent="TestNode2D/Solid" instance=ExtResource("2_676rr")]
 position = Vector2(64, 53)
 
-[node name="DebugWaterArea2D" type="Area2D" parent="TestNode2D"]
+[node name="DebugWaterArea2D" type="Area2D" parent="TestNode2D" groups=["water"]]
 collision_layer = 64
 collision_mask = 56
 
@@ -244,7 +245,7 @@ position = Vector2(784, 320)
 shape = SubResource("RectangleShape2D_la3m6")
 debug_color = Color(0, 0.26666668, 0.69803923, 0.41960785)
 
-[node name="ColorRect" type="ColorRect" parent="TestNode2D/DebugWaterArea2D"]
+[node name="ColorRect" type="ColorRect" parent="TestNode2D/DebugWaterArea2D" groups=["water"]]
 self_modulate = Color(1, 1, 1, 0.6)
 offset_left = 736.0
 offset_top = 288.0
@@ -252,7 +253,7 @@ offset_right = 832.0
 offset_bottom = 352.0
 color = Color(0.17254902, 0.28627452, 0.46666667, 1)
 
-[node name="Water" parent="TestNode2D" node_paths=PackedStringArray("_camera") groups=["water"] instance=ExtResource("11_o3hmp")]
+[node name="Water" parent="TestNode2D" node_paths=PackedStringArray("_camera") instance=ExtResource("11_o3hmp")]
 position = Vector2(0, 448)
 _camera = NodePath("../Mario/TestCamera2D")
 
@@ -308,5 +309,8 @@ position = Vector2(304, 144)
 [node name="Lui4" parent="TestNode2D/Powerups" instance=ExtResource("19_iae4c")]
 position = Vector2(304, 144)
 
-[node name="PoisonousMushroom" parent="TestNode2D" instance=ExtResource("21_dwm8j")]
+[node name="PoisonousMushroom" parent="TestNode2D/Powerups" instance=ExtResource("21_dwm8j")]
 position = Vector2(944, 80)
+
+[node name="Brick" parent="." instance=ExtResource("23_dmmuc")]
+position = Vector2(592, 176)

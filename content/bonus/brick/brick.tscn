@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4b6pch7u4iem"]
+
+[ext_resource type="Texture2D" uid="uid://v4t3jxyn785" path="res://content/bonus/brick/brick.png" id="1_jlvh5"]
+[ext_resource type="Script" uid="uid://cjjm8sgplsqf8" path="res://script/level/bonus/brick/BlockHit.cs" id="2_ro8lb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ro8lb"]
+size = Vector2(32, 32)
+
+[node name="Brick" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jlvh5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ro8lb")
+
+[node name="BlockPlayerInteraction" type="Node" parent="."]
+
+[node name="BlockHit" type="Node" parent="."]
+script = ExtResource("2_ro8lb")
+
+[node name="CreateDumpDetection" type="Node" parent="."]
+
+[node name="DumpAnimation" type="Node" parent="."]
+
+[node name="CreateFragment" type="Node" parent="."]

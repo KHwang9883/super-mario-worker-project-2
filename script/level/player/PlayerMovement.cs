@@ -2,6 +2,8 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Text.RegularExpressions;
+using SMWP.Interface;
+using SMWP.Level.Bonus.Brick;
 using SMWP.Level.Debug;
 
 namespace SMWP.Level.Player;
@@ -47,6 +49,7 @@ public partial class PlayerMovement : Node {
     public bool Crouched;
     private bool _wasCrouched;
     public bool Stuck;
+    private GodotObject? _blockCollider = null!;
     private int _jumpBoostTimer;
 
     // TODO: 冰块状态
@@ -212,6 +215,7 @@ public partial class PlayerMovement : Node {
                 _player.Position = originPosition;
             }
         }
+        
         if (Stuck) {
             // 蹲滑起立卡墙挤出
             SpeedX = 0f;
@@ -219,8 +223,18 @@ public partial class PlayerMovement : Node {
             _player.Position = new Vector2(_player.Position.X - 1f * Direction, _player.Position.Y);
         } else {
             _player.MoveAndSlide();
+            
+            // 顶砖检测
+            _blockCollider = _player.MoveAndCollide(new Vector2(0f, -1f), true)?.GetCollider();
+            //GD.Print(_blockCollider);
         }
-        
+
+        if (_blockCollider is StaticBody2D staticBody2D) {
+            if (staticBody2D.GetNodeOrNull<BlockHit>("BlockHit") is IBlockHittable blockHittable) {
+                blockHittable.OnBlockHit(_player);
+            }
+        }
+
         // 重叠物件检测
         try {
             _results = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>(_areaBodyCollision));

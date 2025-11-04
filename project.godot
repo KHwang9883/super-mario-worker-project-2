@@ -80,8 +80,8 @@ move_jump={
 [layer_names]
 
 2d_physics/layer_1="Blocks General"
-2d_physics/layer_2="Blocks Mario"
-2d_physics/layer_3="Blocks except Mario"
+2d_physics/layer_2="Blocks Player"
+2d_physics/layer_3="Blocks except Player"
 2d_physics/layer_4="Player"
 2d_physics/layer_5="Enemies"
 2d_physics/layer_6="Item"
