@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4b6pch7u4iem"]
+
+[ext_resource type="Texture2D" uid="uid://v4t3jxyn785" path="res://content/block/brick/brick.png" id="1_jlvh5"]
+[ext_resource type="Script" uid="uid://cjjm8sgplsqf8" path="res://script/level/block/brick/BrickBlockHit.cs" id="2_ub6l2"]
+[ext_resource type="Script" uid="uid://c4j22rxv8k6lg" path="res://script/level/block/BlockBump.cs" id="3_ykyst"]
+[ext_resource type="Script" uid="uid://c1n7x6jd5n4h8" path="res://script/level/block/BlockFragment.cs" id="4_ub6l2"]
+[ext_resource type="PackedScene" uid="uid://duh8768n6ynbd" path="res://content/block/brick/brick_fragment.tscn" id="5_6senh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ro8lb"]
+size = Vector2(32, 32)
+
+[node name="Brick" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jlvh5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ro8lb")
+
+[node name="BlockHit" type="Node" parent="."]
+script = ExtResource("2_ub6l2")
+metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
+
+[node name="BlockBump" type="Node" parent="." node_paths=PackedStringArray("_sprite")]
+script = ExtResource("3_ykyst")
+_sprite = NodePath("../Sprite2D")
+
+[node name="CreateFragment" type="Node" parent="." node_paths=PackedStringArray("_parent")]
+script = ExtResource("4_ub6l2")
+_parent = NodePath("..")
+_blockFragmentScene = ExtResource("5_6senh")
+
+[connection signal="BlockBump" from="BlockHit" to="BlockBump" method="OnBlockBump"]
+[connection signal="BlockShatter" from="BlockHit" to="CreateFragment" method="Create"]
+[connection signal="BlockBumpEnded" from="BlockBump" to="BlockHit" method="OnBumped"]

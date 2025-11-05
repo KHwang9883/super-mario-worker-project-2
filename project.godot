@@ -36,6 +36,14 @@ project/assembly_name="SuperMarioWorkerProject2"
 [file_customization]
 
 folder_colors={
+"res://content/block/": "teal",
+"res://content/bonus/": "teal",
+"res://content/component/": "gray",
+"res://content/database/": "gray",
+"res://content/enemy/": "orange",
+"res://content/player/": "pink",
+"res://content/projectile​/": "red",
+"res://content/tile/": "gray",
 "res://docs/": "blue",
 "res://script/": "gray"
 }

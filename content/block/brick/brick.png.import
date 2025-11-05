@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd6j0tdrxhhio"
-path="res://.godot/imported/obstacle.png-1e3707487b6a26b81d2ab1526ac2cb3d.ctex"
+uid="uid://v4t3jxyn785"
+path="res://.godot/imported/brick.png-0f507c6115e6a7f46634af6fa5dcf386.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/block/obstacle.png"
-dest_files=["res://.godot/imported/obstacle.png-1e3707487b6a26b81d2ab1526ac2cb3d.ctex"]
+source_file="res://content/block/brick/brick.png"
+dest_files=["res://.godot/imported/brick.png-0f507c6115e6a7f46634af6fa5dcf386.ctex"]
 
 [params]
 

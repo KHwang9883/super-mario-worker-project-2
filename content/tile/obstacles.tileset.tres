@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bnf7dwxlyydri"]
 
-[ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/block/obstacle.png" id="1_4kvct"]
+[ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/tile/obstacle.png" id="1_4kvct"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4kvct"]
 resource_name = "Obstacles"
