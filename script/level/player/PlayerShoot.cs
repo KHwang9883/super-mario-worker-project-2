@@ -1,6 +1,9 @@
 using Godot;
 using System;
 using SMWP.Level.Player;
+using SMWP.Level.Projectile.Player.PlayerFireball;
+
+namespace SMWP.Level.Player;
 
 public partial class PlayerShoot : Node {
     [Export] private PlayerMediator _playerMediator = null!;
@@ -12,19 +15,21 @@ public partial class PlayerShoot : Node {
             _playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Powered) {
             switch (_playerMediator.playerSuit.Powerup) {
                 case PlayerSuit.PowerupEnum.Fireball:
-                    if (GetTree().GetNodesInGroup("fireball").Count < 2) {
-                        var fireballInstance = _fireballScene.Instantiate<CharacterBody2D>();
-                        var fireballMovement = fireballInstance.GetNode<FireballMovement>("FireballMovement");
-                        fireballInstance.Position = new Vector2(
-                            _playerMediator.player.Position.X + _playerMediator.playerMovement.Direction * 10f,
-                            _playerMediator.player.Position.Y - 24f
+                    if (GetTree().GetNodesInGroup("fireball").Count >= 2) break;
+                    
+                    var fireballInstance = _fireballScene.Instantiate<CharacterBody2D>();
+                    var fireballMovement = fireballInstance.GetNode<FireballMovement>("FireballMovement");
+                    fireballInstance.Position = new Vector2(
+                        _playerMediator.player.Position.X + _playerMediator.playerMovement.Direction * 10f,
+                        _playerMediator.player.Position.Y - 24f
                         );
-                        fireballMovement.Direction = _playerMediator.playerMovement.Direction;
-                        _playerMediator.player.AddSibling(fireballInstance);
-                        _playerMediator.playerAnimation.Fire = true;
-                    }
+                    fireballMovement.Direction = _playerMediator.playerMovement.Direction;
+                    _playerMediator.player.AddSibling(fireballInstance);
+                    _playerMediator.playerAnimation.Fire = true;
                     break;
                 case PlayerSuit.PowerupEnum.Beetroot:
+                    if (GetTree().GetNodesInGroup("beetroot").Count >= 2) break;
+                    
                     var beetrootInstance = _beetrootScene.Instantiate<CharacterBody2D>();
                     // movement component
                     beetrootInstance.Position = new Vector2(

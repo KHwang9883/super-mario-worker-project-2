@@ -1,7 +1,12 @@
 using Godot;
 using System;
+using SMWP.Level.Block;
 using SMWP.Level.Player;
-using SMWP.Interface;
+using SMWP.Level.Block.Brick;
+using SMWP.Level.Bonus;
+using SMWP.Level.Interface;
+
+namespace SMWP.Level.Player;
 
 public partial class PlayerInteraction : Node
 {
@@ -16,6 +21,8 @@ public partial class PlayerInteraction : Node
     
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
+    
+    private GodotObject? _blockCollider = null!;
 
     public override void _PhysicsProcess(double delta) {
         // 对Player在PlayerMovement重叠检测的结果进行引用，而非再调用一次ShapeQuery()
@@ -29,7 +36,6 @@ public partial class PlayerInteraction : Node
                     stompable.Stomped(_player);
                     EmitSignal(SignalName.PlayerStomp);
                 }
-                break;
             }
 
             // 有伤害物件，不可踩或者踩踏失败
@@ -83,6 +89,15 @@ public partial class PlayerInteraction : Node
                     || _playerMediator.playerSuit.Powerup != originalPowerup) {
                     EmitSignal(SignalName.PlayerPowerup);
                 }
+            }
+        }
+        
+        // 顶砖检测
+        _blockCollider = _player.MoveAndCollide(new Vector2(0f, -1f), true)?.GetCollider();
+        //GD.Print(_blockCollider);
+        if (_blockCollider is StaticBody2D staticBody2D) {
+            if (staticBody2D.GetNodeOrNull<BlockHit>("BlockHit") is BlockHit blockHit) {
+                blockHit.OnBlockHit(_player);
             }
         }
     }

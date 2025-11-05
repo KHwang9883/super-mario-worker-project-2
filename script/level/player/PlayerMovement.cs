@@ -2,9 +2,8 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Text.RegularExpressions;
-using SMWP.Interface;
-using SMWP.Level.Bonus.Brick;
 using SMWP.Level.Debug;
+using SMWP.Level.Physics;
 
 namespace SMWP.Level.Player;
 
@@ -49,7 +48,7 @@ public partial class PlayerMovement : Node {
     public bool Crouched;
     private bool _wasCrouched;
     public bool Stuck;
-    private GodotObject? _blockCollider = null!;
+    private bool _wasStuck;
     private int _jumpBoostTimer;
 
     // TODO: 冰块状态
@@ -198,9 +197,10 @@ public partial class PlayerMovement : Node {
         } else {
             Stuck = false;
         }
-
-        if (Stuck) {
-            // 空中卡天花板挤出
+        
+        // 空中卡天花板挤出
+        if (Stuck && !_wasStuck) {
+            // 空中从天花板挤出只执行一次（比如空中蹲起和小个子获得补给），因此用 _wasStuck 判断
             for (var i = 0; i <= 48; i++) {
                 var originPosition = _player.Position;
                 _player.Position = new Vector2(_player.Position.X, _player.Position.Y + i);
@@ -215,6 +215,8 @@ public partial class PlayerMovement : Node {
                 _player.Position = originPosition;
             }
         }
+
+        _wasStuck = Stuck;
         
         if (Stuck) {
             // 蹲滑起立卡墙挤出
@@ -223,16 +225,6 @@ public partial class PlayerMovement : Node {
             _player.Position = new Vector2(_player.Position.X - 1f * Direction, _player.Position.Y);
         } else {
             _player.MoveAndSlide();
-            
-            // 顶砖检测
-            _blockCollider = _player.MoveAndCollide(new Vector2(0f, -1f), true)?.GetCollider();
-            //GD.Print(_blockCollider);
-        }
-
-        if (_blockCollider is StaticBody2D staticBody2D) {
-            if (staticBody2D.GetNodeOrNull<BlockHit>("BlockHit") is IBlockHittable blockHittable) {
-                blockHittable.OnBlockHit(_player);
-            }
         }
 
         // 重叠物件检测
