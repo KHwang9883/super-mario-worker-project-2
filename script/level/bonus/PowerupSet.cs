@@ -1,6 +1,7 @@
 using Godot;
 using System;
-using SMWP.Interface;
+
+namespace SMWP.Level.Bonus;
 
 public partial class PowerupSet : Node {
     public enum PowerupEnum {

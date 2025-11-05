@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace SMWP.Level.Projectile.Player.PlayerFireball;
+
 public partial class FireballSprite : Node {
     [Export] private Sprite2D _sprite = null!;
     [Export] private FireballMovement _fireballMovement = null!;

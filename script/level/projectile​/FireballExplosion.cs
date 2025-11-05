@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace SMWP.Level.Projectile;
+
 public partial class FireballExplosion : Node2D {
     private Sprite2D _sprite = null!;
 

@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace SMWP.Level.Bonus.Lui;
+
 public partial class LuiMovement : Node {
     [Export] private Area2D _lui = null!;
     private float _originY;

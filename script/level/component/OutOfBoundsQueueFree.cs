@@ -1,11 +1,10 @@
 using Godot;
 using SMWP.Level.Tool;
 
+namespace SMWP.Level.Component;
+
 public partial class OutOfBoundsQueueFree : Node
 {
-    // 绑定场景根节点（拖拽赋值）
-    [Export] public Node2D ParentNode = null!;
-
     // 出屏销毁
     [ExportGroup("OutOfScreen")]
     [Export] public bool OutOfScreenDetection;

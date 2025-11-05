@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace SMWP.Level.Bonus.Mushroom;
+
 public partial class MushroomAnimation : Node {
     [Signal]
     public delegate void SideTurnedEventHandler();

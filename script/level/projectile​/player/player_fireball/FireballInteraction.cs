@@ -1,6 +1,9 @@
 using Godot;
 using System;
-using SMWP.Interface;
+using SMWP.Level.Interface;
+using SMWP.Level.Physics;
+
+namespace SMWP.Level.Projectile.Player.PlayerFireball;
 
 public partial class FireballInteraction : Node {
     [Export] private CharacterBody2D _fireball = null!;

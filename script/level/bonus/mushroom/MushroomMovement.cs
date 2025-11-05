@@ -1,5 +1,8 @@
 using Godot;
 using System;
+using SMWP.Level.Physics;
+
+namespace SMWP.Level.Bonus.Mushroom;
 
 public partial class MushroomMovement : BasicMovement {
     [Export] private MushroomMovement _mushroomMovement = null!;

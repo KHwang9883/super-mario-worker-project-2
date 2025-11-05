@@ -2,6 +2,8 @@ using Godot;
 using System;
 using SMWP.Level.Player;
 
+namespace SMWP.Level.Player;
+
 public partial class PlayerAnimation : Node {
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private AnimatedSprite2D _animatedSprite2D = null!;

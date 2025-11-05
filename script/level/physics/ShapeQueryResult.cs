@@ -2,6 +2,8 @@ using Godot;
 using Godot.Collections;
 using System;
 
+namespace SMWP.Level.Physics;
+
 public static class ShapeQueryResult {
     // Overlap 检测请使用这个类的方法
     public static Array<Node2D> ShapeQuery(CharacterBody2D body, ShapeCast2D cast) {

@@ -1,6 +1,8 @@
 using Godot;
 using System;
-using SMWP.Interface;
+using SMWP.Level.Interface;
+
+namespace SMWP.Level.Enemy.Spike;
 
 public partial class SpikeFireballInteraction : Node, IFireballHittable
 {

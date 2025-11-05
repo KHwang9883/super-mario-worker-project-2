@@ -1,10 +1,12 @@
 using Godot;
 using System;
 
+namespace SMWP.Level.Enemy;
+
 public partial class EnemyDie : Node {
     enum EnemyDieEnum {
         Disappear,
-        CreateInstance
+        CreateInstance,
     }
     [Export] private EnemyDieEnum _enemyDieType = EnemyDieEnum.Disappear;
     [Export] private PackedScene _enemyDeadPackedScene = null!;

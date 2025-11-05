@@ -1,5 +1,8 @@
 using Godot;
 using System;
+using SMWP.Level.Physics;
+
+namespace SMWP.Level.Projectile.Player.PlayerFireball;
 
 public partial class FireballMovement : BasicMovement {
     [Signal]
