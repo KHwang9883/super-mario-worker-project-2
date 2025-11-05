@@ -1,17 +1,16 @@
 using Godot;
 using System;
-using SMWP.Interface;
+using SMWP.Level.Interface;
+
+namespace SMWP.Level.Enemy.Goomba;
 
 public partial class GoombaPlayerInteraction : Node, IStompable, IHurtableAndKillable {
     [Signal]
     public delegate void OnStompedEventHandler(Node2D stomper);
-    [Signal]
-    public delegate void CreateDeadEventHandler(Node2D ancestor, Vector2 position);
     
     public void Stomped(Node2D stomper) {
         var ancestor = GetParent<Node2D>();
-        EmitSignal(SignalName.OnStomped, stomper);
-        EmitSignal(SignalName.CreateDead, ancestor, ancestor.Position);
+        EmitSignal(SignalName.OnStomped, ancestor, ancestor.Position);
         ancestor.QueueFree();
     }
 }

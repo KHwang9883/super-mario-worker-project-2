@@ -3,10 +3,10 @@ using Godot;
 namespace SMWP.Level.Component;
 
 public partial class SoundContinuousPlay : AudioStreamPlayer2D {
-    private Node? _parentNode = null!;
+    private Node? _parent;
     public override void _Ready() {
-        _parentNode = GetParent();
-        _parentNode.TreeExiting += Reparent;
+        _parent ??= GetParent();
+        _parent.TreeExiting += Reparent;
     }
     public void Reparent() {
         Reparent(GetViewport());
