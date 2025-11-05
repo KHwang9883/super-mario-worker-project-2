@@ -56,6 +56,7 @@ autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tbywh")
+debug_color = Color(0, 0.64171624, 0.33484715, 0.41960785)
 
 [node name="InteractionWithPlayer" type="Node" parent="."]
 script = ExtResource("2_gnd3y")

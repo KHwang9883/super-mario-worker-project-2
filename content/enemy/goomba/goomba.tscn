@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2kvp8mnj0j4u"]
+[gd_scene load_steps=14 format=3 uid="uid://d2kvp8mnj0j4u"]
 
 [ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="1_siph3"]
 [ext_resource type="Texture2D" uid="uid://c30tfd1s6hvdn" path="res://content/enemy/goomba/goomba.png" id="1_w821v"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cguk5ao66bepv" path="res://content/enemy/goomba/goomba_dead.tscn" id="5_0ouly"]
 [ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/goomba/GoombaFireballInteraction.cs" id="5_2uvs2"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="6_7qvs1"]
+[ext_resource type="Script" uid="uid://dm4udnui5ktii" path="res://script/level/enemy/goomba/GoombaBumpInteraction.cs" id="6_ar4gq"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="8_dcvjf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0x71s"]
@@ -48,6 +49,7 @@ frame_progress = 0.24938443
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_r467r")
+debug_color = Color(0.8687693, 0.438282, 5.7756904e-07, 0.41960785)
 
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("1_siph3")
@@ -64,14 +66,21 @@ script = ExtResource("3_w821v")
 [node name="InteractionWithFireball" type="Node" parent="."]
 script = ExtResource("5_2uvs2")
 
+[node name="InteractionWithBump" type="Node" parent="."]
+script = ExtResource("6_ar4gq")
+
 [node name="Die" type="Node" parent="."]
 script = ExtResource("4_0x71s")
 _enemyDieType = 1
 _enemyDeadPackedScene = ExtResource("5_0ouly")
 
-[node name="OutOfBoundsQueueFree" type="Node" parent="." node_paths=PackedStringArray("ParentNode")]
-script = ExtResource("8_dcvjf")
-ParentNode = NodePath("..")
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-15, -15, 30, 30)
 
-[connection signal="CreateDead" from="InteractionWithPlayer" to="Die" method="OnCreateDeadInstance"]
-[connection signal="CreateDead" from="InteractionWithFireball" to="Die" method="OnCreateDeadInstance"]
+[node name="OutOfBoundsQueueFree" type="Node" parent="."]
+script = ExtResource("8_dcvjf")
+
+[connection signal="OnStomped" from="InteractionWithPlayer" to="Die" method="OnCreateDeadInstance"]
+[connection signal="FireballHit" from="InteractionWithFireball" to="Die" method="OnCreateDeadInstance"]
+[connection signal="Topped" from="InteractionWithBump" to="Die" method="OnCreateDeadInstance"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="BasicMovement" method="SetMovementDirection"]

@@ -18,6 +18,7 @@ offset = Vector2(0, 8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_7dr6a")
+debug_color = Color(0.86122334, 0.47357935, 0, 0.41960785)
 
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("2_cw1kt")

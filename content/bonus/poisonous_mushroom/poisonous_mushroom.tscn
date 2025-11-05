@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhq4p7f4dvkh4"]
+[gd_scene load_steps=8 format=3 uid="uid://dhq4p7f4dvkh4"]
 
 [ext_resource type="Texture2D" uid="uid://csb0kyl7vmlsu" path="res://content/bonus/poisonous_mushroom/poisonous_mushroom.png" id="1_fkiam"]
 [ext_resource type="Script" uid="uid://ccifkt7dywvh2" path="res://script/level/bonus/mushroom/poisonous_mushroom/PoisonousMushroomPlayerInteraction.cs" id="2_fkiam"]
 [ext_resource type="Script" uid="uid://br3a3a746vl0y" path="res://script/level/bonus/mushroom/MushroomAnimation.cs" id="3_5k7fp"]
 [ext_resource type="Script" uid="uid://brqbgelfy4s1w" path="res://script/level/bonus/mushroom/MushroomMovement.cs" id="4_cm2jx"]
+[ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="5_qimec"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lbpvd"]
 animations = [{
@@ -31,6 +32,7 @@ offset = Vector2(0, -16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ugk4p")
+debug_color = Color(0.577708, 0.38519022, 1, 0.41960785)
 
 [node name="InteractionWithPlayer" type="Node" parent="."]
 script = ExtResource("2_fkiam")
@@ -49,6 +51,11 @@ _mushroomAnimation = NodePath("../MushroomAnimation")
 MoveObject = NodePath("..")
 SpeedX = -1.0
 MaxFallSpeed = 7.0
+
+[node name="OutOfBoundsQueueFree" type="Node" parent="."]
+script = ExtResource("5_qimec")
+ScreenLeftOffset = 10.0
+ScreenRightOffset = 10.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="MushroomAnimation" method="OnAnimationFinished"]
 [connection signal="SideTurned" from="MushroomAnimation" to="MushroomMovement" method="OnTurned"]

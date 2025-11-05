@@ -70,6 +70,7 @@ offset = Vector2(0, -1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_ow01b")
+debug_color = Color(0.797803, 0.42973912, 0, 0.41960785)
 
 [node name="PowerupSet" type="Node" parent="." node_paths=PackedStringArray("_powerup")]
 script = ExtResource("2_cujse")

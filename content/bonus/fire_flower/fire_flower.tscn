@@ -54,6 +54,7 @@ frame_progress = 0.5865757
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ow01b")
+debug_color = Color(0.9983457, 0, 0.15569764, 0.41960785)
 
 [node name="PowerupSet" type="Node" parent="." node_paths=PackedStringArray("_powerup")]
 script = ExtResource("2_frr4s")

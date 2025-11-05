@@ -28,7 +28,7 @@ points = PackedVector2Array(-12, 0, -12, -38, -2, -48, 2, -48, 12, -38, 12, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_rmk25"]
 radius = 8.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 50
 collision_layer = 8
 collision_mask = 3
@@ -57,6 +57,7 @@ collision_mask = 112
 collide_with_areas = true
 
 [node name="OutWaterDetectSmall" type="ShapeCast2D" parent="."]
+visible = false
 position = Vector2(0, -28)
 shape = SubResource("CircleShape2D_y66qv")
 target_position = Vector2(0, 0)
@@ -125,7 +126,6 @@ _playerEffectScene = ExtResource("11_q05y8")
 [node name="PlayerSuit" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator")]
 script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
-Suit = 2
 
 [node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player")]
 script = ExtResource("12_tpspr")
