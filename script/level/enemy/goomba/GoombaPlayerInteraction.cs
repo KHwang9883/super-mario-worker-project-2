@@ -6,11 +6,11 @@ namespace SMWP.Level.Enemy.Goomba;
 
 public partial class GoombaPlayerInteraction : Node, IStompable, IHurtableAndKillable {
     [Signal]
-    public delegate void OnStompedEventHandler(Node2D stomper);
+    public delegate void StompedEventHandler();
     
-    public void Stomped(Node2D stomper) {
+    public void OnStomped(Node2D stomper) {
         var ancestor = GetParent<Node2D>();
-        EmitSignal(SignalName.OnStomped, ancestor, ancestor.Position);
+        EmitSignal(SignalName.Stomped);
         ancestor.QueueFree();
     }
 }

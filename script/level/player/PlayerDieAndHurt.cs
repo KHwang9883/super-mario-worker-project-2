@@ -6,9 +6,9 @@ namespace SMWP.Level.Player;
 
 public partial class PlayerDieAndHurt : Node {
     [Signal]
-    public delegate void PlayerHurtEventHandler();
-    [Signal]
     public delegate void PlayerInvincibleEndedEventHandler();
+    [Signal]
+    public delegate void PlayerHurtedEventHandler();
     
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
@@ -77,11 +77,11 @@ public partial class PlayerDieAndHurt : Node {
                         break;
                     case PlayerSuit.SuitEnum.Super:
                         _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Small;
-                        EmitSignal(SignalName.PlayerHurt);
+                        EmitSignal(SignalName.PlayerHurted);
                         break;
                     case PlayerSuit.SuitEnum.Powered:
                         _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Super;
-                        EmitSignal(SignalName.PlayerHurt);
+                        EmitSignal(SignalName.PlayerHurted);
                         break;
                 }
                 break;

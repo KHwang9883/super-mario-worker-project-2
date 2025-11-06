@@ -6,6 +6,8 @@ using SMWP.Level.Projectile.Player.PlayerFireball;
 namespace SMWP.Level.Player;
 
 public partial class PlayerShoot : Node {
+    [Signal]
+    public delegate void PlayerShootingEventHandler();
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private PackedScene _fireballScene = null!;
     [Export] private PackedScene _beetrootScene = null!;
@@ -26,6 +28,7 @@ public partial class PlayerShoot : Node {
                     fireballMovement.Direction = _playerMediator.playerMovement.Direction;
                     _playerMediator.player.AddSibling(fireballInstance);
                     _playerMediator.playerAnimation.Fire = true;
+                    EmitSignal(SignalName.PlayerShooting);
                     break;
                 case PlayerSuit.PowerupEnum.Beetroot:
                     if (GetTree().GetNodesInGroup("beetroot").Count >= 2) break;
@@ -39,6 +42,7 @@ public partial class PlayerShoot : Node {
                         // also
                     _playerMediator.player.AddSibling(beetrootInstance);
                     _playerMediator.playerAnimation.Fire = true;
+                    EmitSignal(SignalName.PlayerShooting);
                     break;
             }
         }

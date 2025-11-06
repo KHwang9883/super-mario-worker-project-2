@@ -33,7 +33,7 @@ public partial class PlayerAnimation : Node {
     public override void _Ready() {
         _playerMovement = _playerMediator.GetNode<PlayerMovement>("PlayerMovement");
         _playerMovement.JumpStarted += OnJumpStarted;
-        _playerMediator.playerDieAndHurt.PlayerHurt += OnPlayerHurt;
+        //_playerMediator.playerDieAndHurt.PlayerHurt += OnPlayerHurt;
     }
     public override void _PhysicsProcess(double delta) {
         // Powerup SpriteFrames

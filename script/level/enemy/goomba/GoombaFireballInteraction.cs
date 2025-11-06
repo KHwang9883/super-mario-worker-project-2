@@ -6,11 +6,11 @@ namespace SMWP.Level.Enemy.Goomba;
 
 public partial class GoombaFireballInteraction : Node, IFireballHittable {
     [Signal]
-    public delegate void FireballHitEventHandler(Node2D ancestor, Vector2 position);
+    public delegate void FireballHitEventHandler();
     
     public void OnFireballHit(Node2D fireball) {
         var ancestor = GetParent<Node2D>();
-        EmitSignal(SignalName.FireballHit, ancestor, ancestor.Position);
+        EmitSignal(SignalName.FireballHit);
         ancestor.QueueFree();
         fireball.QueueFree();
     }

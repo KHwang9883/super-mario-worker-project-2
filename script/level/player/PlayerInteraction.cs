@@ -13,7 +13,7 @@ public partial class PlayerInteraction : Node
     [Signal]
     public delegate void PlayerDieEventHandler();
     [Signal]
-    public delegate void PlayerHurtEventHandler();
+    public delegate void PlayerHurtProcessEventHandler();
     [Signal]
     public delegate void PlayerStompEventHandler();
     [Signal]
@@ -33,7 +33,7 @@ public partial class PlayerInteraction : Node
             var interactionWithPlayerNode = result.GetNodeOrNull<Node>("InteractionWithPlayer");
             if (interactionWithPlayerNode is IStompable stompable) {
                 if (_player.GlobalPosition.Y < result.GlobalPosition.Y + stompable.StompOffset && _player.Velocity.Y > 0f) {
-                    stompable.Stomped(_player);
+                    stompable.OnStomped(_player);
                     EmitSignal(SignalName.PlayerStomp);
                 }
             }
@@ -47,7 +47,7 @@ public partial class PlayerInteraction : Node
                                 EmitSignal(SignalName.PlayerDie);
                                 break;
                             case IHurtableAndKillable.HurtEnum.Hurt:
-                                EmitSignal(SignalName.PlayerHurt);
+                                EmitSignal(SignalName.PlayerHurtProcess);
                                 break;
                         }
                     }
@@ -57,7 +57,7 @@ public partial class PlayerInteraction : Node
                             EmitSignal(SignalName.PlayerDie);
                             break;
                         case IHurtableAndKillable.HurtEnum.Hurt:
-                            EmitSignal(SignalName.PlayerHurt);
+                            EmitSignal(SignalName.PlayerHurtProcess);
                             break;
                     }
                 }
@@ -93,12 +93,15 @@ public partial class PlayerInteraction : Node
         }
         
         // 顶砖检测
-        _blockCollider = _player.MoveAndCollide(new Vector2(0f, -1f), true)?.GetCollider();
-        //GD.Print(_blockCollider);
-        if (_blockCollider is StaticBody2D staticBody2D) {
-            if (staticBody2D.GetNodeOrNull<BlockHit>("BlockHit") is BlockHit blockHit) {
-                blockHit.OnBlockHit(_player);
+        if (_playerMediator.playerMovement.SpeedY <= 0f) {
+            _blockCollider = _player.MoveAndCollide(new Vector2(0f, -1f), true)?.GetCollider();
+            //GD.Print(_blockCollider);
+            if (_blockCollider is StaticBody2D staticBody2D) {
+                if (staticBody2D.GetNodeOrNull<BlockHit>("BlockHit") is BlockHit blockHit) {
+                    blockHit.OnBlockHit(_player);
+                }
             }
         }
+       
     }
 }

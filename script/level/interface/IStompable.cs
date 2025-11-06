@@ -7,5 +7,5 @@ public interface IStompable {
     delegate void OnStompedEventHandler(Node2D stomper);
     float StompOffset => -12f;
 
-    public void Stomped(Node2D stomper);
+    public void OnStomped(Node2D stomper);
 }
