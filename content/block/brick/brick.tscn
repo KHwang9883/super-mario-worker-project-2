@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4b6pch7u4iem"]
+[gd_scene load_steps=9 format=3 uid="uid://b4b6pch7u4iem"]
 
 [ext_resource type="Texture2D" uid="uid://v4t3jxyn785" path="res://content/block/brick/brick.png" id="1_jlvh5"]
 [ext_resource type="Script" uid="uid://cjjm8sgplsqf8" path="res://script/level/block/brick/BrickBlockHit.cs" id="2_ub6l2"]
 [ext_resource type="Script" uid="uid://c4j22rxv8k6lg" path="res://script/level/block/BlockBump.cs" id="3_ykyst"]
 [ext_resource type="Script" uid="uid://c1n7x6jd5n4h8" path="res://script/level/block/BlockFragment.cs" id="4_ub6l2"]
 [ext_resource type="PackedScene" uid="uid://duh8768n6ynbd" path="res://content/block/brick/brick_fragment.tscn" id="5_6senh"]
+[ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="6_leqcw"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="7_67i3a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ro8lb"]
 size = Vector2(32, 32)
@@ -30,6 +32,12 @@ script = ExtResource("4_ub6l2")
 _parent = NodePath("..")
 _blockFragmentScene = ExtResource("5_6senh")
 
+[node name="Break" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_leqcw")
+script = ExtResource("7_67i3a")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
 [connection signal="BlockBump" from="BlockHit" to="BlockBump" method="OnBlockBump"]
 [connection signal="BlockShatter" from="BlockHit" to="CreateFragment" method="Create"]
 [connection signal="BlockBumpEnded" from="BlockBump" to="BlockHit" method="OnBumped"]
+[connection signal="BlockFragmentStarted" from="CreateFragment" to="Break" method="play"]

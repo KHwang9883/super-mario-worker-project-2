@@ -10,6 +10,8 @@ namespace SMWP.Level.Player;
 public partial class PlayerMovement : Node {
     [Signal]
     public delegate void JumpStartedEventHandler();
+    [Signal]
+    public delegate void SwimStartedEventHandler();
     
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
@@ -162,7 +164,7 @@ public partial class PlayerMovement : Node {
                     ? -(6f + Mathf.Abs(SpeedX) / 5f)
                     : -(4f + Mathf.Abs(SpeedX) / 10f);
                 Jumped = true;
-                EmitSignal(SignalName.JumpStarted);
+                EmitSignal(SignalName.SwimStarted);
             }
         }
         

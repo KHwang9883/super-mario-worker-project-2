@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2kvp8mnj0j4u"]
+[gd_scene load_steps=17 format=3 uid="uid://d2kvp8mnj0j4u"]
 
 [ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="1_siph3"]
 [ext_resource type="Texture2D" uid="uid://c30tfd1s6hvdn" path="res://content/enemy/goomba/goomba.png" id="1_w821v"]
@@ -9,6 +9,9 @@
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="6_7qvs1"]
 [ext_resource type="Script" uid="uid://dm4udnui5ktii" path="res://script/level/enemy/goomba/GoombaBumpInteraction.cs" id="6_ar4gq"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="8_dcvjf"]
+[ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="10_l5187"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="10_rvd6n"]
+[ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="12_4nr65"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0x71s"]
 atlas = ExtResource("1_w821v")
@@ -80,7 +83,18 @@ rect = Rect2(-15, -15, 30, 30)
 [node name="OutOfBoundsQueueFree" type="Node" parent="."]
 script = ExtResource("8_dcvjf")
 
-[connection signal="OnStomped" from="InteractionWithPlayer" to="Die" method="OnCreateDeadInstance"]
+[node name="Stomped" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_l5187")
+script = ExtResource("10_rvd6n")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="Kicked" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_4nr65")
+script = ExtResource("10_rvd6n")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[connection signal="Stomped" from="InteractionWithPlayer" to="Die" method="OnCreateDeadInstance"]
+[connection signal="Stomped" from="InteractionWithPlayer" to="Stomped" method="play"]
 [connection signal="FireballHit" from="InteractionWithFireball" to="Die" method="OnCreateDeadInstance"]
 [connection signal="Topped" from="InteractionWithBump" to="Die" method="OnCreateDeadInstance"]
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="BasicMovement" method="SetMovementDirection"]
