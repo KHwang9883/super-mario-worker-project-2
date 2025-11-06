@@ -5,6 +5,9 @@ using Godot.Collections;
 namespace SMWP.Level.Block.Brick;
 
 public partial class BlockFragment : Node {
+    [Signal]
+    public delegate void BlockFragmentStartedEventHandler();
+    
     [Export] private Node2D? _parent;
     [Export] private PackedScene _blockFragmentScene = null!;
 
@@ -26,6 +29,7 @@ public partial class BlockFragment : Node {
     }
     public void Create(Vector2 position) {
         if (_parent == null) return;
+        EmitSignal(SignalName.BlockFragmentStarted);
         for (var i = 0; i < _fragmentVelocityData.Count; i++) {
             var blockFragment = _blockFragmentScene.Instantiate<BrickFragment>();
             _parent.AddSibling(blockFragment);
