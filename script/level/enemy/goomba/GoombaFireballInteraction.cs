@@ -9,9 +9,7 @@ public partial class GoombaFireballInteraction : Node, IFireballHittable {
     public delegate void FireballHitEventHandler();
     
     public void OnFireballHit(Node2D fireball) {
-        var ancestor = GetParent<Node2D>();
         EmitSignal(SignalName.FireballHit);
-        ancestor.QueueFree();
         fireball.QueueFree();
     }
 }

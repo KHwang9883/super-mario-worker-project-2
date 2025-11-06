@@ -9,8 +9,6 @@ public partial class GoombaPlayerInteraction : Node, IStompable, IHurtableAndKil
     public delegate void StompedEventHandler();
     
     public void OnStomped(Node2D stomper) {
-        var ancestor = GetParent<Node2D>();
         EmitSignal(SignalName.Stomped);
-        ancestor.QueueFree();
     }
 }

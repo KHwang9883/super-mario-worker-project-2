@@ -93,8 +93,8 @@ stream = ExtResource("12_4nr65")
 script = ExtResource("10_rvd6n")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[connection signal="Stomped" from="InteractionWithPlayer" to="Die" method="OnCreateDeadInstance"]
+[connection signal="Stomped" from="InteractionWithPlayer" to="Die" method="OnDied"]
 [connection signal="Stomped" from="InteractionWithPlayer" to="Stomped" method="play"]
-[connection signal="FireballHit" from="InteractionWithFireball" to="Die" method="OnCreateDeadInstance"]
-[connection signal="Topped" from="InteractionWithBump" to="Die" method="OnCreateDeadInstance"]
+[connection signal="FireballHit" from="InteractionWithFireball" to="Die" method="OnDied"]
+[connection signal="Topped" from="InteractionWithBump" to="Die" method="OnDied"]
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="BasicMovement" method="SetMovementDirection"]
