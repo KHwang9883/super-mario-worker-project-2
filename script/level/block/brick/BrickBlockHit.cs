@@ -7,7 +7,7 @@ namespace SMWP.Level.Block.Brick;
 
 public partial class BrickBlockHit : BlockHit {
     [Signal]
-    public delegate void BlockShatterEventHandler(Vector2 position);
+    public delegate void BlockShatterEventHandler();
     
     private bool _bump;
 
@@ -18,8 +18,7 @@ public partial class BrickBlockHit : BlockHit {
                 EmitSignal(BlockHit.SignalName.BlockBump);
             }
         } else {
-            EmitSignal(BlockHit.SignalName.BlockBump);
-            EmitSignal(SignalName.BlockShatter, Parent.Position);
+            EmitSignal(SignalName.BlockShatter);
             Parent.QueueFree();
         }
     }

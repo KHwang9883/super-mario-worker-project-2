@@ -119,19 +119,23 @@ _animatedSprite2D = NodePath("../AnimatedSprite2D")
 _mushroomMovement = NodePath("../MushroomMovement")
 _mushroom = NodePath("..")
 
-[node name="MushroomMovement" type="Node" parent="." node_paths=PackedStringArray("_mushroomMovement", "_collisionShape2D", "_mushroomAnimation", "MoveObject")]
+[node name="MushroomMovement" type="Node" parent="." node_paths=PackedStringArray("_collisionShape2D", "_mushroomAnimation", "MoveObject")]
 script = ExtResource("4_dponk")
-_mushroomMovement = NodePath(".")
 _collisionShape2D = NodePath("../CollisionShape2D")
 _mushroomAnimation = NodePath("../MushroomAnimation")
 MoveObject = NodePath("..")
 SpeedX = -1.0
-MaxFallSpeed = 7.0
+metadata/_custom_type_script = "uid://chn4gqrm87qtl"
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-15, -15, 30, 30)
 
 [node name="OutOfBoundsQueueFree" type="Node" parent="."]
 script = ExtResource("5_g8tt7")
 ScreenLeftOffset = 10.0
 ScreenRightOffset = 10.0
+metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="MushroomAnimation" method="OnAnimationFinished"]
 [connection signal="SideTurned" from="MushroomAnimation" to="MushroomMovement" method="OnTurned"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="MushroomMovement" method="OnScreenEntered"]

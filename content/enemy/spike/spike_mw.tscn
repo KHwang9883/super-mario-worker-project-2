@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dm7wuafwjjq1w"]
+[gd_scene load_steps=5 format=3 uid="uid://dm7wuafwjjq1w"]
 
 [ext_resource type="Script" uid="uid://cw367ogdt4ny" path="res://script/level/enemy/spike/SpikePlayerInteraction.cs" id="2_2sbk1"]
 [ext_resource type="Texture2D" uid="uid://d1wy24w5drx2a" path="res://content/enemy/spike/spike_mw.png" id="2_dwh6n"]
-[ext_resource type="Script" uid="uid://c0p5jj8tgceob" path="res://script/level/enemy/spike/SpikeFireballInteraction.cs" id="3_quiyr"]
+[ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="3_snfhi"]
+[ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="4_r3isd"]
 
 [node name="SpikeMW" type="Area2D"]
 z_index = 30
@@ -21,4 +22,9 @@ polygon = PackedVector2Array(0, 0, 15, 32, -16, 32)
 script = ExtResource("2_2sbk1")
 
 [node name="InteractionWithFireball" type="Node" parent="."]
-script = ExtResource("3_quiyr")
+script = ExtResource("3_snfhi")
+metadata/_custom_type_script = "uid://ckwcmi42tdbmc"
+
+[node name="InteractionWithBeetroot" type="Node" parent="."]
+script = ExtResource("4_r3isd")
+metadata/_custom_type_script = "uid://bkc8a0hddhajq"

@@ -23,6 +23,7 @@ debug_color = Color(0.86122334, 0.47357935, 0, 0.41960785)
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("2_cw1kt")
 MoveObject = NodePath("..")
+metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
 [node name="AutoQueueFreeAfterDelay" type="Node" parent="." node_paths=PackedStringArray("_ancestor")]
 script = ExtResource("3_cw1kt")

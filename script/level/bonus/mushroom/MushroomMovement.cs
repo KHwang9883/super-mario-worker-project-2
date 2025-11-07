@@ -5,7 +5,6 @@ using SMWP.Level.Physics;
 namespace SMWP.Level.Bonus.Mushroom;
 
 public partial class MushroomMovement : BasicMovement {
-    [Export] private MushroomMovement _mushroomMovement = null!;
     [Export] private CollisionShape2D _collisionShape2D = null!;
     [Export] private MushroomAnimation _mushroomAnimation = null!;
     
@@ -30,7 +29,7 @@ public partial class MushroomMovement : BasicMovement {
         
         _collisionShape2D.Scale = new Vector2(1f - _mushroomAnimation.AnimationFrameScaleX / 20f, 1f/* - _mushroomAnimation.AnimationFrameScaleY / 20f*/);
         _collisionShape2D.GlobalPosition = new Vector2(
-            MoveObject.GlobalPosition.X + _mushroomAnimation.AnimationFrameScaleX * 1.0f * Mathf.Sign(_mushroomMovement.SpeedX),
+            MoveObject.GlobalPosition.X + _mushroomAnimation.AnimationFrameScaleX * 1.0f * Mathf.Sign(SpeedX),
             _collisionShape2D.GlobalPosition.Y);
         
         // y 速度

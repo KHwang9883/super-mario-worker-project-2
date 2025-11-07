@@ -14,7 +14,6 @@ public partial class BlockHit : Node {
     public override void _Ready() {
         Parent = GetParent<Node2D>();
     }
-
     public virtual void OnBlockHit(Node2D collider) {
         if (!_bump && IsHittable(collider)) {
             _bump = true;

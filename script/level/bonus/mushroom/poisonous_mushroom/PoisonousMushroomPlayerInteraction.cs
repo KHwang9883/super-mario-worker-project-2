@@ -5,5 +5,5 @@ using SMWP.Level.Interface;
 namespace SMWP.Level.Bonus.Mushroom.PoisonousMushroom;
 
 public partial class PoisonousMushroomPlayerInteraction : Node, IHurtableAndKillable {
-    public IHurtableAndKillable.HurtEnum HurtType => IHurtableAndKillable.HurtEnum.Die;
+    [Export] public IHurtableAndKillable.HurtEnum HurtType { get; set; }
 }

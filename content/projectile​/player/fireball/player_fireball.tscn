@@ -38,6 +38,7 @@ MoveObject = NodePath("..")
 SpeedX = 5.0
 MaxFallSpeed = 10.0
 JumpSpeed = -4.0
+metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
 [node name="FireballInteraction" type="Node" parent="." node_paths=PackedStringArray("_fireball")]
 script = ExtResource("3_u5ybu")
@@ -49,13 +50,13 @@ script = ExtResource("5_ef5ss")
 _sprite = NodePath("../Sprite2D")
 _fireballMovement = NodePath("../FireballMovement")
 
-[node name="OutOfBoundsQueueFree" type="Node" parent="." node_paths=PackedStringArray("ParentNode")]
+[node name="OutOfBoundsQueueFree" type="Node" parent="."]
 script = ExtResource("6_tc1ec")
-ParentNode = NodePath("..")
 OutOfScreenDetection = true
 ScreenLeftOffset = 10.0
 ScreenRightOffset = 10.0
 RoomLeftOffset = 10.0
 RoomRightOffset = 10.0
+metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 
 [connection signal="FireballExplode" from="FireballMovement" to="FireballInteraction" method="Explode"]

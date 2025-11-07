@@ -27,7 +27,7 @@ public partial class BlockFragment : Node {
     public override void _Ready() {
         _parent ??= GetParent<Node2D>();
     }
-    public void Create(Vector2 position) {
+    public void Create() {
         if (_parent == null) return;
         EmitSignal(SignalName.BlockFragmentStarted);
         for (var i = 0; i < _fragmentVelocityData.Count; i++) {

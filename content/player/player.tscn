@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=28 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/player/mario_small.tres" id="1_o23i7"]
 [ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://bm450h41n7dlb" path="res://script/level/player/PlayerInteraction.cs" id="12_tpspr"]
 [ext_resource type="Script" uid="uid://824gdwbiqkl3" path="res://script/level/player/PlayerShoot.cs" id="13_v250f"]
 [ext_resource type="PackedScene" uid="uid://ddqu2ik76sdd8" path="res://content/projectile​/player/fireball/player_fireball.tscn" id="14_q05y8"]
+[ext_resource type="PackedScene" uid="uid://dt3n2b1ypresm" path="res://content/projectile​/player/beetroot/player_beetroot.tscn" id="16_1esvc"]
 [ext_resource type="AudioStream" uid="uid://bya5hq7ingpx1" path="res://script/level/block/mario_jump.se.wav" id="16_sks62"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="18_8jrco"]
 [ext_resource type="AudioStream" uid="uid://d0g5dfs0iupih" path="res://content/sound/mario_swim.se.wav" id="18_fmriv"]
@@ -134,6 +135,7 @@ _playerEffectScene = ExtResource("11_q05y8")
 script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
 Suit = 2
+Powerup = 1
 
 [node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player")]
 script = ExtResource("12_tpspr")
@@ -144,6 +146,7 @@ _player = NodePath("../..")
 script = ExtResource("13_v250f")
 _playerMediator = NodePath("..")
 _fireballScene = ExtResource("14_q05y8")
+_beetrootScene = ExtResource("16_1esvc")
 
 [node name="PlayerJump" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
@@ -190,6 +193,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 [connection signal="PlayerInvincibleEnded" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerInvincibleEnded"]
 [connection signal="PlayerDie" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerDieAndHurt" method="Die"]
 [connection signal="PlayerHurtProcess" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerDieAndHurt" method="Hurt"]
+[connection signal="PlayerPowerPlain" from="PlayerMediator/PlayerInteraction" to="Powerup" method="play"]
 [connection signal="PlayerPowerup" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerAnimation" method="OnPLayerChangingSuit"]
 [connection signal="PlayerPowerup" from="PlayerMediator/PlayerInteraction" to="Powerup" method="play"]
 [connection signal="PlayerStomp" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerMovement" method="OnPlayerStomp"]
