@@ -54,7 +54,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ow01b"]
-size = Vector2(27, 31)
+size = Vector2(27, 33)
 
 [node name="Beetroot" type="Area2D"]
 collision_layer = 32
@@ -63,12 +63,10 @@ collision_mask = 8
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nerlh")
 autoplay = "default"
-frame = 3
-frame_progress = 0.31178528
 offset = Vector2(0, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_ow01b")
 debug_color = Color(0.797803, 0.42973912, 0, 0.41960785)
 

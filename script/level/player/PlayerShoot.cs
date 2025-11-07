@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using SMWP.Level.Player;
+using SMWP.Level.Projectile.Player.Beetroot;
 using SMWP.Level.Projectile.Player.PlayerFireball;
 
 namespace SMWP.Level.Player;
@@ -34,12 +35,12 @@ public partial class PlayerShoot : Node {
                     if (GetTree().GetNodesInGroup("beetroot").Count >= 2) break;
                     
                     var beetrootInstance = _beetrootScene.Instantiate<CharacterBody2D>();
-                    // movement component
+                    var beetrootMovement = beetrootInstance.GetNode<BeetrootMovement>("BeetrootMovement");
                     beetrootInstance.Position = new Vector2(
                         _playerMediator.player.Position.X + _playerMediator.playerMovement.Direction * 10f,
                         _playerMediator.player.Position.Y - 36f
                         );
-                        // also
+                        beetrootMovement.Direction = _playerMediator.playerMovement.Direction;
                     _playerMediator.player.AddSibling(beetrootInstance);
                     _playerMediator.playerAnimation.Fire = true;
                     EmitSignal(SignalName.PlayerShooting);
