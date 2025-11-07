@@ -8,7 +8,12 @@ public partial class GoombaPlayerInteraction : Node, IStompable, IHurtableAndKil
     [Signal]
     public delegate void StompedEventHandler();
     
-    public void OnStomped(Node2D stomper) {
+    [Export] public IHurtableAndKillable.HurtEnum HurtType { get; set; }
+    [Export] public float StompOffset { get; set; } = -12f;
+    [Export] public float StompSpeedY { get; set; } = -8f;
+
+    public float OnStomped(Node2D stomper) {
         EmitSignal(SignalName.Stomped);
+        return StompSpeedY;
     }
 }

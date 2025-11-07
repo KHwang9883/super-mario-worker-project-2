@@ -12,7 +12,6 @@ public partial class FireballMovement : BasicMovement {
     public override void _Ready() {
         SpeedX = Mathf.Abs(SpeedX) * Direction;
     }
-
     public override void _PhysicsProcess(double delta) {
         // x 速度
         if (MoveObject.IsOnWall()) {

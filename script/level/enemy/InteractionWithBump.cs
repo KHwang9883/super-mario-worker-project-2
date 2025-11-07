@@ -4,7 +4,8 @@ using SMWP.Level.Interface;
 
 namespace SMWP.Level.Enemy.Goomba;
 
-public partial class GoombaBumpInteraction : Node, IToppable {
+[GlobalClass]
+public partial class InteractionWithBump : Node, IToppable {
     [Signal]
     public delegate void ToppedEventHandler();
     

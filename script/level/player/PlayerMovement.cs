@@ -298,7 +298,7 @@ public partial class PlayerMovement : Node {
     public Array<Node2D> GetShapeQueryResults() {
         return _results;
     }
-    public void OnPlayerStomp() {
-        SpeedY = -8f;
+    public void OnPlayerStomp(float stompSpeedY = 8f) {
+        SpeedY = stompSpeedY;
     }
 }

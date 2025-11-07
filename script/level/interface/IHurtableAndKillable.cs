@@ -5,6 +5,5 @@ public interface IHurtableAndKillable {
         Hurt,
         Die
     }
-
-    HurtEnum HurtType => HurtEnum.Hurt;
+    HurtEnum HurtType { get; set; }
 }

@@ -16,10 +16,13 @@ public partial class FireballInteraction : Node {
             // 检测可以被火球击中的物件
             var interactionWithFireballNode = result.GetNodeOrNull<Node>("InteractionWithFireball");
             if (interactionWithFireballNode is IFireballHittable fireballHittable) {
-                fireballHittable.OnFireballHit(_fireball);
-                Explode();
+                if (fireballHittable.OnFireballHit(_fireball)) {
+                    Explode();
+                }
             }
         }
+        
+        // Todo: 撞击冰块
     }
     
     // 火球爆炸！
@@ -27,5 +30,6 @@ public partial class FireballInteraction : Node {
         var fireballExplosion = _fireballExplosionPackedScene.Instantiate<Node2D>();
         fireballExplosion.Position = _fireball.GlobalPosition;
         _fireball.AddSibling(fireballExplosion);
+        _fireball.QueueFree();
     }
 }

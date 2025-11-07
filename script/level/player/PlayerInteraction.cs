@@ -15,9 +15,11 @@ public partial class PlayerInteraction : Node
     [Signal]
     public delegate void PlayerHurtProcessEventHandler();
     [Signal]
-    public delegate void PlayerStompEventHandler();
+    public delegate void PlayerStompEventHandler(float stompSpeedY);
     [Signal]
     public delegate void PlayerPowerupEventHandler();
+    [Signal]
+    public delegate void PlayerPowerPlainEventHandler();
     
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
@@ -31,10 +33,13 @@ public partial class PlayerInteraction : Node
         foreach (var result in results) {
             // 踩踏可踩踏物件
             var interactionWithPlayerNode = result.GetNodeOrNull<Node>("InteractionWithPlayer");
-            if (interactionWithPlayerNode is IStompable stompable) {
-                if (_player.GlobalPosition.Y < result.GlobalPosition.Y + stompable.StompOffset && _player.Velocity.Y > 0f) {
-                    stompable.OnStomped(_player);
-                    EmitSignal(SignalName.PlayerStomp);
+            if (interactionWithPlayerNode != null) {
+                if (interactionWithPlayerNode is IStompable stompable) {
+                    if (_player.GlobalPosition.Y < result.GlobalPosition.Y + stompable.StompOffset &&
+                        _player.Velocity.Y > 0f) {
+                        //stompable.OnStomped(_player);
+                        EmitSignal(SignalName.PlayerStomp, stompable.OnStomped(_player));
+                    }
                 }
             }
 
@@ -88,6 +93,9 @@ public partial class PlayerInteraction : Node
                 if (_playerMediator.playerSuit.Suit != originalSuit 
                     || _playerMediator.playerSuit.Powerup != originalPowerup) {
                     EmitSignal(SignalName.PlayerPowerup);
+                } else if (_playerMediator.playerSuit.Powerup == originalPowerup
+                    && _playerMediator.playerSuit.Suit == originalSuit) {
+                    EmitSignal(SignalName.PlayerPowerPlain);
                 }
             }
         }
@@ -99,9 +107,9 @@ public partial class PlayerInteraction : Node
             if (_blockCollider is StaticBody2D staticBody2D) {
                 if (staticBody2D.GetNodeOrNull<BlockHit>("BlockHit") is BlockHit blockHit) {
                     blockHit.OnBlockHit(_player);
+                    _playerMediator.playerMovement.SpeedY = 0f;
                 }
             }
         }
-       
     }
 }

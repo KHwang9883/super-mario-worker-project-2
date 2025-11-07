@@ -5,4 +5,5 @@ using SMWP.Level.Interface;
 namespace SMWP.Level.Enemy.Spike;
 
 public partial class SpikePlayerInteraction : Node, IHurtableAndKillable {
+    [Export] public IHurtableAndKillable.HurtEnum HurtType { get; set; }
 }
