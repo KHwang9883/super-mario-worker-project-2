@@ -3,6 +3,7 @@ using SMWP.Level.Tool;
 
 namespace SMWP.Level.Component;
 
+[GlobalClass]
 public partial class OutOfBoundsQueueFree : Node
 {
     // 出屏销毁

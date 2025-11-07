@@ -3,6 +3,7 @@ using System;
 
 namespace SMWP.Level.Component;
 
+[GlobalClass]
 public partial class AutoSpriteFlipH : Node 
 {
     // 支持两种类型的精灵

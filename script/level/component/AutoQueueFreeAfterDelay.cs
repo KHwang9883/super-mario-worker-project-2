@@ -2,6 +2,7 @@ using Godot;
 
 namespace SMWP.Level.Component;
 
+[GlobalClass]
 public partial class AutoQueueFreeAfterDelay : Node {
     [Export] private Node _ancestor = null!;
     [Export] private int _delayFrames = 100;

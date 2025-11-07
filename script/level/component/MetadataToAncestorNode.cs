@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace SMWP.Level.Component;
 
+[GlobalClass]
 public partial class MetadataToAncestorNode : Node 
 {
     [Export] private NodePath _sourcePath = ".."; // 默认：父节点
