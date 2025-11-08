@@ -24,29 +24,43 @@ public partial class PlayerInteraction : Node
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
     
-    private GodotObject? _blockCollider = null!;
+    private GodotObject? _blockCollider;
 
     public override void _PhysicsProcess(double delta) {
         // 对Player在PlayerMovement重叠检测的结果进行引用，而非再调用一次ShapeQuery()
         var results = _playerMediator.playerMovement.GetShapeQueryResults();
         
         foreach (var result in results) {
-            // 踩踏可踩踏物件
             var interactionWithPlayerNode = result.GetNodeOrNull<Node>("InteractionWithPlayer");
-            if (interactionWithPlayerNode != null) {
-                if (interactionWithPlayerNode is IStompable stompable) {
-                    if (_player.GlobalPosition.Y < result.GlobalPosition.Y + stompable.StompOffset &&
-                        _player.Velocity.Y > 0f) {
-                        //stompable.OnStomped(_player);
-                        EmitSignal(SignalName.PlayerStomp, stompable.OnStomped(_player));
+            
+            // Todo: 水管传送的状态下不会受到伤害，这里暂时用卡墙的状态替代
+            
+            if (!_playerMediator.playerMovement.Stuck) {
+                
+                // 踩踏可踩踏物件
+                if (interactionWithPlayerNode != null) {
+                    if (interactionWithPlayerNode is IStompable stompable) {
+                        if (stompable.Stompable && _player.Velocity.Y > 0f
+                            && _player.GlobalPosition.Y < result.GlobalPosition.Y + stompable.StompOffset) {
+                            EmitSignal(SignalName.PlayerStomp, stompable.OnStomped(_player));
+                        }
                     }
                 }
-            }
 
-            // 有伤害物件，不可踩或者踩踏失败
-            if (interactionWithPlayerNode is IHurtableAndKillable hurtableAndKillable) {
-                if (hurtableAndKillable is IStompable stompableAndHurtable) {
-                    if (_player.GlobalPosition.Y >= result.GlobalPosition.Y + stompableAndHurtable.StompOffset) {
+                // 有伤害物件，不可踩或者踩踏失败
+                if (interactionWithPlayerNode is IHurtableAndKillable hurtableAndKillable) {
+                    if (hurtableAndKillable is IStompable stompableAndHurtable) {
+                        if (_player.GlobalPosition.Y >= result.GlobalPosition.Y + stompableAndHurtable.StompOffset) {
+                            switch (hurtableAndKillable.HurtType) {
+                                case IHurtableAndKillable.HurtEnum.Die:
+                                    EmitSignal(SignalName.PlayerDie);
+                                    break;
+                                case IHurtableAndKillable.HurtEnum.Hurt:
+                                    EmitSignal(SignalName.PlayerHurtProcess);
+                                    break;
+                            }
+                        }
+                    } else {
                         switch (hurtableAndKillable.HurtType) {
                             case IHurtableAndKillable.HurtEnum.Die:
                                 EmitSignal(SignalName.PlayerDie);
@@ -54,20 +68,13 @@ public partial class PlayerInteraction : Node
                             case IHurtableAndKillable.HurtEnum.Hurt:
                                 EmitSignal(SignalName.PlayerHurtProcess);
                                 break;
+                            case IHurtableAndKillable.HurtEnum.Nothing:
+                                break;
                         }
-                    }
-                } else {
-                    switch (hurtableAndKillable.HurtType) {
-                        case IHurtableAndKillable.HurtEnum.Die:
-                            EmitSignal(SignalName.PlayerDie);
-                            break;
-                        case IHurtableAndKillable.HurtEnum.Hurt:
-                            EmitSignal(SignalName.PlayerHurtProcess);
-                            break;
                     }
                 }
             }
-            
+
             // 奖励物
             var powerupSetNode = result.GetNodeOrNull<PowerupSet>("PowerupSet");
             if (powerupSetNode != null) {

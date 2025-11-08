@@ -15,7 +15,7 @@ public partial class EnemyDie : Node {
     public override void _Ready() {
         _parent = GetParent<Node2D>();
     }
-    public void OnDied() {
+    public virtual void OnDied() {
         //Callable.From(() => {
         if (_enemyDieType == EnemyDieEnum.CreateInstance) {
             var enemyDeadInstance = _enemyDeadPackedScene.Instantiate<Node2D>();

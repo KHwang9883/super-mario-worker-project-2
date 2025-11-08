@@ -35,13 +35,15 @@ public partial class MushroomMovement : BasicMovement {
         // y 速度
         if (!MoveObject.IsOnFloor()) {
             SpeedY = Mathf.Clamp(SpeedY + Gravity, -999f, MaxFallSpeed);
-        } else {
-            SpeedY = 0f;
         }
         
         MoveObject.Velocity = new Vector2(SpeedX * FramerateOrigin, SpeedY * FramerateOrigin);
         
         MoveObject.MoveAndSlide();
+
+        if (MoveObject.IsOnFloor()) {
+            SpeedY = 0f;
+        }
     }
     public void OnTurned() {
         Turning = false;

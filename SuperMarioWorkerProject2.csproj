@@ -11,6 +11,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="content\enemy\" />
-    <Folder Include="script\level\enemy\spike\" />
+    <Folder Include="script\level\enemy\goomba\" />
   </ItemGroup>
 </Project>

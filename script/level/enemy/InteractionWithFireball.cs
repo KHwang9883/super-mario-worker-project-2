@@ -2,7 +2,7 @@ using Godot;
 using System;
 using SMWP.Level.Interface;
 
-namespace SMWP.Level.Enemy.Goomba;
+namespace SMWP.Level.Enemy;
 
 [GlobalClass]
 public partial class InteractionWithFireball : Node, IFireballHittable {
@@ -10,7 +10,7 @@ public partial class InteractionWithFireball : Node, IFireballHittable {
     public delegate void FireballHitEventHandler();
     [Export] public bool FireballExplode { get; set; } = true;
 
-    public bool OnFireballHit(Node2D fireball) {
+    public virtual bool OnFireballHit(Node2D fireball) {
         EmitSignal(SignalName.FireballHit);
         return FireballExplode;
     }
