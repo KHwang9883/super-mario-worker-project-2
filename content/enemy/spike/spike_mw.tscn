@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dm7wuafwjjq1w"]
 
-[ext_resource type="Script" uid="uid://cw367ogdt4ny" path="res://script/level/enemy/spike/SpikePlayerInteraction.cs" id="2_2sbk1"]
 [ext_resource type="Texture2D" uid="uid://d1wy24w5drx2a" path="res://content/enemy/spike/spike_mw.png" id="2_dwh6n"]
+[ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="2_snfhi"]
 [ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="3_snfhi"]
 [ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="4_r3isd"]
 
@@ -16,10 +16,11 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -16)
-polygon = PackedVector2Array(0, 0, 15, 32, -16, 32)
+polygon = PackedVector2Array(0, 1, 14, 32, -15, 32)
 
 [node name="InteractionWithPlayer" type="Node" parent="."]
-script = ExtResource("2_2sbk1")
+script = ExtResource("2_snfhi")
+metadata/_custom_type_script = "uid://dk0y3j6216tik"
 
 [node name="InteractionWithFireball" type="Node" parent="."]
 script = ExtResource("3_snfhi")

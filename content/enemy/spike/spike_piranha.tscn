@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dlfbxnforjjvx"]
 
 [ext_resource type="Texture2D" uid="uid://b7ol2hory2nw4" path="res://content/enemy/spike/spike_piranha.png" id="1_e1duw"]
-[ext_resource type="Script" uid="uid://cw367ogdt4ny" path="res://script/level/enemy/spike/SpikePlayerInteraction.cs" id="2_gnd3y"]
+[ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="2_mco2m"]
 [ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="3_mco2m"]
 [ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="4_qn27b"]
 
@@ -60,7 +60,8 @@ shape = SubResource("RectangleShape2D_tbywh")
 debug_color = Color(0, 0.64171624, 0.33484715, 0.41960785)
 
 [node name="InteractionWithPlayer" type="Node" parent="."]
-script = ExtResource("2_gnd3y")
+script = ExtResource("2_mco2m")
+metadata/_custom_type_script = "uid://dk0y3j6216tik"
 
 [node name="InteractionWithFireball" type="Node" parent="."]
 script = ExtResource("3_mco2m")
