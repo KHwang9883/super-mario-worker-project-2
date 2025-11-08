@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level.Block;
 using SMWP.Level.Interface;
 using SMWP.Level.Physics;
 
@@ -14,6 +15,8 @@ public partial class BeetrootInteraction : Node {
     [Export] private PackedScene _fireballExplosionPackedScene = null!;
     [Export] private BeetrootMovement _beetrootMovement = null!;
     
+    private GodotObject? _blockCollider;
+    
     public override void _PhysicsProcess(double delta) {
         var results = ShapeQueryResult.ShapeQuery(_beetroot, _beetroot.GetNode<ShapeCast2D>("AreaBodyCollision"));
 
@@ -22,17 +25,26 @@ public partial class BeetrootInteraction : Node {
             var interactionWithBeetrootNode = result.GetNodeOrNull<Node>("InteractionWithBeetroot");
             if (interactionWithBeetrootNode is IBeetrootHittable beetrootHittable) {
                 Explode();
-                // 因为是帧伤所以不能用信号
+                // 因为是帧伤所以不用信号
                 if (beetrootHittable.OnBeetrootHit(_beetroot)) {
                     _beetrootMovement.Bounce();
                 } else {
                     _beetrootMovement.BounceCountAdd();
                 }
+                // 并且只能作用于一个对象
+                break;
             }
         }
         
-        // Todo: 撞击砖块
-        //
+        // 撞击砖块
+        _blockCollider = _beetroot.MoveAndCollide(new Vector2(1f * _beetrootMovement.Direction, 1f), true)?.GetCollider();
+        //GD.Print(_blockCollider);
+        if (_blockCollider is StaticBody2D staticBody2D) {
+            if (staticBody2D.GetNodeOrNull<BlockHit>("BlockHit") is BlockHit blockHit) {
+                blockHit.OnBlockHit(_beetroot);
+                _beetrootMovement.Bounce();
+            }
+        }
     }
     
     // 甜菜爆炸！

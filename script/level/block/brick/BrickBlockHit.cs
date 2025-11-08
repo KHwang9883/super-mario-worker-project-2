@@ -6,31 +6,21 @@ using SMWP.Level.Player;
 namespace SMWP.Level.Block.Brick;
 
 public partial class BrickBlockHit : BlockHit {
-    [Signal]
-    public delegate void BlockShatterEventHandler();
+    private PlayerSuit? _playerSuit;
+    private bool _bumpable;
+    private bool _breakable;
     
-    private bool _bump;
-
-    public override void OnBlockHit(Node2D collider) {
-        if (IsHittable(collider)) {
-            if (!_bump) {
-                _bump = true;
-                EmitSignal(BlockHit.SignalName.BlockBump);
-            }
-        } else {
-            EmitSignal(SignalName.BlockShatter);
-            Parent.QueueFree();
-        }
+    protected override bool IsBumpable(Node2D collider) {
+        _playerSuit = collider.GetNode<PlayerSuit>("PlayerMediator/PlayerSuit");
+        _bumpable = ((_playerSuit?.Suit == PlayerSuit.SuitEnum.Small) || collider.IsInGroup("beetroot"));
+        return _bumpable;
     }
+    protected override bool IsBreakable(Node2D collider) {
+        _playerSuit = collider.GetNode<PlayerSuit>("PlayerMediator/PlayerSuit");
+        _breakable = ((_playerSuit?.Suit != PlayerSuit.SuitEnum.Small) || collider.IsInGroup("beetroot"));
 
-    protected override bool IsHittable(Node2D collider) {
-        if (collider.GetNodeOrNull("PlayerMediator/PlayerSuit") is PlayerSuit playerSuit) {
-            return playerSuit.Suit == PlayerSuit.SuitEnum.Small;
-        }
-        return false;
-    }
-
-    public override void OnBumped() {
-        _bump = false;
+        // Todo: if collider is IHardshell, Beetroot, etc...
+        
+        return _breakable;
     }
 }

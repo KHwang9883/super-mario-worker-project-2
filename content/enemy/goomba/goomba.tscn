@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="1_siph3"]
 [ext_resource type="Texture2D" uid="uid://c30tfd1s6hvdn" path="res://content/enemy/goomba/goomba.png" id="1_w821v"]
-[ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/goomba/GoombaPlayerInteraction.cs" id="3_w821v"]
+[ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="3_w821v"]
 [ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="4_0x71s"]
 [ext_resource type="PackedScene" uid="uid://cguk5ao66bepv" path="res://content/enemy/goomba/goomba_dead.tscn" id="5_0ouly"]
 [ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="5_4nr65"]
@@ -68,6 +68,8 @@ metadata/_custom_type_script = "uid://t3te8lnb0byj"
 
 [node name="InteractionWithPlayer" type="Node" parent="."]
 script = ExtResource("3_w821v")
+Stompable = true
+metadata/_custom_type_script = "uid://dk0y3j6216tik"
 
 [node name="InteractionWithFireball" type="Node" parent="."]
 script = ExtResource("5_4nr65")

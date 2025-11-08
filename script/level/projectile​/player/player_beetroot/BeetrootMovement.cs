@@ -17,7 +17,6 @@ public partial class BeetrootMovement : BasicMovement {
         SpeedX = Mathf.Abs(SpeedX) * Direction;
         _shapeCast2D = GetParent().GetNode<ShapeCast2D>("AreaBodyCollision");
     }
-
     public override void _PhysicsProcess(double delta) {
         if (BounceCount < 4) {
             if (MoveObject.IsOnWall() || MoveObject.IsOnFloor()) {
