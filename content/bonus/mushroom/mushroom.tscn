@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://06fvxuvjbor0"]
+[gd_scene load_steps=20 format=3 uid="uid://06fvxuvjbor0"]
 
 [ext_resource type="Texture2D" uid="uid://dm27nawonnxyh" path="res://content/bonus/mushroom/input.png" id="1_7s0v6"]
 [ext_resource type="Script" uid="uid://b5yntrwmtxv27" path="res://script/level/bonus/PowerupSet.cs" id="1_lbpvd"]
 [ext_resource type="Script" uid="uid://br3a3a746vl0y" path="res://script/level/bonus/mushroom/MushroomAnimation.cs" id="3_klnhy"]
 [ext_resource type="Script" uid="uid://brqbgelfy4s1w" path="res://script/level/bonus/mushroom/MushroomMovement.cs" id="4_dponk"]
+[ext_resource type="Script" uid="uid://bbrm8h5kl684k" path="res://script/level/bonus/mushroom/MushroomBumpInteraction.cs" id="5_dgohy"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="5_g8tt7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_klnhy"]
@@ -126,6 +127,11 @@ _mushroomAnimation = NodePath("../MushroomAnimation")
 MoveObject = NodePath("..")
 SpeedX = -1.0
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
+
+[node name="InteractionWithBump" type="Node" parent="." node_paths=PackedStringArray("_mushroomMovement")]
+script = ExtResource("5_dgohy")
+_mushroomMovement = NodePath("../MushroomMovement")
+metadata/_custom_type_script = "uid://dm4udnui5ktii"
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 rect = Rect2(-15, -15, 30, 30)
