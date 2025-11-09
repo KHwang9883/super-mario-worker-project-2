@@ -44,6 +44,7 @@ animations = [{
 size = Vector2(32, 31)
 
 [node name="SuperStar" type="CharacterBody2D"]
+z_index = 15
 collision_layer = 32
 collision_mask = 5
 

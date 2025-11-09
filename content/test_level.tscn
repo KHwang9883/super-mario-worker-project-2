@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=33 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/tile/obstacle.tscn" id="2_676rr"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/tile/obstacle.png" id="8_1mjcm"]
 [ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/hud/mw/mw_hud.tres" id="8_bfx67"]
 [ext_resource type="Texture2D" uid="uid://celf82o4sjyxr" path="res://content/hud/mw/hud_mw_coin.png" id="8_lgciv"]
+[ext_resource type="Script" uid="uid://c7ql70nglpnhx" path="res://script/level/hud/HUD.cs" id="8_mfxe6"]
 [ext_resource type="PackedScene" uid="uid://dwkukt5v4t3p5" path="res://content/player/player.tscn" id="9_hgnsp"]
 [ext_resource type="Script" uid="uid://dsl20o7a2l7a0" path="res://script/level/debug/TestLabel.cs" id="10_g7257"]
 [ext_resource type="PackedScene" uid="uid://2vuxafdyyhgx" path="res://content/water/water.tscn" id="11_o3hmp"]
@@ -103,8 +104,7 @@ RoomWidth = 10016.0
 
 [node name="HUD" type="CanvasLayer" parent="TestNode2D"]
 
-[node name="Control" type="Control" parent="TestNode2D/HUD"]
-visible = false
+[node name="HUD" type="Control" parent="TestNode2D/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_time", "_coin")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -115,8 +115,14 @@ offset_right = -22.0
 offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("8_mfxe6")
+_life = NodePath("Life")
+_score = NodePath("Score")
+_levelTitle = NodePath("LevelTitle")
+_time = NodePath("Time")
+_coin = NodePath("Coin")
 
-[node name="Life" type="Label" parent="TestNode2D/HUD/Control"]
+[node name="Life" type="Label" parent="TestNode2D/HUD/HUD"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -124,11 +130,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("8_bfx67")
-text = "Mario 3
-0"
+text = "Mario 3"
 uppercase = true
 
-[node name="LevelTitle" type="Label" parent="TestNode2D/HUD/Control"]
+[node name="Score" type="Label" parent="TestNode2D/HUD/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_bfx67")
+text = "0"
+uppercase = true
+
+[node name="LevelTitle" type="Label" parent="TestNode2D/HUD/HUD"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.33
@@ -142,7 +159,7 @@ text = "LEGEND
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Time" type="Label" parent="TestNode2D/HUD/Control"]
+[node name="Time" type="Label" parent="TestNode2D/HUD/HUD"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.92
@@ -156,7 +173,7 @@ text = "Time
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Coin" type="Label" parent="TestNode2D/HUD/Control"]
+[node name="Coin" type="Label" parent="TestNode2D/HUD/HUD"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.303
@@ -169,12 +186,12 @@ theme = ExtResource("8_bfx67")
 text = "0"
 uppercase = true
 
-[node name="HUDCoin" type="AnimatedSprite2D" parent="TestNode2D/HUD/Control"]
+[node name="HUDCoin" type="AnimatedSprite2D" parent="TestNode2D/HUD/HUD"]
 position = Vector2(167, 14)
 sprite_frames = SubResource("SpriteFrames_venmc")
 autoplay = "default"
 
-[node name="HUDFontTest" type="Label" parent="TestNode2D/HUD/Control"]
+[node name="HUDFontTest" type="Label" parent="TestNode2D/HUD/HUD"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -199,6 +216,7 @@ uppercase = true
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="TestNode2D"]
 
 [node name="DebugLabel" type="Label" parent="TestNode2D/DebugCanvasLayer" node_paths=PackedStringArray("_player")]
+visible = false
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 344.0
@@ -233,7 +251,7 @@ position = Vector2(784, 320)
 shape = SubResource("RectangleShape2D_la3m6")
 debug_color = Color(0, 0.26666668, 0.69803923, 0.41960785)
 
-[node name="ColorRect" type="ColorRect" parent="TestNode2D/DebugWaterArea2D" groups=["water"]]
+[node name="ColorRect" type="ColorRect" parent="TestNode2D/DebugWaterArea2D"]
 self_modulate = Color(1, 1, 1, 0.6)
 offset_left = 736.0
 offset_top = 288.0
@@ -311,6 +329,27 @@ position = Vector2(2096, 368)
 
 [node name="SuperStar" parent="TestNode2D/Enemies" instance=ExtResource("18_mlotv")]
 position = Vector2(976, 432)
+
+[node name="Goomba" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
+position = Vector2(1564, 400)
+
+[node name="Goomba5" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
+position = Vector2(1624, 400)
+
+[node name="Goomba6" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
+position = Vector2(1504, 432)
+
+[node name="Goomba7" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
+position = Vector2(1456, 432)
+
+[node name="Goomba8" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
+position = Vector2(1404, 432)
+
+[node name="Goomba9" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
+position = Vector2(1352, 432)
+
+[node name="Goomba10" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
+position = Vector2(1696, 400)
 
 [node name="Powerups" type="Node2D" parent="TestNode2D"]
 
