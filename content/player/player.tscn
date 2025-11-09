@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=31 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/player/mario_small.tres" id="1_o23i7"]
 [ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://ddqu2ik76sdd8" path="res://content/projectile​/player/fireball/player_fireball.tscn" id="14_q05y8"]
 [ext_resource type="PackedScene" uid="uid://dt3n2b1ypresm" path="res://content/projectile​/player/beetroot/player_beetroot.tscn" id="16_1esvc"]
 [ext_resource type="AudioStream" uid="uid://bya5hq7ingpx1" path="res://content/sound/mario_jump.se.wav" id="16_sks62"]
+[ext_resource type="Script" uid="uid://gfx7bbicy3m3" path="res://script/level/score/ComboComponent.cs" id="18_0cq6f"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="18_8jrco"]
 [ext_resource type="AudioStream" uid="uid://d0g5dfs0iupih" path="res://content/sound/mario_swim.se.wav" id="18_fmriv"]
 [ext_resource type="AudioStream" uid="uid://dbe1tmavcr73y" path="res://content/sound/fireball.se.wav" id="19_8jrco"]
@@ -149,17 +150,22 @@ _playerEffectScene = ExtResource("11_q05y8")
 script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
 Suit = 2
+Powerup = 1
 
-[node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player")]
+[node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_starmanCombo")]
 script = ExtResource("12_tpspr")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
+_starmanCombo = NodePath("../../ComboComponent")
 
 [node name="PlayerShoot" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator")]
 script = ExtResource("13_v250f")
 _playerMediator = NodePath("..")
 _fireballScene = ExtResource("14_q05y8")
 _beetrootScene = ExtResource("16_1esvc")
+
+[node name="ComboComponent" type="Node" parent="."]
+script = ExtResource("18_0cq6f")
 
 [node name="PlayerJump" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3

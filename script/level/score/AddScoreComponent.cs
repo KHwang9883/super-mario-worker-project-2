@@ -50,8 +50,8 @@ public partial class AddScoreComponent : Node {
     }
     public void AddScoreToScoreManager(int score) {
         
-        ScoreManager.Score += score;
         // Todo: 1UP 特殊处理
+        ScoreManager.Score += (score > 0) ? score : 0;
         
     }
     public void ShowCorrespondingScore(int shownScore) {
