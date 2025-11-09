@@ -24,6 +24,7 @@ size = Vector2(31, 31)
 [node name="PoisonousMushroom" type="CharacterBody2D"]
 collision_layer = 32
 collision_mask = 5
+floor_block_on_wall = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 16)
