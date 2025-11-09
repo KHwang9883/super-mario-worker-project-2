@@ -8,7 +8,6 @@ namespace SMWP.Level.Block;
 public partial class BumpArea2D : Node {
     [Export] private Area2D? _parent;
     private int _timer;
-    private Node? _interactionWithBumpNode;
     
     public override void _Ready() {
         _parent ??= GetParent<Area2D>();
@@ -21,10 +20,12 @@ public partial class BumpArea2D : Node {
     
     // 顶死敌人
     public void OnBodyEntered(Node2D node) {
+        Node? interactionWithBumpNode = null;
+        
         if (node.HasMeta("InteractionWithBump")) {
-            _interactionWithBumpNode = (Node)node.GetMeta("InteractionWithBump");
+            interactionWithBumpNode = (Node)node.GetMeta("InteractionWithBump");
         }
-        if (_interactionWithBumpNode is IToppable toppable){
+        if (interactionWithBumpNode is IToppable toppable){
             toppable.OnTopped();
         }
     }

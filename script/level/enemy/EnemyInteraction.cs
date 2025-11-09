@@ -59,6 +59,9 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
 
     public override void _Ready() {
         _parent = (Node2D)GetParent();
+        if (this is IStompable stompable) {
+            stompable.MetadataInject(_parent);
+        }
         if (this is IHurtableAndKillable hurtableAndKillable) {
             hurtableAndKillable.MetadataInject(_parent);
         }
