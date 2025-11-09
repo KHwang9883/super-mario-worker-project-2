@@ -23,23 +23,36 @@ public partial class PlayerInteraction : Node
     
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
-    
+
+    private Node? _interactionWithHurtNode;
+    private Node? _interactionWithStompNode;
+    private Node? _interactionWithStarNode;
+    private Node? _powerupSetNode;
     private GodotObject? _blockCollider;
+    private Node? _blockHitNode;
+    
+    private int _starmanCombo;
+    private int _starmanScore;
 
     public override void _PhysicsProcess(double delta) {
         // 对Player在PlayerMovement重叠检测的结果进行引用，而非再调用一次ShapeQuery()
         var results = _playerMediator.playerMovement.GetShapeQueryResults();
         
         foreach (var result in results) {
-            var interactionWithPlayerNode = result.GetNodeOrNull<Node>("InteractionWithPlayer");
+            if (result.HasMeta("InteractionWithHurt")) {
+                _interactionWithHurtNode = (Node)result.GetMeta("InteractionWithHurt");
+            }
+            if (result.HasMeta("InteractionWithStomp")) {
+                _interactionWithStompNode = (Node)result.GetMeta("InteractionWithStomp");
+            }
             
             // Todo: 水管传送的状态下不会受到伤害，这里暂时用卡墙的状态替代
             
             if (!_playerMediator.playerMovement.Stuck) {
                 
                 // 踩踏可踩踏物件
-                if (interactionWithPlayerNode != null) {
-                    if (interactionWithPlayerNode is IStompable stompable) {
+                if (_interactionWithStompNode != null) {
+                    if (_interactionWithStompNode is IStompable stompable) {
                         if (stompable.Stompable && _player.Velocity.Y > 0f
                             && _player.GlobalPosition.Y < result.GlobalPosition.Y + stompable.StompOffset) {
                             EmitSignal(SignalName.PlayerStomp, stompable.OnStomped(_player));
@@ -48,7 +61,7 @@ public partial class PlayerInteraction : Node
                 }
 
                 // 有伤害物件，不可踩或者踩踏失败
-                if (interactionWithPlayerNode is IHurtableAndKillable hurtableAndKillable) {
+                if (_interactionWithHurtNode is IHurtableAndKillable hurtableAndKillable) {
                     if (hurtableAndKillable is IStompable stompableAndHurtable) {
                         if (_player.GlobalPosition.Y >= result.GlobalPosition.Y + stompableAndHurtable.StompOffset) {
                             switch (hurtableAndKillable.HurtType) {
@@ -74,35 +87,56 @@ public partial class PlayerInteraction : Node
                     }
                 }
             }
+            
+            // 无敌星状态下击杀敌人
+            if (_playerMediator.playerSuit.Starman) {
+                var interactionWithStarNode = result.GetNodeOrNull<Node>("InteractionWithStar");
+                if (interactionWithStarNode is IStarHittable starHittable) {
+                    _starmanCombo++;
+                    starHittable.OnStarmanHit(_starmanScore);
+                    
+                    // Todo: starman combo & score
+                    
+                } 
+            }
 
             // 奖励物
-            var powerupSetNode = result.GetNodeOrNull<PowerupSet>("PowerupSet");
-            if (powerupSetNode != null) {
+            if (result.HasMeta("PowerupSet")) {
+                _powerupSetNode = (Node)result.GetMeta("PowerupSet");
+            }
+            if (_powerupSetNode is PowerupSet powerupSetNode) {
                 powerupSetNode.OnCollected();
                 
                 var originalSuit = _playerMediator.playerSuit.Suit;
                 var originalPowerup = _playerMediator.playerSuit.Powerup;
-                
-                if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small) {
-                    _playerMediator.playerSuit.Powerup = powerupSetNode.PowerupType switch {
-                        PowerupSet.PowerupEnum.FireFlower => PlayerSuit.PowerupEnum.Fireball,
-                        PowerupSet.PowerupEnum.Beetroot => PlayerSuit.PowerupEnum.Beetroot,
-                        PowerupSet.PowerupEnum.Lui => PlayerSuit.PowerupEnum.Lui,
-                        _ => _playerMediator.playerSuit.Powerup,
-                    };
-                    if (powerupSetNode.PowerupType != PowerupSet.PowerupEnum.Mushroom) {
-                        _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Powered;
+
+                // 无敌星
+                if (powerupSetNode.PowerupType == PowerupSet.PowerupEnum.SuperStar) {
+                    _playerMediator.playerSuit.Starman = true;
+                    _playerMediator.playerSuit.StarmanTimer = 0;
+                } else {
+                    // 常规补给
+                    if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small) {
+                        _playerMediator.playerSuit.Powerup = powerupSetNode.PowerupType switch {
+                            PowerupSet.PowerupEnum.FireFlower => PlayerSuit.PowerupEnum.Fireball,
+                            PowerupSet.PowerupEnum.Beetroot => PlayerSuit.PowerupEnum.Beetroot,
+                            PowerupSet.PowerupEnum.Lui => PlayerSuit.PowerupEnum.Lui,
+                            _ => _playerMediator.playerSuit.Powerup,
+                        };
+                        if (powerupSetNode.PowerupType != PowerupSet.PowerupEnum.Mushroom) {
+                            _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Powered;
+                        }
                     }
-                }
-                if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Small) {
-                    _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Super;
-                }
-                if (_playerMediator.playerSuit.Suit != originalSuit 
-                    || _playerMediator.playerSuit.Powerup != originalPowerup) {
-                    EmitSignal(SignalName.PlayerPowerup);
-                } else if (_playerMediator.playerSuit.Powerup == originalPowerup
-                    && _playerMediator.playerSuit.Suit == originalSuit) {
-                    EmitSignal(SignalName.PlayerPowerPlain);
+                    if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Small) {
+                        _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Super;
+                    }
+                    if (_playerMediator.playerSuit.Suit != originalSuit
+                        || _playerMediator.playerSuit.Powerup != originalPowerup) {
+                        EmitSignal(SignalName.PlayerPowerup);
+                    } else if (_playerMediator.playerSuit.Powerup == originalPowerup
+                               && _playerMediator.playerSuit.Suit == originalSuit) {
+                        EmitSignal(SignalName.PlayerPowerPlain);
+                    }
                 }
             }
         }
@@ -112,7 +146,10 @@ public partial class PlayerInteraction : Node
             _blockCollider = _player.MoveAndCollide(new Vector2(0f, -1f), true)?.GetCollider();
             //GD.Print(_blockCollider);
             if (_blockCollider is StaticBody2D staticBody2D) {
-                if (staticBody2D.GetNodeOrNull<BlockHit>("BlockHit") is BlockHit blockHit) {
+                if (staticBody2D.HasMeta("InteractionWithBlock")) {
+                    _blockHitNode = (Node)staticBody2D.GetMeta("InteractionWithBlock");
+                }
+                if (_blockHitNode is BlockHit blockHit) {
                     blockHit.OnBlockHit(_player);
                     _playerMediator.playerMovement.SpeedY = 0f;
                 }

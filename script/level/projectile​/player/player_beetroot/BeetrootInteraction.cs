@@ -15,15 +15,19 @@ public partial class BeetrootInteraction : Node {
     [Export] private PackedScene _fireballExplosionPackedScene = null!;
     [Export] private BeetrootMovement _beetrootMovement = null!;
     
+    private Node? _interactionWithBeetrootNode;
     private GodotObject? _blockCollider;
+    private Node? _interactionWithBlockNode;
     
     public override void _PhysicsProcess(double delta) {
         var results = ShapeQueryResult.ShapeQuery(_beetroot, _beetroot.GetNode<ShapeCast2D>("AreaBodyCollision"));
 
         foreach (var result in results) {
             // 检测可以被甜菜击中的物件
-            var interactionWithBeetrootNode = result.GetNodeOrNull<Node>("InteractionWithBeetroot");
-            if (interactionWithBeetrootNode is IBeetrootHittable beetrootHittable) {
+            if (result.HasMeta("InteractionWithBeetroot")) {
+                _interactionWithBeetrootNode = (Node)result.GetMeta("InteractionWithBeetroot");
+            }
+            if (_interactionWithBeetrootNode is IBeetrootHittable beetrootHittable) {
                 Explode();
                 // 因为是帧伤所以不用信号
                 if (beetrootHittable.OnBeetrootHit(_beetroot)) {
@@ -40,7 +44,10 @@ public partial class BeetrootInteraction : Node {
         _blockCollider = _beetroot.MoveAndCollide(new Vector2(1f * _beetrootMovement.Direction, 1f), true)?.GetCollider();
         //GD.Print(_blockCollider);
         if (_blockCollider is StaticBody2D staticBody2D) {
-            if (staticBody2D.GetNodeOrNull<BlockHit>("BlockHit") is BlockHit blockHit) {
+            if (staticBody2D.HasMeta("InteractionWithBlock")) {
+                _interactionWithBlockNode = (Node)staticBody2D.GetMeta("InteractionWithBlock");
+            }
+            if (_interactionWithBlockNode is BlockHit blockHit) {
                 blockHit.OnBlockHit(_beetroot);
                 _beetrootMovement.Bounce();
             }

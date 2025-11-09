@@ -1,3 +1,5 @@
+using Godot;
+
 namespace SMWP.Level.Interface;
 
 public interface IHurtableAndKillable {
@@ -7,4 +9,5 @@ public interface IHurtableAndKillable {
         Nothing,
     }
     HurtEnum HurtType { get; set; }
+    public void MetadataInject(Node2D parent);
 }

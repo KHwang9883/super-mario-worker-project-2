@@ -4,6 +4,9 @@ using System;
 namespace SMWP.Level.Enemy;
 
 public partial class EnemyDie : Node {
+    [Signal]
+    public delegate void DiedEventHandler();
+    
     enum EnemyDieEnum {
         Disappear,
         CreateInstance,
@@ -16,6 +19,7 @@ public partial class EnemyDie : Node {
         _parent = GetParent<Node2D>();
     }
     public virtual void OnDied() {
+        EmitSignal(SignalName.Died);
         //Callable.From(() => {
         if (_enemyDieType == EnemyDieEnum.CreateInstance) {
             var enemyDeadInstance = _enemyDeadPackedScene.Instantiate<Node2D>();

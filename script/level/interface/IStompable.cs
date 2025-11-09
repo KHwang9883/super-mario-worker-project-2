@@ -7,5 +7,6 @@ public interface IStompable {
     float StompOffset { get; set; }
     float StompSpeedY { get; set; }
 
+    public void MetadataInject(Node2D parent);
     public float OnStomped(Node2D stomper);
 }

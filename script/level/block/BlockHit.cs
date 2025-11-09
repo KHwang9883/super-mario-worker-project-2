@@ -44,12 +44,17 @@ public partial class BlockHit : Node, IBlockHittable {
     ];
 
     protected Node2D Parent = null!;
-
+    
     public override void _Ready() {
         Parent = GetParent<Node2D>();
         // 忘记设置精灵节点，尝试获取
         _sprite ??= (Node2D)GetParent().GetNodeOrNull("Sprite2D");
         _sprite ??= (Node2D)GetParent().GetNodeOrNull("AnimatedSprite2D");
+        
+        MetadataInject(Parent);
+    }
+    public void MetadataInject(Node2D parent) {
+        parent.SetMeta("InteractionWithBlock", this);
     }
     public override void _PhysicsProcess(double delta) {
         if (_sprite == null) {
