@@ -14,8 +14,10 @@ public partial class PlayerDieAndHurt : Node {
     [Export] private CharacterBody2D _player = null!;
     [Export] private PackedScene _playerDeadScene = null!;
     [Export] public float InvincibleDuration = 200;
-    public bool IsInvicible;
-    private int _invincibleTimer;
+    public bool IsInvincible;
+    public bool IsHurtInvincible;
+    private int _hurtInvincibleTimer;
+    public bool IsStarmanInvincible;
     private bool _dead;
     private int _deadTimer;
 
@@ -35,14 +37,17 @@ public partial class PlayerDieAndHurt : Node {
             Die();
         }
         
-        // 无敌计时
-        if (IsInvicible) {
-            _invincibleTimer++;
-            if (_invincibleTimer >= InvincibleDuration) {
-                IsInvicible = false;
+        // 受伤无敌计时
+        if (IsHurtInvincible) {
+            _hurtInvincibleTimer++;
+            if (_hurtInvincibleTimer >= InvincibleDuration) {
+                IsHurtInvincible = false;
                 EmitSignal(SignalName.PlayerInvincibleEnded);
             }
         }
+        
+        // 无敌星状态
+        IsStarmanInvincible = _playerMediator.playerSuit.Starman;
     }
     public CharacterBody2D GetPlayer() {
         return _player;
@@ -56,21 +61,16 @@ public partial class PlayerDieAndHurt : Node {
             var playerDeadInstance = _playerDeadScene.Instantiate<PlayerDead>();
             playerDeadInstance.Position = _player.Position;
             _player.AddSibling(playerDeadInstance);
-            
-            // 没有实际用途，只是学习过程中留下的代码
-            // 问题：为什么下面的代码不会被触发？
-            playerDeadInstance.TreeEntered += () => {
-                GetTree().Paused = true;
-            };
         }
     }
     public void Hurt() {
-        switch (IsInvicible) {
+        if (IsStarmanInvincible) return;
+        switch (IsHurtInvincible) {
             case true:
                 return;
             case false:
-                IsInvicible = true;
-                _invincibleTimer = 0;
+                IsHurtInvincible = true;
+                _hurtInvincibleTimer = 0;
                 switch (_playerMediator.playerSuit.Suit) {
                     case PlayerSuit.SuitEnum.Small:
                         Die();

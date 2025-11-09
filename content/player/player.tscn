@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=30 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/player/mario_small.tres" id="1_o23i7"]
 [ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
+[ext_resource type="Script" uid="uid://b0fnoqvdxlts0" path="res://script/level/player/PlayerInvincibleEffect.cs" id="2_3brj4"]
 [ext_resource type="Script" uid="uid://cwf1kwcspdui2" path="res://script/level/player/PlayerMovement.cs" id="3_i4jjh"]
 [ext_resource type="Script" uid="uid://dq38nbqklr26h" path="res://script/level/player/PlayerDieAndHurt.cs" id="4_5unhu"]
 [ext_resource type="PackedScene" uid="uid://dfiukm6ibgibj" path="res://content/player/player_dead.tscn" id="5_3ac0f"]
@@ -23,6 +24,9 @@
 [ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="19_fmriv"]
 [ext_resource type="AudioStream" uid="uid://bfhqh4egowku5" path="res://content/sound/powerup.se.wav" id="20_pull8"]
 [ext_resource type="AudioStream" uid="uid://bqndr8vnrf8wk" path="res://content/sound/powerdown.se.wav" id="21_1esvc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0cq6f"]
+blend_mode = 1
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_gdtqi"]
 points = PackedVector2Array(-12, 0, -12, -14, -2, -24, 2, -24, 12, -14, 12, 0)
@@ -50,6 +54,16 @@ sprite_frames = ExtResource("1_o23i7")
 animation = &"idle"
 autoplay = "idle"
 offset = Vector2(0, -32)
+
+[node name="InvincibleEffect" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
+visible = false
+material = SubResource("CanvasItemMaterial_0cq6f")
+position = Vector2(0, 13)
+sprite_frames = ExtResource("1_o23i7")
+animation = &"idle"
+offset = Vector2(0, -32)
+script = ExtResource("2_3brj4")
+_animatedSprite2D = NodePath("../AnimatedSprite2D")
 
 [node name="BlocksPhysicsCollisionSmall" type="CollisionPolygon2D" parent="."]
 visible = false
@@ -135,7 +149,6 @@ _playerEffectScene = ExtResource("11_q05y8")
 script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
 Suit = 2
-Powerup = 1
 
 [node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player")]
 script = ExtResource("12_tpspr")

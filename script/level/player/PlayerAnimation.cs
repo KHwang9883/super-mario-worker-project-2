@@ -21,6 +21,8 @@ public partial class PlayerAnimation : Node {
     private float _imageIndex;
     private int _frameCount;
 
+    private AnimatedSprite2D? _invincibleEffect;
+
     private bool _hurting;
     private int _hurtAnimationTimer;
     private float _hurtEffectSinePhase;
@@ -33,6 +35,7 @@ public partial class PlayerAnimation : Node {
     public override void _Ready() {
         _playerMovement = _playerMediator.GetNode<PlayerMovement>("PlayerMovement");
         _playerMovement.JumpStarted += OnJumpStarted;
+        _invincibleEffect = _player.GetNode<AnimatedSprite2D>("InvincibleEffect");
         //_playerMediator.playerDieAndHurt.PlayerHurt += OnPlayerHurt;
     }
     public override void _PhysicsProcess(double delta) {
@@ -60,6 +63,9 @@ public partial class PlayerAnimation : Node {
                     break;
             }
         }
+        
+        // Starman
+        if (_invincibleEffect != null) _invincibleEffect.Visible = _playerMediator.playerSuit.Starman;
 
         // Direction
         if (_playerMovement.SpeedX > 0f) {
@@ -134,7 +140,7 @@ public partial class PlayerAnimation : Node {
             }
         }
         // Hurt Animation
-        if (_playerMediator.playerDieAndHurt.IsInvicible && !_hurting && !_powerupChanging) {
+        if (_playerMediator.playerDieAndHurt.IsHurtInvincible && !_hurting && !_powerupChanging) {
             _hurtFlashCounter++;
             _animatedSprite2D.Visible = ((_hurtFlashCounter / 4) % 2 == 0);
         }

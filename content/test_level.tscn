@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=32 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/tile/obstacle.tscn" id="2_676rr"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cb81b1j6kxba1" path="res://content/bonus/fire_flower/fire_flower.tscn" id="17_d2gt5"]
 [ext_resource type="PackedScene" uid="uid://06fvxuvjbor0" path="res://content/bonus/mushroom/mushroom.tscn" id="17_venmc"]
 [ext_resource type="PackedScene" uid="uid://bppnp31u6nq6s" path="res://content/bonus/beetroot/beetroot.tscn" id="18_6xv5h"]
+[ext_resource type="PackedScene" uid="uid://c4kb6rkggetfq" path="res://content/bonus/super_star/super_star.tscn" id="18_mlotv"]
 [ext_resource type="PackedScene" uid="uid://506l0hik3qda" path="res://content/bonus/lui/lui.tscn" id="19_iae4c"]
 [ext_resource type="PackedScene" uid="uid://dhq4p7f4dvkh4" path="res://content/bonus/poisonous_mushroom/poisonous_mushroom.tscn" id="21_dwm8j"]
 [ext_resource type="PackedScene" uid="uid://b4b6pch7u4iem" path="res://content/block/brick/brick.tscn" id="23_dmmuc"]
@@ -307,6 +308,9 @@ position = Vector2(2000, 336)
 
 [node name="SpikePiranha7" parent="TestNode2D/Enemies" instance=ExtResource("14_ii7j2")]
 position = Vector2(2096, 368)
+
+[node name="SuperStar" parent="TestNode2D/Enemies" instance=ExtResource("18_mlotv")]
+position = Vector2(976, 432)
 
 [node name="Powerups" type="Node2D" parent="TestNode2D"]
 

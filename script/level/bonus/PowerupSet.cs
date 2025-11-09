@@ -8,11 +8,17 @@ public partial class PowerupSet : Node {
         Mushroom,
         FireFlower,
         Beetroot,
-        Lui
+        Lui,
+        SuperStar,
     }
     [Export] private Node2D _powerup = null!;
     [Export] public PowerupEnum PowerupType = PowerupEnum.Mushroom;
-    
+    private Node2D? _parent;
+
+    public override void _Ready() {
+        _parent = (Node2D)GetParent();
+        _parent.SetMeta("PowerupSet", this);
+    }
     public void OnCollected() {
         _powerup.QueueFree();
     }
