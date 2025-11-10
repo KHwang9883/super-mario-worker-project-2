@@ -104,12 +104,13 @@ use_native_dialog = true
 [node name="LevelConfig" type="Node" parent="TestNode2D" groups=["level_config"]]
 script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
-Time = 233
+Time = 105
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
 [node name="HUD" type="CanvasLayer" parent="TestNode2D"]
 
 [node name="HUD" type="Control" parent="TestNode2D/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

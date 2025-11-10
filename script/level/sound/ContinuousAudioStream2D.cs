@@ -5,7 +5,7 @@ namespace SMWP.Level.Sound;
 [GlobalClass]
 public partial class ContinuousAudioStream2D : AudioStreamPlayer2D {
     private Node _parent = null!;
-    private Viewport _viewport = null!;
+    private Viewport? _viewport;
     
     public ContinuousAudioStream2D() {
         ProcessMode = ProcessModeEnum.Always;
@@ -19,7 +19,7 @@ public partial class ContinuousAudioStream2D : AudioStreamPlayer2D {
         //Reparent(_viewport);
         _parent.RemoveChild(this);
         Callable.From(() => {
-            if (_viewport != null) _viewport.AddChild(this);
+            _viewport?.AddChild(this);
         }).CallDeferred();
         Finished += QueueFree;
     }
