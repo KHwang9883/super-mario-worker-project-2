@@ -16,7 +16,12 @@ public partial class LevelManager : Node {
 
     // Level Timer
     public override void _PhysicsProcess(double delta) {
+        
+        // 传送时，计时器停止
         // Todo: if (playerMovement.Stuck or PipeIn/Out) return;
+        // 玩家死亡，计时器停止
+        if (GetTree().GetFirstNodeInGroup("player").ProcessMode == ProcessModeEnum.Disabled) return;
+        
         _timer++;
         if (_timer < 16) return;
         if (Time <= 0) return;

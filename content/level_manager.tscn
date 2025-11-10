@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://bojojdc2bfdoe" path="res://script/level/LevelManager.cs" id="1_ypvyb"]
 
 [node name="LevelManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_ypvyb")
