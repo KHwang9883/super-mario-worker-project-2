@@ -42,6 +42,9 @@ public partial class PlayerInteraction : Node
 
             // 有伤害物件，不可踩或者踩踏失败
             HurtableAndKillableDetect(result);
+            
+            // 奖励物
+            BonusItemDetect(result);
         }
 
         // 顶砖检测（考虑到游戏特性，不采用foreach判断）
@@ -120,7 +123,6 @@ public partial class PlayerInteraction : Node
         }
     }
     public void BonusItemDetect(Node result) {
-        // 奖励物
         Node? powerupSetNode = null;
                 
         if (result.HasMeta("PowerupSet")) {
