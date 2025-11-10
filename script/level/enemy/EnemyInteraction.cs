@@ -85,7 +85,7 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
     void IStompable.MetadataInject(Node2D parent) {
         parent?.SetMeta("InteractionWithStomp", this);
     }
-    public float OnStomped(Node2D stomper) {
+    public virtual float OnStomped(Node2D stomper) {
         // 这个方法被调用，说明已经是踩上了，判断语句在玩家的PlayerInteraction
         EmitSignal(SignalName.Stomped);
         if (ImmuneToStomp) {

@@ -6,8 +6,8 @@ namespace SMWP.Level.Enemy;
 public partial class EnemyDie : Node {
     [Signal]
     public delegate void DiedEventHandler();
-    
-    enum EnemyDieEnum {
+
+    public enum EnemyDieEnum {
         Disappear,
         Explode,
         SpinOff,
@@ -29,9 +29,12 @@ public partial class EnemyDie : Node {
         _texture2D = _animatedSprite2D.SpriteFrames.GetFrameTexture(_animatedSprite2D.Animation, _animatedSprite2D.Frame);
     }
     public virtual void OnDied() {
+        OnDied(_enemyDieType);
+    }
+    public virtual void OnDied(EnemyDieEnum enemyDieType) {
         EmitSignal(SignalName.Died);
         //Callable.From(() => {
-        switch (_enemyDieType) {
+        switch (enemyDieType) {
             case EnemyDieEnum.Explode:
                 var fireballExplosionInstance = _fireballExplosionScene.Instantiate<Node2D>();
                 fireballExplosionInstance.Position = _parent.Position;
@@ -53,6 +56,6 @@ public partial class EnemyDie : Node {
             }
         }
         _parent.QueueFree();
-        //});
+        //}).CallDeferred();
     }
 }
