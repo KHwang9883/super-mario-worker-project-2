@@ -24,7 +24,7 @@ public partial class AutoSpriteFlipH : Node
         }
         
         if (_targetSprite != null) {
-            _lastPositionX = _targetSprite.Position.X;
+            _lastPositionX = _targetSprite.GlobalPosition.X;
         }
     }
 
@@ -32,7 +32,7 @@ public partial class AutoSpriteFlipH : Node
         if (_targetSprite == null) return;
 
         // 检测X方向的变化
-        float currentX = _targetSprite.Position.X;
+        float currentX = _targetSprite.GlobalPosition.X;
         
         if (_lastPositionX < currentX) 
         {

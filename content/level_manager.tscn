@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://bojojdc2bfdoe" path="res://script/level/LevelManager.cs" id="1_ypvyb"]
 
-[node name="ScoreManager" type="Node"]
+[node name="LevelManager" type="Node"]
 script = ExtResource("1_ypvyb")

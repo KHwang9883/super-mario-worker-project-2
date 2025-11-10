@@ -69,7 +69,7 @@ repeat_size = Vector2(640, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WaterSprite/WaterSurfaceParallax2D"]
 self_modulate = Color(1, 1, 1, 0.5294118)
-position = Vector2(320, 9)
+position = Vector2(320, 9.6)
 sprite_frames = SubResource("SpriteFrames_g2rda")
 autoplay = "default"
 frame_progress = 1.0
@@ -79,7 +79,7 @@ repeat_size = Vector2(640, 480)
 
 [node name="ColorRect" type="ColorRect" parent="WaterSprite/WaterParallax2D"]
 self_modulate = Color(1, 1, 1, 0.5294118)
-offset_top = 17.0
+offset_top = 16.5
 offset_right = 640.0
-offset_bottom = 497.0
+offset_bottom = 496.5
 color = Color(0.3529412, 0.54901963, 0.90588236, 1)

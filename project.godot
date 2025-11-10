@@ -22,7 +22,7 @@ config/windows_native_icon="res://smwp.ico"
 
 [autoload]
 
-ScoreManager="*res://content/score/score_manager.tscn"
+ScoreManager="*res://content/level_manager.tscn"
 
 [display]
 

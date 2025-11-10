@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctlj6wtkwhahy"]
+
+[ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="2_1y6sr"]
+[ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="2_o774t"]
+[ext_resource type="Script" uid="uid://der0rk5mqolyb" path="res://script/level/enemy/EnemyDeadNormalSpin.cs" id="3_1y6sr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82tgl"]
+size = Vector2(31, 30)
+
+[node name="EnemyDeadNormal" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_82tgl")
+
+[node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
+script = ExtResource("2_1y6sr")
+MoveObject = NodePath("..")
+SpeedY = -8.0
+metadata/_custom_type_script = "uid://chn4gqrm87qtl"
+
+[node name="OutOfBoundsQueueFree" type="Node" parent="."]
+script = ExtResource("2_o774t")
+ScreenDownOffset = 60.0
+metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
+
+[node name="EnemyDeadNormalSpin" type="Node" parent="."]
+script = ExtResource("3_1y6sr")

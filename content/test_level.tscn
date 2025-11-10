@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=36 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/tile/obstacle.tscn" id="2_676rr"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://506l0hik3qda" path="res://content/bonus/lui/lui.tscn" id="19_iae4c"]
 [ext_resource type="PackedScene" uid="uid://dhq4p7f4dvkh4" path="res://content/bonus/poisonous_mushroom/poisonous_mushroom.tscn" id="21_dwm8j"]
 [ext_resource type="PackedScene" uid="uid://b4b6pch7u4iem" path="res://content/block/brick/brick.tscn" id="23_dmmuc"]
+[ext_resource type="PackedScene" uid="uid://lo64hov3eeo3" path="res://content/enemy/spiny/spiny.tscn" id="28_mjbph"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
 atlas = ExtResource("8_lgciv")
@@ -103,7 +104,7 @@ use_native_dialog = true
 [node name="LevelConfig" type="Node" parent="TestNode2D" groups=["level_config"]]
 script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
-Time = 10
+Time = 233
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
 [node name="HUD" type="CanvasLayer" parent="TestNode2D"]
@@ -384,6 +385,9 @@ position = Vector2(1352, 432)
 
 [node name="Goomba10" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
 position = Vector2(1696, 400)
+
+[node name="Spiny" parent="TestNode2D/Enemies" instance=ExtResource("28_mjbph")]
+position = Vector2(1168, 400)
 
 [node name="Powerups" type="Node2D" parent="TestNode2D"]
 
