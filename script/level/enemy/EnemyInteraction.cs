@@ -137,7 +137,7 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
         EmitSignal(SignalName.StarmanHit);
         EmitSignal(SignalName.StarmanHitAddScore, score);
         if (ImmuneToStar) return;
-        EmitSignal(SignalName.PlaySoundKicked);
+        //EmitSignal(SignalName.PlaySoundKicked);
         OnDied();
     }
     // 被顶

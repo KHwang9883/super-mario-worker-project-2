@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=35 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/tile/obstacle.tscn" id="2_676rr"]
@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://dg3a08a8q43kb" path="res://content/database/block_database.tres" id="5_ho8xc"]
 [ext_resource type="TileSet" uid="uid://bnf7dwxlyydri" path="res://content/tile/obstacles.tileset.tres" id="6_nyv2h"]
 [ext_resource type="TileSet" uid="uid://obv64rtoaukf" path="res://content/tile/blocks.tileset.tres" id="7_3v1lj"]
-[ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/RoomConfig.cs" id="7_tmrn4"]
+[ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
 [ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/tile/obstacle.png" id="8_1mjcm"]
 [ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/hud/mw/mw_hud.tres" id="8_bfx67"]
 [ext_resource type="Texture2D" uid="uid://celf82o4sjyxr" path="res://content/hud/mw/hud_mw_coin.png" id="8_lgciv"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dwkukt5v4t3p5" path="res://content/player/player.tscn" id="9_hgnsp"]
 [ext_resource type="Script" uid="uid://dsl20o7a2l7a0" path="res://script/level/debug/TestLabel.cs" id="10_g7257"]
 [ext_resource type="PackedScene" uid="uid://2vuxafdyyhgx" path="res://content/water/water.tscn" id="11_o3hmp"]
+[ext_resource type="AudioStream" uid="uid://crsc1hhhou5gu" path="res://content/sound/time_warning.se.wav" id="11_tfcdk"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="12_mjbph"]
 [ext_resource type="PackedScene" uid="uid://dm7wuafwjjq1w" path="res://content/enemy/spike/spike_mw.tscn" id="13_dhetq"]
 [ext_resource type="PackedScene" uid="uid://dlfbxnforjjvx" path="res://content/enemy/spike/spike_piranha.tscn" id="14_ii7j2"]
 [ext_resource type="PackedScene" uid="uid://d2kvp8mnj0j4u" path="res://content/enemy/goomba/goomba.tscn" id="16_lgciv"]
@@ -98,13 +100,15 @@ use_native_dialog = true
 
 [node name="TestNode2D" type="Node2D" parent="."]
 
-[node name="RoomConfig" type="Node" parent="TestNode2D" groups=["room_config"]]
+[node name="LevelConfig" type="Node" parent="TestNode2D" groups=["level_config"]]
 script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
+Time = 10
+metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
 [node name="HUD" type="CanvasLayer" parent="TestNode2D"]
 
-[node name="HUD" type="Control" parent="TestNode2D/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_time", "_coin")]
+[node name="HUD" type="Control" parent="TestNode2D/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -119,7 +123,8 @@ script = ExtResource("8_mfxe6")
 _life = NodePath("Life")
 _score = NodePath("Score")
 _levelTitle = NodePath("LevelTitle")
-_time = NodePath("Time")
+_timeHUD = NodePath("Time")
+_timeCounter = NodePath("Time/TimeCounter")
 _coin = NodePath("Coin")
 
 [node name="Life" type="Label" parent="TestNode2D/HUD/HUD"]
@@ -159,17 +164,41 @@ text = "LEGEND
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Time" type="Label" parent="TestNode2D/HUD/HUD"]
+[node name="Time" type="Control" parent="TestNode2D/HUD/HUD"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Time" type="Label" parent="TestNode2D/HUD/HUD/Time"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.92
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 502.32
+offset_right = 541.12
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("8_bfx67")
-text = "Time
-233"
+text = "Time"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="TimeCounter" type="Label" parent="TestNode2D/HUD/HUD/Time"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.92
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 497.26
+offset_top = 16.0
+offset_right = 551.06
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_bfx67")
+text = "114514"
 horizontal_alignment = 1
 uppercase = true
 
@@ -212,6 +241,11 @@ abcdefghijklmnopqrstuvwxyz
 0123456789"
 horizontal_alignment = 1
 uppercase = true
+
+[node name="TimeWarning" type="AudioStreamPlayer2D" parent="TestNode2D/HUD/HUD"]
+stream = ExtResource("11_tfcdk")
+script = ExtResource("12_mjbph")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="TestNode2D"]
 
@@ -411,3 +445,5 @@ position = Vector2(1232, 368)
 
 [node name="Brick9" parent="TestNode2D/Facilities" instance=ExtResource("23_dmmuc")]
 position = Vector2(1232, 304)
+
+[connection signal="PlaySoundTimeWarning" from="TestNode2D/HUD/HUD" to="TestNode2D/HUD/HUD/TimeWarning" method="play"]

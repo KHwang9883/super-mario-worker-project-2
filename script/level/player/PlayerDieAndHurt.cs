@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level.Score;
 using SMWP.Level.Tool;
 
 namespace SMWP.Level.Player;
@@ -37,6 +38,11 @@ public partial class PlayerDieAndHurt : Node {
             Die();
         }
         
+        // 时间归零死亡
+        if (LevelManager.Time == 0) {
+            Die();
+        }
+        
         // 受伤无敌计时
         if (IsHurtInvincible) {
             _hurtInvincibleTimer++;
@@ -57,6 +63,8 @@ public partial class PlayerDieAndHurt : Node {
             _dead = true;
             _player.Visible = false;
             _player.ProcessMode = ProcessModeEnum.Disabled;
+            
+            LevelManager.Life--;
             
             var playerDeadInstance = _playerDeadScene.Instantiate<PlayerDead>();
             playerDeadInstance.Position = _player.Position;

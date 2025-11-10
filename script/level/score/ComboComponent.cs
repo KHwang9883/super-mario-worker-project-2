@@ -3,6 +3,11 @@ using System;
 using System.Collections.Generic;
 
 public partial class ComboComponent : Node {
+    [Signal]
+    public delegate void PlaySoundKickEventHandler();
+    [Signal]
+    public delegate void PlaySound1UPEventHandler();
+    
     public int Combo { get; set; }
     public int Score { get; set; }
 
@@ -18,7 +23,12 @@ public partial class ComboComponent : Node {
     };
     public int AddCombo() {
         Combo++;
-        if (Combo > 7) Combo = 1;
+        if (Combo > 7) {
+            EmitSignal(SignalName.PlaySound1UP);
+            Combo = 1;
+        } else {
+            EmitSignal(SignalName.PlaySoundKick);
+        }
         Score = ComboToScore[Combo];
         return Score;
     }

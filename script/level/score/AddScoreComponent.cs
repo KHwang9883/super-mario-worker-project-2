@@ -36,7 +36,7 @@ public partial class AddScoreComponent : Node {
         _scoreTextures[2000] = Score2000;
         _scoreTextures[5000] = Score5000;
         _scoreTextures[10000] = Score10000;
-        _scoreTextures[-1] = Score1UP; // 1UP特殊处理
+        _scoreTextures[-1] = Score1UP; // 1UP 作特殊处理，占用 -1 分
     }
     // 默认加分方法
     public void AddScore() {
@@ -49,10 +49,7 @@ public partial class AddScoreComponent : Node {
         ShowCorrespondingScore(externalScore);
     }
     public void AddScoreToScoreManager(int score) {
-        
-        // Todo: 1UP 特殊处理
-        ScoreManager.Score += (score > 0) ? score : 0;
-        
+        LevelManager.AddScore(score);
     }
     public void ShowCorrespondingScore(int shownScore) {
         if (!_showCorrespondingScore) return;
