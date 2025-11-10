@@ -16,7 +16,11 @@ public partial class ContinuousAudioStream2D : AudioStreamPlayer2D {
         _parent.TreeExiting += OnParentExiting;
     }
     public void OnParentExiting() {
-        Reparent(_viewport);
+        //Reparent(_viewport);
+        _parent.RemoveChild(this);
+        Callable.From(() => {
+            if (_viewport != null) _viewport.AddChild(this);
+        }).CallDeferred();
         Finished += QueueFree;
     }
 }
