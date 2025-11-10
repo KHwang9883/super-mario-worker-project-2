@@ -39,13 +39,6 @@ public partial class PlayerInteraction : Node
                 Node? interactionWithStarNode = null;
                 Node? powerupSetNode = null;
 
-                if (result.HasMeta("InteractionWithHurt")) {
-                    interactionWithHurtNode = (Node)result.GetMeta("InteractionWithHurt");
-                }
-                if (result.HasMeta("InteractionWithStomp")) {
-                    interactionWithStompNode = (Node)result.GetMeta("InteractionWithStomp");
-                }
-
                 // 无敌星状态下击杀敌人（比踩踏更优先检测）
                 if (result.HasMeta("InteractionWithStar")) {
                     interactionWithStarNode = (Node)result.GetMeta("InteractionWithStar");
@@ -59,6 +52,9 @@ public partial class PlayerInteraction : Node
                 }
 
                 // 踩踏可踩踏物件
+                if (result.HasMeta("InteractionWithStomp")) {
+                    interactionWithStompNode = (Node)result.GetMeta("InteractionWithStomp");
+                }
                 if (interactionWithStompNode != null) {
                     if (interactionWithStompNode is IStompable stompable) {
                         if (stompable.Stompable && _player.Velocity.Y > 0f
@@ -70,17 +66,33 @@ public partial class PlayerInteraction : Node
                 }
 
                 // 有伤害物件，不可踩或者踩踏失败
+                if (result.HasMeta("InteractionWithHurt")) {
+                    interactionWithHurtNode = (Node)result.GetMeta("InteractionWithHurt");
+                }
                 if (interactionWithHurtNode != null) {
                     if (interactionWithHurtNode is IHurtableAndKillable hurtableAndKillable) {
                         if (hurtableAndKillable is IStompable stompableAndHurtable) {
-                            if (_player.GlobalPosition.Y >=
-                                result.GlobalPosition.Y + stompableAndHurtable.StompOffset) {
+                            if (stompableAndHurtable.Stompable) {
+                                if (_player.GlobalPosition.Y >=
+                                    result.GlobalPosition.Y + stompableAndHurtable.StompOffset) {
+                                    switch (hurtableAndKillable.HurtType) {
+                                        case IHurtableAndKillable.HurtEnum.Die:
+                                            EmitSignal(SignalName.PlayerDie);
+                                            break;
+                                        case IHurtableAndKillable.HurtEnum.Hurt:
+                                            EmitSignal(SignalName.PlayerHurtProcess);
+                                            break;
+                                    }
+                                }
+                            } else {
                                 switch (hurtableAndKillable.HurtType) {
                                     case IHurtableAndKillable.HurtEnum.Die:
                                         EmitSignal(SignalName.PlayerDie);
                                         break;
                                     case IHurtableAndKillable.HurtEnum.Hurt:
                                         EmitSignal(SignalName.PlayerHurtProcess);
+                                        break;
+                                    case IHurtableAndKillable.HurtEnum.Nothing:
                                         break;
                                 }
                             }

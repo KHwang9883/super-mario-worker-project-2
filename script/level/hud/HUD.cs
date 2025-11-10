@@ -27,7 +27,7 @@ public partial class HUD : Control {
         // Todo: LevelTitle 特殊处理
         if (_levelTitle != null) _levelTitle.Text = LevelManager.LevelTitle;
         
-        // Todo: TimeWarning
+        // 时钟警告！
         if (_timeHUD != null) {
             if (_timeCounter != null) _timeCounter.Text = LevelManager.Time.ToString();
             if (LevelManager.Time < 100 && LevelManager.Time > 0) {
