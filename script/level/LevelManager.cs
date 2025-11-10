@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace SMWP.Level.Score;
+namespace SMWP.Level;
 
 public partial class LevelManager : Node {
     public static int Time { get; set; }
