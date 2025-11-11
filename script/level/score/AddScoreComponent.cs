@@ -12,7 +12,7 @@ public partial class AddScoreComponent : Node {
 
     [Export] public AddScoreEnum AddScoreType { get; set; }*/
     [Export] private bool _showCorrespondingScore = true;
-    [Export] public int InternalScore = 200;
+    [Export] public int InternalScore = 100;
 
     private Node2D? _parent;
     private readonly Dictionary<int, Texture2D> _scoreTextures = new Dictionary<int, Texture2D>();
@@ -53,8 +53,14 @@ public partial class AddScoreComponent : Node {
     }
     public void ShowCorrespondingScore(int shownScore) {
         if (!_showCorrespondingScore) return;
+        // 要显示的分数不在字典中
+        if (!_scoreTextures.TryGetValue(shownScore, out Texture2D? scoreTexture)) {
+            return;
+        }
+        // 防止空纹理设置
+        if (scoreTexture == null) return;
         var scoreEffect = ScoreEffectScene.Instantiate<Sprite2D>();
-        scoreEffect.SetTexture(_scoreTextures[shownScore]);
+        scoreEffect.SetTexture(scoreTexture);
         if (_parent == null) return;
         scoreEffect.Position = _parent.Position;
         _parent.AddSibling(scoreEffect);
