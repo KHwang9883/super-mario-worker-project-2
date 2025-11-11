@@ -80,7 +80,9 @@ public partial class PlayerAnimation : Node {
                 _animatedSprite2D.Animation = "jump";
             } else {
                 if (Fire) {
-                    _animatedSprite2D.Play("shoot");
+                    if (_animatedSprite2D.SpriteFrames.HasAnimation("shoot")) {
+                        _animatedSprite2D.Play("shoot");
+                    }
                 } else if (Mathf.Abs(_playerMovement.SpeedX) < 0.01f) {
                     _animatedSprite2D.Animation = "idle";
                 } else {
@@ -104,7 +106,9 @@ public partial class PlayerAnimation : Node {
                 _animatedSprite2D.Play("swim");
             } else {
                 if (Fire) {
-                    _animatedSprite2D.Play("shoot");
+                    if (_animatedSprite2D.SpriteFrames.HasAnimation("shoot")) {
+                        _animatedSprite2D.Play("shoot");
+                    }
                 } else if (Mathf.Abs(_playerMovement.SpeedX) < 0.01f) {
                     _animatedSprite2D.Animation = "idle";
                 } else {
