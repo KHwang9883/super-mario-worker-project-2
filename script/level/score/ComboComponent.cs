@@ -23,8 +23,8 @@ public partial class ComboComponent : Node {
     };
     public int AddCombo() {
         Combo++;
+        if (Combo == 7) EmitSignal(SignalName.PlaySound1UP);
         if (Combo > 7) {
-            EmitSignal(SignalName.PlaySound1UP);
             Combo = 1;
         } else {
             EmitSignal(SignalName.PlaySoundKick);
