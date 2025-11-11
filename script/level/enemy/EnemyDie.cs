@@ -17,12 +17,16 @@ public partial class EnemyDie : Node {
     [Export] private AnimatedSprite2D _animatedSprite2D = null!;
     [Export] private PackedScene _fireballExplosionScene = GD.Load<PackedScene>("uid://5mmyew6mh71p");
     [Export] private PackedScene _enemyDeadNormalPackedScene = GD.Load<PackedScene>("uid://ctlj6wtkwhahy");
+    [Export] private AtlasTexture _enemyDeadNormalTextureOverride = null!;
     [Export] private PackedScene? _enemyDeadPackedScene;
     
     private Node2D _parent = null!;
     // 尸体为敌人动画第一帧精灵内容
     private Texture2D? _texture2D;
 
+    // 防止多次死亡（比如一帧内受到多种攻击）
+    public bool Dead;
+    
     public override void _Ready() {
         _parent = GetParent<Node2D>();
         // 储存第一帧精灵内容
@@ -32,6 +36,8 @@ public partial class EnemyDie : Node {
         OnDied(_enemyDieType);
     }
     public virtual void OnDied(EnemyDieEnum enemyDieType) {
+        if (Dead) return;
+        Dead = true;
         EmitSignal(SignalName.Died);
         //Callable.From(() => {
         switch (enemyDieType) {
@@ -43,7 +49,8 @@ public partial class EnemyDie : Node {
             case EnemyDieEnum.SpinOff:
                 var enemyDeadNormalInstance = _enemyDeadNormalPackedScene.Instantiate<Node2D>();
                 enemyDeadNormalInstance.Position = _parent.Position;
-                enemyDeadNormalInstance.GetNode<Sprite2D>("Sprite2D").Texture = _texture2D;
+                enemyDeadNormalInstance.GetNode<Sprite2D>("Sprite2D").Texture
+                    = (_enemyDeadNormalTextureOverride == null) ? _texture2D : _enemyDeadNormalTextureOverride;
                 _parent.AddSibling(enemyDeadNormalInstance);
                 break;
             case EnemyDieEnum.CreateInstance: {

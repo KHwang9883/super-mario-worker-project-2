@@ -252,6 +252,7 @@ script = ExtResource("12_mjbph")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="TestNode2D"]
+visible = false
 
 [node name="DebugLabel" type="Label" parent="TestNode2D/DebugCanvasLayer" node_paths=PackedStringArray("_player")]
 process_mode = 3
