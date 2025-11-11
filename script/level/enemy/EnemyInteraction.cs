@@ -5,7 +5,7 @@ using SMWP.Level.Interface;
 namespace SMWP.Level.Enemy;
 
 [GlobalClass]
-public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, IFireballHittable, IBeetrootHittable, IStarHittable, IToppable {
+public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, IFireballHittable, IBeetrootHittable, IStarHittable, IShellHittable, IBumpHittable {
     [Signal]
     public delegate void StompedEventHandler();
     [Signal]
@@ -13,13 +13,15 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
     [Signal]
     public delegate void BeetrootHitEventHandler();
     [Signal]
-    public delegate void ToppedEventHandler();
+    public delegate void BumpedEventHandler();
     [Signal]
     public delegate void StarmanHitEventHandler();
     [Signal]
+    public delegate void ShellHitEventHandler();
+    [Signal]
     public delegate void NormalHitAddScoreEventHandler();
     [Signal]
-    public delegate void StarmanHitAddScoreEventHandler(int score);
+    public delegate void ComboAddScoreEventHandler(int score);
     [Signal]
     public delegate void DiedEventHandler();
     [Signal]
@@ -52,8 +54,12 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
     [Export] public bool IsStarHittable { get; set; } = true;
     [Export] public bool ImmuneToStar { get; set; }
     
+    [ExportGroup("Shell")]
+    [Export] public bool IsShellHittable { get; set; } = true;
+    [Export] public bool HardToShell { get; set; }
+    
     [ExportGroup("Bump")]
-    [Export] public bool IsToppable { get; set; } = true;
+    [Export] public bool IsBumpHittable { get; set; } = true;
     [Export] public bool ImmuneToBump { get; set; }
     private Node2D? _parent;
 
@@ -74,10 +80,14 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
         if (this is IStarHittable starHittable) {
             starHittable.MetadataInject(_parent);
         }
-        if (this is IToppable toppable) {
-            toppable.MetadataInject(_parent);
+        if (this is IShellHittable shellHittable) {
+            shellHittable.MetadataInject(_parent);
+        }
+        if (this is IBumpHittable bumpHittable) {
+            bumpHittable.MetadataInject(_parent);
         }
     }
+    
     // 玩家踩踏
     void IHurtableAndKillable.MetadataInject(Node2D parent) {
         parent?.SetMeta("InteractionWithHurt", this);
@@ -135,17 +145,31 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
     }
     public void OnStarmanHit(int score) {
         EmitSignal(SignalName.StarmanHit);
-        EmitSignal(SignalName.StarmanHitAddScore, score);
+        OnComboAddScore(score);
         if (ImmuneToStar) return;
         //EmitSignal(SignalName.PlaySoundKicked);
         OnDied();
     }
+    // 龟壳
+    void IShellHittable.MetadataInject(Node2D parent) {
+        parent?.SetMeta("InteractionWithShell", this);
+    }
+    public bool OnShellHit(int score) {
+        if (!IsShellHittable) return false;
+        EmitSignal(SignalName.ShellHit);
+        // 反死龟壳
+        if (HardToShell) return HardToShell;
+        OnComboAddScore(score);
+        //EmitSignal(SignalName.PlaySoundKicked);
+        OnDied();
+        return HardToShell;
+    }
     // 被顶
-    void IToppable.MetadataInject(Node2D parent) {
+    void IBumpHittable.MetadataInject(Node2D parent) {
         parent?.SetMeta("InteractionWithBump", this);
     }
-    public void OnTopped() {
-        EmitSignal(SignalName.Topped);
+    public void OnBumped() {
+        EmitSignal(SignalName.Bumped);
         if (ImmuneToBump) {
             EmitSignal(SignalName.PlaySoundBumped);
             return;
@@ -154,6 +178,7 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
         OnNormalAddScore();
         OnDied();
     }
+    
     // 死亡
     public void OnDied() {
         EmitSignal(SignalName.Died);
@@ -161,5 +186,9 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
     // 普通死亡加分
     public void OnNormalAddScore() {
         EmitSignal(SignalName.NormalHitAddScore);
+    }
+    // 连击对象加分
+    public void OnComboAddScore(int score) {
+        EmitSignal(SignalName.ComboAddScore, score);
     }
 }
