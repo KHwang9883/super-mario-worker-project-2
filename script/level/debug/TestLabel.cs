@@ -27,6 +27,7 @@ public partial class TestLabel : Label {
                $"IsOnCeiling: {_player.IsOnCeiling()}\n" +
                $"IsOnWall: {_player.IsOnWall()}\n" +
                $"InWater: {_playerMovement.IsInWater}\n" +
-               $"OnWaterSurface: {_playerMovement.IsOnWaterSurface}";
+               $"OnWaterSurface: {_playerMovement.IsOnWaterSurface}\n" +
+               $"Stuck: {_playerMovement.Stuck}";
     }
 }

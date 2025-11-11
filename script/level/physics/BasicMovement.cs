@@ -26,6 +26,19 @@ public partial class BasicMovement : Node {
     }
     
     public override void _PhysicsProcess(double delta) {
+        // 自动转向检测
+        if (EdgeDetect) {
+            var originPosition = MoveObject.GetGlobalPosition();
+            MoveObject.SetGlobalPosition(
+                new Vector2(originPosition.X + 30f * Mathf.Sign(SpeedX), originPosition.Y + 20f)
+                );
+            var collision = MoveObject.MoveAndCollide(Vector2.Zero, true);
+            if (collision == null) {
+                SpeedX *= -1f;
+            }
+            MoveObject.SetGlobalPosition(originPosition);
+        }
+        
         // x 速度
         if (MoveObject.IsOnWall()) {
             SpeedX *= -1f;

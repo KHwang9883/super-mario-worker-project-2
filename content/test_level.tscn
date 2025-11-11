@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=38 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/tile/obstacle.tscn" id="2_676rr"]
@@ -28,6 +28,8 @@
 [ext_resource type="PackedScene" uid="uid://dhq4p7f4dvkh4" path="res://content/bonus/poisonous_mushroom/poisonous_mushroom.tscn" id="21_dwm8j"]
 [ext_resource type="PackedScene" uid="uid://b4b6pch7u4iem" path="res://content/block/brick/brick.tscn" id="23_dmmuc"]
 [ext_resource type="PackedScene" uid="uid://lo64hov3eeo3" path="res://content/enemy/spiny/spiny.tscn" id="28_mjbph"]
+[ext_resource type="PackedScene" uid="uid://72d0sq841rbo" path="res://content/enemy/lava/lava_piece.tscn" id="29_buyip"]
+[ext_resource type="PackedScene" uid="uid://c25jnama51dur" path="res://content/enemy/lava/lava_bottom.tscn" id="30_a0ied"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
 atlas = ExtResource("8_lgciv")
@@ -252,7 +254,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="TestNode2D"]
 
 [node name="DebugLabel" type="Label" parent="TestNode2D/DebugCanvasLayer" node_paths=PackedStringArray("_player")]
-visible = false
+process_mode = 3
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 344.0
@@ -389,6 +391,26 @@ position = Vector2(1696, 400)
 
 [node name="Spiny" parent="TestNode2D/Enemies" instance=ExtResource("28_mjbph")]
 position = Vector2(1168, 400)
+
+[node name="LavaPiece" parent="TestNode2D/Enemies" instance=ExtResource("29_buyip")]
+position = Vector2(1136, 208)
+
+[node name="LavaBottom2" parent="TestNode2D/Enemies" instance=ExtResource("30_a0ied")]
+anchors_preset = 0
+offset_left = 1152.0
+offset_top = 224.0
+offset_right = 1184.0
+offset_bottom = 256.0
+
+[node name="LavaBottom" parent="TestNode2D/Enemies" instance=ExtResource("30_a0ied")]
+anchors_preset = 0
+offset_left = 1120.0
+offset_top = 224.0
+offset_right = 1152.0
+offset_bottom = 256.0
+
+[node name="LavaPiece2" parent="TestNode2D/Enemies" instance=ExtResource("29_buyip")]
+position = Vector2(1168, 208)
 
 [node name="Powerups" type="Node2D" parent="TestNode2D"]
 
