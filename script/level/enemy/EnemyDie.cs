@@ -18,7 +18,10 @@ public partial class EnemyDie : Node {
     [Export] private PackedScene _fireballExplosionScene = GD.Load<PackedScene>("uid://5mmyew6mh71p");
     [Export] private PackedScene _enemyDeadNormalPackedScene = GD.Load<PackedScene>("uid://ctlj6wtkwhahy");
     [Export] private AtlasTexture _enemyDeadNormalTextureOverride = null!;
-    [Export] private PackedScene? _enemyDeadPackedScene;
+    
+    // 进行特定交互方式生成的物件
+    [Export] private StringName? _enemyDeadPackedSceneUid;
+    private PackedScene? _enemyDeadPackedScene;
     
     private Node2D _parent = null!;
     // 尸体为敌人动画第一帧精灵内容
@@ -31,6 +34,10 @@ public partial class EnemyDie : Node {
         _parent = GetParent<Node2D>();
         // 储存第一帧精灵内容
         _texture2D = _animatedSprite2D.SpriteFrames.GetFrameTexture(_animatedSprite2D.Animation, _animatedSprite2D.Frame);
+        
+        // 进行特定交互方式生成的物件
+        if (_enemyDeadPackedSceneUid == null) return;
+        _enemyDeadPackedScene = GD.Load<PackedScene>(_enemyDeadPackedSceneUid);
     }
     public virtual void OnDied() {
         OnDied(_enemyDieType);
