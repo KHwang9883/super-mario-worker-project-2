@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://q40ma1wp5821"]
+
+[node name="GeneralVisibleOnScreenEnabler2d" type="VisibleOnScreenEnabler2D"]
+rect = Rect2(-100, -100, 200, 200)
+show_rect = false
+metadata/_edit_lock_ = true
