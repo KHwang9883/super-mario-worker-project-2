@@ -86,16 +86,15 @@ public partial class PlayerInteraction : Node
         if (interactionWithHurtNode is not IHurtableAndKillable hurtableAndKillable) return;
         if (hurtableAndKillable is IStompable stompableAndHurtable) {
             if (stompableAndHurtable.Stompable) {
-                if (_player.GlobalPosition.Y >=
-                    result.GlobalPosition.Y + stompableAndHurtable.StompOffset) {
-                    switch (hurtableAndKillable.HurtType) {
-                        case IHurtableAndKillable.HurtEnum.Die:
-                            EmitSignal(SignalName.PlayerDie);
-                            break;
-                        case IHurtableAndKillable.HurtEnum.Hurt:
-                            EmitSignal(SignalName.PlayerHurtProcess);
-                            break;
-                    }
+                if (!(_player.GlobalPosition.Y >=
+                      result.GlobalPosition.Y + stompableAndHurtable.StompOffset)) return;
+                switch (hurtableAndKillable.HurtType) {
+                    case IHurtableAndKillable.HurtEnum.Die:
+                        EmitSignal(SignalName.PlayerDie);
+                        break;
+                    case IHurtableAndKillable.HurtEnum.Hurt:
+                        EmitSignal(SignalName.PlayerHurtProcess);
+                        break;
                 }
             } else {
                 switch (hurtableAndKillable.HurtType) {

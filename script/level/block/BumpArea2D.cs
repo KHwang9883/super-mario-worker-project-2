@@ -25,8 +25,8 @@ public partial class BumpArea2D : Node {
         if (node.HasMeta("InteractionWithBump")) {
             interactionWithBumpNode = (Node)node.GetMeta("InteractionWithBump");
         }
-        if (interactionWithBumpNode is IToppable toppable){
-            toppable.OnTopped();
+        if (interactionWithBumpNode is IBumpHittable bumpHittable){
+            bumpHittable.OnBumped();
         }
     }
 }

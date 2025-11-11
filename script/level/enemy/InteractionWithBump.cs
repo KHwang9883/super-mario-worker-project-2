@@ -5,11 +5,11 @@ using SMWP.Level.Interface;
 namespace SMWP.Level.Enemy;
 
 [GlobalClass]
-public partial class InteractionWithBump : Node, IToppable {
+public partial class InteractionWithBump : Node, IBumpHittable {
     [Signal]
-    public delegate void ToppedEventHandler();
+    public delegate void BumpedEventHandler();
     
-    [Export] public bool IsToppable { get; set; } = true;
+    [Export] public bool IsBumpHittable { get; set; } = true;
     private Node2D? _parent;
 
     public override void _Ready() {
@@ -19,7 +19,7 @@ public partial class InteractionWithBump : Node, IToppable {
     public void MetadataInject(Node2D parent) {
         parent?.SetMeta("InteractionWithBump", this);
     }
-    public virtual void OnTopped() {
-        EmitSignal(SignalName.Topped);
+    public virtual void OnBumped() {
+        EmitSignal(SignalName.Bumped);
     }
 }

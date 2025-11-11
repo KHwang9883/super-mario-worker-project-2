@@ -8,8 +8,8 @@ public partial class MushroomBumpInteraction : InteractionWithBump {
     [Export] private MushroomMovement _mushroomMovement = null!;
     [Export] private float _bumpSpeedY = -7.5f;
     
-    public override void OnTopped() {
-        base.OnTopped();
+    public override void OnBumped() {
+        base.OnBumped();
         _mushroomMovement.SpeedY = _bumpSpeedY;
     }
 }

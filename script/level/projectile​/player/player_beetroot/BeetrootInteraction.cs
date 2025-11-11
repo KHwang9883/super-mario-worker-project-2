@@ -25,33 +25,20 @@ public partial class BeetrootInteraction : Node {
             if (result.HasMeta("InteractionWithBeetroot")) {
                 interactionWithBeetrootNode = (Node)result.GetMeta("InteractionWithBeetroot");
             }
-            if (interactionWithBeetrootNode is IBeetrootHittable beetrootHittable) {
-                Explode();
-                // 因为是帧伤所以不用信号
-                if (beetrootHittable.OnBeetrootHit(_beetroot)) {
-                    _beetrootMovement.Bounce();
-                } else {
-                    _beetrootMovement.BounceCountAdd();
-                }
-                // 并且只能作用于一个对象
-                break;
+            if (interactionWithBeetrootNode is not IBeetrootHittable beetrootHittable) continue;
+            Explode();
+            // 因为是帧伤所以不用信号
+            if (beetrootHittable.OnBeetrootHit(_beetroot)) {
+                _beetrootMovement.Bounce();
+            } else {
+                _beetrootMovement.BounceCountAdd();
             }
+            // 并且只能作用于一个对象
+            break;
         }
         
         // 撞击砖块
-        Node? interactionWithBlockNode = null;
-        
-        var blockCollider = _beetroot.MoveAndCollide(new Vector2(1f * _beetrootMovement.Direction, 1f), true)?.GetCollider();
-        //GD.Print(_blockCollider);
-        if (blockCollider is StaticBody2D staticBody2D) {
-            if (staticBody2D.HasMeta("InteractionWithBlock")) {
-                interactionWithBlockNode = (Node)staticBody2D.GetMeta("InteractionWithBlock");
-            }
-            if (interactionWithBlockNode is BlockHit blockHit) {
-                blockHit.OnBlockHit(_beetroot);
-                _beetrootMovement.Bounce();
-            }
-        }
+        BlockHitDetect();
     }
     
     // 甜菜爆炸！
@@ -59,5 +46,18 @@ public partial class BeetrootInteraction : Node {
         var fireballExplosion = _fireballExplosionPackedScene.Instantiate<Node2D>();
         fireballExplosion.Position = _beetroot.Position;
         _beetroot.AddSibling(fireballExplosion);
+    }
+    public void BlockHitDetect() {
+        Node? interactionWithBlockNode = null;
+        
+        var blockCollider = _beetroot.MoveAndCollide(new Vector2(1f * _beetrootMovement.Direction, 1f), true)?.GetCollider();
+        //GD.Print(_blockCollider);
+        if (blockCollider is not StaticBody2D staticBody2D) return;
+        if (staticBody2D.HasMeta("InteractionWithBlock")) {
+            interactionWithBlockNode = (Node)staticBody2D.GetMeta("InteractionWithBlock");
+        }
+        if (interactionWithBlockNode is not BlockHit blockHit) return;
+        blockHit.OnBlockHit(_beetroot);
+        _beetrootMovement.Bounce();
     }
 }

@@ -9,16 +9,14 @@ public partial class InteractionWithStar : Node, IStarHittable {
     public delegate void StarmanHitEventHandler();
     [Signal]
     public delegate void StarmanHitAddScoreEventHandler(int score);
-
+    [Export] public bool IsStarHittable { get; set; } = true;
+    
     private Node2D? _parent;
 
     public override void _Ready() {
         _parent = (Node2D)GetParent();
         MetadataInject(_parent);
     }
-
-    [Export] public bool IsStarHittable { get; set; } = true;
-
     public void MetadataInject(Node2D parent) {
         parent?.SetMeta("InteractionWithStar", this);
     }

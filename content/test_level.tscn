@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=41 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/tile/obstacle.tscn" id="2_676rr"]
@@ -27,6 +27,9 @@
 [ext_resource type="PackedScene" uid="uid://506l0hik3qda" path="res://content/bonus/lui/lui.tscn" id="19_iae4c"]
 [ext_resource type="PackedScene" uid="uid://dhq4p7f4dvkh4" path="res://content/bonus/poisonous_mushroom/poisonous_mushroom.tscn" id="21_dwm8j"]
 [ext_resource type="PackedScene" uid="uid://b4b6pch7u4iem" path="res://content/block/brick/brick.tscn" id="23_dmmuc"]
+[ext_resource type="PackedScene" uid="uid://cr71qjhkhhifg" path="res://content/enemy/troopa/troopa/troopa_green.tscn" id="25_b44yl"]
+[ext_resource type="PackedScene" uid="uid://blc5665gyi7v8" path="res://content/enemy/troopa/shell/shell_static_green.tscn" id="26_xndq6"]
+[ext_resource type="PackedScene" uid="uid://c6iixdbmeknh0" path="res://content/enemy/troopa/shell/shell_moving_green.tscn" id="27_r5pq0"]
 [ext_resource type="PackedScene" uid="uid://lo64hov3eeo3" path="res://content/enemy/spiny/spiny.tscn" id="28_mjbph"]
 [ext_resource type="PackedScene" uid="uid://72d0sq841rbo" path="res://content/enemy/lava/lava_piece.tscn" id="29_buyip"]
 [ext_resource type="PackedScene" uid="uid://c25jnama51dur" path="res://content/enemy/lava/lava_bottom.tscn" id="30_a0ied"]
@@ -272,7 +275,7 @@ tile_set = SubResource("TileSet_d7yf6")
 
 [node name="Mario" parent="TestNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(720, 148)
+position = Vector2(880, 364)
 
 [node name="TestCamera2D" type="Camera2D" parent="TestNode2D/Mario" groups=["camera"]]
 process_callback = 0
@@ -366,9 +369,6 @@ position = Vector2(2000, 336)
 [node name="SpikePiranha7" parent="TestNode2D/Enemies" instance=ExtResource("14_ii7j2")]
 position = Vector2(2096, 368)
 
-[node name="SuperStar" parent="TestNode2D/Enemies" instance=ExtResource("18_mlotv")]
-position = Vector2(976, 432)
-
 [node name="Goomba" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
 position = Vector2(1564, 400)
 
@@ -391,7 +391,7 @@ position = Vector2(1352, 432)
 position = Vector2(1696, 400)
 
 [node name="Spiny" parent="TestNode2D/Enemies" instance=ExtResource("28_mjbph")]
-position = Vector2(1168, 400)
+position = Vector2(1168, 464)
 
 [node name="LavaPiece" parent="TestNode2D/Enemies" instance=ExtResource("29_buyip")]
 position = Vector2(1136, 208)
@@ -412,6 +412,21 @@ offset_bottom = 256.0
 
 [node name="LavaPiece2" parent="TestNode2D/Enemies" instance=ExtResource("29_buyip")]
 position = Vector2(1168, 208)
+
+[node name="TroopaGreen" parent="TestNode2D/Enemies" instance=ExtResource("25_b44yl")]
+position = Vector2(1232, 272)
+
+[node name="ShellStaticGreen" parent="TestNode2D/Enemies" instance=ExtResource("26_xndq6")]
+position = Vector2(976, 432)
+
+[node name="ShellMovingGreen" parent="TestNode2D/Enemies" instance=ExtResource("27_r5pq0")]
+position = Vector2(1296, 400)
+
+[node name="Goomba11" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
+position = Vector2(800, 496)
+
+[node name="ShellMovingGreen2" parent="TestNode2D/Enemies" instance=ExtResource("27_r5pq0")]
+position = Vector2(828, 400)
 
 [node name="Powerups" type="Node2D" parent="TestNode2D"]
 
@@ -444,6 +459,9 @@ position = Vector2(944, 80)
 
 [node name="Mushroom" parent="TestNode2D/Powerups" instance=ExtResource("17_venmc")]
 position = Vector2(976, 80)
+
+[node name="SuperStar" parent="TestNode2D/Powerups" instance=ExtResource("18_mlotv")]
+position = Vector2(940, 400)
 
 [node name="Facilities" type="Node2D" parent="TestNode2D"]
 
