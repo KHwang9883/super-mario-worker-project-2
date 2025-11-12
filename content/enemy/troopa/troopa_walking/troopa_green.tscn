@@ -1,11 +1,10 @@
 [gd_scene load_steps=19 format=3 uid="uid://cr71qjhkhhifg"]
 
-[ext_resource type="Texture2D" uid="uid://chuec77o8a5yn" path="res://content/enemy/troopa/troopa/troopa_green.png" id="1_2gnyy"]
+[ext_resource type="Texture2D" uid="uid://chuec77o8a5yn" path="res://content/enemy/troopa/troopa_walking/troopa_green.png" id="1_2gnyy"]
 [ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="2_lhp7n"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_17uii"]
 [ext_resource type="Script" uid="uid://dkuti7ksh0pjy" path="res://script/level/enemy/goomba/GoombaEnemyInteraction.cs" id="4_8osvp"]
 [ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="5_uc0eq"]
-[ext_resource type="Texture2D" uid="uid://6pahwp3aegan" path="res://content/enemy/troopa/shell/shell_green.png" id="6_17uii"]
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="6_f740s"]
 [ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/enemy/general_visible_on_screen_enabler_2d.tscn" id="7_biams"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="8_oox1s"]
@@ -37,10 +36,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8sqss"]
-size = Vector2(31, 31)
+size = Vector2(33, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uc0eq"]
-atlas = ExtResource("6_17uii")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kannv"]
+load_path = "res://.godot/imported/shell_green.png-4ead78e372f122bb2e77e3361e83da4b.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbkp3"]
+atlas = SubResource("CompressedTexture2D_kannv")
 region = Rect2(0, 0, 36, 29)
 
 [node name="TroopaGreen" type="CharacterBody2D"]
@@ -78,7 +80,7 @@ metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
 script = ExtResource("5_uc0eq")
 _enemyDieType = 2
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
-_enemyDeadNormalTextureOverride = SubResource("AtlasTexture_uc0eq")
+_enemyDeadNormalTextureOverride = SubResource("AtlasTexture_lbkp3")
 _enemyDeadPackedSceneUid = &"uid://blc5665gyi7v8"
 
 [node name="AddScoreComponent" type="Node" parent="."]

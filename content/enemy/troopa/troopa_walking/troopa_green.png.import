@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://chuec77o8a5yn"
-path="res://.godot/imported/troopa_green.png-e16238a6ffa76d2f5915d70e87199841.ctex"
+path="res://.godot/imported/troopa_green.png-11a4c6b373bd7d8da9ebf00813e363e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/enemy/troopa/troopa/troopa_green.png"
-dest_files=["res://.godot/imported/troopa_green.png-e16238a6ffa76d2f5915d70e87199841.ctex"]
+source_file="res://content/enemy/troopa/troopa_walking/troopa_green.png"
+dest_files=["res://.godot/imported/troopa_green.png-11a4c6b373bd7d8da9ebf00813e363e7.ctex"]
 
 [params]
 
