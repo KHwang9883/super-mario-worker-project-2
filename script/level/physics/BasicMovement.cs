@@ -15,11 +15,11 @@ public partial class BasicMovement : Node {
     [Export] public float JumpSpeed;
     [Export] public bool EdgeDetect;
     protected const float FramerateOrigin = 50f;
-    private CharacterBody2D? _player;
+    public CharacterBody2D? Player;
     
     public override void _Ready() {
         MoveObject = (CharacterBody2D)GetParent();
-        _player = (CharacterBody2D)GetTree().GetFirstNodeInGroup("player");
+        Player = (CharacterBody2D)GetTree().GetFirstNodeInGroup("player");
         if (InitiallyFaceToPlayer) {
             SetMovementDirection();
         }
@@ -60,11 +60,11 @@ public partial class BasicMovement : Node {
     public void OnScreenEntered() {
         SetMovementDirection();
     }
-    public void SetMovementDirection() {
+    public virtual void SetMovementDirection() {
         if (!InitiallyFaceToPlayer) return;
-        if (MoveObject.GlobalPosition.X < _player?.GlobalPosition.X) {
+        if (MoveObject.GlobalPosition.X < Player?.GlobalPosition.X) {
             SpeedX = Mathf.Abs(SpeedX);
-        } else if (MoveObject.GlobalPosition.X > _player?.GlobalPosition.X) {
+        } else if (MoveObject.GlobalPosition.X > Player?.GlobalPosition.X) {
             SpeedX = -Mathf.Abs(SpeedX);
         }
     }

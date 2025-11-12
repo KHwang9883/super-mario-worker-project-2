@@ -25,6 +25,7 @@ public partial class ShellInteraction : Node {
                 interactionWithShellNode = (Node)result.GetMeta("InteractionWithShell");
             }
             if (interactionWithShellNode is not IShellHittable shellHittable) continue;
+            result.SetMeta("InteractingObject", _shell);
             // 被硬物件反死
             if (_shellCombo == null || !shellHittable.OnShellHit(_shellCombo.AddCombo())) continue;
             EmitSignal(SignalName.Harded);

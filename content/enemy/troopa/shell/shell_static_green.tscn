@@ -57,6 +57,7 @@ metadata/_custom_type_script = "uid://t3te8lnb0byj"
 
 [node name="EnemyInteraction" type="Node" parent="."]
 script = ExtResource("4_06ixi")
+StompOffset = 48.0
 HurtType = 2
 metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
 
