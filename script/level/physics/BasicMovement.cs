@@ -16,6 +16,8 @@ public partial class BasicMovement : Node {
     [Export] public bool EdgeDetect;
     protected const float FramerateOrigin = 50f;
     public CharacterBody2D? Player;
+
+    //private bool _debugBool;
     
     public override void _Ready() {
         MoveObject = (CharacterBody2D)GetParent();
@@ -28,15 +30,25 @@ public partial class BasicMovement : Node {
     public override void _PhysicsProcess(double delta) {
         // 自动转向检测
         if (EdgeDetect && MoveObject.IsOnFloor()) {
-            var originPosition = MoveObject.GetGlobalPosition();
-            MoveObject.SetGlobalPosition(
-                new Vector2(originPosition.X + 30f * Mathf.Sign(SpeedX), originPosition.Y + 20f)
-                );
-            var collision = MoveObject.MoveAndCollide(Vector2.Zero, true);
+            //GD.Print("==========");
+            //GD.Print(MoveObject.Position);
+            var originPosition = MoveObject.Position;
+            MoveObject.Position =
+                new Vector2(originPosition.X + 33f * Mathf.Sign(SpeedX), originPosition.Y + 20f);
+            MoveObject.ForceUpdateTransform();
+            // MoveAndCollide的safeMargin参数必须为一个较小值，否则运动体会有约半截卡进地面边缘，原因未知
+            var collision = MoveObject.MoveAndCollide(Vector2.Zero, true, 0.01f);
+            //GD.Print(collision);
             if (collision == null) {
                 SpeedX *= -1f;
+                //GD.Print(MoveObject.Position);
+                //_debugBool = true;
+                //MoveObject.ProcessMode = ProcessModeEnum.Disabled;
             }
-            MoveObject.SetGlobalPosition(originPosition);
+            //if (_debugBool) return;
+            MoveObject.Position = originPosition;
+            MoveObject.ForceUpdateTransform();
+            //GD.Print(MoveObject.Position);
         }
         
         // x 速度
@@ -62,9 +74,9 @@ public partial class BasicMovement : Node {
     }
     public virtual void SetMovementDirection() {
         if (!InitiallyFaceToPlayer) return;
-        if (MoveObject.GlobalPosition.X < Player?.GlobalPosition.X) {
+        if (MoveObject.Position.X < Player?.Position.X) {
             SpeedX = Mathf.Abs(SpeedX);
-        } else if (MoveObject.GlobalPosition.X > Player?.GlobalPosition.X) {
+        } else if (MoveObject.Position.X > Player?.Position.X) {
             SpeedX = -Mathf.Abs(SpeedX);
         }
     }
