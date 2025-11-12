@@ -461,7 +461,7 @@ position = Vector2(944, 80)
 position = Vector2(976, 80)
 
 [node name="SuperStar" parent="TestNode2D/Powerups" instance=ExtResource("18_mlotv")]
-position = Vector2(940, 400)
+position = Vector2(928, 272)
 
 [node name="Facilities" type="Node2D" parent="TestNode2D"]
 

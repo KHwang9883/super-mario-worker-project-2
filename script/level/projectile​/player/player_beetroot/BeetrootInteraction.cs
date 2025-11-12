@@ -28,6 +28,7 @@ public partial class BeetrootInteraction : Node {
             if (interactionWithBeetrootNode is not IBeetrootHittable beetrootHittable) continue;
             Explode();
             // 因为是帧伤所以不用信号
+            result.SetMeta("InteractingObject", _beetroot);
             if (beetrootHittable.OnBeetrootHit(_beetroot)) {
                 _beetrootMovement.Bounce();
             } else {

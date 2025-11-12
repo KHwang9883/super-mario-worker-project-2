@@ -20,6 +20,7 @@ public partial class FireballInteraction : Node {
                 interactionWithFireballNode = (Node)result.GetMeta("InteractionWithFireball");
             }
             if (interactionWithFireballNode is IFireballHittable fireballHittable) {
+                result.SetMeta("InteractingObject", _fireball);
                 if (fireballHittable.OnFireballHit(_fireball)) {
                     Explode();
                 }

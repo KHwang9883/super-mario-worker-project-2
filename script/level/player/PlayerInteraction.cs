@@ -59,6 +59,7 @@ public partial class PlayerInteraction : Node
         }
         if (!_playerMediator.playerSuit.Starman) return;
         if (interactionWithStarNode is not IStarHittable starHittable) return;
+        result.SetMeta("InteractingObject", _player);
         if (_starmanCombo != null) {
             starHittable.OnStarmanHit(_starmanCombo.AddCombo());
         }
@@ -72,8 +73,9 @@ public partial class PlayerInteraction : Node
         if (interactionWithStompNode == null) return;
         if (interactionWithStompNode is not IStompable stompable) return;
         if (stompable.Stompable
-            && _player.Velocity.Y > 0f
+            && _player.Velocity.Y >= 0f
             && _player.GlobalPosition.Y < result.GlobalPosition.Y + stompable.StompOffset) {
+            result.SetMeta("InteractingObject", _player);
             EmitSignal(SignalName.PlayerStomp, stompable.OnStomped(_player));
         }
     }
@@ -84,6 +86,7 @@ public partial class PlayerInteraction : Node
             interactionWithHurtNode = (Node)result.GetMeta("InteractionWithHurt");
         }
         if (interactionWithHurtNode is not IHurtableAndKillable hurtableAndKillable) return;
+        result.SetMeta("InteractingObject", _player);
         if (hurtableAndKillable is IStompable stompableAndHurtable) {
             if (stompableAndHurtable.Stompable) {
                 if (!(_player.GlobalPosition.Y >=
