@@ -1,0 +1,144 @@
+[gd_scene load_steps=22 format=3 uid="uid://02jpwc4jcvjt"]
+
+[ext_resource type="Texture2D" uid="uid://bx2mfyon04o57" path="res://content/enemy/troopa/shell/shell_yellow.png" id="1_kd204"]
+[ext_resource type="Script" uid="uid://m51cdt80w33w" path="res://script/level/enemy/troopa/shell/ShellDirection.cs" id="2_hdjmv"]
+[ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_rwg20"]
+[ext_resource type="Script" uid="uid://dkuti7ksh0pjy" path="res://script/level/enemy/goomba/GoombaEnemyInteraction.cs" id="4_eo711"]
+[ext_resource type="Script" uid="uid://654jtvsrt54l" path="res://script/level/enemy/troopa/shell/ShellPlayerInteractionDelay.cs" id="5_vst6s"]
+[ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="6_vdsd4"]
+[ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="7_mjgh2"]
+[ext_resource type="Script" uid="uid://bch1tqb6dv6q2" path="res://script/level/enemy/troopa/shell/ShellInteraction.cs" id="8_l6t24"]
+[ext_resource type="PackedScene" uid="uid://cf77lp7tg0d0l" path="res://content/score/combo_component.tscn" id="9_3gkbe"]
+[ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/enemy/general_visible_on_screen_enabler_2d.tscn" id="10_u2xue"]
+[ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="11_r05x7"]
+[ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="12_7r0og"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="13_45mlk"]
+[ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="14_ypta8"]
+[ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="15_ikvw4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdjmv"]
+atlas = ExtResource("1_kd204")
+region = Rect2(0, 0, 36, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwg20"]
+atlas = ExtResource("1_kd204")
+region = Rect2(0, 30, 36, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eo711"]
+atlas = ExtResource("1_kd204")
+region = Rect2(0, 90, 36, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vst6s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdjmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwg20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eo711")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhxmt"]
+size = Vector2(32, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nr65"]
+size = Vector2(31, 31)
+
+[node name="ShellMovingYellow" type="CharacterBody2D" groups=["moving_shell"]]
+z_index = 30
+collision_layer = 16
+collision_mask = 5
+slide_on_ceiling = false
+floor_block_on_wall = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vst6s")
+autoplay = "default"
+
+[node name="AreaBodyCollision" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_rhxmt")
+target_position = Vector2(0, 0)
+max_results = 6
+collision_mask = 16
+collide_with_areas = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_4nr65")
+debug_color = Color(3.0322374e-06, 0.6762431, 0.49805695, 0.41960785)
+
+[node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
+script = ExtResource("2_hdjmv")
+MoveObject = NodePath("..")
+SpeedX = -5.0
+metadata/_custom_type_script = "uid://chn4gqrm87qtl"
+
+[node name="AutoSpriteFlipH" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
+script = ExtResource("3_rwg20")
+_animatedSprite2D = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://t3te8lnb0byj"
+
+[node name="EnemyInteraction" type="Node" parent="."]
+script = ExtResource("4_eo711")
+HurtType = 2
+metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
+
+[node name="InteractionWithPlayerDelay" type="Node" parent="." node_paths=PackedStringArray("_enemyInteractionComponent")]
+script = ExtResource("5_vst6s")
+_enemyInteractionComponent = NodePath("../EnemyInteraction")
+
+[node name="Die" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
+script = ExtResource("6_vdsd4")
+_enemyDieType = 2
+_animatedSprite2D = NodePath("../AnimatedSprite2D")
+_enemyDeadPackedSceneUid = &"uid://bgl13w58xfp4t"
+
+[node name="AddScoreComponent" type="Node" parent="."]
+script = ExtResource("7_mjgh2")
+metadata/_custom_type_script = "uid://cnbadhjt53rkc"
+
+[node name="ShellInteraction" type="Node" parent="." node_paths=PackedStringArray("_shell", "_shellCombo")]
+script = ExtResource("8_l6t24")
+_shell = NodePath("..")
+_shellCombo = NodePath("../ComboComponent")
+
+[node name="ComboComponent" parent="." instance=ExtResource("9_3gkbe")]
+
+[node name="GeneralVisibleOnScreenEnabler2d" parent="." instance=ExtResource("10_u2xue")]
+
+[node name="OutOfBoundsQueueFree" type="Node" parent="."]
+script = ExtResource("11_r05x7")
+metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
+
+[node name="Stomped" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_7r0og")
+script = ExtResource("13_45mlk")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="Kicked" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_ypta8")
+script = ExtResource("13_45mlk")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="Bumped" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_ikvw4")
+script = ExtResource("13_45mlk")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
+[connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]
+[connection signal="GoombaStomped" from="EnemyInteraction" to="Die" method="OnDied" flags=3]
+[connection signal="NormalHitAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
+[connection signal="PlaySoundBumped" from="EnemyInteraction" to="Bumped" method="play"]
+[connection signal="PlaySoundKicked" from="EnemyInteraction" to="Kicked" method="play"]
+[connection signal="PlaySoundStomped" from="EnemyInteraction" to="Stomped" method="play"]
+[connection signal="Harded" from="ShellInteraction" to="Die" method="OnDied"]
+[connection signal="Harded" from="ShellInteraction" to="Kicked" method="play"]
+[connection signal="screen_entered" from="GeneralVisibleOnScreenEnabler2d" to="BasicMovement" method="SetMovementDirection"]
