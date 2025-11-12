@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=44 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/tile/obstacle.tscn" id="2_676rr"]
@@ -27,12 +27,15 @@
 [ext_resource type="PackedScene" uid="uid://506l0hik3qda" path="res://content/bonus/lui/lui.tscn" id="19_iae4c"]
 [ext_resource type="PackedScene" uid="uid://dhq4p7f4dvkh4" path="res://content/bonus/poisonous_mushroom/poisonous_mushroom.tscn" id="21_dwm8j"]
 [ext_resource type="PackedScene" uid="uid://b4b6pch7u4iem" path="res://content/block/brick/brick.tscn" id="23_dmmuc"]
-[ext_resource type="PackedScene" uid="uid://cr71qjhkhhifg" path="res://content/enemy/troopa/troopa/troopa_green.tscn" id="25_b44yl"]
+[ext_resource type="PackedScene" uid="uid://cr71qjhkhhifg" path="res://content/enemy/troopa/troopa_walking/troopa_green.tscn" id="25_b44yl"]
 [ext_resource type="PackedScene" uid="uid://blc5665gyi7v8" path="res://content/enemy/troopa/shell/shell_static_green.tscn" id="26_xndq6"]
 [ext_resource type="PackedScene" uid="uid://c6iixdbmeknh0" path="res://content/enemy/troopa/shell/shell_moving_green.tscn" id="27_r5pq0"]
 [ext_resource type="PackedScene" uid="uid://lo64hov3eeo3" path="res://content/enemy/spiny/spiny.tscn" id="28_mjbph"]
+[ext_resource type="PackedScene" uid="uid://dvxny3btmnf18" path="res://content/enemy/troopa/troopa_walking/troopa_red.tscn" id="28_r5pq0"]
+[ext_resource type="PackedScene" uid="uid://big0o6q2i6vyq" path="res://content/enemy/troopa/troopa_fly/troopa_fly_red.tscn" id="29_4i3ce"]
 [ext_resource type="PackedScene" uid="uid://72d0sq841rbo" path="res://content/enemy/lava/lava_piece.tscn" id="29_buyip"]
 [ext_resource type="PackedScene" uid="uid://c25jnama51dur" path="res://content/enemy/lava/lava_bottom.tscn" id="30_a0ied"]
+[ext_resource type="PackedScene" uid="uid://ctgqopj8q32nh" path="res://content/enemy/troopa/troopa_fly/troopa_fly_green.tscn" id="34_xndq6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
 atlas = ExtResource("8_lgciv")
@@ -109,7 +112,7 @@ use_native_dialog = true
 [node name="LevelConfig" type="Node" parent="TestNode2D" groups=["level_config"]]
 script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
-Time = 105
+Time = 114514
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
 [node name="HUD" type="CanvasLayer" parent="TestNode2D"]
@@ -427,6 +430,33 @@ position = Vector2(800, 496)
 
 [node name="ShellMovingGreen2" parent="TestNode2D/Enemies" instance=ExtResource("27_r5pq0")]
 position = Vector2(828, 400)
+
+[node name="TroopaFlyGreen" parent="TestNode2D/Enemies" instance=ExtResource("34_xndq6")]
+position = Vector2(1136, 368)
+
+[node name="ShellMovingGreen3" parent="TestNode2D/Enemies" instance=ExtResource("27_r5pq0")]
+position = Vector2(1968, 400)
+
+[node name="ShellMovingGreen4" parent="TestNode2D/Enemies" instance=ExtResource("27_r5pq0")]
+position = Vector2(1968, 88)
+
+[node name="Goomba12" parent="TestNode2D/Enemies" instance=ExtResource("16_lgciv")]
+position = Vector2(2032, 104)
+
+[node name="TroopaGreen2" parent="TestNode2D/Enemies" instance=ExtResource("28_r5pq0")]
+position = Vector2(1776, 212)
+
+[node name="TroopaGreen3" parent="TestNode2D/Enemies" instance=ExtResource("28_r5pq0")]
+position = Vector2(1456, 144)
+
+[node name="TroopaFlyRed" parent="TestNode2D/Enemies" instance=ExtResource("29_4i3ce")]
+position = Vector2(1612, 216)
+
+[node name="TroopaFlyRed2" parent="TestNode2D/Enemies" instance=ExtResource("29_4i3ce")]
+position = Vector2(1652, 188)
+
+[node name="TroopaFlyRed3" parent="TestNode2D/Enemies" instance=ExtResource("29_4i3ce")]
+position = Vector2(1692, 232)
 
 [node name="Powerups" type="Node2D" parent="TestNode2D"]
 

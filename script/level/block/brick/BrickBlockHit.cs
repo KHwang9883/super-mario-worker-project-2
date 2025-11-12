@@ -6,7 +6,7 @@ using SMWP.Level.Player;
 namespace SMWP.Level.Block.Brick;
 
 public partial class BrickBlockHit : BlockHit {
-    private PlayerSuit _playerSuit;
+    private PlayerSuit _playerSuit = null!;
     private bool _bumpable;
     private bool _breakable;
     
