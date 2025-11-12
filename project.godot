@@ -44,6 +44,7 @@ folder_colors={
 "res://content/bonus/": "teal",
 "res://content/component/": "gray",
 "res://content/database/": "gray",
+"res://content/debug/": "purple",
 "res://content/enemy/": "orange",
 "res://content/player/": "pink",
 "res://content/projectile​/": "red",
