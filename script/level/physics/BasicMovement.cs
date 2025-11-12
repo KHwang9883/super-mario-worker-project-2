@@ -27,7 +27,7 @@ public partial class BasicMovement : Node {
     
     public override void _PhysicsProcess(double delta) {
         // 自动转向检测
-        if (EdgeDetect) {
+        if (EdgeDetect && MoveObject.IsOnFloor()) {
             var originPosition = MoveObject.GetGlobalPosition();
             MoveObject.SetGlobalPosition(
                 new Vector2(originPosition.X + 30f * Mathf.Sign(SpeedX), originPosition.Y + 20f)
