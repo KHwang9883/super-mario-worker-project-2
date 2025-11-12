@@ -19,6 +19,9 @@ public partial class ShellInteraction : Node {
             // ShapeCast2D ExcludeParent 属性疑似无用，因此额外检查是不是自身
             if (result == _shell) continue;
             
+            // 不与其他龟壳对撞
+            if (result.IsInGroup("moving_shell")) continue;
+            
             Node? interactionWithShellNode = null;
             
             if (result.HasMeta("InteractionWithShell")) {
