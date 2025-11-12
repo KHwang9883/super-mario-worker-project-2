@@ -36,7 +36,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4nr65"]
-size = Vector2(31, 31)
+size = Vector2(30, 27)
 
 [node name="Goomba" type="CharacterBody2D"]
 z_index = 30
@@ -50,6 +50,7 @@ sprite_frames = SubResource("SpriteFrames_4nr65")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_4nr65")
 debug_color = Color(0.8687693, 0.438282, 5.7756904e-07, 0.41960785)
 

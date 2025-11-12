@@ -36,7 +36,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kefjv"]
-size = Vector2(31, 30)
+size = Vector2(30, 27)
 
 [node name="Spiny" type="CharacterBody2D"]
 z_index = 30
