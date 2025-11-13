@@ -1,5 +1,8 @@
 name: "Export binaries"
-on: push
+on: 
+  push:
+  pull_request:
+  workflow_dispatch:
 
 # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
 
