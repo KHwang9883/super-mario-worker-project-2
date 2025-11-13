@@ -129,6 +129,12 @@ public partial class BlockHit : Node, IBlockHittable {
             blockFragment.SpeedX = _fragmentVelocityData[i].X;
             blockFragment.SpeedY = _fragmentVelocityData[i].Y;
         }
+        
+        // 碎砖也触发生成顶砖判定
+        var blockBumpArea2D = _blockBumpArea2DScene.Instantiate<Area2D>();
+        blockBumpArea2D.Position = Parent.Position;
+        Parent.AddSibling(blockBumpArea2D);
+        
         Parent.QueueFree();
     }
 }
