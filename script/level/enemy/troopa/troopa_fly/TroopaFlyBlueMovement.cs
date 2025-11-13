@@ -7,7 +7,8 @@ public partial class TroopaFlyBlueMovement : BasicMovement {
 
     public override void SetJumpSpeed() {
         if (!MoveObject.IsOnFloor()) return;
+        //SpeedY = Mathf.Min(0f, -(25f / Mathf.Pow(Height, 3) - 10f / Mathf.Pow(Height, 2)));
         SpeedY = Mathf.Min(0f, JumpSpeed);
-        Gravity = SpeedY / 5f;
+        Gravity = Mathf.Max(0.1f, 50f / (Height - 3f));
     }
 }

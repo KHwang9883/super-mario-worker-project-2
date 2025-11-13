@@ -61,9 +61,10 @@ debug_color = Color(3.0322374e-06, 0.6762431, 0.49805695, 0.41960785)
 
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("2_lw3t0")
+Height = 160.0
 MoveObject = NodePath("..")
-Gravity = -1.0
-JumpSpeed = -1.0
+SpeedX = -1.0
+JumpSpeed = -10.0
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
 [node name="AutoSpriteFlipH" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
