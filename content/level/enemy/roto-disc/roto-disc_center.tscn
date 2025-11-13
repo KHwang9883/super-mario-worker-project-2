@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://vcoiykbd4gn"]
+
+[ext_resource type="Texture2D" uid="uid://cklt741csu754" path="res://content/level/enemy/roto-disc/roto-disc_center.png" id="1_why7h"]
+
+[node name="RotoDiscCenter" type="Sprite2D"]
+z_index = 55
+texture = ExtResource("1_why7h")

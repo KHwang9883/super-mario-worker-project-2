@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=50 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
@@ -41,6 +41,7 @@
 [ext_resource type="PackedScene" uid="uid://d35x6v4omtxlq" path="res://content/level/enemy/boo/boo.tscn" id="39_gctg4"]
 [ext_resource type="PackedScene" uid="uid://fbxq1hg4e22f" path="res://content/level/enemy/roto-disc/roto-disc_still.tscn" id="40_trls0"]
 [ext_resource type="PackedScene" uid="uid://rmc4tiejgsom" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_blue.tscn" id="41_8mywb"]
+[ext_resource type="PackedScene" uid="uid://cw8qh44n2xkrx" path="res://content/level/enemy/roto-disc/roto-disc.tscn" id="42_n7ka3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
 atlas = ExtResource("8_lgciv")
@@ -561,5 +562,8 @@ position = Vector2(1232, 368)
 position = Vector2(1232, 304)
 
 [node name="DebugObjectGroup" type="Node2D" parent="TestNode2D"]
+
+[node name="RotoDisc" parent="." instance=ExtResource("42_n7ka3")]
+position = Vector2(816, 400)
 
 [connection signal="PlaySoundTimeWarning" from="TestNode2D/HUD/HUD" to="TestNode2D/HUD/HUD/TimeWarning" method="play"]
