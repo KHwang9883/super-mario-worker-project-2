@@ -19,7 +19,6 @@ public partial class BooMovement : Node {
         if (_player.HasMeta("PlayerMovement")) {
             _playerMovement = (PlayerMovement)_player.GetMeta("PlayerMovement");
         }
-        _parent.GetNode<AnimatedSprite2D>("AnimatedSprite2D").FlipH = _parent.Position.X > _player.Position.X;
     }
     public override void _PhysicsProcess(double delta) {
         if (_parent == null || _player == null) return;

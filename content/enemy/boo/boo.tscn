@@ -60,6 +60,7 @@ debug_color = Color(0.6314314, 0.4952147, 0.83221304, 0.41960785)
 [node name="AutoSpriteFlipH" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
 script = ExtResource("3_5ckh6")
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
+_alwaysFaceToPlayer = true
 metadata/_custom_type_script = "uid://t3te8lnb0byj"
 
 [node name="BooMovement" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
