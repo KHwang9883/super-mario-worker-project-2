@@ -56,6 +56,7 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
     
     [ExportGroup("Shell")]
     [Export] public bool IsShellHittable { get; set; } = true;
+    [Export] public bool ImmuneToShell { get; set; }
     [Export] public bool HardToShell { get; set; }
     
     [ExportGroup("Bump")]
@@ -143,12 +144,14 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
     void IStarHittable.MetadataInject(Node2D parent) {
         parent?.SetMeta("InteractionWithStar", this);
     }
-    public void OnStarmanHit(int score) {
+    public bool OnStarmanHit(int score) {
+        if (!IsStarHittable) return false;
         EmitSignal(SignalName.StarmanHit);
         OnComboAddScore(score);
-        if (ImmuneToStar) return;
+        if (ImmuneToStar) return false;
         //EmitSignal(SignalName.PlaySoundKicked);
         OnDied();
+        return true;
     }
     // 龟壳
     void IShellHittable.MetadataInject(Node2D parent) {

@@ -10,6 +10,7 @@ public partial class InteractionWithStar : Node, IStarHittable {
     [Signal]
     public delegate void StarmanHitAddScoreEventHandler(int score);
     [Export] public bool IsStarHittable { get; set; } = true;
+    [Export] public bool ImmuneToStar { get; set; }
     
     private Node2D? _parent;
 
@@ -20,8 +21,11 @@ public partial class InteractionWithStar : Node, IStarHittable {
     public void MetadataInject(Node2D parent) {
         parent?.SetMeta("InteractionWithStar", this);
     }
-    public void OnStarmanHit(int score) {
+    public bool OnStarmanHit(int score) {
+        if (!IsStarHittable) return false;
+        if (ImmuneToStar) return false;
         EmitSignal(SignalName.StarmanHit);
         EmitSignal(SignalName.StarmanHitAddScore, score);
+        return true;
     }
 }

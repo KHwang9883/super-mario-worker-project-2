@@ -4,6 +4,7 @@ namespace SMWP.Level.Interface;
 
 public interface IShellHittable {
     bool IsShellHittable { get; set; }
+    bool ImmuneToShell { get; set; }
     bool HardToShell { get; set; }
     
     public void MetadataInject(Node2D parent);

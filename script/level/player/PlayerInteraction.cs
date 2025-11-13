@@ -60,7 +60,7 @@ public partial class PlayerInteraction : Node
         if (!_playerMediator.playerSuit.Starman) return;
         if (interactionWithStarNode is not IStarHittable starHittable) return;
         result.SetMeta("InteractingObject", _player);
-        if (_starmanCombo != null) {
+        if (_starmanCombo != null && starHittable.IsStarHittable) {
             starHittable.OnStarmanHit(_starmanCombo.AddCombo());
         }
     }
@@ -70,7 +70,6 @@ public partial class PlayerInteraction : Node
         if (result.HasMeta("InteractionWithStomp")) {
             interactionWithStompNode = (Node)result.GetMeta("InteractionWithStomp");
         }
-        if (interactionWithStompNode == null) return;
         if (interactionWithStompNode is not IStompable stompable) return;
         if (stompable.Stompable
             && _player.Velocity.Y >= 0f

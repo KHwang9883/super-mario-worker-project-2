@@ -9,6 +9,7 @@ public partial class InteractionWithShell : Node, IShellHittable {
     [Signal]
     public delegate void ShellHitAddScoreEventHandler(int score);
     [Export] public bool IsShellHittable { get; set; } = true;
+    [Export] public bool ImmuneToShell { get; set; }
     [Export] public bool HardToShell { get; set; }
 
     private Node2D? _parent;
