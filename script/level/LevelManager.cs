@@ -1,19 +1,29 @@
 using Godot;
 using System;
+using SMWP.Level.Sound;
 
 namespace SMWP.Level;
 
 public partial class LevelManager : Node {
+    [Signal]
+    public delegate void PlaySound1UPEventHandler();
     public static int Time { get; set; }
     public static int Life { get; set; } = 4;
     public static int Score { get; set; }
     public static int Coin { get; set; }
-
+    
+    [Export] private ContinuousAudioStream2D _1UPAudioStream2DNode = null!;
+    public static ContinuousAudioStream2D Sound1UPAudioStream2D = null!;
+    
     // Todo: 关卡标题
     public static string? LevelTitle;
 
     private int _timer;
 
+    public override void _Ready() {
+        Sound1UPAudioStream2D = _1UPAudioStream2DNode;
+    }
+    
     // Level Timer
     public override void _PhysicsProcess(double delta) {
         var player = GetTree().GetFirstNodeInGroup("player");
@@ -46,5 +56,6 @@ public partial class LevelManager : Node {
     // 奖命
     public static void AddLife() {
         Life++;
+        Sound1UPAudioStream2D.Play();
     }
 }

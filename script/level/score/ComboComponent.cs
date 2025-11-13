@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public partial class ComboComponent : Node {
     [Signal]
     public delegate void PlaySoundKickEventHandler();
-    [Signal]
-    public delegate void PlaySound1UPEventHandler();
     
     public int Combo { get; set; }
     public int Score { get; set; }
@@ -23,12 +21,9 @@ public partial class ComboComponent : Node {
     };
     public int AddCombo() {
         Combo++;
-        if (Combo == 7) EmitSignal(SignalName.PlaySound1UP);
-        if (Combo > 7) {
-            Combo = 1;
-        } else {
-            EmitSignal(SignalName.PlaySoundKick);
-        }
+        if (Combo > 7) Combo = 1;
+        EmitSignal(SignalName.PlaySoundKick);
+        // 1UP 音效的播放见 LevelManager 的 AddLife 方法
         Score = ComboToScore[Combo];
         return Score;
     }

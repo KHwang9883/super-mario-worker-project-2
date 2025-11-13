@@ -493,6 +493,9 @@ position = Vector2(1136, 324)
 [node name="RotoDiscStill2" parent="TestNode2D/Enemies" instance=ExtResource("40_trls0")]
 position = Vector2(1200, 324)
 
+[node name="TroopaFlyBlue" parent="TestNode2D/Enemies" instance=ExtResource("41_8mywb")]
+position = Vector2(1072, 272)
+
 [node name="Powerups" type="Node2D" parent="TestNode2D"]
 
 [node name="FireFlower" parent="TestNode2D/Powerups" instance=ExtResource("17_d2gt5")]
@@ -558,8 +561,5 @@ position = Vector2(1232, 368)
 position = Vector2(1232, 304)
 
 [node name="DebugObjectGroup" type="Node2D" parent="TestNode2D"]
-
-[node name="TroopaFlyBlue" parent="TestNode2D" instance=ExtResource("41_8mywb")]
-position = Vector2(1072, 272)
 
 [connection signal="PlaySoundTimeWarning" from="TestNode2D/HUD/HUD" to="TestNode2D/HUD/HUD/TimeWarning" method="play"]
