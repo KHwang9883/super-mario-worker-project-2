@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://72d0sq841rbo"]
+
+[ext_resource type="Texture2D" uid="uid://2edet5tfn3qq" path="res://content/level/enemy/lava/lava_piece.png" id="1_wldgc"]
+[ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="2_kwwas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klgvy"]
+atlas = ExtResource("1_wldgc")
+region = Rect2(0, 0, 34, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhesm"]
+atlas = ExtResource("1_wldgc")
+region = Rect2(0, 36, 34, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc8pc"]
+atlas = ExtResource("1_wldgc")
+region = Rect2(0, 72, 34, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cksu"]
+atlas = ExtResource("1_wldgc")
+region = Rect2(0, 108, 34, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m036"]
+atlas = ExtResource("1_wldgc")
+region = Rect2(0, 144, 34, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_co2vv"]
+atlas = ExtResource("1_wldgc")
+region = Rect2(0, 180, 34, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxhbw"]
+atlas = ExtResource("1_wldgc")
+region = Rect2(0, 216, 34, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vhaxy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klgvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhesm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc8pc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cksu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m036")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_co2vv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxhbw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cdo7"]
+size = Vector2(31, 31)
+
+[node name="LavaPiece" type="Area2D"]
+z_index = 100
+collision_layer = 16
+collision_mask = 8
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_vhaxy")
+autoplay = "default"
+frame = 1
+frame_progress = 0.3493312
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1cdo7")
+debug_color = Color(0.99226695, 0, 0.26071143, 0.41960785)
+
+[node name="InteractionWithPlayer" type="Node" parent="."]
+script = ExtResource("2_kwwas")
+HurtType = 1
+metadata/_custom_type_script = "uid://dk0y3j6216tik"

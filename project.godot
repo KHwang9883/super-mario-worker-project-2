@@ -22,7 +22,7 @@ config/windows_native_icon="res://smwp.ico"
 
 [autoload]
 
-ScoreManager="*res://content/level_manager.tscn"
+ScoreManager="*res://content/level/level_manager.tscn"
 
 [display]
 
@@ -40,15 +40,15 @@ project/assembly_name="SuperMarioWorkerProject2"
 [file_customization]
 
 folder_colors={
-"res://content/block/": "teal",
-"res://content/bonus/": "teal",
-"res://content/component/": "gray",
-"res://content/database/": "gray",
-"res://content/debug/": "purple",
-"res://content/enemy/": "orange",
-"res://content/player/": "pink",
-"res://content/projectile​/": "red",
-"res://content/tile/": "gray",
+"res://content/level/block/": "teal",
+"res://content/level/bonus/": "teal",
+"res://content/level/component/": "gray",
+"res://content/level/database/": "gray",
+"res://content/level/debug/": "purple",
+"res://content/level/enemy/": "orange",
+"res://content/level/player/": "pink",
+"res://content/level/projectile​/": "red",
+"res://content/level/tile/": "gray",
 "res://docs/": "blue",
 "res://script/": "gray"
 }

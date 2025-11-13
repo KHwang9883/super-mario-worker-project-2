@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://1px4xtvk4nkg"]
+
+[ext_resource type="Texture2D" uid="uid://dfgi13bjl7e8y" path="res://content/level/enemy/spike/spike_mf.png" id="1_ku2el"]
+[ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="2_d5l8s"]
+[ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="3_vlqk4"]
+[ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="4_toyq6"]
+
+[node name="SpikeMF" type="Area2D"]
+z_index = 30
+collision_layer = 16
+collision_mask = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ku2el")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -16)
+polygon = PackedVector2Array(-1, 4, -14, 32, 13, 32)
+
+[node name="InteractionWithPlayer" type="Node" parent="."]
+script = ExtResource("2_d5l8s")
+metadata/_custom_type_script = "uid://dk0y3j6216tik"
+
+[node name="InteractionWithFireball" type="Node" parent="."]
+script = ExtResource("3_vlqk4")
+metadata/_custom_type_script = "uid://ckwcmi42tdbmc"
+
+[node name="InteractionWithBeetroot" type="Node" parent="."]
+script = ExtResource("4_toyq6")
+metadata/_custom_type_script = "uid://bkc8a0hddhajq"

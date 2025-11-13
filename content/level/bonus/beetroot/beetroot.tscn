@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://bppnp31u6nq6s"]
+
+[ext_resource type="Texture2D" uid="uid://bbleghncfqo2b" path="res://content/level/bonus/beetroot/beetroot.png" id="1_nf6sr"]
+[ext_resource type="Script" uid="uid://b5yntrwmtxv27" path="res://script/level/bonus/PowerupSet.cs" id="2_cujse"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oce6w"]
+atlas = ExtResource("1_nf6sr")
+region = Rect2(0, 0, 29, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnmkm"]
+atlas = ExtResource("1_nf6sr")
+region = Rect2(0, 35, 29, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l200w"]
+atlas = ExtResource("1_nf6sr")
+region = Rect2(0, 70, 29, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucgvn"]
+atlas = ExtResource("1_nf6sr")
+region = Rect2(0, 70, 29, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssc15"]
+atlas = ExtResource("1_nf6sr")
+region = Rect2(0, 35, 29, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jveop"]
+atlas = ExtResource("1_nf6sr")
+region = Rect2(0, 0, 29, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nerlh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oce6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnmkm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l200w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucgvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssc15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jveop")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ow01b"]
+size = Vector2(27, 33)
+
+[node name="Beetroot" type="Area2D"]
+collision_layer = 32
+collision_mask = 8
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nerlh")
+autoplay = "default"
+offset = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 15
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_ow01b")
+debug_color = Color(0.797803, 0.42973912, 0, 0.41960785)
+
+[node name="PowerupSet" type="Node" parent="." node_paths=PackedStringArray("_powerup")]
+script = ExtResource("2_cujse")
+_powerup = NodePath("..")
+PowerupType = 2

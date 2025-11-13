@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctqk4nree2nt0"]
+
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="1_f8wok"]
+[ext_resource type="Script" uid="uid://bv7rh1n8uy8u8" path="res://script/level/debug/FollowParentDebugLabel.cs" id="1_us826"]
+
+[node name="FollowParentDebugLabel" type="Label"]
+offset_left = -96.0
+offset_right = 96.0
+offset_bottom = 48.0
+theme = ExtResource("1_f8wok")
+text = "DEBUG CONTENT"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_us826")
+metadata/_edit_lock_ = true

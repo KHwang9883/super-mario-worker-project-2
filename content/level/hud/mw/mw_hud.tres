@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ds3uq7lyxof1e"]
+
+[ext_resource type="FontFile" uid="uid://em53psx0nwwf" path="res://content/level/hud/mw/mw_hud.fnt" id="1_70ik3"]
+
+[resource]
+default_font = ExtResource("1_70ik3")
+default_font_size = 10
+Label/constants/paragraph_spacing = 2

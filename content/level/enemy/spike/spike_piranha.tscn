@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://dlfbxnforjjvx"]
+
+[ext_resource type="Texture2D" uid="uid://b7ol2hory2nw4" path="res://content/level/enemy/spike/spike_piranha.png" id="1_e1duw"]
+[ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="2_mco2m"]
+[ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="3_mco2m"]
+[ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="4_qn27b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xxvc"]
+atlas = ExtResource("1_e1duw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3pav"]
+atlas = ExtResource("1_e1duw")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bsmg"]
+atlas = ExtResource("1_e1duw")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u7x2d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xxvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3pav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bsmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bsmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3pav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xxvc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbywh"]
+size = Vector2(32, 32)
+
+[node name="SpikePiranha" type="Area2D"]
+z_index = 30
+collision_layer = 16
+collision_mask = 8
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_u7x2d")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tbywh")
+debug_color = Color(0, 0.64171624, 0.33484715, 0.41960785)
+
+[node name="InteractionWithPlayer" type="Node" parent="."]
+script = ExtResource("2_mco2m")
+metadata/_custom_type_script = "uid://dk0y3j6216tik"
+
+[node name="InteractionWithFireball" type="Node" parent="."]
+script = ExtResource("3_mco2m")
+metadata/_custom_type_script = "uid://ckwcmi42tdbmc"
+
+[node name="InteractionWithBeetroot" type="Node" parent="."]
+script = ExtResource("4_qn27b")
+metadata/_custom_type_script = "uid://bkc8a0hddhajq"

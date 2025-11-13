@@ -1,0 +1,117 @@
+[gd_scene load_steps=17 format=3 uid="uid://dt3n2b1ypresm"]
+
+[ext_resource type="Texture2D" uid="uid://bbleghncfqo2b" path="res://content/level/bonus/beetroot/beetroot.png" id="1_0f5ms"]
+[ext_resource type="Script" uid="uid://bvx3bu21mj3b5" path="res://script/level/projectile​/player/player_beetroot/BeetrootMovement.cs" id="2_bdhfo"]
+[ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="3_1xth1"]
+[ext_resource type="Script" uid="uid://bs8fiq833xasv" path="res://script/level/projectile​/player/player_beetroot/BeetrootInteraction.cs" id="3_s8x4c"]
+[ext_resource type="AudioStream" uid="uid://bryms0br18kgn" path="res://content/sound/thwomp_grounded.se.wav" id="4_oev4c"]
+[ext_resource type="PackedScene" uid="uid://5mmyew6mh71p" path="res://content/level/projectile​/fireball_explosion.tscn" id="4_osfue"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="5_kyeb2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oce6w"]
+atlas = ExtResource("1_0f5ms")
+region = Rect2(0, 0, 29, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnmkm"]
+atlas = ExtResource("1_0f5ms")
+region = Rect2(0, 35, 29, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l200w"]
+atlas = ExtResource("1_0f5ms")
+region = Rect2(0, 70, 29, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucgvn"]
+atlas = ExtResource("1_0f5ms")
+region = Rect2(0, 70, 29, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssc15"]
+atlas = ExtResource("1_0f5ms")
+region = Rect2(0, 35, 29, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jveop"]
+atlas = ExtResource("1_0f5ms")
+region = Rect2(0, 0, 29, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wttae"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oce6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnmkm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l200w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucgvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssc15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jveop")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f5ms"]
+size = Vector2(27, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdhfo"]
+size = Vector2(27, 33)
+
+[node name="PlayerBeetroot" type="CharacterBody2D" groups=["beetroot"]]
+z_index = 80
+collision_layer = 0
+collision_mask = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wttae")
+autoplay = "default"
+offset = Vector2(0, -1)
+
+[node name="AreaBodyCollision" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_0f5ms")
+target_position = Vector2(0, 0)
+max_results = 6
+collision_mask = 16
+collide_with_areas = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_bdhfo")
+debug_color = Color(0.797803, 0.42973912, 0, 0.41960785)
+
+[node name="BeetrootMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
+script = ExtResource("2_bdhfo")
+MoveObject = NodePath("..")
+SpeedX = 1.0
+SpeedY = -7.0
+JumpSpeed = -9.0
+metadata/_custom_type_script = "uid://chn4gqrm87qtl"
+
+[node name="BeetrootInteraction" type="Node" parent="." node_paths=PackedStringArray("_beetroot", "_beetrootMovement")]
+script = ExtResource("3_s8x4c")
+_beetroot = NodePath("..")
+_fireballExplosionPackedScene = ExtResource("4_osfue")
+_beetrootMovement = NodePath("../BeetrootMovement")
+
+[node name="OutOfBoundsQueueFree" type="Node" parent="."]
+script = ExtResource("3_1xth1")
+OutOfScreenDetection = true
+metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
+
+[node name="ContinuousAudioStream2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_oev4c")
+script = ExtResource("5_kyeb2")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[connection signal="HitBlock" from="BeetrootMovement" to="BeetrootInteraction" method="Explode"]
+[connection signal="HitBlock" from="BeetrootMovement" to="ContinuousAudioStream2D" method="play"]
+[connection signal="BeetrootBounce" from="BeetrootInteraction" to="BeetrootMovement" method="Bounce"]
+[connection signal="BeetrootBounceCountAdd" from="BeetrootInteraction" to="BeetrootMovement" method="BounceCountAdd"]

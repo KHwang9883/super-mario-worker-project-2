@@ -65,9 +65,7 @@ public partial class BasicMovement : Node {
         
         MoveObject.MoveAndSlide();
 
-        if (MoveObject.IsOnFloor()) {
-            SpeedY = Mathf.Min(0f, JumpSpeed);
-        }
+        SetJumpSpeed();
     }
     public void OnScreenEntered() {
         SetMovementDirection();
@@ -78,6 +76,11 @@ public partial class BasicMovement : Node {
             SpeedX = Mathf.Abs(SpeedX);
         } else if (MoveObject.Position.X > Player?.Position.X) {
             SpeedX = -Mathf.Abs(SpeedX);
+        }
+    }
+    public virtual void SetJumpSpeed() {
+        if (MoveObject.IsOnFloor()) {
+            SpeedY = Mathf.Min(0f, JumpSpeed);
         }
     }
 }

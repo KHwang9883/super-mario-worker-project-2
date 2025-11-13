@@ -16,11 +16,15 @@ public partial class LevelManager : Node {
 
     // Level Timer
     public override void _PhysicsProcess(double delta) {
+        var player = GetTree().GetFirstNodeInGroup("player");
+        
+        // 不在关卡中
+        if (player == null) return;
         
         // 传送时，计时器停止
         // Todo: if (playerMovement.Stuck or PipeIn/Out) return;
         // 玩家死亡，计时器停止
-        if (GetTree().GetFirstNodeInGroup("player").ProcessMode == ProcessModeEnum.Disabled) return;
+        if (player.ProcessMode == ProcessModeEnum.Disabled) return;
         
         _timer++;
         if (_timer < 16) return;
@@ -28,6 +32,8 @@ public partial class LevelManager : Node {
         _timer = 0;
         Time--;
     }
+    
+    // 加分
     public static void AddScore(int score) {
         // 1UP 占用 -1 分
         if (score == -1) {
@@ -36,6 +42,8 @@ public partial class LevelManager : Node {
         // AddScore方法不支持减分
         Score += (score > 0) ? score : 0;
     }
+    
+    // 奖命
     public static void AddLife() {
         Life++;
     }
