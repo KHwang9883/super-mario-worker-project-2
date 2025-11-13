@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=48 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/tile/obstacle.tscn" id="2_676rr"]
@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://cnljpmxjddchj" path="res://content/enemy/troopa/troopa_walking/troopa_blue.tscn" id="37_36qdp"]
 [ext_resource type="PackedScene" uid="uid://cdxpkopiyqfi4" path="res://content/enemy/troopa/troopa_walking/troopa_yellow.tscn" id="38_gctg4"]
 [ext_resource type="PackedScene" uid="uid://d35x6v4omtxlq" path="res://content/enemy/boo/boo.tscn" id="39_gctg4"]
+[ext_resource type="PackedScene" uid="uid://fbxq1hg4e22f" path="res://content/enemy/roto-disc/roto-disc_still.tscn" id="40_trls0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
 atlas = ExtResource("8_lgciv")
@@ -476,6 +477,18 @@ position = Vector2(2232, 400)
 [node name="TroopaGreen4" parent="TestNode2D/Enemies" instance=ExtResource("28_r5pq0")]
 position = Vector2(2328, 144)
 
+[node name="Boo" parent="TestNode2D/Enemies" instance=ExtResource("39_gctg4")]
+position = Vector2(1052, 396)
+
+[node name="Boo2" parent="TestNode2D/Enemies" instance=ExtResource("39_gctg4")]
+position = Vector2(780, 260)
+
+[node name="Boo3" parent="TestNode2D/Enemies" instance=ExtResource("39_gctg4")]
+position = Vector2(1048, 448)
+
+[node name="RotoDiscStill" parent="TestNode2D/Enemies" instance=ExtResource("40_trls0")]
+position = Vector2(1136, 324)
+
 [node name="Powerups" type="Node2D" parent="TestNode2D"]
 
 [node name="FireFlower" parent="TestNode2D/Powerups" instance=ExtResource("17_d2gt5")]
@@ -542,13 +555,7 @@ position = Vector2(1232, 304)
 
 [node name="DebugObjectGroup" type="Node2D" parent="TestNode2D"]
 
-[node name="Boo" parent="TestNode2D" instance=ExtResource("39_gctg4")]
-position = Vector2(1052, 396)
-
-[node name="Boo2" parent="TestNode2D" instance=ExtResource("39_gctg4")]
-position = Vector2(780, 260)
-
-[node name="Boo3" parent="TestNode2D" instance=ExtResource("39_gctg4")]
-position = Vector2(1048, 448)
+[node name="RotoDiscStill2" parent="." instance=ExtResource("40_trls0")]
+position = Vector2(1200, 324)
 
 [connection signal="PlaySoundTimeWarning" from="TestNode2D/HUD/HUD" to="TestNode2D/HUD/HUD/TimeWarning" method="play"]
