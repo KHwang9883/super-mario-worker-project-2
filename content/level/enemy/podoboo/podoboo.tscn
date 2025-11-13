@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://damomv48gttr6"]
+
+[ext_resource type="Texture2D" uid="uid://dd06ty3n4qt07" path="res://content/level/enemy/podoboo/podoboo.png" id="1_uwprb"]
+[ext_resource type="Script" uid="uid://dk8jhmrrl7rne" path="res://script/level/enemy/podoboo/PodobooMovement.cs" id="2_cxtq6"]
+[ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="2_npy2u"]
+[ext_resource type="PackedScene" uid="uid://lejefocdv3ff" path="res://content/level/enemy/lava/lava_splash.tscn" id="3_0r33v"]
+[ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="3_gkdeq"]
+[ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="4_delk1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxtq6"]
+atlas = ExtResource("1_uwprb")
+region = Rect2(0, 0, 29, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0r33v"]
+atlas = ExtResource("1_uwprb")
+region = Rect2(0, 34, 29, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwlg3"]
+atlas = ExtResource("1_uwprb")
+region = Rect2(0, 68, 29, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qykjl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxtq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0r33v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwlg3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qy4nn"]
+size = Vector2(26, 32)
+
+[node name="Podoboo" type="Area2D"]
+z_index = 30
+collision_layer = 16
+collision_mask = 8
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qykjl")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qy4nn")
+debug_color = Color(0.99370545, 0.08864703, 0, 0.41960785)
+
+[node name="PodobooMovement" type="Node" parent="."]
+script = ExtResource("2_cxtq6")
+_lavaSplashScene = ExtResource("3_0r33v")
+
+[node name="InteractionWithPlayer" type="Node" parent="."]
+script = ExtResource("2_npy2u")
+metadata/_custom_type_script = "uid://dk0y3j6216tik"
+
+[node name="InteractionWithFireball" type="Node" parent="."]
+script = ExtResource("3_gkdeq")
+metadata/_custom_type_script = "uid://ckwcmi42tdbmc"
+
+[node name="InteractionWithBeetroot" type="Node" parent="."]
+script = ExtResource("4_delk1")
+metadata/_custom_type_script = "uid://bkc8a0hddhajq"
