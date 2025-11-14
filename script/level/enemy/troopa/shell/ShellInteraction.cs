@@ -13,7 +13,7 @@ public partial class ShellInteraction : Node {
 
     public override void _Ready() {
         _parent ??= (Node2D)GetParent();
-        _parent.SetMeta("ShellProperty", this);
+        _parent.SetMeta("ShellInteraction", this);
     }
     public override void _PhysicsProcess(double delta) {
         var results = ShapeQueryResult.ShapeQuery(_shell, _shell.GetNode<ShapeCast2D>("AreaBodyCollision"));

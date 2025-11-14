@@ -95,6 +95,7 @@ metadata/_custom_type_script = "uid://t3te8lnb0byj"
 [node name="EnemyInteraction" type="Node" parent="."]
 script = ExtResource("4_t0inm")
 HurtType = 2
+HardLevel = 5
 metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
 
 [node name="InteractionWithPlayerDelay" type="Node" parent="." node_paths=PackedStringArray("_enemyInteractionComponent")]
