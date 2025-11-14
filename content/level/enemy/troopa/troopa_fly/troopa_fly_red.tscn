@@ -38,7 +38,7 @@ animations = [{
 size = Vector2(33, 30)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sscof"]
-load_path = "res://.godot/imported/shell_red.png-01d665899f16320fcaad279e72f0934c.ctex"
+load_path = "res://.godot/imported/shell_red.png-9f2a15cd47740181a92a36d41b940a60.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m61lm"]
 atlas = SubResource("CompressedTexture2D_sscof")
