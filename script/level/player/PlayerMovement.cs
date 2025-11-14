@@ -139,11 +139,11 @@ public partial class PlayerMovement : Node {
             if (_player.IsOnFloor() && _down && !Stuck) {
                 Crouched = true;
             }
-            if (!_down) {
-                Crouched = false;
-            }
         }
-
+        if (!_down) {
+            Crouched = false;
+        }
+        
         // 起跳
         if (!_jump) {
             Jumped = false;
