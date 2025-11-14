@@ -52,13 +52,14 @@ public partial class BeetrootInteraction : Node {
         Node? interactionWithBlockNode = null;
         
         var blockCollider = _beetroot.MoveAndCollide(new Vector2(1f * _beetrootMovement.Direction, 1f), true)?.GetCollider();
-        //GD.Print(_blockCollider);
+        //GD.Print(blockCollider);
         if (blockCollider is not StaticBody2D staticBody2D) return;
         if (staticBody2D.HasMeta("InteractionWithBlock")) {
             interactionWithBlockNode = (Node)staticBody2D.GetMeta("InteractionWithBlock");
         }
         if (interactionWithBlockNode is not BlockHit blockHit) return;
         blockHit.OnBlockHit(_beetroot);
-        _beetrootMovement.Bounce();
+        // 因为砖块本身是实心，所以不需要额外 Bounce 方法的调用
+        //_beetrootMovement.Bounce();
     }
 }
