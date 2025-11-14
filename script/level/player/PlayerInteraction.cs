@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Godot.Collections;
 using SMWP.Level.Block;
 using SMWP.Level.Player;
 using SMWP.Level.Block.Brick;
@@ -33,70 +34,88 @@ public partial class PlayerInteraction : Node
         // Todo: 水管传送的状态下不会受到伤害，这里暂时用卡墙的状态替代
         if (_playerMediator.playerMovement.Stuck) return;
         
-        foreach (var result in results) {
-            // 无敌星状态下击杀敌人（比踩踏更优先检测）
-            StarmanAttackDetect(result);
+        // 无敌星状态下击杀敌人（比踩踏更优先检测）
+        StarmanAttackDetect(results);
 
-            // 踩踏可踩踏物件
-            StompAttackDetect(result);
+        // 踩踏可踩踏物件
+        StompAttackDetect(results);
 
-            // 有伤害物件，不可踩或者踩踏失败
-            HurtableAndKillableDetect(result);
+        // 有伤害物件，不可踩或者踩踏失败
+        HurtableAndKillableDetect(results);
             
-            // 奖励物
-            BonusItemDetect(result);
-        }
+        // 奖励物
+        BonusItemDetect(results);
 
         // 顶砖检测（考虑到游戏特性，不采用foreach判断）
         HitBlockDetect();
     }
 
-    public void StarmanAttackDetect(Node2D result) {
-        Node? interactionWithStarNode = null;
-        
-        if (result.HasMeta("InteractionWithStar")) {
-            interactionWithStarNode = (Node)result.GetMeta("InteractionWithStar");
-        }
-        if (!_playerMediator.playerSuit.Starman) return;
-        if (interactionWithStarNode is not IStarHittable starHittable) return;
-        result.SetMeta("InteractingObject", _player);
-        if (_starmanCombo != null && starHittable.IsStarHittable) {
-            starHittable.OnStarmanHit(_starmanCombo.AddCombo());
+    public void StarmanAttackDetect(Array<Node2D> results) {
+        foreach (var result in results) {
+            Node? interactionWithStarNode = null;
+
+            if (result.HasMeta("InteractionWithStar")) {
+                interactionWithStarNode = (Node)result.GetMeta("InteractionWithStar");
+            }
+            if (!_playerMediator.playerSuit.Starman) continue;
+            if (interactionWithStarNode is not IStarHittable starHittable) continue;
+            result.SetMeta("InteractingObject", _player);
+            if (_starmanCombo == null || !starHittable.IsStarHittable) continue;
+            // 成功一次就停止 foreach
+            if (starHittable.OnStarmanHit(_starmanCombo.AddCombo())) break;
         }
     }
-    public void StompAttackDetect(Node2D result) {
-        Node? interactionWithStompNode = null;
-        
-        if (result.HasMeta("InteractionWithStomp")) {
-            interactionWithStompNode = (Node)result.GetMeta("InteractionWithStomp");
-        }
-        if (interactionWithStompNode is not IStompable stompable) return;
-        if (stompable.Stompable
-            && _player.Velocity.Y >= 0f
-            && _player.GlobalPosition.Y < result.GlobalPosition.Y + stompable.StompOffset) {
+    public void StompAttackDetect(Array<Node2D> results) {
+        foreach (var result in results) {
+            Node? interactionWithStompNode = null;
+
+            if (result.HasMeta("InteractionWithStomp")) {
+                interactionWithStompNode = (Node)result.GetMeta("InteractionWithStomp");
+            }
+            if (interactionWithStompNode is not IStompable stompable) continue;
+            if (!stompable.Stompable
+                || !(_player.Velocity.Y >= 0f)
+                || !(_player.GlobalPosition.Y < result.GlobalPosition.Y + stompable.StompOffset)) continue;
             result.SetMeta("InteractingObject", _player);
             EmitSignal(SignalName.PlayerStomp, stompable.OnStomped(_player));
+            // 成功一次就停止 foreach
+            break;
         }
     }
-    public void HurtableAndKillableDetect(Node2D result) {
-        Node? interactionWithHurtNode = null;
-        
-        if (result.HasMeta("InteractionWithHurt")) {
-            interactionWithHurtNode = (Node)result.GetMeta("InteractionWithHurt");
-        }
-        if (interactionWithHurtNode is not IHurtableAndKillable hurtableAndKillable) return;
-        result.SetMeta("InteractingObject", _player);
-        if (hurtableAndKillable is IStompable stompableAndHurtable) {
-            if (stompableAndHurtable.Stompable) {
-                if (!(_player.GlobalPosition.Y >=
-                      result.GlobalPosition.Y + stompableAndHurtable.StompOffset)) return;
-                switch (hurtableAndKillable.HurtType) {
-                    case IHurtableAndKillable.HurtEnum.Die:
-                        EmitSignal(SignalName.PlayerDie);
-                        break;
-                    case IHurtableAndKillable.HurtEnum.Hurt:
-                        EmitSignal(SignalName.PlayerHurtProcess);
-                        break;
+    public void HurtableAndKillableDetect(Array<Node2D> results) {
+        foreach (var result in results) {
+            Node? interactionWithHurtNode = null;
+
+            if (result.HasMeta("InteractionWithHurt")) {
+                interactionWithHurtNode = (Node)result.GetMeta("InteractionWithHurt");
+            }
+            if (interactionWithHurtNode is not IHurtableAndKillable hurtableAndKillable) continue;
+            result.SetMeta("InteractingObject", _player);
+            if (hurtableAndKillable is IStompable stompableAndHurtable) {
+                if (stompableAndHurtable.Stompable) {
+                    if (!(_player.GlobalPosition.Y >=
+                          result.GlobalPosition.Y + stompableAndHurtable.StompOffset)) continue;
+                    switch (hurtableAndKillable.HurtType) {
+                        case IHurtableAndKillable.HurtEnum.Die:
+                            EmitSignal(SignalName.PlayerDie);
+                            break;
+                        case IHurtableAndKillable.HurtEnum.Hurt:
+                            EmitSignal(SignalName.PlayerHurtProcess);
+                            break;
+                        case IHurtableAndKillable.HurtEnum.Nothing:
+                            break;
+                    }
+                } else {
+                    switch (hurtableAndKillable.HurtType) {
+                        case IHurtableAndKillable.HurtEnum.Die:
+                            EmitSignal(SignalName.PlayerDie);
+                            break;
+                        case IHurtableAndKillable.HurtEnum.Hurt:
+                            EmitSignal(SignalName.PlayerHurtProcess);
+                            break;
+                        case IHurtableAndKillable.HurtEnum.Nothing:
+                            break;
+                    }
                 }
             } else {
                 switch (hurtableAndKillable.HurtType) {
@@ -110,57 +129,48 @@ public partial class PlayerInteraction : Node
                         break;
                 }
             }
-        } else {
-            switch (hurtableAndKillable.HurtType) {
-                case IHurtableAndKillable.HurtEnum.Die:
-                    EmitSignal(SignalName.PlayerDie);
-                    break;
-                case IHurtableAndKillable.HurtEnum.Hurt:
-                    EmitSignal(SignalName.PlayerHurtProcess);
-                    break;
-                case IHurtableAndKillable.HurtEnum.Nothing:
-                    break;
-            }
         }
     }
-    public void BonusItemDetect(Node result) {
-        Node? powerupSetNode = null;
-                
-        if (result.HasMeta("PowerupSet")) {
-            powerupSetNode = (Node)result.GetMeta("PowerupSet");
-        }
-        if (powerupSetNode is not PowerupSet powerupSet) return;
-        powerupSet.OnCollected();
+    public void BonusItemDetect(Array<Node2D> results) {
+        foreach (var result in results) {
+            Node? powerupSetNode = null;
 
-        var originalSuit = _playerMediator.playerSuit.Suit;
-        var originalPowerup = _playerMediator.playerSuit.Powerup;
+            if (result.HasMeta("PowerupSet")) {
+                powerupSetNode = (Node)result.GetMeta("PowerupSet");
+            }
+            if (powerupSetNode is not PowerupSet powerupSet) continue;
+            powerupSet.OnCollected();
 
-        // 无敌星
-        if (powerupSet.PowerupType == PowerupSet.PowerupEnum.SuperStar) {
-            _playerMediator.playerSuit.Starman = true;
-            _playerMediator.playerSuit.StarmanTimer = 0;
-        } else {
-            // 常规补给
-            if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small) {
-                _playerMediator.playerSuit.Powerup = powerupSet.PowerupType switch {
-                    PowerupSet.PowerupEnum.FireFlower => PlayerSuit.PowerupEnum.Fireball,
-                    PowerupSet.PowerupEnum.Beetroot => PlayerSuit.PowerupEnum.Beetroot,
-                    PowerupSet.PowerupEnum.Lui => PlayerSuit.PowerupEnum.Lui,
-                    _ => _playerMediator.playerSuit.Powerup,
-                };
-                if (powerupSet.PowerupType != PowerupSet.PowerupEnum.Mushroom) {
-                    _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Powered;
+            var originalSuit = _playerMediator.playerSuit.Suit;
+            var originalPowerup = _playerMediator.playerSuit.Powerup;
+
+            // 无敌星
+            if (powerupSet.PowerupType == PowerupSet.PowerupEnum.SuperStar) {
+                _playerMediator.playerSuit.Starman = true;
+                _playerMediator.playerSuit.StarmanTimer = 0;
+            } else {
+                // 常规补给
+                if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small) {
+                    _playerMediator.playerSuit.Powerup = powerupSet.PowerupType switch {
+                        PowerupSet.PowerupEnum.FireFlower => PlayerSuit.PowerupEnum.Fireball,
+                        PowerupSet.PowerupEnum.Beetroot => PlayerSuit.PowerupEnum.Beetroot,
+                        PowerupSet.PowerupEnum.Lui => PlayerSuit.PowerupEnum.Lui,
+                        _ => _playerMediator.playerSuit.Powerup,
+                    };
+                    if (powerupSet.PowerupType != PowerupSet.PowerupEnum.Mushroom) {
+                        _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Powered;
+                    }
                 }
-            }
-            if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Small) {
-                _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Super;
-            }
-            if (_playerMediator.playerSuit.Suit != originalSuit
-                || _playerMediator.playerSuit.Powerup != originalPowerup) {
-                EmitSignal(SignalName.PlayerPowerup);
-            } else if (_playerMediator.playerSuit.Powerup == originalPowerup
-                       && _playerMediator.playerSuit.Suit == originalSuit) {
-                EmitSignal(SignalName.PlayerPowerPlain);
+                if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Small) {
+                    _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Super;
+                }
+                if (_playerMediator.playerSuit.Suit != originalSuit
+                    || _playerMediator.playerSuit.Powerup != originalPowerup) {
+                    EmitSignal(SignalName.PlayerPowerup);
+                } else if (_playerMediator.playerSuit.Powerup == originalPowerup
+                           && _playerMediator.playerSuit.Suit == originalSuit) {
+                    EmitSignal(SignalName.PlayerPowerPlain);
+                }
             }
         }
     }
