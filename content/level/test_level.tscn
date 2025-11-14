@@ -283,7 +283,7 @@ tile_set = SubResource("TileSet_d7yf6")
 
 [node name="Mario" parent="TestNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(880, 364)
+position = Vector2(1068, 364)
 
 [node name="TestCamera2D" type="Camera2D" parent="TestNode2D/Mario" groups=["camera"]]
 process_callback = 0
@@ -436,6 +436,33 @@ position = Vector2(1264, 48)
 [node name="TroopaFlyBlue" parent="TestNode2D/Enemies" instance=ExtResource("41_8mywb")]
 position = Vector2(1072, 272)
 
+[node name="ShellMovingBeetle" parent="TestNode2D/Enemies" instance=ExtResource("37_lxach")]
+position = Vector2(1324, 356)
+
+[node name="SpinyStone" parent="TestNode2D/Enemies" instance=ExtResource("38_8mywb")]
+position = Vector2(1136, 432)
+
+[node name="ShellMovingGreen" parent="TestNode2D/Enemies" instance=ExtResource("27_r5pq0")]
+position = Vector2(1192, 400)
+
+[node name="ShellMovingBeetle2" parent="TestNode2D/Enemies" instance=ExtResource("37_lxach")]
+position = Vector2(1196, 360)
+
+[node name="ShellStaticBeetle" parent="TestNode2D/Enemies" instance=ExtResource("39_n7ka3")]
+position = Vector2(972, 432)
+
+[node name="ShellMovingGreen2" parent="TestNode2D/Enemies" instance=ExtResource("27_r5pq0")]
+position = Vector2(1056, 400)
+
+[node name="ShellMovingRed" parent="TestNode2D/Enemies" instance=ExtResource("40_no08i")]
+position = Vector2(1472, 432)
+
+[node name="ShellMovingBeetle3" parent="TestNode2D/Enemies" instance=ExtResource("37_lxach")]
+position = Vector2(1360, 432)
+
+[node name="BuzzyBeetle" parent="TestNode2D/Enemies" instance=ExtResource("41_n7ka3")]
+position = Vector2(1752, 208)
+
 [node name="Powerups" type="Node2D" parent="TestNode2D"]
 
 [node name="FireFlower" parent="TestNode2D/Powerups" instance=ExtResource("17_d2gt5")]
@@ -498,32 +525,5 @@ position = Vector2(912, 176)
 position = Vector2(1232, 368)
 
 [node name="DebugObjectGroup" type="Node2D" parent="TestNode2D"]
-
-[node name="ShellMovingBeetle" parent="TestNode2D" instance=ExtResource("37_lxach")]
-position = Vector2(1236, 304)
-
-[node name="SpinyStone" parent="TestNode2D" instance=ExtResource("38_8mywb")]
-position = Vector2(1136, 432)
-
-[node name="ShellMovingGreen" parent="TestNode2D" instance=ExtResource("27_r5pq0")]
-position = Vector2(1192, 400)
-
-[node name="ShellMovingBeetle2" parent="TestNode2D" instance=ExtResource("37_lxach")]
-position = Vector2(1196, 360)
-
-[node name="ShellStaticBeetle" parent="." instance=ExtResource("39_n7ka3")]
-position = Vector2(972, 432)
-
-[node name="ShellMovingGreen" parent="." instance=ExtResource("27_r5pq0")]
-position = Vector2(1056, 400)
-
-[node name="ShellMovingRed" parent="." instance=ExtResource("40_no08i")]
-position = Vector2(1472, 432)
-
-[node name="ShellMovingBeetle" parent="." instance=ExtResource("37_lxach")]
-position = Vector2(1360, 432)
-
-[node name="BuzzyBeetle" parent="." instance=ExtResource("41_n7ka3")]
-position = Vector2(1752, 208)
 
 [connection signal="PlaySoundTimeWarning" from="TestNode2D/HUD/HUD" to="TestNode2D/HUD/HUD/TimeWarning" method="play"]

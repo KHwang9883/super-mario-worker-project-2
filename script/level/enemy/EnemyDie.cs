@@ -52,6 +52,7 @@ public partial class EnemyDie : Node {
                 var fireballExplosionInstance = _fireballExplosionScene.Instantiate<Node2D>();
                 fireballExplosionInstance.Position = _parent.Position;
                 _parent.AddSibling(fireballExplosionInstance);
+                if (!_parent.HasMeta("InteractingObject")) break;
                 fireballExplosionInstance.SetMeta("InteractingObject", Variant.From(_parent.GetMeta("InteractingObject")));
                 break;
             case EnemyDieEnum.SpinOff:
@@ -60,6 +61,7 @@ public partial class EnemyDie : Node {
                 enemyDeadNormalInstance.GetNode<Sprite2D>("Sprite2D").Texture
                     = (_enemyDeadNormalTextureOverride == null) ? _texture2D : _enemyDeadNormalTextureOverride;
                 _parent.AddSibling(enemyDeadNormalInstance);
+                if (!_parent.HasMeta("InteractingObject")) break;
                 enemyDeadNormalInstance.SetMeta("InteractingObject", Variant.From(_parent.GetMeta("InteractingObject")));
                 break;
             case EnemyDieEnum.CreateInstance: {
@@ -67,6 +69,7 @@ public partial class EnemyDie : Node {
                     var enemyDeadInstance = _enemyDeadPackedScene.Instantiate<Node2D>();
                     enemyDeadInstance.Position = _parent.Position;
                     _parent.AddSibling(enemyDeadInstance);
+                    if (!_parent.HasMeta("InteractingObject")) break;
                     enemyDeadInstance.SetMeta("InteractingObject", Variant.From(_parent.GetMeta("InteractingObject")));
                 }
                 break;

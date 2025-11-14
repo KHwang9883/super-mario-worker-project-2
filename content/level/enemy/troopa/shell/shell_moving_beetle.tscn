@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://x2gl8vkl7afn"]
+[gd_scene load_steps=24 format=3 uid="uid://x2gl8vkl7afn"]
 
 [ext_resource type="Texture2D" uid="uid://pau5gllvaqrr" path="res://content/level/enemy/troopa/shell/shell_beetle.png" id="1_n7rmi"]
 [ext_resource type="Script" uid="uid://m51cdt80w33w" path="res://script/level/enemy/troopa/shell/ShellDirection.cs" id="2_ukljn"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="7_fbrqc"]
 [ext_resource type="Script" uid="uid://bch1tqb6dv6q2" path="res://script/level/enemy/troopa/shell/ShellInteraction.cs" id="8_q6x12"]
 [ext_resource type="PackedScene" uid="uid://cf77lp7tg0d0l" path="res://content/level/score/combo_component.tscn" id="9_f5rfr"]
+[ext_resource type="Script" uid="uid://bswipd80ulcgm" path="res://script/level/enemy/troopa/shell/ShellBlockHitInteraction.cs" id="9_ukljn"]
 [ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/level/enemy/general_visible_on_screen_enabler_2d.tscn" id="10_n8n0p"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="11_cwmag"]
 [ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="12_80q0f"]
@@ -119,6 +120,10 @@ script = ExtResource("8_q6x12")
 _shell = NodePath("..")
 _shellCombo = NodePath("../ComboComponent")
 HardLevel = 15
+
+[node name="ShellBlockHitInteraction" type="Node" parent="." node_paths=PackedStringArray("_basicMovement")]
+script = ExtResource("9_ukljn")
+_basicMovement = NodePath("../BasicMovement")
 
 [node name="ComboComponent" parent="." instance=ExtResource("9_f5rfr")]
 
