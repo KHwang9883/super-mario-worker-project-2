@@ -20,6 +20,7 @@ public partial class InteractionWithBump : Node, IBumpHittable {
         parent?.SetMeta("InteractionWithBump", this);
     }
     public virtual void OnBumped() {
+        if (!IsBumpHittable) return;
         EmitSignal(SignalName.Bumped);
     }
 }

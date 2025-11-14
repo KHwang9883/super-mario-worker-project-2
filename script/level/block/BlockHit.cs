@@ -111,9 +111,11 @@ public partial class BlockHit : Node, IBlockHittable {
         _bumpStateTimer = 0;
         
         // 顶砖判定生成
-        var blockBumpArea2D = _blockBumpArea2DScene.Instantiate<Area2D>();
-        blockBumpArea2D.Position = Parent.Position;
-        Parent.AddSibling(blockBumpArea2D);
+        Callable.From(() => {
+            var blockBumpArea2D = _blockBumpArea2DScene.Instantiate<Area2D>();
+            blockBumpArea2D.Position = Parent.Position;
+            Parent.AddSibling(blockBumpArea2D);
+        }).CallDeferred();
     }
     protected virtual void OnBumped() {
         Bump = false;
@@ -131,9 +133,11 @@ public partial class BlockHit : Node, IBlockHittable {
         }
         
         // 碎砖也触发生成顶砖判定
-        var blockBumpArea2D = _blockBumpArea2DScene.Instantiate<Area2D>();
-        blockBumpArea2D.Position = Parent.Position;
-        Parent.AddSibling(blockBumpArea2D);
+        Callable.From(() => {
+            var blockBumpArea2D = _blockBumpArea2DScene.Instantiate<Area2D>();
+            blockBumpArea2D.Position = Parent.Position;
+            Parent.AddSibling(blockBumpArea2D);
+        }).CallDeferred();
         
         Parent.QueueFree();
     }

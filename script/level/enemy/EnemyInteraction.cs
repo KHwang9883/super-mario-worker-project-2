@@ -108,6 +108,9 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
         OnDied();
         return StompSpeedY;
     }
+    public void PlayerHurtCheck(bool check) {
+    }
+
     // 火球
     void IFireballHittable.MetadataInject(Node2D parent) {
         parent?.SetMeta("InteractionWithFireball", this);
@@ -169,6 +172,7 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
         parent?.SetMeta("InteractionWithBump", this);
     }
     public void OnBumped() {
+        if (!IsBumpHittable) return;
         EmitSignal(SignalName.Bumped);
         if (ImmuneToBump) {
             EmitSignal(SignalName.PlaySoundBumped);
