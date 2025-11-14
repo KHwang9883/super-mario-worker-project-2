@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://dertrheuvws04"]
+
+[ext_resource type="Texture2D" uid="uid://cmi7wiiermvca" path="res://content/level/enemy/banzai_bill/banzai_bill_cannon.png" id="1_hvg8o"]
+[ext_resource type="Script" uid="uid://c8t26w1nann5q" path="res://script/level/enemy/banzai_bill/BanzaiBillCannonMovement.cs" id="2_6ecme"]
+[ext_resource type="PackedScene" uid="uid://btyhhhdhjf3sx" path="res://content/level/enemy/banzai_bill/banzai_bill.tscn" id="3_aydh5"]
+[ext_resource type="AudioStream" uid="uid://dqi85edorfoge" path="res://content/sound/bullet.se.wav" id="3_ib6lg"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="4_aydh5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ecme"]
+size = Vector2(32, 32)
+
+[node name="BanzaiBillCannon" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hvg8o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6ecme")
+
+[node name="BanzaiBillCannonMovement" type="Node" parent="."]
+script = ExtResource("2_6ecme")
+_banzaiBillScene = ExtResource("3_aydh5")
+
+[node name="ContinuousAudioStream2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ib6lg")
+script = ExtResource("4_aydh5")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[connection signal="PlaySoundBullet" from="BanzaiBillCannonMovement" to="ContinuousAudioStream2D" method="play"]

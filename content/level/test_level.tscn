@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=51 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
@@ -31,6 +31,8 @@
 [ext_resource type="PackedScene" uid="uid://dvxny3btmnf18" path="res://content/level/enemy/troopa/troopa_walking/troopa_red.tscn" id="28_r5pq0"]
 [ext_resource type="PackedScene" uid="uid://72d0sq841rbo" path="res://content/level/enemy/lava/lava_piece.tscn" id="29_buyip"]
 [ext_resource type="PackedScene" uid="uid://c25jnama51dur" path="res://content/level/enemy/lava/lava_bottom.tscn" id="30_a0ied"]
+[ext_resource type="PackedScene" uid="uid://btyhhhdhjf3sx" path="res://content/level/enemy/banzai_bill/banzai_bill.tscn" id="35_n7ka3"]
+[ext_resource type="PackedScene" uid="uid://dertrheuvws04" path="res://content/level/enemy/banzai_bill/banzai_bill_cannon.tscn" id="36_no08i"]
 [ext_resource type="PackedScene" uid="uid://cnljpmxjddchj" path="res://content/level/enemy/troopa/troopa_walking/troopa_blue.tscn" id="37_36qdp"]
 [ext_resource type="PackedScene" uid="uid://x2gl8vkl7afn" path="res://content/level/enemy/troopa/shell/shell_moving_beetle.tscn" id="37_lxach"]
 [ext_resource type="PackedScene" uid="uid://cvcnyg3fqj8js" path="res://content/level/enemy/spiny_stone/spiny_stone.tscn" id="38_8mywb"]
@@ -466,11 +468,20 @@ position = Vector2(1752, 208)
 [node name="Thwomp" parent="TestNode2D/Enemies" instance=ExtResource("41_no08i")]
 position = Vector2(1280, 112)
 
-[node name="Thwomp2" parent="TestNode2D/Enemies" instance=ExtResource("41_no08i")]
+[node name="Enemies" parent="TestNode2D/Enemies" instance=ExtResource("41_no08i")]
 position = Vector2(1568, 324)
 
-[node name="Thwomp3" parent="TestNode2D/Enemies" instance=ExtResource("41_no08i")]
+[node name="Enemies2" parent="TestNode2D/Enemies" instance=ExtResource("41_no08i")]
 position = Vector2(1696, 256)
+
+[node name="BanzaiBill" parent="TestNode2D/Enemies" instance=ExtResource("35_n7ka3")]
+position = Vector2(1520, 400)
+
+[node name="BanzaiBillCannon" parent="TestNode2D/Enemies" instance=ExtResource("36_no08i")]
+position = Vector2(1552, 400)
+
+[node name="BanzaiBillCannon2" parent="TestNode2D/Enemies" instance=ExtResource("36_no08i")]
+position = Vector2(1504, 376)
 
 [node name="Powerups" type="Node2D" parent="TestNode2D"]
 
