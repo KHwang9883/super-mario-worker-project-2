@@ -14,11 +14,11 @@ public partial class InteractionWithPlayer : Node, IStompable, IHurtableAndKilla
     [Export] public bool Stompable { get; set; }
     [Export] public float StompOffset { get; set; } = -12f;
     [Export] public float StompSpeedY { get; set; } = -8f;
-    private Node2D? _parent;
+    protected Node2D? Parent;
 
     public override void _Ready() {
-        _parent = (Node2D)GetParent();
-        MetadataInject(_parent);
+        Parent = (Node2D)GetParent();
+        MetadataInject(Parent);
     }
     public void MetadataInject(Node2D parent) {
         parent?.SetMeta("InteractionWithStomp", this);
@@ -27,5 +27,7 @@ public partial class InteractionWithPlayer : Node, IStompable, IHurtableAndKilla
     public float OnStomped(Node2D stomper) {
         EmitSignal(SignalName.Stomped);
         return StompSpeedY;
+    }
+    public virtual void PlayerHurtCheck(bool check) {
     }
 }

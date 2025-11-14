@@ -10,4 +10,5 @@ public interface IHurtableAndKillable {
     }
     HurtEnum HurtType { get; set; }
     public void MetadataInject(Node2D parent);
+    public void PlayerHurtCheck(bool check);
 }

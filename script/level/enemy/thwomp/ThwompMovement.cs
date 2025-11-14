@@ -3,8 +3,6 @@ using System;
 
 public partial class ThwompMovement : Node {
     [Signal]
-    public delegate void ThwompBlockHitEventHandler();
-    [Signal]
     public delegate void PlaySoundStunEventHandler();
     [Signal]
     public delegate void PlaySoundTauntEventHandler();
@@ -64,8 +62,8 @@ public partial class ThwompMovement : Node {
                         _originY = _parent.Position.Y;
                     }
                     
-                    // 砸砖判定
-                    EmitSignal(SignalName.ThwompBlockHit);
+                    // 砸砖判定（禁用）
+                    //EmitSignal(SignalName.ThwompBlockHit);
                     
                     CurrentState = ThwompState.Grounded;
                     _speedY = 0f;

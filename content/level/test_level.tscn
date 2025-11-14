@@ -283,7 +283,7 @@ tile_set = SubResource("TileSet_d7yf6")
 
 [node name="Mario" parent="TestNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(1232, 304)
+position = Vector2(1280, 400)
 
 [node name="TestCamera2D" type="Camera2D" parent="TestNode2D/Mario" groups=["camera"]]
 process_callback = 0
@@ -464,13 +464,13 @@ position = Vector2(1360, 432)
 position = Vector2(1752, 208)
 
 [node name="Thwomp" parent="TestNode2D/Enemies" instance=ExtResource("41_no08i")]
-position = Vector2(1280, 192)
+position = Vector2(1280, 112)
 
 [node name="Thwomp2" parent="TestNode2D/Enemies" instance=ExtResource("41_no08i")]
-position = Vector2(1568, 336)
+position = Vector2(1568, 324)
 
 [node name="Thwomp3" parent="TestNode2D/Enemies" instance=ExtResource("41_no08i")]
-position = Vector2(1692, 236)
+position = Vector2(1696, 256)
 
 [node name="Powerups" type="Node2D" parent="TestNode2D"]
 
@@ -538,6 +538,12 @@ position = Vector2(1392, 400)
 
 [node name="Brick10" parent="TestNode2D/Facilities" instance=ExtResource("23_dmmuc")]
 position = Vector2(1424, 400)
+
+[node name="Brick11" parent="TestNode2D/Facilities" instance=ExtResource("23_dmmuc")]
+position = Vector2(2416, 180)
+
+[node name="Brick12" parent="TestNode2D/Facilities" instance=ExtResource("23_dmmuc")]
+position = Vector2(2448, 180)
 
 [node name="DebugObjectGroup" type="Node2D" parent="TestNode2D"]
 

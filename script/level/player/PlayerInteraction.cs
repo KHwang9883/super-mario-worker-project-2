@@ -27,9 +27,13 @@ public partial class PlayerInteraction : Node
 
     [Export] private ComboComponent? _starmanCombo;
 
+    private bool _hurtFrame;
+
     public override void _PhysicsProcess(double delta) {
         // 对Player在PlayerMovement重叠检测的结果进行引用，而非再调用一次ShapeQuery()
         var results = _playerMediator.playerMovement.GetShapeQueryResults();
+
+        _hurtFrame = false;
         
         // Todo: 水管传送的状态下不会受到伤害，这里暂时用卡墙的状态替代
         if (_playerMediator.playerMovement.Stuck) return;
@@ -91,43 +95,20 @@ public partial class PlayerInteraction : Node
             }
             if (interactionWithHurtNode is not IHurtableAndKillable hurtableAndKillable) continue;
             result.SetMeta("InteractingObject", _player);
-            if (hurtableAndKillable is IStompable stompableAndHurtable) {
-                if (stompableAndHurtable.Stompable) {
-                    if (!(_player.GlobalPosition.Y >=
-                          result.GlobalPosition.Y + stompableAndHurtable.StompOffset)) continue;
-                    switch (hurtableAndKillable.HurtType) {
-                        case IHurtableAndKillable.HurtEnum.Die:
-                            EmitSignal(SignalName.PlayerDie);
-                            break;
-                        case IHurtableAndKillable.HurtEnum.Hurt:
-                            EmitSignal(SignalName.PlayerHurtProcess);
-                            break;
-                        case IHurtableAndKillable.HurtEnum.Nothing:
-                            break;
-                    }
-                } else {
-                    switch (hurtableAndKillable.HurtType) {
-                        case IHurtableAndKillable.HurtEnum.Die:
-                            EmitSignal(SignalName.PlayerDie);
-                            break;
-                        case IHurtableAndKillable.HurtEnum.Hurt:
-                            EmitSignal(SignalName.PlayerHurtProcess);
-                            break;
-                        case IHurtableAndKillable.HurtEnum.Nothing:
-                            break;
-                    }
-                }
-            } else {
-                switch (hurtableAndKillable.HurtType) {
-                    case IHurtableAndKillable.HurtEnum.Die:
-                        EmitSignal(SignalName.PlayerDie);
-                        break;
-                    case IHurtableAndKillable.HurtEnum.Hurt:
-                        EmitSignal(SignalName.PlayerHurtProcess);
-                        break;
-                    case IHurtableAndKillable.HurtEnum.Nothing:
-                        break;
-                }
+            if (hurtableAndKillable is IStompable { Stompable: true } stompableAndHurtable) {
+                if (!(_player.GlobalPosition.Y >= 
+                      result.GlobalPosition.Y + stompableAndHurtable.StompOffset)) continue;
+            }
+            switch (hurtableAndKillable.HurtType) {
+                case IHurtableAndKillable.HurtEnum.Die:
+                    EmitSignal(SignalName.PlayerDie);
+                    break;
+                case IHurtableAndKillable.HurtEnum.Hurt:
+                    EmitSignal(SignalName.PlayerHurtProcess);
+                    hurtableAndKillable.PlayerHurtCheck(_hurtFrame);
+                    break;
+                case IHurtableAndKillable.HurtEnum.Nothing:
+                    break;
             }
         }
     }
@@ -187,5 +168,8 @@ public partial class PlayerInteraction : Node
         if (blockHitNode is not BlockHit blockHit) return;
         blockHit.OnBlockHit(_player);
         _playerMediator.playerMovement.SpeedY = 0f;
+    }
+    public void HurtSucceedSet() {
+        _hurtFrame = true;
     }
 }

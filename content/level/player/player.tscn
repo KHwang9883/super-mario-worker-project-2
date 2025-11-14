@@ -200,6 +200,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerJump" method="play"]
 [connection signal="SwimStarted" from="PlayerMediator/PlayerMovement" to="PlayerSwim" method="play"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerHurt"]
+[connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerInteraction" method="HurtSucceedSet"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="Powerdown" method="play"]
 [connection signal="PlayerInvincibleEnded" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerInvincibleEnded"]
 [connection signal="PlayerDie" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerDieAndHurt" method="Die"]

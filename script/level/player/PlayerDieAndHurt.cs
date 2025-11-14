@@ -54,6 +54,9 @@ public partial class PlayerDieAndHurt : Node {
         
         // 无敌星状态
         IsStarmanInvincible = _playerMediator.playerSuit.Starman;
+        
+        // 无敌状态标记
+        IsInvincible = (IsHurtInvincible || IsStarmanInvincible);
     }
     public CharacterBody2D GetPlayer() {
         return _player;
@@ -72,26 +75,20 @@ public partial class PlayerDieAndHurt : Node {
         }
     }
     public void Hurt() {
-        if (IsStarmanInvincible) return;
-        switch (IsHurtInvincible) {
-            case true:
-                return;
-            case false:
-                IsHurtInvincible = true;
-                _hurtInvincibleTimer = 0;
-                switch (_playerMediator.playerSuit.Suit) {
-                    case PlayerSuit.SuitEnum.Small:
-                        Die();
-                        break;
-                    case PlayerSuit.SuitEnum.Super:
-                        _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Small;
-                        EmitSignal(SignalName.PlayerHurted);
-                        break;
-                    case PlayerSuit.SuitEnum.Powered:
-                        _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Super;
-                        EmitSignal(SignalName.PlayerHurted);
-                        break;
-                }
+        if (IsStarmanInvincible || IsHurtInvincible) return;
+        IsHurtInvincible = true;
+        _hurtInvincibleTimer = 0;
+        switch (_playerMediator.playerSuit.Suit) {
+            case PlayerSuit.SuitEnum.Small:
+                Die();
+                break;
+            case PlayerSuit.SuitEnum.Super:
+                _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Small;
+                EmitSignal(SignalName.PlayerHurted);
+                break;
+            case PlayerSuit.SuitEnum.Powered:
+                _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Super;
+                EmitSignal(SignalName.PlayerHurted);
                 break;
         }
     }
