@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=49 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_qn4ca"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
@@ -40,6 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://fbxq1hg4e22f" path="res://content/level/enemy/roto-disc/roto-disc_still.tscn" id="40_trls0"]
 [ext_resource type="PackedScene" uid="uid://rmc4tiejgsom" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_blue.tscn" id="41_8mywb"]
 [ext_resource type="PackedScene" uid="uid://cxq657y5vb3qe" path="res://content/level/enemy/troopa/troopa_walking/buzzy_beetle.tscn" id="41_n7ka3"]
+[ext_resource type="PackedScene" uid="uid://c6sorpmpi4oap" path="res://content/level/enemy/thwomp/thwomp.tscn" id="41_no08i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
 atlas = ExtResource("8_lgciv")
@@ -282,7 +283,7 @@ tile_set = SubResource("TileSet_d7yf6")
 
 [node name="Mario" parent="TestNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(1068, 364)
+position = Vector2(1232, 304)
 
 [node name="TestCamera2D" type="Camera2D" parent="TestNode2D/Mario" groups=["camera"]]
 process_callback = 0
@@ -445,16 +446,31 @@ position = Vector2(1136, 432)
 position = Vector2(1192, 400)
 
 [node name="ShellMovingBeetle2" parent="TestNode2D/Enemies" instance=ExtResource("37_lxach")]
-position = Vector2(1196, 360)
+position = Vector2(1092, 392)
 
 [node name="ShellMovingGreen2" parent="TestNode2D/Enemies" instance=ExtResource("27_r5pq0")]
-position = Vector2(1056, 400)
+position = Vector2(1004, 432)
+
+[node name="ShellMovingBlue" parent="TestNode2D/Enemies" instance=ExtResource("40_lxach")]
+position = Vector2(1416, 276)
+
+[node name="ShellMovingGreen5" parent="TestNode2D/Enemies" instance=ExtResource("27_r5pq0")]
+position = Vector2(1468, 272)
 
 [node name="ShellMovingBeetle3" parent="TestNode2D/Enemies" instance=ExtResource("37_lxach")]
 position = Vector2(1360, 432)
 
 [node name="BuzzyBeetle" parent="TestNode2D/Enemies" instance=ExtResource("41_n7ka3")]
 position = Vector2(1752, 208)
+
+[node name="Thwomp" parent="TestNode2D/Enemies" instance=ExtResource("41_no08i")]
+position = Vector2(1280, 192)
+
+[node name="Thwomp2" parent="TestNode2D/Enemies" instance=ExtResource("41_no08i")]
+position = Vector2(1568, 336)
+
+[node name="Thwomp3" parent="TestNode2D/Enemies" instance=ExtResource("41_no08i")]
+position = Vector2(1692, 236)
 
 [node name="Powerups" type="Node2D" parent="TestNode2D"]
 
@@ -503,7 +519,7 @@ position = Vector2(560, 176)
 position = Vector2(656, 144)
 
 [node name="Brick4" parent="TestNode2D/Facilities" instance=ExtResource("23_dmmuc")]
-position = Vector2(1232, 336)
+position = Vector2(1264, 304)
 
 [node name="Brick5" parent="TestNode2D/Facilities" instance=ExtResource("23_dmmuc")]
 position = Vector2(1232, 400)
@@ -515,14 +531,14 @@ position = Vector2(880, 176)
 position = Vector2(912, 176)
 
 [node name="Brick8" parent="TestNode2D/Facilities" instance=ExtResource("23_dmmuc")]
-position = Vector2(1232, 368)
+position = Vector2(1296, 304)
+
+[node name="Brick9" parent="TestNode2D/Facilities" instance=ExtResource("23_dmmuc")]
+position = Vector2(1392, 400)
+
+[node name="Brick10" parent="TestNode2D/Facilities" instance=ExtResource("23_dmmuc")]
+position = Vector2(1424, 400)
 
 [node name="DebugObjectGroup" type="Node2D" parent="TestNode2D"]
-
-[node name="ShellMovingBlue" parent="TestNode2D" instance=ExtResource("40_lxach")]
-position = Vector2(1416, 276)
-
-[node name="ShellMovingGreen" parent="TestNode2D" instance=ExtResource("27_r5pq0")]
-position = Vector2(1468, 272)
 
 [connection signal="PlaySoundTimeWarning" from="TestNode2D/HUD/HUD" to="TestNode2D/HUD/HUD/TimeWarning" method="play"]

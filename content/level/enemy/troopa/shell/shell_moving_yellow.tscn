@@ -72,7 +72,7 @@ collide_with_areas = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_4nr65")
-debug_color = Color(3.0322374e-06, 0.6762431, 0.49805695, 0.41960785)
+debug_color = Color(0.66792136, 0.5692672, 0, 0.41960785)
 
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("2_hdjmv")

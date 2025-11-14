@@ -18,6 +18,7 @@ public partial class BrickBlockHit : BlockHit {
             (_playerSuit?.Suit == PlayerSuit.SuitEnum.Small)
             || collider.IsInGroup("beetroot")
             || collider.HasMeta("ShellBlockHitInteraction")
+            || collider.HasMeta("ThwompInteraction")
             );
         return _bumpable;
     }
@@ -29,10 +30,8 @@ public partial class BrickBlockHit : BlockHit {
             (_playerSuit?.Suit != PlayerSuit.SuitEnum.Small)
             || collider.IsInGroup("beetroot")
             || collider.HasMeta("ShellBlockHitInteraction")
+            || collider.HasMeta("ThwompInteraction")
             );
-
-        // Todo: if collider is IHardshell
-        
         return _breakable;
     }
 }

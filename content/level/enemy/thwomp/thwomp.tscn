@@ -1,0 +1,176 @@
+[gd_scene load_steps=26 format=3 uid="uid://c6sorpmpi4oap"]
+
+[ext_resource type="Texture2D" uid="uid://bfbac4qsh4kkb" path="res://content/level/enemy/thwomp/thwomp.png" id="1_xlnxf"]
+[ext_resource type="Script" uid="uid://dg5a8me4n17al" path="res://script/level/enemy/thwomp/ThwompMovement.cs" id="2_1b68e"]
+[ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="2_xncm2"]
+[ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="3_47vhk"]
+[ext_resource type="Script" uid="uid://c3ejkunm2rb24" path="res://script/level/enemy/thwomp/ThwompInteraction.cs" id="3_c4qcv"]
+[ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="4_g5e45"]
+[ext_resource type="AudioStream" uid="uid://bryms0br18kgn" path="res://content/sound/thwomp_grounded.se.wav" id="6_vpv1m"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="7_c4qcv"]
+[ext_resource type="AudioStream" uid="uid://cmfxc53g4wnnl" path="res://content/sound/thwomp_smile.se.wav" id="8_ulqxk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp7ph"]
+atlas = ExtResource("1_xlnxf")
+region = Rect2(0, 2, 64, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pomb"]
+atlas = ExtResource("1_xlnxf")
+region = Rect2(0, 70, 64, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3h4x"]
+atlas = ExtResource("1_xlnxf")
+region = Rect2(0, 136, 64, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqvfn"]
+atlas = ExtResource("1_xlnxf")
+region = Rect2(0, 202, 64, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5nps"]
+atlas = ExtResource("1_xlnxf")
+region = Rect2(0, 268, 64, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qu3oq"]
+atlas = ExtResource("1_xlnxf")
+region = Rect2(0, 334, 64, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw6cg"]
+atlas = ExtResource("1_xlnxf")
+region = Rect2(0, 400, 64, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnued"]
+atlas = ExtResource("1_xlnxf")
+region = Rect2(0, 466, 64, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbscb"]
+atlas = ExtResource("1_xlnxf")
+region = Rect2(0, 532, 64, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g3wc"]
+atlas = ExtResource("1_xlnxf")
+region = Rect2(0, 598, 64, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p33rv"]
+atlas = ExtResource("1_xlnxf")
+region = Rect2(0, 664, 64, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5i3p"]
+atlas = ExtResource("1_xlnxf")
+region = Rect2(0, 730, 64, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp6ig"]
+atlas = ExtResource("1_xlnxf")
+region = Rect2(0, 796, 64, 66)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1b68e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp7ph")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pomb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3h4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqvfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5nps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qu3oq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw6cg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnued")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbscb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g3wc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p33rv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5i3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp6ig")
+}],
+"loop": true,
+"name": &"taunt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bodyr"]
+size = Vector2(52, 66)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_c4qcv"]
+b = Vector2(52, 0)
+
+[node name="Thwomp" type="CharacterBody2D"]
+z_index = 30
+collision_layer = 16
+collision_mask = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1b68e")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bodyr")
+debug_color = Color(0.6732432, 0.5001864, 0.30576655, 0.41960785)
+
+[node name="ThwompMovement" type="Node" parent="."]
+script = ExtResource("2_1b68e")
+
+[node name="ThwompInteraction" type="Node" parent="."]
+script = ExtResource("3_c4qcv")
+
+[node name="InteractionWithPlayer" type="Node" parent="."]
+script = ExtResource("2_xncm2")
+metadata/_custom_type_script = "uid://dk0y3j6216tik"
+
+[node name="InteractionWithFireball" type="Node" parent="."]
+script = ExtResource("3_47vhk")
+metadata/_custom_type_script = "uid://ckwcmi42tdbmc"
+
+[node name="InteractionWithBeetroot" type="Node" parent="."]
+script = ExtResource("4_g5e45")
+metadata/_custom_type_script = "uid://bkc8a0hddhajq"
+
+[node name="Stun" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_vpv1m")
+script = ExtResource("7_c4qcv")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="Taunt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ulqxk")
+script = ExtResource("7_c4qcv")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-26, 32)
+collision_layer = 16
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("SegmentShape2D_c4qcv")
+debug_color = Color(1, 0.0028010171, 0.093188755, 0.41960785)
+metadata/_edit_lock_ = true
+
+[connection signal="PlaySoundStun" from="ThwompMovement" to="Stun" method="play"]
+[connection signal="ThwompBlockHit" from="ThwompMovement" to="ThwompInteraction" method="OnThwompBlockHit"]
+[connection signal="body_entered" from="Area2D" to="ThwompInteraction" method="OnThwompBlockHit"]

@@ -80,7 +80,7 @@ collide_with_areas = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_4nr65")
-debug_color = Color(3.0322374e-06, 0.6762431, 0.49805695, 0.41960785)
+debug_color = Color(0.7241838, 0.5225501, 0.38869995, 0.41960785)
 
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("2_ukljn")
@@ -121,9 +121,8 @@ _shell = NodePath("..")
 _shellCombo = NodePath("../ComboComponent")
 HardLevel = 15
 
-[node name="ShellBlockHitInteraction" type="Node" parent="." node_paths=PackedStringArray("_basicMovement")]
+[node name="ShellBlockHitInteraction" type="Node" parent="."]
 script = ExtResource("9_ukljn")
-_basicMovement = NodePath("../BasicMovement")
 
 [node name="ComboComponent" parent="." instance=ExtResource("9_f5rfr")]
 
