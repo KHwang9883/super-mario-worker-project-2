@@ -56,9 +56,9 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
     
     [ExportGroup("Shell")]
     [Export] public bool IsShellHittable { get; set; } = true;
-    [Export] public bool ImmuneToShell { get; set; }
-    [Export] public bool HardToShell { get; set; }
-    
+    [Export] public int HardLevel { get; set; }
+    [Export] public bool KillShell { get; set; }
+
     [ExportGroup("Bump")]
     [Export] public bool IsBumpHittable { get; set; } = true;
     [Export] public bool ImmuneToBump { get; set; }
@@ -160,12 +160,9 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
     public bool OnShellHit(int score) {
         if (!IsShellHittable) return false;
         EmitSignal(SignalName.ShellHit);
-        // 反死龟壳
-        if (HardToShell) return HardToShell;
         OnComboAddScore(score);
-        //EmitSignal(SignalName.PlaySoundKicked);
         OnDied();
-        return HardToShell;
+        return KillShell;
     }
     // 被顶
     void IBumpHittable.MetadataInject(Node2D parent) {

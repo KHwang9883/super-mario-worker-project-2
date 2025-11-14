@@ -9,8 +9,8 @@ public partial class InteractionWithShell : Node, IShellHittable {
     [Signal]
     public delegate void ShellHitAddScoreEventHandler(int score);
     [Export] public bool IsShellHittable { get; set; } = true;
-    [Export] public bool ImmuneToShell { get; set; }
-    [Export] public bool HardToShell { get; set; }
+    [Export] public int HardLevel { get; set; }
+    [Export] public bool KillShell { get; set; }
 
     private Node2D? _parent;
 
@@ -22,9 +22,9 @@ public partial class InteractionWithShell : Node, IShellHittable {
         parent?.SetMeta("InteractionWithShell", this);
     }
     public bool OnShellHit(int score) {
+        if (!IsShellHittable) return false;
         EmitSignal(SignalName.ShellHit);
         EmitSignal(SignalName.ShellHitAddScore, score);
-        // 被硬物件反死
-        return HardToShell;
+        return KillShell;
     }
 }

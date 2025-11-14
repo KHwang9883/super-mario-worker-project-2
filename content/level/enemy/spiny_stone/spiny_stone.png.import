@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pau5gllvaqrr"
-path="res://.godot/imported/shell_hard.png-47b0e7073639a9f54f602f79b8093bcd.ctex"
+uid="uid://ck5su1mm04usw"
+path="res://.godot/imported/spiny_stone.png-6e194f7da8deabec91d764fdb411e0e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/level/enemy/troopa/shell/shell_hard.png"
-dest_files=["res://.godot/imported/shell_hard.png-47b0e7073639a9f54f602f79b8093bcd.ctex"]
+source_file="res://content/level/enemy/spiny_stone/spiny_stone.png"
+dest_files=["res://.godot/imported/spiny_stone.png-6e194f7da8deabec91d764fdb411e0e8.ctex"]
 
 [params]
 

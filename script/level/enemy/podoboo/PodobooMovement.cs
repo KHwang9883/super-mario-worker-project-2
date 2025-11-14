@@ -8,8 +8,13 @@ public partial class PodobooMovement : Node {
     [Export] private int _resetPhaseTime = 200;
     private Vector2 _originPosition;
     private Node2D? _parent;
-
-    private int _podobooPhase;
+    private enum PodobooState {
+        Ready,
+        Jumping,
+        Cooldown,
+    }
+    private PodobooState _currentState = PodobooState.Ready;
+    private int _cooldownCounter;
     private float _speedY;
 
     public override void _Ready() {
@@ -20,20 +25,19 @@ public partial class PodobooMovement : Node {
     public override void _PhysicsProcess(double delta) {
         if (_parent == null) return;
         // 运动
-        switch (_podobooPhase) {
-            case 0:
-                _podobooPhase = 1;
+        switch (_currentState) {
+            case PodobooState.Ready:
+                _currentState = PodobooState.Jumping;
                 _speedY = _jumpSpeedY;
                 break;
             
-            case 1:
+            case PodobooState.Jumping:
                 _speedY += _gravity;
                 _parent.Position = new Vector2(
                     _parent.Position.X,
                     _parent.Position.Y + _speedY
                 );
 
-                // 根据运动方向翻转精灵
                 _parent.Scale = new Vector2(
                     _parent.Scale.X,
                     _speedY < 0 ? 1f : -1f
@@ -47,21 +51,21 @@ public partial class PodobooMovement : Node {
                         );
                         _parent.AddSibling(lavaSplash);
                     }
-                    _podobooPhase = 2;
+                    _currentState = PodobooState.Cooldown;
+                    _cooldownCounter = 0;
                     _speedY = 0f;
-                    _parent.Position = new Vector2(-2000f, -2000f); // 隐藏火球（移到屏幕外）
+                    _parent.Position = new Vector2(-2000f, -2000f);
                     _parent.ResetPhysicsInterpolation();
                 }
                 break;
             
-            case var phase when phase >= 2 && phase < _resetPhaseTime:
-                _podobooPhase++;
-                break;
-            
-            case var phase when phase == _resetPhaseTime:
-                _podobooPhase = 0;
-                _parent.Position = new Vector2(_originPosition.X, _originPosition.Y);
-                _parent.ResetPhysicsInterpolation();
+            case PodobooState.Cooldown:
+                _cooldownCounter++;
+                if (_cooldownCounter >= _resetPhaseTime) {
+                    _currentState = PodobooState.Ready;
+                    _parent.Position = new Vector2(_originPosition.X, _originPosition.Y);
+                    _parent.ResetPhysicsInterpolation();
+                }
                 break;
         }
     }
