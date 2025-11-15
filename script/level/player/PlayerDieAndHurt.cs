@@ -9,6 +9,8 @@ public partial class PlayerDieAndHurt : Node {
     [Signal]
     public delegate void PlayerInvincibleEndedEventHandler();
     [Signal]
+    public delegate void PlayerDiedEventHandler();
+    [Signal]
     public delegate void PlayerHurtedEventHandler();
     
     [Export] private PlayerMediator _playerMediator = null!;
@@ -81,6 +83,7 @@ public partial class PlayerDieAndHurt : Node {
         switch (_playerMediator.playerSuit.Suit) {
             case PlayerSuit.SuitEnum.Small:
                 Die();
+                EmitSignal(SignalName.PlayerDied);
                 break;
             case PlayerSuit.SuitEnum.Super:
                 _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Small;

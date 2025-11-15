@@ -35,6 +35,8 @@ public partial class BanzaiBillCannonMovement : Node {
         _parent.AddSibling(banzaiBill);
         _timer = 0f;
         _timeAddSpeedImproved = 1f + _rng.RandfRange(0f, _shootTimeBonus);
+        
+        // 一定纵向范围内播放音效
         if (_parent.Position.Y > ScreenUtils.GetScreenRect(this).Position.Y - 16f
             && _parent.Position.Y < ScreenUtils.GetScreenRect(this).End.Y + 16f) {
             EmitSignal(SignalName.PlaySoundBullet);

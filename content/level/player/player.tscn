@@ -148,7 +148,7 @@ _playerEffectScene = ExtResource("11_q05y8")
 [node name="PlayerSuit" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator")]
 script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
-Suit = 2
+Suit = 1
 Powerup = 1
 
 [node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_starmanCombo")]
@@ -199,6 +199,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerAnimation" method="OnJumpStarted"]
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerJump" method="play"]
 [connection signal="SwimStarted" from="PlayerMediator/PlayerMovement" to="PlayerSwim" method="play"]
+[connection signal="PlayerDied" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerInteraction" method="HurtSucceedSet"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerHurt"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerInteraction" method="HurtSucceedSet"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="Powerdown" method="play"]
