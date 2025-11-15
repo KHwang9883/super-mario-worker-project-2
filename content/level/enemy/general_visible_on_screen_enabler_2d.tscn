@@ -1,6 +1,11 @@
-[gd_scene format=3 uid="uid://q40ma1wp5821"]
+[gd_scene load_steps=2 format=3 uid="uid://q40ma1wp5821"]
 
-[node name="GeneralVisibleOnScreenEnabler2d" type="VisibleOnScreenEnabler2D"]
+[ext_resource type="Script" uid="uid://blc2pahgib1p7" path="res://script/level/enemy/GeneralVisibleOnScreenEnabler2d.cs" id="1_abgn5"]
+
+[node name="GeneralVisibleOnScreenEnabler2d" type="VisibleOnScreenNotifier2D"]
 rect = Rect2(-100, -100, 200, 200)
 show_rect = false
+script = ExtResource("1_abgn5")
 metadata/_edit_lock_ = true
+
+[connection signal="screen_entered" from="." to="." method="OnScreenEntered"]
