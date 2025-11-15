@@ -4,13 +4,13 @@ namespace SMWP.Level.Component;
 
 [GlobalClass]
 public partial class AutoQueueFreeAfterDelay : Node {
-    [Export] private Node _ancestor = null!;
+    [Export] private Node? _ancestor;
     [Export] private int _delayFrames = 100;
     [Export] private bool _fadeOut = false;
     [Export] private float _fadeSpeed = 0.1f;
     
     private int _timer;
-    private CanvasItem _targetSprite; // 用父类统一接收 Sprite2D/AnimatedSprite2D
+    private CanvasItem? _targetSprite; // 用父类统一接收 Sprite2D/AnimatedSprite2D
     private float _initialAlpha;
 
     public override void _Ready() {

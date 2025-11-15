@@ -6,7 +6,7 @@ namespace SMWP.Level.Tool;
 public static class ScreenUtils {
     public static Rect2 GetScreenRect(Node node) {
         if (!node.IsInsideTree()) {
-            GD.PushError($"Failed to GetScreenRect. {node.Name} is not inside tree!");
+            //GD.PushError($"Failed to GetScreenRect. {node.Name} is not inside tree!");
             return new Rect2();
         }
         Viewport viewport = node.GetViewport();

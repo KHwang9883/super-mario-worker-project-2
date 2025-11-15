@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://idlqpw776tt6"]
 
-[ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/SmwlLevel.cs" id="1_rpefo"]
-[ext_resource type="Script" uid="uid://c8yu81i46jf4r" path="res://script/level/SmwlLoader.cs" id="1_wc7qm"]
+[ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/level_loader/SmwlLevel.cs" id="1_rpefo"]
+[ext_resource type="Script" uid="uid://c8yu81i46jf4r" path="res://script/level/level_loader/SmwlLoader.cs" id="1_wc7qm"]
 [ext_resource type="TileSet" uid="uid://bnf7dwxlyydri" path="res://content/level/tile/obstacles.tileset.tres" id="2_dugl1"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_y2vn4"]
-[ext_resource type="Script" uid="uid://bsg2x1q80u5ee" path="res://script/level/SmwlBlockDataHolder.cs" id="5_y2vn4"]
+[ext_resource type="Script" uid="uid://bsg2x1q80u5ee" path="res://script/level/level_loader/SmwlBlockDataHolder.cs" id="5_y2vn4"]
 [ext_resource type="Resource" uid="uid://dg3a08a8q43kb" path="res://content/level/database/block_database.tres" id="6_4alqs"]
 [ext_resource type="TileSet" uid="uid://obv64rtoaukf" path="res://content/level/tile/blocks.tileset.tres" id="7_fn8k0"]
 

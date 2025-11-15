@@ -148,7 +148,7 @@ _playerEffectScene = ExtResource("11_q05y8")
 [node name="PlayerSuit" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator")]
 script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
-Powerup = 1
+Suit = 2
 
 [node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_starmanCombo")]
 script = ExtResource("12_tpspr")
