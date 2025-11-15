@@ -10,6 +10,7 @@ public partial class ThwompMovement : Node {
     [Export] private float _gravity = 1f;
     [Export] private int _groundedTime = 96;
     [Export] private float _reserveSpeed = 1f;
+    [Export] private PackedScene _thwompInteractionAreaScene = GD.Load<PackedScene>("uid://dehets20u566");
     private CharacterBody2D? _parent;
     private Node2D? _player;
     private float _originY;
@@ -54,7 +55,7 @@ public partial class ThwompMovement : Node {
                     do {
                         _parent.Position = _parent.Position with { Y = _parent.Position.Y - 1f };
                         _parent.ForceUpdateTransform();
-                        collision = _parent.MoveAndCollide(Vector2.Zero, true, 0.01f);
+                        collision = _parent.MoveAndCollide(new Vector2(0f, 1f), true, 0.01f);
                     } while (collision != null);
                     
                     // 瞬移到比原位更高的位置，记录更高位
@@ -69,6 +70,11 @@ public partial class ThwompMovement : Node {
                     _speedY = 0f;
                     EmitSignal(SignalName.PlaySoundStun);
                     _parent.ResetPhysicsInterpolation();
+
+                    var thwompInteractionArea = _thwompInteractionAreaScene.Instantiate<Node2D>();
+                    thwompInteractionArea.Position = _parent.Position;
+                    thwompInteractionArea.SetMeta("Thwomp", _parent);
+                    _parent.AddSibling(thwompInteractionArea);
                     
                     // 恢复无实心判定
                     _parent.SetCollisionMask(0);

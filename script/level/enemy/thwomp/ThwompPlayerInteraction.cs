@@ -16,7 +16,7 @@ public partial class ThwompPlayerInteraction : InteractionWithPlayer {
     }
     private ThwompTauntState _currentState = ThwompTauntState.Normal;
 
-    public override void _PhysicsProcess(double delta) {
+    public void TryResetState() {
         if (!_animationFinished || !_soundPlayEnd) return;
         _animationFinished = false;
         _soundPlayEnd = false;
@@ -29,8 +29,10 @@ public partial class ThwompPlayerInteraction : InteractionWithPlayer {
     }
     public void OnSoundPlayEnd() {
         _soundPlayEnd = true;
+        TryResetState();
     }
     public void OnAnimationFinished() {
         _animationFinished = true;
+        TryResetState();
     }
 }

@@ -454,6 +454,9 @@ position = Vector2(1552, 400)
 [node name="BanzaiBillCannon2" parent="TestLevelNode2D/Enemies" instance=ExtResource("36_no08i")]
 position = Vector2(1504, 376)
 
+[node name="MissileBill" parent="TestLevelNode2D/Enemies" instance=ExtResource("38_c8b4a")]
+position = Vector2(1468, 400)
+
 [node name="Powerups" type="Node2D" parent="TestLevelNode2D"]
 
 [node name="FireFlower" parent="TestLevelNode2D/Powerups" instance=ExtResource("17_d2gt5")]
@@ -537,8 +540,5 @@ position = Vector2(1296, 160)
 position = Vector2(1652, 208)
 
 [node name="DebugObjectGroup" type="Node2D" parent="TestLevelNode2D"]
-
-[node name="MissileBill" parent="." instance=ExtResource("38_c8b4a")]
-position = Vector2(1468, 400)
 
 [connection signal="PlaySoundTimeWarning" from="TestLevelNode2D/HUD/HUD" to="TestLevelNode2D/HUD/HUD/TimeWarning" method="play"]

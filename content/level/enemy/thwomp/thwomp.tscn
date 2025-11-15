@@ -1,9 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://c6sorpmpi4oap"]
+[gd_scene load_steps=24 format=3 uid="uid://c6sorpmpi4oap"]
 
 [ext_resource type="Texture2D" uid="uid://bfbac4qsh4kkb" path="res://content/level/enemy/thwomp/thwomp.png" id="1_xlnxf"]
 [ext_resource type="Script" uid="uid://dg5a8me4n17al" path="res://script/level/enemy/thwomp/ThwompMovement.cs" id="2_1b68e"]
 [ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="3_47vhk"]
-[ext_resource type="Script" uid="uid://c3ejkunm2rb24" path="res://script/level/enemy/thwomp/ThwompInteraction.cs" id="3_c4qcv"]
 [ext_resource type="Script" uid="uid://cmh1atpqlhvdm" path="res://script/level/enemy/thwomp/ThwompPlayerInteraction.cs" id="4_c4qcv"]
 [ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="4_g5e45"]
 [ext_resource type="AudioStream" uid="uid://bryms0br18kgn" path="res://content/sound/thwomp_grounded.se.wav" id="6_vpv1m"]
@@ -117,9 +116,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bodyr"]
 size = Vector2(52, 66)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_c4qcv"]
-b = Vector2(52, 0)
-
 [node name="Thwomp" type="CharacterBody2D"]
 z_index = 30
 collision_layer = 16
@@ -136,10 +132,6 @@ debug_color = Color(0.6732432, 0.5001864, 0.30576655, 0.41960785)
 
 [node name="ThwompMovement" type="Node" parent="."]
 script = ExtResource("2_1b68e")
-
-[node name="ThwompInteraction" type="Node" parent="." node_paths=PackedStringArray("_thwompMovement")]
-script = ExtResource("3_c4qcv")
-_thwompMovement = NodePath("../ThwompMovement")
 
 [node name="InteractionWithPlayer" type="Node" parent="."]
 script = ExtResource("4_c4qcv")
@@ -163,20 +155,9 @@ stream = ExtResource("8_ulqxk")
 script = ExtResource("7_c4qcv")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-26, 32)
-collision_layer = 16
-collision_mask = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("SegmentShape2D_c4qcv")
-debug_color = Color(1, 0.0028010171, 0.093188755, 0.41960785)
-metadata/_edit_lock_ = true
-
 [connection signal="animation_finished" from="AnimatedSprite2D" to="InteractionWithPlayer" method="OnAnimationFinished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="set_animation" flags=3 binds= [&"default"]]
 [connection signal="PlaySoundStun" from="ThwompMovement" to="Stun" method="play"]
 [connection signal="ThwompTaunt" from="InteractionWithPlayer" to="Taunt" method="play"]
 [connection signal="ThwompTaunt" from="InteractionWithPlayer" to="AnimatedSprite2D" method="play" binds= [&"taunt"]]
 [connection signal="finished" from="Taunt" to="InteractionWithPlayer" method="OnSoundPlayEnd"]
-[connection signal="body_entered" from="Area2D" to="ThwompInteraction" method="OnThwompBlockHit"]
