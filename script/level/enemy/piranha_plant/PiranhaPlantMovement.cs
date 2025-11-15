@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level.Projectile.Enemy;
 
 public partial class PiranhaPlantMovement : Node {
     [ExportGroup("Movement")]
@@ -11,6 +12,7 @@ public partial class PiranhaPlantMovement : Node {
     [Export] private float _angle;
 
     [ExportGroup("FireOption")]
+    [Export] private PackedScene _enemyFireballCreatorScene = GD.Load<PackedScene>("uid://3aosn6ngfibc");
     [Export] private bool _fire;
     
     private enum MoveState { Biting, Retracting, Waiting, Rising }
@@ -20,6 +22,7 @@ public partial class PiranhaPlantMovement : Node {
     private Node2D? _parent;
     private Node2D? _player;
     private RandomNumberGenerator _rng = new();
+    private bool _fired;
     
     private Vector2 MovementDirection {
         get {
@@ -44,8 +47,17 @@ public partial class PiranhaPlantMovement : Node {
         _stateTimer++;
 
         switch (_currentState) {
-            case MoveState.Biting when _stateTimer >= _bitingTime:
-                TransitionState(MoveState.Retracting, 0);
+            case MoveState.Biting:
+                if (_fire && !_fired) {
+                    var enemyFireballCreator = _enemyFireballCreatorScene.Instantiate<EnemyFireballCreator>();
+                    enemyFireballCreator.Position = _parent.Position;
+                    AddSibling(enemyFireballCreator);
+                    _fired = true;
+                }
+                if (_stateTimer >= _bitingTime) {
+                    _fired = false;
+                    TransitionState(MoveState.Retracting, 0);
+                }
                 break;
             
             case MoveState.Retracting:

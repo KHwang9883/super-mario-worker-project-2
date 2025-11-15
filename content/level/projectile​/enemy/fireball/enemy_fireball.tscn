@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://moorst8boiav"]
+
+[ext_resource type="Texture2D" uid="uid://caoo0e1qx46vn" path="res://content/level/projectile​/fireball.png" id="1_ap6e8"]
+[ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="2_ixhwe"]
+[ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="3_tapga"]
+[ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="4_2cbwl"]
+[ext_resource type="Script" uid="uid://ds37271a1xd14" path="res://script/level/projectile​/enemy/fireball/EnemyFireballMovement.cs" id="5_wfvcf"]
+[ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="6_ixhwe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5s1o"]
+size = Vector2(15, 16)
+
+[node name="EnemyFireball" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ap6e8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w5s1o")
+debug_color = Color(0.9976923, 0, 0.17044565, 0.41960785)
+
+[node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("_sprite2D", "MoveObject")]
+script = ExtResource("5_wfvcf")
+_sprite2D = NodePath("../Sprite2D")
+MoveObject = NodePath("..")
+InitiallyFaceToPlayer = false
+SpeedY = -4.5
+metadata/_custom_type_script = "uid://chn4gqrm87qtl"
+
+[node name="InteractionWithPlayer" type="Node" parent="."]
+script = ExtResource("2_ixhwe")
+metadata/_custom_type_script = "uid://dk0y3j6216tik"
+
+[node name="InteractionWithFireball" type="Node" parent="."]
+script = ExtResource("3_tapga")
+metadata/_custom_type_script = "uid://ckwcmi42tdbmc"
+
+[node name="InteractionWithBeetroot" type="Node" parent="."]
+script = ExtResource("4_2cbwl")
+metadata/_custom_type_script = "uid://bkc8a0hddhajq"
+
+[node name="OutOfBoundsQueueFree" type="Node" parent="."]
+script = ExtResource("6_ixhwe")
+metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"

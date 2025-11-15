@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=48 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
@@ -34,14 +34,12 @@
 [ext_resource type="PackedScene" uid="uid://cdxpkopiyqfi4" path="res://content/level/enemy/troopa/troopa_walking/troopa_yellow.tscn" id="38_gctg4"]
 [ext_resource type="PackedScene" uid="uid://cevffktw1srif" path="res://content/level/enemy/bullet_bill/missile_bill_cannon.tscn" id="38_sh4so"]
 [ext_resource type="PackedScene" uid="uid://d35x6v4omtxlq" path="res://content/level/enemy/boo/boo.tscn" id="39_gctg4"]
-[ext_resource type="PackedScene" uid="uid://dh8pgpynxisry" path="res://content/level/enemy/piranha_plant/piranha_plant_green.tscn" id="40_8mywb"]
 [ext_resource type="PackedScene" uid="uid://7whmweafbswk" path="res://content/level/enemy/troopa/shell/shell_moving_blue.tscn" id="40_lxach"]
 [ext_resource type="PackedScene" uid="uid://fbxq1hg4e22f" path="res://content/level/enemy/roto-disc/roto-disc_still.tscn" id="40_trls0"]
 [ext_resource type="PackedScene" uid="uid://rmc4tiejgsom" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_blue.tscn" id="41_8mywb"]
 [ext_resource type="PackedScene" uid="uid://cxq657y5vb3qe" path="res://content/level/enemy/troopa/troopa_walking/buzzy_beetle.tscn" id="41_n7ka3"]
 [ext_resource type="PackedScene" uid="uid://c6sorpmpi4oap" path="res://content/level/enemy/thwomp/thwomp.tscn" id="41_no08i"]
-[ext_resource type="PackedScene" uid="uid://c23nkg11c62hp" path="res://content/level/enemy/piranha_plant/piranha_plant_stone.tscn" id="41_vgddd"]
-[ext_resource type="PackedScene" uid="uid://chrmn2f5rir5y" path="res://content/level/enemy/piranha_plant/piranha_plant_blue.tscn" id="42_m0yu7"]
+[ext_resource type="PackedScene" uid="uid://cb62nwjb51k1v" path="res://content/level/enemy/piranha_plant/piranha_plant_fire.tscn" id="42_n7ka3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
 atlas = ExtResource("8_lgciv")
@@ -259,7 +257,7 @@ tile_set = SubResource("TileSet_d7yf6")
 
 [node name="Mario" parent="TestLevelNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(1764, 208)
+position = Vector2(1764, 212)
 
 [node name="TestCamera2D" type="Camera2D" parent="TestLevelNode2D/Mario" groups=["camera"]]
 process_callback = 0
@@ -460,6 +458,15 @@ position = Vector2(1504, 376)
 [node name="MissileBill" parent="TestLevelNode2D/Enemies" instance=ExtResource("38_c8b4a")]
 position = Vector2(1468, 400)
 
+[node name="PiranhaPlantFire" parent="TestLevelNode2D/Enemies" instance=ExtResource("42_n7ka3")]
+position = Vector2(1832, 192)
+
+[node name="PiranhaPlantFire2" parent="TestLevelNode2D/Enemies" instance=ExtResource("42_n7ka3")]
+position = Vector2(2028, 244)
+
+[node name="PiranhaPlantFire3" parent="TestLevelNode2D/Enemies" instance=ExtResource("42_n7ka3")]
+position = Vector2(2084, 244)
+
 [node name="Powerups" type="Node2D" parent="TestLevelNode2D"]
 
 [node name="FireFlower" parent="TestLevelNode2D/Powerups" instance=ExtResource("17_d2gt5")]
@@ -542,39 +549,6 @@ position = Vector2(1296, 160)
 [node name="MissileBillCannon" parent="TestLevelNode2D/Facilities" instance=ExtResource("38_sh4so")]
 position = Vector2(1632, 240)
 
-[node name="PiranhaPlantGreen" parent="TestLevelNode2D/Facilities" instance=ExtResource("40_8mywb")]
-position = Vector2(1888, 200)
-
-[node name="PiranhaPlantGreen2" parent="TestLevelNode2D/Facilities" instance=ExtResource("40_8mywb")]
-position = Vector2(1824, 200)
-
 [node name="DebugObjectGroup" type="Node2D" parent="TestLevelNode2D"]
-
-[node name="PiranhaPlantGreen" parent="TestLevelNode2D" instance=ExtResource("40_8mywb")]
-position = Vector2(1856, 200)
-
-[node name="PiranhaPlantStone" parent="TestLevelNode2D" instance=ExtResource("41_vgddd")]
-position = Vector2(1828, 40)
-
-[node name="PiranhaPlantStone2" parent="TestLevelNode2D" instance=ExtResource("41_vgddd")]
-position = Vector2(1872, 40)
-
-[node name="PiranhaPlantBlue" parent="TestLevelNode2D" instance=ExtResource("42_m0yu7")]
-position = Vector2(1688, 40)
-
-[node name="PiranhaPlantBlue2" parent="TestLevelNode2D" instance=ExtResource("42_m0yu7")]
-position = Vector2(1736, 40)
-
-[node name="ShellMovingGreen" parent="TestLevelNode2D" instance=ExtResource("27_r5pq0")]
-position = Vector2(1648, 52)
-
-[node name="ShellMovingGreen2" parent="TestLevelNode2D" instance=ExtResource("27_r5pq0")]
-position = Vector2(1912, 52)
-
-[node name="ShellMovingBeetle" parent="TestLevelNode2D" instance=ExtResource("37_lxach")]
-position = Vector2(1600, 52)
-
-[node name="ShellMovingBeetle2" parent="TestLevelNode2D" instance=ExtResource("37_lxach")]
-position = Vector2(1952, 52)
 
 [connection signal="PlaySoundTimeWarning" from="TestLevelNode2D/HUD/HUD" to="TestLevelNode2D/HUD/HUD/TimeWarning" method="play"]

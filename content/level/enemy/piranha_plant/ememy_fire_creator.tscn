@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://3aosn6ngfibc"]
+
+[ext_resource type="Script" uid="uid://ubxn4ynkmt5c" path="res://script/level/projectile​/enemy/fireball/EnemyFireballCreator.cs" id="1_2oems"]
+[ext_resource type="AudioStream" uid="uid://dbe1tmavcr73y" path="res://content/sound/fireball.se.wav" id="2_wvpw4"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="3_me4g2"]
+
+[node name="EnemyFireballCreator" type="Node2D"]
+script = ExtResource("1_2oems")
+
+[node name="Fireball" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_wvpw4")
+script = ExtResource("3_me4g2")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[connection signal="PlaySoundFireball" from="." to="Fireball" method="play"]
