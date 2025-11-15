@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dqi85edorfoge"
-path="res://.godot/imported/bullet.se.wav-ed6f177ff6ac06560bb27e7cc2a24ca5.sample"
+path="res://.godot/imported/bullet_bill.se.wav-418adf00c3dba28ce5923d0a0cf11eb5.sample"
 
 [deps]
 
-source_file="res://content/sound/bullet.se.wav"
-dest_files=["res://.godot/imported/bullet.se.wav-ed6f177ff6ac06560bb27e7cc2a24ca5.sample"]
+source_file="res://content/sound/bullet_bill.se.wav"
+dest_files=["res://.godot/imported/bullet_bill.se.wav-418adf00c3dba28ce5923d0a0cf11eb5.sample"]
 
 [params]
 

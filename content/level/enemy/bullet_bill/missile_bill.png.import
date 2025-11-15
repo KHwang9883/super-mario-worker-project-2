@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmi7wiiermvca"
-path="res://.godot/imported/banzai_bill_cannon.png-56c727d208bc00057844aa5aa4bb224b.ctex"
+uid="uid://bi4jwm8v42q71"
+path="res://.godot/imported/missile_bill.png-c8cd0e37caa81bf657514cb389ee7ac3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/level/enemy/banzai_bill/banzai_bill_cannon.png"
-dest_files=["res://.godot/imported/banzai_bill_cannon.png-56c727d208bc00057844aa5aa4bb224b.ctex"]
+source_file="res://content/level/enemy/bullet_bill/missile_bill.png"
+dest_files=["res://.godot/imported/missile_bill.png-c8cd0e37caa81bf657514cb389ee7ac3.ctex"]
 
 [params]
 

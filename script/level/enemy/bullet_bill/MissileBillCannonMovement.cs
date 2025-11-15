@@ -2,12 +2,12 @@ using Godot;
 using System;
 using SMWP.Level.Tool;
 
-public partial class BanzaiBillCannonMovement : Node {
+public partial class MissileBillCannonMovement : Node {
     [Signal]
-    public delegate void PlaySoundBulletEventHandler();
+    public delegate void PlaySoundBulletMissileEventHandler();
 
     [Export] private float _triggerDistance = 75f;
-    [Export] private PackedScene _banzaiBillScene = null!;
+    [Export] private PackedScene _missileBillScene = GD.Load<PackedScene>("uid://c6tj25uk58s28");
     [Export] private float _shootTime = 200f;
     [Export] private float _shootTimeBonus = 0.1f;
     private Node2D? _parent;
@@ -25,21 +25,25 @@ public partial class BanzaiBillCannonMovement : Node {
         if (_parent == null || _player == null) return;
         if ((_player.Position.X < _parent.Position.X + _triggerDistance
             && _player.Position.X > _parent.Position.X - _triggerDistance)
-            || (_parent.Position.X < ScreenUtils.GetScreenRect(this).Position.X)
-            || (_parent.Position.X > ScreenUtils.GetScreenRect(this).End.X)
+            || (_parent.Position.X < ScreenUtils.GetScreenRect(this).Position.X - 80f)
+            || (_parent.Position.X > ScreenUtils.GetScreenRect(this).End.X + 80f)
             ) return;
         _timer += _timeAddSpeedImproved;
         if (_timer < _shootTime) return;
-        var banzaiBill = (Node2D)_banzaiBillScene.Instantiate();
-        banzaiBill.Position = _parent.Position;
-        _parent.AddSibling(banzaiBill);
+        Launch();
+    }
+    public void Launch() {
+        if (_parent == null) return;
+        var missileBill = (Node2D)_missileBillScene.Instantiate();
+        missileBill.Position = _parent.Position;
+        _parent.AddSibling(missileBill);
         _timer = 0f;
         _timeAddSpeedImproved = 1f + _rng.RandfRange(0f, _shootTimeBonus);
         
         // 一定纵向范围内播放音效
         if (_parent.Position.Y > ScreenUtils.GetScreenRect(this).Position.Y - 16f
             && _parent.Position.Y < ScreenUtils.GetScreenRect(this).End.Y + 16f) {
-            EmitSignal(SignalName.PlaySoundBullet);
+            EmitSignal(SignalName.PlaySoundBulletMissile);
         }
     }
 }
