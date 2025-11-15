@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=47 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
@@ -39,7 +39,6 @@
 [ext_resource type="PackedScene" uid="uid://rmc4tiejgsom" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_blue.tscn" id="41_8mywb"]
 [ext_resource type="PackedScene" uid="uid://cxq657y5vb3qe" path="res://content/level/enemy/troopa/troopa_walking/buzzy_beetle.tscn" id="41_n7ka3"]
 [ext_resource type="PackedScene" uid="uid://c6sorpmpi4oap" path="res://content/level/enemy/thwomp/thwomp.tscn" id="41_no08i"]
-[ext_resource type="PackedScene" uid="uid://cb62nwjb51k1v" path="res://content/level/enemy/piranha_plant/piranha_plant_fire.tscn" id="42_n7ka3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
 atlas = ExtResource("8_lgciv")
@@ -378,7 +377,7 @@ position = Vector2(800, 496)
 position = Vector2(1968, 400)
 
 [node name="ShellMovingGreen4" parent="TestLevelNode2D/Enemies" instance=ExtResource("27_r5pq0")]
-position = Vector2(1968, 240)
+position = Vector2(1968, 368)
 
 [node name="Goomba12" parent="TestLevelNode2D/Enemies" instance=ExtResource("16_lgciv")]
 position = Vector2(2032, 104)
@@ -457,15 +456,6 @@ position = Vector2(1504, 376)
 
 [node name="MissileBill" parent="TestLevelNode2D/Enemies" instance=ExtResource("38_c8b4a")]
 position = Vector2(1468, 400)
-
-[node name="PiranhaPlantFire" parent="TestLevelNode2D/Enemies" instance=ExtResource("42_n7ka3")]
-position = Vector2(1832, 192)
-
-[node name="PiranhaPlantFire2" parent="TestLevelNode2D/Enemies" instance=ExtResource("42_n7ka3")]
-position = Vector2(2028, 244)
-
-[node name="PiranhaPlantFire3" parent="TestLevelNode2D/Enemies" instance=ExtResource("42_n7ka3")]
-position = Vector2(2084, 244)
 
 [node name="Powerups" type="Node2D" parent="TestLevelNode2D"]
 
