@@ -8,3 +8,4 @@
 # editors
 .idea/
 .vs/
+.github/workflows/godot-ci.yml
