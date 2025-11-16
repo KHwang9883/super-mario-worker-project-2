@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://yef1n42fxbd1"]
+
+[ext_resource type="Script" uid="uid://bpkbiapa0g2kg" path="res://script/level/enemy/cheep-cheep/cheep-cheep_area/CheepCheepArea.cs" id="1_dmnbm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8eky2"]
+size = Vector2(96, 96)
+
+[node name="CheepCheepArea" type="Area2D"]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("1_dmnbm")
+CheepAreaType = 1
+CheepAreaLevel = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(48, 48)
+shape = SubResource("RectangleShape2D_8eky2")
+debug_color = Color(0.5746067, 0.387493, 1, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnBodyExited"]

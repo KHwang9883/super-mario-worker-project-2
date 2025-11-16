@@ -66,7 +66,7 @@ public partial class BasicMovement : Node {
             //GD.Print(MoveObject.Position);
         }
     }
-    public void SpeedXProcess() {
+    public virtual void SpeedXProcess() {
         // x 速度
         if (MoveObject.IsOnWall()) {
             SpeedX *= -1f;

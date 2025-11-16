@@ -1,0 +1,131 @@
+[gd_scene load_steps=18 format=3 uid="uid://b2252u3w05f1u"]
+
+[ext_resource type="Texture2D" uid="uid://dnoosi0vgipfv" path="res://content/level/enemy/cheep-cheep/cheep-cheep_spike.png" id="1_34065"]
+[ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="2_w63qk"]
+[ext_resource type="Script" uid="uid://bn20dfynfyug3" path="res://script/level/enemy/cheep-cheep/CheepCheepSpikeMovement.cs" id="3_34065"]
+[ext_resource type="Script" uid="uid://cx6s65j3v4cyn" path="res://script/level/enemy/EnemyInteraction.cs" id="4_hqgl2"]
+[ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="5_s2d55"]
+[ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="6_8ckbl"]
+[ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/level/enemy/general_visible_on_screen_enabler_2d.tscn" id="7_exxs2"]
+[ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="8_0ui2a"]
+[ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="9_s4mxw"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="10_4tbq7"]
+[ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="11_pojet"]
+[ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="12_rslw3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w63qk"]
+atlas = ExtResource("1_34065")
+region = Rect2(0, 0, 33, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxxln"]
+atlas = ExtResource("1_34065")
+region = Rect2(0, 39, 33, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hqgl2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w63qk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxxln")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58ydw"]
+size = Vector2(33, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_34065"]
+radius = 16.0
+
+[node name="CheepCheepSpike" type="CharacterBody2D"]
+z_index = -10
+collision_layer = 16
+collision_mask = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hqgl2")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_58ydw")
+debug_color = Color(0.70181596, 0.5572421, 1.92523e-07, 0.41960785)
+
+[node name="WaterDetect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetect"]
+visible = false
+shape = SubResource("RectangleShape2D_58ydw")
+debug_color = Color(0.70181596, 0.5572421, 1.92523e-07, 0.41960785)
+
+[node name="HeadOutWaterDetect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadOutWaterDetect"]
+position = Vector2(0, -32)
+shape = SubResource("CircleShape2D_34065")
+debug_color = Color(0.34541267, 0.59714395, 0.4828964, 0.41960785)
+
+[node name="AutoSpriteFlipH" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
+script = ExtResource("2_w63qk")
+_animatedSprite2D = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://t3te8lnb0byj"
+
+[node name="CheepCheepSpikeMovement" type="Node" parent="." node_paths=PackedStringArray("_outWaterDetect", "_area2D", "_enemyInteraction", "MoveObject")]
+script = ExtResource("3_34065")
+_outWaterDetect = NodePath("../HeadOutWaterDetect")
+_area2D = NodePath("../WaterDetect")
+_enemyInteraction = NodePath("../EnemyInteraction")
+_stompableOutOfWater = false
+MoveObject = NodePath("..")
+metadata/_custom_type_script = "uid://chn4gqrm87qtl"
+
+[node name="EnemyInteraction" type="Node" parent="."]
+script = ExtResource("4_hqgl2")
+Stompable = false
+ImmuneToFireball = true
+ImmuneToBeetroot = true
+HardLevel = 8
+metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
+
+[node name="Die" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
+script = ExtResource("5_s2d55")
+_enemyDieType = 2
+_animatedSprite2D = NodePath("../AnimatedSprite2D")
+
+[node name="AddScoreComponent" type="Node" parent="."]
+script = ExtResource("6_8ckbl")
+metadata/_custom_type_script = "uid://cnbadhjt53rkc"
+
+[node name="GeneralVisibleOnScreenEnabler2d" parent="." instance=ExtResource("7_exxs2")]
+
+[node name="OutOfBoundsQueueFree" type="Node" parent="."]
+script = ExtResource("8_0ui2a")
+metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
+
+[node name="Stomped" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_s4mxw")
+script = ExtResource("10_4tbq7")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="Kicked" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_pojet")
+script = ExtResource("10_4tbq7")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="Bumped" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_rslw3")
+script = ExtResource("10_4tbq7")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
+[connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]
+[connection signal="NormalHitAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
+[connection signal="PlaySoundBumped" from="EnemyInteraction" to="Bumped" method="play"]
+[connection signal="PlaySoundKicked" from="EnemyInteraction" to="Kicked" method="play"]
+[connection signal="PlaySoundStomped" from="EnemyInteraction" to="Stomped" method="play"]
+[connection signal="screen_exited" from="GeneralVisibleOnScreenEnabler2d" to="CheepCheepSpikeMovement" method="OnScreenExited"]

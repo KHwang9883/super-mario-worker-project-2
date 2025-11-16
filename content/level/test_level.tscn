@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=53 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
@@ -29,8 +29,10 @@
 [ext_resource type="PackedScene" uid="uid://cejpown37o253" path="res://content/level/enemy/lakitu/lakitu.tscn" id="32_lxach"]
 [ext_resource type="PackedScene" uid="uid://btyhhhdhjf3sx" path="res://content/level/enemy/bullet_bill/bullet_bill.tscn" id="35_n7ka3"]
 [ext_resource type="PackedScene" uid="uid://dertrheuvws04" path="res://content/level/enemy/bullet_bill/bullet_bill_cannon.tscn" id="36_no08i"]
+[ext_resource type="PackedScene" uid="uid://yef1n42fxbd1" path="res://content/level/enemy/cheep-cheep/cheep-cheep_area/CheepCheepSwimArea.tscn" id="36_vgddd"]
 [ext_resource type="PackedScene" uid="uid://cnljpmxjddchj" path="res://content/level/enemy/troopa/troopa_walking/troopa_blue.tscn" id="37_36qdp"]
 [ext_resource type="PackedScene" uid="uid://x2gl8vkl7afn" path="res://content/level/enemy/troopa/shell/shell_moving_beetle.tscn" id="37_lxach"]
+[ext_resource type="PackedScene" uid="uid://b2252u3w05f1u" path="res://content/level/enemy/cheep-cheep/cheep-cheep_spike.tscn" id="38_5t3id"]
 [ext_resource type="PackedScene" uid="uid://cvcnyg3fqj8js" path="res://content/level/enemy/spiny_stone/spiny_stone.tscn" id="38_8mywb"]
 [ext_resource type="PackedScene" uid="uid://c6tj25uk58s28" path="res://content/level/enemy/bullet_bill/missile_bill.tscn" id="38_c8b4a"]
 [ext_resource type="PackedScene" uid="uid://cdxpkopiyqfi4" path="res://content/level/enemy/troopa/troopa_walking/troopa_yellow.tscn" id="38_gctg4"]
@@ -42,6 +44,7 @@
 [ext_resource type="PackedScene" uid="uid://cxq657y5vb3qe" path="res://content/level/enemy/troopa/troopa_walking/buzzy_beetle.tscn" id="41_n7ka3"]
 [ext_resource type="PackedScene" uid="uid://c6sorpmpi4oap" path="res://content/level/enemy/thwomp/thwomp.tscn" id="41_no08i"]
 [ext_resource type="PackedScene" uid="uid://v7rsq0tg4vjv" path="res://content/level/enemy/lakitu/lakitu_stone.tscn" id="43_no08i"]
+[ext_resource type="PackedScene" uid="uid://b3g6gfkyvkrd5" path="res://content/level/enemy/cheep-cheep/cheep-cheep_red.tscn" id="43_vgddd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
 atlas = ExtResource("8_lgciv")
@@ -291,7 +294,7 @@ offset_bottom = 352.0
 color = Color(0.17254902, 0.28627452, 0.46666667, 1)
 
 [node name="Water" parent="TestLevelNode2D" node_paths=PackedStringArray("_camera") instance=ExtResource("11_o3hmp")]
-position = Vector2(0, 448)
+position = Vector2(0, 276)
 _camera = NodePath("../Mario/TestCamera2D")
 
 [node name="Solid" type="Node2D" parent="TestLevelNode2D"]
@@ -483,6 +486,27 @@ position = Vector2(1869, 395)
 [node name="Goomba9" parent="TestLevelNode2D/Enemies" instance=ExtResource("16_lgciv")]
 position = Vector2(1870, 394)
 
+[node name="Lakitu" parent="TestLevelNode2D/Enemies" instance=ExtResource("32_lxach")]
+position = Vector2(1936, 112)
+
+[node name="Lakitu3" parent="TestLevelNode2D/Enemies" instance=ExtResource("32_lxach")]
+position = Vector2(2064, 144)
+
+[node name="LakituStone" parent="TestLevelNode2D/Enemies" instance=ExtResource("43_no08i")]
+position = Vector2(1972, 240)
+
+[node name="LakituStone2" parent="TestLevelNode2D/Enemies" instance=ExtResource("43_no08i")]
+position = Vector2(2036, 304)
+
+[node name="CheepCheepSpike2" parent="TestLevelNode2D/Enemies" instance=ExtResource("38_5t3id")]
+position = Vector2(2200, 376)
+
+[node name="CheepCheepArea" parent="TestLevelNode2D/Enemies" instance=ExtResource("36_vgddd")]
+position = Vector2(1784, -12)
+
+[node name="CheepCheepRed" parent="TestLevelNode2D/Enemies" instance=ExtResource("43_vgddd")]
+position = Vector2(2132, 252)
+
 [node name="Powerups" type="Node2D" parent="TestLevelNode2D"]
 
 [node name="FireFlower" parent="TestLevelNode2D/Powerups" instance=ExtResource("17_d2gt5")]
@@ -566,17 +590,5 @@ position = Vector2(1296, 160)
 position = Vector2(1632, 240)
 
 [node name="DebugObjectGroup" type="Node2D" parent="TestLevelNode2D"]
-
-[node name="Lakitu" parent="." instance=ExtResource("32_lxach")]
-position = Vector2(1936, 112)
-
-[node name="Lakitu3" parent="." instance=ExtResource("32_lxach")]
-position = Vector2(2064, 144)
-
-[node name="LakituStone" parent="." instance=ExtResource("43_no08i")]
-position = Vector2(1972, 240)
-
-[node name="LakituStone2" parent="." instance=ExtResource("43_no08i")]
-position = Vector2(2036, 304)
 
 [connection signal="PlaySoundTimeWarning" from="TestLevelNode2D/HUD/HUD" to="TestLevelNode2D/HUD/HUD/TimeWarning" method="play"]
