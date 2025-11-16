@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cplswge6xc0vw"]
+
+[node name="TestCamera2D" type="Camera2D" groups=["camera"]]
+process_callback = 0
+limit_left = 0
+limit_top = 0
+limit_bottom = 544
+metadata/_edit_lock_ = true

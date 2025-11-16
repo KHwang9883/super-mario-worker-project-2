@@ -45,7 +45,10 @@ z_index = 50
 collision_layer = 8
 collision_mask = 3
 slide_on_ceiling = false
+floor_stop_on_slope = false
+floor_constant_speed = true
 floor_block_on_wall = false
+floor_max_angle = 1.2217305
 platform_on_leave = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

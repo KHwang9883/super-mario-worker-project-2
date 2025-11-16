@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=49 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://celf82o4sjyxr" path="res://content/level/hud/mw/hud_mw_coin.png" id="8_lgciv"]
 [ext_resource type="Script" uid="uid://c7ql70nglpnhx" path="res://script/level/hud/HUD.cs" id="8_mfxe6"]
 [ext_resource type="PackedScene" uid="uid://dwkukt5v4t3p5" path="res://content/level/player/player.tscn" id="9_hgnsp"]
+[ext_resource type="PackedScene" uid="uid://cplswge6xc0vw" path="res://content/level/camera/test_camera_2d.tscn" id="10_8mywb"]
 [ext_resource type="Script" uid="uid://dsl20o7a2l7a0" path="res://script/level/debug/TestLabel.cs" id="10_g7257"]
 [ext_resource type="PackedScene" uid="uid://2vuxafdyyhgx" path="res://content/level/water/water.tscn" id="11_o3hmp"]
 [ext_resource type="AudioStream" uid="uid://crsc1hhhou5gu" path="res://content/sound/time_warning.se.wav" id="11_tfcdk"]
@@ -25,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://dvxny3btmnf18" path="res://content/level/enemy/troopa/troopa_walking/troopa_red.tscn" id="28_r5pq0"]
 [ext_resource type="PackedScene" uid="uid://72d0sq841rbo" path="res://content/level/enemy/lava/lava_piece.tscn" id="29_buyip"]
 [ext_resource type="PackedScene" uid="uid://c25jnama51dur" path="res://content/level/enemy/lava/lava_bottom.tscn" id="30_a0ied"]
+[ext_resource type="PackedScene" uid="uid://cejpown37o253" path="res://content/level/enemy/lakitu/lakitu.tscn" id="32_lxach"]
 [ext_resource type="PackedScene" uid="uid://btyhhhdhjf3sx" path="res://content/level/enemy/bullet_bill/bullet_bill.tscn" id="35_n7ka3"]
 [ext_resource type="PackedScene" uid="uid://dertrheuvws04" path="res://content/level/enemy/bullet_bill/bullet_bill_cannon.tscn" id="36_no08i"]
 [ext_resource type="PackedScene" uid="uid://cnljpmxjddchj" path="res://content/level/enemy/troopa/troopa_walking/troopa_blue.tscn" id="37_36qdp"]
@@ -94,6 +96,7 @@ Time = 114514
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
 [node name="HUD" type="CanvasLayer" parent="TestLevelNode2D"]
+visible = false
 
 [node name="HUD" type="Control" parent="TestLevelNode2D/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin")]
 process_mode = 3
@@ -114,6 +117,7 @@ _levelTitle = NodePath("LevelTitle")
 _timeHUD = NodePath("Time")
 _timeCounter = NodePath("Time/TimeCounter")
 _coin = NodePath("Coin")
+metadata/_edit_lock_ = true
 
 [node name="Life" type="Label" parent="TestLevelNode2D/HUD/HUD"]
 layout_mode = 1
@@ -236,7 +240,6 @@ script = ExtResource("12_mjbph")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="TestLevelNode2D"]
-visible = false
 
 [node name="DebugLabel" type="Label" parent="TestLevelNode2D/DebugCanvasLayer" node_paths=PackedStringArray("_player")]
 process_mode = 3
@@ -256,14 +259,9 @@ tile_set = SubResource("TileSet_d7yf6")
 
 [node name="Mario" parent="TestLevelNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(1764, 212)
+position = Vector2(80, 436)
 
-[node name="TestCamera2D" type="Camera2D" parent="TestLevelNode2D/Mario" groups=["camera"]]
-process_callback = 0
-limit_left = 0
-limit_top = 0
-limit_bottom = 544
-metadata/_edit_lock_ = true
+[node name="TestCamera2D" parent="TestLevelNode2D/Mario" instance=ExtResource("10_8mywb")]
 
 [node name="DebugWaterArea2D" type="Area2D" parent="TestLevelNode2D" groups=["water"]]
 collision_layer = 64
@@ -377,10 +375,10 @@ position = Vector2(800, 496)
 position = Vector2(1968, 400)
 
 [node name="ShellMovingGreen4" parent="TestLevelNode2D/Enemies" instance=ExtResource("27_r5pq0")]
-position = Vector2(1968, 368)
+position = Vector2(1776, 292)
 
 [node name="Goomba12" parent="TestLevelNode2D/Enemies" instance=ExtResource("16_lgciv")]
-position = Vector2(2032, 104)
+position = Vector2(1796, 336)
 
 [node name="TroopaBlue" parent="TestLevelNode2D/Enemies" instance=ExtResource("37_36qdp")]
 position = Vector2(2284, 208)
@@ -434,7 +432,7 @@ position = Vector2(1468, 272)
 position = Vector2(1360, 432)
 
 [node name="BuzzyBeetle" parent="TestLevelNode2D/Enemies" instance=ExtResource("41_n7ka3")]
-position = Vector2(1660, 344)
+position = Vector2(1776, 368)
 
 [node name="Thwomp" parent="TestLevelNode2D/Enemies" instance=ExtResource("41_no08i")]
 position = Vector2(1280, 112)
@@ -456,6 +454,9 @@ position = Vector2(1504, 376)
 
 [node name="MissileBill" parent="TestLevelNode2D/Enemies" instance=ExtResource("38_c8b4a")]
 position = Vector2(1468, 400)
+
+[node name="TroopaFlyRed" parent="TestLevelNode2D/Enemies" instance=ExtResource("32_lxach")]
+position = Vector2(1912, 148)
 
 [node name="Powerups" type="Node2D" parent="TestLevelNode2D"]
 

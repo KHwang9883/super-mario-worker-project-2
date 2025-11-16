@@ -4,6 +4,7 @@ using System;
 using System.Text.RegularExpressions;
 using SMWP.Level.Debug;
 using SMWP.Level.Physics;
+using SMWP.Level.Tool;
 
 namespace SMWP.Level.Player;
 
@@ -27,6 +28,7 @@ public partial class PlayerMovement : Node {
     private float _runningAcceleration = 0.3f;
     private float _maxWalkingSpeed = 3f;
     private float _maxRunningSpeed = 8f;
+    private float _lastPositionX;
     
     public float SpeedY;
     private float _maxFallingSpeed = 13f;
@@ -68,8 +70,10 @@ public partial class PlayerMovement : Node {
     private CollisionPolygon2D _blocksPhysicsCollisionSuper = null!;
     private ShapeCast2D _areaBodyCollisionSuper = null!;
     private ShapeCast2D _outWaterDetectSuper = null!;
-    
+
     public override void _Ready() {
+        _lastPositionX = _player.Position.X;
+        
         _blocksPhysicsCollisionSmall = _player.GetNode<CollisionPolygon2D>("BlocksPhysicsCollisionSmall");
         _areaBodyCollisionSmall = _player.GetNode<ShapeCast2D>("AreaBodyCollisionSmall");
         _outWaterDetectSmall = _player.GetNode<ShapeCast2D>("OutWaterDetectSmall");
@@ -105,7 +109,7 @@ public partial class PlayerMovement : Node {
                     : _maxWalkingSpeed;
             }
         }
-
+        
         if (!Crouched && !Stuck) {
             if (_left) {
                 SpeedX = Mathf.Clamp(SpeedX - acceleration, -maxSpeed, maxSpeed);
@@ -117,7 +121,7 @@ public partial class PlayerMovement : Node {
         if (!_left && !_right || Crouched) {
             SpeedX /= IsInWater ? 1.03f : 1.05f;
         }
-        if (SpeedX > -0.04f && SpeedX < 0.04f) {
+        if (SpeedX is > -0.04f and < 0.04f) {
             SpeedX = 0f;
         }
         
@@ -229,6 +233,15 @@ public partial class PlayerMovement : Node {
             _player.MoveAndSlide();
         }
 
+        // 镜头越界处理
+        var screen = ScreenUtils.GetScreenRect(this);
+        if (_player.Position.X < screen.Position.X + 14f)
+            _player.Position = new Vector2(Mathf.Max(_player.Position.X, _lastPositionX), _player.Position.Y);
+        if (_player.Position.X > screen.End.X - 14f)
+            _player.Position = new Vector2(Mathf.Min(_player.Position.X, _lastPositionX), _player.Position.Y);
+        _lastPositionX = _player.Position.X;
+
+        
         // 重叠物件检测
         try {
             _results = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>(_areaBodyCollision));
