@@ -44,3 +44,4 @@ jobs:
         with:
           name: windows
           path: build/windows
+          retention-days: 3
