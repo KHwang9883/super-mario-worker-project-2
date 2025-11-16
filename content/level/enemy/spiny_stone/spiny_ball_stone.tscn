@@ -1,0 +1,114 @@
+[gd_scene load_steps=19 format=3 uid="uid://cyyao6s17huup"]
+
+[ext_resource type="Texture2D" uid="uid://ddosfv1dmytqe" path="res://content/level/enemy/spiny_stone/spiny_ball_stone.png" id="1_cv1kh"]
+[ext_resource type="Script" uid="uid://5v13koy4fdvq" path="res://script/level/enemy/spiny/SpinyBallMovement.cs" id="2_6wuhd"]
+[ext_resource type="PackedScene" uid="uid://cvcnyg3fqj8js" path="res://content/level/enemy/spiny_stone/spiny_stone.tscn" id="3_7hgdh"]
+[ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_ks0wf"]
+[ext_resource type="Script" uid="uid://cx6s65j3v4cyn" path="res://script/level/enemy/EnemyInteraction.cs" id="4_m2d07"]
+[ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="5_ci7c1"]
+[ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="6_nuybu"]
+[ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/level/enemy/general_visible_on_screen_enabler_2d.tscn" id="7_ecleb"]
+[ext_resource type="Texture2D" uid="uid://ck5su1mm04usw" path="res://content/level/enemy/spiny_stone/spiny_stone.png" id="7_lw8ko"]
+[ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="8_7k1cp"]
+[ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="9_87jk2"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="10_yfq08"]
+[ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="11_tnbab"]
+[ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="12_rsugm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hgdh"]
+atlas = ExtResource("1_cv1kh")
+region = Rect2(0, 0, 31, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lw8ko"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hgdh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3gya"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv074"]
+atlas = ExtResource("7_lw8ko")
+region = Rect2(0, 0, 32, 30)
+
+[node name="SpinyBallStone" type="CharacterBody2D"]
+z_index = 30
+collision_layer = 16
+collision_mask = 0
+slide_on_ceiling = false
+floor_block_on_wall = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lw8ko")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i3gya")
+debug_color = Color(0.784173, 0.48017251, 0.44482523, 0.41960785)
+
+[node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D", "MoveObject")]
+script = ExtResource("2_6wuhd")
+_spinyScene = ExtResource("3_7hgdh")
+_animatedSprite2D = NodePath("../AnimatedSprite2D")
+MoveObject = NodePath("..")
+SpeedY = -6.5
+MaxFallSpeed = 8.0
+metadata/_custom_type_script = "uid://chn4gqrm87qtl"
+
+[node name="AutoSpriteFlipH" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
+script = ExtResource("3_ks0wf")
+_animatedSprite2D = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://t3te8lnb0byj"
+
+[node name="EnemyInteraction" type="Node" parent="."]
+script = ExtResource("4_m2d07")
+Stompable = false
+ImmuneToFireball = true
+ImmuneToBeetroot = true
+HardLevel = 8
+metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
+
+[node name="Die" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
+script = ExtResource("5_ci7c1")
+_enemyDieType = 2
+_animatedSprite2D = NodePath("../AnimatedSprite2D")
+_enemyDeadNormalTextureOverride = SubResource("AtlasTexture_wv074")
+
+[node name="AddScoreComponent" type="Node" parent="."]
+script = ExtResource("6_nuybu")
+metadata/_custom_type_script = "uid://cnbadhjt53rkc"
+
+[node name="GeneralVisibleOnScreenEnabler2d" parent="." instance=ExtResource("7_ecleb")]
+
+[node name="OutOfBoundsQueueFree" type="Node" parent="."]
+script = ExtResource("8_7k1cp")
+metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
+
+[node name="Stomped" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_87jk2")
+script = ExtResource("10_yfq08")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="Kicked" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_tnbab")
+script = ExtResource("10_yfq08")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="Bumped" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_rsugm")
+script = ExtResource("10_yfq08")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
+[connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]
+[connection signal="NormalHitAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
+[connection signal="PlaySoundBumped" from="EnemyInteraction" to="Bumped" method="play"]
+[connection signal="PlaySoundKicked" from="EnemyInteraction" to="Kicked" method="play"]
+[connection signal="PlaySoundStomped" from="EnemyInteraction" to="Stomped" method="play"]
+[connection signal="screen_entered" from="GeneralVisibleOnScreenEnabler2d" to="BasicMovement" method="SetMovementDirection"]
