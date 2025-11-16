@@ -26,8 +26,23 @@ public partial class BasicMovement : Node {
             SetMovementDirection();
         }
     }
-    
     public override void _PhysicsProcess(double delta) {
+        TurnDetect();
+        
+        SpeedXProcess();
+        
+        SpeedYProcess();
+        
+        ApplySpeed();
+
+        Move();
+
+        SetJumpSpeed();
+    }
+    public void OnScreenEntered() {
+        SetMovementDirection();
+    }
+    public void TurnDetect() {
         // 自动转向检测
         if (EdgeDetect && MoveObject.IsOnFloor()) {
             //GD.Print("==========");
@@ -50,25 +65,27 @@ public partial class BasicMovement : Node {
             MoveObject.ForceUpdateTransform();
             //GD.Print(MoveObject.Position);
         }
-        
+    }
+    public void SpeedXProcess() {
         // x 速度
         if (MoveObject.IsOnWall()) {
             SpeedX *= -1f;
         }
-        
+    }
+    public void SpeedYProcess() {
         // y 速度
         if (!MoveObject.IsOnFloor()) {
             SpeedY = Mathf.Clamp(SpeedY + Gravity, -999f, MaxFallSpeed);
         }
-        
-        MoveObject.Velocity = new Vector2(SpeedX * FramerateOrigin, SpeedY * FramerateOrigin);
-        
-        MoveObject.MoveAndSlide();
-
-        SetJumpSpeed();
     }
-    public void OnScreenEntered() {
-        SetMovementDirection();
+    public void ApplySpeed() {
+        MoveObject.Velocity = new Vector2(SpeedX * FramerateOrigin, SpeedY * FramerateOrigin);
+    }
+    public virtual void Move() {
+        // 针对大部分敌人运动：卡墙处理
+        if (MoveObject.MoveAndCollide(Vector2.Zero, true, 1f) == null) {
+            MoveObject.MoveAndSlide();
+        }
     }
     public virtual void SetMovementDirection() {
         if (!InitiallyFaceToPlayer) return;
