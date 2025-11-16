@@ -233,7 +233,7 @@ public partial class PlayerMovement : Node {
             _player.MoveAndSlide();
         }
 
-        // 镜头越界处理
+        // 镜头越界处理（放在运动结束之后）
         var screen = ScreenUtils.GetScreenRect(this);
         if (_player.Position.X < screen.Position.X + 14f)
             _player.Position = new Vector2(Mathf.Max(_player.Position.X, _lastPositionX), _player.Position.Y);
