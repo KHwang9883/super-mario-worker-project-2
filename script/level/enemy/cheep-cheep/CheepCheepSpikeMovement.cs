@@ -27,16 +27,20 @@ public partial class CheepCheepSpikeMovement : CheepCheepMovement {
     public void SpeedProcess() {
         if (Player == null || _outWaterDetect == null) return;
         
-        if (MoveObject.Position.X < Player.Position.X) {
+        if (MoveObject.Position.X < Player.Position.X - 0.8f) {
             SpeedX = 0.8f;
-        } else if (MoveObject.Position.X > Player.Position.X) {
+        } else if (MoveObject.Position.X > Player.Position.X + 0.8f) {
             SpeedX = -0.8f;
+        } else {
+            SpeedX = 0f;
         }
         
-        if (MoveObject.Position.Y < Player.Position.Y) {
+        if (MoveObject.Position.Y < Player.Position.Y - 0.8f) {
             SpeedY = 0.8f;
-        } else if (MoveObject.Position.Y > Player.Position.Y && _headIsInWater) {
+        } else if (MoveObject.Position.Y > Player.Position.Y + 0.8f && _headIsInWater) {
             SpeedY = -0.8f;
+        } else {
+            SpeedY = 0f;
         }
     }
 }

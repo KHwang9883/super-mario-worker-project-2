@@ -71,6 +71,7 @@ _area2D = NodePath("../WaterDetect")
 _enemyInteraction = NodePath("../EnemyInteraction")
 MoveObject = NodePath("..")
 SpeedX = -2.0
+Gravity = 0.2
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
 [node name="EnemyInteraction" type="Node" parent="."]

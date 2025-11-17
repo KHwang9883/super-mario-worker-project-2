@@ -4,7 +4,7 @@ using Godot.Collections;
 using SMWP.Level.Tool;
 
 public partial class CheepCheepArea : Area2D {
-    [Export] public Rect2 CheepCheepAreaRect;
+    [Export] public Rect2 CheepAreaRect;
     
     public enum CheepAreaTypeEnum { Swim, Fly }
     [Export] public CheepAreaTypeEnum CheepAreaType;
@@ -24,6 +24,7 @@ public partial class CheepCheepArea : Area2D {
     
     private Node2D? _waterGlobal;
     private bool _isPlayerIn;
+    private CollisionShape2D? _collisionShape2D;
     private int _timer;
     private Node2D? _cheep;
     private RandomNumberGenerator _rng = new();
@@ -31,6 +32,10 @@ public partial class CheepCheepArea : Area2D {
 
     public override void _Ready() {
         _waterGlobal ??= (Node2D)GetTree().GetFirstNodeInGroup("water_global");
+        _collisionShape2D = GetNode<CollisionShape2D>("CollisionShape2D");
+        GlobalPosition = CheepAreaRect.Position + CheepAreaRect.Size / 2f;
+        var rectangleShape2D = (RectangleShape2D)_collisionShape2D.Shape;
+        rectangleShape2D.Size = CheepAreaRect.Size;
     }
     public override void _PhysicsProcess(double delta) {
         if (!_isPlayerIn) return;
@@ -177,7 +182,7 @@ public partial class CheepCheepArea : Area2D {
                 _cheep.AddToGroup("CreatedCheepCheepFly");
                 _cheep.Position = new Vector2(
                     screenCenterX + (screen.Size.X / 2f + 34f) * direction,
-                    screen.End.Y + 22f + _rng.RandfRange(0f, 300f) - 300f);
+                    screen.End.Y + 22f + _rng.RandfRange(0f, 300f));
                 break;
         }
         AddSibling(_cheep);

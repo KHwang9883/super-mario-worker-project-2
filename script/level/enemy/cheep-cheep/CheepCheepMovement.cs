@@ -26,7 +26,7 @@ public partial class CheepCheepMovement : BasicMovement {
     public override void _PhysicsProcess(double delta) {
         if (_area2D == null) return;
         
-        if (!_flewOutOfWater) {
+        if (!_flewOutOfWater && _flyMode) {
             // 入水标记
             foreach (var area in _area2D.GetOverlappingAreas()) {
                 if (!area.IsInGroup("water")) continue;
@@ -70,8 +70,8 @@ public partial class CheepCheepMovement : BasicMovement {
             // 不参与与地面实心的判定（针对蓝鱼情形）
             MoveObject.SetCollisionMask(0);
         
-            SpeedX = 4f - _rng.RandiRange(0, 2) + 1.25f;
-            SpeedY = -1f - _rng.RandiRange(0, 4) * 1.3f;
+            SpeedX = 4f - _rng.RandiRange(0, 4) + 1.25f;
+            SpeedY = _rng.RandiRange(0, 10) * -1.3f;
             if (InitiallyFaceToPlayer) {
                 SetMovementDirection();
             }

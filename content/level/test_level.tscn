@@ -502,10 +502,10 @@ position = Vector2(2036, 304)
 position = Vector2(2200, 376)
 
 [node name="CheepCheepArea" parent="TestLevelNode2D/Enemies" instance=ExtResource("36_vgddd")]
-position = Vector2(1784, -12)
+position = Vector2(1848, -16)
 
 [node name="CheepCheepRed" parent="TestLevelNode2D/Enemies" instance=ExtResource("43_vgddd")]
-position = Vector2(2132, 252)
+position = Vector2(2148, 344)
 
 [node name="Powerups" type="Node2D" parent="TestLevelNode2D"]
 

@@ -64,9 +64,11 @@ shape = SubResource("RectangleShape2D_58ydw")
 debug_color = Color(0.70181596, 0.5572421, 1.92523e-07, 0.41960785)
 
 [node name="HeadOutWaterDetect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadOutWaterDetect"]
-position = Vector2(0, -32)
+position = Vector2(0, -48)
 shape = SubResource("CircleShape2D_34065")
 debug_color = Color(0.34541267, 0.59714395, 0.4828964, 0.41960785)
 
@@ -82,6 +84,7 @@ _area2D = NodePath("../WaterDetect")
 _enemyInteraction = NodePath("../EnemyInteraction")
 _stompableOutOfWater = false
 MoveObject = NodePath("..")
+Gravity = 0.2
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
 [node name="EnemyInteraction" type="Node" parent="."]
