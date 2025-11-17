@@ -3,6 +3,7 @@ using System;
 using Godot.Collections;
 using SMWP.Level.Tool;
 
+[Tool]
 public partial class CheepCheepArea : Area2D {
     [Export] public Rect2 CheepAreaRect;
     
@@ -38,6 +39,16 @@ public partial class CheepCheepArea : Area2D {
         rectangleShape2D.Size = CheepAreaRect.Size;
     }
     public override void _PhysicsProcess(double delta) {
+        // 编辑器内矩形区域预览
+        if (Engine.IsEditorHint()) {
+            Position = Vector2.Zero;
+            _collisionShape2D = GetNode<CollisionShape2D>("CollisionShape2D");
+            _collisionShape2D.GlobalPosition = CheepAreaRect.Position + CheepAreaRect.Size / 2f;
+            var rectangleShape2D = (RectangleShape2D)_collisionShape2D.Shape;
+            rectangleShape2D.Size = CheepAreaRect.Size;
+            return;
+        }
+        
         if (!_isPlayerIn) return;
         
         _timer++;

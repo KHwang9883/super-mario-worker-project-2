@@ -2,7 +2,7 @@ using Godot;
 using System;
 using SMWP.Level.Physics;
 
-public partial class EnemyFireballMovement : BasicMovement {
+public partial class FireballPiranhaMovement : BasicMovement {
     [Export] private Sprite2D _sprite2D = null!;
     [Export] private float _extraSpeedY = -6f;
     private RandomNumberGenerator _rng = new();

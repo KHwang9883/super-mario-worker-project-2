@@ -253,7 +253,7 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_28d7i")
-debug_color = Color(0.26416257, 0.6458472, 0.60049605, 0.41960785)
+debug_color = Color(0.38477823, 0.639088, 0.48902756, 0.41960785)
 
 [node name="LakituMovement" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D", "_lakituThrowSounds")]
 script = ExtResource("3_28d7i")
