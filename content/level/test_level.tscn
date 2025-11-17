@@ -1,7 +1,8 @@
-[gd_scene load_steps=55 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=57 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
+[ext_resource type="Texture2D" uid="uid://c2qyxcvftu6cd" path="res://content/level/hud/game_over.png" id="7_yeotl"]
 [ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/level/tile/obstacle.png" id="8_1mjcm"]
 [ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="8_bfx67"]
 [ext_resource type="Texture2D" uid="uid://celf82o4sjyxr" path="res://content/level/hud/mw/hud_mw_coin.png" id="8_lgciv"]
@@ -38,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://cdxpkopiyqfi4" path="res://content/level/enemy/troopa/troopa_walking/troopa_yellow.tscn" id="38_gctg4"]
 [ext_resource type="PackedScene" uid="uid://cevffktw1srif" path="res://content/level/enemy/bullet_bill/missile_bill_cannon.tscn" id="38_sh4so"]
 [ext_resource type="PackedScene" uid="uid://d35x6v4omtxlq" path="res://content/level/enemy/boo/boo.tscn" id="39_gctg4"]
+[ext_resource type="PackedScene" uid="uid://2i5erl0ya4vb" path="res://content/level/facility/giant_gate/giant_gate.tscn" id="40_5t3id"]
 [ext_resource type="PackedScene" uid="uid://7whmweafbswk" path="res://content/level/enemy/troopa/shell/shell_moving_blue.tscn" id="40_lxach"]
 [ext_resource type="PackedScene" uid="uid://fbxq1hg4e22f" path="res://content/level/enemy/roto-disc/roto-disc_still.tscn" id="40_trls0"]
 [ext_resource type="PackedScene" uid="uid://rmc4tiejgsom" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_blue.tscn" id="41_8mywb"]
@@ -103,7 +105,7 @@ metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
 [node name="HUD" type="CanvasLayer" parent="TestLevelNode2D"]
 
-[node name="HUD" type="Control" parent="TestLevelNode2D/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin")]
+[node name="HUD" type="Control" parent="TestLevelNode2D/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -122,6 +124,7 @@ _levelTitle = NodePath("LevelTitle")
 _timeHUD = NodePath("Time")
 _timeCounter = NodePath("Time/TimeCounter")
 _coin = NodePath("Coin")
+_gameOverSprite = NodePath("GameOver")
 metadata/_edit_lock_ = true
 
 [node name="Life" type="Label" parent="TestLevelNode2D/HUD/HUD"]
@@ -253,6 +256,11 @@ horizontal_alignment = 1
 uppercase = true
 metadata/_edit_lock_ = true
 
+[node name="GameOver" type="Sprite2D" parent="TestLevelNode2D/HUD/HUD"]
+visible = false
+position = Vector2(288, 230)
+texture = ExtResource("7_yeotl")
+
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="TestLevelNode2D"]
 visible = false
 
@@ -274,7 +282,7 @@ tile_set = SubResource("TileSet_d7yf6")
 
 [node name="Mario" parent="TestLevelNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(1772, 48)
+position = Vector2(1924, 40)
 
 [node name="TestCamera2D" parent="TestLevelNode2D/Mario" instance=ExtResource("10_8mywb")]
 
@@ -507,6 +515,8 @@ position = Vector2(2200, 376)
 position = Vector2(2148, 344)
 
 [node name="CheepCheepArea" parent="TestLevelNode2D/Enemies" instance=ExtResource("36_vgddd")]
+CheepAreaType = 0
+CheepAreaDirection = 1
 
 [node name="HammerBro" parent="TestLevelNode2D/Enemies" instance=ExtResource("47_5t3id")]
 position = Vector2(1764, 200)
@@ -522,6 +532,9 @@ position = Vector2(2964, 260)
 
 [node name="HammerBro3" parent="TestLevelNode2D/Enemies" instance=ExtResource("47_5t3id")]
 position = Vector2(2936, 260)
+
+[node name="FireballBro3" parent="TestLevelNode2D/Enemies" instance=ExtResource("48_yeotl")]
+position = Vector2(3016, 260)
 
 [node name="Powerups" type="Node2D" parent="TestLevelNode2D"]
 
@@ -605,9 +618,9 @@ position = Vector2(1296, 160)
 [node name="MissileBillCannon" parent="TestLevelNode2D/Facilities" instance=ExtResource("38_sh4so")]
 position = Vector2(1632, 240)
 
-[node name="DebugObjectGroup" type="Node2D" parent="TestLevelNode2D"]
+[node name="GiantGate" parent="TestLevelNode2D/Facilities" instance=ExtResource("40_5t3id")]
+position = Vector2(2156, 308)
 
-[node name="FireballBro" parent="TestLevelNode2D" instance=ExtResource("48_yeotl")]
-position = Vector2(3016, 260)
+[node name="DebugObjectGroup" type="Node2D" parent="TestLevelNode2D"]
 
 [connection signal="PlaySoundTimeWarning" from="TestLevelNode2D/HUD/HUD" to="TestLevelNode2D/HUD/HUD/TimeWarning" method="play"]

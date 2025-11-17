@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using SMWP.Level.Score;
+using SMWP.Level.Sound;
 using SMWP.Level.Tool;
 
 namespace SMWP.Level.Player;
@@ -12,11 +13,14 @@ public partial class PlayerDieAndHurt : Node {
     public delegate void PlayerDiedEventHandler();
     [Signal]
     public delegate void PlayerHurtedEventHandler();
+    [Signal]
+    public delegate void PlaySoundGameOverEventHandler();
     
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
     [Export] private PackedScene _playerDeadScene = null!;
     [Export] public float InvincibleDuration = 200;
+    [Export] private ContinuousAudioStream2D? _gameOverSound;
     public bool IsInvincible;
     public bool IsHurtInvincible;
     private int _hurtInvincibleTimer;
@@ -29,7 +33,23 @@ public partial class PlayerDieAndHurt : Node {
         if (_dead) {
             _deadTimer++;
             if (_deadTimer >= 180) {
-                GetTree().ReloadCurrentScene();
+                // Restart Level
+                if (LevelManager.Life > 0) {
+                    GetTree().ReloadCurrentScene();
+                }
+                
+                // Game Over
+                else {
+                    if (!LevelManager.IsGameOver) {
+                        LevelManager.IsGameOver = true;
+                        EmitSignal(SignalName.PlaySoundGameOver);
+                    }
+                    if (_deadTimer >= 500 && Input.IsAnythingPressed()) {
+                        // Todo: 跳转到编辑界面或者标题界面
+                        LevelManager.GameOverClear();
+                        GetTree().Free();
+                    }
+                }
             }
         }
         

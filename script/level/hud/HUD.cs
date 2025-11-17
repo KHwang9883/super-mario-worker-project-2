@@ -13,6 +13,7 @@ public partial class HUD : Control {
     [Export] private Control? _timeHUD;
     [Export] private Label? _timeCounter;
     [Export] private Label? _coin;
+    [Export] private Sprite2D? _gameOverSprite;
 
     private bool _timeWarned;
     private RandomNumberGenerator _rng = new RandomNumberGenerator();
@@ -39,12 +40,20 @@ public partial class HUD : Control {
         }
 
         if (_coin != null) _coin.Text = LevelManager.Coin.ToString();
+        
+        // Game Over 展示
+        if (LevelManager.IsGameOver) {
+            GameOverShow();
+        }
     }
-
     public void OnTimeWarning() {
         if (_timeWarned) return;
         _timeWarned = true;
         EmitSignal(SignalName.PlaySoundTimeWarning);
         _rock = 10f;
+    }
+    public void GameOverShow() {
+        if (_gameOverSprite == null) return;
+        _gameOverSprite.Visible = true;
     }
 }

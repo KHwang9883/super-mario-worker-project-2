@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfiukm6ibgibj"]
+[gd_scene load_steps=5 format=3 uid="uid://dfiukm6ibgibj"]
 
 [ext_resource type="Texture2D" uid="uid://cj6y6f3cv8uoa" path="res://content/level/player/mario_dead.png" id="1_0pfv2"]
 [ext_resource type="Script" uid="uid://c7tmtblk2krab" path="res://script/level/player/PlayerDead.cs" id="1_lsddu"]
+[ext_resource type="AudioStream" uid="uid://bw72yqjn72eyk" path="res://content/sound/mario_die.se.wav" id="3_w6uev"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="4_h02kv"]
 
 [node name="PlayerDead" type="Node2D"]
 z_index = 50
@@ -11,3 +13,11 @@ script = ExtResource("1_lsddu")
 position = Vector2(1, -2)
 texture = ExtResource("1_0pfv2")
 metadata/_edit_lock_ = true
+
+[node name="Die" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_w6uev")
+autoplay = true
+script = ExtResource("4_h02kv")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[connection signal="finished" from="Die" to="Die" method="queue_free"]

@@ -21,7 +21,7 @@ config/icon="uid://d1efjf687jw0q"
 
 [autoload]
 
-ScoreManager="*res://content/level/level_manager.tscn"
+LevelManager="*res://content/level/level_manager.tscn"
 
 [display]
 
@@ -45,6 +45,7 @@ folder_colors={
 "res://content/level/database/": "gray",
 "res://content/level/debug/": "purple",
 "res://content/level/enemy/": "orange",
+"res://content/level/facility/": "yellow",
 "res://content/level/player/": "pink",
 "res://content/level/projectile​/": "red",
 "res://content/level/tile/": "gray",

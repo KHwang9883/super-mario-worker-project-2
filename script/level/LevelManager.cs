@@ -8,9 +8,11 @@ public partial class LevelManager : Node {
     [Signal]
     public delegate void PlaySound1UPEventHandler();
     public static int Time { get; set; }
-    public static int Life { get; set; } = 4;
+    public static int Life { get; set; } = 1;
     public static int Score { get; set; }
     public static int Coin { get; set; }
+
+    public static bool IsGameOver;
     
     [Export] private ContinuousAudioStream2D _1UPAudioStream2DNode = null!;
     public static ContinuousAudioStream2D Sound1UPAudioStream2D = null!;
@@ -57,5 +59,12 @@ public partial class LevelManager : Node {
     public static void AddLife() {
         Life++;
         Sound1UPAudioStream2D.Play();
+    }
+    
+    // Game Over Clear
+    public static void GameOverClear() {
+        Life = 4;
+        Coin = 0;
+        Score = 0;
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=31 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/level/player/mario_small.tres" id="1_o23i7"]
 [ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
@@ -24,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://dbe1tmavcr73y" path="res://content/sound/fireball.se.wav" id="19_8jrco"]
 [ext_resource type="AudioStream" uid="uid://bfhqh4egowku5" path="res://content/sound/powerup.se.wav" id="20_pull8"]
 [ext_resource type="AudioStream" uid="uid://bqndr8vnrf8wk" path="res://content/sound/powerdown.se.wav" id="21_1esvc"]
+[ext_resource type="AudioStream" uid="uid://ux42m3p5b615" path="res://content/sound/gameover.me.wav" id="25_445xo"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0cq6f"]
 blend_mode = 1
@@ -129,12 +130,13 @@ script = ExtResource("3_i4jjh")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
 
-[node name="PlayerDieAndHurt" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player")]
+[node name="PlayerDieAndHurt" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_gameOverSound")]
 process_mode = 1
 script = ExtResource("4_5unhu")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
 _playerDeadScene = ExtResource("5_3ac0f")
+_gameOverSound = NodePath("../../GameOver")
 
 [node name="PlayerAnimation" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_animatedSprite2D", "_player")]
 script = ExtResource("6_o23i7")
@@ -197,10 +199,17 @@ stream = ExtResource("21_1esvc")
 script = ExtResource("18_8jrco")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
+[node name="GameOver" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("25_445xo")
+script = ExtResource("18_8jrco")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="PlayerMediator/PlayerAnimation" method="OnAnimationFinished"]
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerAnimation" method="OnJumpStarted"]
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerJump" method="play"]
 [connection signal="SwimStarted" from="PlayerMediator/PlayerMovement" to="PlayerSwim" method="play"]
+[connection signal="PlaySoundGameOver" from="PlayerMediator/PlayerDieAndHurt" to="GameOver" method="play"]
 [connection signal="PlayerDied" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerInteraction" method="HurtSucceedSet"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerHurt"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerInteraction" method="HurtSucceedSet"]
@@ -213,3 +222,4 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 [connection signal="PlayerPowerup" from="PlayerMediator/PlayerInteraction" to="Powerup" method="play"]
 [connection signal="PlayerStomp" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerMovement" method="OnPlayerStomp"]
 [connection signal="PlayerShooting" from="PlayerMediator/PlayerShoot" to="PlayerShoot" method="play"]
+[connection signal="finished" from="GameOver" to="GameOver" method="queue_free"]

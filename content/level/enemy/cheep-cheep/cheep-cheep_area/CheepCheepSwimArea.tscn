@@ -14,7 +14,6 @@ CheepAreaType = 1
 CheepAreaLevel = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2008, 108)
 shape = SubResource("RectangleShape2D_8eky2")
 debug_color = Color(0.5746067, 0.387493, 1, 0.41960785)
 
