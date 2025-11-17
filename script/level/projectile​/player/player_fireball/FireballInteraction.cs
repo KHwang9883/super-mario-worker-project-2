@@ -6,10 +6,14 @@ using SMWP.Level.Physics;
 namespace SMWP.Level.Projectile.Player.PlayerFireball;
 
 public partial class FireballInteraction : Node {
-    [Export] private CharacterBody2D _fireball = null!;
-    [Export] private PackedScene _fireballExplosionPackedScene = null!;
+    [Signal]
+    public delegate void FireballExplodeEventHandler();
+    
+    [Export] private CharacterBody2D? _fireball;
     
     public override void _PhysicsProcess(double delta) {
+        if (_fireball == null) return;
+        
         var results = ShapeQueryResult.ShapeQuery(_fireball, _fireball.GetNode<ShapeCast2D>("AreaBodyCollision"));
 
         foreach (var result in results) {
@@ -22,19 +26,14 @@ public partial class FireballInteraction : Node {
             if (interactionWithFireballNode is IFireballHittable fireballHittable) {
                 result.SetMeta("InteractingObject", _fireball);
                 if (fireballHittable.OnFireballHit(_fireball)) {
-                    Explode();
+                    EmitSignal(SignalName.FireballExplode);
                 }
+                
+                // 成功一次就结束本物理帧的遍历
+                break;
             }
         }
         
         // Todo: 撞击冰块
-    }
-    
-    // 火球爆炸！
-    public void Explode() {
-        var fireballExplosion = _fireballExplosionPackedScene.Instantiate<Node2D>();
-        fireballExplosion.Position = _fireball.GlobalPosition;
-        _fireball.AddSibling(fireballExplosion);
-        _fireball.QueueFree();
     }
 }

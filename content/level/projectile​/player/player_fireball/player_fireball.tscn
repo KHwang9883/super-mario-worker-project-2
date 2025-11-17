@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://caoo0e1qx46vn" path="res://content/level/projectile​/fireball.png" id="1_l3dqx"]
 [ext_resource type="Script" uid="uid://oqtimqyv38fd" path="res://script/level/projectile​/player/player_fireball/FireballMovement.cs" id="2_u5ybu"]
 [ext_resource type="Script" uid="uid://ctpnsx7awriaq" path="res://script/level/projectile​/player/player_fireball/FireballInteraction.cs" id="3_u5ybu"]
-[ext_resource type="PackedScene" uid="uid://5mmyew6mh71p" path="res://content/level/projectile​/fireball_explosion.tscn" id="4_w5s1o"]
+[ext_resource type="Script" uid="uid://cq48ngja8ythw" path="res://script/level/projectile​/FireballExplode.cs" id="4_k75hg"]
 [ext_resource type="Script" uid="uid://bchyfxjjtbl83" path="res://script/level/projectile​/player/player_fireball/FireballSprite.cs" id="5_ef5ss"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="6_tc1ec"]
 
@@ -35,6 +35,7 @@ shape = SubResource("RectangleShape2D_w5s1o")
 [node name="FireballMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("2_u5ybu")
 MoveObject = NodePath("..")
+InitiallyFaceToPlayer = false
 SpeedX = 5.0
 MaxFallSpeed = 10.0
 JumpSpeed = -4.0
@@ -43,7 +44,9 @@ metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 [node name="FireballInteraction" type="Node" parent="." node_paths=PackedStringArray("_fireball")]
 script = ExtResource("3_u5ybu")
 _fireball = NodePath("..")
-_fireballExplosionPackedScene = ExtResource("4_w5s1o")
+
+[node name="FireballExplode" type="Node" parent="."]
+script = ExtResource("4_k75hg")
 
 [node name="FireballSprite" type="Node" parent="." node_paths=PackedStringArray("_sprite", "_fireballMovement")]
 script = ExtResource("5_ef5ss")
@@ -59,4 +62,5 @@ RoomLeftOffset = 10.0
 RoomRightOffset = 10.0
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 
-[connection signal="FireballExplode" from="FireballMovement" to="FireballInteraction" method="Explode"]
+[connection signal="FireballExplode" from="FireballMovement" to="FireballExplode" method="OnFireballExplode"]
+[connection signal="FireballExplode" from="FireballInteraction" to="FireballExplode" method="OnFireballExplode"]

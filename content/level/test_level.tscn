@@ -274,7 +274,7 @@ tile_set = SubResource("TileSet_d7yf6")
 
 [node name="Mario" parent="TestLevelNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(1912, 48)
+position = Vector2(1772, 48)
 
 [node name="TestCamera2D" parent="TestLevelNode2D/Mario" instance=ExtResource("10_8mywb")]
 
@@ -514,6 +514,15 @@ position = Vector2(1764, 200)
 [node name="FireballBro" parent="TestLevelNode2D/Enemies" instance=ExtResource("48_yeotl")]
 position = Vector2(1800, 200)
 
+[node name="FireballBro2" parent="TestLevelNode2D/Enemies" instance=ExtResource("48_yeotl")]
+position = Vector2(2988, 260)
+
+[node name="HammerBro2" parent="TestLevelNode2D/Enemies" instance=ExtResource("47_5t3id")]
+position = Vector2(2964, 260)
+
+[node name="HammerBro3" parent="TestLevelNode2D/Enemies" instance=ExtResource("47_5t3id")]
+position = Vector2(2936, 260)
+
 [node name="Powerups" type="Node2D" parent="TestLevelNode2D"]
 
 [node name="FireFlower" parent="TestLevelNode2D/Powerups" instance=ExtResource("17_d2gt5")]
@@ -598,16 +607,7 @@ position = Vector2(1632, 240)
 
 [node name="DebugObjectGroup" type="Node2D" parent="TestLevelNode2D"]
 
-[node name="HammerBro" parent="TestLevelNode2D" instance=ExtResource("47_5t3id")]
-position = Vector2(2944, 264)
-
-[node name="HammerBro2" parent="TestLevelNode2D" instance=ExtResource("47_5t3id")]
-position = Vector2(2968, 264)
-
 [node name="FireballBro" parent="TestLevelNode2D" instance=ExtResource("48_yeotl")]
 position = Vector2(3016, 260)
-
-[node name="FireballBro2" parent="TestLevelNode2D" instance=ExtResource("48_yeotl")]
-position = Vector2(2992, 260)
 
 [connection signal="PlaySoundTimeWarning" from="TestLevelNode2D/HUD/HUD" to="TestLevelNode2D/HUD/HUD/TimeWarning" method="play"]
