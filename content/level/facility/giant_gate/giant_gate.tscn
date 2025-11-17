@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://2i5erl0ya4vb"]
+
+[ext_resource type="Texture2D" uid="uid://vx853ae7hvse" path="res://content/level/facility/giant_gate/giant_gate.png" id="1_3jvio"]
+[ext_resource type="PackedScene" uid="uid://dpxbi5o7sfvtb" path="res://content/level/facility/giant_gate/giant_gate_bar.tscn" id="2_3jvio"]
+
+[node name="GiantGate" type="Node2D"]
+
+[node name="Gate" type="Sprite2D" parent="."]
+position = Vector2(0, -143)
+texture = ExtResource("1_3jvio")
+metadata/_edit_lock_ = true
+
+[node name="GiantGateBar" parent="." instance=ExtResource("2_3jvio")]
+position = Vector2(-5, -260)

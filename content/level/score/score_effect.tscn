@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://d0b7vuwaiivty" path="res://script/level/score/ScoreEffect.cs" id="2_2asuy"]
 
 [node name="ScoreEffect" type="Sprite2D"]
+process_mode = 3
 z_index = 200
 texture = ExtResource("1_plp0k")
 script = ExtResource("2_2asuy")

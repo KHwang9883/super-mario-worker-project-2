@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpxbi5o7sfvtb"]
+
+[ext_resource type="Script" uid="uid://ccx6usbpsdb2q" path="res://script/level/facility/giant_gate/GiantGateBar.cs" id="1_jfh0f"]
+[ext_resource type="Texture2D" uid="uid://dg1os2ln0pk6k" path="res://content/level/facility/giant_gate/giant_gate_bar_on.png" id="1_vnhrj"]
+[ext_resource type="Texture2D" uid="uid://dvck8dmgj08xr" path="res://content/level/facility/giant_gate/giant_gate_off.png" id="3_ympxk"]
+[ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="4_jikg8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arhaw"]
+size = Vector2(45, 16)
+
+[node name="GiantGateBar" type="Area2D" node_paths=PackedStringArray("_barOn", "_barOff", "_addScoreComponent")]
+process_mode = 3
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_jfh0f")
+_barOn = NodePath("Bar")
+_barOff = NodePath("BarOff")
+_addScoreComponent = NodePath("AddScoreComponent")
+
+[node name="Bar" type="Sprite2D" parent="."]
+texture = ExtResource("1_vnhrj")
+metadata/_edit_lock_ = true
+
+[node name="BarOff" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_ympxk")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_arhaw")
+
+[node name="AddScoreComponent" type="Node" parent="."]
+script = ExtResource("4_jikg8")
+metadata/_custom_type_script = "uid://cnbadhjt53rkc"
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -212,7 +212,5 @@ public partial class CheepCheepArea : Area2D {
             CheepAreaDirectionEnum.Right => Mathf.Abs(cheepCheepMovement.SpeedX),
             _ => cheepCheepMovement.SpeedX,
         };
-        GD.Print(cheepCheepMovement.CheepMoveMode);
-        GD.Print(_cheep.GlobalPosition);
     }
 }
