@@ -34,7 +34,7 @@ public partial class CheepCheepArea : Area2D {
     public override void _Ready() {
         _waterGlobal ??= (Node2D)GetTree().GetFirstNodeInGroup("water_global");
         _collisionShape2D = GetNode<CollisionShape2D>("CollisionShape2D");
-        GlobalPosition = CheepAreaRect.Position + CheepAreaRect.Size / 2f;
+        _collisionShape2D.GlobalPosition = CheepAreaRect.Position + CheepAreaRect.Size / 2f;
         var rectangleShape2D = (RectangleShape2D)_collisionShape2D.Shape;
         rectangleShape2D.Size = CheepAreaRect.Size;
     }
