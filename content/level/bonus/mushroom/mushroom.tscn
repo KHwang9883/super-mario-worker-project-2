@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://06fvxuvjbor0"]
 
-[ext_resource type="Texture2D" uid="uid://dm27nawonnxyh" path="res://content/level/bonus/mushroom/input.png" id="1_7s0v6"]
+[ext_resource type="Texture2D" uid="uid://dm27nawonnxyh" path="res://content/level/bonus/mushroom/mushroom.png" id="1_7s0v6"]
 [ext_resource type="Script" uid="uid://b5yntrwmtxv27" path="res://script/level/bonus/PowerupSet.cs" id="1_lbpvd"]
 [ext_resource type="Script" uid="uid://br3a3a746vl0y" path="res://script/level/bonus/mushroom/MushroomAnimation.cs" id="3_klnhy"]
 [ext_resource type="Script" uid="uid://brqbgelfy4s1w" path="res://script/level/bonus/mushroom/MushroomMovement.cs" id="4_dponk"]
@@ -128,6 +128,7 @@ _collisionShape2D = NodePath("../CollisionShape2D")
 _mushroomAnimation = NodePath("../MushroomAnimation")
 MoveObject = NodePath("..")
 SpeedX = -1.0
+MaxFallSpeed = 7.0
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
 [node name="InteractionWithBump" type="Node" parent="." node_paths=PackedStringArray("_mushroomMovement")]

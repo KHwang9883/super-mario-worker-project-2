@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=59 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
@@ -49,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://b3g6gfkyvkrd5" path="res://content/level/enemy/cheep-cheep/cheep-cheep_red.tscn" id="43_vgddd"]
 [ext_resource type="PackedScene" uid="uid://bnnqci8eu7r01" path="res://content/level/enemy/hammer_bro/hammer_bro.tscn" id="47_5t3id"]
 [ext_resource type="PackedScene" uid="uid://yeb5uqj5t0hc" path="res://content/level/enemy/hammer_bro/fireball_bro.tscn" id="48_yeotl"]
+[ext_resource type="PackedScene" uid="uid://bgp4dh2ioc4gl" path="res://content/level/bonus/mushroom_life/mushroom_life.tscn" id="50_rjg3t"]
 [ext_resource type="PackedScene" uid="uid://b7p4i1t28bwi1" path="res://content/level/bonus/coin/coin.tscn" id="50_sjqdy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
@@ -621,6 +622,9 @@ position = Vector2(1632, 240)
 
 [node name="GiantGate" parent="TestLevelNode2D/Facilities" instance=ExtResource("40_5t3id")]
 position = Vector2(2156, 308)
+
+[node name="MushroomLife" parent="TestLevelNode2D/Facilities" instance=ExtResource("50_rjg3t")]
+position = Vector2(1776, 36)
 
 [node name="DebugObjectGroup" type="Node2D" parent="TestLevelNode2D"]
 

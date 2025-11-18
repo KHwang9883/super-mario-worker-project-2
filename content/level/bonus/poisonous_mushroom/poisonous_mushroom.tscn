@@ -49,6 +49,7 @@ _collisionShape2D = NodePath("../CollisionShape2D")
 _mushroomAnimation = NodePath("../MushroomAnimation")
 MoveObject = NodePath("..")
 SpeedX = -1.0
+MaxFallSpeed = 7.0
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
 [node name="InteractionWithPlayer" type="Node" parent="."]
