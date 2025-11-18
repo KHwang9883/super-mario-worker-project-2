@@ -12,7 +12,7 @@ public partial class LevelManager : Node {
     public static int Time { get; set; }
     public static int Life { get; set; } = 1;
     public static int Score { get; set; }
-    public static int Coin { get; set; }
+    public static int Coin { get; set; } = 99;
 
     public static bool IsGameOver;
     public static bool IsLevelPass;
@@ -138,6 +138,13 @@ public partial class LevelManager : Node {
         }
     }
 
+    public static void AddCoin(int coin) {
+        Coin += coin;
+        if (Coin >= 100) {
+            Coin -= 100;
+            AddLife();
+        }
+    }
     public void JumpToLevel() {
         
         // Todo: 关卡跳转 / 回到标题画面 / 编辑界面

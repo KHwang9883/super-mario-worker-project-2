@@ -45,7 +45,9 @@ public partial class PlayerDieAndHurt : Node {
                         EmitSignal(SignalName.PlaySoundGameOver);
                     }
                     if (_deadTimer >= 500 && Input.IsAnythingPressed()) {
+                        
                         // Todo: 跳转到编辑界面或者标题界面
+                        
                         LevelManager.GameOverClear();
                         GetTree().Free();
                     }

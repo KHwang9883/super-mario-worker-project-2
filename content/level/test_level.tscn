@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=58 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
@@ -49,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://b3g6gfkyvkrd5" path="res://content/level/enemy/cheep-cheep/cheep-cheep_red.tscn" id="43_vgddd"]
 [ext_resource type="PackedScene" uid="uid://bnnqci8eu7r01" path="res://content/level/enemy/hammer_bro/hammer_bro.tscn" id="47_5t3id"]
 [ext_resource type="PackedScene" uid="uid://yeb5uqj5t0hc" path="res://content/level/enemy/hammer_bro/fireball_bro.tscn" id="48_yeotl"]
+[ext_resource type="PackedScene" uid="uid://b7p4i1t28bwi1" path="res://content/level/bonus/coin/coin.tscn" id="50_sjqdy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
 atlas = ExtResource("8_lgciv")
@@ -536,39 +537,39 @@ position = Vector2(2936, 260)
 [node name="FireballBro3" parent="TestLevelNode2D/Enemies" instance=ExtResource("48_yeotl")]
 position = Vector2(3016, 260)
 
-[node name="Powerups" type="Node2D" parent="TestLevelNode2D"]
+[node name="Bonus" type="Node2D" parent="TestLevelNode2D"]
 
-[node name="FireFlower" parent="TestLevelNode2D/Powerups" instance=ExtResource("17_d2gt5")]
+[node name="FireFlower" parent="TestLevelNode2D/Bonus" instance=ExtResource("17_d2gt5")]
 position = Vector2(176, 432)
 
-[node name="FireFlower2" parent="TestLevelNode2D/Powerups" instance=ExtResource("17_d2gt5")]
+[node name="FireFlower2" parent="TestLevelNode2D/Bonus" instance=ExtResource("17_d2gt5")]
 position = Vector2(1168, 48)
 
-[node name="FireFlower3" parent="TestLevelNode2D/Powerups" instance=ExtResource("17_d2gt5")]
+[node name="FireFlower3" parent="TestLevelNode2D/Bonus" instance=ExtResource("17_d2gt5")]
 position = Vector2(400, 432)
 
-[node name="Beetroot" parent="TestLevelNode2D/Powerups" instance=ExtResource("18_6xv5h")]
+[node name="Beetroot" parent="TestLevelNode2D/Bonus" instance=ExtResource("18_6xv5h")]
 position = Vector2(304, 432)
 
-[node name="Beetroot2" parent="TestLevelNode2D/Powerups" instance=ExtResource("18_6xv5h")]
+[node name="Beetroot2" parent="TestLevelNode2D/Bonus" instance=ExtResource("18_6xv5h")]
 position = Vector2(240, 432)
 
-[node name="Lui" parent="TestLevelNode2D/Powerups" instance=ExtResource("19_iae4c")]
+[node name="Lui" parent="TestLevelNode2D/Bonus" instance=ExtResource("19_iae4c")]
 position = Vector2(464, 208)
 
-[node name="Lui3" parent="TestLevelNode2D/Powerups" instance=ExtResource("19_iae4c")]
+[node name="Lui3" parent="TestLevelNode2D/Bonus" instance=ExtResource("19_iae4c")]
 position = Vector2(304, 144)
 
-[node name="Lui4" parent="TestLevelNode2D/Powerups" instance=ExtResource("19_iae4c")]
+[node name="Lui4" parent="TestLevelNode2D/Bonus" instance=ExtResource("19_iae4c")]
 position = Vector2(304, 144)
 
-[node name="PoisonousMushroom" parent="TestLevelNode2D/Powerups" instance=ExtResource("21_dwm8j")]
+[node name="PoisonousMushroom" parent="TestLevelNode2D/Bonus" instance=ExtResource("21_dwm8j")]
 position = Vector2(944, 80)
 
-[node name="Mushroom" parent="TestLevelNode2D/Powerups" instance=ExtResource("17_venmc")]
+[node name="Mushroom" parent="TestLevelNode2D/Bonus" instance=ExtResource("17_venmc")]
 position = Vector2(976, 80)
 
-[node name="SuperStar" parent="TestLevelNode2D/Powerups" instance=ExtResource("18_mlotv")]
+[node name="SuperStar" parent="TestLevelNode2D/Bonus" instance=ExtResource("18_mlotv")]
 position = Vector2(928, 272)
 
 [node name="Facilities" type="Node2D" parent="TestLevelNode2D"]
@@ -622,5 +623,11 @@ position = Vector2(1632, 240)
 position = Vector2(2156, 308)
 
 [node name="DebugObjectGroup" type="Node2D" parent="TestLevelNode2D"]
+
+[node name="Coin" parent="TestLevelNode2D" instance=ExtResource("50_sjqdy")]
+position = Vector2(1684, 48)
+
+[node name="Coin2" parent="TestLevelNode2D" instance=ExtResource("50_sjqdy")]
+position = Vector2(1720, 48)
 
 [connection signal="PlaySoundTimeWarning" from="TestLevelNode2D/HUD/HUD" to="TestLevelNode2D/HUD/HUD/TimeWarning" method="play"]
