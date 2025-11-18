@@ -101,7 +101,8 @@ public partial class PlayerAnimation : Node {
             }
         } else {
             if (!_player.IsOnFloor()) {
-                _animatedSprite2D.Play("swim");
+                if (_animatedSprite2D.Animation != "swim" || _playerMovement.Jumped)
+                    _animatedSprite2D.Play("swim");
             } else {
                 if (Fire && _animatedSprite2D.SpriteFrames.HasAnimation("shoot")) {
                     _animatedSprite2D.Play("shoot");

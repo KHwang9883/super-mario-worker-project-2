@@ -22,15 +22,17 @@ public partial class PlayerInteraction : Node
     [Signal]
     public delegate void PlayerPowerPlainEventHandler();
     
-    [Export] private PlayerMediator _playerMediator = null!;
-    [Export] private CharacterBody2D _player = null!;
+    [Export] private PlayerMediator? _playerMediator;
+    [Export] private CharacterBody2D? _player;
 
     [Export] private ComboComponent? _starmanCombo;
 
+    //private bool _isPlayerStomped;
     private bool _hurtFrame;
 
     public override void _PhysicsProcess(double delta) {
         // 对Player在PlayerMovement重叠检测的结果进行引用，而非再调用一次ShapeQuery()
+        if (_playerMediator == null) return;
         var results = _playerMediator.playerMovement.GetShapeQueryResults();
 
         _hurtFrame = false;
@@ -55,6 +57,8 @@ public partial class PlayerInteraction : Node
     }
 
     public void StarmanAttackDetect(Array<Node2D> results) {
+        if (_player == null || _playerMediator == null) return;
+        
         foreach (var result in results) {
             Node? interactionWithStarNode = null;
 
@@ -70,6 +74,8 @@ public partial class PlayerInteraction : Node
         }
     }
     public void StompAttackDetect(Array<Node2D> results) {
+        if (_player == null) return;
+        
         foreach (var result in results) {
             Node? interactionWithStompNode = null;
 
@@ -83,10 +89,17 @@ public partial class PlayerInteraction : Node
             result.SetMeta("InteractingObject", _player);
             EmitSignal(SignalName.PlayerStomp, stompable.OnStomped(_player));
             // 成功一次就停止 foreach
+            //_isPlayerStomped = true;
             break;
         }
     }
     public void HurtableAndKillableDetect(Array<Node2D> results) {
+        if (_player == null) return;
+        /*if (_isPlayerStomped) {
+            _isPlayerStomped = false;
+            return;
+        }*/
+        
         foreach (var result in results) {
             Node? interactionWithHurtNode = null;
 
@@ -113,6 +126,8 @@ public partial class PlayerInteraction : Node
         }
     }
     public void BonusItemDetect(Array<Node2D> results) {
+        if (_playerMediator == null) return;
+        
         foreach (var result in results) {
             Node? powerupSetNode = null;
 
@@ -156,11 +171,20 @@ public partial class PlayerInteraction : Node
         }
     }
     public void HitBlockDetect() {
+        if (_player == null || _playerMediator == null ||
+            !IsInstanceIdValid(_player.GetInstanceId())) return;
+        
         Node? blockHitNode = null;
 
         if (!(_playerMediator.playerMovement.SpeedY <= 0f)) return;
-        var blockCollider = _player.MoveAndCollide(new Vector2(0f, -1f), true)?.GetCollider();
-        //GD.Print(_blockCollider);
+        
+        KinematicCollision2D? collision = _player.MoveAndCollide(new Vector2(0f, -1f), true);
+        if (collision == null) {
+            return;
+        }
+        
+        var blockCollider = collision.GetCollider();
+        //GD.Print(blockCollider);
         if (blockCollider is not StaticBody2D staticBody2D) return;
         if (staticBody2D.HasMeta("InteractionWithBlock")) {
             blockHitNode = (Node)staticBody2D.GetMeta("InteractionWithBlock");

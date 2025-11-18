@@ -1,8 +1,9 @@
 using Godot;
 using System;
+using SMWP.Level.Tool;
 
 public partial class Water : Area2D {
-    [Export] public Resource waterBoundary { get; private set; } = null!;
+    [Export] public Resource WaterBoundary { get; private set; } = null!;
     [Export] private Parallax2D _parallaxWater = null!;
     [Export] private AnimatedSprite2D _waterSurfaceSprite = null!;
     [Export] private ColorRect _waterRect = null!;
@@ -19,14 +20,18 @@ public partial class Water : Area2D {
         Texture2D currentTexture = _waterSurfaceSprite.GetSpriteFrames().GetFrameTexture(currentAnim, currentFrame);
         
         // 计算水块位置
-        _waterRect.GlobalPosition = new Vector2(
-            _waterRect.GlobalPosition.X, 
-            (float)Math.Max(
-                GlobalPosition.Y + currentTexture.GetHeight(), 
-                _camera.GetScreenCenterPosition().Y - GetViewportRect().Size.Y * 0.5
-            )
-        );
-        
+        var screen = ScreenUtils.GetScreenRect(this);
+
+        //Callable.From(() => {
+            _waterRect.GlobalPosition = new Vector2(
+                screen.Position.X - 16f,
+                Mathf.Max(
+                    GlobalPosition.Y + currentTexture.GetHeight(),
+                    screen.Position.Y - 16f
+                )
+            );
+        //}).CallDeferred();
+
         // 测试水块跟随用，可以删除
         //Position = new Vector2(Position.X, 233 + (float)Math.Sin(_testWaterPhase) * 128);
         //_testWaterPhase += delta * 2f;
