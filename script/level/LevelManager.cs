@@ -9,8 +9,9 @@ namespace SMWP.Level;
 public partial class LevelManager : Node {
     [Signal]
     public delegate void PlaySound1UPEventHandler();
+    
     public static int Time { get; set; }
-    public static int Life { get; set; } = 1;
+    public static int Life { get; set; } = 3;
     public static int Score { get; set; }
     public static int Coin { get; set; } = 99;
 
@@ -28,17 +29,16 @@ public partial class LevelManager : Node {
     private static int _levelPassTimer;
     private static int _timeClearTimer;
     private static int _timeClearedTimer;
-    private Node? _player;
+    public static Node2D? Player;
 
     public override void _Ready() {
         Sound1UPAudioStream2D = _1UPAudioStream2DNode;
         _timeClearSounds = GetNode("TimeClearSoundGroup").GetChildren();
-        _player ??= GetTree().GetFirstNodeInGroup("player");
     }
     
     public override void _PhysicsProcess(double delta) {
         // 不在关卡中
-        if (_player == null) return;
+        if (Player == null) return;
         
         // 关卡计时
         TimeCount();
@@ -80,7 +80,7 @@ public partial class LevelManager : Node {
         // 传送时，计时器停止
         // Todo: if (playerMovement.Stuck or PipeIn/Out) return;
         // 玩家死亡，计时器停止
-        if (_player is { ProcessMode: ProcessModeEnum.Disabled }) return;
+        if (Player != null && Player.ProcessMode == ProcessModeEnum.Disabled) return;
         
         if (Time <= 0) return;
         _levelTimeTimer++;

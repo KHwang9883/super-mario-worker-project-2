@@ -39,6 +39,7 @@ project/assembly_name="SuperMarioWorkerProject2"
 [file_customization]
 
 folder_colors={
+"res://content/level/background/": "green",
 "res://content/level/block/": "teal",
 "res://content/level/bonus/": "teal",
 "res://content/level/component/": "gray",

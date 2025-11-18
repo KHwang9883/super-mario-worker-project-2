@@ -123,8 +123,8 @@ public partial class SmwlLoader : Node {
         return new ClassicSmwlBlocksData(buffer, width);
     }
 
-    private async ValueTask<Array<ClassisSmwlObject>> ParseObjects(TextReader reader) {
-        Array<ClassisSmwlObject> result = [];
+    private async ValueTask<Array<ClassicSmwlObject>> ParseObjects(TextReader reader) {
+        Array<ClassicSmwlObject> result = [];
         while (true) {
             // 检测到 SMWP 二期的扩展关卡数据则返回
             if (!char.IsNumber((char)reader.Peek())) {
@@ -148,7 +148,7 @@ public partial class SmwlLoader : Node {
             success = success && float.TryParse(line.AsSpan()[7..11], out position.Y);
             var metadata = line.Length == 11 ? "" : line[11..];
             if (success) {
-                result.Add(new ClassisSmwlObject {
+                result.Add(new ClassicSmwlObject {
                     Id = id,
                     Position = position,
                     Metadata = metadata,

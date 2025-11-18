@@ -1,8 +1,11 @@
-[gd_scene format=3 uid="uid://cplswge6xc0vw"]
+[gd_scene load_steps=2 format=3 uid="uid://cplswge6xc0vw"]
+
+[ext_resource type="Script" uid="uid://cyalam1re1tln" path="res://script/level/camera/LevelCamera.cs" id="1_213j8"]
 
 [node name="TestCamera2D" type="Camera2D" groups=["camera"]]
 process_callback = 0
 limit_left = 0
 limit_top = 0
 limit_bottom = 544
+script = ExtResource("1_213j8")
 metadata/_edit_lock_ = true

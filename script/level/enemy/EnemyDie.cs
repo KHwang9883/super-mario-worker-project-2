@@ -46,7 +46,7 @@ public partial class EnemyDie : Node {
         if (Dead) return;
         Dead = true;
         EmitSignal(SignalName.Died);
-        //Callable.From(() => {
+        Callable.From(() => {
         switch (enemyDieType) {
             case EnemyDieEnum.Explode:
                 var fireballExplosionInstance = _fireballExplosionScene.Instantiate<Node2D>();
@@ -76,6 +76,6 @@ public partial class EnemyDie : Node {
             }
         }
         _parent.QueueFree();
-        //}).CallDeferred();
+        }).CallDeferred();
     }
 }

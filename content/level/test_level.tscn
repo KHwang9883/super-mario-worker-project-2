@@ -1,5 +1,6 @@
-[gd_scene load_steps=59 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=60 format=4 uid="uid://c6beqw4lopqjr"]
 
+[ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
 [ext_resource type="Texture2D" uid="uid://c2qyxcvftu6cd" path="res://content/level/hud/game_over.png" id="7_yeotl"]
@@ -102,7 +103,8 @@ size = Vector2(96, 63.53125)
 [node name="LevelConfig" type="Node" parent="TestLevelNode2D" groups=["level_config"]]
 script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
-Time = -6
+BackgroundId = 17
+Database = ExtResource("2_27x5w")
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
 [node name="HUD" type="CanvasLayer" parent="TestLevelNode2D"]
@@ -287,6 +289,7 @@ unique_name_in_owner = true
 position = Vector2(1924, 40)
 
 [node name="TestCamera2D" parent="TestLevelNode2D/Mario" instance=ExtResource("10_8mywb")]
+limit_bottom = 960
 
 [node name="DebugWaterArea2D" type="Area2D" parent="TestLevelNode2D" groups=["water"]]
 collision_layer = 64
@@ -573,6 +576,15 @@ position = Vector2(976, 80)
 [node name="SuperStar" parent="TestLevelNode2D/Bonus" instance=ExtResource("18_mlotv")]
 position = Vector2(928, 272)
 
+[node name="MushroomLife" parent="TestLevelNode2D/Bonus" instance=ExtResource("50_rjg3t")]
+position = Vector2(1776, 36)
+
+[node name="Coin" parent="TestLevelNode2D/Bonus" instance=ExtResource("50_sjqdy")]
+position = Vector2(1684, 48)
+
+[node name="Coin2" parent="TestLevelNode2D/Bonus" instance=ExtResource("50_sjqdy")]
+position = Vector2(1720, 48)
+
 [node name="Facilities" type="Node2D" parent="TestLevelNode2D"]
 
 [node name="Brick" parent="TestLevelNode2D/Facilities" instance=ExtResource("23_dmmuc")]
@@ -623,15 +635,6 @@ position = Vector2(1632, 240)
 [node name="GiantGate" parent="TestLevelNode2D/Facilities" instance=ExtResource("40_5t3id")]
 position = Vector2(2156, 308)
 
-[node name="MushroomLife" parent="TestLevelNode2D/Facilities" instance=ExtResource("50_rjg3t")]
-position = Vector2(1776, 36)
-
 [node name="DebugObjectGroup" type="Node2D" parent="TestLevelNode2D"]
-
-[node name="Coin" parent="TestLevelNode2D" instance=ExtResource("50_sjqdy")]
-position = Vector2(1684, 48)
-
-[node name="Coin2" parent="TestLevelNode2D" instance=ExtResource("50_sjqdy")]
-position = Vector2(1720, 48)
 
 [connection signal="PlaySoundTimeWarning" from="TestLevelNode2D/HUD/HUD" to="TestLevelNode2D/HUD/HUD/TimeWarning" method="play"]

@@ -53,10 +53,9 @@ z_index = 100
 collision_layer = 64
 collision_mask = 56
 script = ExtResource("1_opojc")
-waterBoundary = SubResource("WorldBoundaryShape2D_8j37s")
-_parallaxWater = NodePath("WaterSprite/WaterParallax2D")
+_parallaxWater = NodePath("")
 _waterSurfaceSprite = NodePath("WaterSprite/WaterSurfaceParallax2D/AnimatedSprite2D")
-_waterRect = NodePath("WaterSprite/WaterParallax2D/ColorRect")
+_waterRect = NodePath("WaterSprite/ColorRect")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -74,12 +73,10 @@ sprite_frames = SubResource("SpriteFrames_g2rda")
 autoplay = "default"
 frame_progress = 1.0
 
-[node name="WaterParallax2D" type="Parallax2D" parent="WaterSprite"]
-repeat_size = Vector2(640, 480)
-
-[node name="ColorRect" type="ColorRect" parent="WaterSprite/WaterParallax2D"]
+[node name="ColorRect" type="ColorRect" parent="WaterSprite"]
 self_modulate = Color(1, 1, 1, 0.5294118)
-offset_top = 16.5
-offset_right = 640.0
-offset_bottom = 496.5
+offset_left = -16.0
+offset_top = 16.0
+offset_right = 656.0
+offset_bottom = 528.0
 color = Color(0.3529412, 0.54901963, 0.90588236, 1)
