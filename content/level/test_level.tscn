@@ -103,7 +103,7 @@ size = Vector2(96, 63.53125)
 [node name="LevelConfig" type="Node" parent="TestLevelNode2D" groups=["level_config"]]
 script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
-BackgroundId = 17
+BackgroundId = 26
 Database = ExtResource("2_27x5w")
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
@@ -309,7 +309,7 @@ offset_bottom = 352.0
 color = Color(0.17254902, 0.28627452, 0.46666667, 1)
 
 [node name="Water" parent="TestLevelNode2D" node_paths=PackedStringArray("_camera") instance=ExtResource("11_o3hmp")]
-position = Vector2(0, 276)
+position = Vector2(0, 336)
 _camera = NodePath("../Mario/TestCamera2D")
 
 [node name="Solid" type="Node2D" parent="TestLevelNode2D"]

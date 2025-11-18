@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlkdmap6of1x4"]
+
+[ext_resource type="Script" uid="uid://bt70774414ws0" path="res://script/level/background/BackgroundSet.cs" id="1_ssrat"]
+[ext_resource type="Texture2D" uid="uid://c766j6e7ra03q" path="res://content/level/background/snow_new.bg.png" id="2_ssrat"]
+
+[sub_resource type="Gradient" id="Gradient_bur41"]
+colors = PackedColorArray(0.3137255, 0.5372549, 0.6313726, 1, 0.75686276, 0.9764706, 0.9764706, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vcbrb"]
+gradient = SubResource("Gradient_bur41")
+width = 640
+height = 480
+fill_to = Vector2(0, 1)
+
+[node name="Background24" type="Node2D" node_paths=PackedStringArray("_gradient", "_backgroundBottom")]
+z_index = -500
+script = ExtResource("1_ssrat")
+_gradient = NodePath("Parallax2DGradient/Gradient")
+_backgroundBottom = NodePath("Parallax2DBottom/Bottom")
+metadata/_custom_type_script = "uid://bt70774414ws0"
+
+[node name="Parallax2DGradient" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 1)
+
+[node name="Gradient" type="Sprite2D" parent="Parallax2DGradient"]
+position = Vector2(320, 240)
+texture = SubResource("GradientTexture2D_vcbrb")
+
+[node name="Parallax2DBottom" type="Parallax2D" parent="."]
+repeat_size = Vector2(2998, 0)
+repeat_times = 2
+
+[node name="Bottom" type="Sprite2D" parent="Parallax2DBottom"]
+texture = ExtResource("2_ssrat")
+offset = Vector2(1499, -208)

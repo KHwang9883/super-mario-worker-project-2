@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://d25kwhv5wnpd7"]
+
+[ext_resource type="Script" uid="uid://bt70774414ws0" path="res://script/level/background/BackgroundSet.cs" id="1_i61go"]
+[ext_resource type="Texture2D" uid="uid://bed3y2dg7y6qm" path="res://content/level/background/glassland.bg.png" id="2_i61go"]
+[ext_resource type="Texture2D" uid="uid://4opq1b3ox1rq" path="res://content/level/background/grassland_flip.bg.png" id="3_xla7l"]
+
+[sub_resource type="Gradient" id="Gradient_1fpw2"]
+colors = PackedColorArray(1, 0.003921569, 0.23529412, 1, 0.9843137, 0.98039216, 0.9843137, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kop3m"]
+gradient = SubResource("Gradient_1fpw2")
+width = 640
+height = 480
+fill_to = Vector2(0, 1)
+
+[node name="Background26" type="Node2D" node_paths=PackedStringArray("_gradient", "_backgroundBottom")]
+z_index = -500
+script = ExtResource("1_i61go")
+_gradient = NodePath("Parallax2DGradient/Gradient")
+_backgroundBottom = NodePath("Parallax2DBottom/Bottom")
+metadata/_custom_type_script = "uid://bt70774414ws0"
+
+[node name="Parallax2DGradient" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 1)
+
+[node name="Gradient" type="Sprite2D" parent="Parallax2DGradient"]
+position = Vector2(320, 240)
+texture = SubResource("GradientTexture2D_kop3m")
+
+[node name="Parallax2DBottom" type="Parallax2D" parent="."]
+repeat_size = Vector2(1053, 0)
+repeat_times = 2
+
+[node name="Bottom" type="Sprite2D" parent="Parallax2DBottom"]
+texture = ExtResource("2_i61go")
+offset = Vector2(526, -70)
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(1053, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+texture = ExtResource("3_xla7l")
+offset = Vector2(526, 69)

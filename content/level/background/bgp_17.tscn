@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0lbg3nbl5rvq"]
+
+[ext_resource type="Script" uid="uid://bt70774414ws0" path="res://script/level/background/BackgroundSet.cs" id="1_2llo1"]
+
+[sub_resource type="Gradient" id="Gradient_2llo1"]
+colors = PackedColorArray(0.13725491, 0.13725491, 0.13725491, 1, 0.7607843, 0.7607843, 0.7607843, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4cao"]
+gradient = SubResource("Gradient_2llo1")
+width = 640
+height = 480
+fill_to = Vector2(0, 1)
+
+[node name="Background17" type="Node2D" node_paths=PackedStringArray("_gradient")]
+z_index = -500
+script = ExtResource("1_2llo1")
+_gradient = NodePath("Parallax2DGradient/Gradient")
+metadata/_custom_type_script = "uid://bt70774414ws0"
+
+[node name="Parallax2DGradient" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 1)
+
+[node name="Gradient" type="Sprite2D" parent="Parallax2DGradient"]
+position = Vector2(320, 240)
+texture = SubResource("GradientTexture2D_g4cao")
