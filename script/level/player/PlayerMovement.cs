@@ -99,7 +99,13 @@ public partial class PlayerMovement : Node {
         float maxSpeed;
 
         if (IsInWater) {
-            maxSpeed = Fire ? _waterMaxRunningSpeed : _waterMaxWalkingSpeed;
+            if (Fire) {
+                maxSpeed = _waterMaxRunningSpeed;
+            } else {
+                maxSpeed = Mathf.Abs(SpeedX) > _waterMaxWalkingSpeed
+                    ? _waterMaxRunningSpeed
+                    : _waterMaxWalkingSpeed;
+            }
         } else {
             if (Fire) {
                 maxSpeed = _maxRunningSpeed;
