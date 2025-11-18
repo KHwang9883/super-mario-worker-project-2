@@ -11,6 +11,6 @@ public partial class LevelConfig : Node {
     [Export] public int Time = 600;
 
     public override void _Ready() {
-        LevelManager.Time = Time;
+        LevelManager.SetLevelTime(Time);
     }
 }

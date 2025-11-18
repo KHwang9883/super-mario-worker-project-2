@@ -100,7 +100,7 @@ size = Vector2(96, 63.53125)
 [node name="LevelConfig" type="Node" parent="TestLevelNode2D" groups=["level_config"]]
 script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
-Time = 114514
+Time = -6
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
 [node name="HUD" type="CanvasLayer" parent="TestLevelNode2D"]

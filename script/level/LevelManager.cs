@@ -1,6 +1,8 @@
 using Godot;
 using System;
+using Godot.Collections;
 using SMWP.Level.Sound;
+using Array = Godot.Collections.Array;
 
 namespace SMWP.Level;
 
@@ -17,16 +19,20 @@ public partial class LevelManager : Node {
     
     [Export] private ContinuousAudioStream2D _1UPAudioStream2DNode = null!;
     public static ContinuousAudioStream2D Sound1UPAudioStream2D = null!;
+    private static Array<Node> _timeClearSounds = null!;
     
     // Todo: 关卡标题
     public static string? LevelTitle;
 
-    private int _levelTimeTimer;
-    private int _levelPassTimer;
+    private static int _levelTimeTimer;
+    private static int _levelPassTimer;
+    private static int _timeClearTimer;
+    private static int _timeClearedTimer;
     private Node? _player;
 
     public override void _Ready() {
         Sound1UPAudioStream2D = _1UPAudioStream2DNode;
+        _timeClearSounds = GetNode("TimeClearSoundGroup").GetChildren();
         _player ??= GetTree().GetFirstNodeInGroup("player");
     }
     
@@ -65,16 +71,20 @@ public partial class LevelManager : Node {
     }
     
     // Level Timer
+    public static void SetLevelTime(int setTime) {
+        Time = setTime;
+        _levelTimeTimer = 0;
+    }
     public void TimeCount() {
         if (IsLevelPass) return;
         // 传送时，计时器停止
         // Todo: if (playerMovement.Stuck or PipeIn/Out) return;
         // 玩家死亡，计时器停止
-        if (_player != null && _player.ProcessMode == ProcessModeEnum.Disabled) return;
+        if (_player is { ProcessMode: ProcessModeEnum.Disabled }) return;
         
+        if (Time <= 0) return;
         _levelTimeTimer++;
         if (_levelTimeTimer < 16) return;
-        if (Time <= 0) return;
         _levelTimeTimer = 0;
         Time--;
     }
@@ -82,8 +92,56 @@ public partial class LevelManager : Node {
     // Level Pass
     public void LevelPass() {
         if (!IsLevelPass) return;
+        
         _levelPassTimer++;
-        if (_levelPassTimer < 1000) return;
-        // Todo: 时间结算
+        if (_levelPassTimer <= 450) return;
+        // 时间结算
+        if (_levelPassTimer > 450 && Time> 0) {
+            Time -= 1; AddScore(100);
+            _timeClearTimer += 1;
+        }
+        if (_levelPassTimer > 500 && Time> 9) {
+            Time -= 10; AddScore(1000);
+            _timeClearTimer += 1;
+        }
+        if (_levelPassTimer > 650 && Time> 99) {
+            Time -= 100; AddScore(10000);
+            _timeClearTimer += 1;
+        }
+        if (_timeClearTimer > 5) {
+            _timeClearTimer = 0;
+            PlaySoundClearTime();
+        }
+        if (Time == 0) {
+            _timeClearedTimer++;
+            if (_timeClearTimer >= 50) {
+                _timeClearedTimer = 0;
+                
+                _timeClearTimer = 0;
+                _levelPassTimer = 0;
+                JumpToLevel();
+            }
+        }
+        if (Time < 0) {
+            _timeClearTimer = 0;
+            _levelPassTimer = 0;
+            JumpToLevel();
+        }
+    }
+    public void PlaySoundClearTime() {
+        foreach (var node in _timeClearSounds) {
+            if (node is not ContinuousAudioStream2D sound) continue;
+            if (sound.Playing) continue;
+            sound.Play();
+            // 挑选随机一个节点播放
+            break;
+        }
+    }
+
+    public void JumpToLevel() {
+        
+        // Todo: 关卡跳转 / 回到标题画面 / 编辑界面
+        
+        GetTree().Free();
     }
 }

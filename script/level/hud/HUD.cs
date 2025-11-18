@@ -28,10 +28,13 @@ public partial class HUD : Control {
         // Todo: LevelTitle 特殊处理
         if (_levelTitle != null) _levelTitle.Text = LevelManager.LevelTitle;
         
+        // 负数时间不显示
+        if (_timeHUD != null && LevelManager.Time < 0) _timeHUD.Visible = false;
+            
         // 时钟警告！
         if (_timeHUD != null) {
             if (_timeCounter != null) _timeCounter.Text = LevelManager.Time.ToString();
-            if (LevelManager.Time < 100 && LevelManager.Time > 0) {
+            if (LevelManager.Time < 100 && LevelManager.Time > 0 && !LevelManager.IsLevelPass) {
                 OnTimeWarning();
             }
             _timeHUDShake = _rng.RandfRange(0f, _rock) - _rng.RandfRange(0f, _rock);
@@ -39,6 +42,7 @@ public partial class HUD : Control {
             _rock = Mathf.Clamp(_rock - 0.1f, 0f, _rock);
         }
 
+        // 金币
         if (_coin != null) _coin.Text = LevelManager.Coin.ToString();
         
         // Game Over 展示
