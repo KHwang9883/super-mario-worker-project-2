@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using Godot;
 using SMWP.Level.Data;
 
@@ -7,7 +8,7 @@ namespace SMWP.Level;
 public partial class SmwlLevel : Node2D {
     [ExportGroup("References")]
     [Export] public TileMapLayer BlocksTilemap { get; private set; } = null!;
-    [Export] public SmwlBlockDataHolder BlocksDatabase { get; private set; } = null!;
+    [Export] public SmwlDataHolder DatabaseHolder { get; private set; } = null!;
     
     /// <summary>
     /// 坐标为 32 的整数倍的实心所用的 TileMap
@@ -50,19 +51,41 @@ public partial class SmwlLevel : Node2D {
     }
 
     public void Install(SmwlLevelData data) {
+        InstallHeader(data.Header);
         InstallBlocks(data);
+        ImitatorBuilder imitatorBuilder = new(DatabaseHolder, BlocksTilemap.TileSet);
         foreach (var @object in data.Objects) {
-            if (@object.Id == 218) {
-                var pos = @object.Position;
-                if (pos.X % 32 == 0 && pos.Y % 32 == 0) {
-                    var tileCoord = (Vector2I)pos / 32;
-                    ObstacleTileMap.SetCell(tileCoord, 0, ObstacleTileCoord);
-                } else {
-                    var obstacle = UnalignedObstaclePrefab.Instantiate<Node2D>();
-                    obstacle.GlobalPosition = pos;
-                    AddChild(obstacle);
+            switch (@object.Id) {
+                case 218: {
+                    var pos = @object.Position;
+                    if (pos.X % 32 == 0 && pos.Y % 32 == 0) {
+                        var tileCoord = (Vector2I)pos / 32;
+                        ObstacleTileMap.SetCell(tileCoord, 0, ObstacleTileCoord);
+                    } else {
+                        var obstacle = UnalignedObstaclePrefab.Instantiate<Node2D>();
+                        obstacle.GlobalPosition = pos;
+                        AddChild(obstacle);
+                    }
+                    break;
                 }
+                case SmwlLevelData.ImitatorId:
+                    imitatorBuilder.NextImitator(@object);
+                    break;
             }
+        }
+        imitatorBuilder.Finish();
+        foreach (var tilemap in imitatorBuilder.FinishedTileMaps) {
+            AddChild(tilemap);
+        }
+        imitatorBuilder.Clear();
+    }
+
+    public void InstallHeader(ClassicSmwlHeaderData header) {
+        var background = DatabaseHolder.Backgrounds.Entries.FirstOrDefault(entry => entry.BackgroundId == header.LevelBackground);
+        if (background != null) {
+            AddChild(background.BackgroundScene.Instantiate());
+        } else {
+            GD.PushWarning($"Unknown background id: {header.LevelBackground}");
         }
     }
 
@@ -85,7 +108,7 @@ public partial class SmwlLevel : Node2D {
     }
 
     private void InstallBlock(Vector2I pos, BlockId id) {
-        if (BlocksDatabase.TryGetBlock(id, out var block)) {
+        if (DatabaseHolder.TryGetBlock(id, out var block)) {
             BlocksTilemap.SetCell(pos, block.TileSource, block.TileCoord);
         }
     }

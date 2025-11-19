@@ -1,12 +1,13 @@
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Godot;
+using SMWP.Level.Background;
 using SMWP.Level.Data;
 
 namespace SMWP.Level;
 
-public partial class SmwlBlockDataHolder : Node {
-    [Export] public SmwpBlockDatabase Database { get; private set; } = null!;
+public partial class SmwlDataHolder : Node {
+    [Export] public SmwpBlockDatabase BlockDatabase { get; private set; } = null!;
+    [Export] public BackgroundDatabase Backgrounds { get; private set; } = null!;
 
     public bool TryGetBlock(BlockId id, [NotNullWhen(true)] out SmwpBlockDatabaseEntry? block) {
         return ByBlockId.TryGetValue(id, out block);
@@ -16,8 +17,8 @@ public partial class SmwlBlockDataHolder : Node {
         return BySerialNumber.TryGetValue(serialNumber, out block);
     }
 
-    private Dictionary<BlockId, SmwpBlockDatabaseEntry> ByBlockId { get; } = [];
-    private Dictionary<int, SmwpBlockDatabaseEntry> BySerialNumber { get; } = [];
+    private System.Collections.Generic.Dictionary<BlockId, SmwpBlockDatabaseEntry> ByBlockId { get; } = [];
+    private System.Collections.Generic.Dictionary<int, SmwpBlockDatabaseEntry> BySerialNumber { get; } = [];
     
     public override void _Ready() {
         base._Ready();
@@ -26,7 +27,7 @@ public partial class SmwlBlockDataHolder : Node {
 
     private void Index() {
         ByBlockId.Clear();
-        foreach (var entry in Database.Entries) {
+        foreach (var entry in BlockDatabase.Entries) {
             if (BlockId.TryParse(entry.Id, out var rid)) {
                 ByBlockId[rid] = entry;
             }
