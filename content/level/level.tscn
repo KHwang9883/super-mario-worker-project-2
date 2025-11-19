@@ -21,10 +21,9 @@ func _process(delta: float) -> void:
 	return
 "
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("BlocksTilemap", "DatabaseHolder", "ObstacleTileMap", "SmwlLoader", "OpenSmwlDialog")]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("BlocksTilemap", "ObstacleTileMap", "SmwlLoader", "OpenSmwlDialog")]
 script = ExtResource("1_rpefo")
 BlocksTilemap = NodePath("Block Tile Map")
-DatabaseHolder = NodePath("Database Holder")
 ObstacleTileMap = NodePath("Obstacle Tile Map")
 UnalignedObstaclePrefab = ExtResource("2_y2vn4")
 SmwlLoader = NodePath("SMWL Loader")
@@ -40,6 +39,7 @@ visible = false
 tile_set = ExtResource("2_dugl1")
 
 [node name="Block Tile Map" type="TileMapLayer" parent="."]
+z_index = 1
 tile_set = ExtResource("7_fn8k0")
 collision_enabled = false
 
