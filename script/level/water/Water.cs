@@ -33,7 +33,7 @@ public partial class Water : Area2D {
         //}).CallDeferred();
 
         // 测试水块跟随用，可以删除
-        //Position = new Vector2(Position.X, 233 + (float)Math.Sin(_testWaterPhase) * 128);
+        //Position = new Vector2(Position.X, 0f + (float)Math.Sin(_testWaterPhase) * 128);
         //_testWaterPhase += delta * 2f;
     }
 }

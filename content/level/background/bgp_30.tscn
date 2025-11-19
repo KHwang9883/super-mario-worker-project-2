@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://biaandqr82ppl"]
+
+[ext_resource type="Script" uid="uid://bt70774414ws0" path="res://script/level/background/BackgroundSet.cs" id="1_1sct4"]
+[ext_resource type="Texture2D" uid="uid://momvj86ptdck" path="res://content/level/background/deep_forest.bg.png" id="2_1sct4"]
+
+[node name="Background30" type="Node2D"]
+z_index = -500
+script = ExtResource("1_1sct4")
+metadata/_custom_type_script = "uid://bt70774414ws0"
+
+[node name="Parallax2DNormal" type="Parallax2D" parent="."]
+repeat_size = Vector2(1024, 864)
+repeat_times = 3
+
+[node name="Normal" type="Sprite2D" parent="Parallax2DNormal"]
+texture = ExtResource("2_1sct4")
+offset = Vector2(512, 336)

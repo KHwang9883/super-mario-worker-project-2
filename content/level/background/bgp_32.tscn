@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhss5diqijsse"]
+
+[ext_resource type="Script" uid="uid://bt70774414ws0" path="res://script/level/background/BackgroundSet.cs" id="1_too3h"]
+
+[sub_resource type="Gradient" id="Gradient_too3h"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.047058824, 0.043137256, 0.14509805, 1, 0.19607843, 0.19607843, 0.2901961, 1, 0.6431373, 0.16470589, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rjbbx"]
+gradient = SubResource("Gradient_too3h")
+width = 640
+height = 480
+fill_to = Vector2(0, 1)
+
+[node name="Background32" type="Node2D" node_paths=PackedStringArray("_gradient")]
+z_index = -500
+script = ExtResource("1_too3h")
+_gradient = NodePath("Parallax2DGradient/Gradient")
+metadata/_custom_type_script = "uid://bt70774414ws0"
+
+[node name="Parallax2DGradient" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 1)
+
+[node name="Gradient" type="Sprite2D" parent="Parallax2DGradient"]
+position = Vector2(320, 240)
+texture = SubResource("GradientTexture2D_rjbbx")

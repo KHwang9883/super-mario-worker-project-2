@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgpgjlwqaxjpu"]
+
+[ext_resource type="Script" uid="uid://bt70774414ws0" path="res://script/level/background/BackgroundSet.cs" id="1_q0geo"]
+[ext_resource type="Texture2D" uid="uid://mqu6vke8b8sw" path="res://content/level/background/cave.bg.png" id="2_npft5"]
+[ext_resource type="Texture2D" uid="uid://ccsf82s5ygu7j" path="res://content/level/background/cave_gradient.bg.png" id="3_3vh1f"]
+
+[sub_resource type="Gradient" id="Gradient_npft5"]
+offsets = PackedFloat32Array(0, 0.9815436, 1)
+colors = PackedColorArray(0.56078434, 0.6784314, 1, 1, 0.92941177, 0.9490196, 1, 1, 0.89411765, 0.91764706, 0.9764706, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3vh1f"]
+gradient = SubResource("Gradient_npft5")
+width = 640
+height = 480
+fill_to = Vector2(0, 1)
+
+[node name="Background2" type="Node2D"]
+z_index = -500
+script = ExtResource("1_q0geo")
+metadata/_custom_type_script = "uid://bt70774414ws0"
+
+[node name="Parallax2DNormal" type="Parallax2D" parent="."]
+repeat_size = Vector2(511, 449)
+repeat_times = 3
+
+[node name="Normal" type="Sprite2D" parent="Parallax2DNormal"]
+texture = ExtResource("2_npft5")
+offset = Vector2(255, 704)
+
+[node name="Parallax2DTop" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 1)
+
+[node name="GradientSpecial" type="Sprite2D" parent="Parallax2DTop"]
+position = Vector2(320, 240)
+texture = SubResource("GradientTexture2D_3vh1f")
+
+[node name="Parallax2DMiddle" type="Parallax2D" parent="."]
+repeat_size = Vector2(511, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DMiddle"]
+texture = ExtResource("3_3vh1f")
+offset = Vector2(255, 512.5)
