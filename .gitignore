@@ -8,3 +8,10 @@
 # editors
 .idea/
 .vs/
+
+# SMWP 相关
+*.mfl
+*.mfs
+*.smwl
+*.smws
+*.smwp
