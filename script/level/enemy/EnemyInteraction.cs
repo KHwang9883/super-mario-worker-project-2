@@ -34,7 +34,7 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
     [ExportGroup("Stomp")]
     [Export] public bool Stompable { get; set; } = true;
     [Export] public bool ImmuneToStomp { get; set; }
-    [Export] public float StompOffset { get; set; } = -12f;
+    [Export] public float StompOffset { get; set; } = 2f;
     [Export] public float StompSpeedY { get; set; } = -8f;
     
     [ExportGroup("HurtType")]

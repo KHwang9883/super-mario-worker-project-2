@@ -12,7 +12,7 @@ public partial class InteractionWithPlayer : Node, IStompable, IHurtableAndKilla
     [Export] public IHurtableAndKillable.HurtEnum HurtType { get; set; }
 
     [Export] public bool Stompable { get; set; }
-    [Export] public float StompOffset { get; set; } = -12f;
+    [Export] public float StompOffset { get; set; } = 2f;
     [Export] public float StompSpeedY { get; set; } = -8f;
     protected Node2D? Parent;
 
