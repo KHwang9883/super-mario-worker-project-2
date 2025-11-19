@@ -9,8 +9,7 @@ using SMWP.Level.Interface;
 
 namespace SMWP.Level.Player;
 
-public partial class PlayerInteraction : Node
-{
+public partial class PlayerInteraction : Node {
     [Signal]
     public delegate void PlayerDieEventHandler();
     [Signal]
@@ -176,7 +175,9 @@ public partial class PlayerInteraction : Node
     }
     public void HitBlockDetect() {
         if (_player == null || _playerMediator == null ||
-            !IsInstanceIdValid(_player.GetInstanceId())) return;
+            !IsInstanceIdValid(_player.GetInstanceId()) ||
+            _player.ProcessMode == ProcessModeEnum.Disabled ||
+            _player.IsInsideTree()) return;
         
         Node? blockHitNode = null;
 

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BackgroundDatabase" load_steps=64 format=3 uid="uid://bohmbrhgu2nbg"]
+[gd_resource type="Resource" script_class="BackgroundDatabase" load_steps=67 format=3 uid="uid://bohmbrhgu2nbg"]
 
 [ext_resource type="Script" uid="uid://de0cij8gxtnh3" path="res://script/level/background/BackgroundDatabase.cs" id="1_lk4do"]
 [ext_resource type="PackedScene" uid="uid://b5sh4xptna6sa" path="res://content/level/background/bgp_1.tscn" id="1_lob34"]
@@ -6,12 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://bcnkw2lj4logj" path="res://content/level/background/bgp_3.tscn" id="3_6gqtb"]
 [ext_resource type="PackedScene" uid="uid://dgpgjlwqaxjpu" path="res://content/level/background/bgp_2.tscn" id="3_p4fua"]
 [ext_resource type="PackedScene" uid="uid://bvnk0x43bm6nj" path="res://content/level/background/bgp_5.tscn" id="4_v0hsm"]
+[ext_resource type="PackedScene" uid="uid://b1dgrljoly5yo" path="res://content/level/background/bgp_4.tscn" id="5_tlaok"]
 [ext_resource type="PackedScene" uid="uid://c2dtgjvi4u2x3" path="res://content/level/background/bgp_6.tscn" id="5_v0hsm"]
 [ext_resource type="PackedScene" uid="uid://bnbpq400iqem" path="res://content/level/background/bgp_7.tscn" id="6_mwm3e"]
 [ext_resource type="PackedScene" uid="uid://c3q3lvtscrsbg" path="res://content/level/background/bgp_10.tscn" id="7_8v6d8"]
 [ext_resource type="PackedScene" uid="uid://dfjmbo77yui07" path="res://content/level/background/bgp_14.tscn" id="8_5b5tn"]
 [ext_resource type="PackedScene" uid="uid://q6cooni84q8o" path="res://content/level/background/bgp_11.tscn" id="8_u8adk"]
 [ext_resource type="PackedScene" uid="uid://b5avji0wwedl5" path="res://content/level/background/bgp_12.tscn" id="9_1dvrn"]
+[ext_resource type="PackedScene" uid="uid://c4budpqynv2wg" path="res://content/level/background/bgp_9.tscn" id="9_70xw5"]
+[ext_resource type="PackedScene" uid="uid://diohkusaut36q" path="res://content/level/background/bgp_8.tscn" id="9_ludeo"]
 [ext_resource type="PackedScene" uid="uid://do3rjr4treb3n" path="res://content/level/background/bgp_13.tscn" id="11_cnkni"]
 [ext_resource type="PackedScene" uid="uid://0bl7o4o5hpcp" path="res://content/level/background/bgp_15.tscn" id="11_gv0cv"]
 [ext_resource type="PackedScene" uid="uid://crfhk0ior3cgb" path="res://content/level/background/bgp_16.tscn" id="12_xalh4"]
@@ -52,6 +55,7 @@ metadata/_custom_type_script = "uid://d6lhtp3ek0fo"
 [sub_resource type="Resource" id="Resource_8v6d8"]
 script = ExtResource("2_jaqlt")
 BackgroundId = 4
+BackgroundScene = ExtResource("5_tlaok")
 metadata/_custom_type_script = "uid://d6lhtp3ek0fo"
 
 [sub_resource type="Resource" id="Resource_5b5tn"]
@@ -75,11 +79,13 @@ metadata/_custom_type_script = "uid://d6lhtp3ek0fo"
 [sub_resource type="Resource" id="Resource_gv0cv"]
 script = ExtResource("2_jaqlt")
 BackgroundId = 8
+BackgroundScene = ExtResource("9_ludeo")
 metadata/_custom_type_script = "uid://d6lhtp3ek0fo"
 
 [sub_resource type="Resource" id="Resource_xalh4"]
 script = ExtResource("2_jaqlt")
 BackgroundId = 9
+BackgroundScene = ExtResource("9_70xw5")
 metadata/_custom_type_script = "uid://d6lhtp3ek0fo"
 
 [sub_resource type="Resource" id="Resource_txb84"]

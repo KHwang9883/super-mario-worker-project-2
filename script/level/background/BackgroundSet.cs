@@ -34,15 +34,15 @@ public partial class BackgroundSet : Node2D {
     }
 
     public override void _PhysicsProcess(double delta) {
-        if (_cloudTop == null || _waterSurface == null) return;
-        
         // 顶部云层入水隐藏
-        var screen = ScreenUtils.GetScreenRect(this);
-        var modulate = _cloudTop.Modulate;
-        if (screen.Position.Y + 100f > _waterSurface.Position.Y) {
-            _cloudTop.Modulate = modulate with { A = Mathf.MoveToward(modulate.A, 0f, 0.05f) };
-        } else {
-            _cloudTop.Modulate = modulate with { A = Mathf.MoveToward(modulate.A, 1f, 0.05f) };
+        if (_cloudTop != null && _waterSurface != null) {
+            var screen = ScreenUtils.GetScreenRect(this);
+            var modulate = _cloudTop.Modulate;
+            if (screen.Position.Y + 100f > _waterSurface.Position.Y) {
+                _cloudTop.Modulate = modulate with { A = Mathf.MoveToward(modulate.A, 0f, 0.05f) };
+            } else {
+                _cloudTop.Modulate = modulate with { A = Mathf.MoveToward(modulate.A, 1f, 0.05f) };
+            }
         }
     }
 }

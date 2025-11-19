@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1dgrljoly5yo"]
+
+[ext_resource type="Script" uid="uid://bt70774414ws0" path="res://script/level/background/BackgroundSet.cs" id="1_ccq68"]
+[ext_resource type="Texture2D" uid="uid://bed3y2dg7y6qm" path="res://content/level/background/glassland.bg.png" id="2_8wo6q"]
+[ext_resource type="Script" uid="uid://daihvms05jnx5" path="res://script/level/background/BackgroundParallax.cs" id="2_xkv1d"]
+[ext_resource type="Texture2D" uid="uid://djmjx8tpn1g4q" path="res://content/level/background/cloud.bg.png" id="3_8wo6q"]
+
+[sub_resource type="Gradient" id="Gradient_w3slq"]
+colors = PackedColorArray(0.56078434, 0.6784314, 1, 1, 0.92941177, 0.9490196, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6gtkv"]
+gradient = SubResource("Gradient_w3slq")
+width = 640
+height = 480
+fill_to = Vector2(0, 1)
+
+[node name="Background4" type="Node2D" node_paths=PackedStringArray("_gradient", "_backgroundBottom", "_cloudTop")]
+z_index = -500
+script = ExtResource("1_ccq68")
+_gradient = NodePath("Parallax2DGradient/Gradient")
+_backgroundBottom = NodePath("Parallax2DBottom/Bottom")
+_cloudTop = NodePath("CloudTop")
+metadata/_custom_type_script = "uid://bt70774414ws0"
+
+[node name="Parallax2DGradient" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 1)
+
+[node name="Gradient" type="Sprite2D" parent="Parallax2DGradient"]
+position = Vector2(320, 240)
+texture = SubResource("GradientTexture2D_6gtkv")
+
+[node name="Parallax2DBottom" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 1)
+repeat_size = Vector2(1053, 0)
+repeat_times = 2
+script = ExtResource("2_xkv1d")
+metadata/_custom_type_script = "uid://daihvms05jnx5"
+
+[node name="Bottom" type="Sprite2D" parent="Parallax2DBottom"]
+texture = ExtResource("2_8wo6q")
+offset = Vector2(526, -70)
+
+[node name="CloudTop" type="Node2D" parent="."]
+
+[node name="Parallax2DCloud2" type="Parallax2D" parent="CloudTop"]
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(64, 0)
+autoscroll = Vector2(10, 0)
+repeat_times = 40
+script = ExtResource("2_xkv1d")
+_parallaxCoefficient = 0.2
+metadata/_custom_type_script = "uid://daihvms05jnx5"
+
+[node name="Sprite2D" type="Sprite2D" parent="CloudTop/Parallax2DCloud2"]
+texture = ExtResource("3_8wo6q")
+offset = Vector2(32, 82)
+
+[node name="Parallax2DCloud" type="Parallax2D" parent="CloudTop"]
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(64, 0)
+autoscroll = Vector2(20, 0)
+repeat_times = 40
+script = ExtResource("2_xkv1d")
+_parallaxCoefficient = 0.3
+metadata/_custom_type_script = "uid://daihvms05jnx5"
+
+[node name="Sprite2D" type="Sprite2D" parent="CloudTop/Parallax2DCloud"]
+texture = ExtResource("3_8wo6q")
+offset = Vector2(32, 32)

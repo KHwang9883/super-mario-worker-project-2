@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://diohkusaut36q"]
+
+[ext_resource type="Script" uid="uid://bt70774414ws0" path="res://script/level/background/BackgroundSet.cs" id="1_qw3ce"]
+[ext_resource type="Texture2D" uid="uid://dki2x8k0otq4k" path="res://content/level/background/underwater.bg.png" id="2_fcgb3"]
+[ext_resource type="Script" uid="uid://daihvms05jnx5" path="res://script/level/background/BackgroundParallax.cs" id="2_tatst"]
+
+[sub_resource type="Gradient" id="Gradient_w3slq"]
+colors = PackedColorArray(0.56078434, 0.6784314, 1, 1, 0.92941177, 0.9490196, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6gtkv"]
+gradient = SubResource("Gradient_w3slq")
+width = 640
+height = 480
+fill_to = Vector2(0, 1)
+
+[node name="Background8" type="Node2D" node_paths=PackedStringArray("_gradient", "_backgroundBottom")]
+z_index = -500
+script = ExtResource("1_qw3ce")
+_gradient = NodePath("Parallax2DGradient/Gradient")
+_backgroundBottom = NodePath("BottomBgpGroup")
+metadata/_custom_type_script = "uid://bt70774414ws0"
+
+[node name="Parallax2DGradient" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 1)
+
+[node name="Gradient" type="Sprite2D" parent="Parallax2DGradient"]
+position = Vector2(320, 240)
+texture = SubResource("GradientTexture2D_6gtkv")
+
+[node name="BottomBgpGroup" type="Node2D" parent="."]
+
+[node name="Parallax2DBottom3" type="Parallax2D" parent="BottomBgpGroup"]
+scroll_scale = Vector2(0, 1)
+repeat_size = Vector2(828, 0)
+repeat_times = 2
+script = ExtResource("2_tatst")
+metadata/_custom_type_script = "uid://daihvms05jnx5"
+
+[node name="Bottom" type="Sprite2D" parent="BottomBgpGroup/Parallax2DBottom3"]
+self_modulate = Color(1, 1, 1, 0.2)
+texture = ExtResource("2_fcgb3")
+offset = Vector2(414, -121)
+
+[node name="Parallax2DBottom2" type="Parallax2D" parent="BottomBgpGroup"]
+scroll_scale = Vector2(0, 1)
+repeat_size = Vector2(828, 0)
+repeat_times = 2
+script = ExtResource("2_tatst")
+_parallaxCoefficient = 0.2
+metadata/_custom_type_script = "uid://daihvms05jnx5"
+
+[node name="Bottom" type="Sprite2D" parent="BottomBgpGroup/Parallax2DBottom2"]
+self_modulate = Color(1, 1, 1, 0.8)
+texture = ExtResource("2_fcgb3")
+offset = Vector2(414, -101)
+
+[node name="Parallax2DBottom" type="Parallax2D" parent="BottomBgpGroup"]
+scroll_scale = Vector2(0, 1)
+repeat_size = Vector2(828, 0)
+repeat_times = 2
+script = ExtResource("2_tatst")
+_parallaxCoefficient = 0.3
+metadata/_custom_type_script = "uid://daihvms05jnx5"
+
+[node name="Bottom" type="Sprite2D" parent="BottomBgpGroup/Parallax2DBottom"]
+texture = ExtResource("2_fcgb3")
+offset = Vector2(414, -81)

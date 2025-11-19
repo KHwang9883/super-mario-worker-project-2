@@ -7,7 +7,6 @@ public partial class Water : Area2D {
     [Export] private Parallax2D _parallaxWater = null!;
     [Export] private AnimatedSprite2D _waterSurfaceSprite = null!;
     [Export] private ColorRect _waterRect = null!;
-    [Export] private Camera2D _camera = null!;
 
     // 测试水块跟随用，可以删除
     //private double _testWaterPhase = 233f;
