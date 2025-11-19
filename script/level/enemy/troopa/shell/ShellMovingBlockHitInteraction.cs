@@ -3,7 +3,7 @@ using System;
 using SMWP.Level.Block;
 using SMWP.Level.Physics;
 
-public partial class ShellBlockHitInteraction : Node {
+public partial class ShellMovingBlockHitInteraction : Node {
     private CharacterBody2D? _shellHard;
 
     public override void _Ready() {

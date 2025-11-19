@@ -34,7 +34,7 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
     [ExportGroup("Stomp")]
     [Export] public bool Stompable { get; set; } = true;
     [Export] public bool ImmuneToStomp { get; set; }
-    [Export] public float StompOffset { get; set; } = 2f;
+    [Export] public float StompOffset { get; set; } = -4f;
     [Export] public float StompSpeedY { get; set; } = -8f;
     
     [ExportGroup("HurtType")]
@@ -108,7 +108,7 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
         OnDied();
         return StompSpeedY;
     }
-    public void PlayerHurtCheck(bool check) {
+    public virtual void PlayerHurtCheck(bool check) {
     }
 
     // 火球

@@ -10,7 +10,7 @@
     <Content Include="docs\resource_naming.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="content\enemy\" />
+    <Folder Include="content\" />
     <Folder Include="script\level\enemy\goomba\" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@ using Godot;
 using System;
 using SMWP.Level.Physics;
 
-public partial class ShellDirection : BasicMovement {
+public partial class ShellMovingDirection : BasicMovement {
     public override void SetMovementDirection() {
         if (!InitiallyFaceToPlayer) return;
         // 被踩后的方向初始化设置

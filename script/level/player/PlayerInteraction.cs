@@ -85,7 +85,7 @@ public partial class PlayerInteraction : Node {
             }
             if (interactionWithStompNode is not IStompable stompable) continue;
             if (!stompable.Stompable
-                || !(_player.Velocity.Y >= 0f)
+                || !(_player.Velocity.Y > 0f)
                 || !(_player.GlobalPosition.Y < result.GlobalPosition.Y + stompable.StompOffset)) continue;
             result.SetMeta("InteractingObject", _player);
             EmitSignal(SignalName.PlayerStomp, stompable.OnStomped(_player));
@@ -111,8 +111,14 @@ public partial class PlayerInteraction : Node {
             if (interactionWithHurtNode is not IHurtableAndKillable hurtableAndKillable) continue;
             result.SetMeta("InteractingObject", _player);
             if (hurtableAndKillable is IStompable { Stompable: true } stompableAndHurtable) {
-                if (!(_player.GlobalPosition.Y >= 
-                      result.GlobalPosition.Y + stompableAndHurtable.StompOffset)) continue;
+                if (!(_player.GlobalPosition.Y >=
+                      result.GlobalPosition.Y + stompableAndHurtable.StompOffset)) {
+                    // 此举针对静止龟壳
+                    if (hurtableAndKillable.HurtType == IHurtableAndKillable.HurtEnum.Nothing) {
+                        hurtableAndKillable.PlayerHurtCheck(_hurtFrame);
+                    }
+                    continue;
+                }
             }
             switch (hurtableAndKillable.HurtType) {
                 case IHurtableAndKillable.HurtEnum.Die:
@@ -123,6 +129,7 @@ public partial class PlayerInteraction : Node {
                     hurtableAndKillable.PlayerHurtCheck(_hurtFrame);
                     break;
                 case IHurtableAndKillable.HurtEnum.Nothing:
+                    hurtableAndKillable.PlayerHurtCheck(_hurtFrame);
                     break;
             }
         }
@@ -174,16 +181,13 @@ public partial class PlayerInteraction : Node {
         }
     }
     public void HitBlockDetect() {
-        if (_player == null || _playerMediator == null ||
-            !IsInstanceIdValid(_player.GetInstanceId()) ||
-            _player.ProcessMode == ProcessModeEnum.Disabled ||
-            _player.IsInsideTree()) return;
+        if (_player == null || _playerMediator == null) return;
         
         Node? blockHitNode = null;
 
         if (!(_playerMediator.playerMovement.SpeedY <= 0f)) return;
         
-        KinematicCollision2D? collision = _player.MoveAndCollide(new Vector2(0f, -1f), true);
+        KinematicCollision2D collision = _player.MoveAndCollide(new Vector2(0f, -1f), true);
         if (collision == null) {
             return;
         }

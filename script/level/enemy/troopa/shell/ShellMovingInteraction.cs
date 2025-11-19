@@ -3,7 +3,7 @@ using System;
 using SMWP.Level.Interface;
 using SMWP.Level.Physics;
 
-public partial class ShellInteraction : Node {
+public partial class ShellMovingInteraction : Node {
     [Signal]
     public delegate void HardedEventHandler();
     [Export] private CharacterBody2D _shell = null!;
@@ -24,7 +24,7 @@ public partial class ShellInteraction : Node {
             
             // 不与同级硬度的运动龟壳相撞
             if (result.HasMeta("ShellInteraction")) {
-                var shellInteraction = (ShellInteraction)result.GetMeta("ShellInteraction");
+                var shellInteraction = (ShellMovingInteraction)result.GetMeta("ShellInteraction");
                 if (HardLevel == shellInteraction.HardLevel) {
                     continue;
                 }

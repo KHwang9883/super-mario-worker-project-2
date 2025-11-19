@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=60 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
@@ -26,7 +26,6 @@
 [ext_resource type="PackedScene" uid="uid://dhq4p7f4dvkh4" path="res://content/level/bonus/poisonous_mushroom/poisonous_mushroom.tscn" id="21_dwm8j"]
 [ext_resource type="PackedScene" uid="uid://b4b6pch7u4iem" path="res://content/level/block/brick/brick.tscn" id="23_dmmuc"]
 [ext_resource type="PackedScene" uid="uid://c6iixdbmeknh0" path="res://content/level/enemy/troopa/shell/shell_moving_green.tscn" id="27_r5pq0"]
-[ext_resource type="PackedScene" uid="uid://dvxny3btmnf18" path="res://content/level/enemy/troopa/troopa_walking/troopa_red.tscn" id="28_r5pq0"]
 [ext_resource type="PackedScene" uid="uid://72d0sq841rbo" path="res://content/level/enemy/lava/lava_piece.tscn" id="29_buyip"]
 [ext_resource type="PackedScene" uid="uid://c25jnama51dur" path="res://content/level/enemy/lava/lava_bottom.tscn" id="30_a0ied"]
 [ext_resource type="PackedScene" uid="uid://cejpown37o253" path="res://content/level/enemy/lakitu/lakitu.tscn" id="32_lxach"]
@@ -291,7 +290,7 @@ tile_set = ExtResource("11_877iw")
 
 [node name="Mario" parent="TestLevelNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(2440, 140)
+position = Vector2(1780, 48)
 
 [node name="TestCamera2D" parent="TestLevelNode2D/Mario" instance=ExtResource("10_8mywb")]
 limit_bottom = 640
@@ -314,7 +313,7 @@ offset_bottom = 352.0
 color = Color(0.17254902, 0.28627452, 0.46666667, 1)
 
 [node name="Water" parent="TestLevelNode2D" instance=ExtResource("11_o3hmp")]
-position = Vector2(0, 244)
+position = Vector2(0, 444)
 
 [node name="Solid" type="Node2D" parent="TestLevelNode2D"]
 
@@ -412,9 +411,6 @@ position = Vector2(1776, 292)
 [node name="Goomba12" parent="TestLevelNode2D/Enemies" instance=ExtResource("16_lgciv")]
 position = Vector2(1864, 400)
 
-[node name="TroopaBlue" parent="TestLevelNode2D/Enemies" instance=ExtResource("37_36qdp")]
-position = Vector2(2284, 208)
-
 [node name="TroopaYellow" parent="TestLevelNode2D/Enemies" instance=ExtResource("38_gctg4")]
 position = Vector2(2336, 144)
 
@@ -422,10 +418,7 @@ position = Vector2(2336, 144)
 position = Vector2(2176, 400)
 
 [node name="TroopaBlue2" parent="TestLevelNode2D/Enemies" instance=ExtResource("37_36qdp")]
-position = Vector2(2232, 400)
-
-[node name="TroopaGreen4" parent="TestLevelNode2D/Enemies" instance=ExtResource("28_r5pq0")]
-position = Vector2(2328, 144)
+position = Vector2(1944, 48)
 
 [node name="Boo" parent="TestLevelNode2D/Enemies" instance=ExtResource("39_gctg4")]
 position = Vector2(376, 48)
@@ -518,10 +511,10 @@ position = Vector2(1972, 240)
 position = Vector2(2036, 304)
 
 [node name="CheepCheepSpike2" parent="TestLevelNode2D/Enemies" instance=ExtResource("38_5t3id")]
-position = Vector2(2200, 376)
+position = Vector2(1872, 540)
 
 [node name="CheepCheepRed" parent="TestLevelNode2D/Enemies" instance=ExtResource("43_vgddd")]
-position = Vector2(2148, 344)
+position = Vector2(1824, 520)
 
 [node name="CheepCheepArea" parent="TestLevelNode2D/Enemies" instance=ExtResource("36_vgddd")]
 CheepAreaType = 0

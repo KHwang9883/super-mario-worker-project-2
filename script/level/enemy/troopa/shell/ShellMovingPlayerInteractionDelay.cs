@@ -5,7 +5,7 @@ using SMWP.Level.Interface;
 
 namespace SMWP.Level.Enemy.Troopa.Shell;
 
-public partial class ShellPlayerInteractionDelay : Node {
+public partial class ShellMovingPlayerInteractionDelay : Node {
     [Export] private int _delay = 10;
     [Export] private EnemyInteraction _enemyInteractionComponent = null!;
     
