@@ -48,12 +48,11 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Water" type="Area2D" node_paths=PackedStringArray("_parallaxWater", "_waterSurfaceSprite", "_waterRect") groups=["water", "water_global"]]
+[node name="Water" type="Area2D" node_paths=PackedStringArray("_waterSurfaceSprite", "_waterRect") groups=["water", "water_global"]]
 z_index = 100
 collision_layer = 64
 collision_mask = 56
 script = ExtResource("1_opojc")
-_parallaxWater = NodePath("")
 _waterSurfaceSprite = NodePath("WaterSprite/WaterSurfaceParallax2D/AnimatedSprite2D")
 _waterRect = NodePath("WaterSprite/ColorRect")
 
@@ -68,7 +67,7 @@ repeat_size = Vector2(640, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WaterSprite/WaterSurfaceParallax2D"]
 self_modulate = Color(1, 1, 1, 0.5294118)
-position = Vector2(320, 9.6)
+position = Vector2(320, 8)
 sprite_frames = SubResource("SpriteFrames_g2rda")
 autoplay = "default"
 frame_progress = 1.0

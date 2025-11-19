@@ -1,0 +1,170 @@
+[gd_scene load_steps=13 format=3 uid="uid://2h2s1iqemydd"]
+
+[ext_resource type="Script" uid="uid://cw5hkxqowq7mu" path="res://script/title/Title.cs" id="1_gkc87"]
+[ext_resource type="Texture2D" uid="uid://dynptqib5cdpd" path="res://content/title/title_screen.png" id="2_5v3jq"]
+[ext_resource type="Texture2D" uid="uid://dh8pt1ahn64yf" path="res://content/title/marioworker_cup_effect.png" id="3_60u3e"]
+[ext_resource type="Texture2D" uid="uid://b81bfbe1ttdeg" path="res://content/title/marioworker_cup.png" id="4_arrdh"]
+[ext_resource type="AudioStream" uid="uid://dl1dt6epfemd" path="res://content/sound/marioworker.me.wav" id="5_x2io1"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="6_i2sm7"]
+[ext_resource type="AudioStream" uid="uid://0mk2qecjh52v" path="res://content/sound/marioworker_cheer.me.mp3" id="7_5xeu1"]
+
+[sub_resource type="Animation" id="Animation_60u3e"]
+resource_name = "new_animation"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarioworkerCup:position:y")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(0.5000007, 1),
+"update": 0,
+"values": [656.0, 312.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marioworkering:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.22),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cheer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.96),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_arrdh"]
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarioworkerCup:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(0.35355338, 0.28717482),
+"update": 0,
+"values": [656.0, 312.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marioworkering:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.22),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cheer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.96),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:_creatingLightStar")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rpivp"]
+_data = {
+&"RESET": SubResource("Animation_arrdh"),
+&"new_animation": SubResource("Animation_60u3e")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gkc87"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rpivp"]
+blend_mode = 1
+
+[node name="Title" type="Node2D" node_paths=PackedStringArray("_titleToSpin", "_animationPlayer", "_marioworkerCup")]
+script = ExtResource("1_gkc87")
+_titleToSpin = NodePath("TitleToSpin")
+_animationPlayer = NodePath("AnimationPlayer")
+_marioworkerCup = NodePath("MarioworkerCup")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+active = false
+libraries = {
+&"": SubResource("AnimationLibrary_rpivp")
+}
+autoplay = "RESET"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.5019608)
+offset_right = 640.0
+offset_bottom = 480.0
+
+[node name="title_screen" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(320, 240)
+texture = ExtResource("2_5v3jq")
+
+[node name="TitleToSpin" type="Node2D" parent="."]
+material = SubResource("CanvasItemMaterial_gkc87")
+position = Vector2(320, 240)
+
+[node name="Parallax2D" type="Parallax2D" parent="TitleToSpin"]
+use_parent_material = true
+repeat_size = Vector2(640, 480)
+repeat_times = 2
+
+[node name="title_screen" type="Sprite2D" parent="TitleToSpin/Parallax2D"]
+use_parent_material = true
+texture = ExtResource("2_5v3jq")
+
+[node name="MarioworkerCup" type="Node2D" parent="."]
+position = Vector2(64, 656)
+
+[node name="MarioworkerCupEffect" type="Sprite2D" parent="MarioworkerCup"]
+material = SubResource("CanvasItemMaterial_rpivp")
+texture = ExtResource("3_60u3e")
+metadata/_edit_lock_ = true
+
+[node name="MarioworkerCup" type="Sprite2D" parent="MarioworkerCup"]
+texture = ExtResource("4_arrdh")
+metadata/_edit_lock_ = true
+
+[node name="Marioworkering" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_x2io1")
+script = ExtResource("6_i2sm7")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="Cheer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_5xeu1")
+script = ExtResource("6_i2sm7")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"

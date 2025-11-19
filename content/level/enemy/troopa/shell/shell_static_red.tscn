@@ -100,7 +100,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 [connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]
 [connection signal="GoombaStomped" from="EnemyInteraction" to="Die" method="OnDied" flags=3]
-[connection signal="GoombaStomped" from="EnemyInteraction" to="Stomped" method="play"]
+[connection signal="GoombaStomped" from="EnemyInteraction" to="Stomped" method="play" unbinds=1]
 [connection signal="NormalHitAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="PlaySoundBumped" from="EnemyInteraction" to="Bumped" method="play"]
 [connection signal="PlaySoundKicked" from="EnemyInteraction" to="Kicked" method="play"]
