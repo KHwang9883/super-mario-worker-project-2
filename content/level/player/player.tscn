@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=32 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/level/player/mario_small.tres" id="1_o23i7"]
 [ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://bfhqh4egowku5" path="res://content/sound/powerup.se.wav" id="20_pull8"]
 [ext_resource type="AudioStream" uid="uid://bqndr8vnrf8wk" path="res://content/sound/powerdown.se.wav" id="21_1esvc"]
 [ext_resource type="AudioStream" uid="uid://ux42m3p5b615" path="res://content/sound/gameover.me.wav" id="25_445xo"]
+[ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="26_otrx5"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0cq6f"]
 blend_mode = 1
@@ -205,10 +206,16 @@ stream = ExtResource("25_445xo")
 script = ExtResource("18_8jrco")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
+[node name="Break" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("26_otrx5")
+script = ExtResource("18_8jrco")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="PlayerMediator/PlayerAnimation" method="OnAnimationFinished"]
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerAnimation" method="OnJumpStarted"]
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerJump" method="play"]
 [connection signal="SwimStarted" from="PlayerMediator/PlayerMovement" to="PlayerSwim" method="play"]
+[connection signal="PlaySoundBreak" from="PlayerMediator/PlayerDieAndHurt" to="Break" method="play"]
 [connection signal="PlaySoundGameOver" from="PlayerMediator/PlayerDieAndHurt" to="GameOver" method="play"]
 [connection signal="PlayerDied" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerInteraction" method="HurtSucceedSet"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerHurt"]

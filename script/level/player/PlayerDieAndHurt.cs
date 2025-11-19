@@ -15,12 +15,16 @@ public partial class PlayerDieAndHurt : Node {
     public delegate void PlayerHurtedEventHandler();
     [Signal]
     public delegate void PlaySoundGameOverEventHandler();
+    [Signal]
+    public delegate void PlaySoundBreakEventHandler();
     
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
     [Export] private PackedScene _playerDeadScene = null!;
     [Export] public float InvincibleDuration = 200;
     [Export] private ContinuousAudioStream2D? _gameOverSound;
+    [Export] private PackedScene _fireballExplosion = GD.Load<PackedScene>("uid://5mmyew6mh71p");
+    
     public bool IsInvincible;
     public bool IsHurtInvincible;
     private int _hurtInvincibleTimer;
@@ -65,6 +69,15 @@ public partial class PlayerDieAndHurt : Node {
         // 时间归零死亡
         if (LevelManager.Time == 0) {
             Die();
+        }
+        
+        // 按自爆键死亡
+        if (!_dead && Input.IsActionPressed("move_restart_level")) {
+            Die();
+            var fireballExplosion = _fireballExplosion.Instantiate<Node2D>();
+            fireballExplosion.Position = _player.Position + Vector2.Down * 16f;
+            _player.AddSibling(fireballExplosion);
+            EmitSignal(SignalName.PlaySoundBreak);
         }
         
         // 受伤无敌计时
