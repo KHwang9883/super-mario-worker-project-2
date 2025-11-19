@@ -61,7 +61,8 @@ public partial class PlayerInteraction : Node
         
         foreach (var result in results) {
             Node? interactionWithStarNode = null;
-
+            if (result == null) continue;
+            
             if (result.HasMeta("InteractionWithStar")) {
                 interactionWithStarNode = (Node)result.GetMeta("InteractionWithStar");
             }
@@ -78,7 +79,8 @@ public partial class PlayerInteraction : Node
         
         foreach (var result in results) {
             Node? interactionWithStompNode = null;
-
+            if (result == null) continue;
+            
             if (result.HasMeta("InteractionWithStomp")) {
                 interactionWithStompNode = (Node)result.GetMeta("InteractionWithStomp");
             }
@@ -102,6 +104,7 @@ public partial class PlayerInteraction : Node
         
         foreach (var result in results) {
             Node? interactionWithHurtNode = null;
+            if (result == null) continue;
 
             if (result.HasMeta("InteractionWithHurt")) {
                 interactionWithHurtNode = (Node)result.GetMeta("InteractionWithHurt");
@@ -130,6 +133,7 @@ public partial class PlayerInteraction : Node
         
         foreach (var result in results) {
             Node? powerupSetNode = null;
+            if (result == null) continue;
 
             if (result.HasMeta("PowerupSet")) {
                 powerupSetNode = (Node)result.GetMeta("PowerupSet");
