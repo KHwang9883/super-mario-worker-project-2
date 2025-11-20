@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwgoeyciwh6p"]
+
+[ext_resource type="Script" uid="uid://dq1bqyjkdwaop" path="res://script/title/SelectLightMask.cs" id="1_fykcw"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ueers"]
+blend_mode = 1
+
+[node name="SelectLightMask" type="ColorRect"]
+self_modulate = Color(1, 1, 1, 0.5019608)
+material = SubResource("CanvasItemMaterial_ueers")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fykcw")

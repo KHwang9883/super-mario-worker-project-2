@@ -18,7 +18,6 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/image="uid://d1efjf687jw0q"
 config/icon="uid://d1efjf687jw0q"
-config/windows_native_icon="res://smwp.ico"
 
 [autoload]
 

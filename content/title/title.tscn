@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://2h2s1iqemydd"]
+[gd_scene load_steps=14 format=3 uid="uid://2h2s1iqemydd"]
 
 [ext_resource type="Script" uid="uid://cw5hkxqowq7mu" path="res://script/title/Title.cs" id="1_gkc87"]
 [ext_resource type="Texture2D" uid="uid://dynptqib5cdpd" path="res://content/title/title_screen.png" id="2_5v3jq"]
@@ -7,46 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dl1dt6epfemd" path="res://content/sound/marioworker.me.wav" id="5_x2io1"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="6_i2sm7"]
 [ext_resource type="AudioStream" uid="uid://0mk2qecjh52v" path="res://content/sound/marioworker_cheer.me.mp3" id="7_5xeu1"]
-
-[sub_resource type="Animation" id="Animation_60u3e"]
-resource_name = "new_animation"
-length = 7.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarioworkerCup:position:y")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.1),
-"transitions": PackedFloat32Array(0.5000007, 1),
-"update": 0,
-"values": [656.0, 312.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Marioworkering:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.22),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Cheer:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.96),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
+[ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/title/smwp_button.tscn" id="8_i2sm7"]
 
 [sub_resource type="Animation" id="Animation_arrdh"]
 length = 7.0
@@ -99,6 +60,46 @@ tracks/3/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_60u3e"]
+resource_name = "new_animation"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarioworkerCup:position:y")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(0.5000007, 1),
+"update": 0,
+"values": [656.0, 312.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marioworkering:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.22),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cheer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.96),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rpivp"]
 _data = {
 &"RESET": SubResource("Animation_arrdh"),
@@ -110,11 +111,12 @@ _data = {
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rpivp"]
 blend_mode = 1
 
-[node name="Title" type="Node2D" node_paths=PackedStringArray("_titleToSpin", "_animationPlayer", "_marioworkerCup")]
+[node name="Title" type="Node2D" node_paths=PackedStringArray("_titleToSpin", "_animationPlayer", "_marioworkerCup", "_control")]
 script = ExtResource("1_gkc87")
 _titleToSpin = NodePath("TitleToSpin")
 _animationPlayer = NodePath("AnimationPlayer")
 _marioworkerCup = NodePath("MarioworkerCup")
+_control = NodePath("Control")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 active = false
@@ -128,6 +130,7 @@ visible = false
 self_modulate = Color(1, 1, 1, 0.5019608)
 offset_right = 640.0
 offset_bottom = 480.0
+mouse_filter = 2
 
 [node name="title_screen" type="Sprite2D" parent="."]
 use_parent_material = true
@@ -135,6 +138,7 @@ position = Vector2(320, 240)
 texture = ExtResource("2_5v3jq")
 
 [node name="TitleToSpin" type="Node2D" parent="."]
+visible = false
 material = SubResource("CanvasItemMaterial_gkc87")
 position = Vector2(320, 240)
 
@@ -168,3 +172,23 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 stream = ExtResource("7_5xeu1")
 script = ExtResource("6_i2sm7")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="Control" type="Control" parent="."]
+process_mode = 4
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="QuitButton" parent="Control" instance=ExtResource("8_i2sm7")]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 328.0
+offset_right = 528.0
+offset_bottom = 444.0
+text = ""
+
+[connection signal="pressed" from="Control/QuitButton" to="." method="OnQuitPressed"]

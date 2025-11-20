@@ -7,6 +7,7 @@ public partial class Title : Node2D {
     [Export] private Node2D? _marioworkerCup;
     [Export] private bool _creatingLightStar;
     [Export] private PackedScene _lightStarScene = GD.Load<PackedScene>("uid://cg1273gwl8g68");
+    [Export] private Control? _control;
     
     public enum TitleAnimationStatus { Spin, Light, Lighting, Over}
     private TitleAnimationStatus _animationStatus = TitleAnimationStatus.Spin;
@@ -16,6 +17,7 @@ public partial class Title : Node2D {
 
     public override void _Ready() {
         if (_titleToSpin == null) return;
+        _titleToSpin.Visible = true;
         _titleToSpin.RotationDegrees -= 90f;
     }
     public override void _PhysicsProcess(double delta) {
@@ -44,13 +46,16 @@ public partial class Title : Node2D {
                 _titleToSpin.Modulate =
                     _titleToSpin.Modulate with { A = Mathf.MoveToward(alpha, 0f, 0.02f) };
                 if (Math.Abs(alpha - 0f) < 0.02f) {
-                    _titleMaterial.BlendMode = CanvasItemMaterial.BlendModeEnum.Mix;
-                    _titleToSpin.Material = _titleMaterial;
+                    if (_titleMaterial != null) {
+                        _titleMaterial.BlendMode = CanvasItemMaterial.BlendModeEnum.Mix;
+                        _titleToSpin.Material = _titleMaterial;
+                    }
                     _animationStatus = TitleAnimationStatus.Over;
                     if (_animationPlayer != null) {
                         _animationPlayer.Active = true;
                         _animationPlayer.Play();
                     }
+                    if (_control != null) _control.ProcessMode = ProcessModeEnum.Inherit;
                 }
                 break;
         }
@@ -65,5 +70,8 @@ public partial class Title : Node2D {
             + new Vector2(_rng.RandfRange(0, 60) - _rng.RandfRange(0, 60),
                 _rng.RandfRange(0, 150) - _rng.RandfRange(0, 200));
         AddSibling(lightStar);
+    }
+    public void OnQuitPressed() {
+        GetTree().Quit();
     }
 }

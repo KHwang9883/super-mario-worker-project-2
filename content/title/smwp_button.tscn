@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp2o2sissltwg"]
+
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="1_ifaju"]
+[ext_resource type="Shader" uid="uid://c8pmk3etlsqug" path="res://content/title/smwp_button.gdshader" id="1_m3866"]
+[ext_resource type="PackedScene" uid="uid://dwgoeyciwh6p" path="res://content/title/select_light_mask.tscn" id="2_x8656"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fqxcy"]
+shader = ExtResource("1_m3866")
+shader_parameter/corner_radius = 0.10000000475
+shader_parameter/antialiasing = true
+
+[node name="SmwpButton" type="Button"]
+material = SubResource("ShaderMaterial_fqxcy")
+offset_right = 116.0
+offset_bottom = 64.0
+theme = ExtResource("1_ifaju")
+theme_override_constants/line_spacing = 6
+text = "TEST
+TEST2
+TEST233"
+alignment = 0
+
+[node name="SelectLightMask" parent="." instance=ExtResource("2_x8656")]
+use_parent_material = true
+layout_mode = 1
+mouse_filter = 2
+
+[connection signal="mouse_entered" from="." to="SelectLightMask" method="OnDisplay"]
+[connection signal="mouse_exited" from="." to="SelectLightMask" method="OnHide"]
