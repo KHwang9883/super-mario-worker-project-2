@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using SMWP.Level.Enemy;
+using SMWP.Level.Sound;
 
 public partial class GoombaEnemyInteraction : EnemyInteraction {
     [Signal]

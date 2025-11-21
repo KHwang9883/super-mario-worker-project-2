@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/level/enemy/general_visible_on_screen_enabler_2d.tscn" id="7_bmtb4"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="8_27w7o"]
 [ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="9_2q4wx"]
-[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="10_plc8w"]
 [ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="11_s1ioi"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="11_supmv"]
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="12_77nce"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6n3e2"]
@@ -83,23 +83,22 @@ metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 
 [node name="Stomped" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_2q4wx")
-script = ExtResource("10_plc8w")
+script = ExtResource("11_supmv")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Kicked" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_s1ioi")
-script = ExtResource("10_plc8w")
+script = ExtResource("11_supmv")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Bumped" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_77nce")
-script = ExtResource("10_plc8w")
+script = ExtResource("11_supmv")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]
 [connection signal="GoombaStomped" from="EnemyInteraction" to="Die" method="OnDied" flags=3]
-[connection signal="GoombaStomped" from="EnemyInteraction" to="Stomped" method="play" unbinds=1]
 [connection signal="NormalHitAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="PlaySoundBumped" from="EnemyInteraction" to="Bumped" method="play"]
 [connection signal="PlaySoundKicked" from="EnemyInteraction" to="Kicked" method="play"]

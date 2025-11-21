@@ -18,6 +18,9 @@ public partial class ContinuousAudioStream2D : AudioStreamPlayer2D {
         _viewport = GetViewport();
         _parent.TreeExiting += OnParentExiting;
     }
+    public override void _PhysicsProcess(double delta) {
+        // 若不使用空方法那么从上方踩踏静止龟壳会没有音效，原因不明
+    }
     public void OnParentExiting() {
         //Reparent(_viewport);
         _parent.RemoveChild(this);

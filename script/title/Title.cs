@@ -72,10 +72,39 @@ public partial class Title : Node2D {
                 _rng.RandfRange(0, 150) - _rng.RandfRange(0, 200));
         AddSibling(lightStar);
     }
+
+    public void OnEditPressed() {
+        // Todo: Edit 界面跳转
+        GD.Print("Todo: Edit 界面跳转");
+    }
+    public void OnUploadDownloadPressed() {
+        OS.ShellOpen("https://download.marioforever.net/mw-levels.html");
+    }
+    public void OnCreateScenarioPressed() {
+        // Todo: Create Scenario 功能
+        GD.Print("Todo: Create Scenario 功能");
+    }
+    public void OnPlayLevelPressed() {
+        // Todo: Play Level 跳转
+        GD.Print("Todo: Play Level 跳转");
+    }
+    public void OnPlayScenarioPressed() {
+        // Todo: Play Scenario 跳转
+        GD.Print("Todo: Play Scenario 跳转");
+    }
     public void OnQuitPressed() {
         GetTree().Quit();
     }
+    
+    public void OnHomePressed() {
+        OS.ShellOpen("https://www.marioforever.net/");
+    }
+    public void OnHelpPressed() {
+        OS.ShellOpen("https://zh.wiki.marioforever.net/wiki/%E9%A6%96%E9%A1%B5");
+    }
+    
     public void JumpToScene(String sceneUid) {
         GetTree().ChangeSceneToPacked(GD.Load<PackedScene>(sceneUid));
     }
+    
 }

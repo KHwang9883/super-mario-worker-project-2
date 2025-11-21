@@ -183,13 +183,68 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="QuitButton" parent="Control" instance=ExtResource("8_i2sm7")]
+[node name="Edit" parent="Control" instance=ExtResource("8_i2sm7")]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 169.0
+offset_right = 248.0
+offset_bottom = 285.0
+text = ""
+LightShining = true
+
+[node name="UploadDownload" parent="Control" instance=ExtResource("8_i2sm7")]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 167.0
+offset_right = 388.0
+offset_bottom = 283.0
+text = ""
+LightShining = true
+
+[node name="CreateScenario" parent="Control" instance=ExtResource("8_i2sm7")]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 169.0
+offset_right = 528.0
+offset_bottom = 285.0
+text = ""
+LightShining = true
+
+[node name="PlayLevel" parent="Control" instance=ExtResource("8_i2sm7")]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 328.0
+offset_right = 248.0
+offset_bottom = 444.0
+text = ""
+LightShining = true
+
+[node name="PlayScenario" parent="Control" instance=ExtResource("8_i2sm7")]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 328.0
+offset_right = 388.0
+offset_bottom = 444.0
+text = ""
+LightShining = true
+
+[node name="Quit" parent="Control" instance=ExtResource("8_i2sm7")]
 layout_mode = 0
 offset_left = 412.0
 offset_top = 328.0
 offset_right = 528.0
 offset_bottom = 444.0
 text = ""
+LightShining = true
+
+[node name="Home" parent="Control" instance=ExtResource("8_i2sm7")]
+layout_mode = 0
+offset_left = 558.0
+offset_top = 194.0
+offset_right = 615.0
+offset_bottom = 251.0
+text = ""
+LightShining = true
 
 [node name="Option" parent="Control" instance=ExtResource("8_i2sm7")]
 layout_mode = 0
@@ -198,6 +253,23 @@ offset_top = 275.0
 offset_right = 615.0
 offset_bottom = 332.0
 text = ""
+LightShining = true
 
-[connection signal="pressed" from="Control/QuitButton" to="." method="OnQuitPressed"]
+[node name="Help" parent="Control" instance=ExtResource("8_i2sm7")]
+layout_mode = 0
+offset_left = 557.0
+offset_top = 355.0
+offset_right = 614.0
+offset_bottom = 412.0
+text = ""
+LightShining = true
+
+[connection signal="pressed" from="Control/Edit" to="." method="OnEditPressed"]
+[connection signal="pressed" from="Control/UploadDownload" to="." method="OnUploadDownloadPressed"]
+[connection signal="pressed" from="Control/CreateScenario" to="." method="OnCreateScenarioPressed"]
+[connection signal="pressed" from="Control/PlayLevel" to="." method="OnPlayLevelPressed"]
+[connection signal="pressed" from="Control/PlayScenario" to="." method="OnPlayScenarioPressed"]
+[connection signal="pressed" from="Control/Quit" to="." method="OnQuitPressed"]
+[connection signal="pressed" from="Control/Home" to="." method="OnHomePressed"]
 [connection signal="pressed" from="Control/Option" to="." method="JumpToScene" binds= ["uid://bh01ow2pgnsh5"]]
+[connection signal="pressed" from="Control/Help" to="." method="OnHelpPressed"]
