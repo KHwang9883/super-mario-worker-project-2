@@ -14,13 +14,18 @@ public partial class HUD : Control {
     [Export] private Label? _timeCounter;
     [Export] private Label? _coin;
     [Export] private Sprite2D? _gameOverSprite;
+    [Export] private Label? _godPosition;
 
     private bool _timeWarned;
     private RandomNumberGenerator _rng = new RandomNumberGenerator();
     private float _rock;
     private float _timeHUDShake;
     private Vector2 _timeOriginPosition;
-    
+    private Node2D? _player;
+
+    public override void _Ready() {
+        _player ??= (Node2D)GetTree().GetFirstNodeInGroup("player");
+    }
     public override void _PhysicsProcess(double delta) {
         if (_life != null) _life.Text = $"MARIO {LevelManager.Life.ToString()}";
         if (_score != null) _score.Text = LevelManager.Score.ToString();
@@ -48,6 +53,13 @@ public partial class HUD : Control {
         // Game Over 展示
         if (LevelManager.IsGameOver) {
             GameOverShow();
+        }
+        
+        // God Mode 摄像机模式坐标显示
+        if (_godPosition != null && _player != null) {
+            var godModeNode = (PlayerGodMode)_player.GetMeta("PlayerGodMode");
+            _godPosition.Visible = godModeNode.IsGodFly;
+            _godPosition.Text = $"({_player.Position.X:F2}, {_player.Position.Y:F2})" ;
         }
     }
     public void OnTimeWarning() {

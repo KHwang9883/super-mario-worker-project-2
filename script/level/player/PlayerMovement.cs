@@ -57,6 +57,10 @@ public partial class PlayerMovement : Node {
 
     // TODO: 冰块状态
     private bool _onIce;
+    
+    // God Mode 玩家碰撞层掩码记录
+    private uint _originPlayerLayer;
+    private uint _originPlayerMask;
 
     private NodePath _areaBodyCollision = "AreaBodyCollisionSmall";
     private NodePath _outWaterDetect = "OutWaterDetectSmall";
@@ -73,6 +77,9 @@ public partial class PlayerMovement : Node {
 
     public override void _Ready() {
         _lastPositionX = _player.Position.X;
+        
+        _originPlayerLayer = _player.GetCollisionLayer();
+        _originPlayerMask = _player.GetCollisionMask();
         
         _blocksPhysicsCollisionSmall = _player.GetNode<CollisionPolygon2D>("BlocksPhysicsCollisionSmall");
         _areaBodyCollisionSmall = _player.GetNode<ShapeCast2D>("AreaBodyCollisionSmall");
@@ -91,6 +98,27 @@ public partial class PlayerMovement : Node {
         Fire = Input.IsActionPressed("move_fire");
         _jump = Input.IsActionPressed("move_jump");
 
+        // God Mode
+        if (_playerMediator.playerGodMode.IsGodFly) {
+            var direction = new Vector2();
+            
+            if (_right) direction.X += 1;
+            if (_left) direction.X -= 1;
+            if (_down) direction.Y += 1;
+            if (_up) direction.Y -= 1;
+            
+            if (direction.Length() > 0) {
+                direction = direction.Normalized();
+            }
+            _player.Position += direction * 8f;
+            _player.SetCollisionLayer(0);
+            _player.SetCollisionMask(0);
+            return;
+        }
+        
+        _player.SetCollisionLayer(_originPlayerLayer);
+        _player.SetCollisionMask(_originPlayerMask);
+        
         // x 速度
         float acceleration = IsInWater
             ? _waterHorizontalAcceleration

@@ -27,7 +27,7 @@ public partial class PlayerDieAndHurt : Node {
     
     public bool IsInvincible;
     public bool IsHurtInvincible;
-    private int _hurtInvincibleTimer;
+    public int HurtInvincibleTimer;
     public bool IsStarmanInvincible;
     private bool _dead;
     private int _deadTimer;
@@ -82,10 +82,9 @@ public partial class PlayerDieAndHurt : Node {
         
         // 受伤无敌计时
         if (IsHurtInvincible) {
-            _hurtInvincibleTimer++;
-            if (_hurtInvincibleTimer >= InvincibleDuration) {
-                IsHurtInvincible = false;
-                EmitSignal(SignalName.PlayerInvincibleEnded);
+            HurtInvincibleTimer++;
+            if (HurtInvincibleTimer >= InvincibleDuration) {
+                HurtEnd();
             }
         }
         
@@ -114,7 +113,7 @@ public partial class PlayerDieAndHurt : Node {
     public void Hurt() {
         if (IsStarmanInvincible || IsHurtInvincible) return;
         IsHurtInvincible = true;
-        _hurtInvincibleTimer = 0;
+        HurtInvincibleTimer = 0;
         switch (_playerMediator.playerSuit.Suit) {
             case PlayerSuit.SuitEnum.Small:
                 Die();
@@ -129,5 +128,10 @@ public partial class PlayerDieAndHurt : Node {
                 EmitSignal(SignalName.PlayerHurted);
                 break;
         }
+    }
+    public void HurtEnd() {
+        IsHurtInvincible = false;
+        HurtInvincibleTimer = 0;
+        EmitSignal(SignalName.PlayerInvincibleEnded);
     }
 }

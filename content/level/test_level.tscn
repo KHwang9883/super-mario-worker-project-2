@@ -109,7 +109,7 @@ metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
 [node name="HUD" type="CanvasLayer" parent="TestLevelNode2D"]
 
-[node name="HUD" type="Control" parent="TestLevelNode2D/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite")]
+[node name="HUD" type="Control" parent="TestLevelNode2D/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite", "_godPosition")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -129,6 +129,7 @@ _timeHUD = NodePath("Time")
 _timeCounter = NodePath("Time/TimeCounter")
 _coin = NodePath("Coin")
 _gameOverSprite = NodePath("GameOver")
+_godPosition = NodePath("GodPosition")
 metadata/_edit_lock_ = true
 
 [node name="Life" type="Label" parent="TestLevelNode2D/HUD/HUD"]
@@ -226,6 +227,21 @@ text = "0"
 uppercase = true
 metadata/_edit_lock_ = true
 
+[node name="GodPosition" type="Label" parent="TestLevelNode2D/HUD/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_bfx67")
+text = "(000, 000)"
+horizontal_alignment = 2
+vertical_alignment = 2
+uppercase = true
+metadata/_edit_lock_ = true
+
 [node name="HUDCoin" type="AnimatedSprite2D" parent="TestLevelNode2D/HUD/HUD"]
 position = Vector2(167, 14)
 sprite_frames = SubResource("SpriteFrames_venmc")
@@ -236,6 +252,11 @@ metadata/_edit_lock_ = true
 stream = ExtResource("11_tfcdk")
 script = ExtResource("12_mjbph")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="GameOver" type="Sprite2D" parent="TestLevelNode2D/HUD/HUD"]
+visible = false
+position = Vector2(288, 230)
+texture = ExtResource("7_yeotl")
 
 [node name="HUDFontTest" type="Label" parent="TestLevelNode2D/HUD/HUD"]
 visible = false
@@ -259,11 +280,6 @@ abcdefghijklmnopqrstuvwxyz
 horizontal_alignment = 1
 uppercase = true
 metadata/_edit_lock_ = true
-
-[node name="GameOver" type="Sprite2D" parent="TestLevelNode2D/HUD/HUD"]
-visible = false
-position = Vector2(288, 230)
-texture = ExtResource("7_yeotl")
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="TestLevelNode2D"]
 visible = false

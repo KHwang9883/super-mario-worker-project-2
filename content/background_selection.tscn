@@ -535,17 +535,26 @@ offset_top = 60.0
 offset_right = 558.0
 offset_bottom = 163.0
 
-[node name="Gradient" type="Sprite2D" parent="Bgp10"]
-position = Vector2(70, 52)
-scale = Vector2(0.21875001, 0.21666667)
+[node name="Bgp10" type="Node2D" parent="Bgp10"]
+scale = Vector2(0.2, 0.2)
+metadata/_edit_lock_ = true
+
+[node name="Parallax2D" type="Parallax2D" parent="Bgp10/Bgp10"]
+repeat_size = Vector2(640, 480)
+repeat_times = 3
+metadata/_edit_lock_ = true
+
+[node name="Gradient" type="Sprite2D" parent="Bgp10/Bgp10/Parallax2D"]
 texture = SubResource("GradientTexture2D_nr17n")
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="Bgp10"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.95
 anchor_bottom = 1.0
+offset_right = -1.5258789e-05
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("11_0wk52")
@@ -636,13 +645,21 @@ offset_top = 216.0
 offset_right = 558.0
 offset_bottom = 319.0
 
-[node name="Gradient" type="Sprite2D" parent="Bgp14"]
-position = Vector2(70, 52.000004)
-scale = Vector2(0.21875001, 0.21666667)
+[node name="Bgp10" type="Node2D" parent="Bgp14"]
+scale = Vector2(0.2, 0.2)
+metadata/_edit_lock_ = true
+
+[node name="Parallax2D" type="Parallax2D" parent="Bgp14/Bgp10"]
+repeat_size = Vector2(640, 480)
+repeat_times = 3
+metadata/_edit_lock_ = true
+
+[node name="Gradient" type="Sprite2D" parent="Bgp14/Bgp10/Parallax2D"]
 texture = SubResource("GradientTexture2D_fd6ls")
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="Bgp14"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.95

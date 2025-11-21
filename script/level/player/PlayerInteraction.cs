@@ -39,6 +39,9 @@ public partial class PlayerInteraction : Node {
         // Todo: 水管传送的状态下不会受到伤害，这里暂时用卡墙的状态替代
         if (_playerMediator.playerMovement.Stuck) return;
         
+        // 结果数组不为 null 时开始检测
+        if (results == null) return;
+        
         // 无敌星状态下击杀敌人（比踩踏更优先检测）
         StarmanAttackDetect(results);
 

@@ -13,6 +13,7 @@ public partial class AddScoreComponent : Node {
     [Export] public AddScoreEnum AddScoreType { get; set; }*/
     [Export] private bool _showCorrespondingScore = true;
     [Export] public int InternalScore = 100;
+    [Export] public Vector2 CustomPosition = new(0, 0);
 
     private Node2D? _parent;
     private readonly Dictionary<int, Texture2D> _scoreTextures = new Dictionary<int, Texture2D>();
@@ -62,7 +63,7 @@ public partial class AddScoreComponent : Node {
         var scoreEffect = ScoreEffectScene.Instantiate<Sprite2D>();
         scoreEffect.SetTexture(scoreTexture);
         if (_parent == null) return;
-        scoreEffect.Position = _parent.Position;
+        scoreEffect.Position = _parent.Position + CustomPosition;
         _parent.AddSibling(scoreEffect);
     }
 }
