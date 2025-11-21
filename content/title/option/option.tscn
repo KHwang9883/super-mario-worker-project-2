@@ -1,0 +1,176 @@
+[gd_scene load_steps=7 format=3 uid="uid://bh01ow2pgnsh5"]
+
+[ext_resource type="Texture2D" uid="uid://dhketxxxmk7rt" path="res://content/title/option/option.png" id="1_ynhkg"]
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="2_8c4da"]
+[ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="2_85j05"]
+[ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="3_uo1tv"]
+[ext_resource type="PackedScene" uid="uid://ddlwq4a4b6iaf" path="res://content/ui/popup/smwp_popup_initial_lives.tscn" id="4_8c4da"]
+[ext_resource type="PackedScene" uid="uid://bw0aoogxdlcab" path="res://content/ui/popup/smwp_popup_temporary_files.tscn" id="5_uo1tv"]
+
+[node name="Option" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Basic" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionBackground" type="Sprite2D" parent="Basic"]
+position = Vector2(320, 240)
+texture = ExtResource("1_ynhkg")
+
+[node name="OptionBackgroundLabel" type="Label" parent="Basic"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 37.0
+offset_right = 284.0
+offset_bottom = 76.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5686275)
+theme_override_fonts/font = ExtResource("2_85j05")
+theme_override_font_sizes/font_size = 24
+text = "Global Options"
+vertical_alignment = 1
+
+[node name="Back" parent="Basic" instance=ExtResource("3_uo1tv")]
+layout_mode = 0
+offset_left = 563.0
+offset_top = 425.0
+offset_right = 622.0
+offset_bottom = 459.0
+text = ""
+
+[node name="VBoxContainerLabel" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 88.0
+offset_right = 384.0
+offset_bottom = 260.0
+
+[node name="InitialLives" type="Control" parent="VBoxContainerLabel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InitialLives" type="Label" parent="VBoxContainerLabel/InitialLives"]
+layout_mode = 0
+offset_right = 267.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("2_8c4da")
+text = "INITIAL LIVES OF SINGLE LEVEL"
+uppercase = true
+
+[node name="SetInitialLives" parent="VBoxContainerLabel/InitialLives" instance=ExtResource("3_uo1tv")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "4"
+alignment = 2
+
+[node name="TemporaryFiles" type="Control" parent="VBoxContainerLabel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TemporaryFiles" type="Label" parent="VBoxContainerLabel/TemporaryFiles"]
+layout_mode = 0
+offset_right = 154.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("2_8c4da")
+text = "Temporary Files"
+uppercase = true
+
+[node name="SetTemporaryFiles" parent="VBoxContainerLabel/TemporaryFiles" instance=ExtResource("3_uo1tv")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 10
+text = "100"
+alignment = 2
+
+[node name="DisplayMode" type="Control" parent="VBoxContainerLabel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DisplayMode" type="Label" parent="VBoxContainerLabel/DisplayMode"]
+layout_mode = 0
+offset_right = 121.0
+offset_bottom = 10.0
+size_flags_vertical = 0
+theme = ExtResource("2_8c4da")
+text = "Display Mode"
+uppercase = true
+
+[node name="SetDisplayMode" parent="VBoxContainerLabel/DisplayMode" instance=ExtResource("3_uo1tv")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 10
+text = "WINDOW MODE"
+alignment = 2
+
+[node name="CustomMusic" type="Control" parent="VBoxContainerLabel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CustomMusic" type="Label" parent="VBoxContainerLabel/CustomMusic"]
+layout_mode = 0
+offset_right = 214.0
+offset_bottom = 10.0
+size_flags_vertical = 2
+theme = ExtResource("2_8c4da")
+text = "Custom Music Package"
+uppercase = true
+
+[node name="AccessibilityMode" type="Control" parent="VBoxContainerLabel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AccessibilityMode" type="Label" parent="VBoxContainerLabel/AccessibilityMode"]
+layout_mode = 0
+offset_right = 258.0
+offset_bottom = 10.0
+size_flags_vertical = 2
+theme = ExtResource("2_8c4da")
+text = "Accessibility Mode (Color)"
+uppercase = true
+
+[node name="SmwpPopupGroup" type="Node" parent="."]
+
+[node name="SmwpPopupInitialLives" parent="SmwpPopupGroup" instance=ExtResource("4_8c4da")]
+visible = false
+
+[node name="SmwpPopupTemporaryFiles" parent="SmwpPopupGroup" instance=ExtResource("5_uo1tv")]
+visible = false
+
+[connection signal="pressed" from="VBoxContainerLabel/InitialLives/SetInitialLives" to="SmwpPopupGroup/SmwpPopupInitialLives" method="show"]
+[connection signal="pressed" from="VBoxContainerLabel/TemporaryFiles/SetTemporaryFiles" to="SmwpPopupGroup/SmwpPopupTemporaryFiles" method="show"]

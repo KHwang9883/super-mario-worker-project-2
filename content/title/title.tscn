@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dl1dt6epfemd" path="res://content/sound/marioworker.me.wav" id="5_x2io1"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="6_i2sm7"]
 [ext_resource type="AudioStream" uid="uid://0mk2qecjh52v" path="res://content/sound/marioworker_cheer.me.mp3" id="7_5xeu1"]
-[ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/title/smwp_button.tscn" id="8_i2sm7"]
+[ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="8_i2sm7"]
 
 [sub_resource type="Animation" id="Animation_arrdh"]
 length = 7.0
@@ -191,4 +191,13 @@ offset_right = 528.0
 offset_bottom = 444.0
 text = ""
 
+[node name="Option" parent="Control" instance=ExtResource("8_i2sm7")]
+layout_mode = 0
+offset_left = 558.0
+offset_top = 275.0
+offset_right = 615.0
+offset_bottom = 332.0
+text = ""
+
 [connection signal="pressed" from="Control/QuitButton" to="." method="OnQuitPressed"]
+[connection signal="pressed" from="Control/Option" to="." method="JumpToScene" binds= ["uid://bh01ow2pgnsh5"]]

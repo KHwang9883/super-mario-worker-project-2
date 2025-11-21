@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ds3uq7lyxof1e"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://ds3uq7lyxof1e"]
 
 [ext_resource type="FontFile" uid="uid://em53psx0nwwf" path="res://content/level/hud/mw/mw_hud.fnt" id="1_70ik3"]
 
@@ -7,6 +7,15 @@ content_margin_bottom = 16.0
 bg_color = Color(1, 1, 1, 0.3529412)
 draw_center = false
 border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gv86p"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpk5c"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x0wu7"]
+draw_center = false
 
 [resource]
 default_font = ExtResource("1_70ik3")
@@ -40,3 +49,15 @@ Button/styles/normal_mirrored = SubResource("StyleBoxFlat_rj6nb")
 Button/styles/pressed = SubResource("StyleBoxFlat_rj6nb")
 Button/styles/pressed_mirrored = SubResource("StyleBoxFlat_rj6nb")
 Label/constants/paragraph_spacing = 2
+LineEdit/colors/caret_color = Color(0.95, 0.95, 0.95, 1)
+LineEdit/colors/clear_button_color = Color(0.875, 0.875, 0.875, 1)
+LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
+LineEdit/colors/font_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_outline_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0.875, 0.875, 0.875, 0.6)
+LineEdit/colors/font_selected_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_uneditable_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+LineEdit/colors/selection_color = Color(0.5019608, 0.5019608, 0.5019608, 0)
+LineEdit/styles/focus = SubResource("StyleBoxFlat_gv86p")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_dpk5c")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_x0wu7")

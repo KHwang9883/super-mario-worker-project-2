@@ -50,6 +50,7 @@ folder_colors={
 "res://content/level/player/": "pink",
 "res://content/level/projectile​/": "red",
 "res://content/level/tile/": "gray",
+"res://content/ui/": "teal",
 "res://docs/": "blue",
 "res://script/": "gray"
 }

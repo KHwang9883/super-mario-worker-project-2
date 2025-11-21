@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://caf7un75kne3a"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(96, 0)
+size_flags_horizontal = 4
+text = "OK"

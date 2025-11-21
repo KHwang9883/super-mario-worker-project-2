@@ -8,6 +8,7 @@ public partial class Title : Node2D {
     [Export] private bool _creatingLightStar;
     [Export] private PackedScene _lightStarScene = GD.Load<PackedScene>("uid://cg1273gwl8g68");
     [Export] private Control? _control;
+    //[Export] private String _optionSceneUid = "uid://bh01ow2pgnsh5";
     
     public enum TitleAnimationStatus { Spin, Light, Lighting, Over}
     private TitleAnimationStatus _animationStatus = TitleAnimationStatus.Spin;
@@ -73,5 +74,8 @@ public partial class Title : Node2D {
     }
     public void OnQuitPressed() {
         GetTree().Quit();
+    }
+    public void JumpToScene(String sceneUid) {
+        GetTree().ChangeSceneToPacked(GD.Load<PackedScene>(sceneUid));
     }
 }

@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddlwq4a4b6iaf"]
+
+[ext_resource type="PackedScene" uid="uid://bxvt6eyfyn5b3" path="res://content/ui/popup/popup_component/smwp_popup_label.tscn" id="1_bpxeg"]
+[ext_resource type="PackedScene" uid="uid://0qk4cef678ct" path="res://content/ui/popup/popup_component/smwp_popup_line_edit.tscn" id="2_sj7r4"]
+[ext_resource type="PackedScene" uid="uid://caf7un75kne3a" path="res://content/ui/popup/popup_component/smwp_popup_button.tscn" id="3_f3fgk"]
+
+[node name="SmwpPopupInitialLives" type="PopupPanel"]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(417, 100)
+visible = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.99000007
+anchor_bottom = 0.96000004
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 0.16998291
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SetLabel" parent="Control/VBoxContainer" instance=ExtResource("1_bpxeg")]
+layout_mode = 2
+text = "Set initial lives while playing single level."
+
+[node name="LineEdit" parent="Control/VBoxContainer" instance=ExtResource("2_sj7r4")]
+layout_mode = 2
+
+[node name="Button" parent="Control/VBoxContainer" instance=ExtResource("3_f3fgk")]
+layout_mode = 2
+
+[connection signal="pressed" from="Control/VBoxContainer/Button" to="." method="hide"]
