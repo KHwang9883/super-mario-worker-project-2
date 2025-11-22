@@ -98,17 +98,21 @@ public partial class PlayerDieAndHurt : Node {
         return _player;
     }
     public void Die() {
-        if (!_dead) {
-            _dead = true;
-            _player.Visible = false;
-            _player.ProcessMode = ProcessModeEnum.Disabled;
+        if (_playerMediator.playerGodMode.IsGodFly) return;
+        if (_dead) return;
+        _dead = true;
+        _player.Visible = false;
+        _player.ProcessMode = ProcessModeEnum.Disabled;
+
+        // 变为小个子
+        _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Small;
+        
+        // 扣命
+        LevelManager.Life--;
             
-            LevelManager.Life--;
-            
-            var playerDeadInstance = _playerDeadScene.Instantiate<PlayerDead>();
-            playerDeadInstance.Position = _player.Position;
-            _player.AddSibling(playerDeadInstance);
-        }
+        var playerDeadInstance = _playerDeadScene.Instantiate<PlayerDead>();
+        playerDeadInstance.Position = _player.Position;
+        _player.AddSibling(playerDeadInstance);
     }
     public void Hurt() {
         if (IsStarmanInvincible || IsHurtInvincible) return;

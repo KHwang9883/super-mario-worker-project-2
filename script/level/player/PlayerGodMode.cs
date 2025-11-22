@@ -7,11 +7,13 @@ public partial class PlayerGodMode : Node {
     public delegate void AddLifeEventHandler();
     
     [Export] private PlayerMediator? _playerMediator;
+    [Export] public bool IsGodMode;
     
     public bool IsGodInvincible;
     public bool IsGodFly;
 
     public override void _Input(InputEvent @event) {
+        if (!IsGodMode) return;
         if (_playerMediator == null) return;
         if (@event is not InputEventKey { Pressed: true } keyEvent) return;
         

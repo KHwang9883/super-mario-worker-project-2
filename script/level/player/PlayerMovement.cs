@@ -76,6 +76,15 @@ public partial class PlayerMovement : Node {
     private ShapeCast2D _outWaterDetectSuper = null!;
 
     public override void _Ready() {
+        // Checkpoint
+        var checkpoints = GetTree().GetNodesInGroup("checkpoint");
+        if (checkpoints != null)
+            foreach (var node in checkpoints) {
+                if (node is not Checkpoint checkpoint) continue;
+                if (LevelManager.CurrentCheckpointId != checkpoint.Id) continue;
+                _player.Position = checkpoint.Position;
+            }
+        
         _lastPositionX = _player.Position.X;
         
         _originPlayerLayer = _player.GetCollisionLayer();

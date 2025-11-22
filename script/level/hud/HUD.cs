@@ -27,7 +27,13 @@ public partial class HUD : Control {
         _player ??= (Node2D)GetTree().GetFirstNodeInGroup("player");
     }
     public override void _PhysicsProcess(double delta) {
-        if (_life != null) _life.Text = $"MARIO {LevelManager.Life.ToString()}";
+        var godModeNode = (PlayerGodMode)_player.GetMeta("PlayerGodMode");
+        
+        if (_life != null) {
+            _life.Text = !godModeNode.IsGodMode ?
+                $"MARIO {LevelManager.Life.ToString()}"
+                :$"GOD   {LevelManager.Life.ToString()}";
+        }
         if (_score != null) _score.Text = LevelManager.Score.ToString();
         
         // Todo: LevelTitle 特殊处理
@@ -57,7 +63,6 @@ public partial class HUD : Control {
         
         // God Mode 摄像机模式坐标显示
         if (_godPosition != null && _player != null) {
-            var godModeNode = (PlayerGodMode)_player.GetMeta("PlayerGodMode");
             _godPosition.Visible = godModeNode.IsGodFly;
             _godPosition.Text = $"({_player.Position.X:F2}, {_player.Position.Y:F2})" ;
         }

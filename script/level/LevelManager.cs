@@ -3,6 +3,7 @@ using System;
 using Godot.Collections;
 using SMWP.Level.Sound;
 using Array = Godot.Collections.Array;
+// ReSharper disable FieldCanBeMadeReadOnly.Global
 
 namespace SMWP.Level;
 
@@ -14,6 +15,9 @@ public partial class LevelManager : Node {
     public static int Life { get; set; } = 3;
     public static int Score { get; set; }
     public static int Coin { get; set; } = 99;
+
+    public static int CurrentCheckpointId;
+    public static Array<int> ActivatedCheckpoints = []; 
 
     public static bool IsGameOver;
     public static bool IsLevelPass;
