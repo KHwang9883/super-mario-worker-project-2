@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://b28cg8xhy4d4y"]
+
+[ext_resource type="Script" uid="uid://dbqe1peidudfd" path="res://script/level/facility/checkpoint/Checkpoint.cs" id="1_uboex"]
+[ext_resource type="Texture2D" uid="uid://cnuberf305gsi" path="res://content/level/facility/checkpoint/checkpoint.png" id="2_ox0im"]
+[ext_resource type="AudioStream" uid="uid://b1086m1dfb3rq" path="res://content/sound/item_sprout.se.wav" id="3_6gl75"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="4_42ket"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gl75"]
+atlas = ExtResource("2_ox0im")
+region = Rect2(0, 112, 107, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42ket"]
+atlas = ExtResource("2_ox0im")
+region = Rect2(0, 224, 107, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdl52"]
+atlas = ExtResource("2_ox0im")
+region = Rect2(0, 0, 107, 112)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4rarp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gl75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42ket")
+}],
+"loop": true,
+"name": &"activated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdl52")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Checkpoint" type="Area2D" groups=["checkpoint"]]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_uboex")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, -56)
+sprite_frames = SubResource("SpriteFrames_4rarp")
+autoplay = "default"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(8, -56)
+polygon = PackedVector2Array(-53, -55, 27, -55, 53, -29, 53, -28, 29, -4, -4, -4, -4, 56, -12, 56, -12, -4, -53, -4)
+
+[node name="Activated" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6gl75")
+script = ExtResource("4_42ket")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[connection signal="CheckpointActivated" from="." to="Activated" method="play"]
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
