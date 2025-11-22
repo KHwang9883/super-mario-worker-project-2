@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bempv8gov1i3t"]
+
+[ext_resource type="AudioStream" uid="uid://bv50ofm2ir03l" path="res://content/sound/inl.me.wav" id="1_xc7mt"]
+
+[node name="SoundManager" type="Node"]
+
+[node name="SoundINL" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_xc7mt")
+
+[connection signal="finished" from="SoundINL" to="SoundINL" method="queue_free"]

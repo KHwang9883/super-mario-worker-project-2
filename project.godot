@@ -22,6 +22,7 @@ config/icon="uid://d1efjf687jw0q"
 [autoload]
 
 LevelManager="*res://content/level/level_manager.tscn"
+SoundManager="*res://content/sound/SoundManager.tscn"
 
 [display]
 

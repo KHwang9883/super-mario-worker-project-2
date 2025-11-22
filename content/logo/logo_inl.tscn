@@ -1,17 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://d76uaifepqkb"]
+[gd_scene load_steps=8 format=3 uid="uid://d76uaifepqkb"]
 
 [ext_resource type="Texture2D" uid="uid://mnhs74lml6oo" path="res://content/logo/logo_inl_bottom.png" id="1_1r66l"]
 [ext_resource type="Script" uid="uid://dak316hqiwrby" path="res://script/logo/Logo.cs" id="1_vp8ul"]
+[ext_resource type="VideoStream" uid="uid://0bweckxr5v1y" path="res://content/logo/INL_fadein.ogv" id="2_b6rfk"]
 [ext_resource type="Texture2D" uid="uid://bniguj1adl85a" path="res://content/logo/logo_inl.png" id="2_vp8ul"]
-[ext_resource type="AudioStream" uid="uid://bv50ofm2ir03l" path="res://content/sound/inl.me.wav" id="3_b6rfk"]
-[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="4_pj4nt"]
 
 [sub_resource type="Animation" id="Animation_1r66l"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LogoINLBottom:position")
+tracks/0/path = NodePath("AnimationGroup/LogoINLBottom:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -23,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LogoINLBottom:modulate:a")
+tracks/1/path = NodePath("AnimationGroup/LogoINLBottom:modulate:a")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -32,18 +31,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [1.0]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SoundINL:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_gr1di"]
 resource_name = "new_animation"
@@ -51,7 +38,7 @@ length = 5.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LogoINLBottom:position")
+tracks/0/path = NodePath("AnimationGroup/LogoINLBottom:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -63,7 +50,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LogoINLBottom:modulate:a")
+tracks/1/path = NodePath("AnimationGroup/LogoINLBottom:modulate:a")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -71,18 +58,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 1.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SoundINL:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.01),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5kt4x"]
@@ -94,28 +69,52 @@ _data = {
 [node name="LogoInl" type="Node2D"]
 script = ExtResource("1_vp8ul")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 480.0
+metadata/_edit_lock_ = true
+
+[node name="Node2D" type="Node2D" parent="Control"]
+scale = Vector2(0.5, 0.5)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Control/Node2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 960.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_b6rfk")
+volume_db = -80.0
+autoplay = true
+
+[node name="AnimationGroup" type="Node2D" parent="."]
+process_mode = 4
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationGroup"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_5kt4x")
 }
 autoplay = "new_animation"
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="AnimationGroup"]
 offset_right = 640.0
 offset_bottom = 480.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="LogoINLBottom" type="Sprite2D" parent="."]
+[node name="LogoINLBottom" type="Sprite2D" parent="AnimationGroup"]
 position = Vector2(-774, 240)
 texture = ExtResource("1_1r66l")
 
-[node name="LogoINL" type="Sprite2D" parent="."]
+[node name="LogoINL" type="Sprite2D" parent="AnimationGroup"]
 position = Vector2(320, 240)
 texture = ExtResource("2_vp8ul")
 metadata/_edit_lock_ = true
 
-[node name="SoundINL" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_b6rfk")
-script = ExtResource("4_pj4nt")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
+[connection signal="finished" from="Control/Node2D/VideoStreamPlayer" to="." method="OnAnimationFinished"]

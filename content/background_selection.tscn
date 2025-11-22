@@ -357,6 +357,21 @@ texture = ExtResource("7_rnb1c")
 offset = Vector2(32, 32)
 metadata/_edit_lock_ = true
 
+[node name="ParallaxIncluded" type="Label" parent="Bgp4"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 4.0
+offset_right = 139.0
+offset_bottom = 53.0
+rotation = 0.7853982
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.29411766)
+theme_override_fonts/font = ExtResource("2_8bnxu")
+theme_override_font_sizes/font_size = 13
+text = "PARALLEX
+INCLUDED!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Bgp5" type="Control" parent="."]
 clip_contents = true
 custom_minimum_size = Vector2(138, 103)
@@ -501,6 +516,21 @@ texture = ExtResource("9_1knvu")
 offset = Vector2(414, -81)
 metadata/_edit_lock_ = true
 
+[node name="ParallaxIncluded" type="Label" parent="Bgp8"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 4.0
+offset_right = 139.0
+offset_bottom = 53.0
+rotation = 0.7853982
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.29411766)
+theme_override_fonts/font = ExtResource("2_8bnxu")
+theme_override_font_sizes/font_size = 13
+text = "PARALLEX
+INCLUDED!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Bgp9" type="Control" parent="."]
 clip_contents = true
 custom_minimum_size = Vector2(138, 103)
@@ -525,6 +555,21 @@ metadata/_edit_lock_ = true
 texture = ExtResource("10_nr17n")
 offset = Vector2(511, 240)
 metadata/_edit_lock_ = true
+
+[node name="ParallaxIncluded" type="Label" parent="Bgp9"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 4.0
+offset_right = 139.0
+offset_bottom = 53.0
+rotation = 0.7853982
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.29411766)
+theme_override_fonts/font = ExtResource("2_8bnxu")
+theme_override_font_sizes/font_size = 13
+text = "PARALLEX
+INCLUDED!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Bgp10" type="Control" parent="."]
 clip_contents = true

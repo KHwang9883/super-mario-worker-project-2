@@ -64,6 +64,7 @@ shape = SubResource("WorldBoundaryShape2D_8j37s")
 
 [node name="WaterSurfaceParallax2D" type="Parallax2D" parent="WaterSprite"]
 repeat_size = Vector2(640, 0)
+repeat_times = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WaterSprite/WaterSurfaceParallax2D"]
 self_modulate = Color(1, 1, 1, 0.5294118)
@@ -74,8 +75,8 @@ frame_progress = 1.0
 
 [node name="ColorRect" type="ColorRect" parent="WaterSprite"]
 self_modulate = Color(1, 1, 1, 0.5294118)
-offset_left = -16.0
+offset_left = -640.0
 offset_top = 16.0
-offset_right = 656.0
+offset_right = 1280.0
 offset_bottom = 528.0
 color = Color(0.3529412, 0.54901963, 0.90588236, 1)

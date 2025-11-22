@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=65 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
@@ -54,6 +54,9 @@
 [ext_resource type="PackedScene" uid="uid://b7p4i1t28bwi1" path="res://content/level/bonus/coin/coin.tscn" id="50_sjqdy"]
 [ext_resource type="PackedScene" uid="uid://cmmb4r0nb8788" path="res://content/level/facility/sealer/sealer.tscn" id="53_877iw"]
 [ext_resource type="PackedScene" uid="uid://b28cg8xhy4d4y" path="res://content/level/facility/checkpoint/checkpoint.tscn" id="54_813lr"]
+[ext_resource type="PackedScene" uid="uid://22smr6kls4nc" path="res://content/level/tile/obstacle_half.tscn" id="55_sldem"]
+[ext_resource type="PackedScene" uid="uid://dri8grhd0ymhk" path="res://content/level/tile/platform_solid.tscn" id="56_ul4ql"]
+[ext_resource type="PackedScene" uid="uid://ci11f7ep75br" path="res://content/level/tile/platform_solid_player.tscn" id="57_e7eqa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
 atlas = ExtResource("8_lgciv")
@@ -105,7 +108,7 @@ size = Vector2(96, 63.53125)
 [node name="LevelConfig" type="Node" parent="TestLevelNode2D" groups=["level_config"]]
 script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
-BackgroundId = 8
+BackgroundId = 29
 Database = ExtResource("2_27x5w")
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
@@ -652,6 +655,18 @@ position = Vector2(2156, 308)
 
 [node name="Sealer" parent="TestLevelNode2D/Facilities" instance=ExtResource("53_877iw")]
 position = Vector2(1568, 0)
+
+[node name="Obstacle2" parent="TestLevelNode2D/Facilities" instance=ExtResource("55_sldem")]
+position = Vector2(1824, 0)
+
+[node name="PlatformSolid" parent="TestLevelNode2D/Facilities" instance=ExtResource("56_ul4ql")]
+position = Vector2(1792, 8)
+
+[node name="PlatformSolid2" parent="TestLevelNode2D/Facilities" instance=ExtResource("57_e7eqa")]
+position = Vector2(1624, 16)
+
+[node name="PlatformSolid5" parent="TestLevelNode2D/Facilities" instance=ExtResource("57_e7eqa")]
+position = Vector2(1952, 352)
 
 [node name="DebugObjectGroup" type="Node2D" parent="TestLevelNode2D"]
 
