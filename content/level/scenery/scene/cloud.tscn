@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://3p80f56jyfek"]
+
+[ext_resource type="Texture2D" uid="uid://b2cdctnaskkjk" path="res://content/level/scenery/texture/cloud_white.png" id="1_ilspt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xodc7"]
+atlas = ExtResource("1_ilspt")
+region = Rect2(0, 0, 100, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8jsy"]
+atlas = ExtResource("1_ilspt")
+region = Rect2(0, 52, 100, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xettv"]
+atlas = ExtResource("1_ilspt")
+region = Rect2(0, 104, 100, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mhfds"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xodc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8jsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xettv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Cloud" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mhfds")
+autoplay = "default"
+frame = 2
+frame_progress = 0.9482469
+offset = Vector2(4, 0)

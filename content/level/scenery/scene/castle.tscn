@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgija03djgoev"]
+
+[ext_resource type="Texture2D" uid="uid://460qhqvwlbcj" path="res://content/level/scenery/texture/re_scenery.png" id="1_rhkcq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mfux"]
+atlas = ExtResource("1_rhkcq")
+region = Rect2(320, 160, 320, 352)
+
+[node name="Castle" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_0mfux")
+offset = Vector2(0, -176)

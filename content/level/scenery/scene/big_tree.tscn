@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://en6mqhriwi5c"]
+
+[ext_resource type="Texture2D" uid="uid://460qhqvwlbcj" path="res://content/level/scenery/texture/re_scenery.png" id="1_417ab"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73e38"]
+atlas = ExtResource("1_417ab")
+region = Rect2(32, 0, 32, 96)
+
+[node name="BigTree" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_73e38")
+offset = Vector2(0, -48)

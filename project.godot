@@ -40,8 +40,8 @@ project/assembly_name="SuperMarioWorkerProject2"
 
 folder_colors={
 "res://content/level/background/": "green",
-"res://content/level/block/": "teal",
-"res://content/level/bonus/": "teal",
+"res://content/level/block/": "orange",
+"res://content/level/bonus/": "yellow",
 "res://content/level/component/": "gray",
 "res://content/level/database/": "gray",
 "res://content/level/debug/": "purple",
@@ -49,6 +49,7 @@ folder_colors={
 "res://content/level/facility/": "yellow",
 "res://content/level/player/": "pink",
 "res://content/level/projectile​/": "red",
+"res://content/level/scenery/": "teal",
 "res://content/level/tile/": "gray",
 "res://content/ui/": "teal",
 "res://docs/": "blue",

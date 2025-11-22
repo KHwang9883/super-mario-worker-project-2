@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://7h1fe5wip7om"]
+
+[ext_resource type="Texture2D" uid="uid://cklt741csu754" path="res://content/level/enemy/roto-disc/roto-disc_center.png" id="1_vkl0k"]
+
+[node name="RotoDiscCore" type="Node2D"]
+
+[node name="RotoDiscCenter" type="Sprite2D" parent="."]
+texture = ExtResource("1_vkl0k")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cocnlvcudc83q"]
+
+[ext_resource type="Texture2D" uid="uid://t2id5lqq3w20" path="res://content/level/scenery/texture/cloud_orange.png" id="1_s5qv1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_legyh"]
+atlas = ExtResource("1_s5qv1")
+region = Rect2(0, 0, 65, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0jd6"]
+atlas = ExtResource("1_s5qv1")
+region = Rect2(0, 47, 65, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rn3t"]
+atlas = ExtResource("1_s5qv1")
+region = Rect2(0, 94, 65, 47)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lru82"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_legyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0jd6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rn3t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DuskCloud" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lru82")
+autoplay = "default"

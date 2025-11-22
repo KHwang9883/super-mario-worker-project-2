@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf0c6k47ld8lu"]
+
+[ext_resource type="Texture2D" uid="uid://460qhqvwlbcj" path="res://content/level/scenery/texture/re_scenery.png" id="1_akife"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpjnp"]
+atlas = ExtResource("1_akife")
+region = Rect2(704, 160, 192, 160)
+
+[node name="SnowFort" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_hpjnp")
+offset = Vector2(0, -80)

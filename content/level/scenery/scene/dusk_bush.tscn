@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn1u1aeqgbyu0"]
+
+[ext_resource type="Texture2D" uid="uid://bete6rrqe2h2f" path="res://content/level/scenery/texture/grass_red.png" id="1_0q23r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxea2"]
+atlas = ExtResource("1_0q23r")
+region = Rect2(0, 0, 65, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxv06"]
+atlas = ExtResource("1_0q23r")
+region = Rect2(0, 30, 65, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tiqoy"]
+atlas = ExtResource("1_0q23r")
+region = Rect2(0, 60, 65, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h26i2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxea2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxv06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tiqoy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DuskBush" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h26i2")
+offset = Vector2(0, -15)

@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://m8cjt03uupd6"]
+
+[ext_resource type="Texture2D" uid="uid://c6m1j3uvg1gqg" path="res://content/level/scenery/texture/cloud_dark.png" id="1_p7xsq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1g3r"]
+atlas = ExtResource("1_p7xsq")
+region = Rect2(0, 0, 100, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu6er"]
+atlas = ExtResource("1_p7xsq")
+region = Rect2(0, 52, 100, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tecm5"]
+atlas = ExtResource("1_p7xsq")
+region = Rect2(0, 104, 100, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_unjtx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1g3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu6er")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tecm5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DarkCloud" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_unjtx")
+autoplay = "default"
+offset = Vector2(4, 0)

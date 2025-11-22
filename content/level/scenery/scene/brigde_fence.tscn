@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cytcyho5gojno"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_miffx"]
+load_path = "res://.godot/imported/re_scenery.png-af035d1e6d2557d6b2cde3b3e939a273.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3btv"]
+atlas = SubResource("CompressedTexture2D_miffx")
+region = Rect2(0, 192, 16, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6amld"]
+load_path = "res://.godot/imported/re_scenery.png-af035d1e6d2557d6b2cde3b3e939a273.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amaj5"]
+atlas = SubResource("CompressedTexture2D_6amld")
+region = Rect2(80, 192, 16, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ub6wl"]
+load_path = "res://.godot/imported/re_scenery.png-af035d1e6d2557d6b2cde3b3e939a273.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqkkx"]
+atlas = SubResource("CompressedTexture2D_ub6wl")
+region = Rect2(32, 192, 16, 32)
+
+[node name="BrigdeFence" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_n3btv")
+offset = Vector2(-64, -16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_amaj5")
+offset = Vector2(64, -16)
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(16, 0)
+repeat_times = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+texture = SubResource("AtlasTexture_vqkkx")
+offset = Vector2(0, -16)

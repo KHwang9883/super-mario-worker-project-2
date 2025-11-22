@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://y1b6m51eorrw"]
+
+[ext_resource type="Texture2D" uid="uid://460qhqvwlbcj" path="res://content/level/scenery/texture/re_scenery.png" id="1_pgdda"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1wwl"]
+atlas = ExtResource("1_pgdda")
+region = Rect2(160, 96, 32, 48)
+
+[node name="DisabledLight" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_f1wwl")

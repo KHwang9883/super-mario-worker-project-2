@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://6ppxiwrp5jrh"]
+
+[ext_resource type="Texture2D" uid="uid://do7e3o4rxs4qi" path="res://content/level/scenery/texture/grass_dark.png" id="1_7a2l8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfhy6"]
+atlas = ExtResource("1_7a2l8")
+region = Rect2(0, 0, 66, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfc47"]
+atlas = ExtResource("1_7a2l8")
+region = Rect2(0, 34, 66, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcwi6"]
+atlas = ExtResource("1_7a2l8")
+region = Rect2(0, 68, 66, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tl0wr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfhy6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfc47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcwi6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DarkBush" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tl0wr")
+autoplay = "default"
+frame_progress = 0.13609597
+offset = Vector2(0, -17)

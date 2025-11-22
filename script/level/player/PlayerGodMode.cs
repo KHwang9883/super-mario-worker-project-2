@@ -75,6 +75,12 @@ public partial class PlayerGodMode : Node {
             case Key.Key0:
                 // Todo: 滚屏禁用相关
                 break;
+            case Key.Pageup:
+                // Todo: CP jump
+                break;
+            case Key.Pagedown:
+                // Todo: ~
+                break;
         }
     }
     public override void _PhysicsProcess(double delta) {

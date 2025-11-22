@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://4f0j45su5xdo"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_267ns"]
+load_path = "res://.godot/imported/re_scenery.png-af035d1e6d2557d6b2cde3b3e939a273.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48xss"]
+atlas = SubResource("CompressedTexture2D_267ns")
+region = Rect2(192, 96, 32, 32)
+
+[node name="LightCoral" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(0, 32)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+texture = SubResource("AtlasTexture_48xss")

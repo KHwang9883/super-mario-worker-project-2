@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://7hx8wh5i2vqt"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nfxrb"]
+load_path = "res://.godot/imported/re_scenery.png-af035d1e6d2557d6b2cde3b3e939a273.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lr4p"]
+atlas = SubResource("CompressedTexture2D_nfxrb")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dec2n"]
+load_path = "res://.godot/imported/re_scenery.png-af035d1e6d2557d6b2cde3b3e939a273.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3m8m"]
+atlas = SubResource("CompressedTexture2D_dec2n")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3v1sq"]
+load_path = "res://.godot/imported/re_scenery.png-af035d1e6d2557d6b2cde3b3e939a273.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87or1"]
+atlas = SubResource("CompressedTexture2D_3v1sq")
+region = Rect2(32, 160, 32, 32)
+
+[node name="DarkFence" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_5lr4p")
+offset = Vector2(-80, -16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_o3m8m")
+offset = Vector2(80, -16)
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(32, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+texture = SubResource("AtlasTexture_87or1")
+offset = Vector2(-16, -16)

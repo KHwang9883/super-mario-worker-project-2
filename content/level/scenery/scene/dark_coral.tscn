@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c04d48foqiwwp"]
+
+[ext_resource type="Texture2D" uid="uid://460qhqvwlbcj" path="res://content/level/scenery/texture/re_scenery.png" id="1_g1xgm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brr8n"]
+atlas = ExtResource("1_g1xgm")
+region = Rect2(192, 160, 32, 32)
+
+[node name="DarkCoral" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(0, 32)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+texture = SubResource("AtlasTexture_brr8n")

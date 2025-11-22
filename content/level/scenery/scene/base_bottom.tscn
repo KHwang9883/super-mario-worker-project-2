@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkp7fsqe780sf"]
+
+[ext_resource type="Texture2D" uid="uid://460qhqvwlbcj" path="res://content/level/scenery/texture/re_scenery.png" id="1_evugu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r78bl"]
+atlas = ExtResource("1_evugu")
+region = Rect2(128, 128, 32, 32)
+
+[node name="BaseBottom" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_r78bl")

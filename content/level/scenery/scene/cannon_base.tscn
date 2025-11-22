@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://deolr7tonh1pt"]
+
+[ext_resource type="Texture2D" uid="uid://460qhqvwlbcj" path="res://content/level/scenery/texture/re_scenery.png" id="1_ac4sf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhu5h"]
+atlas = ExtResource("1_ac4sf")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ii0o"]
+atlas = SubResource("AtlasTexture_vhu5h")
+
+[node name="CannonBase" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_5ii0o")

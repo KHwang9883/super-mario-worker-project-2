@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4tyqv4rcpjay"]
+
+[ext_resource type="Texture2D" uid="uid://q06jlhtqouka" path="res://content/level/scenery/texture/grass_desert.png" id="1_3s8sf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb58e"]
+atlas = ExtResource("1_3s8sf")
+region = Rect2(0, 0, 65, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flxjo"]
+atlas = ExtResource("1_3s8sf")
+region = Rect2(0, 32, 65, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x2hh"]
+atlas = ExtResource("1_3s8sf")
+region = Rect2(0, 64, 65, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b2g8i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb58e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flxjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x2hh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DesertBush" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_b2g8i")
+autoplay = "default"
+offset = Vector2(0, -16)

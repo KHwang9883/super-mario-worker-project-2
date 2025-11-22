@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://v8ru2tnc2e5i"]
+
+[ext_resource type="Texture2D" uid="uid://460qhqvwlbcj" path="res://content/level/scenery/texture/re_scenery.png" id="1_mvp0a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygcdj"]
+atlas = ExtResource("1_mvp0a")
+region = Rect2(640, 160, 320, 352)
+
+[node name="SnowCastle" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_ygcdj")
+offset = Vector2(0, -176)

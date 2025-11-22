@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpowsum0ivqp0"]
+
+[ext_resource type="Texture2D" uid="uid://460qhqvwlbcj" path="res://content/level/scenery/texture/re_scenery.png" id="1_5da3v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybsh5"]
+atlas = ExtResource("1_5da3v")
+region = Rect2(256, 32, 32, 64)
+
+[node name="DesertTree" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_ybsh5")
+offset = Vector2(0, -32)
