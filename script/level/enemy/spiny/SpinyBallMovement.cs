@@ -35,7 +35,7 @@ public partial class SpinyBallMovement : BasicMovement {
         }
         if (_free) {
             MoveObject.SetCollisionMask(5);
-            if (MoveObject.MoveAndCollide(Vector2.Zero, true, 1f) != null) {
+            if (MoveObject.MoveAndCollide(new Vector2(0f, SpeedY), true, 1f) != null) {
                 Create();
             }
         }

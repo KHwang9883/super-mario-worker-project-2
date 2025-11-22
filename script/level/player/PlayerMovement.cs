@@ -82,7 +82,7 @@ public partial class PlayerMovement : Node {
             foreach (var node in checkpoints) {
                 if (node is not Checkpoint checkpoint) continue;
                 if (LevelManager.CurrentCheckpointId != checkpoint.Id) continue;
-                _player.Position = checkpoint.Position;
+                _player.Position = checkpoint.Position + Vector2.Up * 8f;
             }
         
         _lastPositionX = _player.Position.X;
