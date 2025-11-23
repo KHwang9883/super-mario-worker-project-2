@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c6sorpmpi4oap"]
+[gd_scene load_steps=24 format=3 uid="uid://c6sorpmpi4oap"]
 
 [ext_resource type="Texture2D" uid="uid://bfbac4qsh4kkb" path="res://content/level/enemy/thwomp/thwomp.png" id="1_xlnxf"]
 [ext_resource type="Script" uid="uid://dg5a8me4n17al" path="res://script/level/enemy/thwomp/ThwompMovement.cs" id="2_1b68e"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bryms0br18kgn" path="res://content/sound/thwomp_grounded.se.wav" id="6_vpv1m"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="7_c4qcv"]
 [ext_resource type="AudioStream" uid="uid://cmfxc53g4wnnl" path="res://content/sound/thwomp_smile.se.wav" id="8_ulqxk"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="9_c4qcv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rp7ph"]
 atlas = ExtResource("1_xlnxf")
@@ -152,6 +153,8 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 stream = ExtResource("8_ulqxk")
 script = ExtResource("7_c4qcv")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("9_c4qcv")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="InteractionWithPlayer" method="OnAnimationFinished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="set_animation" flags=3 binds= [&"default"]]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcineprwgpk4w"]
+[gd_scene load_steps=9 format=3 uid="uid://bcineprwgpk4w"]
 
 [ext_resource type="Texture2D" uid="uid://dysfyto8dwkpc" path="res://content/level/projectile​/hammer.png" id="1_g3bgq"]
 [ext_resource type="Script" uid="uid://cxxgx8khk2d23" path="res://script/level/projectile​/enemy/hammer_hammer_bro/HammerHammerBroMovement.cs" id="2_4t1gq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="4_34dml"]
 [ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="5_cmn5q"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="6_3o8ps"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="7_c2wob"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ogny"]
 size = Vector2(24, 33)
@@ -43,3 +44,5 @@ metadata/_custom_type_script = "uid://bkc8a0hddhajq"
 [node name="OutOfBoundsQueueFree" type="Node" parent="."]
 script = ExtResource("6_3o8ps")
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("7_c2wob")]

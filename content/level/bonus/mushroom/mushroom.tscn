@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://06fvxuvjbor0"]
+[gd_scene load_steps=21 format=3 uid="uid://06fvxuvjbor0"]
 
 [ext_resource type="Texture2D" uid="uid://dm27nawonnxyh" path="res://content/level/bonus/mushroom/mushroom.png" id="1_7s0v6"]
 [ext_resource type="Script" uid="uid://b5yntrwmtxv27" path="res://script/level/bonus/PowerupSet.cs" id="1_lbpvd"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://brqbgelfy4s1w" path="res://script/level/bonus/mushroom/MushroomMovement.cs" id="4_dponk"]
 [ext_resource type="Script" uid="uid://bbrm8h5kl684k" path="res://script/level/bonus/mushroom/MushroomBumpInteraction.cs" id="5_dgohy"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="5_g8tt7"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="7_41uw3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_klnhy"]
 atlas = ExtResource("1_7s0v6")
@@ -144,6 +145,8 @@ script = ExtResource("5_g8tt7")
 ScreenLeftOffset = 10.0
 ScreenRightOffset = 10.0
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("7_41uw3")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="MushroomAnimation" method="OnAnimationFinished"]
 [connection signal="SideTurned" from="MushroomAnimation" to="MushroomMovement" method="OnTurned"]

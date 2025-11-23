@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://fbxq1hg4e22f"]
+[gd_scene load_steps=34 format=3 uid="uid://fbxq1hg4e22f"]
 
 [ext_resource type="Texture2D" uid="uid://dl8vjok5s2jtl" path="res://content/level/enemy/roto-disc/roto-disc.png" id="1_r6mcc"]
 [ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="2_j6g86"]
 [ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="3_06vcy"]
 [ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="4_qophr"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="5_vmcbp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_snkjq"]
 atlas = ExtResource("1_r6mcc")
@@ -223,3 +224,5 @@ metadata/_custom_type_script = "uid://ckwcmi42tdbmc"
 [node name="InteractionWithBeetroot" type="Node" parent="."]
 script = ExtResource("4_qophr")
 metadata/_custom_type_script = "uid://bkc8a0hddhajq"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("5_vmcbp")]

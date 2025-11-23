@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bbxcifwplt1gj"]
+[gd_scene load_steps=19 format=3 uid="uid://bbxcifwplt1gj"]
 
 [ext_resource type="Texture2D" uid="uid://cbwhhy1thq7bm" path="res://content/level/enemy/spiny/spiny_ball.png" id="1_mmmw5"]
 [ext_resource type="Script" uid="uid://5v13koy4fdvq" path="res://script/level/enemy/spiny/SpinyBallMovement.cs" id="2_mmmw5"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="10_0a4rq"]
 [ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="11_0nfhw"]
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="12_1hkvd"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="14_qsom2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rarn3"]
 atlas = ExtResource("1_mmmw5")
@@ -99,6 +100,8 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 stream = ExtResource("12_1hkvd")
 script = ExtResource("10_0a4rq")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("14_qsom2")]
 
 [connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]

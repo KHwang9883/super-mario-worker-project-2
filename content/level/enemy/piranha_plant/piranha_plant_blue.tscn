@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://chrmn2f5rir5y"]
+[gd_scene load_steps=16 format=3 uid="uid://chrmn2f5rir5y"]
 
 [ext_resource type="Texture2D" uid="uid://cx12038t8ot4y" path="res://content/level/enemy/piranha_plant/piranha_plant_blue.png" id="1_570f3"]
 [ext_resource type="Script" uid="uid://ddd5i7fa58ayn" path="res://script/level/enemy/piranha_plant/PiranhaPlantMovement.cs" id="2_p6wxn"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="8_n5yqw"]
 [ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="9_mistj"]
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="10_yruhy"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="11_p6wxn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p6wxn"]
 atlas = ExtResource("1_570f3")
@@ -88,6 +89,8 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 stream = ExtResource("10_yruhy")
 script = ExtResource("8_n5yqw")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("11_p6wxn")]
 
 [connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]

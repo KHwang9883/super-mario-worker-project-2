@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1dp7ghajo2rv"]
+
+[ext_resource type="Script" uid="uid://eo8lxr26ofqf" path="res://script/level/weather/WeatherController.cs" id="1_yiac1"]
+[ext_resource type="Script" uid="uid://x65d6jqug386" path="res://script/level/weather/RainyController.cs" id="2_1u4fo"]
+[ext_resource type="Script" uid="uid://b5kt2cvbwafbx" path="res://script/level/weather/FallingStarsController.cs" id="3_knuu5"]
+[ext_resource type="Script" uid="uid://bvic74e1eap55" path="res://script/level/weather/SnowyController.cs" id="4_cqa0c"]
+[ext_resource type="Script" uid="uid://r0wqw3kwyheo" path="res://script/level/weather/ThunderController.cs" id="5_v1vkt"]
+[ext_resource type="Script" uid="uid://doiq8ly3lnyd0" path="res://script/level/weather/WindyController.cs" id="6_xksn8"]
+[ext_resource type="Script" uid="uid://dqfsbsw5sxet8" path="res://script/level/weather/DarkController.cs" id="7_7uvm4"]
+[ext_resource type="Script" uid="uid://b5emn8tu4wjml" path="res://script/level/weather/BrightController.cs" id="8_yasgw"]
+
+[node name="WeatherController" type="Node" node_paths=PackedStringArray("rainyController", "fallingStarsController", "snowyController", "thunderController", "windyController", "darkController", "brightController")]
+script = ExtResource("1_yiac1")
+rainyController = NodePath("Rainy")
+fallingStarsController = NodePath("FallingStars")
+snowyController = NodePath("Snowy")
+thunderController = NodePath("Thunder")
+windyController = NodePath("Windy")
+darkController = NodePath("Dark")
+brightController = NodePath("Bright")
+
+[node name="Rainy" type="Node" parent="." node_paths=PackedStringArray("_weatherController")]
+script = ExtResource("2_1u4fo")
+_weatherController = NodePath("..")
+
+[node name="FallingStars" type="Node" parent="." node_paths=PackedStringArray("_weatherController")]
+script = ExtResource("3_knuu5")
+_weatherController = NodePath("..")
+
+[node name="Snowy" type="Node" parent="." node_paths=PackedStringArray("_weatherController")]
+script = ExtResource("4_cqa0c")
+_weatherController = NodePath("..")
+
+[node name="Thunder" type="Node" parent="." node_paths=PackedStringArray("_weatherController")]
+script = ExtResource("5_v1vkt")
+_weatherController = NodePath("..")
+
+[node name="Windy" type="Node" parent="." node_paths=PackedStringArray("_weatherController")]
+script = ExtResource("6_xksn8")
+_weatherController = NodePath("..")
+
+[node name="Dark" type="Node" parent="." node_paths=PackedStringArray("_weatherController")]
+script = ExtResource("7_7uvm4")
+_weatherController = NodePath("..")
+
+[node name="Bright" type="Node" parent="." node_paths=PackedStringArray("_weatherController")]
+script = ExtResource("8_yasgw")
+_weatherController = NodePath("..")

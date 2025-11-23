@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://vcoiykbd4gn"]
+[gd_scene load_steps=3 format=3 uid="uid://vcoiykbd4gn"]
 
 [ext_resource type="Texture2D" uid="uid://cklt741csu754" path="res://content/level/enemy/roto-disc/roto-disc_center.png" id="1_why7h"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="2_e5kxy"]
 
 [node name="RotoDiscCenter" type="Sprite2D"]
 z_index = 55
 texture = ExtResource("1_why7h")
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("2_e5kxy")]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkak64p718ktt"]
+
+[ext_resource type="Texture2D" uid="uid://c34up6vbaujq8" path="res://content/level/weather/smwp_weather_light_mask.png" id="1_3bfkf"]
+[ext_resource type="Script" uid="uid://dllh05afsuwex" path="res://script/level/weather/SmwpPointLight2d.cs" id="2_tly07"]
+[ext_resource type="Script" uid="uid://w3irgvj0ao2" path="res://script/level/weather/SmwpSpriteLight2d.cs" id="4_ks26c"]
+
+[node name="SmwpPointLight2D" type="PointLight2D"]
+blend_mode = 2
+texture = ExtResource("1_3bfkf")
+script = ExtResource("2_tly07")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+process_mode = 4
+rect = Rect2(-160, -160, 320, 320)
+show_rect = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+process_mode = 4
+visible = false
+z_index = -32
+texture = ExtResource("1_3bfkf")
+script = ExtResource("4_ks26c")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Sprite2D"]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="OnScreenEntered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnScreenExited"]
+[connection signal="screen_entered" from="Sprite2D/VisibleOnScreenNotifier2D" to="Sprite2D" method="OnScreenEntered"]
+[connection signal="screen_exited" from="Sprite2D/VisibleOnScreenNotifier2D" to="Sprite2D" method="OnScreenExited"]

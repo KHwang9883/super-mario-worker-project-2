@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://lejefocdv3ff"]
+[gd_scene load_steps=8 format=3 uid="uid://lejefocdv3ff"]
 
 [ext_resource type="Texture2D" uid="uid://dtggs64oo3l15" path="res://content/level/enemy/lava/lava_splash.png" id="1_3g615"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="2_k7xpn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k7xpn"]
 atlas = ExtResource("1_3g615")
@@ -41,5 +42,7 @@ animations = [{
 [node name="LavaSplash" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_1irng")
 autoplay = "default"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("2_k7xpn")]
 
 [connection signal="animation_finished" from="." to="." method="queue_free"]

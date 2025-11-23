@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://crmwi70gb1hhx"]
+[gd_scene load_steps=12 format=3 uid="uid://crmwi70gb1hhx"]
 
 [ext_resource type="Texture2D" uid="uid://caoo0e1qx46vn" path="res://content/level/projectile​/fireball.png" id="1_8ji3j"]
 [ext_resource type="Script" uid="uid://oqtimqyv38fd" path="res://script/level/projectile​/player/player_fireball/FireballMovement.cs" id="2_gfdvg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="5_8b56x"]
 [ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="6_5list"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="6_48vvx"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="9_5list"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3dqx"]
 size = Vector2(15, 16)
@@ -70,5 +71,7 @@ ScreenRightOffset = 10.0
 RoomLeftOffset = 10.0
 RoomRightOffset = 10.0
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("9_5list")]
 
 [connection signal="FireballExplode" from="FireballMovement" to="FireballExplode" method="OnFireballExplode"]

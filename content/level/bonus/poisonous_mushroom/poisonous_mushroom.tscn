@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhq4p7f4dvkh4"]
+[gd_scene load_steps=10 format=3 uid="uid://dhq4p7f4dvkh4"]
 
 [ext_resource type="Texture2D" uid="uid://csb0kyl7vmlsu" path="res://content/level/bonus/poisonous_mushroom/poisonous_mushroom.png" id="1_fkiam"]
 [ext_resource type="Script" uid="uid://br3a3a746vl0y" path="res://script/level/bonus/mushroom/MushroomAnimation.cs" id="3_5k7fp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="4_oqpsa"]
 [ext_resource type="Script" uid="uid://bbrm8h5kl684k" path="res://script/level/bonus/mushroom/MushroomBumpInteraction.cs" id="5_oqpsa"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="5_qimec"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="7_m4ucj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lbpvd"]
 animations = [{
@@ -70,6 +71,8 @@ script = ExtResource("5_qimec")
 ScreenLeftOffset = 10.0
 ScreenRightOffset = 10.0
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("7_m4ucj")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="MushroomAnimation" method="OnAnimationFinished"]
 [connection signal="SideTurned" from="MushroomAnimation" to="MushroomMovement" method="OnTurned"]

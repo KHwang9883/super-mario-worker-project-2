@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dm7wuafwjjq1w"]
+[gd_scene load_steps=6 format=3 uid="uid://dm7wuafwjjq1w"]
 
 [ext_resource type="Texture2D" uid="uid://d1wy24w5drx2a" path="res://content/level/enemy/spike/spike_mw.png" id="2_dwh6n"]
 [ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="2_snfhi"]
 [ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="3_snfhi"]
 [ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="4_r3isd"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="5_o56d7"]
 
 [node name="SpikeMW" type="Area2D"]
 z_index = 30
@@ -29,3 +30,5 @@ metadata/_custom_type_script = "uid://ckwcmi42tdbmc"
 [node name="InteractionWithBeetroot" type="Node" parent="."]
 script = ExtResource("4_r3isd")
 metadata/_custom_type_script = "uid://bkc8a0hddhajq"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("5_o56d7")]

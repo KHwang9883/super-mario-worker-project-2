@@ -2,9 +2,12 @@ using Godot;
 using System;
 
 public partial class GeneralVisibleOnScreenEnabler2d : VisibleOnScreenNotifier2D {
-    [Export] private NodePath _path = "..";
+    [Export] public NodePath Path = "..";
 
     public void OnScreenEntered() {
-        GetNode(_path).ProcessMode = ProcessModeEnum.Inherit;
+        GetNode(Path).ProcessMode = ProcessModeEnum.Inherit;
+    }
+    public void OnScreenExited() {
+        GetNode(Path).ProcessMode = ProcessModeEnum.Disabled;
     }
 }

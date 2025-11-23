@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d35x6v4omtxlq"]
+[gd_scene load_steps=18 format=3 uid="uid://d35x6v4omtxlq"]
 
 [ext_resource type="Texture2D" uid="uid://b38qojpmrx2dv" path="res://content/level/enemy/boo/boo.png" id="1_i66a3"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_5ckh6"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="10_eo4j4"]
 [ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="11_3dyiw"]
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="12_bmksi"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="13_n0fiq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1j3e"]
 atlas = ExtResource("1_i66a3")
@@ -107,9 +108,12 @@ stream = ExtResource("12_bmksi")
 script = ExtResource("10_eo4j4")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("13_n0fiq")]
+
 [connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]
 [connection signal="NormalHitAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="PlaySoundBumped" from="EnemyInteraction" to="Bumped" method="play"]
 [connection signal="PlaySoundKicked" from="EnemyInteraction" to="Kicked" method="play"]
 [connection signal="PlaySoundStomped" from="EnemyInteraction" to="Stomped" method="play"]
+[connection signal="screen_exited" from="GeneralVisibleOnScreenEnabler2d" to="GeneralVisibleOnScreenEnabler2d" method="OnScreenExited"]

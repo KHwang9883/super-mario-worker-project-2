@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgp4dh2ioc4gl"]
+[gd_scene load_steps=11 format=3 uid="uid://bgp4dh2ioc4gl"]
 
 [ext_resource type="Texture2D" uid="uid://6tphawnqs6fp" path="res://content/level/bonus/mushroom_life/mushroom_life.png" id="1_acdwr"]
 [ext_resource type="Script" uid="uid://br3a3a746vl0y" path="res://script/level/bonus/mushroom/MushroomAnimation.cs" id="2_80nmw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="5_ktm21"]
 [ext_resource type="Script" uid="uid://t44u8l54xjvg" path="res://script/level/bonus/mushroom_life/MushroomLifeAddLife.cs" id="6_80nmw"]
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="7_sjhgg"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="8_yy6md"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6sw8c"]
 animations = [{
@@ -80,6 +81,8 @@ debug_color = Color(4.0911136e-06, 0.7277569, 0.0006380212, 0.41960785)
 script = ExtResource("7_sjhgg")
 InternalScore = -1
 metadata/_custom_type_script = "uid://cnbadhjt53rkc"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("8_yy6md")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="MushroomAnimation" method="OnAnimationFinished"]
 [connection signal="SideTurned" from="MushroomAnimation" to="MushroomMovement" method="OnTurned"]

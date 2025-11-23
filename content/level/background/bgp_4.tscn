@@ -19,7 +19,7 @@ z_index = -500
 script = ExtResource("1_ccq68")
 _gradient = NodePath("Parallax2DGradient/Gradient")
 _backgroundBottom = NodePath("Parallax2DBottom/Bottom")
-_cloudTop = NodePath("CloudTop")
+_cloudTop = NodePath("")
 metadata/_custom_type_script = "uid://bt70774414ws0"
 
 [node name="Parallax2DGradient" type="Parallax2D" parent="."]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://5mmyew6mh71p"]
+[gd_scene load_steps=4 format=3 uid="uid://5mmyew6mh71p"]
 
 [ext_resource type="Texture2D" uid="uid://bmjklwklsabwv" path="res://content/level/projectile​/fireball_explosion.png" id="1_8j3l7"]
 [ext_resource type="Script" uid="uid://bpojdmxt2cqp6" path="res://script/level/projectile​/FireballExplosion.cs" id="1_hp3kp"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="3_j68d3"]
 
 [node name="FireballExplosion" type="Node2D"]
 z_index = 80
@@ -10,3 +11,5 @@ script = ExtResource("1_hp3kp")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_8j3l7")
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("3_j68d3")]

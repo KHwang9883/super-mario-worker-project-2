@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cmi7wiiermvca" path="res://content/level/enemy/bullet_bill/bullet_bill_cannon.png" id="1_oi86d"]
 [ext_resource type="Script" uid="uid://ppao45k64wx6" path="res://script/level/enemy/bullet_bill/MissileBillCannonMovement.cs" id="2_oi86d"]
-[ext_resource type="PackedScene" uid="uid://c6tj25uk58s28" path="res://content/level/enemy/bullet_bill/missile_bill.tscn" id="3_3k1bu"]
 [ext_resource type="AudioStream" uid="uid://ch1t7ovpy2qt" path="res://content/sound/bullet_missile.se.wav" id="4_oi86d"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="5_oi86d"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="5_xymj1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ecme"]
@@ -19,11 +19,12 @@ shape = SubResource("RectangleShape2D_6ecme")
 
 [node name="MissileBillCannonMovement" type="Node" parent="."]
 script = ExtResource("2_oi86d")
-_missileBillScene = ExtResource("3_3k1bu")
 
 [node name="ContinuousAudioStream2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_oi86d")
 script = ExtResource("5_xymj1")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("5_oi86d")]
 
 [connection signal="PlaySoundBulletMissile" from="MissileBillCannonMovement" to="ContinuousAudioStream2D" method="play"]

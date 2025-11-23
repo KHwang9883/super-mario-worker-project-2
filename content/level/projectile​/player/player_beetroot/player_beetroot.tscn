@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dt3n2b1ypresm"]
+[gd_scene load_steps=18 format=3 uid="uid://dt3n2b1ypresm"]
 
 [ext_resource type="Texture2D" uid="uid://bbleghncfqo2b" path="res://content/level/bonus/beetroot/beetroot.png" id="1_0f5ms"]
 [ext_resource type="Script" uid="uid://bvx3bu21mj3b5" path="res://script/level/projectile​/player/player_beetroot/BeetrootMovement.cs" id="2_bdhfo"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bryms0br18kgn" path="res://content/sound/thwomp_grounded.se.wav" id="4_oev4c"]
 [ext_resource type="PackedScene" uid="uid://5mmyew6mh71p" path="res://content/level/projectile​/fireball_explosion.tscn" id="4_osfue"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="5_kyeb2"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="8_3qlfe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oce6w"]
 atlas = ExtResource("1_0f5ms")
@@ -110,6 +111,8 @@ metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 stream = ExtResource("4_oev4c")
 script = ExtResource("5_kyeb2")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("8_3qlfe")]
 
 [connection signal="HitBlock" from="BeetrootMovement" to="BeetrootInteraction" method="Explode"]
 [connection signal="HitBlock" from="BeetrootMovement" to="ContinuousAudioStream2D" method="play"]
