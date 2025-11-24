@@ -437,9 +437,6 @@ position = Vector2(2050, 403)
 [node name="ShellMovingGreen4" parent="TestLevelNode2D/Enemies" instance=ExtResource("27_r5pq0")]
 position = Vector2(1776, 292)
 
-[node name="Goomba12" parent="TestLevelNode2D/Enemies" instance=ExtResource("16_lgciv")]
-position = Vector2(1864, 400)
-
 [node name="TroopaYellow" parent="TestLevelNode2D/Enemies" instance=ExtResource("38_gctg4")]
 position = Vector2(2336, 144)
 
@@ -508,24 +505,6 @@ position = Vector2(1504, 376)
 
 [node name="MissileBill" parent="TestLevelNode2D/Enemies" instance=ExtResource("38_c8b4a")]
 position = Vector2(1468, 400)
-
-[node name="Goomba" parent="TestLevelNode2D/Enemies" instance=ExtResource("16_lgciv")]
-position = Vector2(1865, 399)
-
-[node name="Goomba5" parent="TestLevelNode2D/Enemies" instance=ExtResource("16_lgciv")]
-position = Vector2(1866, 398)
-
-[node name="Goomba6" parent="TestLevelNode2D/Enemies" instance=ExtResource("16_lgciv")]
-position = Vector2(1867, 397)
-
-[node name="Goomba7" parent="TestLevelNode2D/Enemies" instance=ExtResource("16_lgciv")]
-position = Vector2(1868, 396)
-
-[node name="Goomba8" parent="TestLevelNode2D/Enemies" instance=ExtResource("16_lgciv")]
-position = Vector2(1869, 395)
-
-[node name="Goomba9" parent="TestLevelNode2D/Enemies" instance=ExtResource("16_lgciv")]
-position = Vector2(1870, 394)
 
 [node name="Lakitu" parent="TestLevelNode2D/Enemies" instance=ExtResource("32_lxach")]
 position = Vector2(1936, 112)
