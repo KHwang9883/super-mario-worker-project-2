@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="11_6qh2p"]
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="12_nqwsk"]
 [ext_resource type="AudioStream" uid="uid://c4qouvko7vp74" path="res://content/sound/hammer.se.wav" id="13_65npk"]
-[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="13_aixyc"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="13_aixyc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_65npk"]
 atlas = ExtResource("1_gmfje")

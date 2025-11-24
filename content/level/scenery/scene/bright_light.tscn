@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://854d52pdge68"]
 
 [ext_resource type="Texture2D" uid="uid://bkir48byw1olb" path="res://content/level/scenery/texture/bright_light.png" id="1_o1qj8"]
-[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="2_nk6ji"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="2_nk6ji"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nk6ji"]
 atlas = ExtResource("1_o1qj8")

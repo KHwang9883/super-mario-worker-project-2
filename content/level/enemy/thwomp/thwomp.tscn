@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bryms0br18kgn" path="res://content/sound/thwomp_grounded.se.wav" id="6_vpv1m"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="7_c4qcv"]
 [ext_resource type="AudioStream" uid="uid://cmfxc53g4wnnl" path="res://content/sound/thwomp_smile.se.wav" id="8_ulqxk"]
-[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="9_c4qcv"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="9_c4qcv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rp7ph"]
 atlas = ExtResource("1_xlnxf")

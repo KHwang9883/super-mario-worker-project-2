@@ -1,11 +1,17 @@
 using Godot;
 using System;
+using SMWP.Level;
 using SMWP.Level.Tool;
 
 public partial class RainyController : Node {
     [Export] private WeatherController _weatherController = null!;
-    [Export(PropertyHint.Range,"0, 5, 1")] public int RainyLevel;
+    public int RainyLevel;
     [Export] private PackedScene _raindropScene = GD.Load<PackedScene>("uid://c8xb4q774wgem");
+    private LevelConfig? _levelConfig;
+
+    public override void _Ready() {
+        _levelConfig = LevelConfigAccess.GetLevelConfig(this);
+    }
 
     public void Create() {
         var raindrop = _raindropScene.Instantiate<Node2D>();

@@ -36,7 +36,7 @@ public partial class OutOfBoundsQueueFree : Node
 
     public override void _Ready() {
         _target = (Node2D)GetParent();
-        _currentRoomConfig = (LevelConfig)GetTree().GetFirstNodeInGroup("level_config");
+        _currentRoomConfig = LevelConfigAccess.GetLevelConfig(this);
         _roomBounds = new Rect2(Vector2.Zero, new Vector2(_currentRoomConfig.RoomWidth, _currentRoomConfig.RoomHeight));
     }
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cluhiure35xjj"
-path="res://.godot/imported/2d_lights_and_shadows_neutral_point_light.webp-281887a25eafa5a105567fa6825f1bb5.ctex"
+uid="uid://cmfjvfvk7hatq"
+path="res://.godot/imported/gm8_smwp_weather_light_mask.png-86d9d5c553f2a552e4398443a1a742ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/level/weather/unused_light_mask/2d_lights_and_shadows_neutral_point_light.webp"
-dest_files=["res://.godot/imported/2d_lights_and_shadows_neutral_point_light.webp-281887a25eafa5a105567fa6825f1bb5.ctex"]
+source_file="res://content/level/weather/light/unused_light_mask/gm8_smwp_weather_light_mask.png"
+dest_files=["res://.godot/imported/gm8_smwp_weather_light_mask.png-86d9d5c553f2a552e4398443a1a742ca.ctex"]
 
 [params]
 

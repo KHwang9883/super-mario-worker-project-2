@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bmjklwklsabwv" path="res://content/level/projectile​/fireball_explosion.png" id="1_8j3l7"]
 [ext_resource type="Script" uid="uid://bpojdmxt2cqp6" path="res://script/level/projectile​/FireballExplosion.cs" id="1_hp3kp"]
-[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="3_j68d3"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="3_j68d3"]
 
 [node name="FireballExplosion" type="Node2D"]
 z_index = 80

@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://ctrplakryq6fb"]
 
 [ext_resource type="Texture2D" uid="uid://c36ifxwwp62y" path="res://content/level/scenery/texture/lava_fall.png" id="1_xdcx2"]
-[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="2_4mhnh"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="2_4mhnh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4mhnh"]
 atlas = ExtResource("1_xdcx2")

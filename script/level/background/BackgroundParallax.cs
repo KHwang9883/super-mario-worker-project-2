@@ -13,7 +13,7 @@ public partial class BackgroundParallax : Parallax2D {
     public override void _Ready() {
         _player ??= (Node2D)GetTree().GetFirstNodeInGroup("player");
         _playerLastPositionX = _player.Position.X;
-        _levelConfig = (LevelConfig)GetTree().GetFirstNodeInGroup("level_config");
+        _levelConfig = LevelConfigAccess.GetLevelConfig(this);
     }
     public override void _PhysicsProcess(double delta) {
         // 视差滚动

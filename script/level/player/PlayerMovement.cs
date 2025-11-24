@@ -18,7 +18,7 @@ public partial class PlayerMovement : Node {
     [Export] private CharacterBody2D _player = null!;
 
     // 关卡引力
-    private float _gravity = 5f / 5f;
+    private float _gravity;
     
     // 运动参数先用 GM8 单位（px/f），计算 Velocity 的时候转换为 Godot 单位（px/s）
     private const float FramerateOrigin = 50f;
@@ -84,7 +84,11 @@ public partial class PlayerMovement : Node {
                 if (LevelManager.CurrentCheckpointId != checkpoint.Id) continue;
                 _player.Position = checkpoint.Position + Vector2.Up * 8f;
             }
+        // 关卡重力设置
+        var levelConfig = LevelConfigAccess.GetLevelConfig(this);
+        _gravity = levelConfig.Gravity / 5f;
         
+        // _lastPositionX 初始化
         _lastPositionX = _player.Position.X;
         
         _originPlayerLayer = _player.GetCollisionLayer();

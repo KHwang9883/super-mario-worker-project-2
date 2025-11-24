@@ -1,16 +1,17 @@
 [gd_scene load_steps=7 format=3 uid="uid://bkak64p718ktt"]
 
-[ext_resource type="Texture2D" uid="uid://c34up6vbaujq8" path="res://content/level/weather/smwp_weather_light_mask.png" id="1_3bfkf"]
-[ext_resource type="Script" uid="uid://dllh05afsuwex" path="res://script/level/weather/SmwpPointLight2d.cs" id="2_tly07"]
-[ext_resource type="Texture2D" uid="uid://cmfjvfvk7hatq" path="res://content/level/weather/unused_light_mask/gm8_smwp_weather_light_mask.png" id="3_ks26c"]
-[ext_resource type="Shader" uid="uid://d06qp4wiv0nb1" path="res://content/level/weather/smwp_point_light_2d_sp.gdshader" id="3_w0w6k"]
-[ext_resource type="Script" uid="uid://w3irgvj0ao2" path="res://script/level/weather/SmwpSpriteLight2d.cs" id="4_ks26c"]
+[ext_resource type="Texture2D" uid="uid://c34up6vbaujq8" path="res://content/level/weather/light/smwp_weather_light_mask.png" id="1_3bfkf"]
+[ext_resource type="Script" uid="uid://dllh05afsuwex" path="res://script/level/weather/light/SmwpPointLight2d.cs" id="2_tly07"]
+[ext_resource type="Texture2D" uid="uid://cmfjvfvk7hatq" path="res://content/level/weather/light/unused_light_mask/gm8_smwp_weather_light_mask.png" id="3_ks26c"]
+[ext_resource type="Shader" uid="uid://d06qp4wiv0nb1" path="res://content/level/weather/light/smwp_point_light_2d_sp.gdshader" id="3_w0w6k"]
+[ext_resource type="Script" uid="uid://w3irgvj0ao2" path="res://script/level/weather/light/SmwpSpriteLight2d.cs" id="4_ks26c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e30u8"]
 shader = ExtResource("3_w0w6k")
 shader_parameter/light_count = 600
 
 [node name="SmwpPointLight2D" type="PointLight2D"]
+visible = false
 blend_mode = 2
 texture = ExtResource("1_3bfkf")
 script = ExtResource("2_tly07")

@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://bvic74e1eap55" path="res://script/level/weather/SnowyController.cs" id="4_cqa0c"]
 [ext_resource type="Script" uid="uid://r0wqw3kwyheo" path="res://script/level/weather/ThunderController.cs" id="5_v1vkt"]
 [ext_resource type="Script" uid="uid://doiq8ly3lnyd0" path="res://script/level/weather/WindyController.cs" id="6_xksn8"]
-[ext_resource type="Script" uid="uid://dqfsbsw5sxet8" path="res://script/level/weather/DarkController.cs" id="7_7uvm4"]
-[ext_resource type="Script" uid="uid://b5emn8tu4wjml" path="res://script/level/weather/BrightController.cs" id="8_yasgw"]
+[ext_resource type="Script" uid="uid://dqfsbsw5sxet8" path="res://script/level/weather/light/DarkController.cs" id="7_7uvm4"]
+[ext_resource type="Script" uid="uid://b5emn8tu4wjml" path="res://script/level/weather/light/BrightController.cs" id="8_yasgw"]
 
 [node name="WeatherController" type="Node" node_paths=PackedStringArray("rainyController", "fallingStarsController", "snowyController", "thunderController", "windyController", "darkController", "brightController")]
 script = ExtResource("1_yiac1")
@@ -43,6 +43,6 @@ _weatherController = NodePath("..")
 script = ExtResource("7_7uvm4")
 _weatherController = NodePath("..")
 
-[node name="Bright" type="Node" parent="." node_paths=PackedStringArray("_weatherController")]
+[node name="Bright" type="Node" parent="." node_paths=PackedStringArray("_weatherController") groups=["bright_controller"]]
 script = ExtResource("8_yasgw")
 _weatherController = NodePath("..")

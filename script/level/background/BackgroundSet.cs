@@ -13,7 +13,7 @@ public partial class BackgroundSet : Node2D {
     private Node2D? _waterSurface;
 
     public override void _Ready() {
-        var levelConfig = (LevelConfig)GetTree().GetFirstNodeInGroup("level_config");
+        var levelConfig = LevelConfigAccess.GetLevelConfig(this);
         var width = levelConfig.RoomWidth;
         var height = levelConfig.RoomHeight;
         

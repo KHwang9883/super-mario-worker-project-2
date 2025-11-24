@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="5_ktm21"]
 [ext_resource type="Script" uid="uid://t44u8l54xjvg" path="res://script/level/bonus/mushroom_life/MushroomLifeAddLife.cs" id="6_80nmw"]
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="7_sjhgg"]
-[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="8_yy6md"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="8_yy6md"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6sw8c"]
 animations = [{

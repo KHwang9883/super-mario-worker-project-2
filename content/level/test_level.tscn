@@ -1,7 +1,8 @@
-[gd_scene load_steps=66 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=67 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
+[ext_resource type="PackedScene" uid="uid://b1dp7ghajo2rv" path="res://content/level/weather/weather_controller.tscn" id="2_fw3fg"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
 [ext_resource type="Texture2D" uid="uid://c2qyxcvftu6cd" path="res://content/level/hud/game_over.png" id="7_yeotl"]
 [ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/level/tile/obstacle.png" id="8_1mjcm"]
@@ -109,16 +110,29 @@ size = Vector2(96, 63.53125)
 [node name="LevelConfig" type="Node" parent="TestLevelNode2D" groups=["level_config"]]
 script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
+RoomHeight = 960.0
+LevelTitle = "TODO"
+LevelAuthor = "GREEN SWEET"
+Gravity = 0.0
+WaterHeight = 444.0
 BackgroundId = 21
-Database = ExtResource("2_27x5w")
+AutoFluid = true
+FluidT1 = 448.0
+FluidT2 = 492.0
+FluidSpeed = 3.0
+FluidDelay = 5
+Darkness = 2
+Brightness = 3
+BgpDatabase = ExtResource("2_27x5w")
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
-[node name="CanvasModulate" type="CanvasModulate" parent="TestLevelNode2D"]
-color = Color(0, 0, 0, 1)
+[node name="WeatherController" parent="TestLevelNode2D/LevelConfig" instance=ExtResource("2_fw3fg")]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="TestLevelNode2D" groups=["canvas_modulate"]]
 
 [node name="HUD" type="CanvasLayer" parent="TestLevelNode2D"]
 
-[node name="HUD" type="Control" parent="TestLevelNode2D/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite", "_godPosition")]
+[node name="HUD" type="Control" parent="TestLevelNode2D/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite", "_godPosition", "_levelInfo")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -139,6 +153,7 @@ _timeCounter = NodePath("Time/TimeCounter")
 _coin = NodePath("Coin")
 _gameOverSprite = NodePath("GameOver")
 _godPosition = NodePath("GodPosition")
+_levelInfo = NodePath("LevelInfo")
 metadata/_edit_lock_ = true
 
 [node name="Life" type="Label" parent="TestLevelNode2D/HUD/HUD"]
@@ -236,6 +251,25 @@ text = "0"
 uppercase = true
 metadata/_edit_lock_ = true
 
+[node name="LevelInfo" type="Label" parent="TestLevelNode2D/HUD/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+offset_right = 71.0
+offset_bottom = -12.0
+grow_vertical = 0
+theme = ExtResource("8_bfx67")
+theme_override_constants/line_spacing = 12
+text = "Modified Movement: Yes
+Advanced Switch: Yes
+MF Style Beet: Yes
+Celeste Style Switch: Yes
+MF Style Pipe Exit: No"
+uppercase = true
+metadata/_edit_lock_ = true
+
 [node name="GodPosition" type="Label" parent="TestLevelNode2D/HUD/HUD"]
 layout_mode = 1
 anchors_preset = -1
@@ -289,6 +323,8 @@ abcdefghijklmnopqrstuvwxyz
 horizontal_alignment = 1
 uppercase = true
 metadata/_edit_lock_ = true
+
+[node name="Todo：库巴血条" type="Node2D" parent="TestLevelNode2D/HUD/HUD"]
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="TestLevelNode2D"]
 visible = false

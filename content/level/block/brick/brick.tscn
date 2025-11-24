@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://v4t3jxyn785" path="res://content/level/block/brick/brick.png" id="1_jlvh5"]
 [ext_resource type="Script" uid="uid://cjjm8sgplsqf8" path="res://script/level/block/brick/BrickBlockHit.cs" id="2_ub6l2"]
-[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="6_isag7"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="6_isag7"]
 [ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="6_leqcw"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="7_67i3a"]
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="8_67i3a"]

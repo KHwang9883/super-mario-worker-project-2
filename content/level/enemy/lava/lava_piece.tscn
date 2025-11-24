@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://2edet5tfn3qq" path="res://content/level/enemy/lava/lava_piece.png" id="1_wldgc"]
 [ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="2_kwwas"]
-[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="3_og6mh"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="3_og6mh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_klgvy"]
 atlas = ExtResource("1_wldgc")

@@ -15,22 +15,37 @@ public partial class HUD : Control {
     [Export] private Label? _coin;
     [Export] private Sprite2D? _gameOverSprite;
     [Export] private Label? _godPosition;
-
+    [Export] private Label? _levelInfo;
+    
     private bool _timeWarned;
     private RandomNumberGenerator _rng = new RandomNumberGenerator();
     private float _rock;
     private float _timeHUDShake;
     private Vector2 _timeOriginPosition;
     private Node2D? _player;
+    private PlayerGodMode? _godModeNode;
+    private LevelConfig? _levelConfig;
 
     public override void _Ready() {
         _player ??= (Node2D)GetTree().GetFirstNodeInGroup("player");
+        _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
+        if (!_levelConfig.HUDDisplay) Visible = false;
+        if (_levelInfo == null) return;
+        _levelInfo.Text =
+            $"Modified Movement: {YesOrNo(_levelConfig.ModifiedMovement)}\n" +
+            $"Advanced Switch: {YesOrNo(_levelConfig.AdvancedSwitch)}\n" +
+            $"MF Style Beet: {YesOrNo(_levelConfig.MfStyleBeet)}\n" +
+            $"Celeste Style Switch: {YesOrNo(_levelConfig.CelesteStyleSwitch)}\n" +
+            $"MF Style Pipe Exit: {YesOrNo(_levelConfig.MfStylePipeExit)}";
+    }
+    public string YesOrNo(bool boolean) {
+        return boolean ? "Yes" : "No";
     }
     public override void _PhysicsProcess(double delta) {
-        var godModeNode = (PlayerGodMode)_player.GetMeta("PlayerGodMode");
+        _godModeNode = (PlayerGodMode)_player!.GetMeta("PlayerGodMode");
         
         if (_life != null) {
-            _life.Text = !godModeNode.IsGodMode ?
+            _life.Text = !_godModeNode.IsGodMode ?
                 $"MARIO {LevelManager.Life.ToString()}"
                 :$"GOD   {LevelManager.Life.ToString()}";
         }
@@ -61,9 +76,12 @@ public partial class HUD : Control {
             GameOverShow();
         }
         
+        // Level Info
+        if (_levelInfo != null) _levelInfo.Visible = Input.IsPhysicalKeyPressed(Key.F1);
+        
         // God Mode 摄像机模式坐标显示
         if (_godPosition != null && _player != null) {
-            _godPosition.Visible = godModeNode.IsGodFly;
+            _godPosition.Visible = _godModeNode.IsGodFly;
             _godPosition.Text = $"({_player.Position.X:F2}, {_player.Position.Y:F2})" ;
         }
     }

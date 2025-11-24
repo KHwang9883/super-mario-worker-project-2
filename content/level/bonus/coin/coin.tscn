@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://vhjp6ug43kyx" path="res://script/level/bonus/coin/Coin.cs" id="1_x37uu"]
 [ext_resource type="Texture2D" uid="uid://b3kv771q07bnb" path="res://content/level/bonus/coin/coin.png" id="2_1hxgt"]
 [ext_resource type="AudioStream" uid="uid://bvh8vnx7l5i38" path="res://content/sound/coin.se.wav" id="3_1hxgt"]
-[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/smwp_point_light_2d.tscn" id="4_04258"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="4_04258"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_04258"]
 atlas = ExtResource("2_1hxgt")
