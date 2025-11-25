@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level.Interface;
 using SMWP.Level.Tool;
 
 public partial class RaindropMovement : Node {
@@ -17,7 +18,17 @@ public partial class RaindropMovement : Node {
 
     public override void _Ready() {
         _parent ??= GetParent<Area2D>();
+
+        var windyController = (WindyController)GetTree().GetFirstNodeInGroup("windy_controller");
+        WindyLevel = windyController.WindyLevel;
         
+        Reset();
+    }
+    public void Reset() {
+        if (_parent == null) return;
+        
+        _parent.SetCollisionMask(69);
+        _parent.Modulate = _parent.Modulate with { A = 1f };
         _parent.RotationDegrees = 180f + 70f - WindyLevel * 7.0f;
         _speed = 8f + _rng.RandfRange(0f, 6f);
         
@@ -27,7 +38,9 @@ public partial class RaindropMovement : Node {
         }
         
         if (_rng.RandfRange(0f, 99f) < _alphaRate) {
+            // 透明雨滴不参与墙体碰撞，只与碰撞
             _parent.Modulate = _parent.Modulate with { A = 0.2f };
+            _parent.SetCollisionMask(64);
         }
 
         var screen = ScreenUtils.GetScreenRect(this);
@@ -61,5 +74,14 @@ public partial class RaindropMovement : Node {
         }
         
         _scrPosStart = _scrPosEnd;
+
+        if (_parent.Position.Y > ScreenUtils.GetScreenRect(this).End.Y + 128f)
+            ReturnToPool();
+
+        if (_parent.GetOverlappingAreas().Count > 0) ReturnToPool();
+    }
+    public void ReturnToPool() {
+        _parent?.AddToGroup("raindrop_pool");
+        _parent?.SetVisible(false);
     }
 }

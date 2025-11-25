@@ -4,7 +4,8 @@ using SMWP.Level;
 
 public partial class DarkController : Node {
     [Export] private WeatherController _weatherController = null!;
-    public float DarkLevel;
+    [Export] public float DarkLevel;
+    
     private LevelConfig? _levelConfig;
     private CanvasModulate? _canvasModulate;
 

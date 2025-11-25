@@ -1,34 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8xb4q774wgem"]
+[gd_scene load_steps=4 format=3 uid="uid://c8xb4q774wgem"]
 
 [ext_resource type="Texture2D" uid="uid://bw32w1gbddhul" path="res://content/level/weather/raindrop.png" id="1_weew1"]
 [ext_resource type="Script" uid="uid://dsorcs8nj6xuk" path="res://script/level/weather/RaindropMovement.cs" id="2_weew1"]
-[ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="3_ry5vk"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_vrpbw"]
 a = Vector2(-10, 0)
 b = Vector2(10, 0)
 
 [node name="Raindrop" type="Area2D"]
-collision_layer = 69
-collision_mask = 0
+z_index = 30
+collision_layer = 0
+collision_mask = 69
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.7853982
 texture = ExtResource("1_weew1")
 offset = Vector2(-1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.7853982
 shape = SubResource("SegmentShape2D_vrpbw")
 
 [node name="RaindropMovement" type="Node" parent="."]
 script = ExtResource("2_weew1")
 
-[node name="OutOfBoundsQueueFree" type="Node" parent="."]
-script = ExtResource("3_ry5vk")
-OutOfScreenDetection = true
-ScreenDownOffset = 128.0
-ScreenLeft = false
-ScreenRight = false
-metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
-
-[connection signal="area_entered" from="." to="." method="queue_free" unbinds=1]
-[connection signal="body_entered" from="." to="RaindropMovement" method="queue_free" unbinds=1]
+[connection signal="area_entered" from="." to="RaindropMovement" method="ReturnToPool" unbinds=1]
+[connection signal="body_entered" from="." to="RaindropMovement" method="ReturnToPool" unbinds=1]

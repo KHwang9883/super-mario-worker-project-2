@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1dp7ghajo2rv"]
+[gd_scene load_steps=10 format=3 uid="uid://b1dp7ghajo2rv"]
 
 [ext_resource type="Script" uid="uid://eo8lxr26ofqf" path="res://script/level/weather/WeatherController.cs" id="1_yiac1"]
 [ext_resource type="Script" uid="uid://x65d6jqug386" path="res://script/level/weather/RainyController.cs" id="2_1u4fo"]
+[ext_resource type="Script" uid="uid://ds6karhquifmk" path="res://script/tool/SmwpFrameTimer.cs" id="3_cqa0c"]
 [ext_resource type="Script" uid="uid://b5kt2cvbwafbx" path="res://script/level/weather/FallingStarsController.cs" id="3_knuu5"]
 [ext_resource type="Script" uid="uid://bvic74e1eap55" path="res://script/level/weather/SnowyController.cs" id="4_cqa0c"]
 [ext_resource type="Script" uid="uid://r0wqw3kwyheo" path="res://script/level/weather/ThunderController.cs" id="5_v1vkt"]
@@ -23,6 +24,16 @@ brightController = NodePath("Bright")
 script = ExtResource("2_1u4fo")
 _weatherController = NodePath("..")
 
+[node name="Level1Timer" type="Node" parent="Rainy"]
+script = ExtResource("3_cqa0c")
+Frame = 14
+metadata/_custom_type_script = "uid://ds6karhquifmk"
+
+[node name="Level2Timer" type="Node" parent="Rainy"]
+script = ExtResource("3_cqa0c")
+Frame = 4
+metadata/_custom_type_script = "uid://ds6karhquifmk"
+
 [node name="FallingStars" type="Node" parent="." node_paths=PackedStringArray("_weatherController")]
 script = ExtResource("3_knuu5")
 _weatherController = NodePath("..")
@@ -35,14 +46,18 @@ _weatherController = NodePath("..")
 script = ExtResource("5_v1vkt")
 _weatherController = NodePath("..")
 
-[node name="Windy" type="Node" parent="." node_paths=PackedStringArray("_weatherController")]
+[node name="Windy" type="Node" parent="." node_paths=PackedStringArray("_weatherController") groups=["windy_controller"]]
 script = ExtResource("6_xksn8")
 _weatherController = NodePath("..")
 
 [node name="Dark" type="Node" parent="." node_paths=PackedStringArray("_weatherController")]
 script = ExtResource("7_7uvm4")
 _weatherController = NodePath("..")
+DarkLevel = 7.0
 
 [node name="Bright" type="Node" parent="." node_paths=PackedStringArray("_weatherController") groups=["bright_controller"]]
 script = ExtResource("8_yasgw")
 _weatherController = NodePath("..")
+
+[connection signal="Timeout" from="Rainy/Level1Timer" to="Rainy" method="Create"]
+[connection signal="Timeout" from="Rainy/Level2Timer" to="Rainy" method="Create"]
