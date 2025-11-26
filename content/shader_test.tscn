@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkjgkmt01sb2b"]
+
+[ext_resource type="Shader" uid="uid://jyowme5g625v" path="res://content/shader_test.gdshader" id="1_2rdio"]
+[ext_resource type="Texture2D" uid="uid://cmfjvfvk7hatq" path="res://content/level/weather/light/unused_light_mask/gm8_smwp_weather_light_mask.png" id="2_cu2mx"]
+[ext_resource type="Script" uid="uid://c4pbvo15giepw" path="res://content/ShaderTest.cs" id="3_l041p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h8cb6"]
+shader = ExtResource("1_2rdio")
+shader_parameter/lights = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/lightRadius = 0.0
+shader_parameter/res = Vector2(1024, 576)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_h8cb6")
+offset_right = 656.0
+offset_bottom = 504.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(20, 324)
+texture = ExtResource("2_cu2mx")
+script = ExtResource("3_l041p")

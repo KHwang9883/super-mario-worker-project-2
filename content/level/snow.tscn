@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://bo53785p08smn"]
+
+[ext_resource type="Texture2D" uid="uid://cwjjb6vikcsjv" path="res://content/level/weather/snow/snow.png" id="1_kb3lr"]
+[ext_resource type="Texture2D" uid="uid://co3471h66jal2" path="res://content/level/weather/snow/snowdrop.png" id="2_lwxq8"]
+[ext_resource type="Script" uid="uid://eu2gdp22ny8g" path="res://script/level/weather/SnowMovement.cs" id="3_ls02t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esy7r"]
+atlas = ExtResource("2_lwxq8")
+region = Rect2(0, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdlri"]
+atlas = ExtResource("2_lwxq8")
+region = Rect2(0, 4, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frclm"]
+atlas = ExtResource("2_lwxq8")
+region = Rect2(0, 8, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5ay0"]
+atlas = ExtResource("2_lwxq8")
+region = Rect2(0, 12, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkr63"]
+atlas = ExtResource("2_lwxq8")
+region = Rect2(0, 16, 4, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t64tg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esy7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdlri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frclm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5ay0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkr63")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lwxq8"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kb3lr"]
+radius = 96.0
+
+[node name="Snow" type="Area2D"]
+z_index = 30
+collision_layer = 0
+collision_mask = 69
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.1415927
+texture = ExtResource("1_kb3lr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t64tg")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lwxq8")
+debug_color = Color(0.40191352, 0.568917, 0.60109, 0.41960785)
+
+[node name="SnowMovement" type="Node" parent="."]
+script = ExtResource("3_ls02t")
+
+[node name="WaterDetect" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetect"]
+shape = SubResource("CircleShape2D_kb3lr")
+
+[connection signal="area_entered" from="." to="SnowMovement" method="ReturnToPool" unbinds=1]
+[connection signal="body_entered" from="." to="SnowMovement" method="SetFadeOut" unbinds=1]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="SnowMovement" method="ReturnToPool"]

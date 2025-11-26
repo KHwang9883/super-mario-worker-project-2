@@ -1,7 +1,51 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8xb4q774wgem"]
+[gd_scene load_steps=11 format=3 uid="uid://c8xb4q774wgem"]
 
 [ext_resource type="Texture2D" uid="uid://bw32w1gbddhul" path="res://content/level/weather/raindrop/raindrop.png" id="1_weew1"]
+[ext_resource type="Texture2D" uid="uid://tnr8imsc6wfi" path="res://content/level/weather/raindrop/raindrop_point.png" id="2_h5tt4"]
 [ext_resource type="Script" uid="uid://dsorcs8nj6xuk" path="res://script/level/weather/RaindropMovement.cs" id="2_weew1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejj5b"]
+atlas = ExtResource("2_h5tt4")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqogk"]
+atlas = ExtResource("2_h5tt4")
+region = Rect2(7, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpduj"]
+atlas = ExtResource("2_h5tt4")
+region = Rect2(14, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jw7x"]
+atlas = ExtResource("2_h5tt4")
+region = Rect2(21, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4jkc"]
+atlas = ExtResource("2_h5tt4")
+region = Rect2(28, 0, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q3pm8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejj5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqogk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpduj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jw7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4jkc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_vrpbw"]
 a = Vector2(-10, 0)
@@ -17,6 +61,11 @@ rotation = 3.1415927
 texture = ExtResource("1_weew1")
 offset = Vector2(-1, 0)
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, 0)
+sprite_frames = SubResource("SpriteFrames_q3pm8")
+autoplay = "default"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("SegmentShape2D_vrpbw")
 
@@ -24,4 +73,5 @@ shape = SubResource("SegmentShape2D_vrpbw")
 script = ExtResource("2_weew1")
 
 [connection signal="area_entered" from="." to="RaindropMovement" method="ReturnToPool" unbinds=1]
-[connection signal="body_entered" from="." to="RaindropMovement" method="ReturnToPool" unbinds=1]
+[connection signal="body_entered" from="." to="RaindropMovement" method="SetFadeOut" unbinds=1]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="RaindropMovement" method="ReturnToPool"]

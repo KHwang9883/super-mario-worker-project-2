@@ -52,9 +52,21 @@ Frame = 4
 AutoStop = true
 metadata/_custom_type_script = "uid://ds6karhquifmk"
 
-[node name="Snowy" type="Node" parent="." node_paths=PackedStringArray("_weatherController")]
+[node name="Snowy" type="Node" parent="." node_paths=PackedStringArray("_weatherController") groups=["snowy_controller"]]
 script = ExtResource("4_cqa0c")
 _weatherController = NodePath("..")
+
+[node name="Level1Timer" type="Node" parent="Snowy"]
+script = ExtResource("3_cqa0c")
+Frame = 14
+AutoStop = true
+metadata/_custom_type_script = "uid://ds6karhquifmk"
+
+[node name="Level2Timer" type="Node" parent="Snowy"]
+script = ExtResource("3_cqa0c")
+Frame = 4
+AutoStop = true
+metadata/_custom_type_script = "uid://ds6karhquifmk"
 
 [node name="Thunder" type="Node" parent="." node_paths=PackedStringArray("_weatherController")]
 script = ExtResource("5_v1vkt")
@@ -77,4 +89,6 @@ _weatherController = NodePath("..")
 [connection signal="Timeout" from="Rainy/Level2Timer" to="Rainy" method="Create"]
 [connection signal="Timeout" from="FallingStars/Level1Timer" to="FallingStars" method="Create"]
 [connection signal="Timeout" from="FallingStars/Level2Timer" to="FallingStars" method="Create"]
+[connection signal="Timeout" from="Snowy/Level1Timer" to="Snowy" method="Create"]
+[connection signal="Timeout" from="Snowy/Level2Timer" to="Snowy" method="Create"]
 [connection signal="Thunder" from="Thunder" to="Dark" method="OnThunderAppear"]

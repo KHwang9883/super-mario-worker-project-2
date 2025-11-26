@@ -31,8 +31,8 @@ public partial class FallingStarsController : Node {
                 Create();
                 break;
         }
-        GD.Print("FallingStarsLevel: " + FallingStarsLevel);
-        GD.Print($"FallingStars Count: {GetTree().GetNodeCountInGroup("falling_star_pool")}");
+        //GD.Print("FallingStarsLevel: " + FallingStarsLevel);
+        //GD.Print($"FallingStars Count: {GetTree().GetNodeCountInGroup("falling_star_pool")}");
     }
     public void Create() {
         var star = (GetTree().GetNodesInGroup("falling_star_pool").Count < 60)

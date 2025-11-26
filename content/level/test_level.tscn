@@ -125,7 +125,8 @@ FluidT1 = 448.0
 FluidT2 = 492.0
 FluidSpeed = 3.0
 FluidDelay = 5
-FallingStarsLevel = 3
+RainyLevel = 2
+SnowyLevel = 4
 BgpDatabase = ExtResource("2_27x5w")
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
