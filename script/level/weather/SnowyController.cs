@@ -43,8 +43,8 @@ public partial class SnowyController : Node {
                 }
                 break;
         }
-        GD.Print("SnowyLevel: " + SnowyLevel);
-        GD.Print($"Snow Count: {GetTree().GetNodeCountInGroup("snow_pool")}");
+        //GD.Print("SnowyLevel: " + SnowyLevel);
+        //GD.Print($"Snow Count: {GetTree().GetNodeCountInGroup("snow_pool")}");
     }
     public void Create() {
         var snow = (GetTree().GetNodesInGroup("snow_pool").Count < 10)

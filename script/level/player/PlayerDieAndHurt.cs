@@ -29,14 +29,24 @@ public partial class PlayerDieAndHurt : Node {
     public bool IsHurtInvincible;
     public int HurtInvincibleTimer;
     public bool IsStarmanInvincible;
+    private LevelConfig? _levelConfig;
     private bool _dead;
     private int _deadTimer;
 
+    public override void _Ready() {
+        _levelConfig = (LevelConfig)LevelConfigAccess.GetLevelConfig(this);
+    }
     public override void _PhysicsProcess(double delta) {
+        if (_levelConfig == null) {
+            GD.PushError($"{this}: Level Config is null!");
+            return;
+        }
+        
         // 死亡计时结束后重启关卡
         if (_dead) {
             _deadTimer++;
-            if (_deadTimer >= 180) {
+            var deadTime = !_levelConfig.FastRetry ? 180 : 90;
+            if (_deadTimer >= deadTime) {
                 // Restart Level
                 if (LevelManager.Life > 0) {
                     GetTree().ReloadCurrentScene();
@@ -44,11 +54,13 @@ public partial class PlayerDieAndHurt : Node {
                 
                 // Game Over
                 else {
-                    if (!LevelManager.IsGameOver) {
+                    if (!LevelManager.IsGameOver && !_levelConfig.FastRetry) {
                         LevelManager.IsGameOver = true;
                         EmitSignal(SignalName.PlaySoundGameOver);
                     }
-                    if (_deadTimer >= 500 && Input.IsAnythingPressed()) {
+                    
+                    var gameOverTime = !_levelConfig.FastRetry ? 500 : 250;
+                    if (_deadTimer >= gameOverTime && Input.IsAnythingPressed()) {
                         
                         // Todo: 跳转到编辑界面或者标题界面
                         
