@@ -13,6 +13,7 @@ public partial class DarkController : Node {
     public override void _Ready() {
         _levelConfig = LevelConfigAccess.GetLevelConfig(this);
         _canvasModulate = (CanvasModulate)GetTree().GetFirstNodeInGroup("canvas_modulate");
+        _thunderDark = _levelConfig.Darkness / 9f;
     }
     public override void _Process(double delta) {
         if (_levelConfig == null || _canvasModulate == null) return;

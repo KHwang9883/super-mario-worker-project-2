@@ -6,7 +6,7 @@ using SMWP.Level.Tool;
 public partial class RainyController : Node {
     [Export] private WeatherController _weatherController = null!;
     [Export] private PackedScene _raindropScene = GD.Load<PackedScene>("uid://c8xb4q774wgem");
-    [Export] public int RainyLevel;
+    public int RainyLevel;
 
     //public static ObjectPool RaindropPool = new();
     private LevelConfig? _levelConfig;
@@ -44,7 +44,7 @@ public partial class RainyController : Node {
                 break;
         }
         //GD.Print("RainyLevel: " + RainyLevel);
-        GD.Print($"Raindrops Count: {GetParent().GetParent().GetChildCount()}");
+        //GD.Print($"Raindrops Count: {GetTree().GetNodeCountInGroup("raindrop_pool")}");
     }
     public void Create() {
         var raindrop = (GetTree().GetNodesInGroup("raindrop_pool").Count < 60)
@@ -53,9 +53,9 @@ public partial class RainyController : Node {
         raindrop.Position =
             ScreenUtils.GetScreenRect(this).Position +
             new Vector2(-32f + _rng.RandfRange(0f, 960f), -32f);
+        raindrop.ResetPhysicsInterpolation();
         if (raindrop.IsInGroup("raindrop_pool")) {
             raindrop.GetNode<RaindropMovement>("RaindropMovement").Reset();
-            raindrop.Visible = true;
             raindrop.RemoveFromGroup("raindrop_pool");
         } else {
             _weatherController.AddSibling(raindrop);

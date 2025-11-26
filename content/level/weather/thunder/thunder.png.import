@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw32w1gbddhul"
-path="res://.godot/imported/raindrop.png-365c1231b9d4b49ad9eada017af8bf21.ctex"
+uid="uid://5p23bgm43x1i"
+path="res://.godot/imported/thunder.png-988ada1b42e60cc760d9d3f1328d9ed5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/level/weather/raindrop.png"
-dest_files=["res://.godot/imported/raindrop.png-365c1231b9d4b49ad9eada017af8bf21.ctex"]
+source_file="res://content/level/weather/thunder/thunder.png"
+dest_files=["res://.godot/imported/thunder.png-988ada1b42e60cc760d9d3f1328d9ed5.ctex"]
 
 [params]
 

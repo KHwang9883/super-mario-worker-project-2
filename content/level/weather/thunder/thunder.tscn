@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://djcjjv16w874t"]
 
 [ext_resource type="Script" uid="uid://2rgo7g4hm3m0" path="res://script/level/weather/Thunder.cs" id="1_iu3k7"]
-[ext_resource type="Texture2D" uid="uid://5p23bgm43x1i" path="res://content/level/weather/thunder.png" id="1_l88ny"]
+[ext_resource type="Texture2D" uid="uid://5p23bgm43x1i" path="res://content/level/weather/thunder/thunder.png" id="1_l88ny"]
 [ext_resource type="AudioStream" uid="uid://d4df0p3bfwsi2" path="res://content/sound/thunder1.ogg" id="2_6b1et"]
 [ext_resource type="AudioStream" uid="uid://bls31mth7rofm" path="res://content/sound/thunder2.ogg" id="3_iu3k7"]
 [ext_resource type="AudioStream" uid="uid://dsxxo33mffcf" path="res://content/sound/thunder3.ogg" id="4_2d3n5"]

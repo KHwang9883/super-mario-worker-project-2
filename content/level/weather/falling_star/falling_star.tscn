@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://qdl5o6r7cbjq"]
+
+[ext_resource type="Texture2D" uid="uid://dlrbriddh7qra" path="res://content/level/weather/falling_star/falling_star.png" id="1_jlx32"]
+[ext_resource type="Script" uid="uid://bmdgs2bx13hmp" path="res://script/level/weather/FallingStar.cs" id="1_nhi7i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhi7i"]
+size = Vector2(96, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73jhg"]
+
+[node name="FallingStar" type="Area2D"]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("1_nhi7i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jlx32")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nhi7i")
+
+[node name="ForceReturnToPool" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ForceReturnToPool"]
+shape = SubResource("RectangleShape2D_73jhg")
+debug_color = Color(0.56639755, 0.5578871, 0, 0.41960785)

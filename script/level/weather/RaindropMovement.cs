@@ -26,7 +26,8 @@ public partial class RaindropMovement : Node {
     }
     public void Reset() {
         if (_parent == null || _rainyController == null || _windyController == null) return;
-        
+
+        _parent.Visible = true;
         _parent.SetCollisionMask(69);
         _parent.Modulate = _parent.Modulate with { A = 1f };
         WindyLevel = _windyController.WindyLevel;
@@ -52,6 +53,7 @@ public partial class RaindropMovement : Node {
     public override void _PhysicsProcess(double delta) {
         if (_parent == null) return;
         
+        // Movement
         Vector2 direction = new Vector2(
             Mathf.Cos(Mathf.DegToRad(_parent.RotationDegrees)),
             Mathf.Sin(Mathf.DegToRad(_parent.RotationDegrees))
@@ -63,16 +65,16 @@ public partial class RaindropMovement : Node {
         
         _parent.Position += velocity;
         
-        _scrPosEnd = ScreenUtils.GetScreenRect(this).Position;
-        
         // 玩家大距离瞬移则雨滴跟着瞬移
+        _scrPosEnd = ScreenUtils.GetScreenRect(this).Position;
         if (Mathf.Abs(_scrPosEnd.X - _scrPosStart.X) > 128f) {
             _parent.Position += new Vector2(_scrPosEnd.X - _scrPosStart.X, 0f);
+            _parent.ResetPhysicsInterpolation();
         }
         if (Mathf.Abs(_scrPosEnd.Y - _scrPosStart.Y) > 128f) {
             _parent.Position += new Vector2(0f, _scrPosEnd.Y - _scrPosStart.Y);
+            _parent.ResetPhysicsInterpolation();
         }
-        
         _scrPosStart = _scrPosEnd;
 
         if (_parent.Position.Y > ScreenUtils.GetScreenRect(this).End.Y + 128f)

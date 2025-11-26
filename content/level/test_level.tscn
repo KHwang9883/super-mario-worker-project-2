@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
 [ext_resource type="PackedScene" uid="uid://b1dp7ghajo2rv" path="res://content/level/weather/weather_controller.tscn" id="2_fw3fg"]
-[ext_resource type="PackedScene" uid="uid://brdcmv5xpmxgc" path="res://content/level/weather/wind.tscn" id="4_t1fq4"]
+[ext_resource type="PackedScene" uid="uid://brdcmv5xpmxgc" path="res://content/level/weather/wind/wind.tscn" id="4_t1fq4"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
 [ext_resource type="Texture2D" uid="uid://c2qyxcvftu6cd" path="res://content/level/hud/game_over.png" id="7_yeotl"]
 [ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/level/tile/obstacle.png" id="8_1mjcm"]
@@ -119,15 +119,13 @@ LevelTitle = "TODO"
 LevelAuthor = "GREEN SWEET"
 Gravity = 0.0
 WaterHeight = 444.0
-BackgroundId = 21
+BackgroundId = 13
 AutoFluid = true
 FluidT1 = 448.0
 FluidT2 = 492.0
 FluidSpeed = 3.0
 FluidDelay = 5
-RainyLevel = 1
-ThunderLevel = 1
-Darkness = 7
+FallingStarsLevel = 3
 BgpDatabase = ExtResource("2_27x5w")
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
 

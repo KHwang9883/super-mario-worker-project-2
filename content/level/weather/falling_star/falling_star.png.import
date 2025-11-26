@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5p23bgm43x1i"
-path="res://.godot/imported/thunder.png-b5432d66c9c1d5692d3d1e26cbbedd61.ctex"
+uid="uid://dlrbriddh7qra"
+path="res://.godot/imported/falling_star.png-166bb0256c0a0e28254fb5e3b8d7f4bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/level/weather/thunder.png"
-dest_files=["res://.godot/imported/thunder.png-b5432d66c9c1d5692d3d1e26cbbedd61.ctex"]
+source_file="res://content/level/weather/falling_star/falling_star.png"
+dest_files=["res://.godot/imported/falling_star.png-166bb0256c0a0e28254fb5e3b8d7f4bd.ctex"]
 
 [params]
 

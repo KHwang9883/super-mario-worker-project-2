@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8xb4q774wgem"]
 
-[ext_resource type="Texture2D" uid="uid://bw32w1gbddhul" path="res://content/level/weather/raindrop.png" id="1_weew1"]
+[ext_resource type="Texture2D" uid="uid://bw32w1gbddhul" path="res://content/level/weather/raindrop/raindrop.png" id="1_weew1"]
 [ext_resource type="Script" uid="uid://dsorcs8nj6xuk" path="res://script/level/weather/RaindropMovement.cs" id="2_weew1"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_vrpbw"]

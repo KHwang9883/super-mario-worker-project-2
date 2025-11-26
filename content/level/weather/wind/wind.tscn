@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://brdcmv5xpmxgc"]
 
 [ext_resource type="Script" uid="uid://ber33fespoeak" path="res://script/level/weather/Wind.cs" id="1_wa02i"]
-[ext_resource type="Texture2D" uid="uid://dc0k5bi7wryem" path="res://content/level/weather/wind.png" id="2_3a557"]
+[ext_resource type="Texture2D" uid="uid://dc0k5bi7wryem" path="res://content/level/weather/wind/wind.png" id="2_3a557"]
 
 [node name="Wind" type="Parallax2D"]
 modulate = Color(1, 1, 1, 0.5019608)
