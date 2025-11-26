@@ -8,6 +8,7 @@ public partial class DarkController : Node {
     
     private LevelConfig? _levelConfig;
     private CanvasModulate? _canvasModulate;
+    private float _thunderDark;
 
     public override void _Ready() {
         _levelConfig = LevelConfigAccess.GetLevelConfig(this);
@@ -17,11 +18,11 @@ public partial class DarkController : Node {
         if (_levelConfig == null || _canvasModulate == null) return;
         
         DarkLevel = _levelConfig.Darkness;
-        _canvasModulate.Color = new Color(
-            1f - DarkLevel / 9f,
-            1f - DarkLevel / 9f,
-            1f - DarkLevel / 9f,
-            1
-        );
+        var darkValue = 1f - Mathf.Min(DarkLevel / 9f, _thunderDark);
+        _canvasModulate.Color = new Color(darkValue, darkValue, darkValue, 1);
+        _thunderDark = Mathf.MoveToward(_thunderDark, DarkLevel / 9f, 0.06f);
+    }
+    public void OnThunderAppear() {
+        _thunderDark = 0f;
     }
 }

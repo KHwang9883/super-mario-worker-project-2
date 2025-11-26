@@ -1,8 +1,9 @@
-[gd_scene load_steps=67 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=69 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
 [ext_resource type="PackedScene" uid="uid://b1dp7ghajo2rv" path="res://content/level/weather/weather_controller.tscn" id="2_fw3fg"]
+[ext_resource type="PackedScene" uid="uid://brdcmv5xpmxgc" path="res://content/level/weather/wind.tscn" id="4_t1fq4"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
 [ext_resource type="Texture2D" uid="uid://c2qyxcvftu6cd" path="res://content/level/hud/game_over.png" id="7_yeotl"]
 [ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/level/tile/obstacle.png" id="8_1mjcm"]
@@ -59,6 +60,9 @@
 [ext_resource type="PackedScene" uid="uid://22smr6kls4nc" path="res://content/level/tile/obstacle_half.tscn" id="55_sldem"]
 [ext_resource type="PackedScene" uid="uid://dri8grhd0ymhk" path="res://content/level/tile/platform_solid.tscn" id="56_ul4ql"]
 [ext_resource type="PackedScene" uid="uid://ci11f7ep75br" path="res://content/level/tile/platform_solid_player.tscn" id="57_e7eqa"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kynl2"]
+blend_mode = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
 atlas = ExtResource("8_lgciv")
@@ -121,15 +125,24 @@ FluidT1 = 448.0
 FluidT2 = 492.0
 FluidSpeed = 3.0
 FluidDelay = 5
-RainyLevel = 5
-Darkness = 2
-Brightness = 5
+RainyLevel = 1
+ThunderLevel = 1
+Darkness = 7
 BgpDatabase = ExtResource("2_27x5w")
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
-[node name="WeatherController" parent="TestLevelNode2D/LevelConfig" instance=ExtResource("2_fw3fg")]
+[node name="Weather" type="Node" parent="TestLevelNode2D/LevelConfig"]
 
-[node name="CanvasModulate" type="CanvasModulate" parent="TestLevelNode2D" groups=["canvas_modulate"]]
+[node name="WeatherController" parent="TestLevelNode2D/LevelConfig/Weather" instance=ExtResource("2_fw3fg")]
+
+[node name="Wind" parent="TestLevelNode2D/LevelConfig/Weather" instance=ExtResource("4_t1fq4")]
+visible = false
+modulate = Color(1, 1, 1, 0.105882354)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="TestLevelNode2D/LevelConfig/Weather" groups=["canvas_modulate"]]
+material = SubResource("CanvasItemMaterial_kynl2")
+
+[node name="ThunderLayer" type="CanvasLayer" parent="TestLevelNode2D/LevelConfig/Weather" groups=["thunder_parallax"]]
 
 [node name="HUD" type="CanvasLayer" parent="TestLevelNode2D"]
 

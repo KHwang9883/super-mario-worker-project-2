@@ -1,0 +1,146 @@
+[gd_scene load_steps=22 format=3 uid="uid://djcjjv16w874t"]
+
+[ext_resource type="Script" uid="uid://2rgo7g4hm3m0" path="res://script/level/weather/Thunder.cs" id="1_iu3k7"]
+[ext_resource type="Texture2D" uid="uid://5p23bgm43x1i" path="res://content/level/weather/thunder.png" id="1_l88ny"]
+[ext_resource type="AudioStream" uid="uid://d4df0p3bfwsi2" path="res://content/sound/thunder1.ogg" id="2_6b1et"]
+[ext_resource type="AudioStream" uid="uid://bls31mth7rofm" path="res://content/sound/thunder2.ogg" id="3_iu3k7"]
+[ext_resource type="AudioStream" uid="uid://dsxxo33mffcf" path="res://content/sound/thunder3.ogg" id="4_2d3n5"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="5_mevu5"]
+[ext_resource type="Script" uid="uid://ds6karhquifmk" path="res://script/tool/SmwpFrameTimer.cs" id="6_6b1et"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6b1et"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbsr5"]
+atlas = ExtResource("1_l88ny")
+region = Rect2(0, 0, 191, 277)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65rj0"]
+atlas = ExtResource("1_l88ny")
+region = Rect2(191, 0, 191, 277)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnpef"]
+atlas = ExtResource("1_l88ny")
+region = Rect2(382, 0, 191, 277)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cyb5"]
+atlas = ExtResource("1_l88ny")
+region = Rect2(573, 0, 191, 277)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqsu4"]
+atlas = ExtResource("1_l88ny")
+region = Rect2(764, 0, 191, 277)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpdhy"]
+atlas = ExtResource("1_l88ny")
+region = Rect2(955, 0, 191, 277)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quwqh"]
+atlas = ExtResource("1_l88ny")
+region = Rect2(1146, 0, 191, 277)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b4nr"]
+atlas = ExtResource("1_l88ny")
+region = Rect2(1337, 0, 191, 277)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lx7hc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbsr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65rj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnpef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cyb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqsu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpdhy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quwqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4b4nr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 50.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bse1d"]
+streams_count = 3
+stream_0/stream = ExtResource("2_6b1et")
+stream_1/stream = ExtResource("3_iu3k7")
+stream_2/stream = ExtResource("4_2d3n5")
+
+[sub_resource type="Animation" id="Animation_ivu76"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_herb1"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jm3qq"]
+_data = {
+&"RESET": SubResource("Animation_ivu76"),
+&"new_animation": SubResource("Animation_herb1")
+}
+
+[node name="Thunder" type="Node2D"]
+script = ExtResource("1_iu3k7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_6b1et")
+sprite_frames = SubResource("SpriteFrames_lx7hc")
+autoplay = "default"
+offset = Vector2(0, 138)
+
+[node name="ThunderSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_bse1d")
+autoplay = true
+script = ExtResource("5_mevu5")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jm3qq")
+}
+autoplay = "RESET"
+
+[node name="SmwpFrameTimer" type="Node" parent="."]
+script = ExtResource("6_6b1et")
+Frame = 100
+AutoStart = true
+metadata/_custom_type_script = "uid://ds6karhquifmk"
+
+[connection signal="Timeout" from="SmwpFrameTimer" to="." method="queue_free"]

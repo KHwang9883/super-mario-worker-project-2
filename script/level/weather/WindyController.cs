@@ -11,5 +11,9 @@ public partial class WindyController : Node {
     public override void _Ready() {
         _levelConfig = LevelConfigAccess.GetLevelConfig(this);
     }
+    public override void _PhysicsProcess(double delta) {
+        if (_levelConfig == null) return;
 
+        WindyLevel = _levelConfig.WindyLevel;
+    }
 }

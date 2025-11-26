@@ -9,6 +9,8 @@ public partial class RaindropMovement : Node {
     private float _alphaRate = 50f;
     private RandomNumberGenerator _rng = new RandomNumberGenerator();
     private Area2D? _parent;
+    private RainyController? _rainyController;
+    private WindyController? _windyController;
     
     private Vector2 _scrPosStart;
     private Vector2 _scrPosEnd;
@@ -18,21 +20,21 @@ public partial class RaindropMovement : Node {
 
     public override void _Ready() {
         _parent ??= GetParent<Area2D>();
-
-        var windyController = (WindyController)GetTree().GetFirstNodeInGroup("windy_controller");
-        WindyLevel = windyController.WindyLevel;
-        
+        _rainyController = (RainyController)GetTree().GetFirstNodeInGroup("rainy_controller");
+        _windyController = (WindyController)GetTree().GetFirstNodeInGroup("windy_controller");
         Reset();
     }
     public void Reset() {
-        if (_parent == null) return;
+        if (_parent == null || _rainyController == null || _windyController == null) return;
         
         _parent.SetCollisionMask(69);
         _parent.Modulate = _parent.Modulate with { A = 1f };
-        _parent.RotationDegrees = 180f + 70f - WindyLevel * 7.0f;
+        WindyLevel = _windyController.WindyLevel;
+        _parent.RotationDegrees = 180f - 70f + WindyLevel * 12.0f;
         _speed = 8f + _rng.RandfRange(0f, 6f);
         
         // 大雨雨滴速度更大
+        RainyLevel = _rainyController.RainyLevel;
         if (RainyLevel == 5) {
             _speed *= 1.6f;
         }
@@ -52,14 +54,12 @@ public partial class RaindropMovement : Node {
         
         Vector2 direction = new Vector2(
             Mathf.Cos(Mathf.DegToRad(_parent.RotationDegrees)),
-            -Mathf.Sin(Mathf.DegToRad(_parent.RotationDegrees))
+            Mathf.Sin(Mathf.DegToRad(_parent.RotationDegrees))
         );
         
         Vector2 velocity = direction * _speed;
-        
-        // 风等级影响
-        velocity.X -= WindyLevel * 2.6f;
-        velocity.Y += WindyLevel * 0.8f;
+
+        velocity *= Mathf.Max(1f, WindyLevel * 1.2f);
         
         _parent.Position += velocity;
         

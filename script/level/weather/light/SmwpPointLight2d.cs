@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 public partial class SmwpPointLight2d : PointLight2D {
-    private BrightController? _brightController;
+    /*private BrightController? _brightController;
     private Vector2 _originScale;
     public override void _Ready() {
         _brightController = (BrightController)GetTree().GetFirstNodeInGroup("bright_controller");
@@ -23,7 +23,7 @@ public partial class SmwpPointLight2d : PointLight2D {
                 Scale = _originScale * 0.5f;
                 break;
             case 3:
-                // Default scale
+                Scale = _originScale;
                 break;
             case 4:
                 Scale = _originScale * 1.8f;
@@ -40,5 +40,5 @@ public partial class SmwpPointLight2d : PointLight2D {
     public void OnScreenExited() {
         Enabled = false;
         //Visible = false;
-    }
+    }*/
 }

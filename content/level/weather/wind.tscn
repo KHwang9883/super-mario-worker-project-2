@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://brdcmv5xpmxgc"]
+
+[ext_resource type="Script" uid="uid://ber33fespoeak" path="res://script/level/weather/Wind.cs" id="1_wa02i"]
+[ext_resource type="Texture2D" uid="uid://dc0k5bi7wryem" path="res://content/level/weather/wind.png" id="2_3a557"]
+
+[node name="Wind" type="Parallax2D"]
+modulate = Color(1, 1, 1, 0.5019608)
+z_index = 1000
+repeat_size = Vector2(2048, 960)
+script = ExtResource("1_wa02i")
+
+[node name="Parallax2D" type="Sprite2D" parent="."]
+position = Vector2(1024, 480)
+texture = ExtResource("2_3a557")

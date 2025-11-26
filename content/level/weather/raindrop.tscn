@@ -13,12 +13,11 @@ collision_layer = 0
 collision_mask = 69
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 0.7853982
+rotation = 3.1415927
 texture = ExtResource("1_weew1")
 offset = Vector2(-1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 0.7853982
 shape = SubResource("SegmentShape2D_vrpbw")
 
 [node name="RaindropMovement" type="Node" parent="."]

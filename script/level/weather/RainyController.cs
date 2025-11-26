@@ -15,9 +15,11 @@ public partial class RainyController : Node {
     public override void _Ready() {
         _levelConfig = LevelConfigAccess.GetLevelConfig(this);
         RainyLevel = _levelConfig.RainyLevel;
-        GD.Print("RainyLevel: " + RainyLevel);
     }
     public override void _PhysicsProcess(double delta) {
+        if (_levelConfig == null) return;
+
+        RainyLevel = _levelConfig.RainyLevel;
         switch (RainyLevel) {
             case 0:
                 break;
@@ -41,7 +43,8 @@ public partial class RainyController : Node {
                 }
                 break;
         }
-        GD.Print(GetParent().GetParent().GetChildCount());
+        //GD.Print("RainyLevel: " + RainyLevel);
+        GD.Print($"Raindrops Count: {GetParent().GetParent().GetChildCount()}");
     }
     public void Create() {
         var raindrop = (GetTree().GetNodesInGroup("raindrop_pool").Count < 60)

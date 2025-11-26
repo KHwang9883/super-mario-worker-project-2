@@ -22,6 +22,7 @@ public partial class ContinuousAudioStream2D : AudioStreamPlayer2D {
     public override void _PhysicsProcess(double delta) {
         // 若不使用空方法那么从上方踩踏静止龟壳会没有音效，原因不明
         
+        // 延迟一帧检测，不播放音效的节点不滞留在 Root 下，跟随父节点销毁
         if (_playingDetect && !Playing) QueueFree();
     }
     public void OnParentExiting() {
