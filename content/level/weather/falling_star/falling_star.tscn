@@ -7,7 +7,7 @@
 radius = 96.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_73jhg"]
-radius = 96.0
+radius = 12.0
 
 [node name="FallingStar" type="Area2D"]
 collision_layer = 0
@@ -18,7 +18,6 @@ script = ExtResource("1_nhi7i")
 texture = ExtResource("1_jlx32")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_nhi7i")
 
 [node name="ForceReturnToPool" type="Area2D" parent="."]
