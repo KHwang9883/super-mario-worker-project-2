@@ -99,7 +99,6 @@ public partial class LevelConfig : Node {
             if (entry.BgmId != BgmId) continue;
             var bgmPlayer = GetNode<AudioStreamPlayer>("BgmPlayer");
             bgmPlayer.Stream = entry.DefaultBgm;
-            bgmPlayer.Play();
             //GD.Print(bgmPlayer.Stream);
             break;
         }

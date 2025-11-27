@@ -17,6 +17,8 @@ public partial class PlayerDieAndHurt : Node {
     public delegate void PlaySoundGameOverEventHandler();
     [Signal]
     public delegate void PlaySoundBreakEventHandler();
+    [Signal]
+    public delegate void PlayerDiedSucceededEventHandler();
     
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
@@ -115,6 +117,7 @@ public partial class PlayerDieAndHurt : Node {
         _dead = true;
         _player.Visible = false;
         _player.ProcessMode = ProcessModeEnum.Disabled;
+        EmitSignal(SignalName.PlayerDiedSucceeded);
 
         // 变为小个子
         _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Small;

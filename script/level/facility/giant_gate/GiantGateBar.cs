@@ -43,6 +43,7 @@ public partial class GiantGateBar : Area2D {
         if (!body.IsInGroup("player")) return;
         _gateBarState = GateBarStateEnum.Triggered;
         ProcessMode = ProcessModeEnum.Always;
+        
         // 原版中原意可能是根据玩家碰撞位置决定运动方向，但是没有实现
         /*if (Position.X < body.Position.X) {
             _speedX = 5f;

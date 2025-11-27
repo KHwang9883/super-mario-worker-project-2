@@ -36,6 +36,7 @@ public partial class LevelManager : Node {
     private static int _levelPassTimer;
     private static int _timeClearTimer;
     private static int _timeClearedTimer;
+    public static float BgmPosition;
     public static Node2D? Player;
 
     public override void _Ready() {

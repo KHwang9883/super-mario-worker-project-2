@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=36 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/level/player/mario_small.tres" id="1_o23i7"]
 [ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
@@ -29,6 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://ux42m3p5b615" path="res://content/sound/gameover.me.wav" id="25_445xo"]
 [ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="26_otrx5"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="29_kphem"]
+[ext_resource type="AudioStream" uid="uid://bl5ufvx763kni" path="res://content/bgm/MW/ktkm3.it" id="29_lc6mo"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0cq6f"]
 blend_mode = 1
@@ -225,6 +226,9 @@ stream = ExtResource("26_otrx5")
 script = ExtResource("18_8jrco")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
+[node name="Starman" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("29_lc6mo")
+
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("29_kphem")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="PlayerMediator/PlayerAnimation" method="OnAnimationFinished"]
@@ -238,6 +242,8 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerInteraction" method="HurtSucceedSet"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="Powerdown" method="play"]
 [connection signal="PlayerInvincibleEnded" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerInvincibleEnded"]
+[connection signal="PlayerStarmanFinished" from="PlayerMediator/PlayerSuit" to="Starman" method="stop"]
+[connection signal="PlayerStarmanStarted" from="PlayerMediator/PlayerSuit" to="Starman" method="play"]
 [connection signal="PlayerDie" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerDieAndHurt" method="Die"]
 [connection signal="PlayerHurtProcess" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerDieAndHurt" method="Hurt"]
 [connection signal="PlayerPowerPlain" from="PlayerMediator/PlayerInteraction" to="Powerup" method="play"]
@@ -247,3 +253,4 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 [connection signal="PlayerShooting" from="PlayerMediator/PlayerShoot" to="PlayerShoot" method="play"]
 [connection signal="AddLife" from="PlayerMediator/PlayerGodMode" to="AddScoreComponent" method="AddScore"]
 [connection signal="finished" from="GameOver" to="GameOver" method="queue_free"]
+[connection signal="finished" from="Starman" to="Starman" method="play"]

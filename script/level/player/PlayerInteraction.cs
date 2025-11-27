@@ -155,8 +155,7 @@ public partial class PlayerInteraction : Node {
 
             // 无敌星
             if (powerupSet.PowerupType == PowerupSet.PowerupEnum.SuperStar) {
-                _playerMediator.playerSuit.Starman = true;
-                _playerMediator.playerSuit.StarmanTimer = 0;
+                _playerMediator.playerSuit.SetStarmanState();
             } else {
                 // 常规补给
                 if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small) {
