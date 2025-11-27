@@ -37,6 +37,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="SuperMarioWorkerProject2"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-openmpt/plugin.cfg")
+
 [file_customization]
 
 folder_colors={

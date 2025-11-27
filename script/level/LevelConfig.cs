@@ -22,7 +22,7 @@ public partial class LevelConfig : Node {
     [Export] public float WaterHeight = 800f;
     [Export] public int BackgroundId = 5;
     // Todo
-    [Export] public int BgmId = 114514;
+    [Export] public int BgmId = 1;
 
     [ExportGroup("AdditionalSettings")]
     // Todo: 默认为 true，后续若有 bug / 特性复现可以使用这个变量
@@ -71,6 +71,7 @@ public partial class LevelConfig : Node {
     
     [ExportGroup("Database")]
     [Export] public BackgroundDatabase BgpDatabase { get; private set; } = null!;
+    [Export] public BgmDatabase BgmDatabase { get; private set; } = null!;
     
     private PackedScene? _backgroundScene;
     public override void _Ready() {
@@ -92,5 +93,15 @@ public partial class LevelConfig : Node {
             var background = _backgroundScene.Instantiate<BackgroundSet>();
             AddSibling(background);
         }).CallDeferred();
+        
+        // Bgm Set
+        foreach (var entry in BgmDatabase.Entries) {
+            if (entry.BgmId != BgmId) continue;
+            var bgmPlayer = GetNode<AudioStreamPlayer>("BgmPlayer");
+            bgmPlayer.Stream = entry.DefaultBgm;
+            bgmPlayer.Play();
+            //GD.Print(bgmPlayer.Stream);
+            break;
+        }
     }
 }

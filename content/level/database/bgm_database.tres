@@ -1,0 +1,1678 @@
+[gd_resource type="Resource" script_class="BgmDatabase" load_steps=381 format=3 uid="uid://c0wfvwbspss50"]
+
+[ext_resource type="AudioStream" uid="uid://dhyco5fwdqh1q" path="res://content/bgm/MW/ktkm1.it" id="1_5sqa8"]
+[ext_resource type="Script" uid="uid://dwxi777j7284f" path="res://script/level/bgm/BgmDatabase.cs" id="1_ryw4c"]
+[ext_resource type="Script" uid="uid://cpmdo4y2crp4d" path="res://script/level/bgm/BgmDatabaseEntry.cs" id="1_wvoo7"]
+[ext_resource type="AudioStream" uid="uid://blkytm4l6jep1" path="res://content/bgm/MW/ktkm5.it" id="2_orkyd"]
+[ext_resource type="AudioStream" uid="uid://dv7y60dufe0mk" path="res://content/bgm/MW/ktkm6.it" id="3_wt28q"]
+[ext_resource type="AudioStream" uid="uid://btgm828dkx0mv" path="res://content/bgm/MW/ktkm7.it" id="4_0h8bv"]
+[ext_resource type="AudioStream" uid="uid://ca2ke17aoi6f" path="res://content/bgm/MW/ktkm9.mod" id="5_4icf5"]
+[ext_resource type="AudioStream" uid="uid://c0h64lgii47yl" path="res://content/bgm/MW/ktkm10.it" id="6_1rj02"]
+[ext_resource type="AudioStream" uid="uid://ce6s4kfxn2uvg" path="res://content/bgm/MW/ktkm12.xm" id="7_xfj12"]
+[ext_resource type="AudioStream" uid="uid://cqd1cbqrst1yi" path="res://content/bgm/MW/ktkm13.it" id="8_g5ta6"]
+[ext_resource type="AudioStream" uid="uid://da26omncnhs5x" path="res://content/bgm/MW/ktkm14.it" id="9_rjeii"]
+[ext_resource type="AudioStream" uid="uid://b0icdwsdcdgu2" path="res://content/bgm/MW/ktkm15.mp3" id="10_14lvn"]
+[ext_resource type="AudioStream" uid="uid://wofldmjqmlcw" path="res://content/bgm/MW/ktkm16.xm" id="11_vqq4k"]
+[ext_resource type="AudioStream" uid="uid://luhmjj68pj5r" path="res://content/bgm/MW/ktkm17.it" id="12_glyiq"]
+[ext_resource type="AudioStream" uid="uid://k0xvsape0cx2" path="res://content/bgm/MW/ktkm18.mp3" id="13_iwcr4"]
+[ext_resource type="AudioStream" uid="uid://bp74raiq3d5ki" path="res://content/bgm/MW/ktkm21.mod" id="14_tpyfw"]
+[ext_resource type="AudioStream" uid="uid://brjp86toqtibx" path="res://content/bgm/MW/ktkm22.mod" id="15_06eyg"]
+[ext_resource type="AudioStream" uid="uid://kkar2ts2vpmn" path="res://content/bgm/MW/ktkm23.mod" id="16_3w5hu"]
+[ext_resource type="AudioStream" uid="uid://7ovuhx2es0q1" path="res://content/bgm/MW/ktkm24.mod" id="17_4b4sy"]
+[ext_resource type="AudioStream" uid="uid://dt10mt203ihp0" path="res://content/bgm/MW/ktkm25.mod" id="18_hso3o"]
+[ext_resource type="AudioStream" uid="uid://cxon0v1kjb4ob" path="res://content/bgm/MW/ktkm26.it" id="19_npstf"]
+[ext_resource type="AudioStream" uid="uid://bqcywnh76rqfx" path="res://content/bgm/MW/ktkm28.mod" id="20_6rna1"]
+[ext_resource type="AudioStream" uid="uid://bmxhsj6cydo8i" path="res://content/bgm/MW/ktkm36.it" id="21_kvhne"]
+[ext_resource type="AudioStream" uid="uid://cf0m5ujwjyhg4" path="res://content/bgm/MW/ktkm38.ogg" id="22_cp6nq"]
+[ext_resource type="AudioStream" uid="uid://3saf8epoxfwf" path="res://content/bgm/MW/ktkm20.xm" id="23_k6mfc"]
+[ext_resource type="AudioStream" uid="uid://ms651sorx0kv" path="res://content/bgm/MW/ktkm27.mod" id="24_gtt0m"]
+[ext_resource type="AudioStream" uid="uid://cgxl6rw7t3bbm" path="res://content/bgm/MW/ktkm37.mod" id="25_ngtix"]
+[ext_resource type="AudioStream" uid="uid://cujqnt8mtviwn" path="res://content/bgm/MW/ktkm29.it" id="26_a3ue8"]
+[ext_resource type="AudioStream" uid="uid://fnci3dledyyk" path="res://content/bgm/MW/ktkm35.it" id="27_p6lgk"]
+[ext_resource type="AudioStream" uid="uid://ba2ey5dmbvjdw" path="res://content/bgm/MW/ktkm120.it" id="28_rsecp"]
+[ext_resource type="AudioStream" uid="uid://64xmw2bltpka" path="res://content/bgm/MW/ktkm19.it" id="29_wklcb"]
+[ext_resource type="AudioStream" uid="uid://b8kksw6eidsgh" path="res://content/bgm/MFR/ktkm0.xm" id="30_wt28q"]
+[ext_resource type="AudioStream" uid="uid://bh36olf2fxxkq" path="res://content/bgm/MFR/ktkm50.ogg" id="31_1rj02"]
+[ext_resource type="AudioStream" uid="uid://bhisovq6mawg8" path="res://content/bgm/MFR/ktkm51.ogg" id="32_xfj12"]
+[ext_resource type="AudioStream" uid="uid://c6dsnt4to44xl" path="res://content/bgm/MFR/ktkm52.ogg" id="33_g5ta6"]
+[ext_resource type="AudioStream" uid="uid://b1l5ttdmlvd3o" path="res://content/bgm/MFR/ktkm53.ogg" id="34_iwcr4"]
+[ext_resource type="AudioStream" uid="uid://d2vyc21wy6j4d" path="res://content/bgm/MFR/ktkm55.ogg" id="35_tpyfw"]
+[ext_resource type="AudioStream" uid="uid://b3ho5p0ca23ij" path="res://content/bgm/MFR/ktkm56.ogg" id="36_06eyg"]
+[ext_resource type="AudioStream" uid="uid://csoqokvcvifhb" path="res://content/bgm/MFR/ktkm41.mod" id="37_3w5hu"]
+[ext_resource type="AudioStream" uid="uid://cuj08cboikt3v" path="res://content/bgm/MFR/ktkm93.ogg" id="38_4b4sy"]
+[ext_resource type="AudioStream" uid="uid://d124xmv0e61mw" path="res://content/bgm/MFR/ktkm94.ogg" id="39_hso3o"]
+[ext_resource type="AudioStream" uid="uid://cv3iy2hhgywjo" path="res://content/bgm/MFR/ktkm100.ogg" id="40_npstf"]
+[ext_resource type="AudioStream" uid="uid://cepwbd45uhv4i" path="res://content/bgm/MFR/ktkm101.ogg" id="41_npstf"]
+[ext_resource type="AudioStream" uid="uid://bsvqfm0unlnse" path="res://content/bgm/MFR/ktkm103.ogg" id="42_6rna1"]
+[ext_resource type="AudioStream" uid="uid://c4hp82f7jkgcq" path="res://content/bgm/MFR/ktkm121.ogg" id="43_kvhne"]
+[ext_resource type="AudioStream" uid="uid://28ojjfgt13h5" path="res://content/bgm/MFR/ktkm122.ogg" id="44_cp6nq"]
+[ext_resource type="AudioStream" uid="uid://bextqgbru6uww" path="res://content/bgm/MFR/ktkm123.ogg" id="45_k6mfc"]
+[ext_resource type="AudioStream" uid="uid://ccx0srf1o2sma" path="res://content/bgm/MFR/ktkm124.ogg" id="46_gtt0m"]
+[ext_resource type="AudioStream" uid="uid://bjwp6mrp7p4lx" path="res://content/bgm/MFR/ktkm129.ogg" id="47_gtt0m"]
+[ext_resource type="AudioStream" uid="uid://dy3sh6rmfdw1g" path="res://content/bgm/MFR/ktkm130.ogg" id="48_ngtix"]
+[ext_resource type="AudioStream" uid="uid://ccout8enk60g" path="res://content/bgm/MFR/ktkm131.ogg" id="49_a3ue8"]
+[ext_resource type="AudioStream" uid="uid://byeoynk6b4g8v" path="res://content/bgm/MFR/ktkm132.ogg" id="50_p6lgk"]
+[ext_resource type="AudioStream" uid="uid://bo7nt5mg7in4w" path="res://content/bgm/MFR/ktkm133.ogg" id="51_rsecp"]
+[ext_resource type="AudioStream" uid="uid://cn67dd4s2uv63" path="res://content/bgm/MFR/ktkm134.ogg" id="52_x4m8q"]
+[ext_resource type="AudioStream" uid="uid://b0v2ivlgoklp6" path="res://content/bgm/MFR/ktkm135.ogg" id="53_pcsat"]
+[ext_resource type="AudioStream" uid="uid://co0lfqf0ml82g" path="res://content/bgm/MFR/ktkm210.ogg" id="54_moe62"]
+[ext_resource type="AudioStream" uid="uid://cqjipcjmtmrle" path="res://content/bgm/MFR/ktkm211.ogg" id="55_xgs1a"]
+[ext_resource type="AudioStream" uid="uid://bi8wu1clxljbj" path="res://content/bgm/MFR/ktkm212.ogg" id="56_fs4ts"]
+[ext_resource type="AudioStream" uid="uid://cakge14lr6m72" path="res://content/bgm/MFR/ktkm213.ogg" id="57_8jlwc"]
+[ext_resource type="AudioStream" uid="uid://snamtkdkirk4" path="res://content/bgm/MFR/ktkm214.ogg" id="58_ntdgi"]
+[ext_resource type="AudioStream" uid="uid://cayywro4qq2f0" path="res://content/bgm/MFR/ktkm215.ogg" id="59_ikp3j"]
+[ext_resource type="AudioStream" uid="uid://c8dd1s8l728va" path="res://content/bgm/MFR/ktkm2121.ogg" id="60_qjgx4"]
+[ext_resource type="AudioStream" uid="uid://diel1mpronkml" path="res://content/bgm/MFR/ktkm88.mod" id="61_wehh2"]
+[ext_resource type="AudioStream" uid="uid://c8o2lj21ifn14" path="res://content/bgm/MFR/ktkm39.it" id="62_fcudq"]
+[ext_resource type="AudioStream" uid="uid://dx3tfjubwch3i" path="res://content/bgm/MFR/ktkm40.it" id="63_y8t8y"]
+[ext_resource type="AudioStream" uid="uid://b37tl7dn1ibci" path="res://content/bgm/MFR/ktkm42.ogg" id="64_pget3"]
+[ext_resource type="AudioStream" uid="uid://tdqmhgny235v" path="res://content/bgm/MFR/ktkm125.ogg" id="65_uckvv"]
+[ext_resource type="AudioStream" uid="uid://cqt2l3hvu574e" path="res://content/bgm/MFR/ktkm90.ogg" id="66_rvkpk"]
+[ext_resource type="AudioStream" uid="uid://haing6vjgn8o" path="res://content/bgm/MFR/ktkm666.ogg" id="67_4uoo8"]
+[ext_resource type="AudioStream" uid="uid://bqxjgkjk0ktyk" path="res://content/bgm/SMS/sms1.ogg" id="68_xgs1a"]
+[ext_resource type="AudioStream" uid="uid://de30i5yj6puxq" path="res://content/bgm/SMS/sms2.ogg" id="69_fs4ts"]
+[ext_resource type="AudioStream" uid="uid://bpj23yg0t4mnq" path="res://content/bgm/SMS/sms3.ogg" id="70_8jlwc"]
+[ext_resource type="AudioStream" uid="uid://dac4qfqpwc2c7" path="res://content/bgm/SMS/sms4.ogg" id="71_ikp3j"]
+[ext_resource type="AudioStream" uid="uid://b46mahrfjbr74" path="res://content/bgm/SMS/sms5.ogg" id="72_qjgx4"]
+[ext_resource type="AudioStream" uid="uid://dukru5l7sl56p" path="res://content/bgm/SMS/sms6.ogg" id="73_wehh2"]
+[ext_resource type="AudioStream" uid="uid://dnepfoqgqutd4" path="res://content/bgm/SMS/sms7.ogg" id="74_fcudq"]
+[ext_resource type="AudioStream" uid="uid://dxvt4wvugph27" path="res://content/bgm/SMS/sms8.ogg" id="75_4kexa"]
+[ext_resource type="AudioStream" uid="uid://bk6of7v5bh0o6" path="res://content/bgm/SMS/sms9.ogg" id="76_gwj06"]
+[ext_resource type="AudioStream" uid="uid://b0dpl1og8kmm" path="res://content/bgm/SMS/sms10.ogg" id="77_ywylq"]
+[ext_resource type="AudioStream" uid="uid://52g845yma0hd" path="res://content/bgm/SMS/sms11.ogg" id="78_bdxs2"]
+[ext_resource type="AudioStream" uid="uid://cxyncx52xagg0" path="res://content/bgm/SMS/sms12.ogg" id="79_0eqo5"]
+[ext_resource type="AudioStream" uid="uid://ceo5a4g0ys085" path="res://content/bgm/SMS/sms13.ogg" id="80_ha0ni"]
+[ext_resource type="AudioStream" uid="uid://b7rm1cd5n7feo" path="res://content/bgm/SMS/sms14.ogg" id="81_7uo0x"]
+[ext_resource type="AudioStream" uid="uid://dsenn3s6fcywh" path="res://content/bgm/SMS/sms15.ogg" id="82_r2cpi"]
+[ext_resource type="AudioStream" uid="uid://c3wg84d68ppr4" path="res://content/bgm/SMS/sms16.ogg" id="83_qvo8t"]
+[ext_resource type="AudioStream" uid="uid://c7mwe75d7hyoa" path="res://content/bgm/SMS/sms17.ogg" id="84_q1qll"]
+[ext_resource type="AudioStream" uid="uid://buj08c8y2fbir" path="res://content/bgm/SMS/sms18.ogg" id="85_6b7ge"]
+[ext_resource type="AudioStream" uid="uid://c28dntunsxpxy" path="res://content/bgm/SMS/sms19.ogg" id="86_hjclo"]
+[ext_resource type="AudioStream" uid="uid://hbn08u1bvjxu" path="res://content/bgm/SMS/sms20.ogg" id="87_iubio"]
+[ext_resource type="AudioStream" uid="uid://v5fn27kb780u" path="res://content/bgm/SMS/sms21.ogg" id="88_cai6m"]
+[ext_resource type="AudioStream" uid="uid://cmjkvwcpojcvr" path="res://content/bgm/SMS/sms22.ogg" id="89_mnvab"]
+[ext_resource type="AudioStream" uid="uid://dux7xt1ibpyc3" path="res://content/bgm/SMS/sms23.ogg" id="90_ft15f"]
+[ext_resource type="AudioStream" uid="uid://0o5viet6j5pn" path="res://content/bgm/SMS/sms24.ogg" id="91_yelme"]
+[ext_resource type="AudioStream" uid="uid://2he7esve8fs2" path="res://content/bgm/SMS/sms25.ogg" id="92_vvmyv"]
+[ext_resource type="AudioStream" uid="uid://dnrnd06bokitl" path="res://content/bgm/SMS/sms26.ogg" id="93_eewvb"]
+[ext_resource type="AudioStream" uid="uid://dyd4rimdy8ycw" path="res://content/bgm/SMS/sms27.ogg" id="94_hm8st"]
+[ext_resource type="AudioStream" uid="uid://rfwhkl1rlpj2" path="res://content/bgm/SMS/sms28.ogg" id="95_g0hps"]
+[ext_resource type="AudioStream" uid="uid://cbqwsvscdr0eo" path="res://content/bgm/SMS/sms29.ogg" id="96_ha0ni"]
+[ext_resource type="AudioStream" uid="uid://dd7gfdod6ikvp" path="res://content/bgm/SMS/sms30.ogg" id="97_7uo0x"]
+[ext_resource type="AudioStream" uid="uid://cfmnmsvhilg7w" path="res://content/bgm/SMS/sms31.ogg" id="98_r2cpi"]
+[ext_resource type="AudioStream" uid="uid://biacl3uv0pugc" path="res://content/bgm/SMS/sms32.ogg" id="99_qvo8t"]
+[ext_resource type="AudioStream" uid="uid://iaf828xb5rm7" path="res://content/bgm/SMS/sms33.ogg" id="100_q1qll"]
+[ext_resource type="AudioStream" uid="uid://doegcjg7kfan4" path="res://content/bgm/SMS/sms34.ogg" id="101_yelme"]
+[ext_resource type="AudioStream" uid="uid://di1xpstiopdwv" path="res://content/bgm/SMS/sms35.ogg" id="102_vvmyv"]
+[ext_resource type="AudioStream" uid="uid://w4l61gyw7egw" path="res://content/bgm/SMS/sms36.ogg" id="103_eewvb"]
+[ext_resource type="AudioStream" uid="uid://dgop51nps1agq" path="res://content/bgm/SMS/sms37.ogg" id="104_hm8st"]
+[ext_resource type="AudioStream" uid="uid://bfwy0n66afxm8" path="res://content/bgm/SMS/sms38.ogg" id="105_g0hps"]
+[ext_resource type="AudioStream" uid="uid://bnnt1iivh4bwx" path="res://content/bgm/SMS/sms39.ogg" id="106_66y6w"]
+[ext_resource type="AudioStream" uid="uid://ca7umiqxcb2pu" path="res://content/bgm/SMS/sms40.ogg" id="107_uat5l"]
+[ext_resource type="AudioStream" uid="uid://dc3s2qqnx6s0c" path="res://content/bgm/SMS/sms41.ogg" id="108_h4352"]
+[ext_resource type="AudioStream" uid="uid://c3smcy2v4gd51" path="res://content/bgm/SMS/sms42.ogg" id="109_22ort"]
+[ext_resource type="AudioStream" uid="uid://b7ifsemspn0yx" path="res://content/bgm/SMS/sms43.ogg" id="110_e6rv5"]
+[ext_resource type="AudioStream" uid="uid://cij8upjb3mi2u" path="res://content/bgm/SMS/sms44.ogg" id="111_83fk2"]
+[ext_resource type="AudioStream" uid="uid://eid68ues7x3i" path="res://content/bgm/SMS2/sms45.ogg" id="112_e6rv5"]
+[ext_resource type="AudioStream" uid="uid://no3x7dkqe085" path="res://content/bgm/SMS2/sms46.ogg" id="113_83fk2"]
+[ext_resource type="AudioStream" uid="uid://cwcv3iadic7ju" path="res://content/bgm/SMS2/sms47.ogg" id="114_67qrd"]
+[ext_resource type="AudioStream" uid="uid://dpi86q8rf5km6" path="res://content/bgm/SMS2/sms48.ogg" id="115_nbuom"]
+[ext_resource type="AudioStream" uid="uid://bhysxb3i7jick" path="res://content/bgm/SMS2/sms49.ogg" id="116_kf3tq"]
+[ext_resource type="AudioStream" uid="uid://ds5fijed5uu2p" path="res://content/bgm/SMS2/sms50.ogg" id="117_mon4n"]
+[ext_resource type="AudioStream" uid="uid://bc2dwnqwksbhq" path="res://content/bgm/SMS2/sms51.ogg" id="118_tid83"]
+[ext_resource type="AudioStream" uid="uid://ch5l6earer570" path="res://content/bgm/SMS2/sms52.ogg" id="119_t5w05"]
+[ext_resource type="AudioStream" uid="uid://dmido1j5lp0lg" path="res://content/bgm/SMS2/sms53.ogg" id="120_5c2sj"]
+[ext_resource type="AudioStream" uid="uid://csgtkxrkvmxhr" path="res://content/bgm/SMS2/sms54.ogg" id="121_kgjxm"]
+[ext_resource type="AudioStream" uid="uid://df7umyh3kwlhg" path="res://content/bgm/SMS2/sms55.ogg" id="122_638ty"]
+[ext_resource type="AudioStream" uid="uid://wqptenn5qhgc" path="res://content/bgm/SMS2/sms56.ogg" id="123_etmov"]
+[ext_resource type="AudioStream" uid="uid://d3wts3pwa3opf" path="res://content/bgm/SMS2/sms57.ogg" id="124_hwctr"]
+[ext_resource type="AudioStream" uid="uid://by7xq51f0hqya" path="res://content/bgm/SMS2/sms58.ogg" id="125_pgtqv"]
+[ext_resource type="AudioStream" uid="uid://4t0bggxf4rj4" path="res://content/bgm/SMS2/sms59.ogg" id="126_lwbr7"]
+[ext_resource type="AudioStream" uid="uid://cbqg6jrdcr3ji" path="res://content/bgm/SMS2/sms60.ogg" id="127_em7h6"]
+[ext_resource type="AudioStream" uid="uid://df55q2sfrmhpv" path="res://content/bgm/SMS2/sms61.ogg" id="128_ui1jc"]
+[ext_resource type="AudioStream" uid="uid://b3kk0pl1wqs10" path="res://content/bgm/SMS2/sms62.ogg" id="129_nstov"]
+[ext_resource type="AudioStream" uid="uid://gl3tby5sgcjr" path="res://content/bgm/SMS2/sms63.ogg" id="130_pvqdc"]
+[ext_resource type="AudioStream" uid="uid://b1gsqca4u4sjy" path="res://content/bgm/SMS2/sms64.ogg" id="131_d0gbn"]
+[ext_resource type="AudioStream" uid="uid://koanidamxx6a" path="res://content/bgm/Softendo/std1.ogg" id="132_66trn"]
+[ext_resource type="AudioStream" uid="uid://bq1ukt410b7am" path="res://content/bgm/Softendo/std2.ogg" id="133_3f65a"]
+[ext_resource type="AudioStream" uid="uid://rdru4d7w8mup" path="res://content/bgm/Softendo/std3.ogg" id="134_j0ma4"]
+[ext_resource type="AudioStream" uid="uid://2vrvp5q26nik" path="res://content/bgm/Softendo/std4.ogg" id="135_ghv6n"]
+[ext_resource type="AudioStream" uid="uid://3ui3nab15mrw" path="res://content/bgm/Softendo/std5.ogg" id="136_85cwr"]
+[ext_resource type="AudioStream" uid="uid://dd7hnansqm8yl" path="res://content/bgm/Softendo/std6.ogg" id="137_0a0gw"]
+[ext_resource type="AudioStream" uid="uid://cf20mm5blfije" path="res://content/bgm/Softendo/std7.ogg" id="138_6b2a0"]
+[ext_resource type="AudioStream" uid="uid://nx8k2ww3s1q7" path="res://content/bgm/Softendo/std8.ogg" id="139_fbryf"]
+[ext_resource type="AudioStream" uid="uid://dlnuql5x0wtlm" path="res://content/bgm/Softendo/std9.ogg" id="140_pqlog"]
+[ext_resource type="AudioStream" uid="uid://d57xrwrpxofs" path="res://content/bgm/Softendo/std10.ogg" id="141_85cwr"]
+[ext_resource type="AudioStream" uid="uid://c78yi0cus8bp2" path="res://content/bgm/Softendo/std11.ogg" id="142_0a0gw"]
+[ext_resource type="AudioStream" uid="uid://c1tymtnmut1sx" path="res://content/bgm/Softendo/std12.ogg" id="143_6b2a0"]
+[ext_resource type="AudioStream" uid="uid://7bj0bi7qe8et" path="res://content/bgm/Softendo/std13.ogg" id="144_fbryf"]
+[ext_resource type="AudioStream" uid="uid://d2y88jyqnn06c" path="res://content/bgm/Softendo/std14.ogg" id="145_pqlog"]
+[ext_resource type="AudioStream" uid="uid://bi7t1ym7b3hwa" path="res://content/bgm/Softendo/std15.ogg" id="146_jaanc"]
+[ext_resource type="AudioStream" uid="uid://dfanif7owyqw5" path="res://content/bgm/Softendo/std16.ogg" id="147_uh37d"]
+[ext_resource type="AudioStream" uid="uid://djo61cea5aia6" path="res://content/bgm/Softendo/std17.ogg" id="148_4txjh"]
+[ext_resource type="AudioStream" uid="uid://crbn6svrkq75t" path="res://content/bgm/Softendo/std18.ogg" id="149_qe2kl"]
+[ext_resource type="AudioStream" uid="uid://cgvgo6s25ysb7" path="res://content/bgm/Softendo/std19.ogg" id="150_ovj5o"]
+[ext_resource type="AudioStream" uid="uid://cxiwtruh5ww8m" path="res://content/bgm/Softendo/std20.ogg" id="151_a3p3f"]
+[ext_resource type="AudioStream" uid="uid://bjjatj52fxcus" path="res://content/bgm/Softendo/std21.ogg" id="152_cutaq"]
+[ext_resource type="AudioStream" uid="uid://daguuvcwwuo75" path="res://content/bgm/Softendo/std22.ogg" id="153_38ye6"]
+[ext_resource type="AudioStream" uid="uid://b0t8fofcrs6tu" path="res://content/bgm/Softendo/std23.ogg" id="154_lxa1p"]
+[ext_resource type="AudioStream" uid="uid://d26no7y4ai06j" path="res://content/bgm/Softendo/std24.ogg" id="155_dvl5v"]
+[ext_resource type="AudioStream" uid="uid://b77notpuuj2ri" path="res://content/bgm/Boss/boss1.mod" id="156_0a0gw"]
+[ext_resource type="AudioStream" uid="uid://oe7i5laejudn" path="res://content/bgm/Boss/boss2.it" id="157_jaanc"]
+[ext_resource type="AudioStream" uid="uid://cpwm82sftjvmc" path="res://content/bgm/Boss/boss3.it" id="158_uh37d"]
+[ext_resource type="AudioStream" uid="uid://clkg6ku6gw8hu" path="res://content/bgm/Boss/boss4.it" id="159_4txjh"]
+[ext_resource type="AudioStream" uid="uid://boi51t5ive8sw" path="res://content/bgm/Boss/boss5.ogg" id="160_qe2kl"]
+[ext_resource type="AudioStream" uid="uid://rxysqtldq8vx" path="res://content/bgm/Boss/boss6.ogg" id="161_44ct2"]
+[ext_resource type="AudioStream" uid="uid://b37ml1si32so4" path="res://content/bgm/Boss/boss7.ogg" id="162_rvbb3"]
+[ext_resource type="AudioStream" uid="uid://cokls28nmfdnl" path="res://content/bgm/Boss/boss8.ogg" id="163_0abfh"]
+[ext_resource type="AudioStream" uid="uid://bda178dosm01r" path="res://content/bgm/Boss/boss9.ogg" id="164_ish8h"]
+[ext_resource type="AudioStream" uid="uid://uj7agx3nsemw" path="res://content/bgm/Boss/boss10.ogg" id="165_1eo73"]
+[ext_resource type="AudioStream" uid="uid://rd2h61r2mn3u" path="res://content/bgm/Boss/boss11.ogg" id="166_rd7n3"]
+[ext_resource type="AudioStream" uid="uid://c2nag1r02fdyk" path="res://content/bgm/Boss/boss12.ogg" id="167_hetry"]
+[ext_resource type="AudioStream" uid="uid://d0tnm8yfyulnv" path="res://content/bgm/Boss/boss13.ogg" id="168_siye6"]
+[ext_resource type="AudioStream" uid="uid://cqhxl0fx6nxo5" path="res://content/bgm/Boss/boss14.ogg" id="169_k8d8o"]
+[ext_resource type="AudioStream" uid="uid://c7yolo2n32drn" path="res://content/bgm/Boss/boss15.ogg" id="170_ppe8o"]
+[ext_resource type="AudioStream" uid="uid://cpo42cf43f3n8" path="res://content/bgm/Boss/boss16.ogg" id="171_tao1g"]
+[ext_resource type="AudioStream" uid="uid://bg2wk85fkam0n" path="res://content/bgm/Boss/boss17.ogg" id="172_i04rx"]
+[ext_resource type="AudioStream" uid="uid://bg5umlfhg7t36" path="res://content/bgm/Boss/boss18.ogg" id="173_1cigy"]
+[ext_resource type="AudioStream" uid="uid://cc6fpsonuqkdx" path="res://content/bgm/Boss/boss19.ogg" id="174_xe31f"]
+[ext_resource type="AudioStream" uid="uid://7ycb3n5afw5f" path="res://content/bgm/Boss/boss20.ogg" id="175_5sqa8"]
+[ext_resource type="AudioStream" uid="uid://piubblw3rges" path="res://content/bgm/Boss/boss21.ogg" id="176_ythx7"]
+[ext_resource type="AudioStream" uid="uid://cm2c6c3dnw6v4" path="res://content/bgm/OM/om1.ogg" id="177_xe31f"]
+[ext_resource type="AudioStream" uid="uid://7a0u3aebeo17" path="res://content/bgm/OM/om2.ogg" id="178_5sqa8"]
+[ext_resource type="AudioStream" uid="uid://kij4hkxpj7kj" path="res://content/bgm/OM/om3.ogg" id="179_ythx7"]
+[ext_resource type="AudioStream" uid="uid://gr7o0tvo4" path="res://content/bgm/OM/om4.ogg" id="180_qr8yu"]
+[ext_resource type="AudioStream" uid="uid://db5stir4eeaba" path="res://content/bgm/OM/om5.ogg" id="181_23i5n"]
+[ext_resource type="AudioStream" uid="uid://8wm7psihsmqn" path="res://content/bgm/OM/om6.ogg" id="182_g7bns"]
+[ext_resource type="AudioStream" uid="uid://dypefsx4lebss" path="res://content/bgm/OM/om7.ogg" id="183_ktx05"]
+[ext_resource type="AudioStream" uid="uid://bsv0vbf4fw7vh" path="res://content/bgm/OM/om8.ogg" id="184_h538t"]
+[ext_resource type="AudioStream" uid="uid://txtcu235ruy2" path="res://content/bgm/OM/om9.ogg" id="185_lxwyq"]
+[ext_resource type="AudioStream" uid="uid://km6nfuku6pc0" path="res://content/bgm/OM/om10.ogg" id="186_7kp31"]
+[ext_resource type="AudioStream" uid="uid://lcn6utyv3ur5" path="res://content/bgm/OM/om11.ogg" id="187_45r7e"]
+[ext_resource type="AudioStream" uid="uid://4es72iaj8c2u" path="res://content/bgm/OM/om12.ogg" id="188_8f44b"]
+[ext_resource type="AudioStream" uid="uid://d2xqng2plqnj5" path="res://content/bgm/OM/om13.ogg" id="189_t5qgy"]
+
+[sub_resource type="Resource" id="Resource_ffpi8"]
+script = ExtResource("1_wvoo7")
+BgmId = 1
+DefaultBgm = ExtResource("1_5sqa8")
+FileNameForOverride = PackedStringArray("ktkm1.dll", "ktkm1.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_wvoo7"]
+script = ExtResource("1_wvoo7")
+BgmId = 2
+DefaultBgm = ExtResource("2_orkyd")
+FileNameForOverride = PackedStringArray("ktkm5.dll", "ktkm5.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_3weip"]
+script = ExtResource("1_wvoo7")
+BgmId = 3
+DefaultBgm = ExtResource("3_wt28q")
+FileNameForOverride = PackedStringArray("ktkm6.dll", "ktkm6.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_6vtma"]
+script = ExtResource("1_wvoo7")
+BgmId = 4
+DefaultBgm = ExtResource("4_0h8bv")
+FileNameForOverride = PackedStringArray("ktkm7.dll", "ktkm7.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_80rds"]
+script = ExtResource("1_wvoo7")
+BgmId = 5
+DefaultBgm = ExtResource("5_4icf5")
+FileNameForOverride = PackedStringArray("ktkm9.dll", "ktkm9.mod")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_rv57n"]
+script = ExtResource("1_wvoo7")
+BgmId = 6
+DefaultBgm = ExtResource("6_1rj02")
+FileNameForOverride = PackedStringArray("ktkm10.dll", "ktkm10.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_os6fc"]
+script = ExtResource("1_wvoo7")
+BgmId = 7
+DefaultBgm = ExtResource("7_xfj12")
+FileNameForOverride = PackedStringArray("ktkm12.dll", "ktkm12.xm")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_35n3o"]
+script = ExtResource("1_wvoo7")
+BgmId = 8
+DefaultBgm = ExtResource("8_g5ta6")
+FileNameForOverride = PackedStringArray("ktkm13.dll", "ktkm13.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_wgl8u"]
+script = ExtResource("1_wvoo7")
+BgmId = 9
+DefaultBgm = ExtResource("9_rjeii")
+FileNameForOverride = PackedStringArray("ktkm14.dll", "ktkm14.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_13le6"]
+script = ExtResource("1_wvoo7")
+BgmId = 10
+DefaultBgm = ExtResource("10_14lvn")
+FileNameForOverride = PackedStringArray("ktkm15.mp3")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_mchu4"]
+script = ExtResource("1_wvoo7")
+BgmId = 11
+DefaultBgm = ExtResource("11_vqq4k")
+FileNameForOverride = PackedStringArray("ktkm16.dll", "ktkm16.xm")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_nsqv0"]
+script = ExtResource("1_wvoo7")
+BgmId = 12
+DefaultBgm = ExtResource("12_glyiq")
+FileNameForOverride = PackedStringArray("ktkm17.dll", "ktkm17.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_x4m8q"]
+script = ExtResource("1_wvoo7")
+BgmId = 13
+DefaultBgm = ExtResource("13_iwcr4")
+FileNameForOverride = PackedStringArray("ktkm18.mp3")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_pcsat"]
+script = ExtResource("1_wvoo7")
+BgmId = 14
+DefaultBgm = ExtResource("14_tpyfw")
+FileNameForOverride = PackedStringArray("ktkm21.dll", "ktkm21.mod")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_moe62"]
+script = ExtResource("1_wvoo7")
+BgmId = 15
+DefaultBgm = ExtResource("15_06eyg")
+FileNameForOverride = PackedStringArray("ktkm22.dll", "ktkm22.mod")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_xgs1a"]
+script = ExtResource("1_wvoo7")
+BgmId = 16
+DefaultBgm = ExtResource("16_3w5hu")
+FileNameForOverride = PackedStringArray("ktkm23.dll", "ktkm23.mod")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_fs4ts"]
+script = ExtResource("1_wvoo7")
+BgmId = 17
+DefaultBgm = ExtResource("17_4b4sy")
+FileNameForOverride = PackedStringArray("ktkm24.dll", "ktkm24.mod")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_8jlwc"]
+script = ExtResource("1_wvoo7")
+BgmId = 18
+DefaultBgm = ExtResource("18_hso3o")
+FileNameForOverride = PackedStringArray("ktkm25.dll", "ktkm25.mod")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ntdgi"]
+script = ExtResource("1_wvoo7")
+BgmId = 19
+DefaultBgm = ExtResource("19_npstf")
+FileNameForOverride = PackedStringArray("ktkm26.dll", "ktkm26.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ikp3j"]
+script = ExtResource("1_wvoo7")
+BgmId = 20
+DefaultBgm = ExtResource("20_6rna1")
+FileNameForOverride = PackedStringArray("ktkm28.dll", "ktkm28.mod")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_qjgx4"]
+script = ExtResource("1_wvoo7")
+BgmId = 21
+DefaultBgm = ExtResource("21_kvhne")
+FileNameForOverride = PackedStringArray("ktkm36.dll", "ktkm36.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_wehh2"]
+script = ExtResource("1_wvoo7")
+BgmId = 22
+DefaultBgm = ExtResource("22_cp6nq")
+FileNameForOverride = PackedStringArray("ktkm38.dll", "ktkm38.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_fcudq"]
+script = ExtResource("1_wvoo7")
+BgmId = 23
+DefaultBgm = ExtResource("23_k6mfc")
+FileNameForOverride = PackedStringArray("ktkm20.dll", "ktkm20.xm")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_y8t8y"]
+script = ExtResource("1_wvoo7")
+BgmId = 24
+DefaultBgm = ExtResource("24_gtt0m")
+FileNameForOverride = PackedStringArray("ktkm27.dll", "ktkm27.mod")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_pget3"]
+script = ExtResource("1_wvoo7")
+BgmId = 25
+DefaultBgm = ExtResource("25_ngtix")
+FileNameForOverride = PackedStringArray("ktkm37.dll", "ktkm37.mod")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_uckvv"]
+script = ExtResource("1_wvoo7")
+BgmId = 26
+DefaultBgm = ExtResource("26_a3ue8")
+FileNameForOverride = PackedStringArray("ktkm29.dll", "ktkm29.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_rvkpk"]
+script = ExtResource("1_wvoo7")
+BgmId = 27
+DefaultBgm = ExtResource("27_p6lgk")
+FileNameForOverride = PackedStringArray("ktkm35.dll", "ktkm35.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_4uoo8"]
+script = ExtResource("1_wvoo7")
+BgmId = 28
+DefaultBgm = ExtResource("28_rsecp")
+FileNameForOverride = PackedStringArray("ktkm120.dll", "ktkm120.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ryghf"]
+script = ExtResource("1_wvoo7")
+BgmId = 29
+DefaultBgm = ExtResource("29_wklcb")
+FileNameForOverride = PackedStringArray("ktkm19.dll", "ktkm19.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_0h8bv"]
+script = ExtResource("1_wvoo7")
+BgmId = 41
+AlbumPath = 1
+DefaultBgm = ExtResource("30_wt28q")
+FileNameForOverride = PackedStringArray("ktkm0.dll", "ktkm0.xm")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_4icf5"]
+script = ExtResource("1_wvoo7")
+BgmId = 42
+AlbumPath = 1
+DefaultBgm = ExtResource("31_1rj02")
+FileNameForOverride = PackedStringArray("ktkm50.mp3", "ktkm50.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_rjeii"]
+script = ExtResource("1_wvoo7")
+BgmId = 43
+AlbumPath = 1
+DefaultBgm = ExtResource("32_xfj12")
+FileNameForOverride = PackedStringArray("ktkm51.mp3", "ktkm51.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_14lvn"]
+script = ExtResource("1_wvoo7")
+BgmId = 44
+AlbumPath = 1
+DefaultBgm = ExtResource("33_g5ta6")
+FileNameForOverride = PackedStringArray("ktkm52.mp3", "ktkm52.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_6rna1"]
+script = ExtResource("1_wvoo7")
+BgmId = 45
+AlbumPath = 1
+DefaultBgm = ExtResource("34_iwcr4")
+FileNameForOverride = PackedStringArray("ktkm53.mp3", "ktkm53.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_kvhne"]
+script = ExtResource("1_wvoo7")
+BgmId = 46
+AlbumPath = 1
+DefaultBgm = ExtResource("35_tpyfw")
+FileNameForOverride = PackedStringArray("ktkm55.mp3", "ktkm55.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_cp6nq"]
+script = ExtResource("1_wvoo7")
+BgmId = 47
+AlbumPath = 1
+DefaultBgm = ExtResource("36_06eyg")
+FileNameForOverride = PackedStringArray("ktkm56.mp3", "ktkm56.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_k6mfc"]
+script = ExtResource("1_wvoo7")
+BgmId = 48
+AlbumPath = 1
+DefaultBgm = ExtResource("37_3w5hu")
+FileNameForOverride = PackedStringArray("ktkm41.dll", "ktkm41.mod")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_gtt0m"]
+script = ExtResource("1_wvoo7")
+BgmId = 49
+AlbumPath = 1
+DefaultBgm = ExtResource("38_4b4sy")
+FileNameForOverride = PackedStringArray("ktkm93.mp3", "ktkm93.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ngtix"]
+script = ExtResource("1_wvoo7")
+BgmId = 50
+AlbumPath = 1
+DefaultBgm = ExtResource("39_hso3o")
+FileNameForOverride = PackedStringArray("ktkm94.mp3", "ktkm94.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_a3ue8"]
+script = ExtResource("1_wvoo7")
+BgmId = 51
+AlbumPath = 1
+DefaultBgm = ExtResource("40_npstf")
+FileNameForOverride = PackedStringArray("ktkm100.mp3", "ktkm100.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_p6lgk"]
+script = ExtResource("1_wvoo7")
+BgmId = 52
+AlbumPath = 1
+DefaultBgm = ExtResource("41_npstf")
+FileNameForOverride = PackedStringArray("ktkm101.mp3", "ktkm101.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_rsecp"]
+script = ExtResource("1_wvoo7")
+BgmId = 53
+AlbumPath = 1
+DefaultBgm = ExtResource("42_6rna1")
+FileNameForOverride = PackedStringArray("ktkm103.mp3", "ktkm103.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_wklcb"]
+script = ExtResource("1_wvoo7")
+BgmId = 54
+AlbumPath = 1
+DefaultBgm = ExtResource("43_kvhne")
+FileNameForOverride = PackedStringArray("ktkm121.mp3", "ktkm121.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_24xdu"]
+script = ExtResource("1_wvoo7")
+BgmId = 55
+AlbumPath = 1
+DefaultBgm = ExtResource("44_cp6nq")
+FileNameForOverride = PackedStringArray("ktkm122.mp3", "ktkm122.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ry51h"]
+script = ExtResource("1_wvoo7")
+BgmId = 56
+AlbumPath = 1
+DefaultBgm = ExtResource("45_k6mfc")
+FileNameForOverride = PackedStringArray("ktkm123.mp3", "ktkm123.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_hfpg4"]
+script = ExtResource("1_wvoo7")
+BgmId = 57
+AlbumPath = 1
+DefaultBgm = ExtResource("46_gtt0m")
+FileNameForOverride = PackedStringArray("ktkm124.mp3", "ktkm124.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_skdyx"]
+script = ExtResource("1_wvoo7")
+BgmId = 58
+AlbumPath = 1
+DefaultBgm = ExtResource("47_gtt0m")
+FileNameForOverride = PackedStringArray("ktkm129.mp3", "ktkm129.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_2fank"]
+script = ExtResource("1_wvoo7")
+BgmId = 59
+AlbumPath = 1
+DefaultBgm = ExtResource("48_ngtix")
+FileNameForOverride = PackedStringArray("ktkm130.mp3", "ktkm130.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_khw52"]
+script = ExtResource("1_wvoo7")
+BgmId = 60
+AlbumPath = 1
+DefaultBgm = ExtResource("49_a3ue8")
+FileNameForOverride = PackedStringArray("ktkm131.mp3", "ktkm131.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_c76b8"]
+script = ExtResource("1_wvoo7")
+BgmId = 61
+AlbumPath = 1
+DefaultBgm = ExtResource("50_p6lgk")
+FileNameForOverride = PackedStringArray("ktkm132.mp3", "ktkm132.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_afhi1"]
+script = ExtResource("1_wvoo7")
+BgmId = 62
+AlbumPath = 1
+DefaultBgm = ExtResource("51_rsecp")
+FileNameForOverride = PackedStringArray("ktkm133.mp3", "ktkm133.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_86vir"]
+script = ExtResource("1_wvoo7")
+BgmId = 63
+AlbumPath = 1
+DefaultBgm = ExtResource("52_x4m8q")
+FileNameForOverride = PackedStringArray("ktkm134.mp3", "ktkm134.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_0rqsn"]
+script = ExtResource("1_wvoo7")
+BgmId = 64
+AlbumPath = 1
+DefaultBgm = ExtResource("53_pcsat")
+FileNameForOverride = PackedStringArray("ktkm135.mp3", "ktkm135.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ujawr"]
+script = ExtResource("1_wvoo7")
+BgmId = 65
+AlbumPath = 1
+DefaultBgm = ExtResource("54_moe62")
+FileNameForOverride = PackedStringArray("ktkm210.mp3", "ktkm210.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_4kexa"]
+script = ExtResource("1_wvoo7")
+BgmId = 66
+AlbumPath = 1
+DefaultBgm = ExtResource("55_xgs1a")
+FileNameForOverride = PackedStringArray("ktkm211.mp3", "ktkm211.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_gwj06"]
+script = ExtResource("1_wvoo7")
+BgmId = 67
+AlbumPath = 1
+DefaultBgm = ExtResource("56_fs4ts")
+FileNameForOverride = PackedStringArray("ktkm212.mp3", "ktkm212.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ywylq"]
+script = ExtResource("1_wvoo7")
+BgmId = 68
+AlbumPath = 1
+DefaultBgm = ExtResource("57_8jlwc")
+FileNameForOverride = PackedStringArray("ktkm213.mp3", "ktkm213.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_bdxs2"]
+script = ExtResource("1_wvoo7")
+BgmId = 69
+AlbumPath = 1
+DefaultBgm = ExtResource("58_ntdgi")
+FileNameForOverride = PackedStringArray("ktkm214.mp3", "ktkm214.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_0eqo5"]
+script = ExtResource("1_wvoo7")
+BgmId = 70
+AlbumPath = 1
+DefaultBgm = ExtResource("59_ikp3j")
+FileNameForOverride = PackedStringArray("ktkm215.mp3", "ktkm215.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ha0ni"]
+script = ExtResource("1_wvoo7")
+BgmId = 71
+AlbumPath = 1
+DefaultBgm = ExtResource("60_qjgx4")
+FileNameForOverride = PackedStringArray("ktkm2121.mp3", "ktkm2121.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_7uo0x"]
+script = ExtResource("1_wvoo7")
+BgmId = 72
+AlbumPath = 1
+DefaultBgm = ExtResource("61_wehh2")
+FileNameForOverride = PackedStringArray("ktkm88.dll", "ktkm88.mod")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_r2cpi"]
+script = ExtResource("1_wvoo7")
+BgmId = 73
+AlbumPath = 1
+DefaultBgm = ExtResource("62_fcudq")
+FileNameForOverride = PackedStringArray("ktkm39.dll", "ktkm39.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_qvo8t"]
+script = ExtResource("1_wvoo7")
+BgmId = 74
+AlbumPath = 1
+DefaultBgm = ExtResource("63_y8t8y")
+FileNameForOverride = PackedStringArray("ktkm40.dll", "ktkm40.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_q1qll"]
+script = ExtResource("1_wvoo7")
+BgmId = 75
+AlbumPath = 1
+DefaultBgm = ExtResource("64_pget3")
+FileNameForOverride = PackedStringArray("ktkm42.mp3", "ktkm42.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_6b7ge"]
+script = ExtResource("1_wvoo7")
+BgmId = 76
+AlbumPath = 1
+DefaultBgm = ExtResource("65_uckvv")
+FileNameForOverride = PackedStringArray("ktkm125.mp3", "ktkm125.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_hjclo"]
+script = ExtResource("1_wvoo7")
+BgmId = 77
+AlbumPath = 1
+DefaultBgm = ExtResource("66_rvkpk")
+FileNameForOverride = PackedStringArray("ktkm90.mp3", "ktkm90.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_iubio"]
+script = ExtResource("1_wvoo7")
+BgmId = 78
+AlbumPath = 1
+DefaultBgm = ExtResource("67_4uoo8")
+FileNameForOverride = PackedStringArray("ktkm666.mp3", "ktkm666.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_mnvab"]
+script = ExtResource("1_wvoo7")
+BgmId = 101
+AlbumPath = 2
+DefaultBgm = ExtResource("68_xgs1a")
+FileNameForOverride = PackedStringArray("sms1.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_cai6m"]
+script = ExtResource("1_wvoo7")
+BgmId = 102
+AlbumPath = 2
+DefaultBgm = ExtResource("69_fs4ts")
+FileNameForOverride = PackedStringArray("sms2.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ft15f"]
+script = ExtResource("1_wvoo7")
+BgmId = 103
+AlbumPath = 2
+DefaultBgm = ExtResource("70_8jlwc")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_yelme"]
+script = ExtResource("1_wvoo7")
+BgmId = 104
+AlbumPath = 2
+DefaultBgm = ExtResource("71_ikp3j")
+FileNameForOverride = PackedStringArray("sms4.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_vvmyv"]
+script = ExtResource("1_wvoo7")
+BgmId = 105
+AlbumPath = 2
+DefaultBgm = ExtResource("72_qjgx4")
+FileNameForOverride = PackedStringArray("sms5.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_eewvb"]
+script = ExtResource("1_wvoo7")
+BgmId = 106
+AlbumPath = 2
+DefaultBgm = ExtResource("73_wehh2")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_hm8st"]
+script = ExtResource("1_wvoo7")
+BgmId = 107
+AlbumPath = 2
+DefaultBgm = ExtResource("74_fcudq")
+FileNameForOverride = PackedStringArray("sms7.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_g0hps"]
+script = ExtResource("1_wvoo7")
+BgmId = 108
+AlbumPath = 2
+DefaultBgm = ExtResource("75_4kexa")
+FileNameForOverride = PackedStringArray("sms8.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_66y6w"]
+script = ExtResource("1_wvoo7")
+BgmId = 109
+AlbumPath = 2
+DefaultBgm = ExtResource("76_gwj06")
+FileNameForOverride = PackedStringArray("sms9.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_uat5l"]
+script = ExtResource("1_wvoo7")
+BgmId = 110
+AlbumPath = 2
+DefaultBgm = ExtResource("77_ywylq")
+FileNameForOverride = PackedStringArray("sms10.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_h4352"]
+script = ExtResource("1_wvoo7")
+BgmId = 111
+AlbumPath = 2
+DefaultBgm = ExtResource("78_bdxs2")
+FileNameForOverride = PackedStringArray("sms11.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_22ort"]
+script = ExtResource("1_wvoo7")
+BgmId = 112
+AlbumPath = 2
+DefaultBgm = ExtResource("79_0eqo5")
+FileNameForOverride = PackedStringArray("sms12.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_e6rv5"]
+script = ExtResource("1_wvoo7")
+BgmId = 113
+AlbumPath = 2
+DefaultBgm = ExtResource("80_ha0ni")
+FileNameForOverride = PackedStringArray("sms13.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_83fk2"]
+script = ExtResource("1_wvoo7")
+BgmId = 114
+AlbumPath = 2
+DefaultBgm = ExtResource("81_7uo0x")
+FileNameForOverride = PackedStringArray("sms14.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_67qrd"]
+script = ExtResource("1_wvoo7")
+BgmId = 115
+AlbumPath = 2
+DefaultBgm = ExtResource("82_r2cpi")
+FileNameForOverride = PackedStringArray("sms15.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_nbuom"]
+script = ExtResource("1_wvoo7")
+BgmId = 116
+AlbumPath = 2
+DefaultBgm = ExtResource("83_qvo8t")
+FileNameForOverride = PackedStringArray("sms16.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_kf3tq"]
+script = ExtResource("1_wvoo7")
+BgmId = 117
+AlbumPath = 2
+DefaultBgm = ExtResource("84_q1qll")
+FileNameForOverride = PackedStringArray("sms17.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_mon4n"]
+script = ExtResource("1_wvoo7")
+BgmId = 118
+AlbumPath = 2
+DefaultBgm = ExtResource("85_6b7ge")
+FileNameForOverride = PackedStringArray("sms18.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_tid83"]
+script = ExtResource("1_wvoo7")
+BgmId = 119
+AlbumPath = 2
+DefaultBgm = ExtResource("86_hjclo")
+FileNameForOverride = PackedStringArray("sms19.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_t5w05"]
+script = ExtResource("1_wvoo7")
+BgmId = 120
+AlbumPath = 2
+DefaultBgm = ExtResource("87_iubio")
+FileNameForOverride = PackedStringArray("sms20.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_5c2sj"]
+script = ExtResource("1_wvoo7")
+BgmId = 121
+AlbumPath = 2
+DefaultBgm = ExtResource("88_cai6m")
+FileNameForOverride = PackedStringArray("sms21.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_fbhxq"]
+script = ExtResource("1_wvoo7")
+BgmId = 122
+AlbumPath = 2
+DefaultBgm = ExtResource("89_mnvab")
+FileNameForOverride = PackedStringArray("sms22.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_3cocs"]
+script = ExtResource("1_wvoo7")
+BgmId = 123
+AlbumPath = 2
+DefaultBgm = ExtResource("90_ft15f")
+FileNameForOverride = PackedStringArray("sms23.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_nkajq"]
+script = ExtResource("1_wvoo7")
+BgmId = 124
+AlbumPath = 2
+DefaultBgm = ExtResource("91_yelme")
+FileNameForOverride = PackedStringArray("sms24.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_7fxv3"]
+script = ExtResource("1_wvoo7")
+BgmId = 125
+AlbumPath = 2
+DefaultBgm = ExtResource("92_vvmyv")
+FileNameForOverride = PackedStringArray("sms25.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_r3t7j"]
+script = ExtResource("1_wvoo7")
+BgmId = 126
+AlbumPath = 2
+DefaultBgm = ExtResource("93_eewvb")
+FileNameForOverride = PackedStringArray("sms26.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_mcg4l"]
+script = ExtResource("1_wvoo7")
+BgmId = 127
+AlbumPath = 2
+DefaultBgm = ExtResource("94_hm8st")
+FileNameForOverride = PackedStringArray("sms27.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_kc1hi"]
+script = ExtResource("1_wvoo7")
+BgmId = 128
+AlbumPath = 2
+DefaultBgm = ExtResource("95_g0hps")
+FileNameForOverride = PackedStringArray("sms28.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_g1q7i"]
+script = ExtResource("1_wvoo7")
+BgmId = 129
+AlbumPath = 2
+DefaultBgm = ExtResource("96_ha0ni")
+FileNameForOverride = PackedStringArray("sms29.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_dj5x1"]
+script = ExtResource("1_wvoo7")
+BgmId = 130
+AlbumPath = 2
+DefaultBgm = ExtResource("97_7uo0x")
+FileNameForOverride = PackedStringArray("sms30.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_j5ud6"]
+script = ExtResource("1_wvoo7")
+BgmId = 131
+AlbumPath = 2
+DefaultBgm = ExtResource("98_r2cpi")
+FileNameForOverride = PackedStringArray("sms31.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ok0ur"]
+script = ExtResource("1_wvoo7")
+BgmId = 132
+AlbumPath = 2
+DefaultBgm = ExtResource("99_qvo8t")
+FileNameForOverride = PackedStringArray("sms32.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_kgjxm"]
+script = ExtResource("1_wvoo7")
+BgmId = 133
+AlbumPath = 2
+DefaultBgm = ExtResource("100_q1qll")
+FileNameForOverride = PackedStringArray("sms33.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_638ty"]
+script = ExtResource("1_wvoo7")
+BgmId = 134
+AlbumPath = 2
+DefaultBgm = ExtResource("101_yelme")
+FileNameForOverride = PackedStringArray("sms34.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_etmov"]
+script = ExtResource("1_wvoo7")
+BgmId = 135
+AlbumPath = 2
+DefaultBgm = ExtResource("102_vvmyv")
+FileNameForOverride = PackedStringArray("sms35.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_hwctr"]
+script = ExtResource("1_wvoo7")
+BgmId = 136
+AlbumPath = 2
+DefaultBgm = ExtResource("103_eewvb")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_pgtqv"]
+script = ExtResource("1_wvoo7")
+BgmId = 137
+AlbumPath = 2
+DefaultBgm = ExtResource("104_hm8st")
+FileNameForOverride = PackedStringArray("sms37.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_lwbr7"]
+script = ExtResource("1_wvoo7")
+BgmId = 138
+AlbumPath = 2
+DefaultBgm = ExtResource("105_g0hps")
+FileNameForOverride = PackedStringArray("sms38.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_em7h6"]
+script = ExtResource("1_wvoo7")
+BgmId = 139
+AlbumPath = 2
+DefaultBgm = ExtResource("106_66y6w")
+FileNameForOverride = PackedStringArray("sms39.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ui1jc"]
+script = ExtResource("1_wvoo7")
+BgmId = 140
+AlbumPath = 2
+DefaultBgm = ExtResource("107_uat5l")
+FileNameForOverride = PackedStringArray("sms40.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_nstov"]
+script = ExtResource("1_wvoo7")
+BgmId = 141
+AlbumPath = 2
+DefaultBgm = ExtResource("108_h4352")
+FileNameForOverride = PackedStringArray("sms41.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_pvqdc"]
+script = ExtResource("1_wvoo7")
+BgmId = 142
+AlbumPath = 2
+DefaultBgm = ExtResource("109_22ort")
+FileNameForOverride = PackedStringArray("sms42.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_d0gbn"]
+script = ExtResource("1_wvoo7")
+BgmId = 143
+AlbumPath = 2
+DefaultBgm = ExtResource("110_e6rv5")
+FileNameForOverride = PackedStringArray("sms43.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_66trn"]
+script = ExtResource("1_wvoo7")
+BgmId = 144
+AlbumPath = 2
+DefaultBgm = ExtResource("111_83fk2")
+FileNameForOverride = PackedStringArray("sms44.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_3f65a"]
+script = ExtResource("1_wvoo7")
+BgmId = 145
+AlbumPath = 3
+DefaultBgm = ExtResource("112_e6rv5")
+FileNameForOverride = PackedStringArray("sms45.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_j0ma4"]
+script = ExtResource("1_wvoo7")
+BgmId = 146
+AlbumPath = 3
+DefaultBgm = ExtResource("113_83fk2")
+FileNameForOverride = PackedStringArray("sms46.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ghv6n"]
+script = ExtResource("1_wvoo7")
+BgmId = 147
+AlbumPath = 3
+DefaultBgm = ExtResource("114_67qrd")
+FileNameForOverride = PackedStringArray("sms47.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_85cwr"]
+script = ExtResource("1_wvoo7")
+BgmId = 148
+AlbumPath = 3
+DefaultBgm = ExtResource("115_nbuom")
+FileNameForOverride = PackedStringArray("sms48.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_0a0gw"]
+script = ExtResource("1_wvoo7")
+BgmId = 149
+AlbumPath = 3
+DefaultBgm = ExtResource("116_kf3tq")
+FileNameForOverride = PackedStringArray("sms49.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_6b2a0"]
+script = ExtResource("1_wvoo7")
+BgmId = 150
+AlbumPath = 3
+DefaultBgm = ExtResource("117_mon4n")
+FileNameForOverride = PackedStringArray("sms50.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_fbryf"]
+script = ExtResource("1_wvoo7")
+BgmId = 151
+AlbumPath = 3
+DefaultBgm = ExtResource("118_tid83")
+FileNameForOverride = PackedStringArray("sms51.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_pqlog"]
+script = ExtResource("1_wvoo7")
+BgmId = 152
+AlbumPath = 3
+DefaultBgm = ExtResource("119_t5w05")
+FileNameForOverride = PackedStringArray("sms52.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_jaanc"]
+script = ExtResource("1_wvoo7")
+BgmId = 153
+AlbumPath = 3
+DefaultBgm = ExtResource("120_5c2sj")
+FileNameForOverride = PackedStringArray("sms53.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_uh37d"]
+script = ExtResource("1_wvoo7")
+BgmId = 154
+AlbumPath = 3
+DefaultBgm = ExtResource("121_kgjxm")
+FileNameForOverride = PackedStringArray("sms54.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_4txjh"]
+script = ExtResource("1_wvoo7")
+BgmId = 155
+AlbumPath = 3
+DefaultBgm = ExtResource("122_638ty")
+FileNameForOverride = PackedStringArray("sms55.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_qe2kl"]
+script = ExtResource("1_wvoo7")
+BgmId = 156
+AlbumPath = 3
+DefaultBgm = ExtResource("123_etmov")
+FileNameForOverride = PackedStringArray("sms56.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ovj5o"]
+script = ExtResource("1_wvoo7")
+BgmId = 157
+AlbumPath = 3
+DefaultBgm = ExtResource("124_hwctr")
+FileNameForOverride = PackedStringArray("sms57.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_a3p3f"]
+script = ExtResource("1_wvoo7")
+BgmId = 158
+AlbumPath = 3
+DefaultBgm = ExtResource("125_pgtqv")
+FileNameForOverride = PackedStringArray("sms58.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_cutaq"]
+script = ExtResource("1_wvoo7")
+BgmId = 159
+AlbumPath = 3
+DefaultBgm = ExtResource("126_lwbr7")
+FileNameForOverride = PackedStringArray("sms59.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_38ye6"]
+script = ExtResource("1_wvoo7")
+BgmId = 160
+AlbumPath = 3
+DefaultBgm = ExtResource("127_em7h6")
+FileNameForOverride = PackedStringArray("sms60.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_lxa1p"]
+script = ExtResource("1_wvoo7")
+BgmId = 161
+AlbumPath = 3
+DefaultBgm = ExtResource("128_ui1jc")
+FileNameForOverride = PackedStringArray("sms61.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_dvl5v"]
+script = ExtResource("1_wvoo7")
+BgmId = 162
+AlbumPath = 3
+DefaultBgm = ExtResource("129_nstov")
+FileNameForOverride = PackedStringArray("sms62.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ojkvt"]
+script = ExtResource("1_wvoo7")
+BgmId = 163
+AlbumPath = 3
+DefaultBgm = ExtResource("130_pvqdc")
+FileNameForOverride = PackedStringArray("sms63.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_3h8na"]
+script = ExtResource("1_wvoo7")
+BgmId = 164
+AlbumPath = 3
+DefaultBgm = ExtResource("131_d0gbn")
+FileNameForOverride = PackedStringArray("sms64.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_vbuyj"]
+script = ExtResource("1_wvoo7")
+BgmId = 173
+AlbumPath = 4
+DefaultBgm = ExtResource("132_66trn")
+FileNameForOverride = PackedStringArray("std1.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_jbb4e"]
+script = ExtResource("1_wvoo7")
+BgmId = 174
+AlbumPath = 4
+DefaultBgm = ExtResource("133_3f65a")
+FileNameForOverride = PackedStringArray("std2.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_24r3b"]
+script = ExtResource("1_wvoo7")
+BgmId = 175
+AlbumPath = 4
+DefaultBgm = ExtResource("134_j0ma4")
+FileNameForOverride = PackedStringArray("std3.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_jr6t7"]
+script = ExtResource("1_wvoo7")
+BgmId = 176
+AlbumPath = 4
+DefaultBgm = ExtResource("135_ghv6n")
+FileNameForOverride = PackedStringArray("std4.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_44ct2"]
+script = ExtResource("1_wvoo7")
+BgmId = 177
+AlbumPath = 4
+DefaultBgm = ExtResource("136_85cwr")
+FileNameForOverride = PackedStringArray("std5.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_rvbb3"]
+script = ExtResource("1_wvoo7")
+BgmId = 178
+AlbumPath = 4
+DefaultBgm = ExtResource("137_0a0gw")
+FileNameForOverride = PackedStringArray("std6.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_0abfh"]
+script = ExtResource("1_wvoo7")
+BgmId = 179
+AlbumPath = 4
+DefaultBgm = ExtResource("138_6b2a0")
+FileNameForOverride = PackedStringArray("std7.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ish8h"]
+script = ExtResource("1_wvoo7")
+BgmId = 180
+AlbumPath = 4
+DefaultBgm = ExtResource("139_fbryf")
+FileNameForOverride = PackedStringArray("std8.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_1eo73"]
+script = ExtResource("1_wvoo7")
+BgmId = 181
+AlbumPath = 4
+DefaultBgm = ExtResource("140_pqlog")
+FileNameForOverride = PackedStringArray("std9.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_rd7n3"]
+script = ExtResource("1_wvoo7")
+BgmId = 182
+AlbumPath = 3
+DefaultBgm = ExtResource("141_85cwr")
+FileNameForOverride = PackedStringArray("std10.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_hetry"]
+script = ExtResource("1_wvoo7")
+BgmId = 183
+AlbumPath = 3
+DefaultBgm = ExtResource("142_0a0gw")
+FileNameForOverride = PackedStringArray("std11.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_siye6"]
+script = ExtResource("1_wvoo7")
+BgmId = 184
+AlbumPath = 3
+DefaultBgm = ExtResource("143_6b2a0")
+FileNameForOverride = PackedStringArray("std12.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_k8d8o"]
+script = ExtResource("1_wvoo7")
+BgmId = 185
+AlbumPath = 3
+DefaultBgm = ExtResource("144_fbryf")
+FileNameForOverride = PackedStringArray("std13.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ppe8o"]
+script = ExtResource("1_wvoo7")
+BgmId = 186
+AlbumPath = 3
+DefaultBgm = ExtResource("145_pqlog")
+FileNameForOverride = PackedStringArray("std14.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_tao1g"]
+script = ExtResource("1_wvoo7")
+BgmId = 187
+AlbumPath = 3
+DefaultBgm = ExtResource("146_jaanc")
+FileNameForOverride = PackedStringArray("std15.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_i04rx"]
+script = ExtResource("1_wvoo7")
+BgmId = 188
+AlbumPath = 3
+DefaultBgm = ExtResource("147_uh37d")
+FileNameForOverride = PackedStringArray("std16.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_1cigy"]
+script = ExtResource("1_wvoo7")
+BgmId = 189
+AlbumPath = 3
+DefaultBgm = ExtResource("148_4txjh")
+FileNameForOverride = PackedStringArray("std17.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_xe31f"]
+script = ExtResource("1_wvoo7")
+BgmId = 190
+AlbumPath = 3
+DefaultBgm = ExtResource("149_qe2kl")
+FileNameForOverride = PackedStringArray("std18.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_5sqa8"]
+script = ExtResource("1_wvoo7")
+BgmId = 191
+AlbumPath = 3
+DefaultBgm = ExtResource("150_ovj5o")
+FileNameForOverride = PackedStringArray("std19.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ythx7"]
+script = ExtResource("1_wvoo7")
+BgmId = 192
+AlbumPath = 3
+DefaultBgm = ExtResource("151_a3p3f")
+FileNameForOverride = PackedStringArray("std20.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_qr8yu"]
+script = ExtResource("1_wvoo7")
+BgmId = 193
+AlbumPath = 3
+DefaultBgm = ExtResource("152_cutaq")
+FileNameForOverride = PackedStringArray("std21.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_23i5n"]
+script = ExtResource("1_wvoo7")
+BgmId = 194
+AlbumPath = 3
+DefaultBgm = ExtResource("153_38ye6")
+FileNameForOverride = PackedStringArray("std22.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_g7bns"]
+script = ExtResource("1_wvoo7")
+BgmId = 195
+AlbumPath = 3
+DefaultBgm = ExtResource("154_lxa1p")
+FileNameForOverride = PackedStringArray("std23.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ktx05"]
+script = ExtResource("1_wvoo7")
+BgmId = 196
+AlbumPath = 3
+DefaultBgm = ExtResource("155_dvl5v")
+FileNameForOverride = PackedStringArray("std24.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_h538t"]
+script = ExtResource("1_wvoo7")
+BgmId = 201
+AlbumPath = 6
+DefaultBgm = ExtResource("156_0a0gw")
+FileNameForOverride = PackedStringArray("boss1.dll", "boss1.mod")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_lxwyq"]
+script = ExtResource("1_wvoo7")
+BgmId = 202
+AlbumPath = 6
+DefaultBgm = ExtResource("157_jaanc")
+FileNameForOverride = PackedStringArray("boss2.dll", "boss2.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_7kp31"]
+script = ExtResource("1_wvoo7")
+BgmId = 203
+AlbumPath = 6
+DefaultBgm = ExtResource("158_uh37d")
+FileNameForOverride = PackedStringArray("boss3.dll", "boss3.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_45r7e"]
+script = ExtResource("1_wvoo7")
+BgmId = 204
+AlbumPath = 6
+DefaultBgm = ExtResource("159_4txjh")
+FileNameForOverride = PackedStringArray("boss4.dll", "boss4.it")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_8f44b"]
+script = ExtResource("1_wvoo7")
+BgmId = 205
+AlbumPath = 6
+DefaultBgm = ExtResource("160_qe2kl")
+FileNameForOverride = PackedStringArray("boss5.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_t5qgy"]
+script = ExtResource("1_wvoo7")
+BgmId = 206
+AlbumPath = 6
+DefaultBgm = ExtResource("161_44ct2")
+FileNameForOverride = PackedStringArray("boss6.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ru6do"]
+script = ExtResource("1_wvoo7")
+BgmId = 207
+AlbumPath = 6
+DefaultBgm = ExtResource("162_rvbb3")
+FileNameForOverride = PackedStringArray("boss7.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_hj21n"]
+script = ExtResource("1_wvoo7")
+BgmId = 208
+AlbumPath = 6
+DefaultBgm = ExtResource("163_0abfh")
+FileNameForOverride = PackedStringArray("boss8.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_2rc5b"]
+script = ExtResource("1_wvoo7")
+BgmId = 209
+AlbumPath = 6
+DefaultBgm = ExtResource("164_ish8h")
+FileNameForOverride = PackedStringArray("boss9.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_5tmt3"]
+script = ExtResource("1_wvoo7")
+BgmId = 210
+AlbumPath = 6
+DefaultBgm = ExtResource("165_1eo73")
+FileNameForOverride = PackedStringArray("boss10.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_5km4y"]
+script = ExtResource("1_wvoo7")
+BgmId = 211
+AlbumPath = 6
+DefaultBgm = ExtResource("166_rd7n3")
+FileNameForOverride = PackedStringArray("boss11.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_035a6"]
+script = ExtResource("1_wvoo7")
+BgmId = 212
+AlbumPath = 6
+DefaultBgm = ExtResource("167_hetry")
+FileNameForOverride = PackedStringArray("boss12.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_jxhb7"]
+script = ExtResource("1_wvoo7")
+BgmId = 213
+AlbumPath = 6
+DefaultBgm = ExtResource("168_siye6")
+FileNameForOverride = PackedStringArray("boss13.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_aops2"]
+script = ExtResource("1_wvoo7")
+BgmId = 214
+AlbumPath = 6
+DefaultBgm = ExtResource("169_k8d8o")
+FileNameForOverride = PackedStringArray("boss14.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_kwssk"]
+script = ExtResource("1_wvoo7")
+BgmId = 215
+AlbumPath = 6
+DefaultBgm = ExtResource("170_ppe8o")
+FileNameForOverride = PackedStringArray("boss15.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_2bxmy"]
+script = ExtResource("1_wvoo7")
+BgmId = 216
+AlbumPath = 6
+DefaultBgm = ExtResource("171_tao1g")
+FileNameForOverride = PackedStringArray("boss16.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_8h7n2"]
+script = ExtResource("1_wvoo7")
+BgmId = 217
+AlbumPath = 6
+DefaultBgm = ExtResource("172_i04rx")
+FileNameForOverride = PackedStringArray("boss17.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_2yfct"]
+script = ExtResource("1_wvoo7")
+BgmId = 218
+AlbumPath = 6
+DefaultBgm = ExtResource("173_1cigy")
+FileNameForOverride = PackedStringArray("boss18.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_6vayn"]
+script = ExtResource("1_wvoo7")
+BgmId = 219
+AlbumPath = 6
+DefaultBgm = ExtResource("174_xe31f")
+FileNameForOverride = PackedStringArray("boss19.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_5fyxy"]
+script = ExtResource("1_wvoo7")
+BgmId = 220
+AlbumPath = 6
+DefaultBgm = ExtResource("175_5sqa8")
+FileNameForOverride = PackedStringArray("boss20.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_2iloh"]
+script = ExtResource("1_wvoo7")
+BgmId = 221
+AlbumPath = 6
+DefaultBgm = ExtResource("176_ythx7")
+FileNameForOverride = PackedStringArray("boss21.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_c8qck"]
+script = ExtResource("1_wvoo7")
+BgmId = 301
+AlbumPath = 5
+DefaultBgm = ExtResource("177_xe31f")
+FileNameForOverride = PackedStringArray("om1.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_c358a"]
+script = ExtResource("1_wvoo7")
+BgmId = 302
+AlbumPath = 5
+DefaultBgm = ExtResource("178_5sqa8")
+FileNameForOverride = PackedStringArray("om2.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_ggvdo"]
+script = ExtResource("1_wvoo7")
+BgmId = 303
+AlbumPath = 5
+DefaultBgm = ExtResource("179_ythx7")
+FileNameForOverride = PackedStringArray("om3.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_jrwj2"]
+script = ExtResource("1_wvoo7")
+BgmId = 304
+AlbumPath = 5
+DefaultBgm = ExtResource("180_qr8yu")
+FileNameForOverride = PackedStringArray("om4.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_c365y"]
+script = ExtResource("1_wvoo7")
+BgmId = 305
+AlbumPath = 5
+DefaultBgm = ExtResource("181_23i5n")
+FileNameForOverride = PackedStringArray("om5.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_4aa6w"]
+script = ExtResource("1_wvoo7")
+BgmId = 306
+AlbumPath = 5
+DefaultBgm = ExtResource("182_g7bns")
+FileNameForOverride = PackedStringArray("om6.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_hvvix"]
+script = ExtResource("1_wvoo7")
+BgmId = 307
+AlbumPath = 5
+DefaultBgm = ExtResource("183_ktx05")
+FileNameForOverride = PackedStringArray("om7.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_qios4"]
+script = ExtResource("1_wvoo7")
+BgmId = 308
+AlbumPath = 5
+DefaultBgm = ExtResource("184_h538t")
+FileNameForOverride = PackedStringArray("om8.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_4yc3t"]
+script = ExtResource("1_wvoo7")
+BgmId = 309
+AlbumPath = 5
+DefaultBgm = ExtResource("185_lxwyq")
+FileNameForOverride = PackedStringArray("om9.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_f3dn0"]
+script = ExtResource("1_wvoo7")
+BgmId = 310
+AlbumPath = 5
+DefaultBgm = ExtResource("186_7kp31")
+FileNameForOverride = PackedStringArray("om10.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_m5vx3"]
+script = ExtResource("1_wvoo7")
+BgmId = 311
+AlbumPath = 5
+DefaultBgm = ExtResource("187_45r7e")
+FileNameForOverride = PackedStringArray("om11.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_51yn2"]
+script = ExtResource("1_wvoo7")
+BgmId = 312
+AlbumPath = 5
+DefaultBgm = ExtResource("188_8f44b")
+FileNameForOverride = PackedStringArray("om12.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[sub_resource type="Resource" id="Resource_vmnrs"]
+script = ExtResource("1_wvoo7")
+BgmId = 313
+AlbumPath = 5
+DefaultBgm = ExtResource("189_t5qgy")
+FileNameForOverride = PackedStringArray("om13.ogg")
+metadata/_custom_type_script = "uid://cpmdo4y2crp4d"
+
+[resource]
+script = ExtResource("1_ryw4c")
+Entries = Array[Resource]([SubResource("Resource_ffpi8"), SubResource("Resource_wvoo7"), SubResource("Resource_3weip"), SubResource("Resource_6vtma"), SubResource("Resource_80rds"), SubResource("Resource_rv57n"), SubResource("Resource_os6fc"), SubResource("Resource_35n3o"), SubResource("Resource_wgl8u"), SubResource("Resource_13le6"), SubResource("Resource_mchu4"), SubResource("Resource_nsqv0"), SubResource("Resource_x4m8q"), SubResource("Resource_pcsat"), SubResource("Resource_moe62"), SubResource("Resource_xgs1a"), SubResource("Resource_fs4ts"), SubResource("Resource_8jlwc"), SubResource("Resource_ntdgi"), SubResource("Resource_ikp3j"), SubResource("Resource_qjgx4"), SubResource("Resource_wehh2"), SubResource("Resource_fcudq"), SubResource("Resource_y8t8y"), SubResource("Resource_pget3"), SubResource("Resource_uckvv"), SubResource("Resource_rvkpk"), SubResource("Resource_4uoo8"), SubResource("Resource_ryghf"), SubResource("Resource_0h8bv"), SubResource("Resource_4icf5"), SubResource("Resource_rjeii"), SubResource("Resource_14lvn"), SubResource("Resource_6rna1"), SubResource("Resource_kvhne"), SubResource("Resource_cp6nq"), SubResource("Resource_k6mfc"), SubResource("Resource_gtt0m"), SubResource("Resource_ngtix"), SubResource("Resource_a3ue8"), SubResource("Resource_p6lgk"), SubResource("Resource_rsecp"), SubResource("Resource_wklcb"), SubResource("Resource_24xdu"), SubResource("Resource_ry51h"), SubResource("Resource_hfpg4"), SubResource("Resource_skdyx"), SubResource("Resource_2fank"), SubResource("Resource_khw52"), SubResource("Resource_c76b8"), SubResource("Resource_afhi1"), SubResource("Resource_86vir"), SubResource("Resource_0rqsn"), SubResource("Resource_ujawr"), SubResource("Resource_4kexa"), SubResource("Resource_gwj06"), SubResource("Resource_ywylq"), SubResource("Resource_bdxs2"), SubResource("Resource_0eqo5"), SubResource("Resource_ha0ni"), SubResource("Resource_7uo0x"), SubResource("Resource_r2cpi"), SubResource("Resource_qvo8t"), SubResource("Resource_q1qll"), SubResource("Resource_6b7ge"), SubResource("Resource_hjclo"), SubResource("Resource_iubio"), SubResource("Resource_mnvab"), SubResource("Resource_cai6m"), SubResource("Resource_ft15f"), SubResource("Resource_yelme"), SubResource("Resource_vvmyv"), SubResource("Resource_eewvb"), SubResource("Resource_hm8st"), SubResource("Resource_g0hps"), SubResource("Resource_66y6w"), SubResource("Resource_uat5l"), SubResource("Resource_h4352"), SubResource("Resource_22ort"), SubResource("Resource_e6rv5"), SubResource("Resource_83fk2"), SubResource("Resource_67qrd"), SubResource("Resource_nbuom"), SubResource("Resource_kf3tq"), SubResource("Resource_mon4n"), SubResource("Resource_tid83"), SubResource("Resource_t5w05"), SubResource("Resource_5c2sj"), SubResource("Resource_fbhxq"), SubResource("Resource_3cocs"), SubResource("Resource_nkajq"), SubResource("Resource_7fxv3"), SubResource("Resource_r3t7j"), SubResource("Resource_mcg4l"), SubResource("Resource_kc1hi"), SubResource("Resource_g1q7i"), SubResource("Resource_dj5x1"), SubResource("Resource_j5ud6"), SubResource("Resource_ok0ur"), SubResource("Resource_kgjxm"), SubResource("Resource_638ty"), SubResource("Resource_etmov"), SubResource("Resource_hwctr"), SubResource("Resource_pgtqv"), SubResource("Resource_lwbr7"), SubResource("Resource_em7h6"), SubResource("Resource_ui1jc"), SubResource("Resource_nstov"), SubResource("Resource_pvqdc"), SubResource("Resource_d0gbn"), SubResource("Resource_66trn"), SubResource("Resource_3f65a"), SubResource("Resource_j0ma4"), SubResource("Resource_ghv6n"), SubResource("Resource_85cwr"), SubResource("Resource_0a0gw"), SubResource("Resource_6b2a0"), SubResource("Resource_fbryf"), SubResource("Resource_pqlog"), SubResource("Resource_jaanc"), SubResource("Resource_uh37d"), SubResource("Resource_4txjh"), SubResource("Resource_qe2kl"), SubResource("Resource_ovj5o"), SubResource("Resource_a3p3f"), SubResource("Resource_cutaq"), SubResource("Resource_38ye6"), SubResource("Resource_lxa1p"), SubResource("Resource_dvl5v"), SubResource("Resource_ojkvt"), SubResource("Resource_3h8na"), SubResource("Resource_vbuyj"), SubResource("Resource_jbb4e"), SubResource("Resource_24r3b"), SubResource("Resource_jr6t7"), SubResource("Resource_44ct2"), SubResource("Resource_rvbb3"), SubResource("Resource_0abfh"), SubResource("Resource_ish8h"), SubResource("Resource_1eo73"), SubResource("Resource_rd7n3"), SubResource("Resource_hetry"), SubResource("Resource_siye6"), SubResource("Resource_k8d8o"), SubResource("Resource_ppe8o"), SubResource("Resource_tao1g"), SubResource("Resource_i04rx"), SubResource("Resource_1cigy"), SubResource("Resource_xe31f"), SubResource("Resource_5sqa8"), SubResource("Resource_ythx7"), SubResource("Resource_qr8yu"), SubResource("Resource_23i5n"), SubResource("Resource_g7bns"), SubResource("Resource_ktx05"), SubResource("Resource_h538t"), SubResource("Resource_lxwyq"), SubResource("Resource_7kp31"), SubResource("Resource_45r7e"), SubResource("Resource_8f44b"), SubResource("Resource_t5qgy"), SubResource("Resource_ru6do"), SubResource("Resource_hj21n"), SubResource("Resource_2rc5b"), SubResource("Resource_5tmt3"), SubResource("Resource_5km4y"), SubResource("Resource_035a6"), SubResource("Resource_jxhb7"), SubResource("Resource_aops2"), SubResource("Resource_kwssk"), SubResource("Resource_2bxmy"), SubResource("Resource_8h7n2"), SubResource("Resource_2yfct"), SubResource("Resource_6vayn"), SubResource("Resource_5fyxy"), SubResource("Resource_2iloh"), SubResource("Resource_c8qck"), SubResource("Resource_c358a"), SubResource("Resource_ggvdo"), SubResource("Resource_jrwj2"), SubResource("Resource_c365y"), SubResource("Resource_4aa6w"), SubResource("Resource_hvvix"), SubResource("Resource_qios4"), SubResource("Resource_4yc3t"), SubResource("Resource_f3dn0"), SubResource("Resource_m5vx3"), SubResource("Resource_51yn2"), SubResource("Resource_vmnrs")])
+metadata/_custom_type_script = "uid://dwxi777j7284f"
