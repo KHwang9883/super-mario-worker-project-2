@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b8fhav4piroyf"
+path="res://.godot/imported/The theme of SMWP.mp3-949bc9c528d012fb21549b620059f461.mp3str"
+
+[deps]
+
+source_file="res://content/bgm/Custom/Example/The theme of SMWP.mp3"
+dest_files=["res://.godot/imported/The theme of SMWP.mp3-949bc9c528d012fb21549b620059f461.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
