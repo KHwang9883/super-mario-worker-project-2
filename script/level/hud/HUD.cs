@@ -77,7 +77,7 @@ public partial class HUD : Control {
         }
         
         // Level Info
-        if (_levelInfo != null) _levelInfo.Visible = Input.IsPhysicalKeyPressed(Key.F1);
+        if (_levelInfo != null) _levelInfo.Visible = Input.IsActionPressed("level_info");
         
         // God Mode 摄像机模式坐标显示
         if (_godPosition != null && _player != null) {
