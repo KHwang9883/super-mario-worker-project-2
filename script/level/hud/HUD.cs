@@ -38,9 +38,6 @@ public partial class HUD : Control {
             $"Celeste Style Switch: {YesOrNo(_levelConfig.CelesteStyleSwitch)}\n" +
             $"MF Style Pipe Exit: {YesOrNo(_levelConfig.MfStylePipeExit)}";
     }
-    public string YesOrNo(bool boolean) {
-        return boolean ? "Yes" : "No";
-    }
     public override void _PhysicsProcess(double delta) {
         _godModeNode = (PlayerGodMode)_player!.GetMeta("PlayerGodMode");
         
@@ -52,7 +49,8 @@ public partial class HUD : Control {
         if (_score != null) _score.Text = LevelManager.Score.ToString();
         
         // Todo: LevelTitle 特殊处理
-        if (_levelTitle != null) _levelTitle.Text = LevelManager.LevelTitle;
+        if (_levelTitle != null && _levelConfig != null)
+            _levelTitle.Text = ConvertHashAndNewline(_levelConfig.LevelTitle);
         
         // 负数时间不显示
         if (_timeHUD != null && LevelManager.Time < 0) _timeHUD.Visible = false;
@@ -84,6 +82,19 @@ public partial class HUD : Control {
             _godPosition.Visible = _godModeNode.IsGodFly;
             _godPosition.Text = $"({_player.Position.X:F2}, {_player.Position.Y:F2})" ;
         }
+    }
+    
+    public string ConvertHashAndNewline(string input) {
+        if (string.IsNullOrEmpty(input)) return input;
+
+        const string tempPlaceholder = "☃";
+        string step1 = input.Replace(@"\#", tempPlaceholder);
+        string step2 = step1.Replace("#", "\n");
+        string result = step2.Replace(tempPlaceholder, "#");
+        return result;
+    }
+    public string YesOrNo(bool boolean) {
+        return boolean ? "Yes" : "No";
     }
     public void OnTimeWarning() {
         if (_timeWarned) return;

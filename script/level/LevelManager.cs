@@ -28,9 +28,6 @@ public partial class LevelManager : Node {
     [Export] private ContinuousAudioStream2D _1UPAudioStream2DNode = null!;
     public static ContinuousAudioStream2D Sound1UPAudioStream2D = null!;
     private static Array<Node> _timeClearSounds = null!;
-    
-    // Todo: 关卡标题
-    public static string LevelTitle = "STARLAND\nLEVEL";
 
     private static int _levelTimeTimer;
     private static int _levelPassTimer;
