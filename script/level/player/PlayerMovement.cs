@@ -16,6 +16,7 @@ public partial class PlayerMovement : Node {
     
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
+    [Export] private Area2D _aroundWaterArea2D = null!;
 
     // 关卡引力
     private float _gravity;
@@ -41,6 +42,7 @@ public partial class PlayerMovement : Node {
     public bool IsInWater;
     private bool _wasInWater;
     public bool IsOnWaterSurface = true;
+    public bool IsAroundWater;
 
     private bool _up;
     private bool _down;
@@ -328,6 +330,9 @@ public partial class PlayerMovement : Node {
         // GM8版注释：尝试性修复非整格实心穿墙
         // 为保持精确性，故各自方向速度为零分别进行一次取整，但是该做法会导致楼梯地形贴墙原地起跳边缘卡脚，因此禁用
 
+        // 第 146 号 BGM 靠近流体检测
+        IsAroundWater = _aroundWaterArea2D.GetOverlappingAreas().Count > 0;
+        
         // 不同状态的碰撞箱切换
         Callable.From(() => {
             if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Small || Crouched) {

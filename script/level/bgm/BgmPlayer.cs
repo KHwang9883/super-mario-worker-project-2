@@ -8,6 +8,7 @@ public partial class BgmPlayer : AudioStreamPlayer {
     private PlayerDieAndHurt? _playerDieAndHurt;
     private PlayerSuit? _playerSuit;
     private LevelConfig? _levelConfig;
+    private AudioStreamPlayer? _bgm146Player;
     private bool _fadeOut;
 
     public override void _Ready() {
@@ -23,13 +24,36 @@ public partial class BgmPlayer : AudioStreamPlayer {
             // Fast Retry 读取 BGM 位置
             Play(_levelConfig.FastRetry ? LevelManager.BgmPosition : 0f);
         }).CallDeferred();
+        
+        _bgm146Player = GetNode<AudioStreamPlayer>("Bgm146Player");
     }
     public override void _PhysicsProcess(double delta) {
+        //GD.Print(OS.GetExecutablePath());
+        
         if (LevelManager.IsLevelPass && Playing) {
             Stop();
         }
         if (_fadeOut) {
             VolumeLinear = Mathf.MoveToward(VolumeLinear, 0.2f, 0.15f);
+        }
+
+        // 第 146 号 BGM 音频处理
+        if (_bgm146Player == null) return;
+        // Todo: if BgmId == 146
+        if (Playing && !_bgm146Player.Playing)
+            _bgm146Player.Play(GetPlaybackPosition());
+        if (!Playing && _bgm146Player.Playing)
+            _bgm146Player.Playing = false;
+        
+        if (_player == null) {
+            GD.PushError($"{this}: Player is null!");
+        } else {
+            var playerMovement = (PlayerMovement)_player.GetMeta("PlayerMovement");
+            if (playerMovement.IsAroundWater) {
+                
+            } else {
+                
+            }
         }
     }
     public void OnPlayerDied() {

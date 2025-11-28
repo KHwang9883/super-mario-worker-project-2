@@ -30,7 +30,7 @@ public partial class LevelManager : Node {
     private static Array<Node> _timeClearSounds = null!;
     
     // Todo: 关卡标题
-    public static string LevelTitle = "LEVEL 1";
+    public static string LevelTitle = "STARLAND\nLEVEL";
 
     private static int _levelTimeTimer;
     private static int _levelPassTimer;

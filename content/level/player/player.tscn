@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=38 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/level/player/mario_small.tres" id="1_o23i7"]
 [ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
@@ -30,6 +30,7 @@
 [ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="26_otrx5"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="29_kphem"]
 [ext_resource type="AudioStream" uid="uid://bl5ufvx763kni" path="res://content/bgm/MW/ktkm3.it" id="29_lc6mo"]
+[ext_resource type="Script" uid="uid://bovsx2vj7p1o3" path="res://script/level/player/StarmanSound.cs" id="30_sba15"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0cq6f"]
 blend_mode = 1
@@ -45,6 +46,9 @@ points = PackedVector2Array(-12, 0, -12, -38, -2, -48, 2, -48, 12, -38, 12, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rmk25"]
 radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sba15"]
+radius = 20.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 50
@@ -122,6 +126,13 @@ max_results = 3
 collision_mask = 112
 collide_with_areas = true
 
+[node name="AroundWaterDetect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AroundWaterDetect"]
+shape = SubResource("CircleShape2D_sba15")
+
 [node name="PlayerMediator" type="Node" parent="." node_paths=PackedStringArray("player", "playerMovement", "playerDieAndHurt", "playerAnimation", "playerSuit", "playerGodMode")]
 script = ExtResource("2_3ac0f")
 player = NodePath("..")
@@ -131,10 +142,11 @@ playerAnimation = NodePath("PlayerAnimation")
 playerSuit = NodePath("PlayerSuit")
 playerGodMode = NodePath("PlayerGodMode")
 
-[node name="PlayerMovement" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player")]
+[node name="PlayerMovement" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_aroundWaterArea2D")]
 script = ExtResource("3_i4jjh")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
+_aroundWaterArea2D = NodePath("../../AroundWaterDetect")
 
 [node name="PlayerDieAndHurt" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_gameOverSound")]
 process_mode = 1
@@ -227,7 +239,9 @@ script = ExtResource("18_8jrco")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Starman" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("29_lc6mo")
+script = ExtResource("30_sba15")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("29_kphem")]
 
@@ -238,6 +252,7 @@ stream = ExtResource("29_lc6mo")
 [connection signal="PlaySoundBreak" from="PlayerMediator/PlayerDieAndHurt" to="Break" method="play"]
 [connection signal="PlaySoundGameOver" from="PlayerMediator/PlayerDieAndHurt" to="GameOver" method="play"]
 [connection signal="PlayerDied" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerInteraction" method="HurtSucceedSet"]
+[connection signal="PlayerDiedSucceeded" from="PlayerMediator/PlayerDieAndHurt" to="Starman" method="stop"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerHurt"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerInteraction" method="HurtSucceedSet"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="Powerdown" method="play"]

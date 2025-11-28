@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7p4i1t28bwi1"]
+[gd_scene load_steps=11 format=3 uid="uid://b7p4i1t28bwi1"]
 
 [ext_resource type="Script" uid="uid://vhjp6ug43kyx" path="res://script/level/bonus/coin/Coin.cs" id="1_x37uu"]
 [ext_resource type="Texture2D" uid="uid://b3kv771q07bnb" path="res://content/level/bonus/coin/coin.png" id="2_1hxgt"]
 [ext_resource type="AudioStream" uid="uid://bvh8vnx7l5i38" path="res://content/sound/coin.se.wav" id="3_1hxgt"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="4_04258"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="4_iaikp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_04258"]
 atlas = ExtResource("2_1hxgt")
@@ -54,6 +55,8 @@ debug_color = Color(0.5582065, 0.56108445, 5.7756904e-07, 0.41960785)
 
 [node name="CoinCollected" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_1hxgt")
+script = ExtResource("4_iaikp")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("4_04258")]
 
