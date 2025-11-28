@@ -51,7 +51,9 @@ public partial class BeetrootInteraction : Node {
     public void BlockHitDetect() {
         Node? interactionWithBlockNode = null;
         
-        var blockCollider = _beetroot.MoveAndCollide(new Vector2(1f * _beetrootMovement.Direction, 1f), true)?.GetCollider();
+        var blockCollider = _beetroot.MoveAndCollide(
+            new Vector2(_beetroot.IsOnWall() ? 0f : 1f * _beetrootMovement.Direction, 1f), true
+            )?.GetCollider();
         //GD.Print(blockCollider);
         if (blockCollider is not StaticBody2D staticBody2D) return;
         if (staticBody2D.HasMeta("InteractionWithBlock")) {
@@ -59,6 +61,7 @@ public partial class BeetrootInteraction : Node {
         }
         if (interactionWithBlockNode is not BlockHit blockHit) return;
         blockHit.OnBlockHit(_beetroot);
+        
         // 因为砖块本身是实心，所以不需要额外 Bounce 方法的调用
         //_beetrootMovement.Bounce();
     }

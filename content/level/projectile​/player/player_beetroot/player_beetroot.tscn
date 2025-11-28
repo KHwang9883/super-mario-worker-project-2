@@ -88,6 +88,12 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_bdhfo")
 debug_color = Color(0.797803, 0.42973912, 0, 0.41960785)
 
+[node name="BeetrootInteraction" type="Node" parent="." node_paths=PackedStringArray("_beetroot", "_beetrootMovement")]
+script = ExtResource("3_s8x4c")
+_beetroot = NodePath("..")
+_fireballExplosionPackedScene = ExtResource("4_osfue")
+_beetrootMovement = NodePath("../BeetrootMovement")
+
 [node name="BeetrootMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("2_bdhfo")
 MoveObject = NodePath("..")
@@ -95,12 +101,6 @@ SpeedX = 1.0
 SpeedY = -7.0
 JumpSpeed = -9.0
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
-
-[node name="BeetrootInteraction" type="Node" parent="." node_paths=PackedStringArray("_beetroot", "_beetrootMovement")]
-script = ExtResource("3_s8x4c")
-_beetroot = NodePath("..")
-_fireballExplosionPackedScene = ExtResource("4_osfue")
-_beetrootMovement = NodePath("../BeetrootMovement")
 
 [node name="OutOfBoundsQueueFree" type="Node" parent="."]
 script = ExtResource("3_1xth1")
@@ -114,7 +114,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("8_3qlfe")]
 
-[connection signal="HitBlock" from="BeetrootMovement" to="BeetrootInteraction" method="Explode"]
-[connection signal="HitBlock" from="BeetrootMovement" to="ContinuousAudioStream2D" method="play"]
 [connection signal="BeetrootBounce" from="BeetrootInteraction" to="BeetrootMovement" method="Bounce"]
 [connection signal="BeetrootBounceCountAdd" from="BeetrootInteraction" to="BeetrootMovement" method="BounceCountAdd"]
+[connection signal="HitBlock" from="BeetrootMovement" to="BeetrootInteraction" method="Explode"]
+[connection signal="HitBlock" from="BeetrootMovement" to="ContinuousAudioStream2D" method="play"]

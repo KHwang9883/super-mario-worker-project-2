@@ -378,7 +378,7 @@ texture = ExtResource("12_kynl2")
 
 [node name="Mario" parent="TestLevelNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(1772, 48)
+position = Vector2(2780, 276)
 
 [node name="TestCamera2D" parent="TestLevelNode2D/Mario" instance=ExtResource("10_8mywb")]
 limit_bottom = 640
@@ -589,16 +589,16 @@ position = Vector2(1764, 200)
 position = Vector2(1800, 200)
 
 [node name="FireballBro2" parent="TestLevelNode2D/Enemies" instance=ExtResource("48_yeotl")]
-position = Vector2(2988, 260)
+position = Vector2(3144, 428)
 
 [node name="HammerBro2" parent="TestLevelNode2D/Enemies" instance=ExtResource("47_5t3id")]
-position = Vector2(2964, 260)
+position = Vector2(3120, 428)
 
 [node name="HammerBro3" parent="TestLevelNode2D/Enemies" instance=ExtResource("47_5t3id")]
-position = Vector2(2936, 260)
+position = Vector2(3092, 428)
 
 [node name="FireballBro3" parent="TestLevelNode2D/Enemies" instance=ExtResource("48_yeotl")]
-position = Vector2(3016, 260)
+position = Vector2(3172, 428)
 
 [node name="Bonus" type="Node2D" parent="TestLevelNode2D"]
 
@@ -718,6 +718,12 @@ Id = 1
 [node name="Checkpoint2" parent="TestLevelNode2D" instance=ExtResource("54_813lr")]
 position = Vector2(2460, 160)
 Id = 2
+
+[node name="Brick" parent="TestLevelNode2D" instance=ExtResource("23_dmmuc")]
+position = Vector2(2832, 272)
+
+[node name="Brick2" parent="TestLevelNode2D" instance=ExtResource("23_dmmuc")]
+position = Vector2(2832, 208)
 
 [connection signal="finished" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="play"]
 [connection signal="tree_exiting" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="OnTreeExiting"]

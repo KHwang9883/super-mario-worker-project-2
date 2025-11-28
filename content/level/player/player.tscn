@@ -127,6 +127,7 @@ collision_mask = 112
 collide_with_areas = true
 
 [node name="AroundWaterDetect" type="Area2D" parent="."]
+visible = false
 position = Vector2(0, -8)
 collision_layer = 0
 collision_mask = 64
@@ -173,6 +174,7 @@ _playerEffectScene = ExtResource("11_q05y8")
 script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
 Suit = 2
+Powerup = 1
 
 [node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_starmanCombo")]
 script = ExtResource("12_tpspr")
