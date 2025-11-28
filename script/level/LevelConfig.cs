@@ -1,8 +1,10 @@
 using Godot;
 using System;
+using System.IO;
 using Godot.Collections;
 using SMWP.Level.Background;
 using SMWP.Level.Score;
+using FileAccess = Godot.FileAccess;
 
 namespace SMWP.Level;
 
@@ -11,9 +13,8 @@ public partial class LevelConfig : Node {
     [ExportGroup("BasicLevelSettings")]
     [Export] public float RoomWidth = 1024f;
     [Export] public float RoomHeight = 640f;
-    // Todo
-    [Export] public string LevelTitle = "";
-    // Todo
+    
+    [Export] public string LevelTitle = "LEVEL 1";
     [Export] public string LevelAuthor = "";
     [Export] public int Time = 600;
     [Export] public float Gravity = 5f;
@@ -21,7 +22,6 @@ public partial class LevelConfig : Node {
     [Export] public int KoopaEnergy = 5;
     [Export] public float WaterHeight = 800f;
     [Export] public int BackgroundId = 5;
-    // Todo
     [Export] public int BgmId = 1;
 
     [ExportGroup("AdditionalSettings")]
@@ -41,7 +41,6 @@ public partial class LevelConfig : Node {
     [Export] public int FluidDelay;
     // Todo
     [Export] public bool AdvancedSwitch;
-    // Todo
     [Export] public bool FastRetry;
     // Todo
     [Export] public bool MfStyleBeet = true;
@@ -98,7 +97,26 @@ public partial class LevelConfig : Node {
         foreach (var entry in BgmDatabase.Entries) {
             if (entry.BgmId != BgmId) continue;
             var bgmPlayer = GetNode<AudioStreamPlayer>("BgmPlayer");
-            bgmPlayer.Stream = entry.DefaultBgm;
+            
+            // 首先获取外置的覆盖 BGM
+            foreach (var fileName in entry.FileNameForOverride) {
+                // 遍历所有的兼容性文件名
+                var baseDir = Path.GetDirectoryName(OS.GetExecutablePath());
+                baseDir = baseDir?.Replace("\\", "/");
+                var bgmPath =
+                    baseDir + "/Data/" + entry.AlbumPath + "/" + fileName;
+                // 不保留文件后缀，因为之前 SMWP 版本后缀过于混乱，无法进行识别，故强制统一为 OGG 格式
+                bgmPath = bgmPath.GetBaseName();
+                bgmPath += ".ogg";
+                //GD.Print(bgmPath);
+                bgmPlayer.Stream = AudioStreamOggVorbis.LoadFromFile(bgmPath);
+                //GD.Print(bgmPlayer.Stream);
+                if (bgmPlayer.Stream != null) break;
+            }
+            
+            // 如果没有则使用内置 BGM
+            bgmPlayer.Stream ??= entry.DefaultBgm;
+            
             //GD.Print(bgmPlayer.Stream);
             break;
         }

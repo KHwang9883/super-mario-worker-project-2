@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=71 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
@@ -6,7 +6,6 @@
 [ext_resource type="Resource" uid="uid://c0wfvwbspss50" path="res://content/level/database/bgm_database.tres" id="3_ta7os"]
 [ext_resource type="PackedScene" uid="uid://brdcmv5xpmxgc" path="res://content/level/weather/wind/wind.tscn" id="4_t1fq4"]
 [ext_resource type="Script" uid="uid://bqu1llf503jdt" path="res://script/level/bgm/BgmPlayer.cs" id="4_u20sy"]
-[ext_resource type="AudioStream" uid="uid://dwtpjqoidtvn7" path="res://content/bgm/SMS2/sms46_2.ogg" id="5_i0wvf"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
 [ext_resource type="Texture2D" uid="uid://c2qyxcvftu6cd" path="res://content/level/hud/game_over.png" id="7_yeotl"]
 [ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/level/tile/obstacle.png" id="8_1mjcm"]
@@ -123,7 +122,7 @@ LevelAuthor = "GREEN SWEET"
 Gravity = 0.0
 WaterHeight = 444.0
 BackgroundId = 13
-BgmId = 8
+BgmId = 56
 AutoFluid = true
 FluidT1 = 448.0
 FluidT2 = 492.0
@@ -140,7 +139,6 @@ process_mode = 3
 script = ExtResource("4_u20sy")
 
 [node name="Bgm146Player" type="AudioStreamPlayer" parent="TestLevelNode2D/LevelConfig/BgmPlayer"]
-stream = ExtResource("5_i0wvf")
 
 [node name="Weather" type="Node" parent="TestLevelNode2D/LevelConfig"]
 
@@ -726,5 +724,6 @@ Id = 1
 position = Vector2(2460, 160)
 Id = 2
 
+[connection signal="finished" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="play"]
 [connection signal="tree_exiting" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="OnTreeExiting"]
 [connection signal="PlaySoundTimeWarning" from="TestLevelNode2D/HUD/HUD" to="TestLevelNode2D/HUD/HUD/TimeWarning" method="play"]
