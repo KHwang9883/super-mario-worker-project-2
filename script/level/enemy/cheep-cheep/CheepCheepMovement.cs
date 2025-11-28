@@ -13,7 +13,7 @@ public partial class CheepCheepMovement : BasicMovement {
     [Export] private EnemyInteraction? _enemyInteraction;
     [Export] private bool _stompableOutOfWater = true;
     
-    private bool _isInWater;
+    public bool IsInWater;
     private bool _flewOutOfWater;
     private bool _flyMode;
     private RandomNumberGenerator _rng = new();
@@ -26,15 +26,16 @@ public partial class CheepCheepMovement : BasicMovement {
     public override void _PhysicsProcess(double delta) {
         if (_area2D == null) return;
         
-        if (!_flewOutOfWater && _flyMode) {
+        if (!_flewOutOfWater && !_flyMode) {
+            GD.Print("执行");
             // 入水标记
             foreach (var area in _area2D.GetOverlappingAreas()) {
                 if (!area.IsInGroup("water")) continue;
-                _isInWater = true;
+                IsInWater = true;
             }
             
             // 入水标记后的出水检测
-            if (_isInWater) {
+            if (IsInWater) {
                 CheepMoveMode = CheepCheepMoveEnum.Fly;
                 foreach (var area in _area2D.GetOverlappingAreas()) {
                     if (!area.IsInGroup("water")) continue;

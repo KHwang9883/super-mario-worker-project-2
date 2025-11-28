@@ -109,12 +109,16 @@ public partial class LevelConfig : Node {
                 bgmPath = bgmPath.GetBaseName();
                 bgmPath += ".ogg";
                 //GD.Print(bgmPath);
-                bgmPlayer.Stream = AudioStreamOggVorbis.LoadFromFile(bgmPath);
-                //GD.Print(bgmPlayer.Stream);
-                if (bgmPlayer.Stream != null) break;
+                if (Godot.FileAccess.FileExists(bgmPath)) {
+                    bgmPlayer.Stream = AudioStreamOggVorbis.LoadFromFile(bgmPath);
+                    //GD.Print(bgmPlayer.Stream);
+                } else {
+                    break;
+                }
+                //if (bgmPlayer.Stream != null) break;
             }
             
-            // 如果没有则使用内置 BGM
+            // 如果没有外置覆盖 BGM 文件则使用内置 BGM
             bgmPlayer.Stream ??= entry.DefaultBgm;
             
             //GD.Print(bgmPlayer.Stream);
