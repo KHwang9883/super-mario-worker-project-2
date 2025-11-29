@@ -6,9 +6,8 @@ using SMWP.Level.Tool;
 public partial class Water : Area2D {
     [Export] private AnimatedSprite2D _waterSurfaceSprite = null!;
     [Export] private ColorRect _waterRect = null!;
+    private Fluid? _fluid;
     private LevelConfig? _levelConfig;
-    public enum FluidTypeEnum { Water, Lava }
-    private FluidTypeEnum _fluidType = FluidTypeEnum.Water;
     private bool _autoFluid;
     private float _t1;
     private float _t2;
@@ -18,14 +17,11 @@ public partial class Water : Area2D {
     private float _target;
     private bool _t1OrT2;
 
-    // 测试水块跟随用，可以删除
-    //private double _testWaterPhase = 233f;
-
     public override void _Ready() {
+        _fluid ??= GetParent<Fluid>();
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         
         Position = Position with { Y = _levelConfig.WaterHeight };
-        _fluidType = _levelConfig.FluidType;
         _autoFluid = _levelConfig.AutoFluid;
         if (!_autoFluid) return;
         _t1 = _levelConfig.FluidT1;
@@ -35,12 +31,6 @@ public partial class Water : Area2D {
         _target = _t1;
     }
     public override void _PhysicsProcess(double delta) {
-        
-        string currentAnim = _waterSurfaceSprite.Animation;
-        int currentFrame = _waterSurfaceSprite.Frame;
-        
-        Texture2D currentTexture = _waterSurfaceSprite.GetSpriteFrames().GetFrameTexture(currentAnim, currentFrame);
-        
         // 流体运动
         if (_autoFluid) {
             if (_delayTimer < _delay * 16) {
@@ -57,6 +47,11 @@ public partial class Water : Area2D {
         }
         
         // 计算水块位置
+        string currentAnim = _waterSurfaceSprite.Animation;
+        int currentFrame = _waterSurfaceSprite.Frame;
+        
+        Texture2D currentTexture = _waterSurfaceSprite.GetSpriteFrames().GetFrameTexture(currentAnim, currentFrame);
+        
         var screen = ScreenUtils.GetScreenRect(this);
 
         //Callable.From(() => {
@@ -68,10 +63,17 @@ public partial class Water : Area2D {
                 )
             );
         //}).CallDeferred();
-
-        // 测试水块跟随用，可以删除
-        //Position = new Vector2(Position.X, 0f + (float)Math.Sin(_testWaterPhase) * 128);
-        //_testWaterPhase += delta * 2f;
+        
+        // 流体情况
+        if (_fluid == null) return;
+        switch (_fluid.FluidType) {
+            case Fluid.FluidTypeEnum.Water:
+                Visible = true;
+                break;
+            case Fluid.FluidTypeEnum.Lava:
+                Visible = false;
+                break;
+        }
     }
     public void SetWaterHeight(float height) {
         Position = Position with { Y = height };

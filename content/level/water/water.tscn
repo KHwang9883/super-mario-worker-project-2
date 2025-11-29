@@ -1,8 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://2vuxafdyyhgx"]
+[gd_scene load_steps=10 format=3 uid="uid://2vuxafdyyhgx"]
 
 [ext_resource type="Texture2D" uid="uid://hgmroqnhbecu" path="res://content/level/water/water_surface.png" id="1_8j37s"]
 [ext_resource type="Script" uid="uid://ckibo4ofkc75a" path="res://script/level/water/Water.cs" id="1_opojc"]
-[ext_resource type="Texture2D" uid="uid://co5vfivmfbnid" path="res://content/level/water/lava_surface.png" id="3_71y67"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8j37s"]
 
@@ -49,63 +48,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qdwka"]
-atlas = ExtResource("3_71y67")
-region = Rect2(0, 0, 640, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oshm1"]
-atlas = ExtResource("3_71y67")
-region = Rect2(0, 36, 640, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_36hia"]
-atlas = ExtResource("3_71y67")
-region = Rect2(0, 72, 640, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nm6o4"]
-atlas = ExtResource("3_71y67")
-region = Rect2(0, 108, 640, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k72xo"]
-atlas = ExtResource("3_71y67")
-region = Rect2(0, 144, 640, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bharm"]
-atlas = ExtResource("3_71y67")
-region = Rect2(0, 180, 640, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fyxp7"]
-atlas = ExtResource("3_71y67")
-region = Rect2(0, 216, 640, 36)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vf21i"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qdwka")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oshm1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_36hia")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nm6o4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k72xo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bharm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fyxp7")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
-
 [node name="Water" type="Area2D" node_paths=PackedStringArray("_waterSurfaceSprite", "_waterRect") groups=["water", "water_global"]]
 z_index = 100
 collision_layer = 64
@@ -138,22 +80,3 @@ offset_top = 16.0
 offset_right = 1280.0
 offset_bottom = 528.0
 color = Color(0.3529412, 0.54901963, 0.90588236, 1)
-
-[node name="LavaSprite" type="Node2D" parent="."]
-visible = false
-
-[node name="LavaSurfaceParallax2D" type="Parallax2D" parent="LavaSprite"]
-repeat_size = Vector2(640, 0)
-repeat_times = 2
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LavaSprite/LavaSurfaceParallax2D"]
-position = Vector2(320, 8)
-sprite_frames = SubResource("SpriteFrames_vf21i")
-autoplay = "default"
-
-[node name="ColorRect" type="ColorRect" parent="LavaSprite"]
-offset_left = -640.0
-offset_top = 25.0
-offset_right = 1280.0
-offset_bottom = 537.0
-color = Color(0.48235294, 0, 0, 1)

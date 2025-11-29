@@ -32,8 +32,7 @@ public partial class LevelConfig : Node {
     public enum LayerOrderEnum { Classic, WaterAbove, Modified }
     // Todo: 读取时确定 Z Index
     [Export] public LayerOrderEnum LayerOrder = LayerOrderEnum.Modified;
-    // Todo
-    [Export] public Water.FluidTypeEnum FluidType = Water.FluidTypeEnum.Water;
+    [Export] public Fluid.FluidTypeEnum FluidType = Fluid.FluidTypeEnum.Water;
     [Export] public bool AutoFluid;
     [Export] public float FluidT1;
     [Export] public float FluidT2 = -64;
@@ -80,6 +79,10 @@ public partial class LevelConfig : Node {
         
         // Set Player
         LevelManager.Player = (Node2D)GetTree().GetFirstNodeInGroup("player");
+        
+        // Water Height Set
+        var water = (Water)GetTree().GetFirstNodeInGroup("water_global");
+        water.Position = water.Position with { Y = WaterHeight };
         
         // Background Set
         SetBgp(BgpId);
