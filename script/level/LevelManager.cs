@@ -10,6 +10,8 @@ namespace SMWP.Level;
 public partial class LevelManager : Node {
     [Signal]
     public delegate void PlaySound1UPEventHandler();
+
+    public static bool TitleScreenAnimationFinished;
     
     public static int Time { get; set; }
     public static int Life { get; set; } = 3;

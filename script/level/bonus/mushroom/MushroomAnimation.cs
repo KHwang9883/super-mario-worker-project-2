@@ -10,7 +10,8 @@ public partial class MushroomAnimation : Node {
     [Export] private AnimatedSprite2D _animatedSprite2D = null!;
     [Export] private MushroomMovement _mushroomMovement = null!;
     [Export] private CharacterBody2D _mushroom = null!;
-    
+
+    private float _lastInAirSpeedY;
     private int _blinkingTimer;
     private int _randomPercent;
     private RandomNumberGenerator _random = new RandomNumberGenerator();
@@ -78,7 +79,10 @@ public partial class MushroomAnimation : Node {
         
         // 落地动画
         bool isOnFloor = _mushroom.IsOnFloor();
-        if (isOnFloor && !_wasOnFloor) {
+        if (!_mushroom.IsOnFloor()) {
+            _lastInAirSpeedY = _mushroomMovement.SpeedY;
+        }
+        if (isOnFloor && !_wasOnFloor && _lastInAirSpeedY > _mushroomMovement.Gravity * 2f) {
             _animationFrameScaleYStatus = ScaleYStatus.Prepare;
         }
         _wasOnFloor = isOnFloor;

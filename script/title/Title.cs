@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level;
 
 public partial class Title : Node2D {
     [Export] private Node2D? _titleToSpin;
@@ -8,7 +9,7 @@ public partial class Title : Node2D {
     [Export] private bool _creatingLightStar;
     [Export] private PackedScene _lightStarScene = GD.Load<PackedScene>("uid://cg1273gwl8g68");
     [Export] private Control? _control;
-    //[Export] private String _optionSceneUid = "uid://bh01ow2pgnsh5";
+    private bool _inputReleased;
     
     public enum TitleAnimationStatus { Spin, Light, Lighting, Over}
     private TitleAnimationStatus _animationStatus = TitleAnimationStatus.Spin;
@@ -19,6 +20,10 @@ public partial class Title : Node2D {
     public override void _Ready() {
         if (_titleToSpin == null) return;
         _titleToSpin.Visible = true;
+        if (LevelManager.TitleScreenAnimationFinished) {
+            _animationStatus = TitleAnimationStatus.Light;
+            return;
+        }
         _titleToSpin.RotationDegrees -= 90f;
     }
     public override void _PhysicsProcess(double delta) {
@@ -28,7 +33,9 @@ public partial class Title : Node2D {
             case TitleAnimationStatus.Spin:
                 _titleToSpin.RotationDegrees += _spinAngle;
                 _spinAngle = Mathf.MoveToward(_spinAngle, 0f, 1f);
-                if (_spinAngle == 0f || Input.IsActionJustPressed("mouse_left")) {
+                // 输入缓冲
+                if (!Input.IsAnythingPressed()) _inputReleased = true;
+                if (_spinAngle == 0f || (Input.IsAnythingPressed() && _inputReleased)) {
                     _animationStatus = TitleAnimationStatus.Light;
                 }
                 break;
@@ -58,9 +65,10 @@ public partial class Title : Node2D {
                         GetNode<Control>("Control/Edit").GrabFocus();
                     }).CallDeferred();
                     
-                    if (_animationPlayer != null) {
+                    if (_animationPlayer != null && !LevelManager.TitleScreenAnimationFinished) {
                         _animationPlayer.Active = true;
                         _animationPlayer.Play();
+                        LevelManager.TitleScreenAnimationFinished = true;
                     }
                     if (_control != null) _control.ProcessMode = ProcessModeEnum.Inherit;
                 }
@@ -110,7 +118,6 @@ public partial class Title : Node2D {
     }
     
     public void JumpToScene(String sceneUid) {
-        GetTree().ChangeSceneToPacked(GD.Load<PackedScene>(sceneUid));
+        GetTree().ChangeSceneToFile(sceneUid);
     }
-    
 }

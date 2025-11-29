@@ -28,5 +28,4 @@ use_parent_material = true
 layout_mode = 1
 mouse_filter = 2
 
-[connection signal="mouse_entered" from="." to="SelectLightMask" method="OnDisplay"]
-[connection signal="mouse_exited" from="." to="SelectLightMask" method="OnHide"]
+[connection signal="mouse_entered" from="." to="." method="grab_focus"]

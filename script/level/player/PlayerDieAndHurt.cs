@@ -56,9 +56,11 @@ public partial class PlayerDieAndHurt : Node {
                 
                 // Game Over
                 else {
-                    if (!LevelManager.IsGameOver && !_levelConfig.FastRetry) {
+                    if (!LevelManager.IsGameOver) {
                         LevelManager.IsGameOver = true;
-                        EmitSignal(SignalName.PlaySoundGameOver);
+                        if (!_levelConfig.FastRetry) {
+                            EmitSignal(SignalName.PlaySoundGameOver);
+                        }
                     }
                     
                     var gameOverTime = !_levelConfig.FastRetry ? 500 : 250;
@@ -67,7 +69,7 @@ public partial class PlayerDieAndHurt : Node {
                         // Todo: 跳转到编辑界面或者标题界面
                         
                         LevelManager.GameOverClear();
-                        GetTree().Free();
+                        GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
                     }
                 }
             }

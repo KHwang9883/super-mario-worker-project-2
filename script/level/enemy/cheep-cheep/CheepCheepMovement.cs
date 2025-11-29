@@ -27,7 +27,6 @@ public partial class CheepCheepMovement : BasicMovement {
         if (_area2D == null) return;
         
         if (!_flewOutOfWater && !_flyMode) {
-            GD.Print("执行");
             // 入水标记
             foreach (var area in _area2D.GetOverlappingAreas()) {
                 if (!area.IsInGroup("water")) continue;
