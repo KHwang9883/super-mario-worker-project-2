@@ -52,6 +52,12 @@ public partial class Title : Node2D {
                         _titleToSpin.Material = _titleMaterial;
                     }
                     _animationStatus = TitleAnimationStatus.Over;
+                    
+                    // Cursor focus
+                    Callable.From(() => {
+                        GetNode<Control>("Control/Edit").GrabFocus();
+                    }).CallDeferred();
+                    
                     if (_animationPlayer != null) {
                         _animationPlayer.Active = true;
                         _animationPlayer.Play();

@@ -10,8 +10,15 @@ public partial class SelectLightMask : ColorRect {
         _button ??= GetParent<SmwpButton>();
     }
     public override void _PhysicsProcess(double delta) {
+        if (_button == null) return;
+        if (_button.HasFocus()) {
+            OnDisplay();
+        } else {
+            OnHide();
+        }
         if (!Visible) return;
-        if (_button is not { LightShining: true }) return;
+        if (!_button.LightShining) return;
+        
         
         _phase = Mathf.Wrap(_phase + 0.1f, 0f, Mathf.Tau);
         Modulate = Modulate with { A = 0.3f + Mathf.Sin(_phase) / 10f };
