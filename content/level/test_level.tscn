@@ -119,7 +119,7 @@ script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
 RoomHeight = 960.0
 WaterHeight = 444.0
-BgmId = 146
+BgmId = 56
 AutoFluid = true
 FluidT1 = 448.0
 FluidT2 = 500.0
@@ -643,7 +643,7 @@ position = Vector2(976, 80)
 position = Vector2(928, 272)
 
 [node name="MushroomLife" parent="TestLevelNode2D/Bonus" instance=ExtResource("50_rjg3t")]
-position = Vector2(1776, 36)
+position = Vector2(1768, 48)
 
 [node name="Coin" parent="TestLevelNode2D/Bonus" instance=ExtResource("50_sjqdy")]
 position = Vector2(1684, 48)

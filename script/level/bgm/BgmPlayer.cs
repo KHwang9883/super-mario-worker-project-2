@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using SMWP.Level;
 using SMWP.Level.Player;
+using SMWP.Level.Tool;
 
 public partial class BgmPlayer : AudioStreamPlayer {
     [Export] private AudioStreamPlayer _bgm146Player = null!;
@@ -103,32 +104,35 @@ public partial class BgmPlayer : AudioStreamPlayer {
                     baseDir = baseDir?.Replace("\\", "/");
                     var bgmPath =
                         baseDir + "/Data/" + entry.AlbumPath + "/" + fileName;
-                    // 不保留文件后缀，因为之前 SMWP 版本后缀过于混乱，无法进行识别，故强制统一为 OGG 格式
+                    // 因为之前 SMWP 版本后缀过于混乱，无法进行识别，故不保留文件后缀
                     bgmPath = bgmPath.GetBaseName();
-                    bgmPath += ".ogg";
-                    //GD.Print(bgmPath);
-                    if (Godot.FileAccess.FileExists(bgmPath)) {
-                        Stream = AudioStreamOggVorbis.LoadFromFile(bgmPath);
-                        //GD.Print(Stream);
-                    } else {
-                        break;
+                    
+                    // 猜测 BGM 格式以及真实格式
+                    switch (BgmFileFormatGuess.GetGuessFormat(bgmPath)) {
+                        case BgmFileFormatGuess.BgmFileTypeEnum.Mp3:
+                            Stream = AudioStreamMP3.LoadFromFile(BgmFileFormatGuess.GetFullBgmFileName(bgmPath));
+                            break;
+                        case BgmFileFormatGuess.BgmFileTypeEnum.Wav:
+                            Stream = AudioStreamWav.LoadFromFile(BgmFileFormatGuess.GetFullBgmFileName(bgmPath));
+                            break;
+                        case BgmFileFormatGuess.BgmFileTypeEnum.Ogg:
+                            Stream = AudioStreamOggVorbis.LoadFromFile(BgmFileFormatGuess.GetFullBgmFileName(bgmPath));
+                            break;
+                        // 失败后使用默认的 OGG 格式进行读取
+                        case BgmFileFormatGuess.BgmFileTypeEnum.Invalid:
+                            bgmPath += ".ogg";
+                            if (Godot.FileAccess.FileExists(bgmPath)) {
+                                Stream = AudioStreamOggVorbis.LoadFromFile(bgmPath);
+                            }
+                            break;
                     }
-                    //if (Stream != null) break;
                 }
-            
                 // 如果没有外置覆盖 BGM 文件则使用内置 BGM
                 Stream ??= entry.DefaultBgm;
-            
-                //GD.Print(Stream);
                 break;
             }
             
             if (play) Play();
-            
-            // 第 146 号 BGM 延迟一小段时间后同步播放
-            /*if (_levelConfig.BgmId == 146) {
-                _bgm146Player.GetNode<Timer>("ForceSyncTimer").Start();
-            }*/
         }
     }
     public void OnPlayerDied() {
