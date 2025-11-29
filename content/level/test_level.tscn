@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=72 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_676rr"]
@@ -62,6 +62,7 @@
 [ext_resource type="PackedScene" uid="uid://22smr6kls4nc" path="res://content/level/tile/obstacle_half.tscn" id="55_sldem"]
 [ext_resource type="PackedScene" uid="uid://dri8grhd0ymhk" path="res://content/level/tile/platform_solid.tscn" id="56_ul4ql"]
 [ext_resource type="PackedScene" uid="uid://ci11f7ep75br" path="res://content/level/tile/platform_solid_player.tscn" id="57_e7eqa"]
+[ext_resource type="PackedScene" uid="uid://b1srfpaxhbli6" path="res://content/level/facility/scene_control/scene_control.tscn" id="63_i0wvf"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kynl2"]
 blend_mode = 2
@@ -118,7 +119,6 @@ script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
 RoomHeight = 960.0
 WaterHeight = 444.0
-BackgroundId = 13
 BgmId = 146
 AutoFluid = true
 FluidT1 = 448.0
@@ -131,9 +131,10 @@ BgpDatabase = ExtResource("2_27x5w")
 BgmDatabase = ExtResource("3_ta7os")
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
 
-[node name="BgmPlayer" type="AudioStreamPlayer" parent="TestLevelNode2D/LevelConfig"]
+[node name="BgmPlayer" type="AudioStreamPlayer" parent="TestLevelNode2D/LevelConfig" node_paths=PackedStringArray("_bgm146Player")]
 process_mode = 3
 script = ExtResource("4_u20sy")
+_bgm146Player = NodePath("Bgm146Player")
 
 [node name="Bgm146Player" type="AudioStreamPlayer" parent="TestLevelNode2D/LevelConfig/BgmPlayer"]
 stream = ExtResource("5_i0wvf")
@@ -600,6 +601,12 @@ position = Vector2(3092, 428)
 [node name="FireballBro3" parent="TestLevelNode2D/Enemies" instance=ExtResource("48_yeotl")]
 position = Vector2(3172, 428)
 
+[node name="PoisonousMushroom" parent="TestLevelNode2D/Enemies" instance=ExtResource("21_dwm8j")]
+position = Vector2(2704, 272)
+
+[node name="PoisonousMushroom2" parent="TestLevelNode2D/Enemies" instance=ExtResource("21_dwm8j")]
+position = Vector2(2860, 128)
+
 [node name="Bonus" type="Node2D" parent="TestLevelNode2D"]
 
 [node name="FireFlower" parent="TestLevelNode2D/Bonus" instance=ExtResource("17_d2gt5")]
@@ -724,6 +731,9 @@ position = Vector2(2832, 272)
 
 [node name="Brick2" parent="TestLevelNode2D" instance=ExtResource("23_dmmuc")]
 position = Vector2(2832, 208)
+
+[node name="SceneControl" parent="TestLevelNode2D" instance=ExtResource("63_i0wvf")]
+position = Vector2(2928, 272)
 
 [connection signal="finished" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="play"]
 [connection signal="tree_exiting" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="OnTreeExiting"]

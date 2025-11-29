@@ -21,7 +21,7 @@ public partial class LevelConfig : Node {
     // Todo
     [Export] public int KoopaEnergy = 5;
     [Export] public float WaterHeight = 800f;
-    [Export] public int BackgroundId = 5;
+    [Export] public int BgpId = 5;
     [Export] public int BgmId = 1;
 
     [ExportGroup("AdditionalSettings")]
@@ -73,6 +73,7 @@ public partial class LevelConfig : Node {
     [Export] public BgmDatabase BgmDatabase { get; private set; } = null!;
     
     private PackedScene? _backgroundScene;
+    private BackgroundSet? _backgroundSet;
     public override void _Ready() {
         // Time Set
         LevelManager.SetLevelTime(Time);
@@ -81,48 +82,33 @@ public partial class LevelConfig : Node {
         LevelManager.Player = (Node2D)GetTree().GetFirstNodeInGroup("player");
         
         // Background Set
+        SetBgp(BgpId);
+        
+        // Bgm 初始化见 BgmPlayer
+    }
+
+    public void SetBgm(int bgmId) {
+        BgmId = bgmId;
+        GetNode<BgmPlayer>("BgmPlayer").SetBgm(true);
+    }
+    public void SetBgp(int bgpId) {
         foreach (var entry in BgpDatabase.Entries) {
-            if (entry.BackgroundId != BackgroundId) continue;
+            if (entry.BackgroundId != bgpId) continue;
             _backgroundScene = entry.BackgroundScene;
             break;
         }
 
+        // 删除旧背景
+        if (_backgroundSet != null) _backgroundSet.Free();
+        
         Callable.From(() => {
             if (_backgroundScene == null) return;
-            var background = _backgroundScene.Instantiate<BackgroundSet>();
-            AddSibling(background);
+            _backgroundSet = _backgroundScene.Instantiate<BackgroundSet>();
+            AddSibling(_backgroundSet);
         }).CallDeferred();
-        
-        // Bgm Set
-        foreach (var entry in BgmDatabase.Entries) {
-            if (entry.BgmId != BgmId) continue;
-            var bgmPlayer = GetNode<AudioStreamPlayer>("BgmPlayer");
-            
-            // 首先获取外置的覆盖 BGM
-            foreach (var fileName in entry.FileNameForOverride) {
-                // 遍历所有的兼容性文件名
-                var baseDir = Path.GetDirectoryName(OS.GetExecutablePath());
-                baseDir = baseDir?.Replace("\\", "/");
-                var bgmPath =
-                    baseDir + "/Data/" + entry.AlbumPath + "/" + fileName;
-                // 不保留文件后缀，因为之前 SMWP 版本后缀过于混乱，无法进行识别，故强制统一为 OGG 格式
-                bgmPath = bgmPath.GetBaseName();
-                bgmPath += ".ogg";
-                //GD.Print(bgmPath);
-                if (Godot.FileAccess.FileExists(bgmPath)) {
-                    bgmPlayer.Stream = AudioStreamOggVorbis.LoadFromFile(bgmPath);
-                    //GD.Print(bgmPlayer.Stream);
-                } else {
-                    break;
-                }
-                //if (bgmPlayer.Stream != null) break;
-            }
-            
-            // 如果没有外置覆盖 BGM 文件则使用内置 BGM
-            bgmPlayer.Stream ??= entry.DefaultBgm;
-            
-            //GD.Print(bgmPlayer.Stream);
-            break;
-        }
+    }
+    public void SetWaterHeight(float waterHeight) {
+        var globalWater = (Water)GetTree().GetFirstNodeInGroup("water_global");
+        globalWater.SetWaterHeight(waterHeight);
     }
 }

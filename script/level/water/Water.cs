@@ -73,4 +73,8 @@ public partial class Water : Area2D {
         //Position = new Vector2(Position.X, 0f + (float)Math.Sin(_testWaterPhase) * 128);
         //_testWaterPhase += delta * 2f;
     }
+    public void SetWaterHeight(float height) {
+        Position = Position with { Y = height };
+        _autoFluid = false;
+    }
 }

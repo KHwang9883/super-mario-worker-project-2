@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1srfpaxhbli6"]
+
+[ext_resource type="Script" uid="uid://b3q7i10jdrhcg" path="res://script/level/facility/scene_control/SceneControl.cs" id="1_rrqq2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4npsf"]
+size = Vector2(32, 32)
+
+[node name="SceneControl" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_rrqq2")
+ChangeBgm = true
+BgmId = 125
+ChangeBgp = true
+BgpId = 32
+WaterHeight = 900.0
+ChangeWeather = true
+WindyLevel = 1
+Darkness = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4npsf")
+debug_color = Color(0.59353757, 0.374498, 1, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
