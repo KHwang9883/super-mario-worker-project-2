@@ -7,10 +7,6 @@ using SMWP.Level.Physics;
 namespace SMWP.Level.Projectile.Player.Beetroot;
 
 public partial class BeetrootInteraction : Node {
-    [Signal]
-    public delegate void BeetrootBounceEventHandler();
-    [Signal]
-    public delegate void BeetrootBounceCountAddEventHandler();
     [Export] private CharacterBody2D _beetroot = null!;
     [Export] private PackedScene _fireballExplosionPackedScene = null!;
     [Export] private BeetrootMovement _beetrootMovement = null!;
@@ -38,8 +34,7 @@ public partial class BeetrootInteraction : Node {
             break;
         }
         
-        // 撞击砖块
-        BlockHitDetect();
+        // 考虑到执行顺序，撞击砖块的检测为 Movement 组件中发射信号
     }
     
     // 甜菜爆炸！
@@ -52,7 +47,7 @@ public partial class BeetrootInteraction : Node {
         Node? interactionWithBlockNode = null;
         
         var blockCollider = _beetroot.MoveAndCollide(
-            new Vector2(_beetroot.IsOnWall() ? 0f : 1f * _beetrootMovement.Direction, 1f), true
+            new Vector2(1f * _beetrootMovement.Direction, 1f), true
             )?.GetCollider();
         //GD.Print(blockCollider);
         if (blockCollider is not StaticBody2D staticBody2D) return;

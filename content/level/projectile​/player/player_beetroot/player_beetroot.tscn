@@ -114,7 +114,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("8_3qlfe")]
 
-[connection signal="BeetrootBounce" from="BeetrootInteraction" to="BeetrootMovement" method="Bounce"]
-[connection signal="BeetrootBounceCountAdd" from="BeetrootInteraction" to="BeetrootMovement" method="BounceCountAdd"]
 [connection signal="HitBlock" from="BeetrootMovement" to="BeetrootInteraction" method="Explode"]
+[connection signal="HitBlock" from="BeetrootMovement" to="BeetrootInteraction" method="BlockHitDetect"]
 [connection signal="HitBlock" from="BeetrootMovement" to="ContinuousAudioStream2D" method="play"]
+[connection signal="HitBlockDetect" from="BeetrootMovement" to="BeetrootInteraction" method="BlockHitDetect"]

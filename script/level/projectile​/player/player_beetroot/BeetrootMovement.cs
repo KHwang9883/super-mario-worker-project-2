@@ -36,11 +36,11 @@ public partial class BeetrootMovement : BasicMovement {
         MoveObject.MoveAndSlide();
     }
     public void Bounce() {
+        EmitSignal(SignalName.HitBlock);
         Direction = 0f - Direction;
         BounceCountAdd();
         _speedXFactor = BounceCount;
         SpeedY = JumpSpeed;
-        EmitSignal(SignalName.HitBlock);
     }
     public void BounceCountAdd() {
         BounceCount++;
