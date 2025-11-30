@@ -40,7 +40,7 @@ public partial class PlayerDieAndHurt : Node {
     }
     public override void _PhysicsProcess(double delta) {
         if (_levelConfig == null) {
-            GD.PushError($"{this}: Level Config is null!");
+            GD.PushError($"{this}: LevelConfig is null!");
             return;
         }
         

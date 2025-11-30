@@ -40,7 +40,7 @@ public partial class BgmPlayer : AudioStreamPlayer {
     }
     public override void _PhysicsProcess(double delta) {
         if (_levelConfig == null) {
-            GD.PushError($"{this}: Level Config is null!");
+            GD.PushError($"{this}: LevelConfig is null!");
             return;
         }
         

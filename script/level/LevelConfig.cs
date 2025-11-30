@@ -21,7 +21,7 @@ public partial class LevelConfig : Node {
     // Todo
     [Export] public int KoopaEnergy = 5;
     [Export] public float WaterHeight = 800f;
-    [Export] public int BgpId = 5;
+    [Export] public int BgpId = 1;
     [Export] public int BgmId = 1;
 
     [ExportGroup("AdditionalSettings")]

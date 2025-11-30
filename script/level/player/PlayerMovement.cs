@@ -57,8 +57,10 @@ public partial class PlayerMovement : Node {
     private bool _wasStuck;
     private int _jumpBoostTimer;
 
+    public bool OnFallingPlatform;
+    
     // TODO: 冰块状态
-    private bool _onIce;
+    public bool OnIce;
     
     // God Mode 玩家碰撞层掩码记录
     private uint _originPlayerLayer;
@@ -279,7 +281,25 @@ public partial class PlayerMovement : Node {
             SpeedY = 0f;
             _player.Position = new Vector2(_player.Position.X - 1f * Direction, _player.Position.Y);
         } else {
+            // 正常运动
             _player.MoveAndSlide();
+            
+            // 掉落平台检测
+            OnFallingPlatform = false;
+            if (_player.IsOnFloor()) {
+                var onPlatformTest = _player.MoveAndCollide(Vector2.Zero, true);
+                var kinematicCollision2D = _player.MoveAndCollide(Vector2.Down, true);
+                if (onPlatformTest == null && kinematicCollision2D != null) {
+                    var collider = kinematicCollision2D.GetCollider();
+                    if (IsInstanceValid(collider)) {
+                        if (collider is ISteppable steppable) {
+                            // Todo: _player.LastSpeedY > 0f
+                            steppable.OnStepped();
+                            OnFallingPlatform = true;
+                        }
+                    }
+                }
+            }
         }
 
         // 镜头越界处理（放在运动结束之后）

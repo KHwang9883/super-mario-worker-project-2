@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2hm1ej2l7abm"]
+
+[ext_resource type="Texture2D" uid="uid://cwt7jk5e5rygs" path="res://content/level/facility/platform/plarform_horizontal_marker.png" id="1_ckl75"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60x0t"]
+size = Vector2(32, 32)
+
+[node name="PlarformHorizontalMarker" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.5019608)
+texture = ExtResource("1_ckl75")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_60x0t")
+debug_color = Color(0.27196148, 0.61207, 0.46173465, 0.41960785)

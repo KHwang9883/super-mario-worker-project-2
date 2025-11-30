@@ -5,6 +5,8 @@ shader_type canvas_item;
 uniform float corner_radius : hint_range(0, 0.5) = 0.1;
 uniform bool antialiasing = true;
 
+render_mode blend_add;
+
 void fragment() {
     // 获取纹理坐标
     vec2 uv = UV;

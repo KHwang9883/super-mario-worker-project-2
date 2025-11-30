@@ -32,7 +32,7 @@ public partial class SceneControl : Area2D {
     
     public void SetSceneStatus() {
         if (_levelConfig == null) {
-            GD.PushError($"{this}: Level Config is null!");
+            GD.PushError($"{this}: LevelConfig is null!");
         } else {
             if (ChangeBgm && _levelConfig.BgmId != BgmId) _levelConfig.SetBgm(BgmId);
 

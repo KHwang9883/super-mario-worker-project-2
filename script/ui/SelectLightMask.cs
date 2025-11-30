@@ -21,7 +21,7 @@ public partial class SelectLightMask : ColorRect {
         
         
         _phase = Mathf.Wrap(_phase + 0.1f, 0f, Mathf.Tau);
-        Modulate = Modulate with { A = 0.3f + Mathf.Sin(_phase) / 10f };
+        Modulate = Modulate with { A = 0.5f + Mathf.Sin(_phase) / 10f };
     }
     public void OnDisplay() {
         // ProcessMode.Disabled 的情形

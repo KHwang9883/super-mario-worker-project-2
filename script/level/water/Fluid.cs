@@ -16,7 +16,7 @@ public partial class Fluid : Node2D {
     }
     public override void _PhysicsProcess(double delta) {
         if (_levelConfig == null) {
-            GD.PushError($"{this}: Level Config is null!");
+            GD.PushError($"{this}: LevelConfig is null!");
         } else {
             FluidType = _levelConfig.FluidType;
         }
