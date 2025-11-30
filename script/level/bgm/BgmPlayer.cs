@@ -6,6 +6,9 @@ using SMWP.Level.Player;
 using SMWP.Level.Tool;
 
 public partial class BgmPlayer : AudioStreamPlayer {
+    [Signal]
+    public delegate void ModuleResourceConvertEventHandler(AudioStreamPlayer player, string filePath);
+    
     [Export] private AudioStreamPlayer _bgm146Player = null!;
     private Node2D? _player;
     private PlayerDieAndHurt? _playerDieAndHurt;
@@ -118,6 +121,25 @@ public partial class BgmPlayer : AudioStreamPlayer {
                         case BgmFileFormatGuess.BgmFileTypeEnum.Ogg:
                             Stream = AudioStreamOggVorbis.LoadFromFile(BgmFileFormatGuess.GetFullBgmFileName(bgmPath));
                             break;
+                        
+                        // Module 格式需要额外转换
+                        // 由于 C# 无法直接调用 GDExtension 的类，因此发射信号交给 GDScript 处理
+                        case BgmFileFormatGuess.BgmFileTypeEnum.Mod:
+                            EmitSignal(
+                                SignalName.ModuleResourceConvert, this, BgmFileFormatGuess.GetFullBgmFileName(bgmPath)
+                                );
+                            break;
+                        case BgmFileFormatGuess.BgmFileTypeEnum.It:
+                            EmitSignal(
+                                SignalName.ModuleResourceConvert, this, BgmFileFormatGuess.GetFullBgmFileName(bgmPath)
+                            );
+                            break;
+                        case BgmFileFormatGuess.BgmFileTypeEnum.Xm:
+                            EmitSignal(
+                                SignalName.ModuleResourceConvert, this, BgmFileFormatGuess.GetFullBgmFileName(bgmPath)
+                            );
+                            break;
+                        
                         // 失败后使用默认的 OGG 格式进行读取
                         case BgmFileFormatGuess.BgmFileTypeEnum.Invalid:
                             bgmPath += ".ogg";

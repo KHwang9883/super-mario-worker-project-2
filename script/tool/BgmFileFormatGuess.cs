@@ -10,6 +10,9 @@ public static class BgmFileFormatGuess {
         Mp3,
         Wav,
         Ogg,
+        It,
+        Xm,
+        Mod,
         Invalid,
     }
     private static readonly string[] PossibleFormats = [
@@ -59,7 +62,49 @@ public static class BgmFileFormatGuess {
                 return BgmFileTypeEnum.Mp3;
 
             // 文件不合法，返回 Invalid，使用内置 BGM
-            // IT XM MOD 格式由于扩展类只能供 GDScript 使用，返回 Invalid，使用内置 BGM
+            // IT 格式: IMPM header
+            if (header.Length >= 4 && header.Take(4).SequenceEqual(new byte[] { 0x49, 0x4D, 0x50, 0x4D })) // "IMPM"
+                return BgmFileTypeEnum.It;
+                
+            // XM 格式: Extended Module header
+            if (header.Length >= 17 && header.Take(17).SequenceEqual(new byte[] { 0x45, 0x78, 0x74, 0x65, 0x6E, 0x64, 0x65, 0x64, 0x20, 0x4D, 0x6F, 0x64, 0x75, 0x6C, 0x65, 0x3A, 0x20 })) // "Extended Module: "
+                return BgmFileTypeEnum.Xm;
+                
+            // MOD 格式检测
+            // 对于 MOD 文件，我们需要检查文件长度和魔数
+            // 首先检查文件是否足够大以容纳 MOD 头信息
+            if (file.GetLength() >= 1084) {
+                // 保存当前位置
+                var currentPosition = file.GetPosition();
+                // 移动到魔数位置（偏移量1080）
+                file.Seek(1080);
+                // 读取4字节魔数
+                var modMagic = file.GetBuffer(4);
+                // 恢复位置
+                file.Seek(currentPosition);
+                
+                // 检查标准 MOD 魔数
+                if (modMagic.Length < 4) return BgmFileTypeEnum.Invalid;
+                // ProTracker/FastTracker 魔数模式
+                bool isModMagic =
+                    (modMagic[0] == 0x4D && modMagic[1] == 0x2E && modMagic[2] == 0x4B && modMagic[3] == 0x2E) || // M.K.
+                    (modMagic[0] == 0x4D && modMagic[1] == 0x21 && modMagic[2] == 0x4B && modMagic[3] == 0x21) || // M!K!
+                    (modMagic[0] == 0x34 && modMagic[1] == 0x43 && modMagic[2] == 0x48 && modMagic[3] == 0x4E) || // 4CHN
+                    (modMagic[0] == 0x36 && modMagic[1] == 0x43 && modMagic[2] == 0x48 && modMagic[3] == 0x4E) || // 6CHN
+                    (modMagic[0] == 0x38 && modMagic[1] == 0x43 && modMagic[2] == 0x48 && modMagic[3] == 0x4E) || // 8CHN
+                    // 其他可能的魔数
+                    (modMagic[0] == 0x46 && modMagic[1] == 0x43 && modMagic[2] == 0x48 && modMagic[3] == 0x4E) || // FCHN
+                    (modMagic[0] == 0x54 && modMagic[1] == 0x43 && modMagic[2] == 0x48 && modMagic[3] == 0x4E);
+                    
+                // 检查常见的 MOD 魔数
+                // M.K., M!K!, 4CHN, 6CHN, 8CHN 等
+                    
+                if (isModMagic) {
+                    return BgmFileTypeEnum.Mod;
+                }
+            }
+            
+            // 文件不匹配任何已知格式，返回 Invalid
         }
         return BgmFileTypeEnum.Invalid;
     }

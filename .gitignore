@@ -15,3 +15,4 @@
 *.smwl
 *.smws
 *.smwp
+.vscode/settings.json
