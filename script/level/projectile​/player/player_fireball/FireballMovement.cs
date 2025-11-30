@@ -18,7 +18,7 @@ public partial class FireballMovement : BasicMovement {
     }
     public override void _PhysicsProcess(double delta) {
         base._PhysicsProcess(delta);
-        if (!MoveObject.IsOnWall()) return;
+        if (!MoveObject.IsOnWall() && MoveObject.MoveAndCollide(Vector2.Zero, true) == null) return;
         EmitSignal(SignalName.FireballExplode);
         MoveObject.QueueFree();
     }
