@@ -4,25 +4,33 @@ using SMWP.Level;
 
 public partial class PlatformVertical : AnimatableBody2D {
     [Export] public float SpeedY = 1f;
-    private float _topLimit = 114514f; // Todo: 参数要改
-    private float _bottomLimit = -114514f; // Todo: 参数要改
+    private float _textureHeight;
+    private float _topLimit = -32f;
+    private float _bottomLimit = 0f;
     private LevelConfig? _levelConfig;
 
     public override void _Ready() {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         _bottomLimit += _levelConfig.RoomHeight;
+        var animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        _textureHeight = animatedSprite2D.SpriteFrames.GetFrameTexture(
+            animatedSprite2D.Animation, animatedSprite2D.Frame
+            ).GetSize().Y;
     }
     public override void _PhysicsProcess(double delta) {
         if (_levelConfig == null) {
             GD.PushError($"{this}: LevelConfig is null!");
         } else {
-            // Todo: 桥の上限と下限をLevelConfigから取得するようにする (划)
-            if (Position.Y < _topLimit) {
-                Position = Position with { Y = 114f }; // Todo
+            Position += new Vector2(0f, SpeedY);
+            
+            // 由于 GM8 版本中中心点在左上角，因此为 offset 处理
+            var truePositionY = Position.Y - _textureHeight / 2f;
+            if (truePositionY < _topLimit) {
+                Position = Position with { Y = _bottomLimit + _textureHeight / 2f };
                 ResetPhysicsInterpolation();
             }
-            if (Position.Y > _bottomLimit) {
-                Position = Position with { Y = -1f }; // Todo
+            if (truePositionY > _bottomLimit) {
+                Position = Position with { Y = _topLimit + _textureHeight / 2f };
                 ResetPhysicsInterpolation();
             }
         }

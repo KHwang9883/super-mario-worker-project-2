@@ -32,6 +32,7 @@ public partial class PlayerMovement : Node {
     private float _lastPositionX;
     
     public float SpeedY;
+    private float _lastSpeedY;
     private float _maxFallingSpeed = 13f;
     
     private float _waterHorizontalAcceleration = 0.05f;
@@ -184,6 +185,8 @@ public partial class PlayerMovement : Node {
         };
 
         // y 速度
+        _lastSpeedY = SpeedY;
+        
         // 落地或顶头
         if ((_player.IsOnFloor() || (_player.IsOnCeiling() && SpeedY < 0f))) {
             SpeedY = 0f;
@@ -293,9 +296,11 @@ public partial class PlayerMovement : Node {
                     var collider = kinematicCollision2D.GetCollider();
                     if (IsInstanceValid(collider)) {
                         if (collider is ISteppable steppable) {
-                            // Todo: _player.LastSpeedY > 0f
-                            steppable.OnStepped();
-                            OnFallingPlatform = true;
+                            // 额外检测 y 速度的特性
+                            if (_lastSpeedY > _gravity) {
+                                steppable.OnStepped();
+                                OnFallingPlatform = true;
+                            }
                         }
                     }
                 }
