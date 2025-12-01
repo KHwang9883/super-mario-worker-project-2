@@ -1,7 +1,10 @@
 name: "Export binaries"
 on: 
-  push:
-  pull_request:
+  # Uncomment this and remove `schedule` after the repository is made public.
+  #push:
+  #pull_request:
+  schedule:
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
