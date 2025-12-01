@@ -17,7 +17,6 @@ public partial class LevelCamera : Camera2D {
         if (_player == null) {
             GD.PushError($"{this}: Player is null!");
         } else {
-            // Todo: 修复摄像机在玩家站上运动桥上抖动的问题
             Position = _player.Position.Round();
         }
     }

@@ -383,7 +383,7 @@ tile_set = ExtResource("11_877iw")
 
 [node name="Mario" parent="TestLevelNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(2756, 244)
+position = Vector2(2704, 276)
 
 [node name="TestCamera2D" parent="TestLevelNode2D" instance=ExtResource("10_8mywb")]
 position = Vector2(2756, 244)
@@ -750,7 +750,7 @@ position = Vector2(2664, 188)
 position = Vector2(2664, 296)
 
 [node name="PlatformHorizontal" parent="TestLevelNode2D" instance=ExtResource("67_s6ftr")]
-position = Vector2(2480, 328)
+position = Vector2(2484, 328)
 
 [node name="PlatformHorizontal2" parent="TestLevelNode2D" instance=ExtResource("67_s6ftr")]
 position = Vector2(2440, 432)

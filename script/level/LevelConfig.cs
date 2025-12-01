@@ -51,7 +51,6 @@ public partial class LevelConfig : Node {
     [Export] public bool FasterLevelPass;
     [Export] public bool HUDDisplay = true;
     
-    // Todo
     [Export(PropertyHint.Range,"0, 5, 1")] public int RainyLevel;
     [Export(PropertyHint.Range,"0, 3, 1")] public int FallingStarsLevel;
     [Export(PropertyHint.Range,"0, 5, 1")] public int SnowyLevel;
