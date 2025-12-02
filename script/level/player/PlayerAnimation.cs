@@ -39,6 +39,12 @@ public partial class PlayerAnimation : Node {
         //_playerMediator.playerDieAndHurt.PlayerHurt += OnPlayerHurt;
     }
     public override void _PhysicsProcess(double delta) {
+        if (_playerMediator.playerGodMode.IsGodFly) {
+            _animatedSprite2D.ProcessMode = ProcessModeEnum.Disabled;
+            return;
+        }
+        _animatedSprite2D.ProcessMode = ProcessModeEnum.Inherit;
+        
         // Powerup SpriteFrames
         if (!_hurting) {
             switch (_playerMediator.playerSuit.Suit) {

@@ -21,7 +21,6 @@ public partial class PlatformFall : AnimatableBody2D, ISteppable{
         Position += new Vector2(0f, _speedY);
         
         // Todo: 玩家踩到掉落平台后，无视其他平台
-        // Todo: 玩家 lastSpeedY > 0f
     }
     public void OnStepped() {
         _fall = true;

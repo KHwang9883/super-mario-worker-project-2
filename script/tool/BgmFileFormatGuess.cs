@@ -33,7 +33,7 @@ public static class BgmFileFormatGuess {
             if (file == null) continue;
             return tryPath;
         }
-        return null;
+        return null!;
     }
     public static BgmFileTypeEnum GetGuessFormat(string path) {
         // 第二步：读取到文件，根据文件头猜测正确的格式

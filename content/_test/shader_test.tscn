@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkjgkmt01sb2b"]
 
-[ext_resource type="Shader" uid="uid://jyowme5g625v" path="res://content/shader_test.gdshader" id="1_2rdio"]
+[ext_resource type="Shader" uid="uid://jyowme5g625v" path="res://content/_test/shader_test.gdshader" id="1_2rdio"]
 [ext_resource type="Texture2D" uid="uid://cmfjvfvk7hatq" path="res://content/level/weather/light/unused_light_mask/gm8_smwp_weather_light_mask.png" id="2_cu2mx"]
-[ext_resource type="Script" uid="uid://c4pbvo15giepw" path="res://content/ShaderTest.cs" id="3_l041p"]
+[ext_resource type="Script" uid="uid://c4pbvo15giepw" path="res://content/_test/ShaderTest.cs" id="3_l041p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h8cb6"]
 shader = ExtResource("1_2rdio")

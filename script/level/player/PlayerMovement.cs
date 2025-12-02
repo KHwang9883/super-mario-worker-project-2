@@ -297,7 +297,7 @@ public partial class PlayerMovement : Node {
                     if (IsInstanceValid(collider)) {
                         if (collider is ISteppable steppable) {
                             // 额外检测 y 速度的特性
-                            if (_lastSpeedY > _gravity) {
+                            if (_lastSpeedY > 0f /*_gravity*/) {
                                 steppable.OnStepped();
                                 OnFallingPlatform = true;
                             }
