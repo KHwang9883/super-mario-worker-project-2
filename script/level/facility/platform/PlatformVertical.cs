@@ -2,7 +2,10 @@ using Godot;
 using System;
 using SMWP.Level;
 
-public partial class PlatformVertical : AnimatableBody2D {
+public partial class PlatformVertical : AnimatableBody2D, ISteppable {
+    [Signal]
+    public delegate void SteppedEventHandler();
+    
     [Export] public float SpeedY = 1f;
     private float _textureHeight;
     private float _topLimit = -32f;
@@ -36,5 +39,8 @@ public partial class PlatformVertical : AnimatableBody2D {
             
             // Todo: 开关砖第二功能：SpeedY *= -1
         }
+    }
+    public void OnStepped() {
+        EmitSignal(SignalName.Stepped);
     }
 }

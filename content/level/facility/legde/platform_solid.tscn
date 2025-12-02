@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dri8grhd0ymhk"]
+
+[ext_resource type="Texture2D" uid="uid://ddpy71r4lydw8" path="res://content/level/facility/legde/platform_solid.png" id="1_fg80f"]
+[ext_resource type="Script" uid="uid://kj2nq1hyac4o" path="res://script/level/facility/platform/PlatformPlayerPenetration.cs" id="2_1x6e8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7igh6"]
+size = Vector2(32, 32)
+
+[node name="PlatformSolid" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+texture = ExtResource("1_fg80f")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_7igh6")
+one_way_collision = true
+
+[node name="PlayerPenetration" type="Node" parent="."]
+script = ExtResource("2_1x6e8")

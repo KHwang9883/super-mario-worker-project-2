@@ -58,7 +58,7 @@ public partial class PlayerMovement : Node {
     private bool _wasStuck;
     private int _jumpBoostTimer;
 
-    public bool OnFallingPlatform;
+    public bool OnVerticalPlatform;
     
     // TODO: 冰块状态
     public bool OnIce;
@@ -288,7 +288,7 @@ public partial class PlayerMovement : Node {
             _player.MoveAndSlide();
             
             // 掉落平台检测
-            OnFallingPlatform = false;
+            OnVerticalPlatform = false;
             if (_player.IsOnFloor()) {
                 var onPlatformTest = _player.MoveAndCollide(Vector2.Zero, true);
                 var kinematicCollision2D = _player.MoveAndCollide(Vector2.Down, true);
@@ -299,7 +299,7 @@ public partial class PlayerMovement : Node {
                             // 额外检测 y 速度的特性
                             if (_lastSpeedY > 0f /*_gravity*/) {
                                 steppable.OnStepped();
-                                OnFallingPlatform = true;
+                                OnVerticalPlatform = true;
                             }
                         }
                     }

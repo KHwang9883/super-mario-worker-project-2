@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/level_loader/SmwlLevel.cs" id="1_rpefo"]
 [ext_resource type="Script" uid="uid://c8yu81i46jf4r" path="res://script/level/level_loader/SmwlLoader.cs" id="1_wc7qm"]
 [ext_resource type="TileSet" uid="uid://bnf7dwxlyydri" path="res://content/level/tile/obstacles.tileset.tres" id="2_dugl1"]
-[ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/tile/obstacle.tscn" id="2_y2vn4"]
+[ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/facility/solid/solid.tscn" id="2_y2vn4"]
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="5_s4cnv"]
 [ext_resource type="Script" uid="uid://bsg2x1q80u5ee" path="res://script/level/level_loader/SmwlDataHolder.cs" id="5_y2vn4"]
 [ext_resource type="Resource" uid="uid://dg3a08a8q43kb" path="res://content/level/database/block_database.tres" id="6_4alqs"]

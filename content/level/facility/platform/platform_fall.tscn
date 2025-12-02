@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bg6asflp8evek"]
+[gd_scene load_steps=35 format=3 uid="uid://bg6asflp8evek"]
 
 [ext_resource type="Script" uid="uid://cqs7fmrpxqtjy" path="res://script/level/facility/platform/PlatformFall.cs" id="1_468sv"]
 [ext_resource type="Shape2D" uid="uid://c0l4yfx36brqr" path="res://content/level/facility/platform/platform_bridge_short.tres" id="1_bkjek"]
@@ -10,6 +10,7 @@
 [ext_resource type="Shape2D" uid="uid://cpjxloxiaskl5" path="res://content/level/facility/platform/platform_castle_normal.tres" id="7_oreqq"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="9_b5iog"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="10_q4fj0"]
+[ext_resource type="Script" uid="uid://kj2nq1hyac4o" path="res://script/level/facility/platform/PlatformPlayerPenetration.cs" id="11_q4fj0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q34yq"]
 atlas = ExtResource("1_tf1pi")
@@ -308,3 +309,8 @@ script = ExtResource("9_b5iog")
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("10_q4fj0")]
+
+[node name="PlayerPenetration" type="Node" parent="."]
+script = ExtResource("11_q4fj0")
+
+[connection signal="Stepped" from="." to="PlayerPenetration" method="OnPlayerCurrentStep"]

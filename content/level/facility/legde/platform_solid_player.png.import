@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd6j0tdrxhhio"
-path="res://.godot/imported/obstacle.png-7f9b09d94ed297faf827e7ebdeae424f.ctex"
+uid="uid://ctgoinhohi0te"
+path="res://.godot/imported/platform_solid_player.png-a1c4a25823bed24aeaf3e609637452fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/level/tile/obstacle.png"
-dest_files=["res://.godot/imported/obstacle.png-7f9b09d94ed297faf827e7ebdeae424f.ctex"]
+source_file="res://content/level/facility/legde/platform_solid_player.png"
+dest_files=["res://.godot/imported/platform_solid_player.png-a1c4a25823bed24aeaf3e609637452fe.ctex"]
 
 [params]
 

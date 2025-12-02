@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://5mfpp4cy76ja"]
+[gd_scene load_steps=33 format=3 uid="uid://5mfpp4cy76ja"]
 
 [ext_resource type="Script" uid="uid://blpaw4uxiexwt" path="res://script/level/facility/platform/PlatformHorizontal.cs" id="1_81tdp"]
 [ext_resource type="Texture2D" uid="uid://k6j8qciuuw1n" path="res://content/level/facility/platform/platform_sheet.png" id="1_vhtb1"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shape2D" uid="uid://b434y6vlpp2m8" path="res://content/level/facility/platform/platform_cloud.tres" id="5_fn4qu"]
 [ext_resource type="Shape2D" uid="uid://getamfhougth" path="res://content/level/facility/platform/platform_castle_long.tres" id="6_ll3g0"]
 [ext_resource type="Shape2D" uid="uid://cpjxloxiaskl5" path="res://content/level/facility/platform/platform_castle_normal.tres" id="7_m0dxp"]
+[ext_resource type="Script" uid="uid://kj2nq1hyac4o" path="res://script/level/facility/platform/PlatformPlayerPenetration.cs" id="9_kn8jb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q34yq"]
 atlas = ExtResource("1_vhtb1")
@@ -313,3 +314,6 @@ collision_mask = 128
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Overlap"]
 shape = ExtResource("2_81tdp")
 debug_color = Color(0.1485925, 0.6457087, 7.70092e-07, 0.41960785)
+
+[node name="PlayerPenetration" type="Node" parent="."]
+script = ExtResource("9_kn8jb")

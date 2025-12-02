@@ -1,7 +1,10 @@
 using Godot;
 using System;
 
-public partial class PlatformFall : AnimatableBody2D, ISteppable{
+public partial class PlatformFall : AnimatableBody2D, ISteppable {
+    [Signal]
+    public delegate void SteppedEventHandler();
+    
     [Export] private float _gravity = 1f;
     [Export] private int _gravityTime = 10;
     private bool _fall;
@@ -23,6 +26,7 @@ public partial class PlatformFall : AnimatableBody2D, ISteppable{
         // Todo: 玩家踩到掉落平台后，无视其他平台
     }
     public void OnStepped() {
+        EmitSignal(SignalName.Stepped);
         _fall = true;
         _isSteppedOn = true;
     }

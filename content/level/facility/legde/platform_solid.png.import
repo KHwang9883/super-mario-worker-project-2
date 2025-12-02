@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddpy71r4lydw8"
-path="res://.godot/imported/platform_solid.png-5adb3050caca95867a3acb89baf396cd.ctex"
+path="res://.godot/imported/platform_solid.png-5fc0022f5971701e89fb49bab50f8b05.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/level/tile/platform_solid.png"
-dest_files=["res://.godot/imported/platform_solid.png-5adb3050caca95867a3acb89baf396cd.ctex"]
+source_file="res://content/level/facility/legde/platform_solid.png"
+dest_files=["res://.godot/imported/platform_solid.png-5fc0022f5971701e89fb49bab50f8b05.ctex"]
 
 [params]
 
