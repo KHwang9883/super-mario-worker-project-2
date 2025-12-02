@@ -33,6 +33,7 @@ public partial class LevelManager : Node {
 
     private static int _levelTimeTimer;
     private static int _levelPassTimer;
+    public static bool IsFasterLevelPass;
     private static int _timeClearTimer;
     private static int _timeClearedTimer;
     
@@ -105,34 +106,45 @@ public partial class LevelManager : Node {
         if (!IsLevelPass) return;
         
         _levelPassTimer++;
-        if (_levelPassTimer <= 450) return;
+        
+        int baseTimeThreshold = IsFasterLevelPass ? 50 : 450;
+        int tenTimeThreshold = IsFasterLevelPass ? 100 : 500;
+        int hundredTimeThreshold = IsFasterLevelPass ? 250 : 650;
+        
+        if (_levelPassTimer <= baseTimeThreshold) return;
+        
         // 时间结算
-        if (_levelPassTimer > 450 && Time> 0) {
-            Time -= 1; AddScore(100);
+        if (_levelPassTimer > baseTimeThreshold && Time > 0) {
+            Time -= 1; 
+            AddScore(100);
             _timeClearTimer += 1;
         }
-        if (_levelPassTimer > 500 && Time> 9) {
-            Time -= 10; AddScore(1000);
+        if (_levelPassTimer > tenTimeThreshold && Time > 9) {
+            Time -= 10; 
+            AddScore(1000);
             _timeClearTimer += 1;
         }
-        if (_levelPassTimer > 650 && Time> 99) {
-            Time -= 100; AddScore(10000);
+        if (_levelPassTimer > hundredTimeThreshold && Time > 99) {
+            Time -= 100; 
+            AddScore(10000);
             _timeClearTimer += 1;
         }
         if (_timeClearTimer > 5) {
             _timeClearTimer = 0;
             PlaySoundClearTime();
         }
+        
         if (Time == 0) {
             _timeClearedTimer++;
-            if (_timeClearTimer >= 50) {
+            if (_timeClearedTimer >= 50) {
                 _timeClearedTimer = 0;
-                
                 _timeClearTimer = 0;
                 _levelPassTimer = 0;
                 JumpToLevel();
             }
         }
+        
+        // 不限时关卡小幅等待后直接跳转
         if (Time < 0) {
             _timeClearTimer = 0;
             _levelPassTimer = 0;
@@ -157,9 +169,14 @@ public partial class LevelManager : Node {
         }
     }
     public void JumpToLevel() {
+        // 解除游戏暂停状态
+        GetTree().Paused = false;
+
+        IsLevelPass = false;
+        Player = null;
         
         // Todo: 关卡跳转 / 回到标题画面 / 编辑界面
+        GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
         
-        GetTree().Free();
     }
 }

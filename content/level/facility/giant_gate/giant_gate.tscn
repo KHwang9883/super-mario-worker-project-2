@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://2i5erl0ya4vb"]
+[gd_scene load_steps=5 format=3 uid="uid://2i5erl0ya4vb"]
 
 [ext_resource type="Texture2D" uid="uid://vx853ae7hvse" path="res://content/level/facility/giant_gate/giant_gate.png" id="1_3jvio"]
 [ext_resource type="PackedScene" uid="uid://dpxbi5o7sfvtb" path="res://content/level/facility/giant_gate/giant_gate_bar.tscn" id="2_3jvio"]
 [ext_resource type="AudioStream" uid="uid://dipq1h1ojqe4u" path="res://content/bgm/MW/ktkm4.it" id="3_vbjd3"]
+[ext_resource type="AudioStream" uid="uid://d1pmkaxewsua6" path="res://content/sound/faster_level_pass.se.mp3" id="4_arhaw"]
 
 [node name="GiantGate" type="Node2D"]
 
@@ -18,4 +19,9 @@ position = Vector2(-5, -260)
 process_mode = 3
 stream = ExtResource("3_vbjd3")
 
-[connection signal="body_entered" from="GiantGateBar" to="LevelPass" method="play" unbinds=1]
+[node name="FasterLevelPass" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("4_arhaw")
+
+[connection signal="PlaySoundFasterLevelPass" from="GiantGateBar" to="FasterLevelPass" method="play"]
+[connection signal="PlaySoundLevelPass" from="GiantGateBar" to="LevelPass" method="play"]

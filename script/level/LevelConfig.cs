@@ -87,6 +87,9 @@ public partial class LevelConfig : Node {
         SetBgp(BgpId);
         
         // Bgm 初始化见 BgmPlayer
+        
+        // Faster Level Pass Set
+        LevelManager.IsFasterLevelPass = FasterLevelPass;
     }
 
     public void SetBgm(int bgmId) {

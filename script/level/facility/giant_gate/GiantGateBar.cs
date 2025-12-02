@@ -5,9 +5,16 @@ using SMWP.Level;
 using SMWP.Level.Score;
 
 public partial class GiantGateBar : Area2D {
+    [Signal]
+    public delegate void PlaySoundLevelPassEventHandler();
+    [Signal]
+    public delegate void PlaySoundFasterLevelPassEventHandler();
+    
     [Export] private Sprite2D? _barOn;
     [Export] private Sprite2D? _barOff;
     [Export] private AddScoreComponent? _addScoreComponent;
+
+    [Export] private PackedScene _smokeScene = GD.Load<PackedScene>("uid://c707h2fhiiirw");
     
     public enum GateBarStateEnum { Moving, Triggered }
     private GateBarStateEnum _gateBarState = GateBarStateEnum.Moving;
@@ -66,6 +73,19 @@ public partial class GiantGateBar : Area2D {
             _addScoreComponent.AddScore();
         }
 
+        var levelConfig = LevelConfigAccess.GetLevelConfig(this);
+        // 音效
+        EmitSignal(levelConfig.FasterLevelPass
+            ? SignalName.PlaySoundFasterLevelPass
+            : SignalName.PlaySoundLevelPass);
+
+        // Smoke Effect
+        if (levelConfig.FasterLevelPass) {
+            var smoke = _smokeScene.Instantiate<Node2D>();
+            smoke.Position = Position;
+            AddSibling(smoke);
+        }
+        
         LevelManager.IsLevelPass = true;
         GetTree().Paused = true;
     }

@@ -133,6 +133,7 @@ FluidT2 = 500.0
 FluidSpeed = 3.0
 FluidDelay = 5
 FastRetry = true
+FasterLevelPass = true
 FallingStarsLevel = 2
 BgpDatabase = ExtResource("2_27x5w")
 BgmDatabase = ExtResource("3_ta7os")

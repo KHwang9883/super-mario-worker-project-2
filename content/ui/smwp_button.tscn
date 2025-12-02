@@ -9,7 +9,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8abb7"]
 shader = ExtResource("1_m3866")
-shader_parameter/corner_radius = 0.10000000475
+shader_parameter/corner_radius = 0.1
 shader_parameter/antialiasing = true
 
 [node name="SmwpButton" type="Button"]
