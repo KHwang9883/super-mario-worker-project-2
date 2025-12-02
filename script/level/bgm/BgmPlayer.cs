@@ -212,7 +212,6 @@ public partial class BgmPlayer : AudioStreamPlayer {
                     switch (BgmFileFormatGuess.GetGuessFormat(bgmPath)) {
                         case BgmFileFormatGuess.BgmFileTypeEnum.Mp3:
                             Stream = AudioStreamMP3.LoadFromFile(BgmFileFormatGuess.GetFullBgmFileName(bgmPath));
-                            GD.Print(Stream);
                             break;
                         case BgmFileFormatGuess.BgmFileTypeEnum.Wav:
                             Stream = AudioStreamWav.LoadFromFile(BgmFileFormatGuess.GetFullBgmFileName(bgmPath));

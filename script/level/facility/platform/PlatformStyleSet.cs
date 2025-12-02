@@ -35,13 +35,18 @@ public partial class PlatformStyleSet : Node {
         CastleOrangeLong,
         CastleOrangeNormal,
     }
-    [Export]public PlatformStyleEnum PlatformStyle;
+    [Export] public PlatformStyleEnum PlatformStyle;
+    
+    [Export] private CollisionShape2D? _overlapCollisionShape2D;
 
     public override void _Ready() {
         _animatedSprite.Animation = PlatformStyle.ToString();
+
+        if (!_shapeMapping.TryGetValue(PlatformStyle, out var shape)) return;
+        _collisionShape2D.Shape = shape;
         
-        if (_shapeMapping.TryGetValue(PlatformStyle, out var shape)) {
-            _collisionShape2D.Shape = shape;
-        }
+        // 碰撞箱设置，目前仅水平移动平台用于转向标记的重叠检测
+        if (_overlapCollisionShape2D == null) return;
+        _overlapCollisionShape2D.Shape = shape;
     }
 }

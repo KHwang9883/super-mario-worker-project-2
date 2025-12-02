@@ -33,6 +33,8 @@ public partial class PlatformVertical : AnimatableBody2D {
                 Position = Position with { Y = _topLimit + _textureHeight / 2f };
                 ResetPhysicsInterpolation();
             }
+            
+            // Todo: 开关砖第二功能：SpeedY *= -1
         }
     }
 }

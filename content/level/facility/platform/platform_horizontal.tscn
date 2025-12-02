@@ -261,11 +261,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="PlatformHorizontal" type="AnimatableBody2D"]
+[node name="PlatformHorizontal" type="AnimatableBody2D" node_paths=PackedStringArray("_overlapArea2D")]
 collision_layer = 2
 collision_mask = 5
 sync_to_physics = false
 script = ExtResource("1_81tdp")
+SpeedX = 3.0
+_overlapArea2D = NodePath("Overlap")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1hrfa")
@@ -276,7 +278,7 @@ autoplay = "RedLong"
 shape = ExtResource("2_81tdp")
 one_way_collision = true
 
-[node name="PlatformStyleSet" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite", "_collisionShape2D")]
+[node name="PlatformStyleSet" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite", "_collisionShape2D", "_overlapCollisionShape2D")]
 script = ExtResource("3_kn8jb")
 _animatedSprite = NodePath("../AnimatedSprite2D")
 _collisionShape2D = NodePath("../CollisionShape2D")
@@ -301,3 +303,12 @@ _shapeMapping = Dictionary[int, RectangleShape2D]({
 17: ExtResource("6_ll3g0"),
 18: ExtResource("7_m0dxp")
 })
+_overlapCollisionShape2D = NodePath("../Overlap/CollisionShape2D")
+
+[node name="Overlap" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Overlap"]
+shape = ExtResource("2_81tdp")
+debug_color = Color(0.1485925, 0.6457087, 7.70092e-07, 0.41960785)
