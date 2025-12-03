@@ -1,0 +1,377 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcl0tm0styfxp"]
+
+[ext_resource type="Texture2D" uid="uid://dhketxxxmk7rt" path="res://content/title/global_option/option.png" id="1_yvftp"]
+[ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="2_rmr6b"]
+[ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="3_lghrj"]
+[ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="4_a747a"]
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="5_yrvep"]
+[ext_resource type="PackedScene" uid="uid://iy10w4afpuo6" path="res://content/title/global_option/global_option_menu.tscn" id="6_6mkpa"]
+
+[node name="ControlSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Basic" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionBackground" type="Sprite2D" parent="Basic"]
+position = Vector2(320, 240)
+texture = ExtResource("1_yvftp")
+metadata/_edit_lock_ = true
+
+[node name="OptionBackgroundLabel" type="Label" parent="Basic"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 37.0
+offset_right = 284.0
+offset_bottom = 76.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5686275)
+theme_override_fonts/font = ExtResource("2_rmr6b")
+theme_override_font_sizes/font_size = 24
+text = "Global Options"
+vertical_alignment = 1
+
+[node name="Back" parent="Basic" instance=ExtResource("3_lghrj")]
+layout_mode = 0
+offset_left = 563.0
+offset_top = 425.0
+offset_right = 622.0
+offset_bottom = 459.0
+focus_neighbor_left = NodePath("../../VBoxContainerOptions/InitialLives/SetInitialLives")
+focus_neighbor_top = NodePath("../../VBoxContainerMenu/GameConfig")
+text = ""
+script = ExtResource("4_a747a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 88.0
+offset_right = 384.0
+offset_bottom = 424.0
+
+[node name="Play" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_yrvep")
+text = "--- PLAY ---"
+uppercase = true
+
+[node name="Up" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Up" type="Label" parent="VBoxContainer/Up"]
+layout_mode = 0
+offset_right = 267.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("5_yrvep")
+text = "UP"
+uppercase = true
+
+[node name="SetUp" parent="VBoxContainer/Up" instance=ExtResource("3_lghrj")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+focus_neighbor_right = NodePath("../../../Basic/Back")
+focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+text = "4"
+alignment = 2
+
+[node name="Down" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Down" type="Label" parent="VBoxContainer/Down"]
+layout_mode = 0
+offset_right = 267.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("5_yrvep")
+text = "DOWN"
+uppercase = true
+
+[node name="SetDown" parent="VBoxContainer/Down" instance=ExtResource("3_lghrj")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+focus_neighbor_right = NodePath("../../../Basic/Back")
+focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+text = "4"
+alignment = 2
+
+[node name="Left" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Left" type="Label" parent="VBoxContainer/Left"]
+layout_mode = 0
+offset_right = 267.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("5_yrvep")
+text = "Left"
+uppercase = true
+
+[node name="SetLeft" parent="VBoxContainer/Left" instance=ExtResource("3_lghrj")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+focus_neighbor_right = NodePath("../../../Basic/Back")
+focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+text = "4"
+alignment = 2
+
+[node name="Right" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Right" type="Label" parent="VBoxContainer/Right"]
+layout_mode = 0
+offset_right = 267.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("5_yrvep")
+text = "Right"
+uppercase = true
+
+[node name="SetRight" parent="VBoxContainer/Right" instance=ExtResource("3_lghrj")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+focus_neighbor_right = NodePath("../../../Basic/Back")
+focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+text = "4"
+alignment = 2
+
+[node name="Jump" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Jump" type="Label" parent="VBoxContainer/Jump"]
+layout_mode = 0
+offset_right = 267.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("5_yrvep")
+text = "Jump"
+uppercase = true
+
+[node name="SetJump" parent="VBoxContainer/Jump" instance=ExtResource("3_lghrj")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+focus_neighbor_right = NodePath("../../../Basic/Back")
+focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+text = "4"
+alignment = 2
+
+[node name="Fire" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Fire" type="Label" parent="VBoxContainer/Fire"]
+layout_mode = 0
+offset_right = 267.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("5_yrvep")
+text = "Fire"
+uppercase = true
+
+[node name="SetFire" parent="VBoxContainer/Fire" instance=ExtResource("3_lghrj")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+focus_neighbor_right = NodePath("../../../Basic/Back")
+focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+text = "4"
+alignment = 2
+
+[node name="RestartLevel" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RestartLevel" type="Label" parent="VBoxContainer/RestartLevel"]
+layout_mode = 0
+offset_right = 267.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("5_yrvep")
+text = "Restart Level"
+uppercase = true
+
+[node name="SetRestartLevel" parent="VBoxContainer/RestartLevel" instance=ExtResource("3_lghrj")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+focus_neighbor_right = NodePath("../../../Basic/Back")
+focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+text = "4"
+alignment = 2
+
+[node name="Pause" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Pause" type="Label" parent="VBoxContainer/Pause"]
+layout_mode = 0
+offset_right = 267.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("5_yrvep")
+text = "Pause"
+uppercase = true
+
+[node name="SetPause" parent="VBoxContainer/Pause" instance=ExtResource("3_lghrj")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+focus_neighbor_right = NodePath("../../../Basic/Back")
+focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+text = "4"
+alignment = 2
+
+[node name="Info" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Info" type="Label" parent="VBoxContainer/Info"]
+layout_mode = 0
+offset_right = 267.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("5_yrvep")
+text = "Level Info"
+uppercase = true
+
+[node name="SetInfo" parent="VBoxContainer/Info" instance=ExtResource("3_lghrj")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+focus_neighbor_right = NodePath("../../../Basic/Back")
+focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+text = "4"
+alignment = 2
+
+[node name="Edit" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_yrvep")
+text = "--- EDIT ---"
+uppercase = true
+
+[node name="ComingSoon" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_yrvep")
+text = "COMING SOON!"
+uppercase = true
+
+[node name="VBoxContainerMenu" parent="." instance=ExtResource("6_6mkpa")]
+layout_mode = 0
+offset_left = 444.0
+offset_top = 128.0
+offset_right = 604.0
+offset_bottom = 256.0
+
+[connection signal="pressed" from="Basic/Back" to="Basic/Back" method="JumpToScene" binds= [&"uid://2h2s1iqemydd"]]

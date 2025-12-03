@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://iy10w4afpuo6"]
+
+[ext_resource type="Script" uid="uid://dt7l3dwnjlq3o" path="res://script/title/global_option/GlobalOptionMenu.cs" id="1_sp4ee"]
+[ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="1_uy1or"]
+
+[node name="VBoxContainerMenu" type="VBoxContainer"]
+offset_left = 448.0
+offset_top = 96.0
+offset_right = 608.0
+offset_bottom = 224.0
+script = ExtResource("1_sp4ee")
+
+[node name="GameConfig" parent="." instance=ExtResource("1_uy1or")]
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_left = NodePath("../../VBoxContainerOptions/InitialLives/SetInitialLives")
+focus_neighbor_bottom = NodePath("../Controls")
+focus_next = NodePath("../Controls")
+text = "GAME CONFIG"
+
+[node name="Controls" parent="." instance=ExtResource("1_uy1or")]
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_left = NodePath("../../VBoxContainerOptions/InitialLives/SetInitialLives")
+focus_neighbor_top = NodePath("../GameConfig")
+focus_neighbor_bottom = NodePath("../StaffRoll")
+focus_next = NodePath("../StaffRoll")
+focus_previous = NodePath("../GameConfig")
+text = "CONTROLS"
+
+[node name="StaffRoll" parent="." instance=ExtResource("1_uy1or")]
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_left = NodePath("../../VBoxContainerOptions/InitialLives/InitialLives")
+focus_neighbor_top = NodePath("../Controls")
+focus_neighbor_bottom = NodePath("../../Basic/Back")
+focus_previous = NodePath("../Controls")
+text = "STAFF ROLL"
+
+[connection signal="pressed" from="GameConfig" to="." method="JumpToScene" binds= [&"uid://bh01ow2pgnsh5"]]
+[connection signal="pressed" from="Controls" to="." method="JumpToScene" binds= [&"uid://bcl0tm0styfxp"]]

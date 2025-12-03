@@ -1,0 +1,244 @@
+[gd_scene load_steps=11 format=3 uid="uid://bh01ow2pgnsh5"]
+
+[ext_resource type="Script" uid="uid://bmxfxho2l06rq" path="res://script/title/global_option/GlobalOptions.cs" id="1_1n04l"]
+[ext_resource type="Texture2D" uid="uid://dhketxxxmk7rt" path="res://content/title/global_option/option.png" id="2_5c1ry"]
+[ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="3_051f2"]
+[ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="4_opjjy"]
+[ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="5_sxxdp"]
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="6_h7q4w"]
+[ext_resource type="PackedScene" uid="uid://iy10w4afpuo6" path="res://content/title/global_option/global_option_menu.tscn" id="7_b2g60"]
+[ext_resource type="PackedScene" uid="uid://ddlwq4a4b6iaf" path="res://content/ui/popup/smwp_popup_initial_lives.tscn" id="8_12rpg"]
+[ext_resource type="PackedScene" uid="uid://bw0aoogxdlcab" path="res://content/ui/popup/smwp_popup_temporary_files.tscn" id="9_e4wm5"]
+[ext_resource type="PackedScene" uid="uid://cungughiviaul" path="res://content/ui/popup/smwp_popup_custom_music_package.tscn" id="10_5c1ry"]
+
+[node name="GlobalOptions" type="Control" node_paths=PackedStringArray("DisplayModeButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1n04l")
+DisplayModeButton = NodePath("VBoxContainerOptions/DisplayMode/SetDisplayMode")
+
+[node name="Basic" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionBackground" type="Sprite2D" parent="Basic"]
+position = Vector2(320, 240)
+texture = ExtResource("2_5c1ry")
+metadata/_edit_lock_ = true
+
+[node name="OptionBackgroundLabel" type="Label" parent="Basic"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 37.0
+offset_right = 284.0
+offset_bottom = 76.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5686275)
+theme_override_fonts/font = ExtResource("3_051f2")
+theme_override_font_sizes/font_size = 24
+text = "Global Options"
+vertical_alignment = 1
+
+[node name="Back" parent="Basic" instance=ExtResource("4_opjjy")]
+layout_mode = 0
+offset_left = 563.0
+offset_top = 425.0
+offset_right = 622.0
+offset_bottom = 459.0
+focus_neighbor_left = NodePath("../../VBoxContainerOptions/InitialLives/SetInitialLives")
+focus_neighbor_top = NodePath("../../VBoxContainerMenu/GameConfig")
+text = ""
+script = ExtResource("5_sxxdp")
+
+[node name="VBoxContainerOptions" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 88.0
+offset_right = 384.0
+offset_bottom = 260.0
+
+[node name="InitialLives" type="Control" parent="VBoxContainerOptions"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InitialLives" type="Label" parent="VBoxContainerOptions/InitialLives"]
+layout_mode = 0
+offset_right = 267.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("6_h7q4w")
+text = "INITIAL LIVES OF SINGLE LEVEL"
+uppercase = true
+
+[node name="SetInitialLives" parent="VBoxContainerOptions/InitialLives" instance=ExtResource("4_opjjy")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+focus_neighbor_right = NodePath("../../../Basic/Back")
+focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+text = "4"
+alignment = 2
+
+[node name="TemporaryFiles" type="Control" parent="VBoxContainerOptions"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TemporaryFiles" type="Label" parent="VBoxContainerOptions/TemporaryFiles"]
+layout_mode = 0
+offset_right = 154.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("6_h7q4w")
+text = "Temporary Files"
+uppercase = true
+
+[node name="SetTemporaryFiles" parent="VBoxContainerOptions/TemporaryFiles" instance=ExtResource("4_opjjy")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../InitialLives/SetInitialLives")
+focus_neighbor_right = NodePath("../../../Basic/Back")
+focus_neighbor_bottom = NodePath("../../DisplayMode/SetDisplayMode")
+focus_next = NodePath("../../DisplayMode/SetDisplayMode")
+focus_previous = NodePath("../../InitialLives/SetInitialLives")
+text = "100"
+alignment = 2
+
+[node name="DisplayMode" type="Control" parent="VBoxContainerOptions"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DisplayMode" type="Label" parent="VBoxContainerOptions/DisplayMode"]
+layout_mode = 0
+offset_right = 121.0
+offset_bottom = 10.0
+size_flags_vertical = 0
+theme = ExtResource("6_h7q4w")
+text = "Display Mode"
+uppercase = true
+
+[node name="SetDisplayMode" parent="VBoxContainerOptions/DisplayMode" instance=ExtResource("4_opjjy")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 10
+focus_neighbor_top = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+focus_neighbor_right = NodePath("../../../Basic/Back")
+focus_previous = NodePath("../../TemporaryFiles/SetTemporaryFiles")
+text = "WINDOW MODE"
+alignment = 2
+
+[node name="CustomMusic" type="Control" parent="VBoxContainerOptions"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CustomMusic" type="Label" parent="VBoxContainerOptions/CustomMusic"]
+layout_mode = 0
+offset_right = 214.0
+offset_bottom = 10.0
+size_flags_vertical = 2
+theme = ExtResource("6_h7q4w")
+text = "Custom Music Package"
+uppercase = true
+
+[node name="SetCustomMusic" parent="VBoxContainerOptions/CustomMusic" instance=ExtResource("4_opjjy")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+focus_neighbor_top = NodePath("../../DisplayMode/SetDisplayMode")
+focus_neighbor_right = NodePath("../../../Basic/Back")
+focus_neighbor_bottom = NodePath("../../AccessibilityMode/SetAccessibilityMode")
+focus_next = NodePath("../../AccessibilityMode/SetAccessibilityMode")
+focus_previous = NodePath("../../DisplayMode/SetDisplayMode")
+text = "EXAMPLE"
+alignment = 2
+
+[node name="AccessibilityMode" type="Control" parent="VBoxContainerOptions"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AccessibilityMode" type="Label" parent="VBoxContainerOptions/AccessibilityMode"]
+layout_mode = 0
+offset_right = 258.0
+offset_bottom = 10.0
+size_flags_vertical = 2
+theme = ExtResource("6_h7q4w")
+text = "Accessibility Mode (Color)"
+uppercase = true
+
+[node name="SetAccessibilityMode" parent="VBoxContainerOptions/AccessibilityMode" instance=ExtResource("4_opjjy")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+focus_neighbor_top = NodePath("../../CustomMusic/SetCustomMusic")
+focus_neighbor_right = NodePath("../../../Basic/Back")
+focus_previous = NodePath("../../CustomMusic/SetCustomMusic")
+text = "NO"
+alignment = 2
+
+[node name="VBoxContainerMenu" parent="." instance=ExtResource("7_b2g60")]
+layout_mode = 0
+offset_left = 444.0
+offset_top = 128.0
+offset_right = 604.0
+offset_bottom = 256.0
+
+[node name="SmwpPopupGroup" type="Node" parent="."]
+
+[node name="SmwpPopupInitialLives" parent="SmwpPopupGroup" instance=ExtResource("8_12rpg")]
+visible = false
+
+[node name="SmwpPopupTemporaryFiles" parent="SmwpPopupGroup" instance=ExtResource("9_e4wm5")]
+visible = false
+
+[node name="SmwpPopupCustomMusicPackage" parent="SmwpPopupGroup" instance=ExtResource("10_5c1ry")]
+visible = false
+
+[connection signal="pressed" from="Basic/Back" to="Basic/Back" method="JumpToScene" binds= [&"uid://2h2s1iqemydd"]]
+[connection signal="pressed" from="VBoxContainerOptions/InitialLives/SetInitialLives" to="SmwpPopupGroup/SmwpPopupInitialLives" method="show"]
+[connection signal="pressed" from="VBoxContainerOptions/TemporaryFiles/SetTemporaryFiles" to="SmwpPopupGroup/SmwpPopupTemporaryFiles" method="show"]
+[connection signal="pressed" from="VBoxContainerOptions/DisplayMode/SetDisplayMode" to="." method="OnDisplayModePressed"]
+[connection signal="pressed" from="VBoxContainerOptions/CustomMusic/SetCustomMusic" to="SmwpPopupGroup/SmwpPopupCustomMusicPackage" method="show"]
