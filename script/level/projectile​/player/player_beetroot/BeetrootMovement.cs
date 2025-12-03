@@ -27,7 +27,7 @@ public partial class BeetrootMovement : BasicMovement {
             var player = GetTree().GetFirstNodeInGroup("player");
             if (!player.HasMeta("PlayerMovement")) return;
             var playerMovement = (PlayerMovement)player.GetMeta("PlayerMovement");
-            SpeedX = Mathf.Max(SpeedX, Mathf.Abs(playerMovement.SpeedX)) * Direction;
+            SpeedX = Mathf.Max(SpeedX, 2f + Mathf.Abs(playerMovement.SpeedX)) * Direction;
         }).CallDeferred();
     }
     public override void _PhysicsProcess(double delta) {
