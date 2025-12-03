@@ -96,6 +96,8 @@ _beetrootMovement = NodePath("../BeetrootMovement")
 
 [node name="BeetrootMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("2_bdhfo")
+IsMwBeetroot = true
+CanMwBeetrootClimbWallUpwards = false
 MoveObject = NodePath("..")
 SpeedX = 1.0
 SpeedY = -7.0
@@ -117,4 +119,3 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 [connection signal="HitBlock" from="BeetrootMovement" to="BeetrootInteraction" method="Explode"]
 [connection signal="HitBlock" from="BeetrootMovement" to="BeetrootInteraction" method="BlockHitDetect"]
 [connection signal="HitBlock" from="BeetrootMovement" to="ContinuousAudioStream2D" method="play"]
-[connection signal="HitBlockDetect" from="BeetrootMovement" to="BeetrootInteraction" method="BlockHitDetect"]

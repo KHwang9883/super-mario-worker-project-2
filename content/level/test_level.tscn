@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=74 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/facility/solid/solid.tscn" id="2_676rr"]
@@ -65,10 +65,6 @@
 [ext_resource type="PackedScene" uid="uid://dri8grhd0ymhk" path="res://content/level/facility/legde/platform_solid.tscn" id="56_ul4ql"]
 [ext_resource type="PackedScene" uid="uid://ci11f7ep75br" path="res://content/level/facility/legde/platform_solid_player.tscn" id="57_e7eqa"]
 [ext_resource type="PackedScene" uid="uid://b1srfpaxhbli6" path="res://content/level/facility/scene_control/scene_control.tscn" id="63_i0wvf"]
-[ext_resource type="PackedScene" uid="uid://bg6asflp8evek" path="res://content/level/facility/platform/platform_fall.tscn" id="66_kwmt5"]
-[ext_resource type="PackedScene" uid="uid://5mfpp4cy76ja" path="res://content/level/facility/platform/platform_horizontal.tscn" id="67_s6ftr"]
-[ext_resource type="PackedScene" uid="uid://dfundrwrpx7oa" path="res://content/level/facility/platform/platform_vertical.tscn" id="68_glrnk"]
-[ext_resource type="PackedScene" uid="uid://d2hm1ej2l7abm" path="res://content/level/facility/platform/plarform_horizontal_marker.tscn" id="69_4uo84"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kynl2"]
 blend_mode = 2
@@ -743,33 +739,6 @@ position = Vector2(2832, 272)
 
 [node name="Brick2" parent="TestLevelNode2D" instance=ExtResource("23_dmmuc")]
 position = Vector2(2832, 208)
-
-[node name="PlatformFall" parent="TestLevelNode2D" instance=ExtResource("66_kwmt5")]
-position = Vector2(2664, 188)
-
-[node name="PlatformFall2" parent="TestLevelNode2D" instance=ExtResource("66_kwmt5")]
-position = Vector2(2664, 296)
-
-[node name="PlatformHorizontal" parent="TestLevelNode2D" instance=ExtResource("67_s6ftr")]
-position = Vector2(2484, 328)
-
-[node name="PlatformHorizontal2" parent="TestLevelNode2D" instance=ExtResource("67_s6ftr")]
-position = Vector2(2440, 432)
-
-[node name="PlatformVertical" parent="TestLevelNode2D" instance=ExtResource("68_glrnk")]
-position = Vector2(2900, 296)
-
-[node name="PlatformVertical2" parent="TestLevelNode2D" instance=ExtResource("68_glrnk")]
-position = Vector2(3004, 264)
-
-[node name="PlatformVertical3" parent="TestLevelNode2D" instance=ExtResource("68_glrnk")]
-position = Vector2(3004, 232)
-
-[node name="PlarformHorizontalMarker" parent="TestLevelNode2D" instance=ExtResource("69_4uo84")]
-position = Vector2(2664, 336)
-
-[node name="PlarformHorizontalMarker2" parent="TestLevelNode2D" instance=ExtResource("69_4uo84")]
-position = Vector2(2416, 336)
 
 [connection signal="ModuleResourceConvert" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="play"]
