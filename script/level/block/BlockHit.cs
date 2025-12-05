@@ -25,7 +25,7 @@ public partial class BlockHit : Node, IBlockHittable {
     }
     private BumpState _bumpState = BumpState.Idle;
     private int _bumpStateTimer;
-    protected bool Bump;
+    protected bool Bumping;
 
     // 碎砖
     [Export] private bool _breakable;
@@ -74,7 +74,6 @@ public partial class BlockHit : Node, IBlockHittable {
                 break;
             case BumpState.Falling:
                 _bumpState = BumpState.Idle;
-                //GetTree().Paused = true;
                 EmitSignal(SignalName.BlockBumpEnded);
                 OnBumped();
                 break;
@@ -84,8 +83,8 @@ public partial class BlockHit : Node, IBlockHittable {
     }
     
     public virtual void OnBlockHit(Node2D collider) {
-        if (!Bump && IsBumpable(collider)) {
-            Bump = true;
+        if (!Bumping && IsBumpable(collider)) {
+            Bumping = true;
             EmitSignal(SignalName.BlockBump);
             OnBlockBump();
         }
@@ -118,7 +117,7 @@ public partial class BlockHit : Node, IBlockHittable {
         }).CallDeferred();
     }
     protected virtual void OnBumped() {
-        Bump = false;
+        Bumping = false;
     }
     protected virtual void OnBlockBreak() {
         for (var i = 0; i < _fragmentVelocityData.Count; i++) {
