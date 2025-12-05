@@ -1,20 +1,37 @@
 shader_type canvas_item;
 
-const int MAX_LIGHTS = 100;
-uniform vec2 lights[MAX_LIGHTS];
+const int MAX_LIGHTS = 128;
 
-uniform float lightRadius : hint_range(0.0, 100.0, 0.1);
-uniform vec2 res = vec2(1024,576);
+uniform float darkness = 1.0;
+uniform vec2 positions[MAX_LIGHTS];
 
 void fragment() {
-    float result = 0.0;
-    vec2 uv = UV * res;
-    for(int i = 0; i < MAX_LIGHTS; i++){
-        vec2 l = lights[i];
-        if(l == vec2(0.0,0.0)) continue;
-        
-        result += 1.0 - min(distance(l, uv) / lightRadius, 1.0);
-    }
-    
-    COLOR.a *= 1.0 - min(result,1.0);
+	// 初始化全屏黑色
+	vec4 final_color = vec4(0.0, 0.0, 0.0, darkness);
+	
+	// 获取屏幕尺寸
+	vec2 screen_size = 1.0 / TEXTURE_PIXEL_SIZE;
+	
+	// 计算当前片段在屏幕上的位置（像素坐标）
+	vec2 frag_pos = UV * screen_size;
+	
+	// 遍历所有灯光位置
+	for (int i = 0; i < MAX_LIGHTS; i++) {
+		// 跳过无效位置
+		if (positions[i].x == 0.0 && positions[i].y == 0.0) {
+			continue;
+		}
+		
+		// 计算到灯光中心的距离（像素单位）
+		float d = length(frag_pos - positions[i]);
+		
+		// 如果距离小于半径（例如100像素），则减少透明度
+		if (d < 100.0) {
+			// 距离越近，透明度越低（越透明）
+			float alpha_reduction = 1.0 - (d / 100.0);
+			final_color.a = max(0.0, final_color.a - alpha_reduction);
+		}
+	}
+	
+	COLOR = final_color;
 }
