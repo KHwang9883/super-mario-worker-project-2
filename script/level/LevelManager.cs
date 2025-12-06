@@ -92,7 +92,7 @@ public partial class LevelManager : Node {
         // 传送时，计时器停止
         // Todo: if (playerMovement.Stuck or PipeIn/Out) return;
         // 玩家死亡，计时器停止
-        if (Player != null && Player.ProcessMode == ProcessModeEnum.Disabled) return;
+        if (Player is null && Player is { ProcessMode: ProcessModeEnum.Disabled }) return;
         
         if (Time <= 0) return;
         _levelTimeTimer++;

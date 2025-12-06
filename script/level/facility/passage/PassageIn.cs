@@ -28,7 +28,6 @@ public partial class PassageIn : Node2D {
             };
             AddChild(passageInArea2D);
             passageInArea2D.GlobalPosition = GlobalPosition;
-            GD.Print(passageInArea2D, passageInArea2D.GlobalPosition);
             // 元数据应当设置给重叠检测对象以让 PlayerInteraction 识别
             passageInArea2D.SetMeta("PipeEntry", this);
         }).CallDeferred();

@@ -30,9 +30,11 @@ public partial class PassageInUp : Area2D {
             if (_playerSuit.Suit == PlayerSuit.SuitEnum.Small) {
                 _collisionShape2D.Shape = _shapeSmall;
                 _collisionShape2D.Position = Position - new Vector2(0f, 12f);
+                _collisionShape2D.ResetPhysicsInterpolation();
             } else {
                 _collisionShape2D.Shape = _shapeNormal;
-                _collisionShape2D.Position = Position - new Vector2(0f, 24f);
+                _collisionShape2D.Position = Position - new Vector2(0f, 26f);
+                _collisionShape2D.ResetPhysicsInterpolation();
             }
         }
     }

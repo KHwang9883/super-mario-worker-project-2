@@ -14,6 +14,8 @@ public partial class PlayerMovement : Node {
     [Signal]
     public delegate void SwimStartedEventHandler();
     [Signal]
+    public delegate void PipeInEventHandler();
+    [Signal]
     public delegate void SetPipeOutInvincibleEventHandler();
     [Signal]
     public delegate void PlaySoundPowerDownEventHandler();
@@ -24,6 +26,9 @@ public partial class PlayerMovement : Node {
 
     // 水管传送状态
     public bool IsInPipeTransport;
+    private bool _wasInPipe;
+    private bool _wasPipeOut;
+    public int PipeTransportId;
     private int _pipeInTransportTimer;
 
     public enum PipeTransportStatusEnum {
@@ -137,13 +142,13 @@ public partial class PlayerMovement : Node {
         _right = Input.IsActionPressed("move_right");
         Fire = Input.IsActionPressed("move_fire");
         _jump = Input.IsActionPressed("move_jump");
+        
+        // 在水管传送状态下不进行其他运动处理
+        PipeEntryDetect();
+        
+        PipeTransport();
 
-        // 水管传送检测
-        if (PipeEntryDetect()) {
-            // 在水管传送状态下不进行其他运动处理
-            PipeTransport();
-            return;
-        }
+        if (IsInPipeTransport) return;
         
         // God Mode
         if (_playerMediator.playerGodMode.IsGodFly) {
@@ -236,13 +241,15 @@ public partial class PlayerMovement : Node {
             Jumped = false;
         }
 
-        if (_jump && !Crouched && !Stuck && !_wasCrouched) {
+        if (_jump && !Crouched && !Stuck && !_wasCrouched && !_wasInPipe) {
             if (!IsInWater && _player.IsOnFloor()) {
                 Jump();
             } else if (IsInWater && !Jumped) {
                 Swim();
             }
         }
+
+        _wasInPipe = IsInPipeTransport;
         
         _wasCrouched = Crouched;
 
@@ -282,7 +289,7 @@ public partial class PlayerMovement : Node {
             for (var i = 0; i <= 48; i++) {
                 var originPosition = _player.Position;
                 _player.Position = new Vector2(_player.Position.X, _player.Position.Y + i);
-                var collisionInAir = _player.MoveAndCollide(new Vector2(0f, 0f), false);
+                var collisionInAir = _player.MoveAndCollide(Vector2.Zero, false);
                 //GD.Print("向下移动 " + i + " 像素");
                 if (collisionInAir == null) {
                     _player.Position = new Vector2(_player.Position.X, _player.Position.Y + i);
@@ -437,45 +444,45 @@ public partial class PlayerMovement : Node {
     }
     
     // 水管传送处理
-    public bool PipeEntryDetect() {
-        if (IsInPipeTransport) return true;
+    public void PipeEntryDetect() {
+        if (IsInPipeTransport) return;
         
         foreach (var result in GetShapeQueryResults()) {
-            Node? pipeEntryInfo = null;
+            Node? pipeEntryNode = null;
             if (result == null) continue;
             
             if (result.HasMeta("PipeEntry")) {
-                pipeEntryInfo = (Node2D)result.GetMeta("PipeEntry");
+                pipeEntryNode = (Node2D)result.GetMeta("PipeEntry");
             }
-            if (pipeEntryInfo is not PassageIn pipeEnterable) continue;
-            switch (pipeEnterable.Direction) {
+            if (pipeEntryNode is not PassageIn pipeEntryInfo) continue;
+            PipeTransportId = pipeEntryInfo.PassageId;
+            switch (pipeEntryInfo.Direction) {
                 case PassageIn.PassageDirection.Up:
                     if (_up) {
                         PipeInPlayerSet(PipeTransportDirection.Up);
-                        return true;
+                        _player.Position = new Vector2(pipeEntryInfo.Position.X, _player.Position.Y);
                     }
                     break;
                 case PassageIn.PassageDirection.Down:
                     if (_down) {
                         PipeInPlayerSet(PipeTransportDirection.Down);
-                        return true;
+                        _player.Position = new Vector2(pipeEntryInfo.Position.X, _player.Position.Y);
                     }
                     break;
                 case PassageIn.PassageDirection.Left:
                     if (_left) {
                         PipeInPlayerSet(PipeTransportDirection.Left);
-                        return true;
+                        _player.Position = new Vector2(_player.Position.X, pipeEntryInfo.Position.Y + 32f - 12f);
                     }
                     break;
                 case PassageIn.PassageDirection.Right:
                     if (_right) {
                         PipeInPlayerSet(PipeTransportDirection.Right);
-                        return true;
+                        _player.Position = new Vector2(_player.Position.X, pipeEntryInfo.Position.Y + 32f - 12f);
                     }
                     break;
             }
         }
-        return false;
     }
     public void PipeInPlayerSet(PipeTransportDirection direction) {
         // 进入水管传送状态设置
@@ -485,9 +492,13 @@ public partial class PlayerMovement : Node {
         _pipeInTransportTimer = 0;
         SpeedX = 0f;
         SpeedY = 0f;
+        _player.ResetPhysicsInterpolation();
+        EmitSignal(SignalName.PipeIn);
         EmitSignal(SignalName.PlaySoundPowerDown);
     }
     public void PipeTransport() {
+        if (!IsInPipeTransport) return;
+        
         // 水管传送状态移动处理
         switch (PipeTransportStatus) {
             // 进入水管
@@ -502,36 +513,75 @@ public partial class PlayerMovement : Node {
                             _player.Position += new Vector2(0f, 0.7f);
                             break;
                         case PipeTransportDirection.Left:
-                            _player.Position -= new Vector2(0f, 0.7f);
+                            _player.Position -= new Vector2(0.7f, 0f);
                             break;
                         case PipeTransportDirection.Right:
-                            _player.Position += new Vector2(0f, 0.7f);
+                            _player.Position += new Vector2(0.7f, 0f);
                             break;
                     }
                 } else {
                     _pipeInTransportTimer = 0;
-                    PipeTransportStatus = PipeTransportStatusEnum.Out;
-                    // Todo: 传送到对应位置
-                    // Todo: 出口朝向设置
-                    //
-                    _player.ResetPhysicsInterpolation();
-                    EmitSignal(SignalName.PlaySoundPowerDown);
+                    
+                    // 传送到对应位置
+                    var passageOuts = GetTree().GetNodesInGroup("passage_out");
+                    foreach (var node in passageOuts) {
+                        if (node is not PassageOut passageOut) continue;
+                        if (passageOut.PassageId != PipeTransportId) continue;
+                        
+                        // 传送位置微调
+                        _player.Position = passageOut.Direction switch {
+                            PassageIn.PassageDirection.Up => passageOut.Position + new Vector2(0f, 32f -12f),
+                            PassageIn.PassageDirection.Down => passageOut.Position + new Vector2(0f, 64f - 12f),
+                            PassageIn.PassageDirection.Left => passageOut.Position + new Vector2(-16f, 32f -12f),
+                            PassageIn.PassageDirection.Right => passageOut.Position + new Vector2(16f, 32f -12f),
+                            _ => _player.Position,
+                        };
+                        _player.ForceUpdateTransform();
+                        _player.ResetPhysicsInterpolation();
+
+                        // 出口朝向设置
+                        PipeTransportDir = passageOut.Direction switch {
+                            PassageIn.PassageDirection.Up => PipeTransportDirection.Up,
+                            PassageIn.PassageDirection.Down => PipeTransportDirection.Down,
+                            PassageIn.PassageDirection.Left => PipeTransportDirection.Left,
+                            PassageIn.PassageDirection.Right => PipeTransportDirection.Right,
+                            _ => PipeTransportDir,
+                        };
+                        
+                        PipeTransportStatus = PipeTransportStatusEnum.Out;
+                        
+                        EmitSignal(SignalName.PlaySoundPowerDown);
+                    }
                 }
                 break;
             
             // 出水管
             case PipeTransportStatusEnum.Out:
                 if (_player.MoveAndCollide(Vector2.Zero, true, 0.02f) == null) {
-                    IsInPipeTransport = false;
+                    // 传送结束的空中跳跃处理
+                    _player.Velocity = Vector2.Zero;
+                    _player.MoveAndSlide();
                     
-                    // Todo: 待测试：传送结束跳跃处理
-                    if (_jump) {
+                    if (_jump && !_player.IsOnFloor()) {
                         if (!IsInWater) {
                             Jump();
+                            // MoveAndSlide 一次以防止传送前 IsOnFloor 状态遗留导致无法起跳
+                            _player.Velocity = Vector2.Zero;
+                            _player.MoveAndSlide();
                         } else {
                             Swim();
                         }
                     }
+                    
+                    _player.ForceUpdateTransform();
+                    _player.GetNode<ShapeCast2D>(_areaBodyCollision).ForceUpdateTransform();
+                    
+                    // 及时更新一次重叠检测
+                    // 不及时更新可能的后果：保留传送前的检测结果，导致玩家传送结束后有 1 帧时间可以进入刚才的传送入口
+                    _results = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>(_areaBodyCollision));
+                    
+                    _wasInPipe = true;
+                    IsInPipeTransport = false;
                     
                     // Additional Settings: MF-Style pipe exit
                     if (!LevelConfigAccess.GetLevelConfig(this).MfStylePipeExit) {
@@ -539,22 +589,39 @@ public partial class PlayerMovement : Node {
                     }
                     break;
                 }
+
+                _wasPipeOut = IsInPipeTransport;
                 
                 switch (PipeTransportDir) {
                     case PipeTransportDirection.Up:
                         _player.Position -= new Vector2(0f, 0.7f);
+                        // 玩家与封顶重合则强制向下挤出
+                        var collide = _player.MoveAndCollide(Vector2.Zero, true, 0.02f);
+                        if (collide.GetCollider() != null) {
+                            if (IsInstanceValid(collide.GetCollider())) {
+                                if (collide.GetCollider() is Sealer && _player.Position.Y < -16f) {
+                                    ForceDownPush();
+                                }
+                            }
+                        }
                         break;
                     case PipeTransportDirection.Down:
                         _player.Position += new Vector2(0f, 0.7f);
                         break;
                     case PipeTransportDirection.Left:
-                        _player.Position -= new Vector2(0f, 0.7f);
+                        _player.Position -= new Vector2(0.7f, 0f);
                         break;
                     case PipeTransportDirection.Right:
-                        _player.Position += new Vector2(0f, 0.7f);
+                        _player.Position += new Vector2(0.7f, 0f);
                         break;
                 }
                 break;
         }
+    }
+    
+    public void ForceDownPush() {
+        do {
+            _player.Position += Vector2.Down;
+        } while (_player.MoveAndCollide(Vector2.Zero, true, 0.02f) != null);
     }
 }

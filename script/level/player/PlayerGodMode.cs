@@ -14,7 +14,7 @@ public partial class PlayerGodMode : Node {
     public bool IsGodInvincible;
     public bool IsGodFly;
     
-    private Array<Node> _checkpoints;
+    private Array<Node>? _checkpoints;
 
     public override void _Input(InputEvent @event) {
         if (!IsGodMode) return;

@@ -29,6 +29,8 @@ public partial class PlayerAnimation : Node {
 
     private int _hurtFlashCounter;
 
+    private float _lastPlayerX;
+
     private bool _powerupChanging;
     public bool Fire;
 
@@ -37,21 +39,17 @@ public partial class PlayerAnimation : Node {
         _playerMovement.JumpStarted += OnJumpStarted;
         _invincibleEffect = _player.GetNode<AnimatedSprite2D>("InvincibleEffect");
         //_playerMediator.playerDieAndHurt.PlayerHurt += OnPlayerHurt;
+        _lastPlayerX = _player.Position.X;
     }
     public override void _PhysicsProcess(double delta) {
         // 水管传送状态的动画处理
         if (_playerMediator.playerMovement.IsInPipeTransport) {
-            // Todo: 待测试
-            switch (_playerMediator.playerMovement.PipeTransportDir) {
-                case PlayerMovement.PipeTransportDirection.Up:
-                case PlayerMovement.PipeTransportDirection.Down:
-                    // 不处理
-                    break;
-                case PlayerMovement.PipeTransportDirection.Left:
-                case PlayerMovement.PipeTransportDirection.Right:
-                    _animatedSprite2D.Play("idle");
-                    break;
-            }
+            _animatedSprite2D.Frame = 0;
+            if (_playerMediator.playerMovement.PipeTransportDir
+                is not (PlayerMovement.PipeTransportDirection.Left
+                or PlayerMovement.PipeTransportDirection.Right)) return;
+            _animatedSprite2D.FlipH = (_player.Position.X - _lastPlayerX < 0f);
+            _lastPlayerX = _player.Position.X;
             return;
         }
         
@@ -205,5 +203,8 @@ public partial class PlayerAnimation : Node {
         if (_animatedSprite2D.Animation == "shoot") {
             Fire = false;
         }
+    }
+    public void OnPipeEntered() {
+        _lastPlayerX = _player.Position.X;
     }
 }

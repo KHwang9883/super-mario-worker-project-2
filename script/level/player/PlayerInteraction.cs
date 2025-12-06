@@ -189,7 +189,7 @@ public partial class PlayerInteraction : Node {
 
         if (!(_playerMediator.playerMovement.SpeedY <= 0f)) return;
         
-        KinematicCollision2D collision = _player.MoveAndCollide(new Vector2(0f, -1f), true);
+        var collision = _player.MoveAndCollide(new Vector2(0f, -1f), true);
         if (collision == null) {
             return;
         }

@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://cxqwys5a7a23"]
+[gd_scene load_steps=2 format=3 uid="uid://cxqwys5a7a23"]
 
-[node name="PassageOut" type="Node2D"]
+[ext_resource type="Script" uid="uid://3v1rjj2k6ofp" path="res://script/level/facility/passage/PassageOut.cs" id="1_g5vlj"]
+
+[node name="PassageOut" type="Node2D" groups=["passage_out"]]
+script = ExtResource("1_g5vlj")
