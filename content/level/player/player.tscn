@@ -88,7 +88,7 @@ position = Vector2(0, 12)
 shape = SubResource("ConvexPolygonShape2D_gdtqi")
 target_position = Vector2(0, 0)
 max_results = 6
-collision_mask = 112
+collision_mask = 368
 collide_with_areas = true
 
 [node name="OutWaterDetectSmall" type="ShapeCast2D" parent="."]
@@ -113,7 +113,7 @@ position = Vector2(0, 12)
 shape = SubResource("ConvexPolygonShape2D_y66qv")
 target_position = Vector2(0, 0)
 max_results = 6
-collision_mask = 112
+collision_mask = 368
 collide_with_areas = true
 
 [node name="OutWaterDetectSuper" type="ShapeCast2D" parent="."]
@@ -251,6 +251,7 @@ script = ExtResource("30_sba15")
 [connection signal="animation_finished" from="AnimatedSprite2D" to="PlayerMediator/PlayerAnimation" method="OnAnimationFinished"]
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerAnimation" method="OnJumpStarted"]
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerJump" method="play"]
+[connection signal="PlaySoundPowerDown" from="PlayerMediator/PlayerMovement" to="Powerdown" method="play"]
 [connection signal="SwimStarted" from="PlayerMediator/PlayerMovement" to="PlayerSwim" method="play"]
 [connection signal="PlaySoundBreak" from="PlayerMediator/PlayerDieAndHurt" to="Break" method="play"]
 [connection signal="PlaySoundGameOver" from="PlayerMediator/PlayerDieAndHurt" to="GameOver" method="play"]

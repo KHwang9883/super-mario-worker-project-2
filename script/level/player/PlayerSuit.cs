@@ -36,6 +36,10 @@ public partial class PlayerSuit : Node {
     }
     public override void _PhysicsProcess(double delta) {
         if (!Starman) return;
+        
+        // 传送状态下无敌星计时暂停
+        if (_playerMediator.playerMovement.IsInPipeTransport) return;
+        
         StarmanTimer++;
         if (StarmanTimer < StarmanTime) return;
         Starman = false;

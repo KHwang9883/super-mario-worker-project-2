@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://5158rsupbwlh"]
+
+[ext_resource type="Script" uid="uid://d3j63h2b7m8kk" path="res://script/level/facility/passage/PassageInUp.cs" id="1_77h7n"]
+[ext_resource type="Shape2D" uid="uid://cn171rrcmnt0j" path="res://content/level/facility/passage/passage_in_up_small_shape.tres" id="2_77h7n"]
+
+[node name="PassageInUp" type="Area2D" node_paths=PackedStringArray("_collisionShape2D")]
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("1_77h7n")
+_collisionShape2D = NodePath("CollisionShape2D")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = ExtResource("2_77h7n")
+debug_color = Color(0, 0.5364341, 0.9715254, 0.41960785)

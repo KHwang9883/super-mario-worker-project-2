@@ -44,6 +44,9 @@ public partial class PlayerDieAndHurt : Node {
             return;
         }
         
+        // 水管传送状态下不处理
+        if (_playerMediator.playerMovement.IsInPipeTransport) return;
+        
         // 死亡计时结束后重启关卡
         if (_dead) {
             _deadTimer++;
@@ -133,8 +136,7 @@ public partial class PlayerDieAndHurt : Node {
     }
     public void Hurt() {
         if (IsStarmanInvincible || IsHurtInvincible) return;
-        IsHurtInvincible = true;
-        HurtInvincibleTimer = 0;
+        SetHurtInvincible();
         switch (_playerMediator.playerSuit.Suit) {
             case PlayerSuit.SuitEnum.Small:
                 Die();
@@ -149,6 +151,10 @@ public partial class PlayerDieAndHurt : Node {
                 EmitSignal(SignalName.PlayerHurted);
                 break;
         }
+    }
+    public void SetHurtInvincible() {
+        IsHurtInvincible = true;
+        HurtInvincibleTimer = 0;
     }
     public void HurtEnd() {
         IsHurtInvincible = false;

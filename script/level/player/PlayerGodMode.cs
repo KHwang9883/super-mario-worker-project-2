@@ -19,6 +19,7 @@ public partial class PlayerGodMode : Node {
     public override void _Input(InputEvent @event) {
         if (!IsGodMode) return;
         if (_playerMediator == null) return;
+        if (_playerMediator.playerMovement.IsInPipeTransport) return;
         if (@event is not InputEventKey { Pressed: true } keyEvent) return;
         
         // Todo: God Mode 开启检测

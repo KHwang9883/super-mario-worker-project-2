@@ -15,7 +15,7 @@ public partial class PlayerShoot : Node {
     [Export] private PackedScene _beetrootScene = null!;
     
     public override void _PhysicsProcess(double delta) {
-        if (_playerMediator.playerGodMode.IsGodFly) return;
+        if (_playerMediator.playerGodMode.IsGodFly || _playerMediator.playerMovement.IsInPipeTransport) return;
 
         if (!Input.IsActionJustPressed("move_fire") /*_playerMediator.playerMovement.Fire &&*/ ||
             _playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Powered) return;

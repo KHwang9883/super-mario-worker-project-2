@@ -36,8 +36,8 @@ public partial class PlayerInteraction : Node {
 
         _hurtFrame = false;
         
-        // Todo: 水管传送的状态下不会受到伤害，这里暂时用卡墙的状态替代
-        if (_playerMediator.playerMovement.Stuck) return;
+        // 水管传送的状态下不会进行交互检测
+        if (_playerMediator.playerMovement.IsInPipeTransport) return;
         
         // 结果数组不为 null 时开始检测
         if (results == null) return;

@@ -137,6 +137,7 @@ pause={
 2d_physics/layer_6="Item"
 2d_physics/layer_7="Water"
 2d_physics/layer_8="PlatformTurn"
+2d_physics/layer_9="Passage"
 
 [physics]
 

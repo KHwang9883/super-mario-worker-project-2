@@ -1,0 +1,14 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbaiwwluu374c"]
+
+[ext_resource type="Script" uid="uid://b4yfjpd4eonue" path="res://script/level/facility/passage/PassageIn.cs" id="1_rsl3e"]
+[ext_resource type="PackedScene" uid="uid://5158rsupbwlh" path="res://content/level/facility/passage/passage_in_up.tscn" id="2_836dp"]
+[ext_resource type="PackedScene" uid="uid://dl6pdym47bg6e" path="res://content/level/facility/passage/passage_in_down.tscn" id="3_nm4k0"]
+[ext_resource type="PackedScene" uid="uid://br6udnhsqjqyb" path="res://content/level/facility/passage/passage_in_left.tscn" id="4_8nxpb"]
+[ext_resource type="PackedScene" uid="uid://cwww2qtsq03sf" path="res://content/level/facility/passage/passage_in_right.tscn" id="5_52er5"]
+
+[node name="PassageIn" type="Node2D"]
+script = ExtResource("1_rsl3e")
+_passageInUp = ExtResource("2_836dp")
+_passageInDown = ExtResource("3_nm4k0")
+_passageInLeft = ExtResource("4_8nxpb")
+_passageInRight = ExtResource("5_52er5")

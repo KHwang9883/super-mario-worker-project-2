@@ -39,6 +39,23 @@ public partial class PlayerAnimation : Node {
         //_playerMediator.playerDieAndHurt.PlayerHurt += OnPlayerHurt;
     }
     public override void _PhysicsProcess(double delta) {
+        // 水管传送状态的动画处理
+        if (_playerMediator.playerMovement.IsInPipeTransport) {
+            // Todo: 待测试
+            switch (_playerMediator.playerMovement.PipeTransportDir) {
+                case PlayerMovement.PipeTransportDirection.Up:
+                case PlayerMovement.PipeTransportDirection.Down:
+                    // 不处理
+                    break;
+                case PlayerMovement.PipeTransportDirection.Left:
+                case PlayerMovement.PipeTransportDirection.Right:
+                    _animatedSprite2D.Play("idle");
+                    break;
+            }
+            return;
+        }
+        
+        // 上帝模式飞行状态下动画禁用处理
         if (_playerMediator.playerGodMode.IsGodFly) {
             _animatedSprite2D.ProcessMode = ProcessModeEnum.Disabled;
             return;

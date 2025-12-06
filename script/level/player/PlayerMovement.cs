@@ -13,11 +13,33 @@ public partial class PlayerMovement : Node {
     public delegate void JumpStartedEventHandler();
     [Signal]
     public delegate void SwimStartedEventHandler();
+    [Signal]
+    public delegate void SetPipeOutInvincibleEventHandler();
+    [Signal]
+    public delegate void PlaySoundPowerDownEventHandler();
     
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
     [Export] private Area2D _aroundWaterArea2D = null!;
 
+    // 水管传送状态
+    public bool IsInPipeTransport;
+    private int _pipeInTransportTimer;
+
+    public enum PipeTransportStatusEnum {
+        In,
+        Out,
+    }
+    public PipeTransportStatusEnum PipeTransportStatus;
+    
+    public enum PipeTransportDirection {
+        Up,
+        Down,
+        Left,
+        Right,
+    }
+    public PipeTransportDirection PipeTransportDir;
+    
     // 关卡引力
     private float _gravity;
     
@@ -70,7 +92,7 @@ public partial class PlayerMovement : Node {
     private NodePath _areaBodyCollision = "AreaBodyCollisionSmall";
     private NodePath _outWaterDetect = "OutWaterDetectSmall";
     
-    private Array<Node2D> _results = null!;
+    private Array<Node2D>? _results;
     private Array<Node2D> _resultsOutWater = null!;
 
     private CollisionPolygon2D _blocksPhysicsCollisionSmall = null!;
@@ -116,6 +138,13 @@ public partial class PlayerMovement : Node {
         Fire = Input.IsActionPressed("move_fire");
         _jump = Input.IsActionPressed("move_jump");
 
+        // 水管传送检测
+        if (PipeEntryDetect()) {
+            // 在水管传送状态下不进行其他运动处理
+            PipeTransport();
+            return;
+        }
+        
         // God Mode
         if (_playerMediator.playerGodMode.IsGodFly) {
             var direction = new Vector2();
@@ -209,20 +238,9 @@ public partial class PlayerMovement : Node {
 
         if (_jump && !Crouched && !Stuck && !_wasCrouched) {
             if (!IsInWater && _player.IsOnFloor()) {
-                if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Powered
-                    && _playerMediator.playerSuit.Powerup == PlayerSuit.PowerupEnum.Lui) {
-                    SpeedY = -(9f + Mathf.Abs(SpeedX) / 5f);
-                } else {
-                    SpeedY = -(8f + Mathf.Abs(SpeedX) / 5f);
-                }
-                Jumped = true;
-                EmitSignal(SignalName.JumpStarted);
+                Jump();
             } else if (IsInWater && !Jumped) {
-                SpeedY = IsOnWaterSurface
-                    ? -(6f + Mathf.Abs(SpeedX) / 5f)
-                    : -(4f + Mathf.Abs(SpeedX) / 10f);
-                Jumped = true;
-                EmitSignal(SignalName.SwimStarted);
+                Swim();
             }
         }
         
@@ -329,9 +347,11 @@ public partial class PlayerMovement : Node {
 
         // 水中状态检测
         IsInWater = false;
-        foreach (var result in _results) {
-            if (result.IsInGroup("water")) {
-                IsInWater = true;
+        if (_results != null) {
+            foreach (var result in _results) {
+                if (result.IsInGroup("water")) {
+                    IsInWater = true;
+                }
             }
         }
         if (_wasInWater != IsInWater) {
@@ -385,10 +405,156 @@ public partial class PlayerMovement : Node {
         _areaBodyCollisionSmall.Visible = _areaBodyCollisionSmall.Enabled;
         _areaBodyCollisionSuper.Visible = _areaBodyCollisionSuper.Enabled;
     }
+    
+    // 获取重叠物件检测结果，供其他组件使用
     public Array<Node2D> GetShapeQueryResults() {
+        if (_results != null) return _results;
+        _results = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>(_areaBodyCollision));
         return _results;
     }
+
+    public void Jump() {
+        if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Powered
+            && _playerMediator.playerSuit.Powerup == PlayerSuit.PowerupEnum.Lui) {
+            SpeedY = -(9f + Mathf.Abs(SpeedX) / 5f);
+        } else {
+            SpeedY = -(8f + Mathf.Abs(SpeedX) / 5f);
+        }
+        Jumped = true;
+        EmitSignal(SignalName.JumpStarted);
+    }
+    public void Swim() {
+        SpeedY = IsOnWaterSurface
+            ? -(6f + Mathf.Abs(SpeedX) / 5f)
+            : -(4f + Mathf.Abs(SpeedX) / 10f);
+        Jumped = true;
+        EmitSignal(SignalName.SwimStarted);
+    }
+    
+    // 玩家踩踏处理
     public void OnPlayerStomp(float stompSpeedY = 8f) {
         SpeedY = stompSpeedY;
+    }
+    
+    // 水管传送处理
+    public bool PipeEntryDetect() {
+        if (IsInPipeTransport) return true;
+        
+        foreach (var result in GetShapeQueryResults()) {
+            Node? pipeEntryInfo = null;
+            if (result == null) continue;
+            
+            if (result.HasMeta("PipeEntry")) {
+                pipeEntryInfo = (Node2D)result.GetMeta("PipeEntry");
+            }
+            if (pipeEntryInfo is not PassageIn pipeEnterable) continue;
+            switch (pipeEnterable.Direction) {
+                case PassageIn.PassageDirection.Up:
+                    if (_up) {
+                        PipeInPlayerSet(PipeTransportDirection.Up);
+                        return true;
+                    }
+                    break;
+                case PassageIn.PassageDirection.Down:
+                    if (_down) {
+                        PipeInPlayerSet(PipeTransportDirection.Down);
+                        return true;
+                    }
+                    break;
+                case PassageIn.PassageDirection.Left:
+                    if (_left) {
+                        PipeInPlayerSet(PipeTransportDirection.Left);
+                        return true;
+                    }
+                    break;
+                case PassageIn.PassageDirection.Right:
+                    if (_right) {
+                        PipeInPlayerSet(PipeTransportDirection.Right);
+                        return true;
+                    }
+                    break;
+            }
+        }
+        return false;
+    }
+    public void PipeInPlayerSet(PipeTransportDirection direction) {
+        // 进入水管传送状态设置
+        PipeTransportStatus = PipeTransportStatusEnum.In;
+        PipeTransportDir = direction;
+        IsInPipeTransport = true;
+        _pipeInTransportTimer = 0;
+        SpeedX = 0f;
+        SpeedY = 0f;
+        EmitSignal(SignalName.PlaySoundPowerDown);
+    }
+    public void PipeTransport() {
+        // 水管传送状态移动处理
+        switch (PipeTransportStatus) {
+            // 进入水管
+            case PipeTransportStatusEnum.In:
+                _pipeInTransportTimer++;
+                if (_pipeInTransportTimer <= 33) {
+                    switch (PipeTransportDir) {
+                        case PipeTransportDirection.Up:
+                            _player.Position -= new Vector2(0f, 0.7f);
+                            break;
+                        case PipeTransportDirection.Down:
+                            _player.Position += new Vector2(0f, 0.7f);
+                            break;
+                        case PipeTransportDirection.Left:
+                            _player.Position -= new Vector2(0f, 0.7f);
+                            break;
+                        case PipeTransportDirection.Right:
+                            _player.Position += new Vector2(0f, 0.7f);
+                            break;
+                    }
+                } else {
+                    _pipeInTransportTimer = 0;
+                    PipeTransportStatus = PipeTransportStatusEnum.Out;
+                    // Todo: 传送到对应位置
+                    // Todo: 出口朝向设置
+                    //
+                    _player.ResetPhysicsInterpolation();
+                    EmitSignal(SignalName.PlaySoundPowerDown);
+                }
+                break;
+            
+            // 出水管
+            case PipeTransportStatusEnum.Out:
+                if (_player.MoveAndCollide(Vector2.Zero, true, 0.02f) == null) {
+                    IsInPipeTransport = false;
+                    
+                    // Todo: 待测试：传送结束跳跃处理
+                    if (_jump) {
+                        if (!IsInWater) {
+                            Jump();
+                        } else {
+                            Swim();
+                        }
+                    }
+                    
+                    // Additional Settings: MF-Style pipe exit
+                    if (!LevelConfigAccess.GetLevelConfig(this).MfStylePipeExit) {
+                        EmitSignal(SignalName.SetPipeOutInvincible);
+                    }
+                    break;
+                }
+                
+                switch (PipeTransportDir) {
+                    case PipeTransportDirection.Up:
+                        _player.Position -= new Vector2(0f, 0.7f);
+                        break;
+                    case PipeTransportDirection.Down:
+                        _player.Position += new Vector2(0f, 0.7f);
+                        break;
+                    case PipeTransportDirection.Left:
+                        _player.Position -= new Vector2(0f, 0.7f);
+                        break;
+                    case PipeTransportDirection.Right:
+                        _player.Position += new Vector2(0f, 0.7f);
+                        break;
+                }
+                break;
+        }
     }
 }
