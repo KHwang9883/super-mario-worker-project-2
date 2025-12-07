@@ -11,20 +11,25 @@ namespace SMWP.Level.Player;
 public partial class PlayerMovement : Node {
     [Signal]
     public delegate void JumpStartedEventHandler();
+
     [Signal]
     public delegate void SwimStartedEventHandler();
+
     [Signal]
     public delegate void PipeInEventHandler();
+
     [Signal]
     public delegate void SetPipeOutInvincibleEventHandler();
+
     [Signal]
     public delegate void PlaySoundPowerDownEventHandler();
-    
+
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
     [Export] private Area2D _aroundWaterArea2D = null!;
 
     // 水管传送状态
+    private LevelConfig? _levelConfig;
     public bool IsInPipeTransport;
     private bool _wasInPipe;
     private bool _wasPipeOut;
@@ -35,19 +40,21 @@ public partial class PlayerMovement : Node {
         In,
         Out,
     }
+
     public PipeTransportStatusEnum PipeTransportStatus;
-    
+
     public enum PipeTransportDirection {
         Up,
         Down,
         Left,
         Right,
     }
+
     public PipeTransportDirection PipeTransportDir;
-    
+
     // 关卡引力
     private float _gravity;
-    
+
     // 运动参数先用 GM8 单位（px/f），计算 Velocity 的时候转换为 Godot 单位（px/s）
     private const float FramerateOrigin = 50f;
     public int Direction = 1;
@@ -57,16 +64,16 @@ public partial class PlayerMovement : Node {
     private float _maxWalkingSpeed = 3f;
     private float _maxRunningSpeed = 8f;
     private float _lastPositionX;
-    
+
     public float SpeedY;
     private float _lastSpeedY;
     private float _maxFallingSpeed = 13f;
-    
+
     private float _waterHorizontalAcceleration = 0.05f;
     private float _waterMaxWalkingSpeed = 1f;
     private float _waterMaxRunningSpeed = 3f;
     private float _waterMaxFallingSpeed = 6f;
-    
+
     public bool IsInWater;
     private bool _wasInWater;
     public bool IsOnWaterSurface = true;
@@ -86,17 +93,17 @@ public partial class PlayerMovement : Node {
     private int _jumpBoostTimer;
 
     public bool OnVerticalPlatform;
-    
+
     // TODO: 冰块状态
     public bool OnIce;
-    
+
     // God Mode 玩家碰撞层掩码记录
     private uint _originPlayerLayer;
     private uint _originPlayerMask;
 
     private NodePath _areaBodyCollision = "AreaBodyCollisionSmall";
     private NodePath _outWaterDetect = "OutWaterDetectSmall";
-    
+
     private Array<Node2D>? _results;
     private Array<Node2D> _resultsOutWater = null!;
 
@@ -119,19 +126,23 @@ public partial class PlayerMovement : Node {
         // 关卡重力设置
         var levelConfig = LevelConfigAccess.GetLevelConfig(this);
         _gravity = levelConfig.Gravity / 5f;
-        
+
         // _lastPositionX 初始化
         _lastPositionX = _player.Position.X;
-        
+
         _originPlayerLayer = _player.GetCollisionLayer();
         _originPlayerMask = _player.GetCollisionMask();
-        
+
         _blocksPhysicsCollisionSmall = _player.GetNode<CollisionPolygon2D>("BlocksPhysicsCollisionSmall");
         _areaBodyCollisionSmall = _player.GetNode<ShapeCast2D>("AreaBodyCollisionSmall");
         _outWaterDetectSmall = _player.GetNode<ShapeCast2D>("OutWaterDetectSmall");
         _blocksPhysicsCollisionSuper = _player.GetNode<CollisionPolygon2D>("BlocksPhysicsCollisionSuper");
         _areaBodyCollisionSuper = _player.GetNode<ShapeCast2D>("AreaBodyCollisionSuper");
         _outWaterDetectSuper = _player.GetNode<ShapeCast2D>("OutWaterDetectSuper");
+
+        // 镜头控制元件检测
+        _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
+        Callable.From(ViewControlDetect).CallDeferred();
     }
 
     public override void _PhysicsProcess(double delta) {
@@ -142,23 +153,23 @@ public partial class PlayerMovement : Node {
         _right = Input.IsActionPressed("move_right");
         Fire = Input.IsActionPressed("move_fire");
         _jump = Input.IsActionPressed("move_jump");
-        
+
         // 在水管传送状态下不进行其他运动处理
         PipeEntryDetect();
-        
+
         PipeTransport();
 
         if (IsInPipeTransport) return;
-        
+
         // God Mode
         if (_playerMediator.playerGodMode.IsGodFly) {
             var direction = new Vector2();
-            
+
             if (_right) direction.X += 1;
             if (_left) direction.X -= 1;
             if (_down) direction.Y += 1;
             if (_up) direction.Y -= 1;
-            
+
             if (direction.Length() > 0) {
                 direction = direction.Normalized();
             }
@@ -167,10 +178,10 @@ public partial class PlayerMovement : Node {
             _player.SetCollisionMask(0);
             return;
         }
-        
+
         _player.SetCollisionLayer(_originPlayerLayer);
         _player.SetCollisionMask(_originPlayerMask);
-        
+
         // x 速度
         float acceleration = IsInWater
             ? _waterHorizontalAcceleration
@@ -195,7 +206,7 @@ public partial class PlayerMovement : Node {
                     : _maxWalkingSpeed;
             }
         }
-        
+
         if (!Crouched && !Stuck) {
             if (_left) {
                 SpeedX = Mathf.Clamp(SpeedX - acceleration, -maxSpeed, maxSpeed);
@@ -210,7 +221,7 @@ public partial class PlayerMovement : Node {
         if (SpeedX is > -0.04f and < 0.04f) {
             SpeedX = 0f;
         }
-        
+
         // 方向记录
         Direction = SpeedX switch {
             < 0f => -1,
@@ -220,12 +231,12 @@ public partial class PlayerMovement : Node {
 
         // y 速度
         _lastSpeedY = SpeedY;
-        
+
         // 落地或顶头
         if ((_player.IsOnFloor() || (_player.IsOnCeiling() && SpeedY < 0f))) {
             SpeedY = 0f;
         }
-        
+
         // 大个子下蹲与起身
         if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small) {
             if (_player.IsOnFloor() && _down && !Stuck) {
@@ -235,7 +246,7 @@ public partial class PlayerMovement : Node {
         if (!_down) {
             Crouched = false;
         }
-        
+
         // 起跳
         if (!_jump) {
             Jumped = false;
@@ -250,7 +261,7 @@ public partial class PlayerMovement : Node {
         }
 
         _wasInPipe = IsInPipeTransport;
-        
+
         _wasCrouched = Crouched;
 
         // 空中跳跃按跳跃键有速度加成
@@ -271,7 +282,7 @@ public partial class PlayerMovement : Node {
                 SpeedY = maxFallSpeed;
             }
         }
-        
+
         // 根据GM8版执行顺序在这里进行速度计算并 MoveAndSlide()
         _player.Velocity = new Vector2(SpeedX * FramerateOrigin, (SpeedY + _gravity) * FramerateOrigin);
 
@@ -282,7 +293,7 @@ public partial class PlayerMovement : Node {
         } else {
             Stuck = false;
         }
-        
+
         // 空中卡天花板挤出
         if (Stuck && !_wasStuck) {
             // 空中从天花板挤出只执行一次（比如空中蹲起和小个子获得补给），因此用 _wasStuck 判断
@@ -302,7 +313,7 @@ public partial class PlayerMovement : Node {
         }
 
         _wasStuck = Stuck;
-        
+
         if (Stuck) {
             // 蹲滑起立卡墙挤出
             SpeedX = 0f;
@@ -311,7 +322,7 @@ public partial class PlayerMovement : Node {
         } else {
             // 正常运动
             _player.MoveAndSlide();
-            
+
             // 掉落平台检测
             OnVerticalPlatform = false;
             if (_player.IsOnFloor()) {
@@ -340,7 +351,7 @@ public partial class PlayerMovement : Node {
             _player.Position = new Vector2(Mathf.Min(_player.Position.X, _lastPositionX), _player.Position.Y);
         _lastPositionX = _player.Position.X;
 
-        
+
         // 重叠物件检测
         try {
             _results = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>(_areaBodyCollision));
@@ -384,7 +395,7 @@ public partial class PlayerMovement : Node {
 
         // 第 146 号 BGM 靠近流体检测
         IsAroundWater = _aroundWaterArea2D.GetOverlappingAreas().Count > 0;
-        
+
         // 不同状态的碰撞箱切换
         Callable.From(() => {
             if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Small || Crouched) {
@@ -412,7 +423,7 @@ public partial class PlayerMovement : Node {
         _areaBodyCollisionSmall.Visible = _areaBodyCollisionSmall.Enabled;
         _areaBodyCollisionSuper.Visible = _areaBodyCollisionSuper.Enabled;
     }
-    
+
     // 获取重叠物件检测结果，供其他组件使用
     public Array<Node2D> GetShapeQueryResults() {
         if (_results != null) return _results;
@@ -430,6 +441,7 @@ public partial class PlayerMovement : Node {
         Jumped = true;
         EmitSignal(SignalName.JumpStarted);
     }
+
     public void Swim() {
         SpeedY = IsOnWaterSurface
             ? -(6f + Mathf.Abs(SpeedX) / 5f)
@@ -437,20 +449,20 @@ public partial class PlayerMovement : Node {
         Jumped = true;
         EmitSignal(SignalName.SwimStarted);
     }
-    
+
     // 玩家踩踏处理
     public void OnPlayerStomp(float stompSpeedY = 8f) {
         SpeedY = stompSpeedY;
     }
-    
+
     // 水管传送处理
     public void PipeEntryDetect() {
         if (IsInPipeTransport) return;
-        
+
         foreach (var result in GetShapeQueryResults()) {
             Node? pipeEntryNode = null;
             if (result == null) continue;
-            
+
             if (result.HasMeta("PipeEntry")) {
                 pipeEntryNode = (Node2D)result.GetMeta("PipeEntry");
             }
@@ -484,6 +496,7 @@ public partial class PlayerMovement : Node {
             }
         }
     }
+
     public void PipeInPlayerSet(PipeTransportDirection direction) {
         // 进入水管传送状态设置
         PipeTransportStatus = PipeTransportStatusEnum.In;
@@ -496,9 +509,10 @@ public partial class PlayerMovement : Node {
         EmitSignal(SignalName.PipeIn);
         EmitSignal(SignalName.PlaySoundPowerDown);
     }
+
     public void PipeTransport() {
         if (!IsInPipeTransport) return;
-        
+
         // 水管传送状态移动处理
         switch (PipeTransportStatus) {
             // 进入水管
@@ -521,19 +535,19 @@ public partial class PlayerMovement : Node {
                     }
                 } else {
                     _pipeInTransportTimer = 0;
-                    
+
                     // 传送到对应位置
                     var passageOuts = GetTree().GetNodesInGroup("passage_out");
                     foreach (var node in passageOuts) {
                         if (node is not PassageOut passageOut) continue;
                         if (passageOut.PassageId != PipeTransportId) continue;
-                        
+
                         // 传送位置微调
                         _player.Position = passageOut.Direction switch {
-                            PassageIn.PassageDirection.Up => passageOut.Position + new Vector2(0f, 32f -12f),
+                            PassageIn.PassageDirection.Up => passageOut.Position + new Vector2(0f, 32f - 12f),
                             PassageIn.PassageDirection.Down => passageOut.Position + new Vector2(0f, 64f - 12f),
-                            PassageIn.PassageDirection.Left => passageOut.Position + new Vector2(-16f, 32f -12f),
-                            PassageIn.PassageDirection.Right => passageOut.Position + new Vector2(16f, 32f -12f),
+                            PassageIn.PassageDirection.Left => passageOut.Position + new Vector2(-16f, 32f - 12f),
+                            PassageIn.PassageDirection.Right => passageOut.Position + new Vector2(16f, 32f - 12f),
                             _ => _player.Position,
                         };
                         _player.ForceUpdateTransform();
@@ -547,21 +561,24 @@ public partial class PlayerMovement : Node {
                             PassageIn.PassageDirection.Right => PipeTransportDirection.Right,
                             _ => PipeTransportDir,
                         };
-                        
+
                         PipeTransportStatus = PipeTransportStatusEnum.Out;
                         
+                        // 镜头控制元件检测
+                        ViewControlDetect();
+
                         EmitSignal(SignalName.PlaySoundPowerDown);
                     }
                 }
                 break;
-            
+
             // 出水管
             case PipeTransportStatusEnum.Out:
                 if (_player.MoveAndCollide(Vector2.Zero, true, 0.02f) == null) {
                     // 传送结束的空中跳跃处理
                     _player.Velocity = Vector2.Zero;
                     _player.MoveAndSlide();
-                    
+
                     if (_jump && !_player.IsOnFloor()) {
                         if (!IsInWater) {
                             Jump();
@@ -572,17 +589,17 @@ public partial class PlayerMovement : Node {
                             Swim();
                         }
                     }
-                    
+
                     _player.ForceUpdateTransform();
                     _player.GetNode<ShapeCast2D>(_areaBodyCollision).ForceUpdateTransform();
-                    
+
                     // 及时更新一次重叠检测
                     // 不及时更新可能的后果：保留传送前的检测结果，导致玩家传送结束后有 1 帧时间可以进入刚才的传送入口
                     _results = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>(_areaBodyCollision));
-                    
+
                     _wasInPipe = true;
                     IsInPipeTransport = false;
-                    
+
                     // Additional Settings: MF-Style pipe exit
                     if (!LevelConfigAccess.GetLevelConfig(this).MfStylePipeExit) {
                         EmitSignal(SignalName.SetPipeOutInvincible);
@@ -591,7 +608,7 @@ public partial class PlayerMovement : Node {
                 }
 
                 _wasPipeOut = IsInPipeTransport;
-                
+
                 switch (PipeTransportDir) {
                     case PipeTransportDirection.Up:
                         _player.Position -= new Vector2(0f, 0.7f);
@@ -618,10 +635,43 @@ public partial class PlayerMovement : Node {
                 break;
         }
     }
-    
+
     public void ForceDownPush() {
         do {
             _player.Position += Vector2.Down;
         } while (_player.MoveAndCollide(Vector2.Zero, true, 0.02f) != null);
+    }
+
+    public void ViewControlDetect() {
+        var viewControls = GetTree().GetNodesInGroup("view_control");
+        if (viewControls == null) return;
+        if (_levelConfig == null) {
+            GD.PushError("ViewControlDetect: LevelConfig is null!");
+            return;
+        }
+        var camera = (Camera2D)GetTree().GetFirstNodeInGroup("camera");
+        foreach (var node in viewControls) {
+            if (node is not ViewControl viewControl) continue;
+            if (_player.Position.X > viewControl.ViewRect.Position.X
+                && _player.Position.X < viewControl.ViewRect.End.X
+                && _player.Position.Y > viewControl.ViewRect.Position.Y
+                && _player.Position.Y < viewControl.ViewRect.End.Y) {
+                
+                
+                camera.LimitLeft = (int)viewControl.ViewRect.Position.X;
+                camera.LimitTop = (int)viewControl.ViewRect.Position.Y;
+                camera.LimitRight = (int)viewControl.ViewRect.End.X;
+                camera.LimitBottom = (int)viewControl.ViewRect.End.Y;
+                
+                // 检测到一个镜头控制元件后即退出
+                return;
+            }
+        }
+        
+        // 没有镜头控制元件时恢复默认限制
+        camera.LimitLeft = 0;
+        camera.LimitTop = 0;
+        camera.LimitRight = (int)_levelConfig.RoomWidth;
+        camera.LimitBottom = (int)_levelConfig.RoomHeight;
     }
 }

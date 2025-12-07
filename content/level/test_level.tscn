@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=77 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/facility/solid/solid.tscn" id="2_676rr"]
@@ -67,6 +67,7 @@
 [ext_resource type="PackedScene" uid="uid://b1srfpaxhbli6" path="res://content/level/facility/scene_control/scene_control.tscn" id="63_i0wvf"]
 [ext_resource type="PackedScene" uid="uid://dbaiwwluu374c" path="res://content/level/facility/passage/passage_in.tscn" id="66_kwmt5"]
 [ext_resource type="PackedScene" uid="uid://cxqwys5a7a23" path="res://content/level/facility/passage/passage_out.tscn" id="67_s6ftr"]
+[ext_resource type="PackedScene" uid="uid://vphreva4h736" path="res://content/level/facility/view_control/view_control.tscn" id="68_glrnk"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kynl2"]
 blend_mode = 2
@@ -383,7 +384,7 @@ tile_set = ExtResource("11_877iw")
 
 [node name="Mario" parent="TestLevelNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(2704, 276)
+position = Vector2(2708, 272)
 
 [node name="TestCamera2D" parent="TestLevelNode2D" instance=ExtResource("10_8mywb")]
 position = Vector2(2756, 244)
@@ -510,7 +511,7 @@ position = Vector2(2050, 403)
 position = Vector2(1776, 292)
 
 [node name="TroopaYellow" parent="TestLevelNode2D/Enemies" instance=ExtResource("38_gctg4")]
-position = Vector2(2336, 144)
+position = Vector2(2284, 204)
 
 [node name="TroopaYellow2" parent="TestLevelNode2D/Enemies" instance=ExtResource("38_gctg4")]
 position = Vector2(2176, 400)
@@ -616,10 +617,10 @@ position = Vector2(3092, 428)
 position = Vector2(3172, 428)
 
 [node name="LavaPiece3" parent="TestLevelNode2D/Enemies" instance=ExtResource("29_buyip")]
-position = Vector2(2840, 272)
+position = Vector2(2844, 272)
 
 [node name="LavaPiece4" parent="TestLevelNode2D/Enemies" instance=ExtResource("29_buyip")]
-position = Vector2(2968, 148)
+position = Vector2(2968, 156)
 
 [node name="Bonus" type="Node2D" parent="TestLevelNode2D"]
 
@@ -722,7 +723,7 @@ position = Vector2(1568, 0)
 position = Vector2(1824, 0)
 
 [node name="PlatformSolid" parent="TestLevelNode2D/Facilities" instance=ExtResource("56_ul4ql")]
-position = Vector2(1792, 8)
+position = Vector2(1792, 16)
 
 [node name="PlatformSolid2" parent="TestLevelNode2D/Facilities" instance=ExtResource("57_e7eqa")]
 position = Vector2(1624, 16)
@@ -770,6 +771,9 @@ Direction = 2
 
 [node name="Brick" parent="TestLevelNode2D" instance=ExtResource("23_dmmuc")]
 position = Vector2(2768, 80)
+
+[node name="ViewControl" parent="TestLevelNode2D" instance=ExtResource("68_glrnk")]
+ViewRect = Rect2(2432, 0, 6400, 6400)
 
 [node name="Brick2" parent="TestLevelNode2D" instance=ExtResource("23_dmmuc")]
 position = Vector2(2768, 48)
