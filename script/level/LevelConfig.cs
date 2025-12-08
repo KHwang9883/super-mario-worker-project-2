@@ -73,6 +73,9 @@ public partial class LevelConfig : Node {
     private PackedScene? _backgroundScene;
     private BackgroundSet? _backgroundSet;
     public override void _Ready() {
+        // Room Size Set
+        // 见 LevelCamera
+        
         // Time Set
         LevelManager.SetLevelTime(Time);
         

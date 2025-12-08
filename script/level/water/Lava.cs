@@ -14,6 +14,20 @@ public partial class Lava : Area2D {
     public override void _Ready() {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         _fluid ??= GetParent<Fluid>();
+        
+        // 防止起始点在水中导致开场死亡
+        if (_water == null) {
+            GD.PushError($"{this}: Water is not found.");
+        } else if (_levelConfig != null && _fluid != null) {
+            switch (_fluid.FluidType) {
+                case Fluid.FluidTypeEnum.Lava:
+                    Position = Position with { Y = _water.Position.Y };
+                    break;
+                case Fluid.FluidTypeEnum.Water:
+                    Position = Position with { Y = _levelConfig.RoomHeight + 640 };
+                    break;
+            }
+        }
     }
     public override void _PhysicsProcess(double delta) {
         // 计算水块位置

@@ -32,12 +32,12 @@ public partial class OutOfBoundsQueueFree : Node
 
     private Rect2 _roomBounds;
     private Node2D _target = null!;
-    private LevelConfig _currentRoomConfig = null!;
+    private LevelConfig _levelConfig = null!;
 
     public override void _Ready() {
         _target = (Node2D)GetParent();
-        _currentRoomConfig = LevelConfigAccess.GetLevelConfig(this);
-        _roomBounds = new Rect2(Vector2.Zero, new Vector2(_currentRoomConfig.RoomWidth, _currentRoomConfig.RoomHeight));
+        _levelConfig = LevelConfigAccess.GetLevelConfig(this);
+        _roomBounds = new Rect2(Vector2.Zero, new Vector2(_levelConfig.RoomWidth, _levelConfig.RoomHeight));
     }
 
     public override void _PhysicsProcess(double delta) {

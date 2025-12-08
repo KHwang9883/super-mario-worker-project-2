@@ -118,16 +118,19 @@ public partial class PlayerMovement : Node {
     private ShapeCast2D _outWaterDetectSuper = null!;
 
     private LevelCamera? _levelCamera;
+    private bool _autoScrollCheckpointDetect;
 
     public override void _Ready() {
         // Checkpoint
         var checkpoints = GetTree().GetNodesInGroup("checkpoint");
-        if (checkpoints != null)
+        if (checkpoints != null) {
             foreach (var node in checkpoints) {
                 if (node is not Checkpoint checkpoint) continue;
                 if (LevelManager.CurrentCheckpointId != checkpoint.Id) continue;
                 _player.Position = checkpoint.Position + Vector2.Up * 8f;
             }
+        }
+        
         // 关卡重力设置
         var levelConfig = LevelConfigAccess.GetLevelConfig(this);
         _gravity = levelConfig.Gravity / 5f;
@@ -736,6 +739,25 @@ public partial class PlayerMovement : Node {
             && _player.Position.Y < autoScroll.ScrollRect.End.Y) {
                 
             _levelCamera.CameraMode = LevelCamera.CameraModeEnum.AutoScroll;
+        }
+        
+        // Checkpoint 处复活，检测周围滚屏节点，只检测一次
+        if (_autoScrollCheckpointDetect) return;
+        _autoScrollCheckpointDetect = true;
+        var autoScrollNodes = GetTree().GetNodesInGroup("auto_scroll");
+        foreach (var node in autoScrollNodes) {
+            if (node is not AutoScroll autoScrollCheckpoint) continue;
+            if (_player.Position.X > autoScrollCheckpoint.ScrollRect.Position.X
+                && _player.Position.X < autoScrollCheckpoint.ScrollRect.End.X
+                && _player.Position.Y > autoScrollCheckpoint.ScrollRect.Position.Y
+                && _player.Position.Y < autoScrollCheckpoint.ScrollRect.End.Y) {
+                
+                _levelCamera.CameraMode = LevelCamera.CameraModeEnum.AutoScroll;
+                // 强行设置强制滚屏的节点
+                _levelCamera.ForceSetScrollNode(autoScrollCheckpoint);
+                // 检测到一个就停止
+                break;
+            }
         }
     }
 }

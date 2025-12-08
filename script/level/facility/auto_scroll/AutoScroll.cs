@@ -4,6 +4,7 @@ using System;
 public partial class AutoScroll : Node2D {
     [Export] public float Speed = 100f;
     public Rect2 ScrollRect;
+    public int Id;
 
     public override void _Ready() {
         // 强制滚屏速度限制

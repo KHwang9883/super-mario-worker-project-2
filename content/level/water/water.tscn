@@ -5,43 +5,43 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8j37s"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_opojc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3t2h"]
 atlas = ExtResource("1_8j37s")
-region = Rect2(0, 0, 640, 17)
+region = Rect2(0, 0, 640, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_md3cs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_71y67"]
 atlas = ExtResource("1_8j37s")
-region = Rect2(0, 18, 640, 17)
+region = Rect2(0, 18, 640, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ycmq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdwka"]
 atlas = ExtResource("1_8j37s")
-region = Rect2(0, 36, 640, 17)
+region = Rect2(0, 36, 640, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_thbh0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oshm1"]
 atlas = ExtResource("1_8j37s")
-region = Rect2(0, 54, 640, 17)
+region = Rect2(0, 54, 640, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sxfpb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_36hia"]
 atlas = ExtResource("1_8j37s")
-region = Rect2(0, 72, 640, 17)
+region = Rect2(0, 72, 640, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g2rda"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_opojc")
+"texture": SubResource("AtlasTexture_s3t2h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_md3cs")
+"texture": SubResource("AtlasTexture_71y67")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8ycmq")
+"texture": SubResource("AtlasTexture_qdwka")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_thbh0")
+"texture": SubResource("AtlasTexture_oshm1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sxfpb")
+"texture": SubResource("AtlasTexture_36hia")
 }],
 "loop": true,
 "name": &"default",
@@ -62,6 +62,14 @@ shape = SubResource("WorldBoundaryShape2D_8j37s")
 
 [node name="WaterSprite" type="Node2D" parent="."]
 
+[node name="ColorRect" type="ColorRect" parent="WaterSprite"]
+self_modulate = Color(1, 1, 1, 0.5294118)
+offset_left = -640.0
+offset_top = 16.0
+offset_right = 1280.0
+offset_bottom = 528.0
+color = Color(0.3529412, 0.54901963, 0.90588236, 1)
+
 [node name="WaterSurfaceParallax2D" type="Parallax2D" parent="WaterSprite"]
 repeat_size = Vector2(640, 0)
 repeat_times = 2
@@ -72,11 +80,3 @@ position = Vector2(320, 8)
 sprite_frames = SubResource("SpriteFrames_g2rda")
 autoplay = "default"
 frame_progress = 1.0
-
-[node name="ColorRect" type="ColorRect" parent="WaterSprite"]
-self_modulate = Color(1, 1, 1, 0.5294118)
-offset_left = -640.0
-offset_top = 16.0
-offset_right = 1280.0
-offset_bottom = 528.0
-color = Color(0.3529412, 0.54901963, 0.90588236, 1)

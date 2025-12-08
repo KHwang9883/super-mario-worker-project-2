@@ -123,10 +123,9 @@ size = Vector2(96, 63.53125)
 [node name="LevelConfig" type="Node" parent="TestLevelNode2D" groups=["level_config"]]
 script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
-RoomHeight = 480.0
+RoomHeight = 6400.0
 WaterHeight = 444.0
 BgpId = 30
-FluidType = 1
 AutoFluid = true
 FluidT1 = 448.0
 FluidT2 = 500.0
@@ -287,6 +286,7 @@ uppercase = true
 metadata/_edit_lock_ = true
 
 [node name="LevelInfo" type="Label" parent="TestLevelNode2D/HUD/HUD"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -306,6 +306,7 @@ uppercase = true
 metadata/_edit_lock_ = true
 
 [node name="GodPosition" type="Label" parent="TestLevelNode2D/HUD/HUD"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -321,6 +322,7 @@ uppercase = true
 metadata/_edit_lock_ = true
 
 [node name="ScrollDisabled" type="Label" parent="TestLevelNode2D/HUD/HUD"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -404,8 +406,9 @@ unique_name_in_owner = true
 position = Vector2(2992, 80)
 
 [node name="LevelCamera" parent="TestLevelNode2D" instance=ExtResource("10_8mywb")]
-position = Vector2(2756, 244)
-limit_bottom = 640
+position = Vector2(0, 9999999)
+limit_right = 640
+limit_bottom = 480
 
 [node name="Fluid" type="Node2D" parent="TestLevelNode2D" node_paths=PackedStringArray("_water", "_lava")]
 script = ExtResource("19_o2382")
@@ -782,18 +785,22 @@ position = Vector2(2976, 128)
 PassageId = 1
 Direction = 2
 
-[node name="ViewControl" parent="TestLevelNode2D/Facilities" instance=ExtResource("68_glrnk")]
-ViewRect = Rect2(2432, 0, 6400, 6400)
-
 [node name="DebugObjectGroup" type="Node2D" parent="TestLevelNode2D"]
 
 [node name="Checkpoint" parent="TestLevelNode2D" instance=ExtResource("54_813lr")]
-position = Vector2(2232, 288)
+position = Vector2(3824, 416)
 Id = 1
 
 [node name="Checkpoint2" parent="TestLevelNode2D" instance=ExtResource("54_813lr")]
-position = Vector2(2460, 160)
+position = Vector2(2608, 540)
 Id = 2
+
+[node name="Checkpoint3" parent="TestLevelNode2D" instance=ExtResource("54_813lr")]
+position = Vector2(2352, 164)
+Id = 3
+
+[node name="ViewControl" parent="TestLevelNode2D" instance=ExtResource("68_glrnk")]
+ViewRect = Rect2(2304, 0, 6400, 1280)
 
 [node name="AutoScrollsTest" type="Node2D" parent="TestLevelNode2D"]
 
@@ -802,11 +809,11 @@ position = Vector2(3408, 236)
 Speed = 500.0
 
 [node name="AutoScroll2" parent="TestLevelNode2D/AutoScrollsTest" instance=ExtResource("69_4uo84")]
-position = Vector2(3632, 352)
+position = Vector2(3820, 340)
 Speed = 200.0
 
 [node name="AutoScroll3" parent="TestLevelNode2D/AutoScrollsTest" instance=ExtResource("69_4uo84")]
-position = Vector2(3928, 256)
+position = Vector2(4028, 252)
 
 [connection signal="ModuleResourceConvert" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="play"]

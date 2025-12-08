@@ -58,7 +58,7 @@ public partial class Water : Area2D {
             _waterRect.GlobalPosition = new Vector2(
                 screen.Position.X - 16f,
                 Mathf.Max(
-                    GlobalPosition.Y + currentTexture.GetHeight() - 1f,
+                    GlobalPosition.Y + currentTexture.GetHeight(),
                     screen.Position.Y - 16f
                 )
             );

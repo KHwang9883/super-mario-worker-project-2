@@ -7,5 +7,6 @@ process_callback = 0
 limit_left = 0
 limit_top = 0
 limit_bottom = 544
+editor_draw_limits = true
 script = ExtResource("1_213j8")
 metadata/_edit_lock_ = true

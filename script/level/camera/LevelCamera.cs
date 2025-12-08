@@ -23,27 +23,40 @@ public partial class LevelCamera : Camera2D {
     private Vector2 _originalPosition;
     public Vector2 DeltaPosition;
 
+    public bool InitializationCompleted;
+
     public override void _Ready() {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         LimitRight = (int)_levelConfig.RoomWidth;
         LimitBottom = (int)_levelConfig.RoomHeight;
         _player ??= (CharacterBody2D)GetTree().GetFirstNodeInGroup("player");
         
+        // 设置到玩家位置
+        Position = _player.Position;
+        ResetPhysicsInterpolation();
+        
         Callable.From(() => {
             // 获取第一个滚屏节点
             _targetAutoscrollNode = (AutoScroll)GetTree().GetFirstNodeInGroup("auto_scroll");
             _autoScrollSpeed = _targetAutoscrollNode.Speed;
-            
+
+            var originIndex = _autoScrollIndex;
             foreach (var node in GetTree().GetNodesInGroup("auto_scroll")) {
-                if (node is AutoScroll autoScroll) {
-                    _autoScrollNodes.Add(autoScroll);
-                }
+                if (node is not AutoScroll autoScroll) continue;
+                autoScroll.Id = _autoScrollIndex;
+                _autoScrollIndex++;
+                _autoScrollNodes.Add(autoScroll);
             }
+            _autoScrollIndex = originIndex;
+            
+            _originalPosition = Position;
         }).CallDeferred();
-        
-        _originalPosition = Position;
     }
     public override void _PhysicsProcess(double delta) {
+        Callable.From(() => {
+            if (!InitializationCompleted) InitializationCompleted = true;
+        }).CallDeferred();
+        
         // 不在自动滚屏模式下，恢复目标滚屏节点为第一个节点
         if (CameraMode != CameraModeEnum.AutoScroll) {
             _targetAutoscrollNode = (AutoScroll)GetTree().GetFirstNodeInGroup("auto_scroll");
@@ -72,6 +85,12 @@ public partial class LevelCamera : Camera2D {
                 if (_targetAutoscrollNode == null) {
                     GD.PushError($"{this}: Target autoscroll node is null!");
                     break;
+                }
+                
+                // 移动到起点时强制设置相机位置为镜头中心
+                // 此举是考虑相机在场景边界时触发滚屏应当等时到达首个节点
+                if (_autoScrollIndex == 0) {
+                    Position = GetScreenCenterPosition();
                 }
                 
                 var speed = _autoScrollSpeed * 0.01f;
@@ -112,5 +131,13 @@ public partial class LevelCamera : Camera2D {
             ResetPhysicsInterpolation();
         }
         _originalPosition = Position;
+    }
+    
+    // Auto Scroll 强制设置节点（用于 Checkpoint 处复活设置）
+    public void ForceSetScrollNode(AutoScroll autoScroll) {
+        Position = autoScroll.Position;
+        ResetPhysicsInterpolation();
+        _targetAutoscrollNode = autoScroll;
+        _autoScrollIndex = autoScroll.Id;
     }
 }

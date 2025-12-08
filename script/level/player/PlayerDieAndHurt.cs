@@ -35,8 +35,14 @@ public partial class PlayerDieAndHurt : Node {
     private bool _dead;
     private int _deadTimer;
 
+    private LevelCamera? _levelCamera;
+    private float _screenBottom = 9999999f;
+    private int _playerInScreenBottomTimer;
+    private int _initialFrameDelay;
+
     public override void _Ready() {
-        _levelConfig = (LevelConfig)LevelConfigAccess.GetLevelConfig(this);
+        _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
+        _levelCamera ??= (LevelCamera)GetTree().GetFirstNodeInGroup("camera");
     }
     public override void _PhysicsProcess(double delta) {
         if (_levelConfig == null) {
@@ -79,11 +85,15 @@ public partial class PlayerDieAndHurt : Node {
         }
         
         // 掉崖死亡
-        float screenBottom = ScreenUtils.GetScreenRect(this).End.Y;
-        
-        if (_player.GlobalPosition.Y > screenBottom + 30f) {
-            Die();
+        if (_initialFrameDelay < 10) {
+            _initialFrameDelay++;
+        } else {
+            if (_player.GlobalPosition.Y > _screenBottom + 30f) {
+                Die();
+            }
         }
+        _screenBottom = ScreenUtils.GetScreenRect(this).End.Y;
+        //GD.Print(_screenBottom);
         
         // 时间归零死亡
         if (LevelManager.Time == 0) {
@@ -91,7 +101,9 @@ public partial class PlayerDieAndHurt : Node {
         }
         
         // 按自爆键死亡
-        if (!_dead && Input.IsActionPressed("move_restart_level")) {
+        if (!_dead
+            && Input.IsActionPressed("move_restart_level")
+            && !_playerMediator.playerGodMode.IsGodFly) {
             Die();
             var fireballExplosion = _fireballExplosion.Instantiate<Node2D>();
             fireballExplosion.Position = _player.Position + Vector2.Down * 16f;
@@ -112,6 +124,9 @@ public partial class PlayerDieAndHurt : Node {
         
         // 无敌状态标记
         IsInvincible = (IsHurtInvincible || IsStarmanInvincible);
+        
+        // 首帧判定延迟
+        //if (!_initialFrameDelay) _initialFrameDelay = true;
     }
     public CharacterBody2D GetPlayer() {
         return _player;
