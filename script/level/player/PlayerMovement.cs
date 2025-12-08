@@ -20,6 +20,9 @@ public partial class PlayerMovement : Node {
 
     [Signal]
     public delegate void SetPipeOutInvincibleEventHandler();
+    
+    [Signal]
+    public delegate void ForceScrollDeathEventHandler();
 
     [Signal]
     public delegate void PlaySoundPowerDownEventHandler();
@@ -114,6 +117,8 @@ public partial class PlayerMovement : Node {
     private ShapeCast2D _areaBodyCollisionSuper = null!;
     private ShapeCast2D _outWaterDetectSuper = null!;
 
+    private LevelCamera? _levelCamera;
+
     public override void _Ready() {
         // Checkpoint
         var checkpoints = GetTree().GetNodesInGroup("checkpoint");
@@ -143,6 +148,9 @@ public partial class PlayerMovement : Node {
         // 镜头控制元件检测
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         Callable.From(ViewControlDetect).CallDeferred();
+        
+        // 摄像机
+        _levelCamera ??= (LevelCamera)GetTree().GetFirstNodeInGroup("camera");
     }
 
     public override void _PhysicsProcess(double delta) {
@@ -154,6 +162,9 @@ public partial class PlayerMovement : Node {
         Fire = Input.IsActionPressed("move_fire");
         _jump = Input.IsActionPressed("move_jump");
 
+        // 自动滚屏检测
+        AutoScrollDetect();
+        
         // 在水管传送状态下不进行其他运动处理
         PipeEntryDetect();
 
@@ -349,8 +360,31 @@ public partial class PlayerMovement : Node {
             _player.Position = new Vector2(Mathf.Max(_player.Position.X, _lastPositionX), _player.Position.Y);
         if (_player.Position.X > screen.End.X - 14f)
             _player.Position = new Vector2(Mathf.Min(_player.Position.X, _lastPositionX), _player.Position.Y);
+        
+        // 自由滚屏下不会强制挤出玩家；强制滚屏下会挤出玩家
+        if (_levelCamera == null) {
+            GD.PushError($"{this}: LevelCamera is null!");
+        } else {
+            if (_levelCamera.CameraMode != LevelCamera.CameraModeEnum.FollowPlayer) {
+                // 玩家不与墙体重合时才进行强制挤出
+                if (_player.MoveAndCollide(new Vector2(_levelCamera.DeltaPosition.X, 0f), true, 0.02f) == null) {
+                    var forceScrollPush =
+                        Mathf.Abs(_levelCamera.DeltaPosition.X) + Mathf.Abs(_player.Position.X - _lastPositionX);
+                
+                    if (_player.Position.X < screen.Position.X + 14f)
+                        _player.Position += Vector2.Right * forceScrollPush;
+                    if (_player.Position.X > screen.End.X - 14f)
+                        _player.Position += Vector2.Left * forceScrollPush;
+                }
+                
+                // 在强制滚屏下在左或右一侧界外则死亡
+                if (_player.Position.X < screen.Position.X - 14f || _player.Position.X > screen.End.X + 14f) {
+                    EmitSignal(SignalName.ForceScrollDeath);
+                }
+            }
+        }
+        
         _lastPositionX = _player.Position.X;
-
 
         // 重叠物件检测
         try {
@@ -566,7 +600,16 @@ public partial class PlayerMovement : Node {
                         
                         // 镜头控制元件检测
                         ViewControlDetect();
-
+                        
+                        // 取消滚屏状态
+                        if (_levelCamera == null) {
+                            GD.PushError("PipeTransport: LevelCamera is null!");
+                        } else {
+                            if (_levelCamera.CameraMode == LevelCamera.CameraModeEnum.AutoScroll) {
+                                _levelCamera.CameraMode = LevelCamera.CameraModeEnum.FollowPlayer;
+                            }
+                        }
+                        
                         EmitSignal(SignalName.PlaySoundPowerDown);
                     }
                 }
@@ -643,13 +686,17 @@ public partial class PlayerMovement : Node {
     }
 
     public void ViewControlDetect() {
+        if (_levelCamera == null) {
+            GD.PushError("AutoScrollDetect: LevelCamera is null!");
+            return;
+        }
+
         var viewControls = GetTree().GetNodesInGroup("view_control");
         if (viewControls == null) return;
         if (_levelConfig == null) {
             GD.PushError("ViewControlDetect: LevelConfig is null!");
             return;
         }
-        var camera = (Camera2D)GetTree().GetFirstNodeInGroup("camera");
         foreach (var node in viewControls) {
             if (node is not ViewControl viewControl) continue;
             if (_player.Position.X > viewControl.ViewRect.Position.X
@@ -657,11 +704,10 @@ public partial class PlayerMovement : Node {
                 && _player.Position.Y > viewControl.ViewRect.Position.Y
                 && _player.Position.Y < viewControl.ViewRect.End.Y) {
                 
-                
-                camera.LimitLeft = (int)viewControl.ViewRect.Position.X;
-                camera.LimitTop = (int)viewControl.ViewRect.Position.Y;
-                camera.LimitRight = (int)viewControl.ViewRect.End.X;
-                camera.LimitBottom = (int)viewControl.ViewRect.End.Y;
+                _levelCamera.LimitLeft = (int)viewControl.ViewRect.Position.X;
+                _levelCamera.LimitTop = (int)viewControl.ViewRect.Position.Y;
+                _levelCamera.LimitRight = (int)viewControl.ViewRect.End.X;
+                _levelCamera.LimitBottom = (int)viewControl.ViewRect.End.Y;
                 
                 // 检测到一个镜头控制元件后即退出
                 return;
@@ -669,9 +715,27 @@ public partial class PlayerMovement : Node {
         }
         
         // 没有镜头控制元件时恢复默认限制
-        camera.LimitLeft = 0;
-        camera.LimitTop = 0;
-        camera.LimitRight = (int)_levelConfig.RoomWidth;
-        camera.LimitBottom = (int)_levelConfig.RoomHeight;
+        _levelCamera.LimitLeft = 0;
+        _levelCamera.LimitTop = 0;
+        _levelCamera.LimitRight = (int)_levelConfig.RoomWidth;
+        _levelCamera.LimitBottom = (int)_levelConfig.RoomHeight;
+    }
+    public void AutoScrollDetect() {
+        if (_levelCamera == null) {
+            GD.PushError("AutoScrollDetect: LevelCamera is null!");
+            return;
+        }
+        
+        // 检测第一个滚屏节点
+        var autoScrollNode = GetTree().GetFirstNodeInGroup("auto_scroll");
+        if (autoScrollNode == null) return;
+        if (autoScrollNode is not AutoScroll autoScroll) return;
+        if (_player.Position.X > autoScroll.ScrollRect.Position.X
+            && _player.Position.X < autoScroll.ScrollRect.End.X
+            && _player.Position.Y > autoScroll.ScrollRect.Position.Y
+            && _player.Position.Y < autoScroll.ScrollRect.End.Y) {
+                
+            _levelCamera.CameraMode = LevelCamera.CameraModeEnum.AutoScroll;
+        }
     }
 }

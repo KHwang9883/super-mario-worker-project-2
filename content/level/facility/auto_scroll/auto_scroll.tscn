@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ql8eu02wkcf5"]
+
+[ext_resource type="Script" uid="uid://ccxwhukiux56y" path="res://script/level/facility/auto_scroll/AutoScroll.cs" id="1_kancu"]
+
+[node name="AutoScroll" type="Node2D"]
+script = ExtResource("1_kancu")

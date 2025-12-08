@@ -7,15 +7,16 @@ namespace SMWP.Level.HUD;
 public partial class HUD : Control {
     [Signal]
     public delegate void PlaySoundTimeWarningEventHandler();
-    [Export] private Label? _life;
-    [Export] private Label? _score;
-    [Export] private Label? _levelTitle;
-    [Export] private Control? _timeHUD;
-    [Export] private Label? _timeCounter;
-    [Export] private Label? _coin;
-    [Export] private Sprite2D? _gameOverSprite;
-    [Export] private Label? _godPosition;
-    [Export] private Label? _levelInfo;
+    [Export] private Label _life = null!;
+    [Export] private Label _score = null!;
+    [Export] private Label _levelTitle = null!;
+    [Export] private Control _timeHUD = null!;
+    [Export] private Label _timeCounter = null!;
+    [Export] private Label _coin = null!;
+    [Export] private Sprite2D _gameOverSprite = null!;
+    [Export] private Label _godPosition = null!;
+    [Export] private Label _levelInfo = null!;
+    [Export] private Label _scrollDisabled = null!;
     
     private bool _timeWarned;
     private RandomNumberGenerator _rng = new RandomNumberGenerator();
@@ -30,7 +31,6 @@ public partial class HUD : Control {
         _player ??= (Node2D)GetTree().GetFirstNodeInGroup("player");
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         if (!_levelConfig.HUDDisplay) Visible = false;
-        if (_levelInfo == null) return;
         _levelInfo.Text =
             $"Modified Movement: {YesOrNo(_levelConfig.ModifiedMovement)}\n" +
             $"Advanced Switch: {YesOrNo(_levelConfig.AdvancedSwitch)}\n" +
@@ -41,33 +41,33 @@ public partial class HUD : Control {
     public override void _PhysicsProcess(double delta) {
         _godModeNode = (PlayerGodMode)_player!.GetMeta("PlayerGodMode");
         
-        if (_life != null) {
-            _life.Text = !_godModeNode.IsGodMode ?
-                $"MARIO {LevelManager.Life.ToString()}"
-                :$"GOD   {LevelManager.Life.ToString()}";
-        }
-        if (_score != null) _score.Text = LevelManager.Score.ToString();
+        _life.Text = !_godModeNode.IsGodMode ?
+            $"MARIO {LevelManager.Life.ToString()}"
+            :$"GOD   {LevelManager.Life.ToString()}";
         
-        // Todo: LevelTitle 特殊处理
-        if (_levelTitle != null && _levelConfig != null)
+        _score.Text = LevelManager.Score.ToString();
+        
+        // LevelTitle 特殊处理
+        if (_levelConfig == null) {
+            GD.PushError($"{this}: LevelConfig is null!");
+        } else {
             _levelTitle.Text = ConvertHashAndNewline(_levelConfig.LevelTitle);
+        }
         
         // 负数时间不显示
-        if (_timeHUD != null && LevelManager.Time < 0) _timeHUD.Visible = false;
+        if (LevelManager.Time < 0) _timeHUD.Visible = false;
             
         // 时钟警告！
-        if (_timeHUD != null) {
-            if (_timeCounter != null) _timeCounter.Text = LevelManager.Time.ToString();
-            if (LevelManager.Time < 100 && LevelManager.Time > 0 && !LevelManager.IsLevelPass) {
-                OnTimeWarning();
-            }
-            _timeHUDShake = _rng.RandfRange(0f, _rock) - _rng.RandfRange(0f, _rock);
-            _timeHUD.Position = new Vector2(_timeOriginPosition.X + _timeHUDShake, _timeOriginPosition.Y + _timeHUDShake);
-            _rock = Mathf.Clamp(_rock - 0.1f, 0f, _rock);
+        _timeCounter.Text = LevelManager.Time.ToString();
+        if (LevelManager.Time < 100 && LevelManager.Time > 0 && !LevelManager.IsLevelPass) {
+            OnTimeWarning();
         }
+        _timeHUDShake = _rng.RandfRange(0f, _rock) - _rng.RandfRange(0f, _rock);
+        _timeHUD.Position = new Vector2(_timeOriginPosition.X + _timeHUDShake, _timeOriginPosition.Y + _timeHUDShake);
+        _rock = Mathf.Clamp(_rock - 0.1f, 0f, _rock);
 
         // 金币
-        if (_coin != null) _coin.Text = LevelManager.Coin.ToString();
+        _coin.Text = LevelManager.Coin.ToString();
         
         // Game Over 展示
         if (LevelManager.IsGameOver) {
@@ -75,25 +75,28 @@ public partial class HUD : Control {
         }
         
         // Level Info
-        if (_levelInfo != null) _levelInfo.Visible = Input.IsActionPressed("level_info");
+        _levelInfo.Visible = Input.IsActionPressed("level_info");
         
         // God Mode 摄像机模式坐标显示
-        if (_godPosition != null && _player != null) {
+        if (_player != null) {
             _godPosition.Visible = _godModeNode.IsGodFly;
             _godPosition.Text = $"({_player.Position.X:F2}, {_player.Position.Y:F2})" ;
         }
+        
+        // God Mode 强制滚屏禁用
+        _scrollDisabled.Visible = _godModeNode.ForceScrollDisabled;
     }
     
     public string ConvertHashAndNewline(string input) {
         if (string.IsNullOrEmpty(input)) return input;
 
         const string tempPlaceholder = "☃";
-        string step1 = input.Replace(@"\#", tempPlaceholder);
-        string step2 = step1.Replace("#", "\n");
-        string result = step2.Replace(tempPlaceholder, "#");
+        var step1 = input.Replace(@"\#", tempPlaceholder);
+        var step2 = step1.Replace("#", "\n");
+        var result = step2.Replace(tempPlaceholder, "#");
         return result;
     }
-    public string YesOrNo(bool boolean) {
+    public static string YesOrNo(bool boolean) {
         return boolean ? "Yes" : "No";
     }
     public void OnTimeWarning() {
@@ -103,7 +106,6 @@ public partial class HUD : Control {
         _rock = 10f;
     }
     public void GameOverShow() {
-        if (_gameOverSprite == null) return;
         _gameOverSprite.Visible = true;
     }
 }

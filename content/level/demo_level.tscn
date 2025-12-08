@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://dsl20o7a2l7a0" path="res://script/level/debug/TestLabel.cs" id="14_ygl84"]
 [ext_resource type="TileSet" uid="uid://obv64rtoaukf" path="res://content/level/tile/blocks.tileset.tres" id="16_eblde"]
 [ext_resource type="PackedScene" uid="uid://dwkukt5v4t3p5" path="res://content/level/player/player.tscn" id="18_hlppu"]
-[ext_resource type="PackedScene" uid="uid://cplswge6xc0vw" path="res://content/level/camera/test_camera_2d.tscn" id="19_nvr2m"]
+[ext_resource type="PackedScene" uid="uid://cplswge6xc0vw" path="res://content/level/camera/level_camera.tscn" id="19_nvr2m"]
 [ext_resource type="PackedScene" uid="uid://2vuxafdyyhgx" path="res://content/level/water/water.tscn" id="20_ojtto"]
 [ext_resource type="PackedScene" uid="uid://unijmmxn54ok" path="res://content/level/enemy/spike/coral_electric.tscn" id="21_6vuyb"]
 [ext_resource type="PackedScene" uid="uid://dh8pgpynxisry" path="res://content/level/enemy/piranha_plant/piranha_plant_green.tscn" id="22_5etpj"]

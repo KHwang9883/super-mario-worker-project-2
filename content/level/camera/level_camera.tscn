@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cyalam1re1tln" path="res://script/level/camera/LevelCamera.cs" id="1_213j8"]
 
-[node name="TestCamera2D" type="Camera2D" groups=["camera"]]
+[node name="LevelCamera" type="Camera2D" groups=["camera"]]
 process_callback = 0
 limit_left = 0
 limit_top = 0

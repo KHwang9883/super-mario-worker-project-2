@@ -249,6 +249,7 @@ script = ExtResource("30_sba15")
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("29_kphem")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="PlayerMediator/PlayerAnimation" method="OnAnimationFinished"]
+[connection signal="ForceScrollDeath" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerDieAndHurt" method="Die"]
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerAnimation" method="OnJumpStarted"]
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerJump" method="play"]
 [connection signal="PipeIn" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerAnimation" method="OnPipeEntered"]
