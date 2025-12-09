@@ -66,7 +66,7 @@ public partial class PlayerMovement : Node {
     private float _runningAcceleration = 0.3f;
     private float _maxWalkingSpeed = 3f;
     private float _maxRunningSpeed = 8f;
-    private float _lastPositionX;
+    public float LastPositionX;
 
     public float SpeedY;
     private float _lastSpeedY;
@@ -136,7 +136,7 @@ public partial class PlayerMovement : Node {
         _gravity = levelConfig.Gravity / 5f;
 
         // _lastPositionX 初始化
-        _lastPositionX = _player.Position.X;
+        LastPositionX = _player.Position.X;
 
         _originPlayerLayer = _player.GetCollisionLayer();
         _originPlayerMask = _player.GetCollisionMask();
@@ -360,9 +360,9 @@ public partial class PlayerMovement : Node {
         // 镜头越界处理（放在运动结束之后）
         var screen = ScreenUtils.GetScreenRect(this);
         if (_player.Position.X < screen.Position.X + 14f)
-            _player.Position = new Vector2(Mathf.Max(_player.Position.X, _lastPositionX), _player.Position.Y);
+            _player.Position = new Vector2(Mathf.Max(_player.Position.X, LastPositionX), _player.Position.Y);
         if (_player.Position.X > screen.End.X - 14f)
-            _player.Position = new Vector2(Mathf.Min(_player.Position.X, _lastPositionX), _player.Position.Y);
+            _player.Position = new Vector2(Mathf.Min(_player.Position.X, LastPositionX), _player.Position.Y);
         
         // 自由滚屏下不会强制挤出玩家；强制滚屏下会挤出玩家
         if (_levelCamera == null) {
@@ -372,7 +372,7 @@ public partial class PlayerMovement : Node {
                 // 玩家不与墙体重合时才进行强制挤出
                 if (_player.MoveAndCollide(new Vector2(_levelCamera.DeltaPosition.X, 0f), true, 0.02f) == null) {
                     var forceScrollPush =
-                        Mathf.Abs(_levelCamera.DeltaPosition.X) + Mathf.Abs(_player.Position.X - _lastPositionX);
+                        Mathf.Abs(_levelCamera.DeltaPosition.X) + Mathf.Abs(_player.Position.X - LastPositionX);
                 
                     if (_player.Position.X < screen.Position.X + 14f)
                         _player.Position += Vector2.Right * forceScrollPush;
@@ -387,7 +387,7 @@ public partial class PlayerMovement : Node {
             }
         }
         
-        _lastPositionX = _player.Position.X;
+        LastPositionX = _player.Position.X;
 
         // 重叠物件检测
         try {

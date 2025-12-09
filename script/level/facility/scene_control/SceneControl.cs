@@ -29,6 +29,7 @@ public partial class SceneControl : Area2D {
     }
     
     // Todo: if (LinkedWithViewControl)
+    // Todo: if (LinkedWithKoopa)
     
     public void SetSceneStatus() {
         if (_levelConfig == null) {
