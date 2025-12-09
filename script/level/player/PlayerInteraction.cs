@@ -190,11 +190,8 @@ public partial class PlayerInteraction : Node {
         if (!(_playerMediator.playerMovement.SpeedY <= 0f)) return;
         
         var collision = _player.MoveAndCollide(new Vector2(0f, -1f), true);
-        if (collision == null) {
-            return;
-        }
-        
-        var blockCollider = collision.GetCollider();
+
+        var blockCollider = collision?.GetCollider();
         //GD.Print(blockCollider);
         if (blockCollider is not StaticBody2D staticBody2D) return;
         if (staticBody2D.HasMeta("InteractionWithBlock")) {

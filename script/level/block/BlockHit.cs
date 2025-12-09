@@ -50,6 +50,7 @@ public partial class BlockHit : Node, IBlockHittable {
     // 隐藏砖设置
     [Export] private CollisionShape2D _collisionShape2D = null!;
     private static Shape2D? _originalCollisionShape2D;
+    private uint _originCollisionLayer;
     private RectangleShape2D _hiddenShape = GD.Load<RectangleShape2D>("uid://dgpgao4212wvq");
     
     public override void _Ready() {
@@ -61,6 +62,7 @@ public partial class BlockHit : Node, IBlockHittable {
         MetadataInject(Parent);
 
         // 隐藏砖
+        _originCollisionLayer = Parent.CollisionLayer;
         _originalCollisionShape2D = (Shape2D)_collisionShape2D.Shape.Duplicate();
         if (!Hidden) return;
         SetHidden();
@@ -179,9 +181,9 @@ public partial class BlockHit : Node, IBlockHittable {
             GD.PushError($"{this}: Parent is null!");
             return;
         }
-        // Debug
         Parent.Visible = false;
         _collisionShape2D.Position = Vector2.Down * 13f;
+        Parent.CollisionLayer = 2;
         _collisionShape2D.Shape = _hiddenShape;
         _collisionShape2D.OneWayCollision = true;
     }
@@ -192,6 +194,7 @@ public partial class BlockHit : Node, IBlockHittable {
         }
         Hidden = false;
         Parent.Visible = true;
+        Parent.CollisionLayer = _originCollisionLayer;
         _collisionShape2D.Shape = _originalCollisionShape2D;
         _collisionShape2D.Position = Vector2.Zero;
         _collisionShape2D.OneWayCollision = false;
