@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=86 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/facility/solid/solid.tscn" id="2_676rr"]
@@ -72,6 +72,11 @@
 [ext_resource type="PackedScene" uid="uid://bdb1my0j48chm" path="res://content/level/block/question_block/question_block.tscn" id="69_q0l1p"]
 [ext_resource type="PackedScene" uid="uid://c1waxffc2n6a5" path="res://content/level/block/question_block/question_block_fire_flower.tscn" id="71_isr70"]
 [ext_resource type="PackedScene" uid="uid://ct10bly3u1wme" path="res://content/level/block/coin_brick/coin_brick.tscn" id="72_74sw6"]
+[ext_resource type="PackedScene" uid="uid://v2tmlf760e6k" path="res://content/level/block/question_block/question_block_beetroot.tscn" id="72_h0dsp"]
+[ext_resource type="PackedScene" uid="uid://dbpq2pwyam4x3" path="res://content/level/block/question_block/question_block_super_star.tscn" id="73_at8mu"]
+[ext_resource type="PackedScene" uid="uid://cm2xcnm1f2b50" path="res://content/level/block/question_block/question_block_lui.tscn" id="73_o10yq"]
+[ext_resource type="PackedScene" uid="uid://c1kwue0ln0x4k" path="res://content/level/block/question_block/question_block_mushroom_life.tscn" id="74_dy2gm"]
+[ext_resource type="PackedScene" uid="uid://cgegxokohdrj6" path="res://content/level/block/question_block/question_block_poisonous_mushroom.tscn" id="75_dy2gm"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kynl2"]
 blend_mode = 2
@@ -407,7 +412,7 @@ tile_set = ExtResource("11_877iw")
 
 [node name="Mario" parent="TestLevelNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(2992, 80)
+position = Vector2(2596, 148)
 
 [node name="LevelCamera" parent="TestLevelNode2D" instance=ExtResource("10_8mywb")]
 position = Vector2(0, 9999999)
@@ -762,7 +767,8 @@ position = Vector2(1624, 16)
 position = Vector2(1952, 352)
 
 [node name="SceneControl" parent="TestLevelNode2D/Facilities" instance=ExtResource("63_i0wvf")]
-position = Vector2(2928, 272)
+position = Vector2(2984, 124)
+BgmId = 119
 
 [node name="Sealer2" parent="TestLevelNode2D/Facilities" instance=ExtResource("53_877iw")]
 position = Vector2(2752, 0)
@@ -787,30 +793,55 @@ Direction = 2
 [node name="PassageOut" parent="TestLevelNode2D/Facilities" instance=ExtResource("67_s6ftr")]
 position = Vector2(2976, 128)
 PassageId = 1
-Direction = 2
 
-[node name="DebugObjectGroup" type="Node2D" parent="TestLevelNode2D"]
+[node name="QuestionBlock" parent="TestLevelNode2D/Facilities" instance=ExtResource("69_q0l1p")]
+position = Vector2(2584, 44)
 
-[node name="Checkpoint" parent="TestLevelNode2D" instance=ExtResource("54_813lr")]
+[node name="QuestionBlock2" parent="TestLevelNode2D/Facilities" instance=ExtResource("69_q0l1p")]
+position = Vector2(2616, 44)
+
+[node name="Lui" parent="TestLevelNode2D/Facilities" instance=ExtResource("19_iae4c")]
+position = Vector2(2864, 336)
+
+[node name="FireFlower" parent="TestLevelNode2D/Facilities" instance=ExtResource("17_d2gt5")]
+position = Vector2(2832, 336)
+
+[node name="Mushroom" parent="TestLevelNode2D/Facilities" instance=ExtResource("17_venmc")]
+position = Vector2(2896, 336)
+
+[node name="QuestionBlockFireFlower" parent="TestLevelNode2D/Facilities" instance=ExtResource("71_isr70")]
+position = Vector2(3088, 176)
+
+[node name="CoinBrick" parent="TestLevelNode2D/Facilities" instance=ExtResource("72_74sw6")]
+position = Vector2(2600, 176)
+
+[node name="QuestionBlockSuperStar" parent="TestLevelNode2D/Facilities" instance=ExtResource("73_at8mu")]
+position = Vector2(2696, 208)
+
+[node name="QuestionBlockMushroomLife" parent="TestLevelNode2D/Facilities" instance=ExtResource("74_dy2gm")]
+position = Vector2(2664, 208)
+
+[node name="QuestionBlockBeetroot" parent="TestLevelNode2D/Facilities" instance=ExtResource("72_h0dsp")]
+position = Vector2(2732, 208)
+
+[node name="QuestionBlockLui" parent="TestLevelNode2D/Facilities" instance=ExtResource("73_o10yq")]
+position = Vector2(2768, 208)
+
+[node name="Checkpoints" type="Node2D" parent="TestLevelNode2D"]
+
+[node name="Checkpoint" parent="TestLevelNode2D/Checkpoints" instance=ExtResource("54_813lr")]
 position = Vector2(3824, 416)
 Id = 1
 
-[node name="Checkpoint2" parent="TestLevelNode2D" instance=ExtResource("54_813lr")]
+[node name="Checkpoint2" parent="TestLevelNode2D/Checkpoints" instance=ExtResource("54_813lr")]
 position = Vector2(2608, 540)
 Id = 2
 
-[node name="Checkpoint3" parent="TestLevelNode2D" instance=ExtResource("54_813lr")]
+[node name="Checkpoint3" parent="TestLevelNode2D/Checkpoints" instance=ExtResource("54_813lr")]
 position = Vector2(2352, 164)
 Id = 3
 
-[node name="ViewControl" parent="TestLevelNode2D" instance=ExtResource("68_glrnk")]
-ViewRect = Rect2(2304, 0, 6400, 1280)
-
-[node name="QuestionBlock" parent="TestLevelNode2D" instance=ExtResource("69_q0l1p")]
-position = Vector2(2736, 176)
-
-[node name="QuestionBlock2" parent="TestLevelNode2D" instance=ExtResource("69_q0l1p")]
-position = Vector2(2768, 176)
+[node name="DebugObjectGroup" type="Node2D" parent="TestLevelNode2D"]
 
 [node name="AutoScrollsTest" type="Node2D" parent="TestLevelNode2D"]
 
@@ -825,20 +856,11 @@ Speed = 200.0
 [node name="AutoScroll3" parent="TestLevelNode2D/AutoScrollsTest" instance=ExtResource("69_4uo84")]
 position = Vector2(4028, 252)
 
-[node name="Lui" parent="TestLevelNode2D" instance=ExtResource("19_iae4c")]
-position = Vector2(2832, 340)
+[node name="ViewControl" parent="TestLevelNode2D" instance=ExtResource("68_glrnk")]
+ViewRect = Rect2(2944, 0, 6400, 1280)
 
-[node name="FireFlower" parent="TestLevelNode2D" instance=ExtResource("17_d2gt5")]
-position = Vector2(2768, 336)
-
-[node name="Mushroom" parent="TestLevelNode2D" instance=ExtResource("17_venmc")]
-position = Vector2(2896, 340)
-
-[node name="QuestionBlockFireFlower" parent="TestLevelNode2D" instance=ExtResource("71_isr70")]
-position = Vector2(3088, 176)
-
-[node name="CoinBrick" parent="TestLevelNode2D" instance=ExtResource("72_74sw6")]
-position = Vector2(2704, 224)
+[node name="QuestionBlockPoisonousMushroom" parent="." instance=ExtResource("75_dy2gm")]
+position = Vector2(2632, 208)
 
 [connection signal="ModuleResourceConvert" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="play"]

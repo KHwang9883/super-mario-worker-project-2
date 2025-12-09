@@ -17,6 +17,8 @@ public partial class BgmPlayer : AudioStreamPlayer {
     private LevelConfig? _levelConfig;
     private bool _fadeOut;
 
+    private bool _isPlayerStarman;
+
     private float _onWaterVolume;
     private float _underWaterVolume;
 
@@ -286,7 +288,7 @@ public partial class BgmPlayer : AudioStreamPlayer {
                 }
             }
 
-            if (play) Play();
+            if (play && !_isPlayerStarman) Play();
         }
     }
     public void OnPlayerDied() {
@@ -300,12 +302,17 @@ public partial class BgmPlayer : AudioStreamPlayer {
             }
         }
     }
+    
+    // 玩家无敌星状态 BGM 处理
     public void OnPlayerStarmanStart() {
+        _isPlayerStarman = true;
         Stop();
     }
     public void OnPlayerStarmanEnd() {
+        _isPlayerStarman = false;
         Play();
     }
+    
     public void OnTreeExiting() {
         // Fast Retry 记录 BGM 位置
         if (_levelConfig is not LevelConfig { FastRetry: true }) return;
@@ -320,4 +327,6 @@ public partial class BgmPlayer : AudioStreamPlayer {
         if (!Playing && _bgm146Player.Playing)
             _bgm146Player.Playing = false;
     }
+    
+    // Todo: No Music situation
 }

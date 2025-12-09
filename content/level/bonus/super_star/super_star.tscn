@@ -70,6 +70,8 @@ script = ExtResource("3_n4ll0")
 script = ExtResource("4_n4ll0")
 _bonusSprout = NodePath("../BonusSprout")
 MoveObject = NodePath("..")
+SpeedX = -2.0
+JumpSpeed = -10.0
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("4_auit7")]

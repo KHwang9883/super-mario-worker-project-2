@@ -64,8 +64,9 @@ script = ExtResource("4_oqpsa")
 HurtType = 1
 metadata/_custom_type_script = "uid://dk0y3j6216tik"
 
-[node name="InteractionWithBump" type="Node" parent="." node_paths=PackedStringArray("_mushroomMovement")]
+[node name="InteractionWithBump" type="Node" parent="." node_paths=PackedStringArray("_bonusSprout", "_mushroomMovement")]
 script = ExtResource("5_oqpsa")
+_bonusSprout = NodePath("../BonusSprout")
 _mushroomMovement = NodePath("../MushroomMovement")
 metadata/_custom_type_script = "uid://dm4udnui5ktii"
 

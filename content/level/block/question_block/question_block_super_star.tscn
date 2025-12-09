@@ -1,29 +1,28 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1waxffc2n6a5"]
+[gd_scene load_steps=15 format=3 uid="uid://dbpq2pwyam4x3"]
 
-[ext_resource type="Texture2D" uid="uid://dgukcgfkib00u" path="res://content/level/block/question_block/question_block.png" id="1_31g45"]
-[ext_resource type="Texture2D" uid="uid://d1c6ljxopww0p" path="res://content/level/block/block_hit.png" id="2_yeo03"]
-[ext_resource type="Script" uid="uid://csvist8po1wws" path="res://script/level/block/question_block/QuestionBlock.cs" id="3_xnsnl"]
-[ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="4_bkbtr"]
-[ext_resource type="PackedScene" uid="uid://06fvxuvjbor0" path="res://content/level/bonus/mushroom/mushroom.tscn" id="4_xnsnl"]
-[ext_resource type="PackedScene" uid="uid://cb81b1j6kxba1" path="res://content/level/bonus/fire_flower/fire_flower.tscn" id="4_yeo03"]
-[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="5_2l01l"]
-[ext_resource type="AudioStream" uid="uid://b1086m1dfb3rq" path="res://content/sound/item_sprout.se.wav" id="6_31g45"]
-[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="7_q083o"]
+[ext_resource type="Texture2D" uid="uid://dgukcgfkib00u" path="res://content/level/block/question_block/question_block.png" id="1_uo70i"]
+[ext_resource type="Texture2D" uid="uid://d1c6ljxopww0p" path="res://content/level/block/block_hit.png" id="2_88xub"]
+[ext_resource type="Script" uid="uid://csvist8po1wws" path="res://script/level/block/question_block/QuestionBlock.cs" id="3_f37wp"]
+[ext_resource type="PackedScene" uid="uid://c4kb6rkggetfq" path="res://content/level/bonus/super_star/super_star.tscn" id="4_uo70i"]
+[ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="5_k2fwk"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="6_guv1t"]
+[ext_resource type="AudioStream" uid="uid://b1086m1dfb3rq" path="res://content/sound/item_sprout.se.wav" id="7_uo70i"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="8_w41in"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bvcug"]
-atlas = ExtResource("1_31g45")
+atlas = ExtResource("1_uo70i")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vuh18"]
-atlas = ExtResource("1_31g45")
+atlas = ExtResource("1_uo70i")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5eart"]
-atlas = ExtResource("1_31g45")
+atlas = ExtResource("1_uo70i")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bggvx"]
-atlas = ExtResource("2_yeo03")
+atlas = ExtResource("2_88xub")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6vwiv"]
@@ -54,7 +53,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ro8lb"]
 size = Vector2(32, 32)
 
-[node name="QuestionBlockFireFlower" type="StaticBody2D"]
+[node name="QuestionBlockSuperStar" type="StaticBody2D"]
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6vwiv")
@@ -64,9 +63,8 @@ autoplay = "default"
 shape = SubResource("RectangleShape2D_ro8lb")
 
 [node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("_ani", "_sprite")]
-script = ExtResource("3_xnsnl")
-SproutItemScene = ExtResource("4_xnsnl")
-SproutItemAdvancedScene = ExtResource("4_yeo03")
+script = ExtResource("3_f37wp")
+SproutItemScene = ExtResource("4_uo70i")
 _ani = NodePath("../Sprite2D")
 Bumpable = true
 BumpableOneShot = true
@@ -74,14 +72,14 @@ _sprite = NodePath("../Sprite2D")
 metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
 
 [node name="Break" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_bkbtr")
-script = ExtResource("5_2l01l")
+stream = ExtResource("5_k2fwk")
+script = ExtResource("6_guv1t")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Bump" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_31g45")
+stream = ExtResource("7_uo70i")
 
-[node name="SmwpPointLight2D" parent="." instance=ExtResource("7_q083o")]
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("8_w41in")]
 
 [connection signal="BlockBreak" from="BlockHit" to="Break" method="play"]
 [connection signal="BlockBump" from="BlockHit" to="Bump" method="play"]

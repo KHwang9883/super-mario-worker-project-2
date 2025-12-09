@@ -44,7 +44,7 @@ public partial class BlockHit : Node, IBlockHittable {
         new (3f, -6f),
     ];
 
-    protected Node2D Parent = null!;
+    protected Node2D? Parent;
     
     public override void _Ready() {
         Parent = GetParent<Node2D>();
@@ -79,6 +79,12 @@ public partial class BlockHit : Node, IBlockHittable {
                 OnBumped();
                 break;
         }
+        
+        if (Parent == null) {
+            GD.PushError($"{this}: Parent is null!");
+            return;
+        }
+        
         _sprite.GlobalPosition = new Vector2(
             Parent.GlobalPosition.X, Parent.GlobalPosition.Y - _bumpStateTimer * 2);
     }
@@ -112,6 +118,11 @@ public partial class BlockHit : Node, IBlockHittable {
         
         // 顶砖判定生成
         Callable.From(() => {
+            if (Parent == null) {
+                GD.PushError($"{this}: Parent is null!");
+                return;
+            }
+            
             var blockBumpArea2D = _blockBumpArea2DScene.Instantiate<Area2D>();
             blockBumpArea2D.Position = Parent.Position;
             Parent.AddSibling(blockBumpArea2D);
@@ -122,6 +133,11 @@ public partial class BlockHit : Node, IBlockHittable {
         if (BumpableOneShot) Bumpable = false;
     }
     protected virtual void OnBlockBreak() {
+        if (Parent == null) {
+            GD.PushError($"{this}: Parent is null!");
+            return;
+        }
+        
         for (var i = 0; i < _fragmentVelocityData.Count; i++) {
             var blockFragment = _blockFragmentScene.Instantiate<BlockFragment>();
             Parent.AddSibling(blockFragment);
