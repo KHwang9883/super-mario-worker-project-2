@@ -3,14 +3,14 @@ on:
   # Uncomment this and remove `schedule` after the repository is made public.
   #push:
   #pull_request:
-  schedule:
-    - cron: '0 0 * * *'
+  #schedule:
+  #  - cron: '0 0 * * *'
   workflow_dispatch:
 
 # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
 
 env:
-  GODOT_VERSION: 4.5
+  GODOT_VERSION: 4.5.1
   EXPORT_NAME: SuperMarioWorkerProject2
   PROJECT_PATH: .
 
@@ -19,7 +19,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-24.04  # Use 24.04 with godot 4
     container:
-      image: barichello/godot-ci:mono-4.5
+      image: barichello/godot-ci:mono-4.5.1
     steps:
       - name: Checkout
         uses: actions/checkout@v4
