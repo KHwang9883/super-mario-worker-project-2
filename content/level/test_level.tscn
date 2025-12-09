@@ -740,7 +740,7 @@ position = Vector2(2416, 180)
 position = Vector2(2448, 180)
 
 [node name="Brick13" parent="TestLevelNode2D/Facilities" instance=ExtResource("23_dmmuc")]
-position = Vector2(3024, 208)
+position = Vector2(3104, 220)
 
 [node name="Brick14" parent="TestLevelNode2D/Facilities" instance=ExtResource("23_dmmuc")]
 position = Vector2(3260, 16)
@@ -816,13 +816,13 @@ position = Vector2(3228, 16)
 position = Vector2(2600, 176)
 
 [node name="QuestionBlockSuperStar" parent="TestLevelNode2D/Facilities" instance=ExtResource("73_at8mu")]
-position = Vector2(3084, 176)
+position = Vector2(3024, 176)
 
 [node name="QuestionBlockMushroomLife" parent="TestLevelNode2D/Facilities" instance=ExtResource("74_dy2gm")]
 position = Vector2(2664, 208)
 
 [node name="QuestionBlockBeetroot" parent="TestLevelNode2D/Facilities" instance=ExtResource("72_h0dsp")]
-position = Vector2(3120, 176)
+position = Vector2(3024, 208)
 
 [node name="QuestionBlockLui" parent="TestLevelNode2D/Facilities" instance=ExtResource("73_o10yq")]
 position = Vector2(2768, 208)

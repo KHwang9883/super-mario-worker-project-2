@@ -66,7 +66,6 @@ SproutItemScene = ExtResource("4_uo70i")
 _ani = NodePath("../Sprite2D")
 Bumpable = true
 BumpableOneShot = true
-Hidden = true
 _sprite = NodePath("../Sprite2D")
 _collisionShape2D = NodePath("../BlockCollisionShape2D")
 metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
