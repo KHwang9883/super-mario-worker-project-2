@@ -19,7 +19,7 @@ public partial class BlockHit : Node, IBlockHittable {
     [Export] public bool BumpableOneShot;
     [Export] public bool Hidden;
     [Export] private PackedScene _blockBumpArea2DScene = GD.Load<PackedScene>("uid://c14kue38e0gnl");
-    [Export] private Node2D? _sprite;
+    [Export] protected Node2D? Sprite;
     public enum BumpState {
         Idle,
         Rising,
@@ -56,8 +56,8 @@ public partial class BlockHit : Node, IBlockHittable {
     public override void _Ready() {
         Parent = GetParent<StaticBody2D>();
         // 忘记设置精灵节点，尝试获取
-        _sprite ??= (Node2D)GetParent().GetNodeOrNull("Sprite2D");
-        _sprite ??= (Node2D)GetParent().GetNodeOrNull("AnimatedSprite2D");
+        Sprite ??= (Node2D)GetParent().GetNodeOrNull("Sprite2D");
+        Sprite ??= (Node2D)GetParent().GetNodeOrNull("AnimatedSprite2D");
         
         MetadataInject(Parent);
 
@@ -72,7 +72,7 @@ public partial class BlockHit : Node, IBlockHittable {
     }
     
     public override void _PhysicsProcess(double delta) {
-        if (_sprite == null) {
+        if (Sprite == null) {
             GD.PushError("BlockBump: _sprite is not assigned!");
             return;
         } 
@@ -99,7 +99,7 @@ public partial class BlockHit : Node, IBlockHittable {
             return;
         }
         
-        _sprite.GlobalPosition = new Vector2(
+        Sprite.GlobalPosition = new Vector2(
             Parent.GlobalPosition.X, Parent.GlobalPosition.Y - _bumpStateTimer * 2);
     }
     

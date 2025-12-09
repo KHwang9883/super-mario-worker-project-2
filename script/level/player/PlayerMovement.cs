@@ -98,6 +98,7 @@ public partial class PlayerMovement : Node {
     public bool OnVerticalPlatform;
 
     // TODO: 冰块状态
+    // Todo: 注意水下x速度变为0
     public bool OnIce;
 
     // God Mode 玩家碰撞层掩码记录

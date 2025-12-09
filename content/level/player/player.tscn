@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=38 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/level/player/mario_small.tres" id="1_o23i7"]
 [ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
@@ -38,17 +38,11 @@ blend_mode = 1
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_gdtqi"]
 points = PackedVector2Array(-12, 0, -12, -14, -2, -24, 2, -24, 12, -14, 12, 0)
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sba15"]
-points = PackedVector2Array(-2, -24, 2, -24, 12, -14, -12, -14)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_y66qv"]
 radius = 8.0
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_y66qv"]
 points = PackedVector2Array(-12, 0, -12, -38, -2, -48, 2, -48, 12, -38, 12, 0)
-
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0mhof"]
-points = PackedVector2Array(-12, -38, -2, -48, 2, -48, 12, -38)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rmk25"]
 radius = 8.0
@@ -97,14 +91,6 @@ max_results = 6
 collision_mask = 368
 collide_with_areas = true
 
-[node name="HiddenBlockDetectSmall" type="ShapeCast2D" parent="AreaBodyCollisionSmall"]
-visible = false
-shape = SubResource("ConvexPolygonShape2D_sba15")
-target_position = Vector2(0, 0)
-max_results = 4
-collision_mask = 512
-collide_with_areas = true
-
 [node name="OutWaterDetectSmall" type="ShapeCast2D" parent="."]
 visible = false
 position = Vector2(0, -28)
@@ -127,15 +113,7 @@ position = Vector2(0, 12)
 shape = SubResource("ConvexPolygonShape2D_y66qv")
 target_position = Vector2(0, 0)
 max_results = 6
-collision_mask = 880
-collide_with_areas = true
-
-[node name="HiddenBlockDetectSmall" type="ShapeCast2D" parent="AreaBodyCollisionSuper"]
-visible = false
-shape = SubResource("ConvexPolygonShape2D_0mhof")
-target_position = Vector2(0, 0)
-max_results = 4
-collision_mask = 512
+collision_mask = 368
 collide_with_areas = true
 
 [node name="OutWaterDetectSuper" type="ShapeCast2D" parent="."]
@@ -145,7 +123,7 @@ position = Vector2(0, -28)
 shape = SubResource("CircleShape2D_rmk25")
 target_position = Vector2(0, 0)
 max_results = 3
-collision_mask = 112
+collision_mask = 64
 collide_with_areas = true
 
 [node name="AroundWaterDetect" type="Area2D" parent="."]
@@ -196,7 +174,6 @@ _playerEffectScene = ExtResource("11_q05y8")
 script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
 Suit = 2
-Powerup = 1
 
 [node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_starmanCombo")]
 script = ExtResource("12_tpspr")

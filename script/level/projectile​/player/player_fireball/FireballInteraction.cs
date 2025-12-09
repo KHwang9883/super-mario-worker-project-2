@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level.Block;
 using SMWP.Level.Interface;
 using SMWP.Level.Physics;
 
@@ -33,7 +34,5 @@ public partial class FireballInteraction : Node {
                 break;
             }
         }
-        
-        // Todo: 撞击冰块
     }
 }

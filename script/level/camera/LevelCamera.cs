@@ -87,12 +87,6 @@ public partial class LevelCamera : Camera2D {
                     break;
                 }
                 
-                // 移动到起点时强制设置相机位置为镜头中心
-                // 此举是考虑相机在场景边界时触发滚屏应当等时到达首个节点
-                if (_autoScrollIndex == 0) {
-                    Position = GetScreenCenterPosition();
-                }
-                
                 var speed = _autoScrollSpeed * 0.01f;
                 if (AutoScrollDisabled) speed = 0f;
                 Position += (_targetAutoscrollNode.Position - Position).Normalized() * speed;
