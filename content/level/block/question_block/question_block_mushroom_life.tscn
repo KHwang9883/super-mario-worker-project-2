@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dgukcgfkib00u" path="res://content/level/block/question_block/question_block.png" id="1_gal2y"]
 [ext_resource type="Texture2D" uid="uid://d1c6ljxopww0p" path="res://content/level/block/block_hit.png" id="2_sql8s"]
 [ext_resource type="Script" uid="uid://csvist8po1wws" path="res://script/level/block/question_block/QuestionBlock.cs" id="3_6vvy0"]
+[ext_resource type="PackedScene" uid="uid://dsjr2jccad25d" path="res://content/level/block/block_collision_shape_2d.tscn" id="3_73717"]
 [ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="4_73717"]
 [ext_resource type="PackedScene" uid="uid://bgp4dh2ioc4gl" path="res://content/level/bonus/mushroom_life/mushroom_life.tscn" id="4_sql8s"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="5_p0lkt"]
@@ -50,25 +51,23 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ro8lb"]
-size = Vector2(32, 32)
-
 [node name="QuestionBlockMushroomLife" type="StaticBody2D"]
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6vwiv")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ro8lb")
+[node name="BlockCollisionShape2D" parent="." instance=ExtResource("3_73717")]
+rotation = -3.1415925
 
-[node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("_ani", "_sprite")]
+[node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("_ani", "_sprite", "_collisionShape2D")]
 script = ExtResource("3_6vvy0")
 SproutItemScene = ExtResource("4_sql8s")
 _ani = NodePath("../Sprite2D")
 Bumpable = true
 BumpableOneShot = true
 _sprite = NodePath("../Sprite2D")
+_collisionShape2D = NodePath("../BlockCollisionShape2D")
 metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
 
 [node name="Break" type="AudioStreamPlayer2D" parent="."]

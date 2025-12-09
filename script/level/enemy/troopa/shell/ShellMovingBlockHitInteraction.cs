@@ -23,6 +23,10 @@ public partial class ShellMovingBlockHitInteraction : Node {
             interactionWithBlockNode = (Node)staticBody2D.GetMeta("InteractionWithBlock");
         }
         if (interactionWithBlockNode is not BlockHit blockHit) return;
+        
+        // 隐藏砖不触发
+        if (blockHit.Hidden) return;
+
         blockHit.OnBlockHit(_shellHard);
     }
 }

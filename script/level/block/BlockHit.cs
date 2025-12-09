@@ -17,6 +17,7 @@ public partial class BlockHit : Node, IBlockHittable {
     // 顶砖
     [Export] public bool Bumpable;
     [Export] public bool BumpableOneShot;
+    [Export] public bool Hidden;
     [Export] private PackedScene _blockBumpArea2DScene = GD.Load<PackedScene>("uid://c14kue38e0gnl");
     [Export] private Node2D? _sprite;
     public enum BumpState {
@@ -44,19 +45,30 @@ public partial class BlockHit : Node, IBlockHittable {
         new (3f, -6f),
     ];
 
-    protected Node2D? Parent;
+    protected StaticBody2D? Parent;
+    
+    // 隐藏砖设置
+    [Export] private CollisionShape2D _collisionShape2D = null!;
+    private static Shape2D? _originalCollisionShape2D;
+    private RectangleShape2D _hiddenShape = GD.Load<RectangleShape2D>("uid://dgpgao4212wvq");
     
     public override void _Ready() {
-        Parent = GetParent<Node2D>();
+        Parent = GetParent<StaticBody2D>();
         // 忘记设置精灵节点，尝试获取
         _sprite ??= (Node2D)GetParent().GetNodeOrNull("Sprite2D");
         _sprite ??= (Node2D)GetParent().GetNodeOrNull("AnimatedSprite2D");
         
         MetadataInject(Parent);
+
+        // 隐藏砖
+        _originalCollisionShape2D = (Shape2D)_collisionShape2D.Shape.Duplicate();
+        if (!Hidden) return;
+        SetHidden();
     }
     public void MetadataInject(Node2D parent) {
         parent.SetMeta("InteractionWithBlock", this);
     }
+    
     public override void _PhysicsProcess(double delta) {
         if (_sprite == null) {
             GD.PushError("BlockBump: _sprite is not assigned!");
@@ -116,6 +128,9 @@ public partial class BlockHit : Node, IBlockHittable {
         _bumpState = BumpState.Rising;
         _bumpStateTimer = 0;
         
+        // 隐藏砖显现
+        if (Hidden) SetVisible();
+        
         // 顶砖判定生成
         Callable.From(() => {
             if (Parent == null) {
@@ -157,5 +172,28 @@ public partial class BlockHit : Node, IBlockHittable {
         }).CallDeferred();
         
         Parent.QueueFree();
+    }
+
+    public void SetHidden() {
+        if (Parent == null) {
+            GD.PushError($"{this}: Parent is null!");
+            return;
+        }
+        // Debug
+        Parent.Visible = false;
+        _collisionShape2D.Position = Vector2.Down * 13f;
+        _collisionShape2D.Shape = _hiddenShape;
+        _collisionShape2D.OneWayCollision = true;
+    }
+    public void SetVisible() {
+        if (Parent == null) {
+            GD.PushError($"{this}: Parent is null!");
+            return;
+        }
+        Hidden = false;
+        Parent.Visible = true;
+        _collisionShape2D.Shape = _originalCollisionShape2D;
+        _collisionShape2D.Position = Vector2.Zero;
+        _collisionShape2D.OneWayCollision = false;
     }
 }

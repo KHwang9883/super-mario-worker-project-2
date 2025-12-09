@@ -660,7 +660,7 @@ public partial class PlayerMovement : Node {
                         _player.Position -= new Vector2(0f, 0.7f);
                         // 玩家与封顶重合则强制向下挤出
                         var collide = _player.MoveAndCollide(Vector2.Zero, true, 0.02f);
-                        if (collide.GetCollider() != null) {
+                        if (collide?.GetCollider() != null) {
                             if (IsInstanceValid(collide.GetCollider())) {
                                 if (collide.GetCollider() is Sealer && _player.Position.Y < -16f) {
                                     ForceDownPush();
