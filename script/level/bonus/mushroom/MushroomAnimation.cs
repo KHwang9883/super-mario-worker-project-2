@@ -6,6 +6,8 @@ namespace SMWP.Level.Bonus.Mushroom;
 public partial class MushroomAnimation : Node {
     [Signal]
     public delegate void SideTurnedEventHandler();
+
+    [Export] private BonusSprout _bonusSprout = null!;
     
     [Export] private AnimatedSprite2D _animatedSprite2D = null!;
     [Export] private MushroomMovement _mushroomMovement = null!;
@@ -21,7 +23,7 @@ public partial class MushroomAnimation : Node {
         Idle = 0,
         Prepare = 1,
         ScalingUp = 2,
-        ScalingDown = 3
+        ScalingDown = 3,
     }
     private ScaleXStatus _animationFrameScaleXStatus = ScaleXStatus.Idle;
     public int AnimationFrameScaleX;
@@ -31,12 +33,15 @@ public partial class MushroomAnimation : Node {
         Idle = 0,
         Prepare = 1,
         ScalingUp = 2,
-        ScalingDown = 3
+        ScalingDown = 3,
     }
     private ScaleYStatus _animationFrameScaleYStatus;
     public int AnimationFrameScaleY;
     
     public override void _PhysicsProcess(double delta) {
+        // 不在 Sprout 状态才开始执行
+        if (_bonusSprout.Overlapping) return;
+        
         // 眨眼动画
         if (!_playingAnimation) {
             _blinkingTimer++;

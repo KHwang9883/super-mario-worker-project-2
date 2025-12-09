@@ -60,5 +60,5 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("4_04258")]
 
-[connection signal="PlayerSoundCoin" from="." to="CoinCollected" method="play"]
+[connection signal="PlaySoundCoin" from="." to="CoinCollected" method="play"]
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cb81b1j6kxba1"]
+[gd_scene load_steps=11 format=3 uid="uid://cb81b1j6kxba1"]
 
 [ext_resource type="Texture2D" uid="uid://80pb0n7fyml6" path="res://content/level/bonus/fire_flower/fire_flower.png" id="1_qiqk3"]
 [ext_resource type="Script" uid="uid://b5yntrwmtxv27" path="res://script/level/bonus/PowerupSet.cs" id="2_frr4s"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="3_dqu1t"]
+[ext_resource type="Script" uid="uid://b60bkp628v2ri" path="res://script/level/bonus/BonusSprout.cs" id="4_iqi8q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_75tit"]
 atlas = ExtResource("1_qiqk3")
@@ -45,7 +46,7 @@ size = Vector2(32, 32)
 
 [node name="FireFlower" type="Area2D"]
 collision_layer = 32
-collision_mask = 8
+collision_mask = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_itcy1")
@@ -62,5 +63,8 @@ debug_color = Color(0.9983457, 0, 0.15569764, 0.41960785)
 script = ExtResource("2_frr4s")
 _powerup = NodePath("..")
 PowerupType = 1
+
+[node name="BonusSprout" type="Node" parent="."]
+script = ExtResource("4_iqi8q")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("3_dqu1t")]

@@ -4,11 +4,11 @@ using SMWP.Level;
 
 public partial class Coin : Area2D {
     [Signal]
-    public delegate void PlayerSoundCoinEventHandler();
+    public delegate void PlaySoundCoinEventHandler();
     
     public void OnBodyEntered(Node2D body) {
         LevelManager.AddCoin(1);
-        EmitSignal(SignalName.PlayerSoundCoin);
+        EmitSignal(SignalName.PlaySoundCoin);
         QueueFree();
     }
 }

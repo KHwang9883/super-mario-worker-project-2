@@ -45,6 +45,9 @@ public partial class PlayerAnimation : Node {
         // 水管传送状态的动画处理
         if (_playerMediator.playerMovement.IsInPipeTransport) {
             _animatedSprite2D.Frame = 0;
+            if (_animatedSprite2D.GetAnimation().Equals("shoot")) {
+                _animatedSprite2D.Play("idle");
+            }
             if (_playerMediator.playerMovement.PipeTransportDir
                 is not (PlayerMovement.PipeTransportDirection.Left
                 or PlayerMovement.PipeTransportDirection.Right)) return;

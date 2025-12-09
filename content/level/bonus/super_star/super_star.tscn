@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4kb6rkggetfq"]
+[gd_scene load_steps=12 format=3 uid="uid://c4kb6rkggetfq"]
 
 [ext_resource type="Texture2D" uid="uid://drw5odpgj3kva" path="res://content/level/bonus/super_star/super_star.png" id="1_o7xhi"]
 [ext_resource type="Script" uid="uid://b5yntrwmtxv27" path="res://script/level/bonus/PowerupSet.cs" id="2_rx0bl"]
-[ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="2_scqoy"]
+[ext_resource type="Script" uid="uid://b60bkp628v2ri" path="res://script/level/bonus/BonusSprout.cs" id="3_n4ll0"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="4_auit7"]
+[ext_resource type="Script" uid="uid://dc5p4sqsaadva" path="res://script/level/bonus/super_star/SuperStarMovement.cs" id="4_n4ll0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_scqoy"]
 atlas = ExtResource("1_o7xhi")
@@ -62,11 +63,13 @@ script = ExtResource("2_rx0bl")
 _powerup = NodePath("..")
 PowerupType = 4
 
-[node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
-script = ExtResource("2_scqoy")
+[node name="BonusSprout" type="Node" parent="."]
+script = ExtResource("3_n4ll0")
+
+[node name="SuperStarMovement" type="Node" parent="." node_paths=PackedStringArray("_bonusSprout", "MoveObject")]
+script = ExtResource("4_n4ll0")
+_bonusSprout = NodePath("../BonusSprout")
 MoveObject = NodePath("..")
-SpeedX = -2.0
-JumpSpeed = -10.0
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("4_auit7")]

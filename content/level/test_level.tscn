@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=79 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/facility/solid/solid.tscn" id="2_676rr"]
@@ -69,6 +69,7 @@
 [ext_resource type="PackedScene" uid="uid://cxqwys5a7a23" path="res://content/level/facility/passage/passage_out.tscn" id="67_s6ftr"]
 [ext_resource type="PackedScene" uid="uid://vphreva4h736" path="res://content/level/facility/view_control/view_control.tscn" id="68_glrnk"]
 [ext_resource type="PackedScene" uid="uid://ql8eu02wkcf5" path="res://content/level/facility/auto_scroll/auto_scroll.tscn" id="69_4uo84"]
+[ext_resource type="PackedScene" uid="uid://bdb1my0j48chm" path="res://content/level/block/question_block/question_block.tscn" id="69_q0l1p"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kynl2"]
 blend_mode = 2
@@ -134,7 +135,7 @@ FluidDelay = 5
 FastRetry = true
 MfStylePipeExit = true
 FasterLevelPass = true
-RainyLevel = 1
+RainyLevel = 2
 BgpDatabase = ExtResource("2_27x5w")
 BgmDatabase = ExtResource("3_ta7os")
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
@@ -802,6 +803,12 @@ Id = 3
 [node name="ViewControl" parent="TestLevelNode2D" instance=ExtResource("68_glrnk")]
 ViewRect = Rect2(2304, 0, 6400, 1280)
 
+[node name="QuestionBlock" parent="TestLevelNode2D" instance=ExtResource("69_q0l1p")]
+position = Vector2(2736, 176)
+
+[node name="QuestionBlock2" parent="TestLevelNode2D" instance=ExtResource("69_q0l1p")]
+position = Vector2(2768, 176)
+
 [node name="AutoScrollsTest" type="Node2D" parent="TestLevelNode2D"]
 
 [node name="AutoScroll" parent="TestLevelNode2D/AutoScrollsTest" instance=ExtResource("69_4uo84")]
@@ -814,6 +821,15 @@ Speed = 200.0
 
 [node name="AutoScroll3" parent="TestLevelNode2D/AutoScrollsTest" instance=ExtResource("69_4uo84")]
 position = Vector2(4028, 252)
+
+[node name="Lui" parent="TestLevelNode2D" instance=ExtResource("19_iae4c")]
+position = Vector2(2832, 340)
+
+[node name="FireFlower" parent="TestLevelNode2D" instance=ExtResource("17_d2gt5")]
+position = Vector2(2768, 336)
+
+[node name="Mushroom" parent="TestLevelNode2D" instance=ExtResource("17_venmc")]
+position = Vector2(2896, 340)
 
 [connection signal="ModuleResourceConvert" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="play"]

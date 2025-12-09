@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgp4dh2ioc4gl"]
+[gd_scene load_steps=12 format=3 uid="uid://bgp4dh2ioc4gl"]
 
 [ext_resource type="Texture2D" uid="uid://6tphawnqs6fp" path="res://content/level/bonus/mushroom_life/mushroom_life.png" id="1_acdwr"]
 [ext_resource type="Script" uid="uid://br3a3a746vl0y" path="res://script/level/bonus/mushroom/MushroomAnimation.cs" id="2_80nmw"]
 [ext_resource type="Script" uid="uid://brqbgelfy4s1w" path="res://script/level/bonus/mushroom/MushroomMovement.cs" id="3_sjhgg"]
+[ext_resource type="Script" uid="uid://b60bkp628v2ri" path="res://script/level/bonus/BonusSprout.cs" id="4_ktm21"]
 [ext_resource type="Script" uid="uid://bbrm8h5kl684k" path="res://script/level/bonus/mushroom/MushroomBumpInteraction.cs" id="4_yy6md"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="5_ktm21"]
 [ext_resource type="Script" uid="uid://t44u8l54xjvg" path="res://script/level/bonus/mushroom_life/MushroomLifeAddLife.cs" id="6_80nmw"]
@@ -38,14 +39,19 @@ offset = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_ugk4p")
 debug_color = Color(4.0911136e-06, 0.7277569, 0.0006380212, 0.41960785)
 
-[node name="MushroomAnimation" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D", "_mushroomMovement", "_mushroom")]
+[node name="BonusSprout" type="Node" parent="."]
+script = ExtResource("4_ktm21")
+
+[node name="MushroomAnimation" type="Node" parent="." node_paths=PackedStringArray("_bonusSprout", "_animatedSprite2D", "_mushroomMovement", "_mushroom")]
 script = ExtResource("2_80nmw")
+_bonusSprout = NodePath("../BonusSprout")
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
 _mushroomMovement = NodePath("../MushroomMovement")
 _mushroom = NodePath("..")
 
-[node name="MushroomMovement" type="Node" parent="." node_paths=PackedStringArray("_collisionShape2D", "_mushroomAnimation", "MoveObject")]
+[node name="MushroomMovement" type="Node" parent="." node_paths=PackedStringArray("_bonusSprout", "_collisionShape2D", "_mushroomAnimation", "MoveObject")]
 script = ExtResource("3_sjhgg")
+_bonusSprout = NodePath("../BonusSprout")
 _collisionShape2D = NodePath("../CollisionShape2D")
 _mushroomAnimation = NodePath("../MushroomAnimation")
 MoveObject = NodePath("..")

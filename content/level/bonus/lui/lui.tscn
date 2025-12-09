@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://506l0hik3qda"]
+[gd_scene load_steps=16 format=3 uid="uid://506l0hik3qda"]
 
 [ext_resource type="Texture2D" uid="uid://bn7qbcsp3xe51" path="res://content/level/bonus/lui/lui.png" id="1_xt8tc"]
 [ext_resource type="Script" uid="uid://b5yntrwmtxv27" path="res://script/level/bonus/PowerupSet.cs" id="2_axt7w"]
 [ext_resource type="Script" uid="uid://0hr7vtv3pq4n" path="res://script/level/bonus/lui/LuiMovement.cs" id="3_e2dpt"]
+[ext_resource type="Script" uid="uid://b60bkp628v2ri" path="res://script/level/bonus/BonusSprout.cs" id="4_1bhea"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="4_tsfwx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_axt7w"]
@@ -74,7 +75,7 @@ size = Vector2(30, 31)
 
 [node name="Lui" type="Area2D"]
 collision_layer = 32
-collision_mask = 8
+collision_mask = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h8l0l")
@@ -91,8 +92,12 @@ script = ExtResource("2_axt7w")
 _powerup = NodePath("..")
 PowerupType = 3
 
-[node name="LuiMovement" type="Node" parent="." node_paths=PackedStringArray("_lui")]
+[node name="BonusSprout" type="Node" parent="."]
+script = ExtResource("4_1bhea")
+
+[node name="LuiMovement" type="Node" parent="." node_paths=PackedStringArray("_bonusSprout", "_lui")]
 script = ExtResource("3_e2dpt")
+_bonusSprout = NodePath("../BonusSprout")
 _lui = NodePath("..")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("4_tsfwx")]

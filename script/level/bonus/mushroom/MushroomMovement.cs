@@ -5,6 +5,8 @@ using SMWP.Level.Physics;
 namespace SMWP.Level.Bonus.Mushroom;
 
 public partial class MushroomMovement : BasicMovement {
+    [Export] private BonusSprout _bonusSprout = null!;
+    
     [Export] private CollisionShape2D _collisionShape2D = null!;
     [Export] private MushroomAnimation _mushroomAnimation = null!;
     
@@ -13,6 +15,9 @@ public partial class MushroomMovement : BasicMovement {
     private float _originalSpeedX;
     
     public override void _PhysicsProcess(double delta) {
+        // 不在 Sprout 状态才开始执行
+        if (_bonusSprout.Overlapping) return;
+
         // x 速度
         if (MoveObject.IsOnWall() && !_turned) {
             Turning = true;
