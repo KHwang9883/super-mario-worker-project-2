@@ -29,6 +29,7 @@ public partial class PlayerMovement : Node {
 
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
+    [Export] private Area2D _onIceArea2D = null!;
     [Export] private Area2D _aroundWaterArea2D = null!;
 
     // 水管传送状态
@@ -97,9 +98,8 @@ public partial class PlayerMovement : Node {
 
     public bool OnVerticalPlatform;
 
-    // TODO: 冰块状态
-    // Todo: 注意水下x速度变为0
-    public bool OnIce;
+    // 在冰块上状态
+    public bool IsOnIce;
 
     // God Mode 玩家碰撞层掩码记录
     private uint _originPlayerLayer;
@@ -198,9 +198,13 @@ public partial class PlayerMovement : Node {
         _player.SetCollisionMask(_originPlayerMask);
 
         // x 速度
-        float acceleration = IsInWater
-            ? _waterHorizontalAcceleration
-            : (Fire ? _runningAcceleration : _walkingAcceleration);
+        var runningAcceleration = !IsOnIce ? _runningAcceleration : (_runningAcceleration - 0.2f);
+        var walkingAcceleration = !IsOnIce ? _walkingAcceleration : (_walkingAcceleration - 0.05f);
+        var waterHorizontalAcceleration = !IsOnIce ? _waterHorizontalAcceleration : 0f;
+        
+        var acceleration = IsInWater
+            ? waterHorizontalAcceleration
+            : (Fire ? runningAcceleration : walkingAcceleration);
 
         float maxSpeed;
 
@@ -233,7 +237,8 @@ public partial class PlayerMovement : Node {
         if (!_left && !_right || Crouched) {
             SpeedX /= IsInWater ? 1.03f : 1.05f;
         }
-        if (SpeedX is > -0.04f and < 0.04f) {
+        if (SpeedX is > -0.04f and < 0.04f
+            || (IsInWater && IsOnIce)) {
             SpeedX = 0f;
         }
 
@@ -431,6 +436,10 @@ public partial class PlayerMovement : Node {
         // GM8版注释：尝试性修复非整格实心穿墙
         // 为保持精确性，故各自方向速度为零分别进行一次取整，但是该做法会导致楼梯地形贴墙原地起跳边缘卡脚，因此禁用
 
+        // 冰块检测
+        OnIceDetect();
+        //GD.Print(IsOnIce);
+        
         // 第 146 号 BGM 靠近流体检测
         IsAroundWater = _aroundWaterArea2D.GetOverlappingAreas().Count > 0;
 
@@ -683,6 +692,40 @@ public partial class PlayerMovement : Node {
         }
     }
 
+    // 冰块检测
+    public void OnIceDetect() {
+        var bodies = _onIceArea2D.GetOverlappingBodies();
+        
+        // 离开在冰块上状态
+        if (IsOnIce) {
+            // 地上要解除冰块状态必须先在地面上
+            if (!IsInWater) {
+                if (_player.IsOnFloor()) {
+                    IsOnIce = false;
+                    foreach (var body in bodies) {
+                        if (body is not StaticBody2D staticBody2D) continue;
+                        if (staticBody2D.HasMeta("IceBlock")) {
+                            IsOnIce = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            // 水中只要离开冰块就立刻解除状态
+            else if (!_player.IsOnFloor()) {
+                IsOnIce = false;
+            }
+        }
+
+        // 进入在冰块上状态
+        foreach (var body in bodies) {
+            if (body is not StaticBody2D staticBody2D) continue;
+            if (staticBody2D.HasMeta("IceBlock")) {
+                IsOnIce = true;
+                break;
+            }
+        }
+    }
     public void ForceDownPush() {
         do {
             _player.Position += Vector2.Down;

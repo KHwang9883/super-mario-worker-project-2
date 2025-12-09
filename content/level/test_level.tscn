@@ -589,7 +589,7 @@ position = Vector2(1360, 432)
 position = Vector2(1776, 368)
 
 [node name="Thwomp" parent="TestLevelNode2D/Enemies" instance=ExtResource("41_no08i")]
-position = Vector2(3168, 272)
+position = Vector2(3104, 32)
 
 [node name="Enemies" parent="TestLevelNode2D/Enemies" instance=ExtResource("41_no08i")]
 position = Vector2(1568, 324)
@@ -866,8 +866,17 @@ position = Vector2(4028, 252)
 [node name="ViewControl" parent="TestLevelNode2D" instance=ExtResource("68_glrnk")]
 ViewRect = Rect2(2944, 0, 6400, 1280)
 
-[node name="IceBlock" parent="." instance=ExtResource("78_o10yq")]
-position = Vector2(3088, 164)
+[node name="IceBlock" parent="TestLevelNode2D" instance=ExtResource("78_o10yq")]
+position = Vector2(2828, 204)
+
+[node name="IceBlock2" parent="TestLevelNode2D" instance=ExtResource("78_o10yq")]
+position = Vector2(2860, 204)
+
+[node name="IceBlock3" parent="TestLevelNode2D" instance=ExtResource("78_o10yq")]
+position = Vector2(2680, 576)
+
+[node name="IceBlock4" parent="TestLevelNode2D" instance=ExtResource("78_o10yq")]
+position = Vector2(2728, 576)
 
 [connection signal="ModuleResourceConvert" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="play"]

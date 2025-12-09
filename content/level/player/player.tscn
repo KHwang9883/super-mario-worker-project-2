@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=39 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/level/player/mario_small.tres" id="1_o23i7"]
 [ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
@@ -46,6 +46,9 @@ points = PackedVector2Array(-12, 0, -12, -38, -2, -48, 2, -48, 12, -38, 12, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rmk25"]
 radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sba15"]
+size = Vector2(24, 2)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sba15"]
 radius = 32.0
@@ -126,6 +129,15 @@ max_results = 3
 collision_mask = 64
 collide_with_areas = true
 
+[node name="OnIceDetect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnIceDetect"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_sba15")
+debug_color = Color(0.3083697, 0.49670452, 0.99296016, 0.41960785)
+
 [node name="AroundWaterDetect" type="Area2D" parent="."]
 visible = false
 position = Vector2(0, -8)
@@ -144,10 +156,11 @@ playerAnimation = NodePath("PlayerAnimation")
 playerSuit = NodePath("PlayerSuit")
 playerGodMode = NodePath("PlayerGodMode")
 
-[node name="PlayerMovement" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_aroundWaterArea2D")]
+[node name="PlayerMovement" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_onIceArea2D", "_aroundWaterArea2D")]
 script = ExtResource("3_i4jjh")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
+_onIceArea2D = NodePath("../../OnIceDetect")
 _aroundWaterArea2D = NodePath("../../AroundWaterDetect")
 
 [node name="PlayerDieAndHurt" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_gameOverSound")]

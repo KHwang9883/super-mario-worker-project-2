@@ -17,6 +17,7 @@ public partial class IceBlock : BlockHit {
         if (Sprite is AnimatedSprite2D ani) {
             _ani = ani;
         }
+        Parent?.SetMeta("IceBlock", this);
     }
     public override void _PhysicsProcess(double delta) {
         base._PhysicsProcess(delta);
