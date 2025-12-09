@@ -15,7 +15,8 @@ public partial class BlockHit : Node, IBlockHittable {
     public delegate void BlockBreakEventHandler();
 
     // 顶砖
-    [Export] private bool _bumpable;
+    [Export] public bool Bumpable;
+    [Export] public bool BumpableOneShot;
     [Export] private PackedScene _blockBumpArea2DScene = GD.Load<PackedScene>("uid://c14kue38e0gnl");
     [Export] private Node2D? _sprite;
     public enum BumpState {
@@ -98,7 +99,7 @@ public partial class BlockHit : Node, IBlockHittable {
         return true;
     }
     protected virtual bool IsBumpable(Node2D collider) {
-        return _bumpable;
+        return Bumpable;
     }
     protected virtual bool IsBreakable(Node2D collider) {
         return _breakable;
@@ -118,6 +119,7 @@ public partial class BlockHit : Node, IBlockHittable {
     }
     protected virtual void OnBumped() {
         Bumping = false;
+        if (BumpableOneShot) Bumpable = false;
     }
     protected virtual void OnBlockBreak() {
         for (var i = 0; i < _fragmentVelocityData.Count; i++) {

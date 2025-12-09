@@ -4,18 +4,14 @@ using System;
 public partial class BonusSprout : Node {
     private CollisionObject2D? _parent;
     public bool Overlapping;
+    private int _detectedDelayTimer;
+    public bool Detected;
 
     public override void _Ready() {
         _parent ??= GetParent<CollisionObject2D>();
-        OverlapDetect();
-        
-        // 初始时没有与墙体重叠则组件禁用
-        if (!Overlapping) {
-            ProcessMode = ProcessModeEnum.Disabled;
-            GD.Print("what's up");
-        }
     }
     public override void _PhysicsProcess(double delta) {
+        // 因为延迟问题不做初始时没有与墙体重叠则组件禁用
         OverlapDetect();
         if (_parent == null) {
             GD.PushError($"{this}: _parent is null!");
@@ -27,6 +23,8 @@ public partial class BonusSprout : Node {
     }
 
     public void OverlapDetect() {
+        if (Detected) return;
+        
         if (_parent == null) {
             GD.PushError($"{this}: _parent is null!");
         } else {
@@ -46,6 +44,13 @@ public partial class BonusSprout : Node {
                     }
                     break;
                 }
+            }
+            
+            // 如果不与墙体重叠，则不再检测；并且检测时考虑重叠检测延迟的问题
+            if (_detectedDelayTimer < 10) {
+                _detectedDelayTimer++;
+            } else {
+                if (!Overlapping) Detected = true;
             }
         }
     }

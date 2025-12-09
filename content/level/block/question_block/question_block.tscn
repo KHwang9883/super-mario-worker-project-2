@@ -64,7 +64,8 @@ shape = SubResource("RectangleShape2D_ro8lb")
 [node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("_ani", "_sprite")]
 script = ExtResource("3_m0yrx")
 _ani = NodePath("../Sprite2D")
-_bumpable = true
+Bumpable = true
+BumpableOneShot = true
 _sprite = NodePath("../Sprite2D")
 metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
 
