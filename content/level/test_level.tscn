@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=81 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/facility/solid/solid.tscn" id="2_676rr"]
@@ -70,6 +70,8 @@
 [ext_resource type="PackedScene" uid="uid://vphreva4h736" path="res://content/level/facility/view_control/view_control.tscn" id="68_glrnk"]
 [ext_resource type="PackedScene" uid="uid://ql8eu02wkcf5" path="res://content/level/facility/auto_scroll/auto_scroll.tscn" id="69_4uo84"]
 [ext_resource type="PackedScene" uid="uid://bdb1my0j48chm" path="res://content/level/block/question_block/question_block.tscn" id="69_q0l1p"]
+[ext_resource type="PackedScene" uid="uid://c1waxffc2n6a5" path="res://content/level/block/question_block/question_block_fire_flower.tscn" id="71_isr70"]
+[ext_resource type="PackedScene" uid="uid://ct10bly3u1wme" path="res://content/level/block/coin_brick/coin_brick.tscn" id="72_74sw6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kynl2"]
 blend_mode = 2
@@ -136,6 +138,7 @@ FastRetry = true
 MfStylePipeExit = true
 FasterLevelPass = true
 RainyLevel = 2
+ThwompActivateBlocks = true
 BgpDatabase = ExtResource("2_27x5w")
 BgmDatabase = ExtResource("3_ta7os")
 metadata/_custom_type_script = "uid://chusn3nxc5n13"
@@ -580,7 +583,7 @@ position = Vector2(1360, 432)
 position = Vector2(1776, 368)
 
 [node name="Thwomp" parent="TestLevelNode2D/Enemies" instance=ExtResource("41_no08i")]
-position = Vector2(1280, 112)
+position = Vector2(3104, 128)
 
 [node name="Enemies" parent="TestLevelNode2D/Enemies" instance=ExtResource("41_no08i")]
 position = Vector2(1568, 324)
@@ -732,10 +735,10 @@ position = Vector2(2416, 180)
 position = Vector2(2448, 180)
 
 [node name="Brick13" parent="TestLevelNode2D/Facilities" instance=ExtResource("23_dmmuc")]
-position = Vector2(1264, 160)
+position = Vector2(3204, 144)
 
 [node name="Brick14" parent="TestLevelNode2D/Facilities" instance=ExtResource("23_dmmuc")]
-position = Vector2(1296, 160)
+position = Vector2(3120, 176)
 
 [node name="MissileBillCannon" parent="TestLevelNode2D/Facilities" instance=ExtResource("38_sh4so")]
 position = Vector2(1632, 240)
@@ -830,6 +833,12 @@ position = Vector2(2768, 336)
 
 [node name="Mushroom" parent="TestLevelNode2D" instance=ExtResource("17_venmc")]
 position = Vector2(2896, 340)
+
+[node name="QuestionBlockFireFlower" parent="TestLevelNode2D" instance=ExtResource("71_isr70")]
+position = Vector2(3088, 176)
+
+[node name="CoinBrick" parent="TestLevelNode2D" instance=ExtResource("72_74sw6")]
+position = Vector2(2704, 224)
 
 [connection signal="ModuleResourceConvert" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="play"]

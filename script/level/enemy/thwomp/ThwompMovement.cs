@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level;
 
 public partial class ThwompMovement : Node {
     [Signal]
@@ -13,6 +14,7 @@ public partial class ThwompMovement : Node {
     [Export] private PackedScene _thwompInteractionAreaScene = GD.Load<PackedScene>("uid://dehets20u566");
     private CharacterBody2D? _parent;
     private Node2D? _player;
+    private LevelConfig? _levelConfig;
     private float _originY;
     private float _speedY;
     private int _groundedTimer;
@@ -29,6 +31,7 @@ public partial class ThwompMovement : Node {
         _parent ??= (CharacterBody2D)GetParent();
         _player ??= (Node2D)GetTree().GetFirstNodeInGroup("player");
         _originY = _parent.Position.Y;
+        _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
     }
     public override void _PhysicsProcess(double delta) {
         if (_parent == null) return;
@@ -71,10 +74,17 @@ public partial class ThwompMovement : Node {
                     EmitSignal(SignalName.PlaySoundStun);
                     _parent.ResetPhysicsInterpolation();
 
-                    var thwompInteractionArea = _thwompInteractionAreaScene.Instantiate<Node2D>();
-                    thwompInteractionArea.Position = _parent.Position;
-                    thwompInteractionArea.SetMeta("Thwomp", _parent);
-                    _parent.AddSibling(thwompInteractionArea);
+                    // Additional Setting
+                    if (_levelConfig == null) {
+                        GD.PushError($"{this}: LevelConfig is null!");
+                    } else {
+                        if (_levelConfig.ThwompActivateBlocks) {
+                            var thwompInteractionArea = _thwompInteractionAreaScene.Instantiate<Node2D>();
+                            thwompInteractionArea.Position = _parent.Position;
+                            thwompInteractionArea.SetMeta("Thwomp", _parent);
+                            _parent.AddSibling(thwompInteractionArea);
+                        }
+                    }
                     
                     // 恢复无实心判定
                     _parent.SetCollisionMask(0);
