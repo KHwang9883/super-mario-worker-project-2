@@ -130,6 +130,7 @@ collision_mask = 64
 collide_with_areas = true
 
 [node name="OnIceDetect" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 3
 

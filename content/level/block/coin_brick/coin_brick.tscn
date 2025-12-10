@@ -52,11 +52,11 @@ autoplay = "default"
 [node name="BlockCollisionShape2D" parent="." instance=ExtResource("4_isl0r")]
 rotation = -3.1415925
 
-[node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("_ani", "_sprite", "_collisionShape2D")]
+[node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("_ani", "Sprite", "_collisionShape2D")]
 script = ExtResource("3_34mld")
 _ani = NodePath("../Sprite2D")
 Bumpable = true
-_sprite = NodePath("../Sprite2D")
+Sprite = NodePath("../Sprite2D")
 _collisionShape2D = NodePath("../BlockCollisionShape2D")
 metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
 

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 using SMWP.Level.Block;
 
 public partial class IceBlock : BlockHit {
@@ -7,6 +8,8 @@ public partial class IceBlock : BlockHit {
     public delegate void PlaySoundIceBlockHitEventHandler();
     [Signal]
     public delegate void PlaySoundIceBlockBreakEventHandler();
+
+    [Export] private Area2D _lavaDetect = null!;
     
     private int _iceHp = 2;
     private AnimatedSprite2D? _ani;
@@ -33,6 +36,14 @@ public partial class IceBlock : BlockHit {
             case 1:
                 _ani.Play("hit");
                 break;
+        }
+        
+        // 进入岩浆则销毁
+        var areas = _lavaDetect.GetOverlappingAreas();
+        if (areas.Count <= 0) return;
+        GD.Print(areas);
+        if (areas.Any(area => area.IsInGroup("lava_global"))) {
+            Parent?.QueueFree();
         }
     }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ix3t4xs7phce"]
+[gd_scene load_steps=13 format=3 uid="uid://ix3t4xs7phce"]
 
 [ext_resource type="Texture2D" uid="uid://b8ufbini7thyd" path="res://content/level/block/ice_block/ice_block.png" id="1_fdxcv"]
 [ext_resource type="Texture2D" uid="uid://bxytvrhlq1gpk" path="res://content/level/block/ice_block/ice_block_unstable.png" id="2_b23br"]
@@ -30,6 +30,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_35lan"]
+radius = 5.0
+
 [node name="IceBlock" type="StaticBody2D"]
 collision_layer = 3
 collision_mask = 0
@@ -41,11 +44,21 @@ autoplay = "default"
 [node name="BlockCollisionShape2D" parent="." instance=ExtResource("3_ygbsv")]
 rotation = -3.1415925
 
-[node name="IceBlock" type="Node" parent="." node_paths=PackedStringArray("_collisionShape2D")]
+[node name="IceBlock" type="Node" parent="." node_paths=PackedStringArray("_lavaDetect", "Sprite", "_collisionShape2D")]
 script = ExtResource("4_35lan")
+_lavaDetect = NodePath("../GlobalLavaDetect")
+Sprite = NodePath("../Sprite2D")
 _blockFragmentScene = ExtResource("5_b23br")
 _collisionShape2D = NodePath("../BlockCollisionShape2D")
 metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
+
+[node name="GlobalLavaDetect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GlobalLavaDetect"]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_35lan")
 
 [node name="Break" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_35lan")

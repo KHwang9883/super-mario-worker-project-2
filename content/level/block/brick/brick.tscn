@@ -18,9 +18,9 @@ texture = ExtResource("1_jlvh5")
 [node name="BlockCollisionShape2D" parent="." instance=ExtResource("2_7ej2m")]
 rotation = -3.1415925
 
-[node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("_sprite", "_collisionShape2D")]
+[node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("Sprite", "_collisionShape2D")]
 script = ExtResource("2_ub6l2")
-_sprite = NodePath("../Sprite2D")
+Sprite = NodePath("../Sprite2D")
 _breakable = true
 _collisionShape2D = NodePath("../BlockCollisionShape2D")
 metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
