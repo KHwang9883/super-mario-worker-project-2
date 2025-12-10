@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=92 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/facility/solid/solid.tscn" id="2_676rr"]
@@ -17,12 +17,16 @@
 [ext_resource type="PackedScene" uid="uid://dwkukt5v4t3p5" path="res://content/level/player/player.tscn" id="9_hgnsp"]
 [ext_resource type="PackedScene" uid="uid://cplswge6xc0vw" path="res://content/level/camera/level_camera.tscn" id="10_8mywb"]
 [ext_resource type="Script" uid="uid://dsl20o7a2l7a0" path="res://script/level/debug/TestLabel.cs" id="10_g7257"]
+[ext_resource type="Script" uid="uid://dhpcfsgd4eu3h" path="res://script/level/hud/MessageDisplay.cs" id="10_ykur4"]
+[ext_resource type="AudioStream" uid="uid://4ja2i3t2p3r4" path="res://content/sound/message.se.wav" id="11_5fslp"]
 [ext_resource type="TileSet" uid="uid://obv64rtoaukf" path="res://content/level/tile/blocks.tileset.tres" id="11_877iw"]
 [ext_resource type="PackedScene" uid="uid://2vuxafdyyhgx" path="res://content/level/water/water.tscn" id="11_o3hmp"]
 [ext_resource type="AudioStream" uid="uid://crsc1hhhou5gu" path="res://content/sound/time_warning.se.wav" id="11_tfcdk"]
+[ext_resource type="AudioStream" uid="uid://cborw2h6n706m" path="res://content/sound/switch.se.wav" id="12_atsv8"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="12_mjbph"]
 [ext_resource type="PackedScene" uid="uid://dm7wuafwjjq1w" path="res://content/level/enemy/spike/spike_mw.tscn" id="13_dhetq"]
 [ext_resource type="PackedScene" uid="uid://dlfbxnforjjvx" path="res://content/level/enemy/spike/spike_piranha.tscn" id="14_ii7j2"]
+[ext_resource type="FontFile" uid="uid://cy77repuuq0o7" path="res://content/level/hud/最像素EX2.ttf" id="15_i05c6"]
 [ext_resource type="PackedScene" uid="uid://d2kvp8mnj0j4u" path="res://content/level/enemy/goomba/goomba.tscn" id="16_lgciv"]
 [ext_resource type="PackedScene" uid="uid://cb81b1j6kxba1" path="res://content/level/bonus/fire_flower/fire_flower.tscn" id="17_d2gt5"]
 [ext_resource type="PackedScene" uid="uid://06fvxuvjbor0" path="res://content/level/bonus/mushroom/mushroom.tscn" id="17_venmc"]
@@ -388,6 +392,31 @@ uppercase = true
 metadata/_edit_lock_ = true
 
 [node name="Todo：库巴血条" type="Node2D" parent="TestLevelNode2D/HUD/HUD"]
+
+[node name="MessageDisplay" type="Label" parent="TestLevelNode2D/HUD" groups=["message_display"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("15_i05c6")
+theme_override_font_sizes/font_size = 20
+vertical_alignment = 2
+script = ExtResource("10_ykur4")
+metadata/_edit_lock_ = true
+
+[node name="MsgDisplaySE" type="AudioStreamPlayer2D" parent="TestLevelNode2D/HUD/MessageDisplay"]
+stream = ExtResource("11_5fslp")
+script = ExtResource("12_mjbph")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="MsgUndisplaySE" type="AudioStreamPlayer2D" parent="TestLevelNode2D/HUD/MessageDisplay"]
+stream = ExtResource("12_atsv8")
+script = ExtResource("12_mjbph")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="TestLevelNode2D"]
 visible = false
@@ -835,6 +864,18 @@ position = Vector2(2768, 208)
 [node name="QuestionBlockPoisonousMushroom" parent="TestLevelNode2D/Facilities" instance=ExtResource("75_dy2gm")]
 position = Vector2(2632, 208)
 
+[node name="IceBlock" parent="TestLevelNode2D/Facilities" instance=ExtResource("78_o10yq")]
+position = Vector2(2828, 204)
+
+[node name="IceBlock2" parent="TestLevelNode2D/Facilities" instance=ExtResource("78_o10yq")]
+position = Vector2(2860, 204)
+
+[node name="IceBlock3" parent="TestLevelNode2D/Facilities" instance=ExtResource("78_o10yq")]
+position = Vector2(2680, 576)
+
+[node name="IceBlock4" parent="TestLevelNode2D/Facilities" instance=ExtResource("78_o10yq")]
+position = Vector2(2728, 576)
+
 [node name="Checkpoints" type="Node2D" parent="TestLevelNode2D"]
 
 [node name="Checkpoint" parent="TestLevelNode2D/Checkpoints" instance=ExtResource("54_813lr")]
@@ -867,18 +908,6 @@ position = Vector2(4028, 252)
 [node name="ViewControl" parent="TestLevelNode2D" instance=ExtResource("68_glrnk")]
 ViewRect = Rect2(2944, 0, 6400, 1280)
 
-[node name="IceBlock" parent="TestLevelNode2D" instance=ExtResource("78_o10yq")]
-position = Vector2(2828, 204)
-
-[node name="IceBlock2" parent="TestLevelNode2D" instance=ExtResource("78_o10yq")]
-position = Vector2(2860, 204)
-
-[node name="IceBlock3" parent="TestLevelNode2D" instance=ExtResource("78_o10yq")]
-position = Vector2(2680, 576)
-
-[node name="IceBlock4" parent="TestLevelNode2D" instance=ExtResource("78_o10yq")]
-position = Vector2(2728, 576)
-
 [node name="MessageBlock" parent="TestLevelNode2D" instance=ExtResource("79_ww5fi")]
 position = Vector2(2652, 92)
 
@@ -889,3 +918,5 @@ position = Vector2(2688, 92)
 [connection signal="finished" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="play"]
 [connection signal="tree_exiting" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="OnTreeExiting"]
 [connection signal="PlaySoundTimeWarning" from="TestLevelNode2D/HUD/HUD" to="TestLevelNode2D/HUD/HUD/TimeWarning" method="play"]
+[connection signal="PlaySoundMessageDisplay" from="TestLevelNode2D/HUD/MessageDisplay" to="TestLevelNode2D/HUD/MessageDisplay/MsgDisplaySE" method="play"]
+[connection signal="PlaySoundMessageUndisplay" from="TestLevelNode2D/HUD/MessageDisplay" to="TestLevelNode2D/HUD/MessageDisplay/MsgUndisplaySE" method="play"]

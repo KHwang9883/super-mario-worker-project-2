@@ -53,6 +53,7 @@ _collisionShape2D = NodePath("../BlockCollisionShape2D")
 metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
 
 [node name="GlobalLavaDetect" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 16
 
