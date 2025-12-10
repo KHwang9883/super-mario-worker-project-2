@@ -21,7 +21,8 @@ public partial class MessageBlock : BlockHit {
 
         _message = StringProcess.ConvertHashAndNewline(_message);
         
-        _messageDisplay ??= (MessageDisplay)GetTree().GetFirstNodeInGroup("message_display");
+        if (GetTree().GetFirstNodeInGroup("message_display") is MessageDisplay messageDisplay)
+            _messageDisplay = messageDisplay;
     }
     public override void _PhysicsProcess(double delta) {
         base._PhysicsProcess(delta);
@@ -33,14 +34,15 @@ public partial class MessageBlock : BlockHit {
         _frame = _ani.Frame;
     }
 
-    public override void OnBlockHit(Node2D collider) {
-        base.OnBlockHit(collider);
+    protected override bool IsBumpable(Node2D collider) {
         _ani?.Play("hit");
         if (_messageDisplay == null) {
             GD.PushError($"{this}: _messageDisplay is null!");
-            return;
+            return false;
         }
         _messageDisplay.SetMessage(_message, _isShown, this);
+        Bumpable = false;
+        return true;
     }
     protected override void OnBumped() {
         base.OnBumped();
@@ -48,6 +50,7 @@ public partial class MessageBlock : BlockHit {
         _ani.Play("default");
         _ani.Frame = _frame;
         _ani.FrameProgress = _frameProgress;
+        Bumpable = true;
     }
 
     public void SetShown() {

@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.IO;
+using FileAccess = Godot.FileAccess;
 
 public partial class MessageDisplay : Label {
     [Signal]
@@ -15,10 +17,15 @@ public partial class MessageDisplay : Label {
     private int _messageLength;
     private int _wordPointer;
     private int _characterAdvanceTimer;
+    
+    private FontFile _overrideFont = new();
 
     public override void _Ready() {
-        // For debug usage
+        // For debug use
         _currentMessage = StringProcess.ConvertHashAndNewline(_currentMessage);
+        
+        // Font override
+        Callable.From(SetOverrideFont).CallDeferred();
     }
     public override void _PhysicsProcess(double delta) {
         // Press Enter to undisplay
@@ -75,10 +82,26 @@ public partial class MessageDisplay : Label {
     }
     public void TextClear() {
         // 清空不显示
+        if (_show) EmitSignal(SignalName.PlaySoundMessageUndisplay);
         Text = "";
         _currentMessage = "";
         _wordPointer = 0;
         _show = false;
-        EmitSignal(SignalName.PlaySoundMessageUndisplay);
+    }
+
+    public void SetOverrideFont() {
+        var baseDir = Path.GetDirectoryName(OS.GetExecutablePath());
+        baseDir = baseDir?.Replace("\\", "/");
+        var overrideFontFilePath = baseDir + "/Fonts/message.ttf";
+        if (!FileAccess.FileExists(overrideFontFilePath)) return;
+        
+        _overrideFont.Data = FileAccess.GetFileAsBytes(overrideFontFilePath);
+        
+        // Todo: [ ? ]
+        try {
+            AddThemeFontOverride("font", _overrideFont);
+        } catch {
+            GD.PushWarning("字体读取成功，但报错原因未能排查。");
+        }
     }
 }

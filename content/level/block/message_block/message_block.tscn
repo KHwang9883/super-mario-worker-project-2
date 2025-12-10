@@ -62,7 +62,7 @@ rotation = -3.1415925
 
 [node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("Sprite", "_collisionShape2D")]
 script = ExtResource("4_tiqtb")
-_message = "这是一串测试包括汉字还有英文字母比如说#aaaaaaaaaaaaaaaa#啊啊啊啊啊啊啊啊啊啊啊啊啊#测试出字速度"
+_message = "おはよ#スーパーマリオ#啊啊啊啊啊啊啊啊啊啊啊啊啊#测试出字速度"
 Bumpable = true
 Sprite = NodePath("../Sprite2D")
 _collisionShape2D = NodePath("../BlockCollisionShape2D")
