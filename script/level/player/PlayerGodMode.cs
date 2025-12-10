@@ -100,6 +100,7 @@ public partial class PlayerGodMode : Node {
                     GD.PushError("PlayerGodMode: LevelCamera is null!");
                     break;
                 }
+                if (_levelCamera.AutoScrollEnded) break;
                 if (_levelCamera.CameraMode != LevelCamera.CameraModeEnum.FollowPlayer) {
                     ForceScrollDisabled = !ForceScrollDisabled;
                     _levelCamera.AutoScrollDisabled = ForceScrollDisabled;

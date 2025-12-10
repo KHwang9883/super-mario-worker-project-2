@@ -24,6 +24,7 @@ public partial class LevelCamera : Camera2D {
     public Vector2 DeltaPosition;
 
     public bool InitializationCompleted;
+    public bool AutoScrollEnded;
 
     public override void _Ready() {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
@@ -89,6 +90,9 @@ public partial class LevelCamera : Camera2D {
                 
                 var speed = _autoScrollSpeed * 0.01f;
                 if (AutoScrollDisabled) speed = 0f;
+                
+                if (!AutoScrollDisabled) AutoScrollEnded = false;
+                
                 Position += (_targetAutoscrollNode.Position - Position).Normalized() * speed;
                 if (Math.Abs(Position.X - _targetAutoscrollNode.Position.X) < speed
                     && Math.Abs(Position.Y - _targetAutoscrollNode.Position.Y) < speed) {
@@ -110,6 +114,7 @@ public partial class LevelCamera : Camera2D {
                         _targetAutoscrollNode = (AutoScroll)GetTree().GetFirstNodeInGroup("auto_scroll");
                         _autoScrollSpeed = _targetAutoscrollNode.Speed;
                         AutoScrollDisabled = true;
+                        AutoScrollEnded = true;
                     }
                 }
                 break;
