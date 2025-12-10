@@ -51,7 +51,7 @@ public partial class HUD : Control {
         if (_levelConfig == null) {
             GD.PushError($"{this}: LevelConfig is null!");
         } else {
-            _levelTitle.Text = ConvertHashAndNewline(_levelConfig.LevelTitle);
+            _levelTitle.Text = StringProcess.ConvertHashAndNewline(_levelConfig.LevelTitle);
         }
         
         // 负数时间不显示
@@ -87,15 +87,6 @@ public partial class HUD : Control {
         _scrollDisabled.Visible = _godModeNode.ForceScrollDisabled;
     }
     
-    public string ConvertHashAndNewline(string input) {
-        if (string.IsNullOrEmpty(input)) return input;
-
-        const string tempPlaceholder = "☃";
-        var step1 = input.Replace(@"\#", tempPlaceholder);
-        var step2 = step1.Replace("#", "\n");
-        var result = step2.Replace(tempPlaceholder, "#");
-        return result;
-    }
     public static string YesOrNo(bool boolean) {
         return boolean ? "Yes" : "No";
     }

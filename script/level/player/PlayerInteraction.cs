@@ -188,6 +188,9 @@ public partial class PlayerInteraction : Node {
         Node? blockHitNode = null;
 
         if (!(_playerMediator.playerMovement.SpeedY <= 0f)) return;
+
+        // 防报错
+        if (!IsInstanceValid(_player)) return;
         
         var collision = _player.MoveAndCollide(new Vector2(0f, -1f), true);
 
