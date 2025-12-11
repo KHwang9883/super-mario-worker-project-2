@@ -54,9 +54,11 @@ public partial class Lava : Area2D {
             switch (_fluid.FluidType) {
                 case Fluid.FluidTypeEnum.Lava:
                     Position = Position with { Y = _water.Position.Y };
+                    ResetPhysicsInterpolation();
                     break;
                 case Fluid.FluidTypeEnum.Water:
                     Position = Position with { Y = _levelConfig.RoomHeight + 640 };
+                    ResetPhysicsInterpolation();
                     break;
             }
         }
