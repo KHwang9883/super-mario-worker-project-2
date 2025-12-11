@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8fi12ftk0dka"]
+
+[ext_resource type="SpriteFrames" uid="uid://b5l3e3o5qcgle" path="res://content/level/block/switch_block/switch_sprites/switch_block_red.tres" id="1_l5qlt"]
+[ext_resource type="PackedScene" uid="uid://dsjr2jccad25d" path="res://content/level/block/block_collision_shape_2d.tscn" id="3_0282c"]
+[ext_resource type="Script" uid="uid://btbqxxr0kxy5v" path="res://script/level/block/switch_block/SwitchBlock.cs" id="4_522hf"]
+[ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="5_1iap1"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="6_3p3kx"]
+[ext_resource type="AudioStream" uid="uid://bvh8vnx7l5i38" path="res://content/sound/coin.se.wav" id="7_xj8xr"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="8_ar7as"]
+
+[node name="SwitchBlock" type="StaticBody2D"]
+z_index = 18
+collision_layer = 3
+collision_mask = 0
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_l5qlt")
+autoplay = "default"
+
+[node name="BlockCollisionShape2D" parent="." instance=ExtResource("3_0282c")]
+rotation = -3.1415925
+
+[node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("Sprite", "_collisionShape2D")]
+script = ExtResource("4_522hf")
+Bumpable = true
+Sprite = NodePath("../Sprite2D")
+_collisionShape2D = NodePath("../BlockCollisionShape2D")
+metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
+
+[node name="Break" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_1iap1")
+script = ExtResource("6_3p3kx")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="Bump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_xj8xr")
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("8_ar7as")]
+
+[connection signal="BlockBreak" from="BlockHit" to="Break" method="play"]
+[connection signal="BlockBump" from="BlockHit" to="Bump" method="play"]

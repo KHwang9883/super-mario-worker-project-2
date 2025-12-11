@@ -30,6 +30,9 @@ public partial class LevelManager : Node {
 
     // Todo: for test only
     public static bool IsGodMode = true;
+
+    // Todo: for test only
+    public static bool IsColorAccessibilityMode = true;
     
     [Export] private ContinuousAudioStream2D _1UPAudioStream2DNode = null!;
     public static ContinuousAudioStream2D Sound1UPAudioStream2D = null!;

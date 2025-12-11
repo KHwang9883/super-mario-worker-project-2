@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://cefm1s3buvaoo"]
+
+[ext_resource type="Texture2D" uid="uid://cjfypky1itxii" path="res://content/level/block/switch_block/switch_block.png" id="1_82p13"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r4yo"]
+atlas = ExtResource("1_82p13")
+region = Rect2(224, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fr8q5"]
+atlas = ExtResource("1_82p13")
+region = Rect2(224, 64, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r4yo")
+}],
+"loop": false,
+"name": &"colorvision",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fr8q5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
