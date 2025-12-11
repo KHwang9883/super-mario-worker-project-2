@@ -328,5 +328,5 @@ public partial class BgmPlayer : AudioStreamPlayer {
             _bgm146Player.Playing = false;
     }
     
-    // Todo: No Music situation
+    // BgmId 不合法自动为 No Music
 }

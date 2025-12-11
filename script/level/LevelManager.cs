@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Godot.Collections;
+using SMWP.Level.Player;
 using SMWP.Level.Sound;
 using Array = Godot.Collections.Array;
 // ReSharper disable FieldCanBeMadeReadOnly.Global
@@ -42,6 +43,7 @@ public partial class LevelManager : Node {
     public static string CustomBgmPackage = "Example";
     
     public static Node2D? Player;
+    public static PlayerMovement? PlayerMovementNode;
 
     public override void _Ready() {
         Sound1UPAudioStream2D = _1UPAudioStream2DNode;
@@ -89,10 +91,15 @@ public partial class LevelManager : Node {
     }
     public void TimeCount() {
         if (IsLevelPass) return;
+        
+        if (!IsInstanceValid(Player)) return;
+        
         // 传送时，计时器停止
-        // Todo: if (playerMovement.Stuck or PipeIn/Out) return;
+        PlayerMovementNode = (PlayerMovement)Player.GetMeta("PlayerMovement");
+        if (PlayerMovementNode.IsInPipeTransport) return;
+        
         // 玩家死亡，计时器停止
-        if (Player is null && Player is { ProcessMode: ProcessModeEnum.Disabled }) return;
+        if (Player is { ProcessMode: ProcessModeEnum.Disabled }) return;
         
         if (Time <= 0) return;
         _levelTimeTimer++;
@@ -174,6 +181,7 @@ public partial class LevelManager : Node {
 
         IsLevelPass = false;
         Player = null;
+        PlayerMovementNode = null;
         
         // Todo: 关卡跳转 / 回到标题画面 / 编辑界面
         GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");

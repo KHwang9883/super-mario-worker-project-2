@@ -140,6 +140,7 @@ RoomWidth = 10016.0
 RoomHeight = 6400.0
 WaterHeight = 444.0
 BgpId = 30
+BgmId = -5
 AutoFluid = true
 FluidT1 = 448.0
 FluidT2 = 500.0
@@ -802,8 +803,8 @@ position = Vector2(1952, 352)
 
 [node name="SceneControl" parent="TestLevelNode2D/Facilities" instance=ExtResource("63_i0wvf")]
 position = Vector2(3012, 224)
-BgmId = 119
 LinkedWithObject = 1
+BgmId = 119
 
 [node name="Sealer2" parent="TestLevelNode2D/Facilities" instance=ExtResource("53_877iw")]
 position = Vector2(2752, 0)
