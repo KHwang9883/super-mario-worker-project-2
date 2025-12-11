@@ -12,6 +12,8 @@ public partial class PlayerSuit : Node {
     
     [Export] private PlayerMediator _playerMediator = null!;
     
+    [Export] private ComboComponent _starmanCombo = null!;
+    
     public enum SuitEnum {
         Small,
         Super,
@@ -42,8 +44,13 @@ public partial class PlayerSuit : Node {
         
         StarmanTimer++;
         if (StarmanTimer < StarmanTime) return;
+        StarmanOver();
+    }
+
+    public void StarmanOver() {
         Starman = false;
         StarmanTimer = 0;
+        _starmanCombo.ResetCombo();
         EmitSignal(SignalName.PlayerStarmanFinished);
     }
 }

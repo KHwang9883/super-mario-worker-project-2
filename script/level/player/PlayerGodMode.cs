@@ -62,8 +62,12 @@ public partial class PlayerGodMode : Node {
                 break;
             
             case Key.Key6:
-                pSuit.Starman = true;
-                pSuit.StarmanTimer = 0;
+                if (!pSuit.Starman) {
+                    pSuit.Starman = true;
+                    pSuit.StarmanTimer = 0;
+                } else {
+                    pSuit.StarmanOver();
+                }
                 IsGodFly = false;
                 break;
             

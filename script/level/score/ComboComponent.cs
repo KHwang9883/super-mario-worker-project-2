@@ -27,4 +27,7 @@ public partial class ComboComponent : Node {
         Score = ComboToScore[Combo];
         return Score;
     }
+    public void ResetCombo() {
+        Combo = 0;
+    }
 }
