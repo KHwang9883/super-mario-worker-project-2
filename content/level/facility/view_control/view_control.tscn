@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://c7x4p3ey3kect" path="res://script/level/facility/view_control/ViewControl.cs" id="1_j5vxi"]
 
-[node name="ViewControl" type="Node2D"]
+[node name="ViewControl" type="Node2D" groups=["view_control"]]
 script = ExtResource("1_j5vxi")

@@ -756,6 +756,9 @@ public partial class PlayerMovement : Node {
                 _levelCamera.LimitRight = (int)viewControl.ViewRect.End.X;
                 _levelCamera.LimitBottom = (int)viewControl.ViewRect.End.Y;
                 
+                // 同时触发场景控制元件
+                viewControl.SetLevelScene();
+                
                 // 检测到一个镜头控制元件后即退出
                 return;
             }

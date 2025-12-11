@@ -443,7 +443,7 @@ tile_set = ExtResource("11_877iw")
 
 [node name="Mario" parent="TestLevelNode2D" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true
-position = Vector2(1296, 372)
+position = Vector2(2652, 180)
 
 [node name="LevelCamera" parent="TestLevelNode2D" instance=ExtResource("10_8mywb")]
 position = Vector2(0, 9999999)
@@ -801,8 +801,9 @@ position = Vector2(1624, 16)
 position = Vector2(1952, 352)
 
 [node name="SceneControl" parent="TestLevelNode2D/Facilities" instance=ExtResource("63_i0wvf")]
-position = Vector2(2984, 124)
+position = Vector2(3012, 224)
 BgmId = 119
+LinkedWithObject = 1
 
 [node name="Sealer2" parent="TestLevelNode2D/Facilities" instance=ExtResource("53_877iw")]
 position = Vector2(2752, 0)
