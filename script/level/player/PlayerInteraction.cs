@@ -189,10 +189,10 @@ public partial class PlayerInteraction : Node {
 
         if (!(_playerMediator.playerMovement.SpeedY <= 0f)) return;
 
-        // 防报错
-        if (!IsInstanceValid(_player)) return;
+        // 防止顶头时死亡（玩家禁用处理模式）报错
+        if (_player.ProcessMode == ProcessModeEnum.Disabled) return;
         
-        var collision = _player.MoveAndCollide(new Vector2(0f, -1f), true);
+        var collision = _player.MoveAndCollide(new Vector2(0f, -1f), true, 0.02f);
 
         var blockCollider = collision?.GetCollider();
         //GD.Print(blockCollider);

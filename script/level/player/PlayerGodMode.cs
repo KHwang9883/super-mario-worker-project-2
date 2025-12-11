@@ -35,29 +35,34 @@ public partial class PlayerGodMode : Node {
         switch (keyEvent.Keycode) {
             case Key.Key1:
                 pSuit.Suit = PlayerSuit.SuitEnum.Small;
+                pSuit.StarmanOver();
                 IsGodFly = false;
                 break;
             
             case Key.Key2:
                 pSuit.Suit = PlayerSuit.SuitEnum.Super;
+                pSuit.StarmanOver();
                 IsGodFly = false;
                 break;
             
             case Key.Key3:
                 pSuit.Suit = PlayerSuit.SuitEnum.Powered;
                 pSuit.Powerup = PlayerSuit.PowerupEnum.Fireball;
+                pSuit.StarmanOver();
                 IsGodFly = false;
                 break;
             
             case Key.Key4:
                 pSuit.Suit = PlayerSuit.SuitEnum.Powered;
                 pSuit.Powerup = PlayerSuit.PowerupEnum.Beetroot;
+                pSuit.StarmanOver();
                 IsGodFly = false;
                 break;
             
             case Key.Key5:
                 pSuit.Suit = PlayerSuit.SuitEnum.Powered;
                 pSuit.Powerup = PlayerSuit.PowerupEnum.Lui;
+                pSuit.StarmanOver();
                 IsGodFly = false;
                 break;
             
