@@ -18,7 +18,7 @@ public partial class MessageDisplay : Label {
     private int _wordPointer;
     private int _characterAdvanceTimer;
     
-    private FontFile _overrideFont = new();
+    private FontFile _overrideFont = GD.Load<FontFile>("uid://cy77repuuq0o7");
 
     public override void _Ready() {
         // For debug use
@@ -97,7 +97,6 @@ public partial class MessageDisplay : Label {
         
         _overrideFont.Data = FileAccess.GetFileAsBytes(overrideFontFilePath);
         
-        // Todo: [ ? ]
         try {
             AddThemeFontOverride("font", _overrideFont);
         } catch {
