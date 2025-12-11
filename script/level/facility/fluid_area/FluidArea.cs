@@ -8,6 +8,7 @@ public partial class FluidArea : Area2D {
     [Export] public float Speed = 1f;
     
     private Water? _water;
+    private bool _set;
 
     public override void _Ready() {
         _water ??= (Water)GetTree().GetFirstNodeInGroup("water_global");
@@ -24,6 +25,10 @@ public partial class FluidArea : Area2D {
     }
 
     public void SetFluidMovement() {
+        // 防止 GetOverlappingBodies 和 OnBodyEntered 方法保守并用而重复触发
+        if (_set) return;
+        if (!_set) _set = true;
+        
         if (_water == null) {
             GD.PushError($"{this}: _water is null!");
             return;

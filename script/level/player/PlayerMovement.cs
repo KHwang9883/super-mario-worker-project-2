@@ -122,6 +122,8 @@ public partial class PlayerMovement : Node {
     private bool _autoScrollCheckpointDetect;
 
     public override void _Ready() {
+        _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
+        
         // Checkpoint
         var checkpoints = GetTree().GetNodesInGroup("checkpoint");
         if (checkpoints != null) {
@@ -129,6 +131,8 @@ public partial class PlayerMovement : Node {
                 if (node is not Checkpoint checkpoint) continue;
                 if (LevelManager.CurrentCheckpointId != checkpoint.Id) continue;
                 _player.Position = checkpoint.Position + Vector2.Up * 8f;
+                
+                // 设置 CP 触发时记录的流体高度见 LevelConfig
             }
         }
         
@@ -150,7 +154,6 @@ public partial class PlayerMovement : Node {
         _outWaterDetectSuper = _player.GetNode<ShapeCast2D>("OutWaterDetectSuper");
 
         // 镜头控制元件检测
-        _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         Callable.From(ViewControlDetect).CallDeferred();
         
         // 摄像机

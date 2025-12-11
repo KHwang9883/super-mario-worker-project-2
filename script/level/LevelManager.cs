@@ -20,7 +20,10 @@ public partial class LevelManager : Node {
     public static int Coin { get; set; } = 99;
 
     public static int CurrentCheckpointId;
-    public static Array<int> ActivatedCheckpoints = []; 
+    public static Array<int> ActivatedCheckpoints = [];
+
+    public static bool IsCheckpointWaterHeightRecorded;
+    public static float CheckpointWaterHeight;
 
     public static bool IsGameOver;
     public static bool IsLevelPass;
@@ -60,7 +63,11 @@ public partial class LevelManager : Node {
         // 过关
         LevelPass();
     }
-    
+
+    public static void SetCheckpointWaterHeight(float height) {
+        CheckpointWaterHeight = height;
+        IsCheckpointWaterHeightRecorded = true;
+    }
     // 加分
     public static void AddScore(int score) {
         // 1UP 占用 -1 分
@@ -179,9 +186,18 @@ public partial class LevelManager : Node {
         // 解除游戏暂停状态
         GetTree().Paused = false;
 
+        // 清空单关范围的全局变量
         IsLevelPass = false;
         Player = null;
         PlayerMovementNode = null;
+        
+        CurrentCheckpointId = 0;
+        ActivatedCheckpoints = [];
+        IsCheckpointWaterHeightRecorded = false;
+        CheckpointWaterHeight = 0;
+
+        IsGameOver = false;
+        IsLevelPass = false;
         
         // Todo: 关卡跳转 / 回到标题画面 / 编辑界面
         GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");

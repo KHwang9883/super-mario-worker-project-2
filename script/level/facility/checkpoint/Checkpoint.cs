@@ -9,14 +9,20 @@ public partial class Checkpoint : Area2D {
     [Export] public int Id;
     [Export] public bool Activated;
 
+    private LevelConfig? _levelConfig;
+    private Water? _water;
+
     public override void _Ready() {
+        _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
+        _water ??= (Water)GetTree().GetFirstNodeInGroup("water_global");
+        
         // Activate activated
         if (!LevelManager.ActivatedCheckpoints.Contains(Id)) return;
         Activated = true;
         GetNode<AnimatedSprite2D>("AnimatedSprite2D").Animation = "activated";
     }
     public void OnBodyEntered(Node body) {
-        if(!Activate()) return;
+        Activate();
     }
     public bool Activate() {
         if (Activated) return false;
@@ -24,6 +30,23 @@ public partial class Checkpoint : Area2D {
         GetNode<AnimatedSprite2D>("AnimatedSprite2D").Animation = "activated";
         LevelManager.CurrentCheckpointId = Id;
         LevelManager.ActivatedCheckpoints.Add(Id);
+        
+        // 非自动流体运动下激活 Checkpoint 记录流体高度
+        if (_water == null) {
+            GD.PushError($"{this}: _water is null!");
+        } else {
+            // 注意要检测 LevelConfig 的 AutoFluid，而不是 Water 的
+            if (_levelConfig == null) {
+                GD.PushError($"{this}: LevelConfig is null!");
+            } else {
+                if (!_levelConfig.AutoFluid) {
+                    LevelManager.IsCheckpointWaterHeightRecorded = true;
+                    LevelManager.CheckpointWaterHeight = _water.Position.Y;
+                    //GD.Print($"CheckpointWaterHeight: {LevelManager.CheckpointWaterHeight}");
+                }
+            }
+        }
+        
         EmitSignal(SignalName.CheckpointActivated);
         return true;
     }

@@ -38,16 +38,13 @@ public partial class LevelConfig : Node {
     [Export] public float FluidT2 = -64;
     [Export(PropertyHint.Range, "0, 9, 1")] public float FluidSpeed = 1f;
     [Export] public int FluidDelay;
-    // Todo
+    // Todo: 开关砖第二功能
     [Export] public bool AdvancedSwitch;
     [Export] public bool FastRetry;
-    // Todo
     [Export] public bool MfStyleBeet = true;
-    // Todo
+    // Todo: 开关砖蔚蓝模式
     [Export] public bool CelesteStyleSwitch;
-    // Todo
     [Export] public bool MfStylePipeExit;
-    // Todo
     [Export] public bool FasterLevelPass;
     [Export] public bool HUDDisplay = true;
     
@@ -63,7 +60,6 @@ public partial class LevelConfig : Node {
     // Todo: 发光物体格式定义（二期工程、补丁和三期工程？）
     //[Export] public ... ???
 
-    // Todo
     [Export] public bool ThwompActivateBlocks;
     
     [ExportGroup("Database")]
@@ -72,9 +68,10 @@ public partial class LevelConfig : Node {
     
     private PackedScene? _backgroundScene;
     private BackgroundSet? _backgroundSet;
+    
+    // 关卡初始化
     public override void _Ready() {
-        // Room Size Set
-        // 见 LevelCamera
+        // Room Size 初始化见 LevelCamera
         
         // Time Set
         LevelManager.SetLevelTime(Time);
@@ -83,8 +80,14 @@ public partial class LevelConfig : Node {
         LevelManager.Player = (Node2D)GetTree().GetFirstNodeInGroup("player");
         
         // Water Height Set
+        //GD.Print($"IsCheckpointWaterHeightRecorded: {LevelManager.IsCheckpointWaterHeightRecorded}");
         var water = (Water)GetTree().GetFirstNodeInGroup("water_global");
-        water.Position = water.Position with { Y = WaterHeight };
+        if (LevelManager.IsCheckpointWaterHeightRecorded) {
+            water.Position = water.Position with { Y = LevelManager.CheckpointWaterHeight };
+            //GD.Print($"Water Position Y: {water.Position.Y}");
+        } else {
+            water.Position = water.Position with { Y = WaterHeight };
+        }
         
         // Background Set
         SetBgp(BgpId);

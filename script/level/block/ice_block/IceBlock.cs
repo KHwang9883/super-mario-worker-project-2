@@ -41,7 +41,6 @@ public partial class IceBlock : BlockHit {
         // 进入岩浆则销毁
         var areas = _lavaDetect.GetOverlappingAreas();
         if (areas.Count <= 0) return;
-        GD.Print(areas);
         if (areas.Any(area => area.IsInGroup("lava_global"))) {
             Parent?.QueueFree();
         }

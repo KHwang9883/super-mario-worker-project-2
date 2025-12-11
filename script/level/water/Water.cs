@@ -31,7 +31,7 @@ public partial class Water : Area2D {
         _fluid ??= GetParent<Fluid>();
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         
-        Position = Position with { Y = _levelConfig.WaterHeight };
+        // Position 初始化见 LevelConfig
         _autoFluid = _levelConfig.AutoFluid;
         if (!_autoFluid) return;
         _t1 = _levelConfig.FluidT1;
@@ -123,4 +123,5 @@ public partial class Water : Area2D {
     }
     
     // Todo: 开关砖第二功能（岩浆/水 切换、流体消失ポ）
+    // Todo: CP 记录水位
 }

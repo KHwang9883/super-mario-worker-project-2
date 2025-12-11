@@ -34,15 +34,14 @@ public partial class MessageBlock : BlockHit {
         _frame = _ani.Frame;
     }
 
-    protected override bool IsBumpable(Node2D collider) {
+    protected override void OnBlockBump() {
+        base.OnBlockBump();
         _ani?.Play("hit");
         if (_messageDisplay == null) {
             GD.PushError($"{this}: _messageDisplay is null!");
-            return false;
+            return;
         }
         _messageDisplay.SetMessage(_message, _isShown, this);
-        Bumpable = false;
-        return true;
     }
     protected override void OnBumped() {
         base.OnBumped();
@@ -50,7 +49,6 @@ public partial class MessageBlock : BlockHit {
         _ani.Play("default");
         _ani.Frame = _frame;
         _ani.FrameProgress = _frameProgress;
-        Bumpable = true;
     }
 
     public void SetShown() {

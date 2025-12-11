@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=94 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/facility/solid/solid.tscn" id="2_676rr"]
@@ -84,6 +84,7 @@
 [ext_resource type="PackedScene" uid="uid://ix3t4xs7phce" path="res://content/level/block/ice_block/ice_block.tscn" id="78_o10yq"]
 [ext_resource type="PackedScene" uid="uid://1yjr75w8clry" path="res://content/level/block/message_block/message_block.tscn" id="79_ww5fi"]
 [ext_resource type="PackedScene" uid="uid://l6agvoyyts2r" path="res://content/level/facility/fluid_area/fluid_area.tscn" id="84_atsv8"]
+[ext_resource type="PackedScene" uid="uid://ck3jt1w1cix41" path="res://content/level/block/fluid_block/fluid_block.tscn" id="85_bmkva"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kynl2"]
 blend_mode = 2
@@ -141,7 +142,6 @@ RoomWidth = 10016.0
 RoomHeight = 6400.0
 WaterHeight = 444.0
 BgpId = 30
-AutoFluid = true
 FluidT1 = 448.0
 FluidT2 = 500.0
 FluidSpeed = 3.0
@@ -919,7 +919,10 @@ Speed = 4.0
 position = Vector2(2416, 16)
 
 [node name="MessageBlock2" parent="TestLevelNode2D" instance=ExtResource("79_ww5fi")]
-position = Vector2(2448, 16)
+position = Vector2(2448, 80)
+
+[node name="FluidBlock" parent="TestLevelNode2D" instance=ExtResource("85_bmkva")]
+position = Vector2(2672, 96)
 
 [connection signal="ModuleResourceConvert" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="play"]
