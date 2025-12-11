@@ -190,11 +190,12 @@ _playerMediator = NodePath("..")
 _starmanCombo = NodePath("../../ComboComponent")
 Suit = 2
 
-[node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_starmanCombo")]
+[node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_starmanCombo", "_addScoreComponent")]
 script = ExtResource("12_tpspr")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
 _starmanCombo = NodePath("../../ComboComponent")
+_addScoreComponent = NodePath("../../AddScoreComponent")
 
 [node name="PlayerShoot" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator")]
 script = ExtResource("13_v250f")

@@ -4,8 +4,14 @@ using SMWP.Level;
 using SMWP.Level.Tool;
 
 public partial class Water : Area2D {
+    [Signal]
+    public delegate void PlaySoundWaterLevelEventHandler();
+    [Signal]
+    public delegate void PlaySoundLavaLevelEventHandler();
+    
     [Export] private AnimatedSprite2D _waterSurfaceSprite = null!;
     [Export] private ColorRect _waterRect = null!;
+    
     private Fluid? _fluid;
     private LevelConfig? _levelConfig;
     private bool _autoFluid;
@@ -16,6 +22,10 @@ public partial class Water : Area2D {
     private int _delayTimer;
     private float _target;
     private bool _t1OrT2;
+
+    private bool _fluidControlSet;
+    private float _fluidControlTargetHeight;
+    private float _fluidControlSpeed;
 
     public override void _Ready() {
         _fluid ??= GetParent<Fluid>();
@@ -31,7 +41,18 @@ public partial class Water : Area2D {
         _target = _t1;
     }
     public override void _PhysicsProcess(double delta) {
-        // 流体运动
+        // 流体控件设置目标高度
+        if (_fluidControlSet) {
+            Position = Position with {
+                Y = Mathf.MoveToward(Position.Y, _fluidControlTargetHeight, _fluidControlSpeed),
+            };
+            if (Math.Abs(Position.Y - _fluidControlTargetHeight) < _fluidControlSpeed) {
+                Position = Position with { Y = _fluidControlTargetHeight };
+                _fluidControlSet = false;
+            }
+        }
+        
+        // 自动流体运动
         if (_autoFluid) {
             if (_delayTimer < _delay * 16) {
                 _delayTimer++;
@@ -75,8 +96,31 @@ public partial class Water : Area2D {
                 break;
         }
     }
+    
+    // 场景控制元件直接设置水位
     public void SetWaterHeight(float height) {
         Position = Position with { Y = height };
         _autoFluid = false;
     }
+    
+    // 流体控制元件设置水位
+    public void FluidControlSet(float targetHeight, float speed) {
+        _autoFluid = false;
+        
+        _fluidControlSet = true;
+        _fluidControlTargetHeight = targetHeight;
+        _fluidControlSpeed = speed;
+        
+        if (_levelConfig == null) return;
+        switch (_levelConfig.FluidType) {
+            case Fluid.FluidTypeEnum.Water:
+                EmitSignal(SignalName.PlaySoundWaterLevel);
+                break;
+            case Fluid.FluidTypeEnum.Lava:
+                EmitSignal(SignalName.PlaySoundLavaLevel);
+                break;
+        }
+    }
+    
+    // Todo: 开关砖第二功能（岩浆/水 切换、流体消失ポ）
 }

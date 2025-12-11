@@ -52,6 +52,7 @@ animations = [{
 }]
 
 [node name="QuestionBlockMushroomLife" type="StaticBody2D"]
+z_index = 18
 collision_layer = 3
 collision_mask = 0
 

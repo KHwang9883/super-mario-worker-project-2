@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://l6agvoyyts2r"]
+
+[ext_resource type="Script" uid="uid://ca3jkdpkuncfr" path="res://script/level/facility/fluid_area/FluidArea.cs" id="1_ulew7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0pw8"]
+size = Vector2(32, 32)
+
+[node name="FluidArea" type="Area2D" node_paths=PackedStringArray("CollisionShape")]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_ulew7")
+CollisionShape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_f0pw8")
+debug_color = Color(0.30441314, 0.49509656, 1, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

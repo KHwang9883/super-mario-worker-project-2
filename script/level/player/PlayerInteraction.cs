@@ -6,6 +6,7 @@ using SMWP.Level.Player;
 using SMWP.Level.Block.Brick;
 using SMWP.Level.Bonus;
 using SMWP.Level.Interface;
+using SMWP.Level.Score;
 
 namespace SMWP.Level.Player;
 
@@ -25,6 +26,7 @@ public partial class PlayerInteraction : Node {
     [Export] private CharacterBody2D? _player;
 
     [Export] private ComboComponent? _starmanCombo;
+    [Export] private AddScoreComponent _addScoreComponent = null!;
 
     //private bool _isPlayerStomped;
     private bool _hurtFrame;
@@ -177,6 +179,8 @@ public partial class PlayerInteraction : Node {
                     EmitSignal(SignalName.PlayerPowerup);
                 } else if (_playerMediator.playerSuit.Powerup == originalPowerup
                            && _playerMediator.playerSuit.Suit == originalSuit) {
+                    // 同类型道具加 1000 分
+                    _addScoreComponent.AddScore(1000);
                     EmitSignal(SignalName.PlayerPowerPlain);
                 }
             }
