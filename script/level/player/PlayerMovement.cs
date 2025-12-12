@@ -505,7 +505,6 @@ public partial class PlayerMovement : Node {
     }
 
     public void InWaterDetect() {
-        GD.Print(IsInWater);
         IsInWater = false;
         if (_results == null) return;
         foreach (var result in _results) {
@@ -513,6 +512,7 @@ public partial class PlayerMovement : Node {
             IsInWater = true;
             break;
         }
+        //GD.Print(IsInWater);
     }
     
     // 重叠检测

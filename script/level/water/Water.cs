@@ -122,6 +122,12 @@ public partial class Water : Area2D {
         }
     }
     
-    // Todo: 开关砖第二功能（岩浆/水 切换、流体消失ポ）
-    // Todo: CP 记录水位
+    // 红色开关砖第二功能见 LevelConfig
+    
+    // Todo: 蓝色开关砖第二功能
+    public void OnSwitchToggled(LevelConfig.SwitchTypeEnum switchType) {
+        // 流体消失或再现
+        if (switchType != LevelConfig.SwitchTypeEnum.Blue) return;
+        
+    }
 }

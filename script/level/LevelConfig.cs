@@ -118,6 +118,9 @@ public partial class LevelConfig : Node {
         foreach (SwitchTypeEnum type in Enum.GetValues(typeof(SwitchTypeEnum))) {
             Switches.Add(type, false); 
         }
+        
+        // 红色开关砖第二功能
+        SwitchSwitched += OnRedSwitchSwitched;
     }
 
     public void SetBgm(int bgmId) {
@@ -153,5 +156,18 @@ public partial class LevelConfig : Node {
         if (!AdvancedSwitch) return;
         //GD.Print($"{this}: Advanced Switch Switched!");
         EmitSignal(SignalName.SwitchSwitched, Variant.From(type));
+    }
+
+    // 红色开关砖第二功能
+    public void OnRedSwitchSwitched(SwitchTypeEnum type) {
+        if (type != SwitchTypeEnum.Red) return;
+        switch (FluidType) {
+            case Fluid.FluidTypeEnum.Water:
+                FluidType = Fluid.FluidTypeEnum.Lava;
+                break;
+            case Fluid.FluidTypeEnum.Lava:
+                FluidType = Fluid.FluidTypeEnum.Water;
+                break;
+        }
     }
 }
