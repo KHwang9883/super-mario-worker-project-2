@@ -27,9 +27,15 @@ public partial class Water : Area2D {
     private float _fluidControlTargetHeight;
     private float _fluidControlSpeed;
 
+    private bool _disappear;
+    private uint _originCollisionLayer;
+
     public override void _Ready() {
         _fluid ??= GetParent<Fluid>();
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
+
+        _levelConfig.SwitchSwitched += OnSwitchToggled;
+        _originCollisionLayer = CollisionLayer;
         
         // Position 初始化见 LevelConfig
         _autoFluid = _levelConfig.AutoFluid;
@@ -87,6 +93,7 @@ public partial class Water : Area2D {
         
         // 流体情况
         if (_fluid == null) return;
+        if (_disappear) return;
         switch (_fluid.FluidType) {
             case Fluid.FluidTypeEnum.Water:
                 Visible = true;
@@ -124,10 +131,20 @@ public partial class Water : Area2D {
     
     // 红色开关砖第二功能见 LevelConfig
     
-    // Todo: 蓝色开关砖第二功能
+    // 蓝色开关砖第二功能
     public void OnSwitchToggled(LevelConfig.SwitchTypeEnum switchType) {
         // 流体消失或再现
         if (switchType != LevelConfig.SwitchTypeEnum.Blue) return;
-        
+        _disappear = !_disappear;
+        if (_disappear) {
+            Visible = false;
+            CollisionLayer = 0;
+            
+            GD.Print(CollisionLayer);
+            GD.Print(Visible);
+        } else {
+            Visible = true;
+            CollisionLayer = _originCollisionLayer;
+        }
     }
 }

@@ -10,10 +10,16 @@ public partial class Lava : Area2D {
     
     private Fluid? _fluid;
     private LevelConfig? _levelConfig;
+    
+    private bool _disappear;
+    private uint _originCollisionLayer;
 
     public override void _Ready() {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         _fluid ??= GetParent<Fluid>();
+        
+        _levelConfig.SwitchSwitched += OnSwitchToggled;
+        _originCollisionLayer = CollisionLayer;
         
         // 防止起始点在水中导致开场死亡
         if (_water == null) {
@@ -51,6 +57,7 @@ public partial class Lava : Area2D {
         if (_water == null) {
             GD.PushError($"{this}: Water is not found.");
         } else if (_levelConfig != null && _fluid != null) {
+            if (_disappear) return;
             switch (_fluid.FluidType) {
                 case Fluid.FluidTypeEnum.Lava:
                     Position = Position with { Y = _water.Position.Y };
@@ -61,6 +68,20 @@ public partial class Lava : Area2D {
                     ResetPhysicsInterpolation();
                     break;
             }
+        }
+    }
+    
+    // 蓝色开关砖第二功能
+    public void OnSwitchToggled(LevelConfig.SwitchTypeEnum switchType) {
+        // 流体消失或再现
+        if (switchType != LevelConfig.SwitchTypeEnum.Blue) return;
+        _disappear = !_disappear;
+        if (_disappear) {
+            Visible = false;
+            CollisionLayer = 0;
+        } else {
+            Visible = true;
+            CollisionLayer = _originCollisionLayer;
         }
     }
 }
