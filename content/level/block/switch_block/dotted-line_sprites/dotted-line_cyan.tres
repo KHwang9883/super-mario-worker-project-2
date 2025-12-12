@@ -17,7 +17,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_uhtpo")
 }],
 "loop": false,
-"name": &"colorvision",
+"name": &"color-vision",
 "speed": 5.0
 }, {
 "frames": [{

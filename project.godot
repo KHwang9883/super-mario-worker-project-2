@@ -151,6 +151,7 @@ cancel={
 2d_physics/layer_8="PlatformTurn"
 2d_physics/layer_9="Passage"
 2d_physics/layer_10="Hidden Block"
+2d_physics/layer_11="Switch"
 
 [physics]
 

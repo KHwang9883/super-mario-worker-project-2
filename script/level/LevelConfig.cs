@@ -1,9 +1,8 @@
 using Godot;
 using System;
-using System.IO;
+using System.Linq;
 using Godot.Collections;
 using SMWP.Level.Background;
-using SMWP.Level.Score;
 using FileAccess = Godot.FileAccess;
 
 namespace SMWP.Level;
@@ -69,6 +68,20 @@ public partial class LevelConfig : Node {
     private PackedScene? _backgroundScene;
     private BackgroundSet? _backgroundSet;
     
+    // 开关砖
+    public enum SwitchTypeEnum {
+        Red,
+        Yellow,
+        Green,
+        Cyan,
+        Blue,
+        Magenta,
+        Kohl,
+        White,
+    }
+
+    public Godot.Collections.Dictionary<SwitchTypeEnum, bool> Switches { get; private set; } = null!;
+
     // 关卡初始化
     public override void _Ready() {
         // Room Size 初始化见 LevelCamera
@@ -96,6 +109,13 @@ public partial class LevelConfig : Node {
         
         // Faster Level Pass Set
         LevelManager.IsFasterLevelPass = FasterLevelPass;
+        
+        // 初始化开关砖
+        Switches = new Godot.Collections.Dictionary<SwitchTypeEnum, bool>();
+        
+        foreach (SwitchTypeEnum type in Enum.GetValues(typeof(SwitchTypeEnum))) {
+            Switches.Add(type, false); 
+        }
     }
 
     public void SetBgm(int bgmId) {
@@ -121,5 +141,12 @@ public partial class LevelConfig : Node {
     public void SetWaterHeight(float waterHeight) {
         var globalWater = (Water)GetTree().GetFirstNodeInGroup("water_global");
         globalWater.SetWaterHeight(waterHeight);
+    }
+    
+    // 切换开关砖
+    public void ToggleSwitch(SwitchTypeEnum type, bool isOn) {
+        if (Switches.ContainsKey(type)) {
+            Switches[type] = isOn;
+        }
     }
 }

@@ -93,6 +93,7 @@ public partial class PlayerMovement : Node {
     public bool Crouched;
     private bool _wasCrouched;
     public bool Stuck;
+    public bool StuckSwitch;
     private bool _wasStuck;
     private int _jumpBoostTimer;
 
@@ -200,121 +201,132 @@ public partial class PlayerMovement : Node {
         _player.SetCollisionLayer(_originPlayerLayer);
         _player.SetCollisionMask(_originPlayerMask);
 
-        // x 速度
-        var runningAcceleration = !IsOnIce ? _runningAcceleration : (_runningAcceleration - 0.2f);
-        var walkingAcceleration = !IsOnIce ? _walkingAcceleration : (_walkingAcceleration - 0.05f);
-        var waterHorizontalAcceleration = !IsOnIce ? _waterHorizontalAcceleration : 0f;
-        
-        var acceleration = IsInWater
-            ? waterHorizontalAcceleration
-            : (Fire ? runningAcceleration : walkingAcceleration);
+        if (!StuckSwitch) {
+            // x 速度
+            var runningAcceleration = !IsOnIce ? _runningAcceleration : (_runningAcceleration - 0.2f);
+            var walkingAcceleration = !IsOnIce ? _walkingAcceleration : (_walkingAcceleration - 0.05f);
+            var waterHorizontalAcceleration = !IsOnIce ? _waterHorizontalAcceleration : 0f;
 
-        float maxSpeed;
+            var acceleration = IsInWater
+                ? waterHorizontalAcceleration
+                : (Fire ? runningAcceleration : walkingAcceleration);
 
-        if (IsInWater) {
-            if (Fire) {
-                maxSpeed = _waterMaxRunningSpeed;
+            float maxSpeed;
+
+            if (IsInWater) {
+                if (Fire) {
+                    maxSpeed = _waterMaxRunningSpeed;
+                } else {
+                    maxSpeed = Mathf.Abs(SpeedX) > _waterMaxWalkingSpeed
+                        ? _waterMaxRunningSpeed
+                        : _waterMaxWalkingSpeed;
+                }
             } else {
-                maxSpeed = Mathf.Abs(SpeedX) > _waterMaxWalkingSpeed
-                    ? _waterMaxRunningSpeed
-                    : _waterMaxWalkingSpeed;
+                if (Fire) {
+                    maxSpeed = _maxRunningSpeed;
+                } else {
+                    maxSpeed = Mathf.Abs(SpeedX) > _maxWalkingSpeed
+                        ? _maxRunningSpeed
+                        : _maxWalkingSpeed;
+                }
             }
-        } else {
-            if (Fire) {
-                maxSpeed = _maxRunningSpeed;
-            } else {
-                maxSpeed = Mathf.Abs(SpeedX) > _maxWalkingSpeed
-                    ? _maxRunningSpeed
-                    : _maxWalkingSpeed;
+
+            if (!Crouched && !Stuck) {
+                if (_left) {
+                    SpeedX = Mathf.Clamp(SpeedX - acceleration, -maxSpeed, maxSpeed);
+                }
+                if (_right) {
+                    SpeedX = Mathf.Clamp(SpeedX + acceleration, -maxSpeed, maxSpeed);
+                }
             }
-        }
-
-        if (!Crouched && !Stuck) {
-            if (_left) {
-                SpeedX = Mathf.Clamp(SpeedX - acceleration, -maxSpeed, maxSpeed);
+            if (!_left && !_right || Crouched) {
+                SpeedX /= IsInWater ? 1.03f : 1.05f;
             }
-            if (_right) {
-                SpeedX = Mathf.Clamp(SpeedX + acceleration, -maxSpeed, maxSpeed);
+            if (SpeedX is > -0.04f and < 0.04f
+                || (IsInWater && IsOnIce)) {
+                SpeedX = 0f;
             }
-        }
-        if (!_left && !_right || Crouched) {
-            SpeedX /= IsInWater ? 1.03f : 1.05f;
-        }
-        if (SpeedX is > -0.04f and < 0.04f
-            || (IsInWater && IsOnIce)) {
-            SpeedX = 0f;
-        }
 
-        // 方向记录
-        Direction = SpeedX switch {
-            < 0f => -1,
-            > 0f => 1,
-            _ => Direction,
-        };
+            // 方向记录
+            Direction = SpeedX switch {
+                < 0f => -1,
+                > 0f => 1,
+                _ => Direction,
+            };
 
-        // y 速度
-        _lastSpeedY = SpeedY;
+            // y 速度
+            _lastSpeedY = SpeedY;
 
-        // 落地或顶头
-        if ((_player.IsOnFloor() || (_player.IsOnCeiling() && SpeedY < 0f))) {
-            SpeedY = 0f;
-        }
-
-        // 大个子下蹲与起身
-        if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small) {
-            if (_player.IsOnFloor() && _down && !Stuck) {
-                Crouched = true;
+            // 落地或顶头
+            if ((_player.IsOnFloor() || (_player.IsOnCeiling() && SpeedY < 0f))) {
+                SpeedY = 0f;
             }
-        }
-        if (!_down) {
-            Crouched = false;
-        }
 
-        // 起跳
-        if (!_jump) {
-            Jumped = false;
-        }
-
-        if (_jump && !Crouched && !Stuck && !_wasCrouched && !_wasInPipe) {
-            if (!IsInWater && _player.IsOnFloor()) {
-                Jump();
-            } else if (IsInWater && !Jumped) {
-                Swim();
+            // 大个子下蹲与起身
+            if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small) {
+                if (_player.IsOnFloor() && _down && !Stuck) {
+                    Crouched = true;
+                }
             }
-        }
-
-        _wasInPipe = IsInPipeTransport;
-
-        _wasCrouched = Crouched;
-
-        // 空中跳跃按跳跃键有速度加成
-        _jumpBoostTimer = Math.Clamp(_jumpBoostTimer + 1, 0, 2);
-
-        if (_jump && SpeedY < 0f && !IsInWater) {
-            if (_jumpBoostTimer > 1) {
-                SpeedY -= 1.5f;
-                _jumpBoostTimer = 0;
+            if (!_down) {
+                Crouched = false;
             }
-        }
 
-        // 最大下落速度
-        if (!_player.IsOnFloor()) {
-            float maxFallSpeed = IsInWater ? _waterMaxFallingSpeed : _maxFallingSpeed;
-
-            if (SpeedY > maxFallSpeed) {
-                SpeedY = maxFallSpeed;
+            // 起跳
+            if (!_jump) {
+                Jumped = false;
             }
-        }
 
-        // 根据GM8版执行顺序在这里进行速度计算并 MoveAndSlide()
-        _player.Velocity = new Vector2(SpeedX * FramerateOrigin, (SpeedY + _gravity) * FramerateOrigin);
+            if (_jump && !Crouched && !Stuck && !_wasCrouched && !_wasInPipe) {
+                if (!IsInWater && _player.IsOnFloor()) {
+                    Jump();
+                } else if (IsInWater && !Jumped) {
+                    Swim();
+                }
+            }
+
+            _wasInPipe = IsInPipeTransport;
+
+            _wasCrouched = Crouched;
+
+            // 空中跳跃按跳跃键有速度加成
+            _jumpBoostTimer = Math.Clamp(_jumpBoostTimer + 1, 0, 2);
+
+            if (_jump && SpeedY < 0f && !IsInWater) {
+                if (_jumpBoostTimer > 1) {
+                    SpeedY -= 1.5f;
+                    _jumpBoostTimer = 0;
+                }
+            }
+
+            // 最大下落速度
+            if (!_player.IsOnFloor()) {
+                float maxFallSpeed = IsInWater ? _waterMaxFallingSpeed : _maxFallingSpeed;
+
+                if (SpeedY > maxFallSpeed) {
+                    SpeedY = maxFallSpeed;
+                }
+            }
+            
+            // 根据GM8版执行顺序在这里进行速度计算并 MoveAndSlide()
+            _player.Velocity = new Vector2(SpeedX * FramerateOrigin, (SpeedY + _gravity) * FramerateOrigin);
+        }
 
         // 在 MoveAndSlide() 之前执行下蹲起立卡墙的挤出方法
         var collision = _player.MoveAndCollide(Vector2.Zero, true);
         if (collision != null) {
             Stuck = true;
+            
+            // 开关砖卡墙
+            foreach (var node in GetShapeQueryResults()) {
+                if (node is not DottedLineBlock dottedLineBlock) continue;
+                if (!dottedLineBlock.JustSolid) continue;
+                StuckSwitch = true;
+                break;
+            }
         } else {
             Stuck = false;
+            StuckSwitch = false;
         }
 
         // 空中卡天花板挤出
@@ -337,35 +349,37 @@ public partial class PlayerMovement : Node {
 
         _wasStuck = Stuck;
 
-        if (Stuck) {
-            // 蹲滑起立卡墙挤出
-            SpeedX = 0f;
-            SpeedY = 0f;
-            _player.Position = new Vector2(_player.Position.X - 1f * Direction, _player.Position.Y);
-        } else {
-            // 正常运动
-            _player.MoveAndSlide();
+        if (!StuckSwitch) {
+            if (Stuck) {
+                // 蹲滑起立卡墙挤出
+                SpeedX = 0f;
+                SpeedY = 0f;
+                _player.Position = new Vector2(_player.Position.X - 1f * Direction, _player.Position.Y);
+            } else {
+                // 正常运动
+                _player.MoveAndSlide();
 
-            // 掉落平台检测
-            OnVerticalPlatform = false;
-            if (_player.IsOnFloor()) {
-                var onPlatformTest = _player.MoveAndCollide(Vector2.Zero, true);
-                var kinematicCollision2D = _player.MoveAndCollide(Vector2.Down, true);
-                if (onPlatformTest == null && kinematicCollision2D != null) {
-                    var collider = kinematicCollision2D.GetCollider();
-                    if (IsInstanceValid(collider)) {
-                        if (collider is ISteppable steppable) {
-                            // 额外检测 y 速度的特性
-                            if (_lastSpeedY > 0f /*_gravity*/) {
-                                steppable.OnStepped();
-                                OnVerticalPlatform = true;
+                // 掉落平台检测
+                OnVerticalPlatform = false;
+                if (_player.IsOnFloor()) {
+                    var onPlatformTest = _player.MoveAndCollide(Vector2.Zero, true);
+                    var kinematicCollision2D = _player.MoveAndCollide(Vector2.Down, true);
+                    if (onPlatformTest == null && kinematicCollision2D != null) {
+                        var collider = kinematicCollision2D.GetCollider();
+                        if (IsInstanceValid(collider)) {
+                            if (collider is ISteppable steppable) {
+                                // 额外检测 y 速度的特性
+                                if (_lastSpeedY > 0f /*_gravity*/) {
+                                    steppable.OnStepped();
+                                    OnVerticalPlatform = true;
+                                }
                             }
                         }
                     }
                 }
             }
         }
-
+        
         // 镜头越界处理（放在运动结束之后）
         var screen = ScreenUtils.GetScreenRect(this);
         if (_player.Position.X < screen.Position.X + 14f)

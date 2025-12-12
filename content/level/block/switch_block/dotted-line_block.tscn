@@ -1,21 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgmv1pxkk72ai"]
+[gd_scene load_steps=11 format=3 uid="uid://cgmv1pxkk72ai"]
 
 [ext_resource type="Script" uid="uid://bdoqes1jm1g3t" path="res://script/level/block/switch_block/DottedLineBlock.cs" id="1_do0cy"]
 [ext_resource type="SpriteFrames" uid="uid://kv2hcl11y8mg" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_red.tres" id="1_xflsm"]
+[ext_resource type="SpriteFrames" uid="uid://4fu57yp3b855" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_yellow.tres" id="3_riosh"]
+[ext_resource type="SpriteFrames" uid="uid://dx3p1hemgbqm" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_green.tres" id="4_oufb1"]
+[ext_resource type="SpriteFrames" uid="uid://b2nc8dcxjt3n8" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_cyan.tres" id="5_nf7kx"]
+[ext_resource type="SpriteFrames" uid="uid://ioswpbqnebjb" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_blue.tres" id="6_qsy54"]
+[ext_resource type="SpriteFrames" uid="uid://c1oqfcvpm64ki" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_magenta.tres" id="7_a2i2o"]
+[ext_resource type="SpriteFrames" uid="uid://bds0owfeudtgc" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_kohl.tres" id="8_gjkva"]
+[ext_resource type="SpriteFrames" uid="uid://cefm1s3buvaoo" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_white.tres" id="9_hochq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_do0cy"]
 size = Vector2(32, 32)
 
-[node name="DottedLineBlock" type="StaticBody2D" node_paths=PackedStringArray("_ani")]
+[node name="DottedLineBlock" type="StaticBody2D" node_paths=PackedStringArray("_ani", "_celesteDetect")]
 z_index = 18
+collision_layer = 1025
 collision_mask = 0
 script = ExtResource("1_do0cy")
 _ani = NodePath("AnimatedSprite2D")
+_celesteDetect = NodePath("CelesteDetect")
+Sprites = Dictionary[int, SpriteFrames]({
+0: ExtResource("1_xflsm"),
+1: ExtResource("3_riosh"),
+2: ExtResource("4_oufb1"),
+3: ExtResource("5_nf7kx"),
+4: ExtResource("6_qsy54"),
+5: ExtResource("7_a2i2o"),
+6: ExtResource("8_gjkva"),
+7: ExtResource("9_hochq")
+})
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_xflsm")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_do0cy")
+debug_color = Color(0.7, 0.7, 0.7, 0.28235295)
+
+[node name="CelesteDetect" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CelesteDetect"]
 shape = SubResource("RectangleShape2D_do0cy")
 debug_color = Color(0.7, 0.7, 0.7, 0.28235295)

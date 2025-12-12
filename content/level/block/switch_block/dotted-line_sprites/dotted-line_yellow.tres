@@ -17,7 +17,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_giky4")
 }],
 "loop": false,
-"name": &"colorvision",
+"name": &"color-vision",
 "speed": 5.0
 }, {
 "frames": [{

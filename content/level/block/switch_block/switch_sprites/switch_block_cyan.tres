@@ -28,7 +28,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_cg180")
 }],
 "loop": true,
-"name": &"colorvision",
+"name": &"color-vision",
 "speed": 5.0
 }, {
 "frames": [{
