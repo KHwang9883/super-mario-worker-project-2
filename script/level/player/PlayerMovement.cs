@@ -11,19 +11,14 @@ namespace SMWP.Level.Player;
 public partial class PlayerMovement : Node {
     [Signal]
     public delegate void JumpStartedEventHandler();
-
     [Signal]
     public delegate void SwimStartedEventHandler();
-
     [Signal]
     public delegate void PipeInEventHandler();
-
     [Signal]
     public delegate void SetPipeOutInvincibleEventHandler();
-    
     [Signal]
     public delegate void ForceScrollDeathEventHandler();
-
     [Signal]
     public delegate void PlaySoundPowerDownEventHandler();
 
@@ -31,9 +26,10 @@ public partial class PlayerMovement : Node {
     [Export] private CharacterBody2D _player = null!;
     [Export] private Area2D _onIceArea2D = null!;
     [Export] private Area2D _aroundWaterArea2D = null!;
-
-    // 水管传送状态
+    
     private LevelConfig? _levelConfig;
+    
+    // 水管传送状态
     public bool IsInPipeTransport;
     private bool _wasInPipe;
     private bool _wasPipeOut;
@@ -44,7 +40,6 @@ public partial class PlayerMovement : Node {
         In,
         Out,
     }
-
     public PipeTransportStatusEnum PipeTransportStatus;
 
     public enum PipeTransportDirection {
@@ -53,7 +48,6 @@ public partial class PlayerMovement : Node {
         Left,
         Right,
     }
-
     public PipeTransportDirection PipeTransportDir;
 
     // 关卡引力
@@ -413,25 +407,12 @@ public partial class PlayerMovement : Node {
         LastPositionX = _player.Position.X;
 
         // 重叠物件检测
-        try {
-            _results = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>(_areaBodyCollision));
-            _resultsOutWater =
-                ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>(_outWaterDetect));
-        } catch {
-            GD.PrintErr("重叠物件检测失败");
-            GD.Print("启用临时重力修正");
-            SpeedY += (IsInWater ? 0.2f : 1.0f);
-        }
+        OverlapDetect();
 
         // 水中状态检测
-        IsInWater = false;
-        if (_results != null) {
-            foreach (var result in _results) {
-                if (result.IsInGroup("water")) {
-                    IsInWater = true;
-                }
-            }
-        }
+        InWaterDetect();
+        
+        // 入水瞬间限制 y 速度
         if (_wasInWater != IsInWater) {
             SpeedY = Mathf.Min(0f, SpeedY);
         }
@@ -461,31 +442,7 @@ public partial class PlayerMovement : Node {
         IsAroundWater = _aroundWaterArea2D.GetOverlappingAreas().Count > 0;
 
         // 不同状态的碰撞箱切换
-        Callable.From(() => {
-            if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Small || Crouched) {
-                _areaBodyCollision = "AreaBodyCollisionSmall";
-                _outWaterDetect = "OutWaterDetectSmall";
-                _blocksPhysicsCollisionSmall.Disabled = false;
-                _areaBodyCollisionSmall.Enabled = true;
-                _outWaterDetectSmall.Enabled = true;
-                _blocksPhysicsCollisionSuper.Disabled = true;
-                _areaBodyCollisionSuper.Enabled = false;
-                _outWaterDetectSuper.Enabled = false;
-            } else {
-                _areaBodyCollision = "AreaBodyCollisionSuper";
-                _outWaterDetect = "OutWaterDetectSuper";
-                _blocksPhysicsCollisionSmall.Disabled = true;
-                _areaBodyCollisionSmall.Enabled = false;
-                _outWaterDetectSmall.Enabled = false;
-                _blocksPhysicsCollisionSuper.Disabled = false;
-                _areaBodyCollisionSuper.Enabled = true;
-                _outWaterDetectSuper.Enabled = true;
-            }
-        }).CallDeferred();
-
-        // For debug use
-        _areaBodyCollisionSmall.Visible = _areaBodyCollisionSmall.Enabled;
-        _areaBodyCollisionSuper.Visible = _areaBodyCollisionSuper.Enabled;
+        UpdateHitBox();
     }
 
     // 获取重叠物件检测结果，供其他组件使用
@@ -514,11 +471,63 @@ public partial class PlayerMovement : Node {
         EmitSignal(SignalName.SwimStarted);
     }
 
+    public void UpdateHitBox() {
+        Callable.From(() => {
+            if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Small || Crouched) {
+                _areaBodyCollision = "AreaBodyCollisionSmall";
+                _outWaterDetect = "OutWaterDetectSmall";
+                _blocksPhysicsCollisionSmall.Disabled = false;
+                _areaBodyCollisionSmall.Enabled = true;
+                _outWaterDetectSmall.Enabled = true;
+                _blocksPhysicsCollisionSuper.Disabled = true;
+                _areaBodyCollisionSuper.Enabled = false;
+                _outWaterDetectSuper.Enabled = false;
+            } else {
+                _areaBodyCollision = "AreaBodyCollisionSuper";
+                _outWaterDetect = "OutWaterDetectSuper";
+                _blocksPhysicsCollisionSmall.Disabled = true;
+                _areaBodyCollisionSmall.Enabled = false;
+                _outWaterDetectSmall.Enabled = false;
+                _blocksPhysicsCollisionSuper.Disabled = false;
+                _areaBodyCollisionSuper.Enabled = true;
+                _outWaterDetectSuper.Enabled = true;
+            }
+        }).CallDeferred();
+
+        // For debug use
+        _areaBodyCollisionSmall.Visible = _areaBodyCollisionSmall.Enabled;
+        _areaBodyCollisionSuper.Visible = _areaBodyCollisionSuper.Enabled;
+    }
+    
     // 玩家踩踏处理
     public void OnPlayerStomp(float stompSpeedY = 8f) {
         SpeedY = stompSpeedY;
     }
 
+    public void InWaterDetect() {
+        GD.Print(IsInWater);
+        IsInWater = false;
+        if (_results == null) return;
+        foreach (var result in _results) {
+            if (!result.IsInGroup("water")) continue;
+            IsInWater = true;
+            break;
+        }
+    }
+    
+    // 重叠检测
+    public void OverlapDetect() {
+        try {
+            _results = ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>(_areaBodyCollision));
+            _resultsOutWater =
+                ShapeQueryResult.ShapeQuery(_player, _player.GetNode<ShapeCast2D>(_outWaterDetect));
+        } catch {
+            GD.PrintErr("重叠物件检测失败");
+            GD.Print("启用临时重力修正");
+            SpeedY += (IsInWater ? 0.2f : 1.0f);
+        }
+    }
+    
     // 水管传送处理
     public void PipeEntryDetect() {
         if (IsInPipeTransport) return;
@@ -576,7 +585,11 @@ public partial class PlayerMovement : Node {
 
     public void PipeTransport() {
         if (!IsInPipeTransport) return;
-
+        
+        // 进行水中检测
+        OverlapDetect();
+        InWaterDetect();
+        
         // 水管传送状态移动处理
         switch (PipeTransportStatus) {
             // 进入水管

@@ -29,7 +29,7 @@ rotation = -3.1415925
 
 [node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("Sprite", "_collisionShape2D")]
 script = ExtResource("4_522hf")
-SwitchType = 1
+SwitchType = 3
 Sprites = Dictionary[int, SpriteFrames]({
 0: ExtResource("1_l5qlt"),
 1: ExtResource("4_njdno"),

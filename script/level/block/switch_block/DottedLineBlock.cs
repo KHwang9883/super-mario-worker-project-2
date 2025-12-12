@@ -28,14 +28,13 @@ public partial class DottedLineBlock : StaticBody2D {
     private LevelConfig? _levelConfig;
     
     public override void _Ready() {
-        if (!LevelManager.IsColorAccessibilityMode) return;
-        _ani.Play("color-vision");
-        _ani.SetSpriteFrames(Sprites[SwitchType]);
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         _initialCheck = _levelConfig.Switches.GetValueOrDefault(SwitchType, false) ^ Solid;
         _originStatus = Solid;
-
-        if (LevelManager.IsColorAccessibilityMode) _ani.Play("color-vision");
+        _ani.SetSpriteFrames(Sprites[SwitchType]);
+        
+        if (!LevelManager.IsColorAccessibilityMode) return;
+        _ani.Play("color-vision");
     }
     public override void _PhysicsProcess(double delta) {
         if (_levelConfig == null) {

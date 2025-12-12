@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=99 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/facility/solid/solid.tscn" id="2_676rr"]
@@ -88,6 +88,8 @@
 [ext_resource type="PackedScene" uid="uid://b8fi12ftk0dka" path="res://content/level/block/switch_block/switch_block.tscn" id="86_8ggsa"]
 [ext_resource type="PackedScene" uid="uid://cgmv1pxkk72ai" path="res://content/level/block/switch_block/dotted-line_block.tscn" id="87_8hkbm"]
 [ext_resource type="PackedScene" uid="uid://cw8qh44n2xkrx" path="res://content/level/enemy/roto-disc/roto-disc.tscn" id="88_8hkbm"]
+[ext_resource type="PackedScene" uid="uid://d2hm1ej2l7abm" path="res://content/level/facility/platform/plarform_horizontal_marker.tscn" id="89_wy2fk"]
+[ext_resource type="PackedScene" uid="uid://5mfpp4cy76ja" path="res://content/level/facility/platform/platform_horizontal.tscn" id="90_ate2p"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kynl2"]
 blend_mode = 2
@@ -996,6 +998,12 @@ position = Vector2(2800, 208)
 
 [node name="Coin3" parent="." instance=ExtResource("50_sjqdy")]
 position = Vector2(2672, 208)
+
+[node name="PlarformHorizontalMarker" parent="." instance=ExtResource("89_wy2fk")]
+position = Vector2(2548, 192)
+
+[node name="PlatformHorizontal" parent="." instance=ExtResource("90_ate2p")]
+position = Vector2(2476, 216)
 
 [connection signal="ModuleResourceConvert" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="play"]
