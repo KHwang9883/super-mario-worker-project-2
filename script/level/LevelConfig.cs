@@ -149,12 +149,15 @@ public partial class LevelConfig : Node {
     }
     
     // 切换开关砖
-    public void ToggleSwitch(SwitchTypeEnum type, bool isOn) {
+    public void ToggleSwitch(SwitchTypeEnum type, bool isOn, bool whiteAdv = false, bool kohlAdv = false) {
         if (!Switches.ContainsKey(type)) return;
-        Switches[type] = isOn;
+        if (!kohlAdv) {
+            Switches[type] = isOn;
+        }
 
         if (!AdvancedSwitch) return;
         //GD.Print($"{this}: Advanced Switch Switched!");
+        if (whiteAdv) return;
         EmitSignal(SignalName.SwitchSwitched, Variant.From(type));
     }
 

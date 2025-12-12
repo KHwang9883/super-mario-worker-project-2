@@ -139,9 +139,6 @@ public partial class Water : Area2D {
         if (_disappear) {
             Visible = false;
             CollisionLayer = 0;
-            
-            GD.Print(CollisionLayer);
-            GD.Print(Visible);
         } else {
             Visible = true;
             CollisionLayer = _originCollisionLayer;

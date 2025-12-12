@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using SMWP.Level;
 using SMWP.Level.Block;
 
@@ -47,7 +48,50 @@ public partial class SwitchBlock : BlockHit {
             GD.PushError($"{this}: LevelConfig is null");
             return;
         }
-        _levelConfig.ToggleSwitch(SwitchType, !_levelConfig.Switches.GetValueOrDefault(SwitchType, false));
+
+        // 无第二功能
+        if (!_levelConfig.AdvancedSwitch) {
+            _levelConfig.ToggleSwitch(SwitchType, !_levelConfig.Switches.GetValueOrDefault(SwitchType, false));
+        }
+        
+        // 开关砖第二功能
+        else {
+            // 黑色或白色以外的开关砖正常切
+            if (SwitchType != LevelConfig.SwitchTypeEnum.White && SwitchType != LevelConfig.SwitchTypeEnum.Kohl) {
+                _levelConfig.ToggleSwitch(SwitchType, !_levelConfig.Switches.GetValueOrDefault(SwitchType, false));
+                return;
+            }
+            
+            // 白色开关砖第二功能：切换除了黑色的所有颜色
+            if (SwitchType == LevelConfig.SwitchTypeEnum.White) {
+                var nonKohlSwitchTypes = Enum.GetValues<LevelConfig.SwitchTypeEnum>()
+                    .Where(type => type != LevelConfig.SwitchTypeEnum.Kohl)
+                    .ToList();
+            
+                // 遍历并切换每个非黑色开关的状态，并不传递第二功能
+                foreach (var switchType in nonKohlSwitchTypes) {
+                    var currentState = _levelConfig.Switches.GetValueOrDefault(switchType, false);
+                    _levelConfig.ToggleSwitch(switchType, !currentState, true);
+                }
+            }
+            
+            // 黑色开关砖第二功能：切换除了自身和白色的所有颜色的第二功能
+            if (SwitchType == LevelConfig.SwitchTypeEnum.Kohl) {
+                var nonWhiteSwitchTypes = Enum.GetValues<LevelConfig.SwitchTypeEnum>()
+                    .Where(type => type != LevelConfig.SwitchTypeEnum.White
+                                   && type != LevelConfig.SwitchTypeEnum.Kohl)
+                    .ToList();
+            
+                // ↓ 但是黑色的要手动切一下
+                _levelConfig.ToggleSwitch(LevelConfig.SwitchTypeEnum.Kohl, !_levelConfig.Switches.GetValueOrDefault(SwitchType, false));
+                    
+                // 遍历并切换每个非白色非黑色开关的状态，传递第二功能且不切换非黑开关砖状态
+                foreach (var switchType in nonWhiteSwitchTypes) {
+                    var currentState = _levelConfig.Switches.GetValueOrDefault(switchType, false);
+                    _levelConfig.ToggleSwitch(switchType, !currentState, false, true);
+                }
+            }
+        }
     }
     protected override void OnBumped() {
         base.OnBumped();

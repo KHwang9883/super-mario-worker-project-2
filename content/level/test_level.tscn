@@ -966,6 +966,24 @@ Solid = false
 position = Vector2(3024, 268)
 Solid = false
 
+[node name="DottedLineBlock9" parent="TestLevelNode2D" instance=ExtResource("87_8hkbm")]
+position = Vector2(2652, 32)
+SwitchType = 7
+Solid = false
+
+[node name="DottedLineBlock10" parent="TestLevelNode2D" instance=ExtResource("87_8hkbm")]
+position = Vector2(2652, 68)
+SwitchType = 7
+
+[node name="DottedLineBlock11" parent="TestLevelNode2D" instance=ExtResource("87_8hkbm")]
+position = Vector2(2680, 16)
+SwitchType = 6
+Solid = false
+
+[node name="DottedLineBlock12" parent="TestLevelNode2D" instance=ExtResource("87_8hkbm")]
+position = Vector2(2676, 48)
+SwitchType = 6
+
 [node name="SwitchBlock" parent="." instance=ExtResource("86_8ggsa")]
 position = Vector2(3068, 188)
 
