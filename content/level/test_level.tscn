@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=97 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/facility/solid/solid.tscn" id="2_676rr"]
@@ -87,6 +87,7 @@
 [ext_resource type="PackedScene" uid="uid://ck3jt1w1cix41" path="res://content/level/block/fluid_block/fluid_block.tscn" id="85_bmkva"]
 [ext_resource type="PackedScene" uid="uid://b8fi12ftk0dka" path="res://content/level/block/switch_block/switch_block.tscn" id="86_8ggsa"]
 [ext_resource type="PackedScene" uid="uid://cgmv1pxkk72ai" path="res://content/level/block/switch_block/dotted-line_block.tscn" id="87_8hkbm"]
+[ext_resource type="PackedScene" uid="uid://cw8qh44n2xkrx" path="res://content/level/enemy/roto-disc/roto-disc.tscn" id="88_8hkbm"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kynl2"]
 blend_mode = 2
@@ -148,6 +149,7 @@ FluidT1 = 448.0
 FluidT2 = 500.0
 FluidSpeed = 3.0
 FluidDelay = 5
+AdvancedSwitch = true
 FastRetry = true
 MfStylePipeExit = true
 FasterLevelPass = true
@@ -182,7 +184,6 @@ material = SubResource("CanvasItemMaterial_kynl2")
 [node name="ThunderLayer" type="CanvasLayer" parent="TestLevelNode2D/LevelConfig/Weather" groups=["thunder_parallax"]]
 
 [node name="HUD" type="CanvasLayer" parent="TestLevelNode2D"]
-visible = false
 
 [node name="HUD" type="Control" parent="TestLevelNode2D/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite", "_godPosition", "_levelInfo", "_scrollDisabled")]
 process_mode = 3
@@ -423,6 +424,7 @@ script = ExtResource("12_mjbph")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="TestLevelNode2D"]
+visible = false
 
 [node name="DebugLabel" type="Label" parent="TestLevelNode2D/DebugCanvasLayer" node_paths=PackedStringArray("_player")]
 process_mode = 3
@@ -680,7 +682,7 @@ position = Vector2(3092, 428)
 position = Vector2(3220, 172)
 
 [node name="LavaPiece3" parent="TestLevelNode2D/Enemies" instance=ExtResource("29_buyip")]
-position = Vector2(2848, 384)
+position = Vector2(2848, 392)
 
 [node name="LavaPiece4" parent="TestLevelNode2D/Enemies" instance=ExtResource("29_buyip")]
 position = Vector2(2968, 156)
@@ -777,7 +779,7 @@ position = Vector2(2416, 180)
 position = Vector2(2448, 180)
 
 [node name="Brick13" parent="TestLevelNode2D/Facilities" instance=ExtResource("23_dmmuc")]
-position = Vector2(3104, 220)
+position = Vector2(3108, 228)
 
 [node name="Brick14" parent="TestLevelNode2D/Facilities" instance=ExtResource("23_dmmuc")]
 position = Vector2(3260, 16)
@@ -839,13 +841,13 @@ position = Vector2(2584, 44)
 position = Vector2(2616, 44)
 
 [node name="Lui" parent="TestLevelNode2D/Facilities" instance=ExtResource("19_iae4c")]
-position = Vector2(2892, 380)
+position = Vector2(2888, 392)
 
 [node name="FireFlower" parent="TestLevelNode2D/Facilities" instance=ExtResource("17_d2gt5")]
-position = Vector2(2812, 376)
+position = Vector2(2812, 392)
 
 [node name="Mushroom" parent="TestLevelNode2D/Facilities" instance=ExtResource("17_venmc")]
-position = Vector2(2932, 360)
+position = Vector2(2924, 392)
 
 [node name="QuestionBlockFireFlower" parent="TestLevelNode2D/Facilities" instance=ExtResource("71_isr70")]
 position = Vector2(3228, 16)
@@ -976,6 +978,24 @@ Solid = false
 
 [node name="SwitchBlock2" parent="." instance=ExtResource("86_8ggsa")]
 position = Vector2(3276, 176)
+
+[node name="RotoDisc" parent="." instance=ExtResource("88_8hkbm")]
+position = Vector2(2864, 120)
+
+[node name="RotoDisc2" parent="." instance=ExtResource("88_8hkbm")]
+position = Vector2(2888, 76)
+
+[node name="SwitchBlock3" parent="." instance=ExtResource("86_8ggsa")]
+position = Vector2(2716, 52)
+
+[node name="Coin" parent="." instance=ExtResource("50_sjqdy")]
+position = Vector2(2800, 176)
+
+[node name="Coin2" parent="." instance=ExtResource("50_sjqdy")]
+position = Vector2(2800, 208)
+
+[node name="Coin3" parent="." instance=ExtResource("50_sjqdy")]
+position = Vector2(2672, 208)
 
 [connection signal="ModuleResourceConvert" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer" method="play"]

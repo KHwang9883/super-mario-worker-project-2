@@ -9,6 +9,9 @@ namespace SMWP.Level;
 
 [GlobalClass]
 public partial class LevelConfig : Node {
+    [Signal]
+    public delegate void SwitchSwitchedEventHandler(SwitchTypeEnum switchType);
+    
     [ExportGroup("BasicLevelSettings")]
     [Export] public float RoomWidth = 1024f;
     [Export] public float RoomHeight = 640f;
@@ -41,7 +44,6 @@ public partial class LevelConfig : Node {
     [Export] public bool AdvancedSwitch;
     [Export] public bool FastRetry;
     [Export] public bool MfStyleBeet = true;
-    // Todo: 开关砖蔚蓝模式
     [Export] public bool CelesteStyleSwitch;
     [Export] public bool MfStylePipeExit;
     [Export] public bool FasterLevelPass;
@@ -145,8 +147,11 @@ public partial class LevelConfig : Node {
     
     // 切换开关砖
     public void ToggleSwitch(SwitchTypeEnum type, bool isOn) {
-        if (Switches.ContainsKey(type)) {
-            Switches[type] = isOn;
-        }
+        if (!Switches.ContainsKey(type)) return;
+        Switches[type] = isOn;
+
+        if (!AdvancedSwitch) return;
+        //GD.Print($"{this}: Advanced Switch Switched!");
+        EmitSignal(SignalName.SwitchSwitched, Variant.From(type));
     }
 }

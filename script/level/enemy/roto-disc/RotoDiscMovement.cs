@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level;
 
 public partial class RotoDiscMovement : Node {
     [Export] private PackedScene _rotoDiscCenterScene = null!;
@@ -20,6 +21,9 @@ public partial class RotoDiscMovement : Node {
             rotoDiscCenter.Position = _originPosition;
             _parent.AddSibling(rotoDiscCenter);
         }).CallDeferred();
+
+        var levelConfig = LevelConfigAccess.GetLevelConfig(this);
+        levelConfig.SwitchSwitched += OnSwitchToggled;
     }
     public override void _PhysicsProcess(double delta) {
         if (_parent == null) return;
@@ -29,5 +33,11 @@ public partial class RotoDiscMovement : Node {
                 _originPosition.X + Mathf.Sin(Mathf.DegToRad(_angle)) * _radius,
                 _originPosition.Y + Mathf.Cos(Mathf.DegToRad(_angle)) * _radius
                 );
+    }
+
+    public void OnSwitchToggled(LevelConfig.SwitchTypeEnum switchTypeEnum) {
+        if (switchTypeEnum != LevelConfig.SwitchTypeEnum.Magenta) return;
+        //GD.Print($"Advanced {switchTypeEnum} Switch Switched!");
+        _speed = -_speed;
     }
 }
