@@ -47,6 +47,8 @@ public partial class IceBlock : BlockHit {
     }
 
     protected override bool IsBreakable(Node2D collider) {
+        if (collider.IsInGroup("player")) return false;
+        
         OnIceBlockHit();
         if (_iceHp > 0) return false;
         
