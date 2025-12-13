@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://fapw8rhv275x"]
+
+[ext_resource type="Texture2D" uid="uid://bvlk08o72wmxu" path="res://content/level/enemy/koopa/koopa_lives.png" id="1_aq0ck"]
+[ext_resource type="Texture2D" uid="uid://cob0h7kepuoqk" path="res://content/level/enemy/koopa/koopa_life_unit.png" id="2_ncmnn"]
+
+[node name="KoopaHUD" type="CanvasLayer"]
+
+[node name="Head" type="TextureRect" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_top = 64.0
+offset_right = -32.0
+offset_bottom = 106.0
+grow_horizontal = 0
+texture = ExtResource("1_aq0ck")
+stretch_mode = 2
+
+[node name="Life" type="TextureRect" parent="Head"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -74.0
+offset_top = 7.0
+offset_right = -34.0
+offset_bottom = 47.0
+grow_horizontal = 0
+texture = ExtResource("2_ncmnn")
+stretch_mode = 2

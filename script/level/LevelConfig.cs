@@ -40,7 +40,6 @@ public partial class LevelConfig : Node {
     [Export] public float FluidT2 = -64;
     [Export(PropertyHint.Range, "0, 9, 1")] public float FluidSpeed = 1f;
     [Export] public int FluidDelay;
-    // Todo: 开关砖第二功能
     [Export] public bool AdvancedSwitch;
     [Export] public bool FastRetry;
     [Export] public bool MfStyleBeet = true;

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdllu6eprpokv"
-path="res://.godot/imported/icon_pre.png-39c7172fc3120a626fdb604d5ec11180.ctex"
+uid="uid://qpih0kc3uq1x"
+path="res://.godot/imported/flame_koopa.png-7a8b5ff753e1689f3afd9c4461fe9b1b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon_pre.png"
-dest_files=["res://.godot/imported/icon_pre.png-39c7172fc3120a626fdb604d5ec11180.ctex"]
+source_file="res://content/level/enemy/koopa/flame_koopa.png"
+dest_files=["res://.godot/imported/flame_koopa.png-7a8b5ff753e1689f3afd9c4461fe9b1b.ctex"]
 
 [params]
 
