@@ -40,13 +40,16 @@ public partial class FluidBlock : BlockHit {
     }
 
     protected override void OnBlockBump() {
-        base.OnBlockBump();
-        _ani?.Play("hit");
         if (_water == null) {
             GD.PushError($"{this}: _water is null!");
             return;
         }
+        if (Math.Abs(_water.Position.Y - TargetHeight) < 0.08f) return;
+        
+        base.OnBlockBump();
+        
         _water.FluidControlSet(TargetHeight, Speed);
+        _ani?.Play("hit");
     }
     protected override void OnBumped() {
         _ani?.Play("default");

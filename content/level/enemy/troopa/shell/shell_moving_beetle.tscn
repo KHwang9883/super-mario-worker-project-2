@@ -97,6 +97,9 @@ metadata/_custom_type_script = "uid://t3te8lnb0byj"
 
 [node name="EnemyInteraction" type="Node" parent="."]
 script = ExtResource("4_jjsol")
+ImmuneToFireball = true
+ImmuneToBeetroot = true
+HardLevel = 15
 metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
 
 [node name="InteractionWithPlayerDelay" type="Node" parent="." node_paths=PackedStringArray("_enemyInteractionComponent")]
