@@ -115,6 +115,7 @@ public partial class PlayerMovement : Node {
 
     private LevelCamera? _levelCamera;
     private bool _autoScrollCheckpointDetect;
+    private bool _autoScrollCheckpointDetected;
 
     public override void _Ready() {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
@@ -126,7 +127,9 @@ public partial class PlayerMovement : Node {
                 if (node is not Checkpoint checkpoint) continue;
                 if (LevelManager.CurrentCheckpointId != checkpoint.Id) continue;
                 _player.Position = checkpoint.Position + Vector2.Up * 8f;
-                
+
+                _autoScrollCheckpointDetect = true;
+
                 // 设置 CP 触发时记录的流体高度见 LevelConfig
             }
         }
@@ -821,8 +824,8 @@ public partial class PlayerMovement : Node {
         }
         
         // Checkpoint 处复活，检测周围滚屏节点，只检测一次
-        if (_autoScrollCheckpointDetect) return;
-        _autoScrollCheckpointDetect = true;
+        if (!_autoScrollCheckpointDetect || _autoScrollCheckpointDetected) return;
+        _autoScrollCheckpointDetected = true;
         var autoScrollNodes = GetTree().GetNodesInGroup("auto_scroll");
         foreach (var node in autoScrollNodes) {
             if (node is not AutoScroll autoScrollCheckpoint) continue;
@@ -834,6 +837,7 @@ public partial class PlayerMovement : Node {
                 _levelCamera.CameraMode = LevelCamera.CameraModeEnum.AutoScroll;
                 // 强行设置强制滚屏的节点
                 _levelCamera.ForceSetScrollNode(autoScrollCheckpoint);
+                //GD.Print($"Current CP Auto Scroll Node: {autoScrollCheckpoint.Name}");
                 // 检测到一个就停止
                 break;
             }

@@ -3,7 +3,6 @@ using System;
 using SMWP.Level;
 
 public partial class SceneControl : Area2D {
-    [Export] private CollisionShape2D _collisionShape = null!;
     public enum LinkedWithObjectEnum {
         None,
         ViewControl,
