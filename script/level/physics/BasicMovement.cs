@@ -17,9 +17,9 @@ public partial class BasicMovement : Node {
     [Export] public float MaxFallSpeed = 999f;
     [Export] public float JumpSpeed;
     [Export] public bool EdgeDetect;
-    [Export] public bool DelegateMoveProcess;
+    //[Export] public bool DelegateMoveProcess;
     protected const float FramerateOrigin = 50f;
-    public CharacterBody2D? Player;
+    protected CharacterBody2D? Player;
 
     //private bool _debugBool;
     

@@ -40,9 +40,12 @@ public partial class EnemyDie : Node {
         _enemyDeadPackedScene = GD.Load<PackedScene>(_enemyDeadPackedSceneUid);
     }
     public virtual void OnDied() {
-        OnDied(_enemyDieType);
+        OnDied(_enemyDieType, false, false);
     }
-    public virtual void OnDied(EnemyDieEnum enemyDieType) {
+    public void OnDied(EnemyDieEnum enemyDieType) {
+        OnDied(enemyDieType, false , false);
+    }
+    public virtual void OnDied(EnemyDieEnum enemyDieType, bool shellSet = false, bool shellDir = false) {
         if (Dead) return;
         Dead = true;
         EmitSignal(SignalName.Died);
@@ -69,6 +72,11 @@ public partial class EnemyDie : Node {
                     var enemyDeadInstance = _enemyDeadPackedScene.Instantiate<Node2D>();
                     enemyDeadInstance.Position = _parent.Position;
                     _parent.AddSibling(enemyDeadInstance);
+                    
+                    if (shellSet) {
+                        enemyDeadInstance.SetMeta("ShellSwitchDirection", shellDir);
+                    }
+                    
                     if (!_parent.HasMeta("InteractingObject")) break;
                     enemyDeadInstance.SetMeta("InteractingObject", Variant.From(_parent.GetMeta("InteractingObject")));
                 }

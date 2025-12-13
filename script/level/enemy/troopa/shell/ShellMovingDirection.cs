@@ -3,7 +3,17 @@ using System;
 using SMWP.Level.Physics;
 
 public partial class ShellMovingDirection : BasicMovement {
+    [Export] public bool DirForSwitch;
+    
     public override void SetMovementDirection() {
+        // 绿色开关砖第二功能
+        if (MoveObject.HasMeta("ShellSwitchDirection")) {
+            var dirBool = MoveObject.GetMeta("ShellSwitchDirection").AsBool();
+            GD.Print(dirBool);
+            SpeedX = !dirBool ? -Mathf.Abs(SpeedX) : Mathf.Abs(SpeedX);
+            return;
+        }
+        
         if (!InitiallyFaceToPlayer) return;
         // 被踩后的方向初始化设置
         var player = MoveObject.HasMeta("InteractingObject") ?
