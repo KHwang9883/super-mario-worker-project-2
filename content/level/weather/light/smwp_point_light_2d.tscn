@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c4pbvo15giepw" path="res://script/level/weather/light/SmwpPointLight2D.cs" id="1_s8w6v"]
 
-[node name="SmwpPointLight2D" type="Node2D"]
+[node name="SmwpPointLight2D" type="Node2D" groups=["lights"]]
 script = ExtResource("1_s8w6v")
 metadata/_edit_lock_ = true
 
@@ -10,3 +10,5 @@ metadata/_edit_lock_ = true
 rect = Rect2(-320, -320, 640, 640)
 show_rect = false
 script = ExtResource("1_s8w6v")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnScreenExited"]
