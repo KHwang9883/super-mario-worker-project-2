@@ -21,7 +21,7 @@ public partial class HammerBroMovement : BasicMovement {
     private int _angryModeTimer;
     private bool _angryMode;
     
-    public enum BroJumpFallStatus { InWall, Free, }
+    public enum BroJumpFallStatus { InWall, Free }
     private BroJumpFallStatus _fallStatus = BroJumpFallStatus.Free;
     
     public override void _Ready() {

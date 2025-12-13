@@ -108,6 +108,7 @@ public partial class Water : Area2D {
     public void SetWaterHeight(float height) {
         Position = Position with { Y = height };
         _autoFluid = false;
+        _fluidControlTargetHeight = height;
     }
     
     // 流体控制元件设置水位
@@ -127,6 +128,10 @@ public partial class Water : Area2D {
                 EmitSignal(SignalName.PlaySoundLavaLevel);
                 break;
         }
+    }
+
+    public float GetTargetHeight() {
+        return _fluidControlTargetHeight;
     }
     
     // 红色开关砖第二功能见 LevelConfig

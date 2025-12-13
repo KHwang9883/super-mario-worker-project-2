@@ -44,7 +44,7 @@ public partial class FluidBlock : BlockHit {
             GD.PushError($"{this}: _water is null!");
             return;
         }
-        if (Math.Abs(_water.Position.Y - TargetHeight) < 0.08f) return;
+        if (Math.Abs(_water.GetTargetHeight() - TargetHeight) < 0.08f) return;
         
         base.OnBlockBump();
         
