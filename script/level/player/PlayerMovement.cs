@@ -415,6 +415,8 @@ public partial class PlayerMovement : Node {
         // 入水瞬间限制 y 速度
         if (_wasInWater != IsInWater) {
             SpeedY = Mathf.Min(0f, SpeedY);
+            // 并且解除 IsOnIce 状态
+            IsOnIce = false;
         }
         _wasInWater = IsInWater;
 
