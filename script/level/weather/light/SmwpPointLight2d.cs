@@ -1,44 +1,39 @@
 using Godot;
 using System;
+using System.Linq.Expressions;
+using Godot.Collections;
+using SMWP.Level.Tool;
 
-public partial class SmwpPointLight2d : PointLight2D {
-    /*private BrightController? _brightController;
-    private Vector2 _originScale;
+public partial class SmwpPointLight2D : Node2D {
+    private static Node2D? _darknessMask;
+    public const int MaxLights = 256;   // 与 Shader 中的 MAX_LIGHTS 保持一致
+    private static Vector2[] Positions = new Vector2[MaxLights];
+    private static int _positionCount = 0;
+    public bool Enabled;
+    
     public override void _Ready() {
-        _brightController = (BrightController)GetTree().GetFirstNodeInGroup("bright_controller");
-        _originScale = Scale;
-        Visible = true;
+        _darknessMask = (Node2D)GetTree().GetFirstNodeInGroup("darkness_mask");
+        // Debug
+        //AddToGroup("lights");
     }
-    public override void _Process(double delta) {
-        if (_brightController == null) return;
+    public override void _PhysicsProcess(double delta) {
+        //Enabled = true;
         
-        switch (_brightController.BrightLevel) {
-            case 0:
-                Scale = _originScale * 0;
-                break;
-            case 1:
-                Scale = _originScale * 0.25f;
-                break;
-            case 2:
-                Scale = _originScale * 0.5f;
-                break;
-            case 3:
-                Scale = _originScale;
-                break;
-            case 4:
-                Scale = _originScale * 1.8f;
-                break;
-            case 5:
-                Scale = _originScale * 3f;
-                break;
+        if (_darknessMask == null) {
+            _darknessMask = (Node2D)GetTree().GetFirstNodeInGroup("darkness_mask");
+            if (_darknessMask == null) {
+                GD.PushError("SmwpPointLight2D: _darknessMask is not assigned!");
+            }
+        } else {
+            var screen = ScreenUtils.GetScreenRect(this);
+            Positions[_positionCount] = GlobalPosition - screen.Position;
+            _positionCount++;
+            if (_positionCount >= MaxLights) {
+                _positionCount = 0;
+            }
+            //GD.Print(Positions);
+            var shaderMaterial = (ShaderMaterial)_darknessMask.Material;
+            shaderMaterial.SetShaderParameter("positions", Positions);
         }
     }
-    public void OnScreenEntered() {
-        Enabled = true;
-        //Visible = true;
-    }
-    public void OnScreenExited() {
-        Enabled = false;
-        //Visible = false;
-    }*/
 }

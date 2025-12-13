@@ -22,8 +22,8 @@ rotation = -3.1415925
 
 [node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("Sprite", "_collisionShape2D")]
 script = ExtResource("3_ncmvd")
-TargetHeight = 340.0
-Speed = 4.0
+TargetHeight = 300.0
+Speed = 2.0
 Bumpable = true
 Sprite = NodePath("../Sprite2D")
 _collisionShape2D = NodePath("../BlockCollisionShape2D")

@@ -9,7 +9,7 @@ public partial class ShellMovingDirection : BasicMovement {
         // 绿色开关砖第二功能
         if (MoveObject.HasMeta("ShellSwitchDirection")) {
             var dirBool = MoveObject.GetMeta("ShellSwitchDirection").AsBool();
-            GD.Print(dirBool);
+            //GD.Print($"{this.Name}: dirBool: {dirBool}");
             SpeedX = !dirBool ? -Mathf.Abs(SpeedX) : Mathf.Abs(SpeedX);
             return;
         }
