@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8yc6nx4n5gfp"]
+[gd_scene load_steps=16 format=3 uid="uid://b8yc6nx4n5gfp"]
 
 [ext_resource type="Texture2D" uid="uid://53eehyol5jig" path="res://content/level/enemy/koopa/koopa.png" id="1_vfn76"]
+[ext_resource type="Script" uid="uid://cwwnjarpfiq8u" path="res://script/level/enemy/koopa/KoopaScroll.cs" id="2_6dy1i"]
 [ext_resource type="Script" uid="uid://cie0otndijovs" path="res://script/level/enemy/koopa/KoopaMovement.cs" id="2_8dd5u"]
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="3_4fioi"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_qiq1k"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="4_qiq1k"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="5_6dy1i"]
+[ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/level/enemy/general_visible_on_screen_enabler_2d.tscn" id="6_nvgmy"]
 [ext_resource type="AudioStream" uid="uid://sol03nlu7dpk" path="res://content/sound/flame.se.wav" id="6_qiq1k"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="7_6dy1i"]
 
@@ -63,6 +65,11 @@ metadata/_edit_lock_ = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(8, -32, 24, -28, 32, -20, 28, 20, 24, 36, -24, 36, -28, 20, -32, -20, -24, -28, -8, -32)
 
+[node name="KoopaScroll" type="Node2D" parent="." groups=["koopa_scroll"]]
+process_mode = 3
+script = ExtResource("2_6dy1i")
+Speed = 5.0
+
 [node name="KoopaMovement" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D", "_flameSound", "MoveObject")]
 script = ExtResource("2_8dd5u")
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
@@ -81,6 +88,8 @@ metadata/_custom_type_script = "uid://t3te8lnb0byj"
 script = ExtResource("3_4fioi")
 InternalScore = 5000
 metadata/_custom_type_script = "uid://cnbadhjt53rkc"
+
+[node name="GeneralVisibleOnScreenEnabler2d" parent="." instance=ExtResource("6_nvgmy")]
 
 [node name="OutOfBoundsQueueFree" type="Node" parent="."]
 script = ExtResource("4_qiq1k")

@@ -170,6 +170,9 @@ public partial class PlayerMovement : Node {
         // 自动滚屏检测
         AutoScrollDetect();
         
+        // 库巴滚屏检测
+        KoopaScrollDetect();
+        
         // 在水管传送状态下不进行其他运动处理
         PipeEntryDetect();
 
@@ -841,6 +844,22 @@ public partial class PlayerMovement : Node {
                 // 检测到一个就停止
                 break;
             }
+        }
+    }
+
+    public void KoopaScrollDetect() {
+        if (_levelCamera == null) {
+            GD.PushError("KoopaScrollDetect: LevelCamera is null!");
+            return;
+        }
+        
+        // 检测第一个滚屏节点
+        var koopaScrollNode = GetTree().GetFirstNodeInGroup("koopa_scroll");
+        if (koopaScrollNode == null) return;
+        if (koopaScrollNode is not KoopaScroll koopaScroll) return;
+        if (_player.Position.X > koopaScroll.GlobalPosition.X - koopaScroll.ScrollTriggerDistance
+            && _player.Position.X < koopaScroll.GlobalPosition.X + koopaScroll.ScrollTriggerDistance) {
+            _levelCamera.CameraMode = LevelCamera.CameraModeEnum.Koopa;
         }
     }
 }

@@ -112,7 +112,7 @@ public partial class PlayerGodMode : Node {
                 if (_levelCamera.AutoScrollEnded) break;
                 if (_levelCamera.CameraMode != LevelCamera.CameraModeEnum.FollowPlayer) {
                     ForceScrollDisabled = !ForceScrollDisabled;
-                    _levelCamera.AutoScrollDisabled = ForceScrollDisabled;
+                    _levelCamera.ForceScrollDisabled = ForceScrollDisabled;
                 }
                 break;
             
