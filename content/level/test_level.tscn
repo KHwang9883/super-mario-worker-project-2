@@ -485,7 +485,7 @@ tile_set = ExtResource("11_877iw")
 unique_name_in_owner = true
 process_priority = -10
 process_physics_priority = -10
-position = Vector2(4760, 272)
+position = Vector2(2712, 144)
 
 [node name="LevelCamera" parent="TestLevelNode2D" instance=ExtResource("10_8mywb")]
 position = Vector2(0, 9999999)

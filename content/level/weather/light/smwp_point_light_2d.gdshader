@@ -5,6 +5,7 @@ const int MAX_LIGHTS = 256;
 uniform float darkness = 1.0;
 uniform float radius_ratio = 1.0;
 uniform vec2 positions[MAX_LIGHTS];
+uniform float single_radius[MAX_LIGHTS];
 
 void fragment() {
 	float origin_alpha = 1.0;
@@ -35,6 +36,7 @@ void fragment() {
 		}*/
 
 		d /= radius_ratio;
+		d /= single_radius[i];
 
 		if (d < 640.0) {
 			float alpha_reduction =

@@ -12,6 +12,7 @@ public partial class BrightController : Node {
     private static ShaderMaterial? _shaderMaterial;
     public const int MaxLights = 256;   // 重要：与 Shader 中的 MAX_LIGHTS 保持一致
     private static Vector2[] Positions = new Vector2[MaxLights];
+    private static float[] LightRadius = new float[MaxLights];
     private static int _positionCount = 0;
     private float _radiusRatio;
     
@@ -58,11 +59,13 @@ public partial class BrightController : Node {
 
             _positionCount = 0;
             Positions = new Vector2[MaxLights];
+            LightRadius = new  float[MaxLights];
             foreach (var node in nodes) {
                 if (node is not SmwpPointLight2D light) continue;
                 if (!light.Activate) continue;
             
                 Positions[_positionCount] = light.LightPosition - screen.Position;
+                LightRadius[_positionCount] = light.LightRadius;
                 _positionCount++;
                 // 大于最大光源数就停止遍历
                 if (_positionCount < MaxLights) continue;
@@ -72,6 +75,7 @@ public partial class BrightController : Node {
             
             _shaderMaterial?.SetShaderParameter("positions", Positions);
             _shaderMaterial?.SetShaderParameter("radius_ratio", _radiusRatio);
+            _shaderMaterial?.SetShaderParameter("single_radius", LightRadius);
         //}).CallDeferred();
     }
 }

@@ -5,14 +5,11 @@ using Godot.Collections;
 using SMWP.Level.Tool;
 
 public partial class SmwpPointLight2D : Node2D {
+    [Export] private Marker2D _marker = null!;
     [Export] public bool Enabled;
     public bool Activate;
-    private Marker2D? _marker;
     public Vector2 LightPosition;
-
-    public override void _Ready() {
-        _marker = GetNode<Marker2D>("LightOffset");
-    }
+    public float LightRadius = 1f;
     
     // 发光默认一直禁用，直到入屏启用
     public override void _Process(double delta) {

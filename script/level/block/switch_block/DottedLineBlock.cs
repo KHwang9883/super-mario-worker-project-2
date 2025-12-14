@@ -12,6 +12,8 @@ public partial class DottedLineBlock : StaticBody2D {
 
     [Export] private Area2D _celesteDetect = null!;
 
+    [Export] private SmwpPointLight2D _smwpPointLight2D = null!;
+    
     [Export] public Godot.Collections.Dictionary<LevelConfig.SwitchTypeEnum, SpriteFrames> Sprites = null!;
     
     private bool _originStatus;
@@ -60,5 +62,9 @@ public partial class DottedLineBlock : StaticBody2D {
         
         CollisionLayer = Solid ? CollisionLayerSolidFull : CollisionLayerDetect;
         Modulate = Modulate with { A = Solid ? 1f : 0.441f };
+    }
+
+    public override void _Process(double delta) {
+        _smwpPointLight2D.LightRadius = !Solid ? 0f : 1f;
     }
 }
