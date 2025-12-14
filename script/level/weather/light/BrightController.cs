@@ -60,9 +60,9 @@ public partial class BrightController : Node {
             Positions = new Vector2[MaxLights];
             foreach (var node in nodes) {
                 if (node is not SmwpPointLight2D light) continue;
-                if (!light.Enabled) continue;
+                if (!light.Activate) continue;
             
-                Positions[_positionCount] = light.GlobalPosition - screen.Position;
+                Positions[_positionCount] = light.LightPosition - screen.Position;
                 _positionCount++;
                 // 大于最大光源数就停止遍历
                 if (_positionCount < MaxLights) continue;

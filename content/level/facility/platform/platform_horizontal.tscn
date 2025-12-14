@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://5mfpp4cy76ja"]
+[gd_scene load_steps=34 format=3 uid="uid://5mfpp4cy76ja"]
 
 [ext_resource type="Script" uid="uid://blpaw4uxiexwt" path="res://script/level/facility/platform/PlatformHorizontal.cs" id="1_81tdp"]
 [ext_resource type="Texture2D" uid="uid://k6j8qciuuw1n" path="res://content/level/facility/platform/platform_sheet.png" id="1_vhtb1"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shape2D" uid="uid://getamfhougth" path="res://content/level/facility/platform/platform_castle_long.tres" id="6_ll3g0"]
 [ext_resource type="Shape2D" uid="uid://cpjxloxiaskl5" path="res://content/level/facility/platform/platform_castle_normal.tres" id="7_m0dxp"]
 [ext_resource type="Script" uid="uid://kj2nq1hyac4o" path="res://script/level/facility/platform/PlatformPlayerPenetration.cs" id="9_kn8jb"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="10_l2xg7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q34yq"]
 atlas = ExtResource("1_vhtb1")
@@ -317,3 +318,5 @@ debug_color = Color(0.1485925, 0.6457087, 7.70092e-07, 0.41960785)
 
 [node name="PlayerPenetration" type="Node" parent="."]
 script = ExtResource("9_kn8jb")
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("10_l2xg7")]

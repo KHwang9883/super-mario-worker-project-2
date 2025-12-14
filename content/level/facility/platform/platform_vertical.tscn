@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dfundrwrpx7oa"]
+[gd_scene load_steps=34 format=3 uid="uid://dfundrwrpx7oa"]
 
 [ext_resource type="Texture2D" uid="uid://k6j8qciuuw1n" path="res://content/level/facility/platform/platform_sheet.png" id="1_dyew6"]
 [ext_resource type="Script" uid="uid://bs8a4tc4db8e1" path="res://script/level/facility/platform/PlatformVertical.cs" id="1_wa2ee"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shape2D" uid="uid://getamfhougth" path="res://content/level/facility/platform/platform_castle_long.tres" id="6_mia77"]
 [ext_resource type="Shape2D" uid="uid://cpjxloxiaskl5" path="res://content/level/facility/platform/platform_castle_normal.tres" id="7_su37k"]
 [ext_resource type="Script" uid="uid://kj2nq1hyac4o" path="res://script/level/facility/platform/PlatformPlayerPenetration.cs" id="9_8spri"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="10_fbkgm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q34yq"]
 atlas = ExtResource("1_dyew6")
@@ -305,5 +306,7 @@ _shapeMapping = Dictionary[int, RectangleShape2D]({
 
 [node name="PlayerPenetration" type="Node" parent="."]
 script = ExtResource("9_8spri")
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("10_fbkgm")]
 
 [connection signal="Stepped" from="." to="PlayerPenetration" method="OnPlayerCurrentStep"]

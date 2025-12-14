@@ -308,9 +308,9 @@ _shapeMapping = Dictionary[int, RectangleShape2D]({
 script = ExtResource("9_b5iog")
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 
-[node name="SmwpPointLight2D" parent="." instance=ExtResource("10_q4fj0")]
-
 [node name="PlayerPenetration" type="Node" parent="."]
 script = ExtResource("11_q4fj0")
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("10_q4fj0")]
 
 [connection signal="Stepped" from="." to="PlayerPenetration" method="OnPlayerCurrentStep"]
