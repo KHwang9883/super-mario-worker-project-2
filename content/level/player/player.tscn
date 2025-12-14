@@ -184,10 +184,11 @@ _marioBeetroot = ExtResource("9_5unhu")
 _marioLui = ExtResource("10_tpspr")
 _playerEffectScene = ExtResource("11_q05y8")
 
-[node name="PlayerSuit" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_starmanCombo")]
+[node name="PlayerSuit" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_starmanCombo", "_smwpPointLight2D")]
 script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
 _starmanCombo = NodePath("../../ComboComponent")
+_smwpPointLight2D = NodePath("../../SmwpPointLight2D")
 Suit = 2
 
 [node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_starmanCombo", "_addScoreComponent")]

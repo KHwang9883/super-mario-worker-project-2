@@ -13,6 +13,8 @@ public partial class PlayerSuit : Node {
     [Export] private PlayerMediator _playerMediator = null!;
     
     [Export] private ComboComponent _starmanCombo = null!;
+
+    [Export] private SmwpPointLight2D _smwpPointLight2D = null!;
     
     public enum SuitEnum {
         Small,
@@ -37,6 +39,9 @@ public partial class PlayerSuit : Node {
         EmitSignal(SignalName.PlayerStarmanStarted);
     }
     public override void _PhysicsProcess(double delta) {
+        // 无敌星状态光源半径变化
+        _smwpPointLight2D.LightRadius = Mathf.MoveToward(_smwpPointLight2D.LightRadius, Starman ? 35f : 1f, 0.6f);
+
         if (!Starman) return;
         
         // 传送状态下无敌星计时暂停
