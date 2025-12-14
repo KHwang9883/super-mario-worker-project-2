@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c4pbvo15giepw" path="res://script/level/weather/light/SmwpPointLight2D.cs" id="1_s8w6v"]
 
 [node name="SmwpPointLight2D" type="Node2D" groups=["lights"]]
+process_priority = 1
 script = ExtResource("1_s8w6v")
 metadata/_edit_lock_ = true
 

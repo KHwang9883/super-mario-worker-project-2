@@ -433,8 +433,8 @@ MfStylePipeExit = true
 FasterLevelPass = true
 RainyLevel = 2
 ThunderLevel = 1
-Darkness = 2
-Brightness = 3
+Darkness = 8
+Brightness = 2
 ThwompActivateBlocks = true
 BgpDatabase = ExtResource("2_27x5w")
 BgmDatabase = ExtResource("3_ta7os")
@@ -485,7 +485,7 @@ tile_set = ExtResource("11_877iw")
 unique_name_in_owner = true
 process_priority = -10
 process_physics_priority = -10
-position = Vector2(5360, 272)
+position = Vector2(4760, 272)
 
 [node name="LevelCamera" parent="TestLevelNode2D" instance=ExtResource("10_8mywb")]
 position = Vector2(0, 9999999)
@@ -1045,13 +1045,13 @@ position = Vector2(4956, 432)
 [node name="Koopas" type="Node2D" parent="TestLevelNode2D"]
 
 [node name="Koopa" parent="TestLevelNode2D/Koopas" instance=ExtResource("90_13tsj")]
-position = Vector2(5452, 252)
+position = Vector2(5472, 248)
 
 [node name="FlameKoopa5" parent="TestLevelNode2D" instance=ExtResource("89_ate2p")]
 position = Vector2(4624, 240)
 
 [node name="FireballBro2" parent="TestLevelNode2D" instance=ExtResource("48_yeotl")]
-position = Vector2(5456, 264)
+position = Vector2(5496, 264)
 
 [connection signal="PlaySoundTimeWarning" from="TestLevelNode2D/HUD/HUD" to="TestLevelNode2D/HUD/HUD/TimeWarning" method="play"]
 [connection signal="PlaySoundMessageDisplay" from="TestLevelNode2D/HUD/MessageDisplay" to="TestLevelNode2D/HUD/MessageDisplay/MsgDisplaySE" method="play"]

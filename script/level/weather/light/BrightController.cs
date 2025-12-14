@@ -15,19 +15,33 @@ public partial class BrightController : Node {
     private static int _positionCount = 0;
     private float _radiusRatio;
     
+    private Vector2 _lastPos;
+    
     public override void _Ready() {
         _levelConfig = LevelConfigAccess.GetLevelConfig(this);
         _darknessMask = (Node2D)GetTree().GetFirstNodeInGroup("darkness_mask");
         _shaderMaterial = (ShaderMaterial)_darknessMask.Material;
+       
+        Callable.From(() => {
+            _lastPos = ScreenUtils.GetScreenRect(this).Position;
+        }).CallDeferred();
     }
 
-    public override void _PhysicsProcess(double delta) {
+    public override void _Process(double delta) {
         if (_levelConfig == null) return;
         BrightLevel = _levelConfig.Brightness;
         if (_darknessMask == null) {
             GD.PushError("BrightController: _darknessMask is not assigned!");
             return;
         }
+        
+        // 摄像机运动的时候和物理处理回调优先级不同，以防止光源跟踪位置偏移问题
+        var screen = ScreenUtils.GetScreenRect(this);
+        SetProcessPriority(-10);
+        if ((screen.Position - _lastPos).Length() > 0.01f) {
+            SetProcessPriority(10);
+        }
+        _lastPos = screen.Position;
         
         _radiusRatio = BrightLevel switch {
             0 => 0.000000001f,
@@ -39,8 +53,7 @@ public partial class BrightController : Node {
             _ => _radiusRatio,
         };
 
-        Callable.From(() => {
-            var screen = ScreenUtils.GetScreenRect(this);
+        //Callable.From(() => {
             var nodes = GetTree().GetNodesInGroup("lights");
 
             _positionCount = 0;
@@ -59,6 +72,6 @@ public partial class BrightController : Node {
             
             _shaderMaterial?.SetShaderParameter("positions", Positions);
             _shaderMaterial?.SetShaderParameter("radius_ratio", _radiusRatio);
-        }).CallDeferred();
+        //}).CallDeferred();
     }
 }

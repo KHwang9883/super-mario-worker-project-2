@@ -51,6 +51,14 @@ void fragment() {
 			// 原版直接叠加，光源之间有部分重合不美观
 			//final_color.a = final_color.a - alpha_reduction;
 		}
+
+		// Offset delay debug
+		/*if (d < 100.0) {
+			final_color.a = 0.0;
+		}
+		if (d < 10.0) {
+			final_color.a = 1.0;
+		}*/
 	}
 
 	COLOR = clamp(final_color, vec4(0.0, 0.0, 0.0, 0.0), vec4(0.0, 0.0, 0.0, darkness));

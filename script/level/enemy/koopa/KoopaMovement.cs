@@ -24,7 +24,7 @@ public partial class KoopaMovement : BasicMovement {
     public override void _Ready() {
         base._Ready();
         _flameTimerBoost = _rng.RandfRange(0f, 0.2f);
-        _flameFixedPositionY = MoveObject.Position.Y;
+        _flameFixedPositionY = MoveObject.Position.Y + 32f;
     }
     public override void _PhysicsProcess(double delta) {
         // Walk Status
@@ -110,6 +110,7 @@ public partial class KoopaMovement : BasicMovement {
     public void Launch() {
         var projectile = _projectileScene.Instantiate<Node2D>();
         projectile.SetPosition(MoveObject.Position + Vector2.Up * 16f);
+        // 记录库巴的初始 y 位置，还原原版“半格火”特性
         projectile.SetMeta("FixedPositionY", _flameFixedPositionY);
         MoveObject.AddSibling(projectile);
     }
