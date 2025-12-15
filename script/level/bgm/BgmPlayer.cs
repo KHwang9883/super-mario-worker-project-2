@@ -262,28 +262,9 @@ public partial class BgmPlayer : AudioStreamPlayer {
             // Module 格式需要额外转换
             // 由于 C# 无法直接调用 GDExtension 的类，因此发射信号交给 GDScript 处理
             case BgmFileFormatGuess.BgmFileTypeEnum.Mod:
-                Callable.From(() => {
-                    EmitSignal(
-                        SignalName.ModuleResourceConvert, this,
-                        BgmFileFormatGuess.GetFullBgmFileName(bgmPath)
-                    );
-                }).CallDeferred();
-                break;
             case BgmFileFormatGuess.BgmFileTypeEnum.It:
-                Callable.From(() => {
-                    EmitSignal(
-                        SignalName.ModuleResourceConvert, this,
-                        BgmFileFormatGuess.GetFullBgmFileName(bgmPath)
-                    );
-                }).CallDeferred();
-                break;
             case BgmFileFormatGuess.BgmFileTypeEnum.Xm:
-                Callable.From(() => {
-                    EmitSignal(
-                        SignalName.ModuleResourceConvert, this,
-                        BgmFileFormatGuess.GetFullBgmFileName(bgmPath)
-                    );
-                }).CallDeferred();
+                SetModuleBgm(bgmPath);
                 break;
 
             // 失败后使用默认的 OGG 格式进行读取
@@ -302,6 +283,15 @@ public partial class BgmPlayer : AudioStreamPlayer {
         }
     }
 
+    public void SetModuleBgm(string bgmPath) {
+        //Callable.From(() => {
+        EmitSignal(
+            SignalName.ModuleResourceConvert, this,
+            BgmFileFormatGuess.GetFullBgmFileName(bgmPath)
+        );
+        //}).CallDeferred();
+    }
+    
     public void LoadOverrideBgmFileInvalid(string bgmPath) {
         bgmPath += ".ogg";
         if (FileAccess.FileExists(bgmPath)) {
