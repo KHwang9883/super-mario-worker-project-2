@@ -877,6 +877,10 @@ public partial class PlayerMovement : Node {
             && screenCenterX < koopaScroll.GlobalPosition.X + koopaScroll.ScrollTriggerDistance) {
             _levelCamera.CameraMode = LevelCamera.CameraModeEnum.Koopa;
             koopaScroll.SetBgm();
+            
+            // 激活库巴血条 HUD 显示
+            var koopaHudNode = (KoopaHUD)GetTree().GetFirstNodeInGroup("koopa_hud_node2d");
+            koopaHudNode.Activate = true;
         }
     }
 }

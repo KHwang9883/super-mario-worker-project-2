@@ -159,7 +159,7 @@ size = Vector2(96, 63.53125)
 [node name="TestLevelNode2D" type="Node2D" parent="."]
 
 [node name="HUD" type="CanvasLayer" parent="TestLevelNode2D"]
-layer = 3
+layer = 4
 
 [node name="HUD" type="Control" parent="TestLevelNode2D/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite", "_godPosition", "_levelInfo", "_scrollDisabled")]
 process_mode = 3
@@ -403,7 +403,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 layer = 3
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="TestLevelNode2D"]
-layer = 3
+layer = 4
 visible = false
 
 [node name="DebugLabel" type="Label" parent="TestLevelNode2D/DebugCanvasLayer" node_paths=PackedStringArray("_player")]
@@ -486,7 +486,7 @@ tile_set = ExtResource("11_877iw")
 unique_name_in_owner = true
 process_priority = -10
 process_physics_priority = -10
-position = Vector2(4432, 272)
+position = Vector2(2424, 272)
 
 [node name="LevelCamera" parent="TestLevelNode2D" instance=ExtResource("10_8mywb")]
 position = Vector2(0, 9999999)
@@ -1045,9 +1045,6 @@ position = Vector2(4924, 384)
 
 [node name="FlameKoopa4" parent="TestLevelNode2D" instance=ExtResource("89_ate2p")]
 position = Vector2(4956, 432)
-
-[node name="FlameKoopa5" parent="TestLevelNode2D" instance=ExtResource("89_ate2p")]
-position = Vector2(4624, 240)
 
 [node name="FireballBro2" parent="TestLevelNode2D" instance=ExtResource("48_yeotl")]
 position = Vector2(5496, 264)

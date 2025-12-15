@@ -50,8 +50,12 @@ public partial class BgmPlayer : AudioStreamPlayer {
         }
         
         // 过关与 Fast Retry 处理
+        // Todo: 改为非FasterLevelPass时读取普通过关BgmId
         if (LevelManager.IsLevelPass && Playing) {
             Stop();
+            /*if (!_levelConfig.FasterLevelPass) {
+                Play();
+            }*/
         }
         if (_fadeOut && _levelConfig.BgmId != 146) {
             VolumeLinear = Mathf.MoveToward(VolumeLinear, 0.2f, 0.15f);
