@@ -68,7 +68,7 @@ polygon = PackedVector2Array(8, -32, 24, -28, 32, -20, 28, 20, 24, 36, -24, 36, 
 [node name="KoopaScroll" type="Node2D" parent="." groups=["koopa_scroll"]]
 process_mode = 3
 script = ExtResource("2_6dy1i")
-Speed = 5.0
+Speed = 2.0
 
 [node name="KoopaMovement" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D", "_flameSound", "MoveObject")]
 script = ExtResource("2_8dd5u")

@@ -402,10 +402,23 @@ public partial class PlayerMovement : Node {
                     if (_player.Position.X > screen.End.X - 14f)
                         _player.Position += Vector2.Left * forceScrollPush;
                 }
-                
-                // 在强制滚屏下在左或右一侧界外则死亡
-                if (_player.Position.X < screen.Position.X - 14f || _player.Position.X > screen.End.X + 14f) {
-                    EmitSignal(SignalName.ForceScrollDeath);
+
+                switch (_levelCamera.CameraMode) {
+                    case LevelCamera.CameraModeEnum.AutoScroll:
+                        // 在自动滚屏下在左或右一侧界外则死亡
+                        if (_player.Position.X < screen.Position.X - 14f || _player.Position.X > screen.End.X + 14f) {
+                            EmitSignal(SignalName.ForceScrollDeath);
+                        }
+                        break;
+                    
+                    case LevelCamera.CameraModeEnum.Koopa:
+                        // 在库巴滚屏下在左或右一侧界边缘则死亡
+                        if (_player.MoveAndCollide(new Vector2(_levelCamera.DeltaPosition.X, 0f), true, 0.02f) != null) {
+                            if (_player.Position.X < screen.Position.X + 14f || _player.Position.X > screen.End.X - 14f) {
+                                EmitSignal(SignalName.ForceScrollDeath);
+                            }
+                        }
+                        break;
                 }
             }
         }
