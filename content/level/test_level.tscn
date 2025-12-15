@@ -423,7 +423,8 @@ script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
 RoomHeight = 6400.0
 WaterHeight = 444.0
-BgpId = 30
+BgpId = 9
+BgmId = 51
 FluidT1 = 448.0
 FluidT2 = 500.0
 FluidSpeed = 3.0
@@ -1027,7 +1028,7 @@ Speed = 200.0
 position = Vector2(4028, 252)
 
 [node name="ViewControl" parent="TestLevelNode2D" instance=ExtResource("68_glrnk")]
-ViewRect = Rect2(2944, 0, 10016, 1280)
+ViewRect = Rect2(2944, 0, 10016, 480)
 
 [node name="SceneControl" parent="TestLevelNode2D" instance=ExtResource("63_i0wvf")]
 position = Vector2(2984, 204)
@@ -1054,7 +1055,7 @@ position = Vector2(5496, 264)
 [node name="Koopas" type="Node2D" parent="TestLevelNode2D"]
 
 [node name="Koopa" parent="TestLevelNode2D/Koopas" instance=ExtResource("90_13tsj")]
-position = Vector2(5472, 400)
+position = Vector2(5480, 192)
 
 [node name="Koopa2" parent="TestLevelNode2D/Koopas" instance=ExtResource("90_13tsj")]
 position = Vector2(6632, 416)

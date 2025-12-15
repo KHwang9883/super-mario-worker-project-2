@@ -867,12 +867,16 @@ public partial class PlayerMovement : Node {
         }
         
         // 检测第一个滚屏节点
+        if (_levelCamera.CameraMode == LevelCamera.CameraModeEnum.Koopa) return;
         var koopaScrollNode = GetTree().GetFirstNodeInGroup("koopa_scroll");
         if (koopaScrollNode == null) return;
         if (koopaScrollNode is not KoopaScroll koopaScroll) return;
-        if (_player.Position.X > koopaScroll.GlobalPosition.X - koopaScroll.ScrollTriggerDistance
-            && _player.Position.X < koopaScroll.GlobalPosition.X + koopaScroll.ScrollTriggerDistance) {
+        var screen = ScreenUtils.GetScreenRect(this);
+        var screenCenterX = screen.Position.X + screen.Size.X / 2f;
+        if (screenCenterX > koopaScroll.GlobalPosition.X - koopaScroll.ScrollTriggerDistance
+            && screenCenterX < koopaScroll.GlobalPosition.X + koopaScroll.ScrollTriggerDistance) {
             _levelCamera.CameraMode = LevelCamera.CameraModeEnum.Koopa;
+            koopaScroll.SetBgm();
         }
     }
 }

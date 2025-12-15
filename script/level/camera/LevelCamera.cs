@@ -163,6 +163,7 @@ public partial class LevelCamera : Camera2D {
                     //GD.Print($"Current koopa scroll node is: {_targetKoopaScrollNode}");
                     if (_targetKoopaScrollNode != null) {
                         //GD.Print("非最后一只库巴中途掉崖销毁，直接获取下一个节点");
+                        _targetKoopaScrollNode.SetBgm();
                         break;
                     } else {
                         //GD.Print("最后一只库巴中途掉崖销毁，滚屏停止");

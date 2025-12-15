@@ -387,7 +387,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="DebugLabel" type="Label" parent="DebugCanvasLayer" node_paths=PackedStringArray("_player")]
+[node name="DebugLabel" type="Label" parent="DebugCanvasLayer"]
 process_mode = 3
 offset_left = 8.0
 offset_top = 8.0
@@ -397,7 +397,6 @@ theme = ExtResource("17_gk66o")
 text = "Mario Position and Velocity."
 uppercase = true
 script = ExtResource("26_1w80w")
-_player = NodePath("")
 
 [node name="Fluid" type="Node2D" parent="." node_paths=PackedStringArray("_water", "_lava")]
 script = ExtResource("27_rkcjv")
@@ -413,6 +412,7 @@ position = Vector2(0, 444)
 
 [node name="Mario" parent="." instance=ExtResource("30_gk66o")]
 unique_name_in_owner = true
+process_mode = 4
 position = Vector2(0, -12)
 
 [connection signal="ModuleResourceConvert" from="LevelConfig/BgmPlayer" to="LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]

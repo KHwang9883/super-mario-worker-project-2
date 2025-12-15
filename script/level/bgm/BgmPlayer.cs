@@ -163,6 +163,11 @@ public partial class BgmPlayer : AudioStreamPlayer {
         foreach (var entry in _levelConfig.BgmDatabase.Entries) {
             if (entry.BgmId != _levelConfig.BgmId) continue;
             LevelManager.CurrentBgmId = _levelConfig.BgmId;
+            
+            // 先清空原来的 BGM 资源
+            Stream = null;
+            
+            //GD.Print($"Current LevelConfig BgmId: {_levelConfig.BgmId}");
                 
             // 首先获取外置的覆盖 BGM
             foreach (var fileName in entry.FileNameForOverride) {
@@ -173,6 +178,7 @@ public partial class BgmPlayer : AudioStreamPlayer {
                     baseDir + "/Data/" + entry.AlbumPath + "/" + fileName;
                 // 因为之前 SMWP 版本后缀过于混乱，无法进行识别，故不保留文件后缀
                 bgmPath = bgmPath.GetBaseName();
+                //GD.Print($"bgmPath is: {bgmPath}");
 
                 // 猜测 BGM 格式以及真实格式，并设置 Stream 资源
                 LoadExternalBgmFile(bgmPath, LoadExternalTypeEnum.Override);
