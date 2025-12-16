@@ -48,7 +48,7 @@ public partial class KoopaAttacked : Node {
     }
 
     public void OnAttacked() {
-        if (KoopaEnergy == 1) {
+        if (KoopaEnergy <= 1) {
             KoopaEnergy = 0;
             _defeatedSound.Play();
             CreateDead();
@@ -56,6 +56,10 @@ public partial class KoopaAttacked : Node {
         } else {
             KoopaEnergy -= 1;
         }
+        
+        // 再赋值回去
+        _levelConfig!.KoopaEnergy = KoopaEnergy;
+        
         _isHurtInvincible = true;
         EmitSignal(SignalName.KoopaHurt);
     }

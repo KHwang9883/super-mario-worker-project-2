@@ -9,6 +9,7 @@
 [node name="KoopaHUD" type="CanvasLayer"]
 
 [node name="KoopaHUD" type="Node2D" parent="." node_paths=PackedStringArray("HpNormal", "HpAdvanced", "OverHpCounter") groups=["koopa_hud_node2d"]]
+process_mode = 3
 script = ExtResource("1_ncmnn")
 HpNormal = NodePath("HpNormal")
 HpAdvanced = NodePath("HpAdvanced")

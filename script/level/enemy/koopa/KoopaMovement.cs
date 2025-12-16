@@ -7,6 +7,8 @@ public partial class KoopaMovement : BasicMovement {
     [Export] private PackedScene _projectileScene = GD.Load<PackedScene>("uid://cqqq3dudrdi2l");
     [Export] private AnimatedSprite2D? _animatedSprite2D;
     [Export] private ContinuousAudioStream2D? _flameSound;
+    [Export] private int _koopaSpeedX = 1;
+    [Export] private int _koopaEdgeX = 200;
     [Export] private int _jumpTime = 100;
     [Export] private float _flameTime = 200f;
 
@@ -34,29 +36,38 @@ public partial class KoopaMovement : BasicMovement {
     }
     public override void _PhysicsProcess(double delta) {
         // Walk Status
-        if (IsOnWall()) {
+        if (IsOnWall() && !IsInBlock()) {
             MoveObject.Position -= new Vector2(SpeedX, 0f);
             _direction = -_direction;
         }
 
-        if (MoveObject.Position.X < _centerPosX) {
+        // “看路”意识
+        if (MoveObject.Position.X < _centerPosX - _koopaEdgeX) {
             _direction = 1;
         }
-        if (MoveObject.Position.X > _centerPosX) {
+        if (MoveObject.Position.X > _centerPosX + _koopaEdgeX) {
             _direction = -1;
         }
+
+        // 走路计时
+        SpeedX = 0;
         
-        if (_walkTimer1 == 0 && _walkTimer2 == 0) {
-            _walkTimer1 = 10 + _rng.RandiRange(0, 150);
-            _walkTimer2 = _walkTimer1;
+        if (_direction != 1 && _walkTimer2 > 0) {
+            SpeedX = -_koopaSpeedX;
         }
-        if (_walkTimer1 > 0) {
-            SpeedX = 1f;
-            _walkTimer1 -= 1;
+        if (_direction == 1 && _walkTimer2 > 0) {
+            SpeedX = _koopaSpeedX;
         }
-        if (_walkTimer1 == 0 && _walkTimer2 > 0) {
-            SpeedX = -1f;
+        if (_walkTimer2 > 0) {
             _walkTimer2 -= 1;
+        }
+        //GD.Print($"Koopa SpeedX: {SpeedX}");
+
+        _walkTimer1 += 1;
+
+        if (_walkTimer1 > 60) {
+            _walkTimer1 = 0;
+            _walkTimer2 = 30 + _rng.RandiRange(0, 70);
         }
         
         // Jump Status
