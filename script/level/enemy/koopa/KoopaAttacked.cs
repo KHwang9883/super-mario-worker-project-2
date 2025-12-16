@@ -6,6 +6,8 @@ using SMWP.Level.Sound;
 public partial class KoopaAttacked : Node {
     [Signal]
     public delegate void KoopaHurtEventHandler();
+    [Signal]
+    public delegate void KoopaDefeatedEventHandler();
     
     [Export] private PackedScene _koopaDeadScene = GD.Load<PackedScene>("uid://wfj3ukax5vf2");
     [Export] private AnimatedSprite2D _ani = null!;
@@ -51,6 +53,7 @@ public partial class KoopaAttacked : Node {
         if (KoopaEnergy <= 1) {
             KoopaEnergy = 0;
             _defeatedSound.Play();
+            EmitSignal(SignalName.KoopaDefeated);
             CreateDead();
             GetParent().QueueFree();
         } else {

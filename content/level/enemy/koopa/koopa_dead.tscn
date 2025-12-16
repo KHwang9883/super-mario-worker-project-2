@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://wfj3ukax5vf2"]
+[gd_scene load_steps=11 format=3 uid="uid://wfj3ukax5vf2"]
 
 [ext_resource type="Script" uid="uid://cxf1pjsgin753" path="res://script/level/enemy/koopa/KoopaDead.cs" id="1_8t303"]
 [ext_resource type="Texture2D" uid="uid://53eehyol5jig" path="res://content/level/enemy/koopa/koopa.png" id="1_urfqd"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="2_8t303"]
 [ext_resource type="AudioStream" uid="uid://dvrjyami2rpmo" path="res://content/sound/koopa_fall.se.wav" id="4_w2dqe"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="5_j0ysg"]
+[ext_resource type="AudioStream" uid="uid://dipq1h1ojqe4u" path="res://content/bgm/MW/ktkm4.it" id="6_maw75"]
+[ext_resource type="AudioStream" uid="uid://d1pmkaxewsua6" path="res://content/sound/faster_level_pass.se.mp3" id="7_5ycqn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_odjdc"]
 atlas = ExtResource("1_urfqd")
@@ -48,3 +50,18 @@ metadata/_custom_type_script = "uid://t3te8lnb0byj"
 stream = ExtResource("4_w2dqe")
 script = ExtResource("5_j0ysg")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="LevelPass" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("6_maw75")
+script = ExtResource("5_j0ysg")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="FasterLevelPass" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("7_5ycqn")
+script = ExtResource("5_j0ysg")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[connection signal="PlaySoundFasterLevelPass" from="." to="FasterLevelPass" method="play"]
+[connection signal="PlaySoundLevelPass" from="." to="LevelPass" method="play"]

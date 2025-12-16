@@ -80,14 +80,14 @@ polygon = PackedVector2Array(8, -32, 24, -28, 32, -20, 28, 20, 24, 36, -24, 36, 
 process_mode = 3
 script = ExtResource("2_6dy1i")
 Speed = 3.0
-SceneMarkerPos = NodePath("SceneMarker")
-SceneMarkerSize = NodePath("SceneMarker2")
+SceneMarkerPos = NodePath("SceneMarkerPos")
+SceneMarkerSize = NodePath("SceneMarkerSize")
 
-[node name="SceneMarker" type="Marker2D" parent="KoopaScroll"]
+[node name="SceneMarkerPos" type="Marker2D" parent="KoopaScroll"]
 position = Vector2(-16, 0)
 gizmo_extents = 4.0
 
-[node name="SceneMarker2" type="Marker2D" parent="KoopaScroll"]
+[node name="SceneMarkerSize" type="Marker2D" parent="KoopaScroll"]
 position = Vector2(48, 32)
 gizmo_extents = 4.0
 
@@ -164,6 +164,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 [connection signal="Stomped" from="InteractionWithPlayer" to="Stomped" method="play"]
 [connection signal="FireballHit" from="InteractionWithFireball" to="Attacked" method="OnAttacked"]
 [connection signal="BeetrootHit" from="InteractionWithBeetroot" to="Attacked" method="OnAttacked"]
+[connection signal="KoopaDefeated" from="Attacked" to="AddScoreComponent" method="AddScore"]
 [connection signal="KoopaHurt" from="Attacked" to="InteractionWithPlayer" method="OnHurtStarted"]
 [connection signal="KoopaHurt" from="Attacked" to="HurtTimer" method="Start"]
 [connection signal="Timeout" from="HurtTimer" to="InteractionWithPlayer" method="OnHurtEnded"]

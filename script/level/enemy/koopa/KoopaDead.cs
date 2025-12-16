@@ -5,12 +5,15 @@ using SMWP.Level;
 using SMWP.Level.Sound;
 
 public partial class KoopaDead : Node2D {
-    // Todo: 测试 & 检查通关杠过关音效播放
-    [Export] private ContinuousAudioStream2D _fallSound = null!;
-    [Export] private ContinuousAudioStream2D _levelPass = null!;
+    [Signal]
+    public delegate void PlaySoundLevelPassEventHandler();
+    [Signal]
+    public delegate void PlaySoundFasterLevelPassEventHandler();
     
-    [Export] private ContinuousAudioStream2D _fasterLevelPass = null!;
+    [Export] private ContinuousAudioStream2D _fallSound = null!;
+    
     [Export] private PackedScene _smokeScene = GD.Load<PackedScene>("uid://c707h2fhiiirw");
+    
     private int _timer;
     private float _speedY;
     private LevelConfig? _levelConfig;
@@ -20,7 +23,7 @@ public partial class KoopaDead : Node2D {
         
         // 击败库巴时暂停游戏
         GetTree().Paused = true;
-        GameManager.IsLevelPass = true;
+        GameManager.TimeCountPause = true;
     }
 
     public override void _PhysicsProcess(double delta) {
@@ -35,7 +38,8 @@ public partial class KoopaDead : Node2D {
                     var smoke = _smokeScene.Instantiate<Node2D>();
                     smoke.Position = Position;
                     AddSibling(smoke);
-                    
+                    GameManager.IsLevelPass = true;
+                    EmitSignal(SignalName.PlaySoundFasterLevelPass);
                     QueueFree();
                 }
                 return;
@@ -50,6 +54,7 @@ public partial class KoopaDead : Node2D {
         }
         if (_timer == 200) {
             GameManager.IsLevelPass = true;
+            EmitSignal(SignalName.PlaySoundLevelPass);
         }
     }
 }

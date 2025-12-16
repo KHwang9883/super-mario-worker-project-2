@@ -37,6 +37,7 @@ public partial class GameManager : Node {
     public static ContinuousAudioStream2D Sound1UPAudioStream2D = null!;
     private static Array<Node> _timeClearSounds = null!;
 
+    public static bool TimeCountPause;
     private static int _levelTimeTimer;
     private static int _levelPassTimer;
     public static bool IsFasterLevelPass;
@@ -99,7 +100,7 @@ public partial class GameManager : Node {
         _levelTimeTimer = 0;
     }
     public void TimeCount() {
-        if (IsLevelPass) return;
+        if (TimeCountPause || IsLevelPass) return;
         
         if (!IsInstanceValid(Player)) return;
         
@@ -192,6 +193,8 @@ public partial class GameManager : Node {
         IsLevelPass = false;
         Player = null;
         PlayerMovementNode = null;
+
+        TimeCountPause = false;
         
         CurrentCheckpointId = 0;
         ActivatedCheckpoints = [];
