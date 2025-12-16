@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=103 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
 [ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/facility/solid/solid.tscn" id="2_676rr"]
@@ -88,7 +88,6 @@
 [ext_resource type="PackedScene" uid="uid://b8fi12ftk0dka" path="res://content/level/block/switch_block/switch_block.tscn" id="86_8ggsa"]
 [ext_resource type="PackedScene" uid="uid://cgmv1pxkk72ai" path="res://content/level/block/switch_block/dotted-line_block.tscn" id="87_8hkbm"]
 [ext_resource type="PackedScene" uid="uid://cw8qh44n2xkrx" path="res://content/level/enemy/roto-disc/roto-disc.tscn" id="88_8hkbm"]
-[ext_resource type="PackedScene" uid="uid://cqqq3dudrdi2l" path="res://content/level/enemy/koopa/flame_koopa.tscn" id="89_ate2p"]
 [ext_resource type="PackedScene" uid="uid://d2hm1ej2l7abm" path="res://content/level/facility/platform/plarform_horizontal_marker.tscn" id="89_wy2fk"]
 [ext_resource type="PackedScene" uid="uid://b8yc6nx4n5gfp" path="res://content/level/enemy/koopa/koopa.tscn" id="90_13tsj"]
 [ext_resource type="PackedScene" uid="uid://5mfpp4cy76ja" path="res://content/level/facility/platform/platform_horizontal.tscn" id="90_ate2p"]
@@ -424,7 +423,6 @@ RoomWidth = 10016.0
 RoomHeight = 6400.0
 WaterHeight = 444.0
 BgpId = 9
-BgmId = 51
 FluidT1 = 448.0
 FluidT2 = 500.0
 FluidSpeed = 3.0
@@ -1033,18 +1031,6 @@ ViewRect = Rect2(2944, 0, 10016, 480)
 [node name="SceneControl" parent="TestLevelNode2D" instance=ExtResource("63_i0wvf")]
 position = Vector2(2984, 204)
 BgmId = 119
-
-[node name="FlameKoopa" parent="TestLevelNode2D" instance=ExtResource("89_ate2p")]
-position = Vector2(4868, 104)
-
-[node name="FlameKoopa2" parent="TestLevelNode2D" instance=ExtResource("89_ate2p")]
-position = Vector2(4888, 156)
-
-[node name="FlameKoopa3" parent="TestLevelNode2D" instance=ExtResource("89_ate2p")]
-position = Vector2(4924, 384)
-
-[node name="FlameKoopa4" parent="TestLevelNode2D" instance=ExtResource("89_ate2p")]
-position = Vector2(4956, 432)
 
 [node name="FireballBro2" parent="TestLevelNode2D" instance=ExtResource("48_yeotl")]
 position = Vector2(5496, 264)

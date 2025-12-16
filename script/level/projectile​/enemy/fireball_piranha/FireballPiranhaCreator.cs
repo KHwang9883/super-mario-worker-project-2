@@ -4,14 +4,16 @@ using SMWP.Level.Tool;
 
 namespace SMWP.Level.Projectile.Enemy;
 
-public partial class EnemyFireballCreator : Node2D {
+public partial class FireballPiranhaCreator : Node2D {
     [Signal]
     public delegate void PlaySoundFireballEventHandler();
     
     [Export] private PackedScene _enemyFireballScene = GD.Load<PackedScene>("uid://moorst8boiav");
     [Export] private int _bulletNumber = 3;
     [Export] private int _shootTime = 15;
+    [Export] private int _lifeTime = 100;
     private int _timer;
+    private int _lifeTimer;
     private int _bulletCount;
     private Node2D? _parent;
     
@@ -21,6 +23,9 @@ public partial class EnemyFireballCreator : Node2D {
     public override void _PhysicsProcess(double delta) {
         if (_bulletCount >= _bulletNumber) QueueFree();
         else {
+            // 屏外不发射子弹处理
+            _lifeTimer++;
+            if (_lifeTimer > _lifeTime) QueueFree();
             Rect2 screenRect = ScreenUtils.GetScreenRect(this);
             if (Position.X < screenRect.Position.X - 100f
                 || Position.X > screenRect.End.X + 100f

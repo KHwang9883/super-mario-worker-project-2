@@ -14,3 +14,5 @@ script = ExtResource("3_me4g2")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("4_wvpw4")]
+
+[connection signal="PlaySoundFireball" from="." to="Fireball" method="play"]

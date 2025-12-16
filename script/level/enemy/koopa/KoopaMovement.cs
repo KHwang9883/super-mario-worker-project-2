@@ -10,8 +10,11 @@ public partial class KoopaMovement : BasicMovement {
     [Export] private int _jumpTime = 100;
     [Export] private float _flameTime = 200f;
 
+    private float _centerPosX;
     private int _walkTimer1;
     private int _walkTimer2;
+    private int _direction;
+    
     private int _jumpTimer;
     private float _flameTimer;
     private float _flameTimerBoost;
@@ -25,27 +28,35 @@ public partial class KoopaMovement : BasicMovement {
         base._Ready();
         _flameTimerBoost = _rng.RandfRange(0f, 0.2f);
         _flameFixedPositionY = MoveObject.Position.Y + 32f;
+        
+        var levelConfig = LevelConfigAccess.GetLevelConfig(this);
+        _centerPosX = Mathf.Clamp(MoveObject.Position.X, 320f, levelConfig.RoomWidth - 320f);
     }
     public override void _PhysicsProcess(double delta) {
         // Walk Status
         if (IsOnWall()) {
             MoveObject.Position -= new Vector2(SpeedX, 0f);
-            SpeedX = 0f;
+            _direction = -_direction;
+        }
+
+        if (MoveObject.Position.X < _centerPosX) {
+            _direction = 1;
+        }
+        if (MoveObject.Position.X > _centerPosX) {
+            _direction = -1;
         }
         
-        if (!IsInBlock() && !IsOnWall()) {
-            if (_walkTimer1 == 0 && _walkTimer2 == 0) {
-                _walkTimer1 = 10 + _rng.RandiRange(0, 150);
-                _walkTimer2 = _walkTimer1;
-            }
-            if (_walkTimer1 > 0) {
-                SpeedX = 1f;
-                _walkTimer1 -= 1;
-            }
-            if (_walkTimer1 == 0 && _walkTimer2 > 0) {
-                SpeedX = -1f;
-                _walkTimer2 -= 1;
-            }
+        if (_walkTimer1 == 0 && _walkTimer2 == 0) {
+            _walkTimer1 = 10 + _rng.RandiRange(0, 150);
+            _walkTimer2 = _walkTimer1;
+        }
+        if (_walkTimer1 > 0) {
+            SpeedX = 1f;
+            _walkTimer1 -= 1;
+        }
+        if (_walkTimer1 == 0 && _walkTimer2 > 0) {
+            SpeedX = -1f;
+            _walkTimer2 -= 1;
         }
         
         // Jump Status
