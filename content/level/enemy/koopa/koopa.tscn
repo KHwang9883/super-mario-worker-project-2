@@ -76,10 +76,20 @@ metadata/_edit_lock_ = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(8, -32, 24, -28, 32, -20, 28, 20, 24, 36, -24, 36, -28, 20, -32, -20, -24, -28, -8, -32)
 
-[node name="KoopaScroll" type="Node2D" parent="." groups=["koopa_scroll"]]
+[node name="KoopaScroll" type="Node2D" parent="." node_paths=PackedStringArray("SceneMarkerPos", "SceneMarkerSize") groups=["koopa_scroll"]]
 process_mode = 3
 script = ExtResource("2_6dy1i")
 Speed = 3.0
+SceneMarkerPos = NodePath("SceneMarker")
+SceneMarkerSize = NodePath("SceneMarker2")
+
+[node name="SceneMarker" type="Marker2D" parent="KoopaScroll"]
+position = Vector2(-16, 0)
+gizmo_extents = 4.0
+
+[node name="SceneMarker2" type="Marker2D" parent="KoopaScroll"]
+position = Vector2(48, 32)
+gizmo_extents = 4.0
 
 [node name="KoopaMovement" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D", "_flameSound", "MoveObject")]
 script = ExtResource("2_8dd5u")
@@ -150,8 +160,8 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("5_6dy1i")]
 
-[connection signal="Stomped" from="InteractionWithPlayer" to="Stomped" method="play"]
 [connection signal="Stomped" from="InteractionWithPlayer" to="Attacked" method="OnAttacked"]
+[connection signal="Stomped" from="InteractionWithPlayer" to="Stomped" method="play"]
 [connection signal="FireballHit" from="InteractionWithFireball" to="Attacked" method="OnAttacked"]
 [connection signal="BeetrootHit" from="InteractionWithBeetroot" to="Attacked" method="OnAttacked"]
 [connection signal="KoopaHurt" from="Attacked" to="InteractionWithPlayer" method="OnHurtStarted"]

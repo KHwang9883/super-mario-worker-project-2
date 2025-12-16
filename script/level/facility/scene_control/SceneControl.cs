@@ -82,6 +82,20 @@ public partial class SceneControl : Area2D {
         }
     }
     public void LinkWithKoopa() {
-        // Todo: LinkedWithKoopa
+        var koopaScrolls = GetTree().GetNodesInGroup("koopa_scroll");
+        foreach (var node in koopaScrolls) {
+            if (node is not KoopaScroll koopaScroll) continue;
+            var rect = new Rect2(
+                koopaScroll.SceneMarkerPos.GlobalPosition, 
+                koopaScroll.SceneMarkerSize.GlobalPosition
+                );
+            if (Position.X > rect.Position.X
+                && Position.Y > rect.Position.Y
+                && Position.X < rect.End.X
+                && Position.Y < rect.End.Y) {
+                CollisionLayer = 0;
+                koopaScroll.SetSceneControl(this);
+            }
+        }
     }
 }

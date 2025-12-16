@@ -15,7 +15,7 @@ HpNormal = NodePath("SubViewportContainer/SubViewport/HpNormal")
 HpAdvanced = NodePath("SubViewportContainer/SubViewport/HpAdvanced")
 OverHpCounter = NodePath("SubViewportContainer/SubViewport/OverHpCounter")
 
-[node name="用SubViewport是因为不用的话有" type="Node" parent="KoopaHUD"]
+[node name="用SubViewport是因为不用的话就有" type="Node" parent="KoopaHUD"]
 
 [node name="库巴HUD血条出来一半才显示的问题" type="Node" parent="KoopaHUD"]
 
