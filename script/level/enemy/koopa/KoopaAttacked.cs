@@ -12,32 +12,27 @@ public partial class KoopaAttacked : Node {
     
     // 全局共享 HP
     public static int KoopaEnergy;
-    // 自己的 HP（在全局 HP 更新后更新）
-    private int _health;
     private bool _isHurtInvincible;
     private float _alphaValue;
     private bool _alphaTwist;
 
     public override void _Ready() {
         KoopaEnergy = LevelConfigAccess.GetLevelConfig(this).KoopaEnergy;
-        _health = KoopaEnergy;
     }
     public override void _PhysicsProcess(double delta) {
         if (!_isHurtInvincible) return;
-
-        if (Math.Abs(_alphaValue - 1f) < 0.04f) {
+        
+        if (Math.Abs(_alphaValue - 1f) < 0.01f) {
             _alphaTwist = true;
         }
         if (_alphaValue == 0f) {
             _alphaTwist = false;
         }
-        if (!_alphaTwist) {
-            Mathf.MoveToward(_alphaValue, 1f, 0.04f);
-        } else {
-            Mathf.MoveToward(_alphaValue, 0f, 0.03f);
-        }
-        GD.Print(_alphaValue);
-        GD.Print(_alphaTwist);
+        _alphaValue = 
+            !_alphaTwist
+                ? Mathf.MoveToward(_alphaValue, 1f, 0.04f)
+                : Mathf.MoveToward(_alphaValue, 0f, 0.03f);
+        
         _ani.Modulate = _ani.Modulate with { A = _alphaValue };
     }
 
@@ -49,7 +44,6 @@ public partial class KoopaAttacked : Node {
         } else {
             KoopaEnergy -= 1;
         }
-        _health = KoopaEnergy;
         _isHurtInvincible = true;
         EmitSignal(SignalName.KoopaHurt);
     }
@@ -57,6 +51,7 @@ public partial class KoopaAttacked : Node {
         _isHurtInvincible = false;
         _ani.Modulate = _ani.Modulate with { A = 1f };
         _alphaValue = 0f;
+        _alphaTwist = false;
     }
     public void CreateDead() {
         var parent = GetParent<Node2D>();

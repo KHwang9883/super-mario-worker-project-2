@@ -154,5 +154,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 [connection signal="Stomped" from="InteractionWithPlayer" to="Attacked" method="OnAttacked"]
 [connection signal="FireballHit" from="InteractionWithFireball" to="Attacked" method="OnAttacked"]
 [connection signal="BeetrootHit" from="InteractionWithBeetroot" to="Attacked" method="OnAttacked"]
+[connection signal="KoopaHurt" from="Attacked" to="InteractionWithPlayer" method="OnHurtStarted"]
 [connection signal="KoopaHurt" from="Attacked" to="HurtTimer" method="Start"]
+[connection signal="Timeout" from="HurtTimer" to="InteractionWithPlayer" method="OnHurtEnded"]
 [connection signal="Timeout" from="HurtTimer" to="Attacked" method="OnHurtInvincibleEnded"]

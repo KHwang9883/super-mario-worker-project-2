@@ -20,7 +20,6 @@ public partial class LevelConfig : Node {
     [Export] public string LevelAuthor = "";
     [Export] public int Time = 600;
     [Export] public float Gravity = 5f;
-    // Todo: 库巴血量设置
     [Export] public int KoopaEnergy = 5;
     [Export] public float WaterHeight = 800f;
     [Export] public int BgpId = 1;
