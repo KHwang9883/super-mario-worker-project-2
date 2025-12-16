@@ -23,15 +23,23 @@ public partial class PlayerDieAndHurt : Node {
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
     [Export] private PackedScene _playerDeadScene = null!;
-    [Export] public float InvincibleDuration = 200;
+    [Export] public float HurtInvincibleDuration = 200;
+    [Export] public int ExtraInvincibleTime = 10;
     [Export] private ContinuousAudioStream2D? _gameOverSound;
     [Export] private PackedScene _fireballExplosion = GD.Load<PackedScene>("uid://5mmyew6mh71p");
     
     public bool IsInvincible;
+    
     public bool IsHurtInvincible;
     public int HurtInvincibleTimer;
+    
     public bool IsStarmanInvincible;
+
+    public bool IsExtraInvincible;
+    private int _extraInvincibleTimer;
+    
     private LevelConfig? _levelConfig;
+    
     private bool _dead;
     private int _deadTimer;
 
@@ -114,7 +122,7 @@ public partial class PlayerDieAndHurt : Node {
         // 受伤无敌计时
         if (IsHurtInvincible) {
             HurtInvincibleTimer++;
-            if (HurtInvincibleTimer >= InvincibleDuration) {
+            if (HurtInvincibleTimer >= HurtInvincibleDuration) {
                 HurtEnd();
             }
         }
@@ -122,8 +130,17 @@ public partial class PlayerDieAndHurt : Node {
         // 无敌星状态
         IsStarmanInvincible = _playerMediator.playerSuit.Starman;
         
+        // 额外无敌时间计时
+        if (IsExtraInvincible) {
+            if (_extraInvincibleTimer > 0) {
+                _extraInvincibleTimer--;
+            } else {
+                IsExtraInvincible = false;
+            }
+        }
+        
         // 无敌状态标记
-        IsInvincible = (IsHurtInvincible || IsStarmanInvincible);
+        IsInvincible = (IsHurtInvincible || IsStarmanInvincible || IsExtraInvincible);
         
         // 首帧判定延迟
         //if (!_initialFrameDelay) _initialFrameDelay = true;
@@ -150,7 +167,7 @@ public partial class PlayerDieAndHurt : Node {
         _player.AddSibling(playerDeadInstance);
     }
     public void Hurt() {
-        if (IsStarmanInvincible || IsHurtInvincible) return;
+        if (IsStarmanInvincible || IsHurtInvincible || IsExtraInvincible) return;
         SetHurtInvincible();
         switch (_playerMediator.playerSuit.Suit) {
             case PlayerSuit.SuitEnum.Small:
@@ -175,5 +192,10 @@ public partial class PlayerDieAndHurt : Node {
         IsHurtInvincible = false;
         HurtInvincibleTimer = 0;
         EmitSignal(SignalName.PlayerInvincibleEnded);
+    }
+
+    public void SetStompInvincibleTime() {
+        _extraInvincibleTimer = ExtraInvincibleTime;
+        IsExtraInvincible = true;
     }
 }

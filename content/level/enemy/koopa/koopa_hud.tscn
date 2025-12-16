@@ -8,8 +8,11 @@
 
 [node name="KoopaHUD" type="CanvasLayer"]
 
-[node name="KoopaHUD" type="Node2D" parent="." groups=["koopa_hud_node2d"]]
+[node name="KoopaHUD" type="Node2D" parent="." node_paths=PackedStringArray("HpNormal", "HpAdvanced", "OverHpCounter") groups=["koopa_hud_node2d"]]
 script = ExtResource("1_ncmnn")
+HpNormal = NodePath("HpNormal")
+HpAdvanced = NodePath("HpAdvanced")
+OverHpCounter = NodePath("OverHpCounter")
 
 [node name="Head" type="TextureRect" parent="KoopaHUD"]
 anchors_preset = 1
@@ -23,14 +26,14 @@ grow_horizontal = 0
 texture = ExtResource("1_aq0ck")
 stretch_mode = 2
 
-[node name="HBoxContainerNormal" type="HBoxContainer" parent="KoopaHUD"]
+[node name="HpNormal" type="HBoxContainer" parent="KoopaHUD"]
 offset_left = 483.0
 offset_top = 63.0
 offset_right = 569.0
 offset_bottom = 103.0
 alignment = 2
 
-[node name="Life" type="TextureRect" parent="KoopaHUD/HBoxContainerNormal"]
+[node name="Life" type="TextureRect" parent="KoopaHUD/HpNormal"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -39,7 +42,7 @@ texture = ExtResource("2_ncmnn")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life2" type="TextureRect" parent="KoopaHUD/HBoxContainerNormal"]
+[node name="Life2" type="TextureRect" parent="KoopaHUD/HpNormal"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -48,7 +51,7 @@ texture = ExtResource("2_ncmnn")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life3" type="TextureRect" parent="KoopaHUD/HBoxContainerNormal"]
+[node name="Life3" type="TextureRect" parent="KoopaHUD/HpNormal"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -57,7 +60,7 @@ texture = ExtResource("2_ncmnn")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life4" type="TextureRect" parent="KoopaHUD/HBoxContainerNormal"]
+[node name="Life4" type="TextureRect" parent="KoopaHUD/HpNormal"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -66,7 +69,7 @@ texture = ExtResource("2_ncmnn")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life5" type="TextureRect" parent="KoopaHUD/HBoxContainerNormal"]
+[node name="Life5" type="TextureRect" parent="KoopaHUD/HpNormal"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -75,7 +78,7 @@ texture = ExtResource("2_ncmnn")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life6" type="TextureRect" parent="KoopaHUD/HBoxContainerNormal"]
+[node name="Life6" type="TextureRect" parent="KoopaHUD/HpNormal"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -84,7 +87,7 @@ texture = ExtResource("2_ncmnn")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life7" type="TextureRect" parent="KoopaHUD/HBoxContainerNormal"]
+[node name="Life7" type="TextureRect" parent="KoopaHUD/HpNormal"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -93,7 +96,7 @@ texture = ExtResource("2_ncmnn")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life8" type="TextureRect" parent="KoopaHUD/HBoxContainerNormal"]
+[node name="Life8" type="TextureRect" parent="KoopaHUD/HpNormal"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -102,7 +105,7 @@ texture = ExtResource("2_ncmnn")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life9" type="TextureRect" parent="KoopaHUD/HBoxContainerNormal"]
+[node name="Life9" type="TextureRect" parent="KoopaHUD/HpNormal"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -111,7 +114,7 @@ texture = ExtResource("2_ncmnn")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life10" type="TextureRect" parent="KoopaHUD/HBoxContainerNormal"]
+[node name="Life10" type="TextureRect" parent="KoopaHUD/HpNormal"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -120,14 +123,14 @@ texture = ExtResource("2_ncmnn")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="HBoxContainerAdvance" type="HBoxContainer" parent="KoopaHUD"]
+[node name="HpAdvanced" type="HBoxContainer" parent="KoopaHUD"]
 offset_left = 483.0
 offset_top = 63.0
 offset_right = 569.0
 offset_bottom = 103.0
 alignment = 2
 
-[node name="Life" type="TextureRect" parent="KoopaHUD/HBoxContainerAdvance"]
+[node name="Life" type="TextureRect" parent="KoopaHUD/HpAdvanced"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -136,7 +139,7 @@ texture = ExtResource("4_xlvnm")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life2" type="TextureRect" parent="KoopaHUD/HBoxContainerAdvance"]
+[node name="Life2" type="TextureRect" parent="KoopaHUD/HpAdvanced"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -145,7 +148,7 @@ texture = ExtResource("4_xlvnm")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life3" type="TextureRect" parent="KoopaHUD/HBoxContainerAdvance"]
+[node name="Life3" type="TextureRect" parent="KoopaHUD/HpAdvanced"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -154,7 +157,7 @@ texture = ExtResource("4_xlvnm")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life4" type="TextureRect" parent="KoopaHUD/HBoxContainerAdvance"]
+[node name="Life4" type="TextureRect" parent="KoopaHUD/HpAdvanced"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -163,7 +166,7 @@ texture = ExtResource("4_xlvnm")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life5" type="TextureRect" parent="KoopaHUD/HBoxContainerAdvance"]
+[node name="Life5" type="TextureRect" parent="KoopaHUD/HpAdvanced"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -172,7 +175,7 @@ texture = ExtResource("4_xlvnm")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life6" type="TextureRect" parent="KoopaHUD/HBoxContainerAdvance"]
+[node name="Life6" type="TextureRect" parent="KoopaHUD/HpAdvanced"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -181,7 +184,7 @@ texture = ExtResource("4_xlvnm")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life7" type="TextureRect" parent="KoopaHUD/HBoxContainerAdvance"]
+[node name="Life7" type="TextureRect" parent="KoopaHUD/HpAdvanced"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -190,7 +193,7 @@ texture = ExtResource("4_xlvnm")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life8" type="TextureRect" parent="KoopaHUD/HBoxContainerAdvance"]
+[node name="Life8" type="TextureRect" parent="KoopaHUD/HpAdvanced"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -199,7 +202,7 @@ texture = ExtResource("4_xlvnm")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life9" type="TextureRect" parent="KoopaHUD/HBoxContainerAdvance"]
+[node name="Life9" type="TextureRect" parent="KoopaHUD/HpAdvanced"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -208,7 +211,7 @@ texture = ExtResource("4_xlvnm")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Life10" type="TextureRect" parent="KoopaHUD/HBoxContainerAdvance"]
+[node name="Life10" type="TextureRect" parent="KoopaHUD/HpAdvanced"]
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 size_flags_horizontal = 0

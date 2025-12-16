@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level;
 using SMWP.Level.Sound;
 
 public partial class KoopaAttacked : Node {
@@ -9,18 +10,28 @@ public partial class KoopaAttacked : Node {
     [Export] private PackedScene _koopaDeadScene = GD.Load<PackedScene>("uid://wfj3ukax5vf2");
     [Export] private AnimatedSprite2D _ani = null!;
     [Export] private ContinuousAudioStream2D _defeatedSound = null!;
+
+    private LevelConfig? _levelConfig;
     
     // 全局共享 HP
     public static int KoopaEnergy;
+    
     private bool _isHurtInvincible;
     private float _alphaValue;
     private bool _alphaTwist;
 
     public override void _Ready() {
-        KoopaEnergy = LevelConfigAccess.GetLevelConfig(this).KoopaEnergy;
+        _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
     }
     public override void _PhysicsProcess(double delta) {
         if (!_isHurtInvincible) return;
+
+        if (_levelConfig == null) {
+            GD.Print($"{this}: LevelConfig is null!");
+            return;
+        }
+        
+        KoopaEnergy = _levelConfig.KoopaEnergy;
         
         if (Math.Abs(_alphaValue - 1f) < 0.01f) {
             _alphaTwist = true;
@@ -41,6 +52,7 @@ public partial class KoopaAttacked : Node {
             KoopaEnergy = 0;
             _defeatedSound.Play();
             CreateDead();
+            GetParent().QueueFree();
         } else {
             KoopaEnergy -= 1;
         }
