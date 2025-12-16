@@ -50,7 +50,7 @@ public partial class AddScoreComponent : Node {
         ShowCorrespondingScore(externalScore);
     }
     public void AddScoreToScoreManager(int score) {
-        LevelManager.AddScore(score);
+        GameManager.AddScore(score);
     }
     public void ShowCorrespondingScore(int shownScore) {
         if (!_showCorrespondingScore) return;

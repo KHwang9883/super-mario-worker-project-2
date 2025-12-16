@@ -21,7 +21,7 @@ config/icon="uid://cdllu6eprpokv"
 
 [autoload]
 
-LevelManager="*res://content/level/level_manager.tscn"
+LevelManager="*res://content/game_manager.tscn"
 SoundManager="*res://content/sound/SoundManager.tscn"
 
 [display]

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Diagnostics;
+using SMWP;
 using SMWP.Level;
 using SMWP.Level.Score;
 
@@ -86,7 +87,7 @@ public partial class GiantGateBar : Area2D {
             AddSibling(smoke);
         }
         
-        LevelManager.IsLevelPass = true;
+        GameManager.IsLevelPass = true;
         GetTree().Paused = true;
     }
 }

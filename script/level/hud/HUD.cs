@@ -42,10 +42,10 @@ public partial class HUD : Control {
         _godModeNode = (PlayerGodMode)_player!.GetMeta("PlayerGodMode");
         
         _life.Text = !_godModeNode.IsGodMode ?
-            $"MARIO {LevelManager.Life.ToString()}"
-            :$"GOD   {LevelManager.Life.ToString()}";
+            $"MARIO {GameManager.Life.ToString()}"
+            :$"GOD   {GameManager.Life.ToString()}";
         
-        _score.Text = LevelManager.Score.ToString();
+        _score.Text = GameManager.Score.ToString();
         
         // LevelTitle 特殊处理
         if (_levelConfig == null) {
@@ -55,11 +55,11 @@ public partial class HUD : Control {
         }
         
         // 负数时间不显示
-        if (LevelManager.Time < 0) _timeHUD.Visible = false;
+        if (GameManager.Time < 0) _timeHUD.Visible = false;
             
         // 时钟警告！
-        _timeCounter.Text = LevelManager.Time.ToString();
-        if (LevelManager.Time < 100 && LevelManager.Time > 0 && !LevelManager.IsLevelPass) {
+        _timeCounter.Text = GameManager.Time.ToString();
+        if (GameManager.Time < 100 && GameManager.Time > 0 && !GameManager.IsLevelPass) {
             OnTimeWarning();
         }
         _timeHUDShake = _rng.RandfRange(0f, _rock) - _rng.RandfRange(0f, _rock);
@@ -67,10 +67,10 @@ public partial class HUD : Control {
         _rock = Mathf.Clamp(_rock - 0.1f, 0f, _rock);
 
         // 金币
-        _coin.Text = LevelManager.Coin.ToString();
+        _coin.Text = GameManager.Coin.ToString();
         
         // Game Over 展示
-        if (LevelManager.IsGameOver) {
+        if (GameManager.IsGameOver) {
             GameOverShow();
         }
         

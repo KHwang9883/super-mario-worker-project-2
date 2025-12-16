@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP;
 using SMWP.Level;
 
 public partial class Checkpoint : Area2D {
@@ -17,7 +18,7 @@ public partial class Checkpoint : Area2D {
         _water ??= (Water)GetTree().GetFirstNodeInGroup("water_global");
         
         // Activate activated
-        if (!LevelManager.ActivatedCheckpoints.Contains(Id)) return;
+        if (!GameManager.ActivatedCheckpoints.Contains(Id)) return;
         Activated = true;
         GetNode<AnimatedSprite2D>("AnimatedSprite2D").Animation = "activated";
     }
@@ -28,8 +29,8 @@ public partial class Checkpoint : Area2D {
         if (Activated) return false;
         Activated = true;
         GetNode<AnimatedSprite2D>("AnimatedSprite2D").Animation = "activated";
-        LevelManager.CurrentCheckpointId = Id;
-        LevelManager.ActivatedCheckpoints.Add(Id);
+        GameManager.CurrentCheckpointId = Id;
+        GameManager.ActivatedCheckpoints.Add(Id);
         
         // 非自动流体运动下激活 Checkpoint 记录流体高度
         if (_water == null) {
@@ -40,9 +41,9 @@ public partial class Checkpoint : Area2D {
                 GD.PushError($"{this}: LevelConfig is null!");
             } else {
                 if (!_levelConfig.AutoFluid) {
-                    LevelManager.IsCheckpointWaterHeightRecorded = true;
-                    LevelManager.CheckpointWaterHeight = _water.Position.Y;
-                    //GD.Print($"CheckpointWaterHeight: {LevelManager.CheckpointWaterHeight}");
+                    GameManager.IsCheckpointWaterHeightRecorded = true;
+                    GameManager.CheckpointWaterHeight = _water.Position.Y;
+                    //GD.Print($"CheckpointWaterHeight: {GameManager.CheckpointWaterHeight}");
                 }
             }
         }

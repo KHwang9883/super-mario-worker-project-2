@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using SMWP;
 using SMWP.Level;
 
 public partial class DottedLineBlock : StaticBody2D {
@@ -35,7 +36,7 @@ public partial class DottedLineBlock : StaticBody2D {
         _originStatus = Solid;
         _ani.SetSpriteFrames(Sprites[SwitchType]);
         
-        if (!LevelManager.IsColorAccessibilityMode) return;
+        if (!GameManager.IsColorAccessibilityMode) return;
         _ani.Play("color-vision");
     }
     public override void _PhysicsProcess(double delta) {

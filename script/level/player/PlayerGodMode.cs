@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Godot.Collections;
+using SMWP;
 using SMWP.Level;
 using SMWP.Level.Player;
 
@@ -28,7 +29,7 @@ public partial class PlayerGodMode : Node {
         if (@event is not InputEventKey { Pressed: true } keyEvent) return;
         
         // Todo: God Mode 开启检测
-        //if (!LevelManager.IsGodMode) return; ???
+        //if (!GameManager.IsGodMode) return; ???
 
         var pSuit = _playerMediator.playerSuit;
         
@@ -119,14 +120,14 @@ public partial class PlayerGodMode : Node {
             case Key.Pageup:
                 _checkpoints = GetTree().GetNodesInGroup("checkpoint");
                 if (_checkpoints == null) break;
-                if (LevelManager.CurrentCheckpointId < _checkpoints.Count) {
-                    LevelManager.CurrentCheckpointId += 1;
+                if (GameManager.CurrentCheckpointId < _checkpoints.Count) {
+                    GameManager.CurrentCheckpointId += 1;
                 } else {
                     return;
                 }
                 foreach (var node in _checkpoints) {
                     if (node is not Checkpoint checkpoint) continue;
-                    if (LevelManager.CurrentCheckpointId != checkpoint.Id) continue;
+                    if (GameManager.CurrentCheckpointId != checkpoint.Id) continue;
                     _playerMediator.player.Position = checkpoint.Position + Vector2.Up * 8f;
                     _playerMediator.player.ForceUpdateTransform();
                     _playerMediator.player.ResetPhysicsInterpolation();
@@ -136,14 +137,14 @@ public partial class PlayerGodMode : Node {
             case Key.Pagedown:
                 _checkpoints = GetTree().GetNodesInGroup("checkpoint");
                 if (_checkpoints == null) break;
-                if (LevelManager.CurrentCheckpointId > 1) {
-                    LevelManager.CurrentCheckpointId -= 1;
+                if (GameManager.CurrentCheckpointId > 1) {
+                    GameManager.CurrentCheckpointId -= 1;
                 } else {
                     return;
                 }
                 foreach (var node in _checkpoints) {
                     if (node is not Checkpoint checkpoint) continue;
-                    if (LevelManager.CurrentCheckpointId != checkpoint.Id) continue;
+                    if (GameManager.CurrentCheckpointId != checkpoint.Id) continue;
                     _playerMediator.player.Position = checkpoint.Position + Vector2.Up * 8f;
                     _playerMediator.player.ForceUpdateTransform();
                     _playerMediator.player.ResetPhysicsInterpolation();
@@ -153,7 +154,7 @@ public partial class PlayerGodMode : Node {
         }
     }
     public override void _PhysicsProcess(double delta) {
-        IsGodMode = LevelManager.IsGodMode;
+        IsGodMode = GameManager.IsGodMode;
         if (IsGodInvincible && _playerMediator != null)
             _playerMediator.playerDieAndHurt.HurtInvincibleTimer = 0;
     }

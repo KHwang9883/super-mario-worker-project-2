@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SMWP;
 using SMWP.Level;
 using SMWP.Level.Block;
 
@@ -27,13 +28,13 @@ public partial class SwitchBlock : BlockHit {
         
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         _ani?.SetSpriteFrames(Sprites[SwitchType]);
-        if (LevelManager.IsColorAccessibilityMode) _ani?.Play("color-vision");
+        if (GameManager.IsColorAccessibilityMode) _ani?.Play("color-vision");
     }
     public override void _PhysicsProcess(double delta) {
         base._PhysicsProcess(delta);
         // 记录非被顶状态开关砖当前动画进度，保持所有开关砖同步
         if (_ani == null) return;
-        if (LevelManager.IsColorAccessibilityMode) return;
+        if (GameManager.IsColorAccessibilityMode) return;
         if (_ani.Animation.Equals("hit")) return;
         _frameProgress = _ani.FrameProgress;
         _frame = _ani.Frame;
@@ -41,7 +42,7 @@ public partial class SwitchBlock : BlockHit {
     
     protected override void OnBlockBump() {
         base.OnBlockBump();
-        if (!LevelManager.IsColorAccessibilityMode) _ani?.Play("hit");
+        if (!GameManager.IsColorAccessibilityMode) _ani?.Play("hit");
         
         // Switch Toggle
         if (_levelConfig == null) {
@@ -96,7 +97,7 @@ public partial class SwitchBlock : BlockHit {
     protected override void OnBumped() {
         base.OnBumped();
         if (_ani == null) return;
-        if (LevelManager.IsColorAccessibilityMode) return;
+        if (GameManager.IsColorAccessibilityMode) return;
         _ani.Play("default");
         _ani.Frame = _frame;
         _ani.FrameProgress = _frameProgress;

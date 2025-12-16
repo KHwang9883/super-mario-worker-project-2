@@ -88,16 +88,16 @@ public partial class LevelConfig : Node {
         // Room Size 初始化见 LevelCamera
         
         // Time Set
-        LevelManager.SetLevelTime(Time);
+        GameManager.SetLevelTime(Time);
         
         // Set Player
-        LevelManager.Player = (Node2D)GetTree().GetFirstNodeInGroup("player");
+        GameManager.Player = (Node2D)GetTree().GetFirstNodeInGroup("player");
         
         // Water Height Set
-        //GD.Print($"IsCheckpointWaterHeightRecorded: {LevelManager.IsCheckpointWaterHeightRecorded}");
+        //GD.Print($"IsCheckpointWaterHeightRecorded: {GameManager.IsCheckpointWaterHeightRecorded}");
         var water = (Water)GetTree().GetFirstNodeInGroup("water_global");
-        if (LevelManager.IsCheckpointWaterHeightRecorded) {
-            water.Position = water.Position with { Y = LevelManager.CheckpointWaterHeight };
+        if (GameManager.IsCheckpointWaterHeightRecorded) {
+            water.Position = water.Position with { Y = GameManager.CheckpointWaterHeight };
             //GD.Print($"Water Position Y: {water.Position.Y}");
         } else {
             water.Position = water.Position with { Y = WaterHeight };
@@ -109,7 +109,7 @@ public partial class LevelConfig : Node {
         // Bgm 初始化见 BgmPlayer
         
         // Faster Level Pass Set
-        LevelManager.IsFasterLevelPass = FasterLevelPass;
+        GameManager.IsFasterLevelPass = FasterLevelPass;
         
         // 初始化开关砖
         Switches = new Godot.Collections.Dictionary<SwitchTypeEnum, bool>();

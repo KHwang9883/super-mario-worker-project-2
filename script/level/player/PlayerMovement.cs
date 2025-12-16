@@ -125,7 +125,7 @@ public partial class PlayerMovement : Node {
         if (checkpoints != null) {
             foreach (var node in checkpoints) {
                 if (node is not Checkpoint checkpoint) continue;
-                if (LevelManager.CurrentCheckpointId != checkpoint.Id) continue;
+                if (GameManager.CurrentCheckpointId != checkpoint.Id) continue;
                 _player.Position = checkpoint.Position + Vector2.Up * 8f;
 
                 _autoScrollCheckpointDetect = true;

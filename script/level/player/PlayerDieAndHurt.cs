@@ -59,14 +59,14 @@ public partial class PlayerDieAndHurt : Node {
             var deadTime = !_levelConfig.FastRetry ? 180 : 90;
             if (_deadTimer >= deadTime) {
                 // Restart Level
-                if (LevelManager.Life > 0) {
+                if (GameManager.Life > 0) {
                     GetTree().ReloadCurrentScene();
                 }
                 
                 // Game Over
                 else {
-                    if (!LevelManager.IsGameOver) {
-                        LevelManager.IsGameOver = true;
+                    if (!GameManager.IsGameOver) {
+                        GameManager.IsGameOver = true;
                         if (!_levelConfig.FastRetry) {
                             EmitSignal(SignalName.PlaySoundGameOver);
                         }
@@ -77,7 +77,7 @@ public partial class PlayerDieAndHurt : Node {
                         
                         // Todo: 跳转到编辑界面或者标题界面
                         
-                        LevelManager.GameOverClear();
+                        GameManager.GameOverClear();
                         GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
                     }
                 }
@@ -96,7 +96,7 @@ public partial class PlayerDieAndHurt : Node {
         //GD.Print(_screenBottom);
         
         // 时间归零死亡
-        if (LevelManager.Time == 0) {
+        if (GameManager.Time == 0) {
             Die();
         }
         
@@ -143,7 +143,7 @@ public partial class PlayerDieAndHurt : Node {
         _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Small;
         
         // 扣命
-        LevelManager.Life--;
+        GameManager.Life--;
             
         var playerDeadInstance = _playerDeadScene.Instantiate<PlayerDead>();
         playerDeadInstance.Position = _player.Position;

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.IO;
+using SMWP;
 using SMWP.Level;
 using SMWP.Level.Player;
 using SMWP.Level.Tool;
@@ -36,11 +37,11 @@ public partial class BgmPlayer : AudioStreamPlayer {
             _playerSuit.PlayerStarmanFinished += OnPlayerStarmanEnd;
             
             // Fast Retry 读取 BGM 位置
-            if (_levelConfig.BgmId != LevelManager.CurrentBgmId) {
-                LevelManager.BgmPosition = 0f;
+            if (_levelConfig.BgmId != GameManager.CurrentBgmId) {
+                GameManager.BgmPosition = 0f;
             }
             SetBgm(false);
-            Play(_levelConfig.FastRetry ? LevelManager.BgmPosition : 0f);
+            Play(_levelConfig.FastRetry ? GameManager.BgmPosition : 0f);
         }).CallDeferred();
     }
     public override void _PhysicsProcess(double delta) {
@@ -51,7 +52,7 @@ public partial class BgmPlayer : AudioStreamPlayer {
         
         // 过关与 Fast Retry 处理
         // Todo: 改为非FasterLevelPass时读取普通过关BgmId
-        if (LevelManager.IsLevelPass && Playing) {
+        if (GameManager.IsLevelPass && Playing) {
             Stop();
             /*if (!_levelConfig.FasterLevelPass) {
                 Play();
@@ -145,8 +146,8 @@ public partial class BgmPlayer : AudioStreamPlayer {
     public void OnTreeExiting() {
         // Fast Retry 记录 BGM 位置
         if (_levelConfig is not LevelConfig { FastRetry: true }) return;
-        LevelManager.BgmPosition = GetPlaybackPosition();
-        //GD.Print(LevelManager.BgmPosition);
+        GameManager.BgmPosition = GetPlaybackPosition();
+        //GD.Print(GameManager.BgmPosition);
     }
     
     public void Bgm146Sync() {
@@ -166,7 +167,7 @@ public partial class BgmPlayer : AudioStreamPlayer {
         
         foreach (var entry in _levelConfig.BgmDatabase.Entries) {
             if (entry.BgmId != _levelConfig.BgmId) continue;
-            LevelManager.CurrentBgmId = _levelConfig.BgmId;
+            GameManager.CurrentBgmId = _levelConfig.BgmId;
             
             // 先清空原来的 BGM 资源
             Stream = null;
@@ -202,7 +203,7 @@ public partial class BgmPlayer : AudioStreamPlayer {
         var baseDir = Path.GetDirectoryName(OS.GetExecutablePath());
         baseDir = baseDir?.Replace("\\", "/");
         var customDir = 
-            baseDir + "/Data/Custom/" + LevelManager.CustomBgmPackage + "/";
+            baseDir + "/Data/Custom/" + GameManager.CustomBgmPackage + "/";
         var listConfigPath = customDir + "ListConfig.ini";
         if (!FileAccess.FileExists(listConfigPath)) {
             GD.PushError($"{this}: Custom BGM ListConfig.ini not found at {listConfigPath}!");

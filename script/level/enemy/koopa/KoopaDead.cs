@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP;
 using SMWP.Level;
 using SMWP.Level.Sound;
 
@@ -19,7 +20,7 @@ public partial class KoopaDead : Node2D {
         
         // 击败库巴时暂停游戏
         GetTree().Paused = true;
-        LevelManager.IsLevelPass = true;
+        GameManager.IsLevelPass = true;
     }
 
     public override void _PhysicsProcess(double delta) {
@@ -30,7 +31,7 @@ public partial class KoopaDead : Node2D {
                 return;
             }
             if (_levelConfig.FasterLevelPass) {
-                if (!LevelManager.IsLevelPass) {
+                if (!GameManager.IsLevelPass) {
                     var smoke = _smokeScene.Instantiate<Node2D>();
                     smoke.Position = Position;
                     AddSibling(smoke);
@@ -48,7 +49,7 @@ public partial class KoopaDead : Node2D {
             _speedY += 0.1f;
         }
         if (_timer == 200) {
-            LevelManager.IsLevelPass = true;
+            GameManager.IsLevelPass = true;
         }
     }
 }

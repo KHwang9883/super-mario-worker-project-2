@@ -6,9 +6,9 @@ using SMWP.Level.Sound;
 using Array = Godot.Collections.Array;
 // ReSharper disable FieldCanBeMadeReadOnly.Global
 
-namespace SMWP.Level;
+namespace SMWP;
 
-public partial class LevelManager : Node {
+public partial class GameManager : Node {
     [Signal]
     public delegate void PlaySound1UPEventHandler();
 
