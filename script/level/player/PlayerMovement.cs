@@ -881,6 +881,19 @@ public partial class PlayerMovement : Node {
             // 激活库巴血条 HUD 显示
             var koopaHudNode = (KoopaHUD)GetTree().GetFirstNodeInGroup("koopa_hud_node2d");
             koopaHudNode.Activate = true;
+            
+            // 自动滚屏会自动取消
+            
+            // 镜头限制取消
+            if (_levelConfig == null) {
+                GD.PushError("KoopaScrollDetect: LevelConfig is null!");
+                return;
+            }
+            
+            _levelCamera.LimitLeft = 0;
+            _levelCamera.LimitTop = 0;
+            _levelCamera.LimitRight = (int)_levelConfig.RoomWidth;
+            _levelCamera.LimitBottom = (int)_levelConfig.RoomHeight;
         }
     }
 }
