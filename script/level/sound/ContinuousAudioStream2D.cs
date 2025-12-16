@@ -12,7 +12,7 @@ public partial class ContinuousAudioStream2D : AudioStreamPlayer2D {
         ProcessMode = ProcessModeEnum.Always;
         MaxDistance = 99999999999;
         MaxPolyphony = 10;
-        Attenuation = 0.06f;
+        Attenuation = 0.003f;
     }
     public override void _Ready() {
         _parent ??= GetParent();
