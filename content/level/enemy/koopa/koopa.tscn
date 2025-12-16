@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b8yc6nx4n5gfp"]
+[gd_scene load_steps=22 format=3 uid="uid://b8yc6nx4n5gfp"]
 
 [ext_resource type="Texture2D" uid="uid://53eehyol5jig" path="res://content/level/enemy/koopa/koopa.png" id="1_vfn76"]
 [ext_resource type="Script" uid="uid://cwwnjarpfiq8u" path="res://script/level/enemy/koopa/KoopaScroll.cs" id="2_6dy1i"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="6_sulfm"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="7_6dy1i"]
 [ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="7_itggb"]
+[ext_resource type="Script" uid="uid://celwrvkx10fgr" path="res://script/level/enemy/koopa/KoopaAttacked.cs" id="8_wurfv"]
 [ext_resource type="AudioStream" uid="uid://bixfickw63hvd" path="res://content/sound/koopa_attacked.se.wav" id="13_itggb"]
 [ext_resource type="AudioStream" uid="uid://bjtv7m65s7cp5" path="res://content/sound/koopa_defeated.se.wav" id="14_wurfv"]
 
@@ -24,13 +25,13 @@ region = Rect2(0, 0, 67, 72)
 atlas = ExtResource("1_vfn76")
 region = Rect2(67, 0, 67, 72)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_csrtn"]
-atlas = ExtResource("1_vfn76")
-region = Rect2(134, 0, 67, 72)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_b77o3"]
 atlas = ExtResource("1_vfn76")
 region = Rect2(201, 0, 67, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wurfv"]
+atlas = ExtResource("1_vfn76")
+region = Rect2(134, 0, 67, 72)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wvvif"]
 animations = [{
@@ -47,13 +48,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_csrtn")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_b77o3")
 }],
 "loop": true,
 "name": &"flame",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wurfv")
+}],
+"loop": true,
+"name": &"ready_to_flame",
 "speed": 5.0
 }]
 
@@ -63,7 +69,6 @@ collision_mask = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wvvif")
-animation = &"flame"
 autoplay = "default"
 metadata/_edit_lock_ = true
 
@@ -91,6 +96,7 @@ metadata/_custom_type_script = "uid://t3te8lnb0byj"
 
 [node name="InteractionWithPlayer" type="Node" parent="."]
 script = ExtResource("5_7lmug")
+Stompable = true
 metadata/_custom_type_script = "uid://dk0y3j6216tik"
 
 [node name="InteractionWithFireball" type="Node" parent="."]
@@ -100,6 +106,9 @@ metadata/_custom_type_script = "uid://ckwcmi42tdbmc"
 [node name="InteractionWithBeetroot" type="Node" parent="."]
 script = ExtResource("7_itggb")
 metadata/_custom_type_script = "uid://bkc8a0hddhajq"
+
+[node name="Attacked" type="Node" parent="."]
+script = ExtResource("8_wurfv")
 
 [node name="AddScoreComponent" type="Node" parent="."]
 script = ExtResource("3_4fioi")

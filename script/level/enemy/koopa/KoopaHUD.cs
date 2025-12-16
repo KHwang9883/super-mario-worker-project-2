@@ -14,5 +14,7 @@ public partial class KoopaHUD : Node2D {
         if (Activate) {
             Position = Position with { Y = Mathf.MoveToward(Position.Y, _originPosY, 1f) };
         }
+        
+        // Todo: 血量显示
     }
 }

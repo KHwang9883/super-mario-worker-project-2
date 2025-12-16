@@ -8,7 +8,7 @@ public partial class KoopaMovement : BasicMovement {
     [Export] private AnimatedSprite2D? _animatedSprite2D;
     [Export] private ContinuousAudioStream2D? _flameSound;
     [Export] private int _jumpTime = 100;
-    [Export] private float _flameTime = 250f;
+    [Export] private float _flameTime = 200f;
 
     private int _walkTimer1;
     private int _walkTimer2;
@@ -73,7 +73,13 @@ public partial class KoopaMovement : BasicMovement {
 
         // Flame Status
         _flameTimer += 1f + _flameTimerBoost;
-        if (_flameTimer > _flameTime * 0.6f) {
+        
+        if (_flameTimer > _flameTime * 0.75f) {
+            if (_animatedSprite2D?.Animation != "ready_to_flame") {
+                _animatedSprite2D?.Play("ready_to_flame");
+            }
+        }
+        if (_flameTimer > _flameTime * 0.9f) {
             if (_animatedSprite2D?.Animation != "flame") {
                 _animatedSprite2D?.Play("flame");
             }

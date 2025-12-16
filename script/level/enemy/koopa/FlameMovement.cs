@@ -8,6 +8,8 @@ public partial class FlameMovement : BasicMovement {
     private RandomNumberGenerator _rng = new();
     
     public override void _Ready() {
+        base._Ready();
+        
         _originPosY = MoveObject.GlobalPosition.Y;
         if (MoveObject.HasMeta("FixedPositionY")) {
             _targetPosY = (float)MoveObject.GetMeta("FixedPositionY") - 12f - _rng.RandiRange(0, 2) * 32f;
