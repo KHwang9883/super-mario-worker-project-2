@@ -288,6 +288,7 @@ script = ExtResource("30_sba15")
 [connection signal="PlayerPowerup" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerAnimation" method="OnPLayerChangingSuit"]
 [connection signal="PlayerPowerup" from="PlayerMediator/PlayerInteraction" to="Powerup" method="play"]
 [connection signal="PlayerStomp" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerMovement" method="OnPlayerStomp"]
+[connection signal="PlayerStompSetSpeedX" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerMovement" method="OnStompSetSpeedX"]
 [connection signal="PlayerShooting" from="PlayerMediator/PlayerShoot" to="PlayerShoot" method="play"]
 [connection signal="AddLife" from="PlayerMediator/PlayerGodMode" to="AddScoreComponent" method="AddScore"]
 [connection signal="finished" from="GameOver" to="GameOver" method="queue_free"]

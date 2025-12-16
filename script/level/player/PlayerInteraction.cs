@@ -18,6 +18,8 @@ public partial class PlayerInteraction : Node {
     [Signal]
     public delegate void PlayerStompEventHandler(float stompSpeedY);
     [Signal]
+    public delegate void PlayerStompSetSpeedXEventHandler(float stompSpeedX);
+    [Signal]
     public delegate void PlayerPowerupEventHandler();
     [Signal]
     public delegate void PlayerPowerPlainEventHandler();
@@ -94,6 +96,12 @@ public partial class PlayerInteraction : Node {
                 || !(_player.GlobalPosition.Y < result.GlobalPosition.Y + stompable.StompOffset)) continue;
             result.SetMeta("InteractingObject", _player);
             EmitSignal(SignalName.PlayerStomp, stompable.OnStomped(_player));
+            
+            // 踩到库巴额外设置 x 速度
+            if (result.HasMeta("KoopaStomp")) {
+                EmitSignal(SignalName.PlayerStompSetSpeedX, 6f);
+            }
+            
             // 成功一次就停止 foreach
             //_isPlayerStomped = true;
             break;

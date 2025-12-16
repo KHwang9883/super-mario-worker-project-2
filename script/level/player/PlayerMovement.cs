@@ -492,6 +492,12 @@ public partial class PlayerMovement : Node {
         EmitSignal(SignalName.SwimStarted);
     }
 
+    // 库巴踩踏设置 x 速度
+    public void OnStompSetSpeedX(float stompSpeedX) {
+        SpeedX = stompSpeedX * Direction;
+        //GD.Print($"Current player SpeedX: {SpeedX}");
+    }
+    
     public void UpdateHitBox() {
         Callable.From(() => {
             if (_playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Small || Crouched) {
