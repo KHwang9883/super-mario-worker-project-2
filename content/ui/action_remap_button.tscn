@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ldgs5y464vui"]
+
+[ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="1_akj3l"]
+[ext_resource type="Script" uid="uid://8nahlh56og4t" path="res://script/title/global_option/ActionRemapButton.cs" id="2_p47jk"]
+
+[node name="ActionRemapButton" instance=ExtResource("1_akj3l")]
+text = "NONE"
+script = ExtResource("2_p47jk")
+Action = ""
+
+[connection signal="pressed" from="." to="." method="OnButtonPressed"]

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.IO;
+using Godot.Collections;
 using SMWP;
 
 public static class ConfigManager {
@@ -44,7 +45,19 @@ public static class ConfigManager {
         // Todo: IsGodMode
         
         // Todo: ControlConfig
-        
+        // 获取所有的 Action 的名称
+        var actions = InputMap.GetActions();
+        // Todo: 摆了（（（
+        /*Array<InputMap> defaultActions = null;
+        // 获取所有 Action 的第一个按键（键盘默认按键）
+        foreach (var action in actions) {
+            defaultActions.Add(InputMap.ActionGetEvents(action)[0]);
+        }
+        foreach (string actionStringName in defaultActions)) {
+            string action = actionStringName.new();
+            InputMap.ActionEraseEvent(action);
+            InputMap.ActionEraseEvent(action, SmwpConfig.GetValue("control_config", action));
+        }*/
     }
 
     public static void SaveConfig() {

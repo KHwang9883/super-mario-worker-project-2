@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="4_a747a"]
 [ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="5_yrvep"]
 [ext_resource type="PackedScene" uid="uid://iy10w4afpuo6" path="res://content/title/global_option/global_option_menu.tscn" id="6_6mkpa"]
-[ext_resource type="Script" uid="uid://8nahlh56og4t" path="res://script/title/global_option/ActionRemapButton.cs" id="7_a747a"]
+[ext_resource type="PackedScene" uid="uid://ldgs5y464vui" path="res://content/ui/action_remap_button.tscn" id="7_yrvep"]
 
 [node name="ControlSettings" type="Control"]
 layout_mode = 3
@@ -82,7 +82,7 @@ theme = ExtResource("5_yrvep")
 text = "UP"
 uppercase = true
 
-[node name="SetUp" parent="VBoxContainer/Up" instance=ExtResource("3_lghrj")]
+[node name="SetUp" parent="VBoxContainer/Up" instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -92,14 +92,10 @@ offset_left = -128.0
 offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
-size_flags_horizontal = 3
-size_flags_vertical = 8
 focus_neighbor_right = NodePath("../../../Basic/Back")
-focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-text = "NONE"
+focus_neighbor_bottom = NodePath("../../Down/SetDown")
+focus_next = NodePath("../../Down/SetDown")
 alignment = 2
-script = ExtResource("7_a747a")
 Action = "move_up"
 
 [node name="Down" type="Control" parent="VBoxContainer"]
@@ -116,7 +112,7 @@ theme = ExtResource("5_yrvep")
 text = "DOWN"
 uppercase = true
 
-[node name="SetDown" parent="VBoxContainer/Down" instance=ExtResource("3_lghrj")]
+[node name="SetDown" parent="VBoxContainer/Down" instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -126,14 +122,11 @@ offset_left = -128.0
 offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
-size_flags_horizontal = 3
-size_flags_vertical = 8
-focus_neighbor_right = NodePath("../../../Basic/Back")
-focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-text = "NONE"
+focus_neighbor_top = NodePath("../../Up/SetUp")
+focus_neighbor_bottom = NodePath("../../Left/SetLeft")
+focus_next = NodePath("../../Left/SetLeft")
+focus_previous = NodePath("../../Up/SetUp")
 alignment = 2
-script = ExtResource("7_a747a")
 Action = "move_down"
 
 [node name="Left" type="Control" parent="VBoxContainer"]
@@ -150,7 +143,7 @@ theme = ExtResource("5_yrvep")
 text = "Left"
 uppercase = true
 
-[node name="SetLeft" parent="VBoxContainer/Left" instance=ExtResource("3_lghrj")]
+[node name="SetLeft" parent="VBoxContainer/Left" instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -160,14 +153,12 @@ offset_left = -128.0
 offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
-size_flags_horizontal = 3
-size_flags_vertical = 8
+focus_neighbor_top = NodePath("../../Down/SetDown")
 focus_neighbor_right = NodePath("../../../Basic/Back")
-focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-text = "NONE"
+focus_neighbor_bottom = NodePath("../../Right/SetRight")
+focus_next = NodePath("../../Right/SetRight")
+focus_previous = NodePath("../../Down/SetDown")
 alignment = 2
-script = ExtResource("7_a747a")
 Action = "move_left"
 
 [node name="Right" type="Control" parent="VBoxContainer"]
@@ -184,7 +175,7 @@ theme = ExtResource("5_yrvep")
 text = "Right"
 uppercase = true
 
-[node name="SetRight" parent="VBoxContainer/Right" instance=ExtResource("3_lghrj")]
+[node name="SetRight" parent="VBoxContainer/Right" instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -194,14 +185,12 @@ offset_left = -128.0
 offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
-size_flags_horizontal = 3
-size_flags_vertical = 8
+focus_neighbor_top = NodePath("../../Left/SetLeft")
 focus_neighbor_right = NodePath("../../../Basic/Back")
-focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-text = "NONE"
+focus_neighbor_bottom = NodePath("../../Jump/SetJump")
+focus_next = NodePath("../../Jump/SetJump")
+focus_previous = NodePath("../../Left/SetLeft")
 alignment = 2
-script = ExtResource("7_a747a")
 Action = "move_right"
 
 [node name="Jump" type="Control" parent="VBoxContainer"]
@@ -218,7 +207,7 @@ theme = ExtResource("5_yrvep")
 text = "Jump"
 uppercase = true
 
-[node name="SetJump" parent="VBoxContainer/Jump" instance=ExtResource("3_lghrj")]
+[node name="SetJump" parent="VBoxContainer/Jump" instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -228,14 +217,12 @@ offset_left = -128.0
 offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
-size_flags_horizontal = 3
-size_flags_vertical = 8
+focus_neighbor_top = NodePath("../../Right/SetRight")
 focus_neighbor_right = NodePath("../../../Basic/Back")
-focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-text = "NONE"
+focus_neighbor_bottom = NodePath("../../Fire/SetFire")
+focus_next = NodePath("../../Fire/SetFire")
+focus_previous = NodePath("../../Right/SetRight")
 alignment = 2
-script = ExtResource("7_a747a")
 Action = "move_jump"
 
 [node name="Fire" type="Control" parent="VBoxContainer"]
@@ -252,7 +239,7 @@ theme = ExtResource("5_yrvep")
 text = "Fire"
 uppercase = true
 
-[node name="SetFire" parent="VBoxContainer/Fire" instance=ExtResource("3_lghrj")]
+[node name="SetFire" parent="VBoxContainer/Fire" instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -262,14 +249,12 @@ offset_left = -128.0
 offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
-size_flags_horizontal = 3
-size_flags_vertical = 8
+focus_neighbor_top = NodePath("../../Jump/SetJump")
 focus_neighbor_right = NodePath("../../../Basic/Back")
-focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-text = "NONE"
+focus_neighbor_bottom = NodePath("../../Confirm/SetConfirm")
+focus_next = NodePath("../../Confirm/SetConfirm")
+focus_previous = NodePath("../../Jump/SetJump")
 alignment = 2
-script = ExtResource("7_a747a")
 Action = "move_fire"
 
 [node name="Confirm" type="Control" parent="VBoxContainer"]
@@ -286,7 +271,7 @@ theme = ExtResource("5_yrvep")
 text = "Confirm"
 uppercase = true
 
-[node name="SetConfirm" parent="VBoxContainer/Confirm" instance=ExtResource("3_lghrj")]
+[node name="SetConfirm" parent="VBoxContainer/Confirm" instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -296,14 +281,12 @@ offset_left = -128.0
 offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
-size_flags_horizontal = 3
-size_flags_vertical = 8
+focus_neighbor_top = NodePath("../../Fire/SetFire")
 focus_neighbor_right = NodePath("../../../Basic/Back")
-focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-text = "NONE"
+focus_neighbor_bottom = NodePath("../../Pause/SetPause")
+focus_next = NodePath("../../Pause/SetPause")
+focus_previous = NodePath("../../Fire/SetFire")
 alignment = 2
-script = ExtResource("7_a747a")
 Action = "confirm"
 
 [node name="Pause" type="Control" parent="VBoxContainer"]
@@ -320,7 +303,7 @@ theme = ExtResource("5_yrvep")
 text = "Pause"
 uppercase = true
 
-[node name="SetPause" parent="VBoxContainer/Pause" instance=ExtResource("3_lghrj")]
+[node name="SetPause" parent="VBoxContainer/Pause" instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -330,14 +313,12 @@ offset_left = -128.0
 offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
-size_flags_horizontal = 3
-size_flags_vertical = 8
+focus_neighbor_top = NodePath("../../Confirm/SetConfirm")
 focus_neighbor_right = NodePath("../../../Basic/Back")
-focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-text = "NONE"
+focus_neighbor_bottom = NodePath("../../RestartLevel/SetRestartLevel")
+focus_next = NodePath("../../RestartLevel/SetRestartLevel")
+focus_previous = NodePath("../../Confirm/SetConfirm")
 alignment = 2
-script = ExtResource("7_a747a")
 Action = "pause"
 
 [node name="RestartLevel" type="Control" parent="VBoxContainer"]
@@ -354,7 +335,7 @@ theme = ExtResource("5_yrvep")
 text = "Restart Level"
 uppercase = true
 
-[node name="SetRestartLevel" parent="VBoxContainer/RestartLevel" instance=ExtResource("3_lghrj")]
+[node name="SetRestartLevel" parent="VBoxContainer/RestartLevel" instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -364,14 +345,12 @@ offset_left = -128.0
 offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
-size_flags_horizontal = 3
-size_flags_vertical = 8
+focus_neighbor_top = NodePath("../../Pause/SetPause")
 focus_neighbor_right = NodePath("../../../Basic/Back")
-focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-text = "NONE"
+focus_neighbor_bottom = NodePath("../../Info/SetInfo")
+focus_next = NodePath("../../Info/SetInfo")
+focus_previous = NodePath("../../Pause/SetPause")
 alignment = 2
-script = ExtResource("7_a747a")
 Action = "move_restart_level"
 
 [node name="Info" type="Control" parent="VBoxContainer"]
@@ -388,7 +367,7 @@ theme = ExtResource("5_yrvep")
 text = "Level Info"
 uppercase = true
 
-[node name="SetInfo" parent="VBoxContainer/Info" instance=ExtResource("3_lghrj")]
+[node name="SetInfo" parent="VBoxContainer/Info" instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -398,14 +377,12 @@ offset_left = -128.0
 offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
-size_flags_horizontal = 3
-size_flags_vertical = 8
+focus_neighbor_top = NodePath("../../RestartLevel/SetRestartLevel")
 focus_neighbor_right = NodePath("../../../Basic/Back")
-focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-text = "NONE"
+focus_neighbor_bottom = NodePath("../../../Basic/Back")
+focus_next = NodePath("../../../Basic/Back")
+focus_previous = NodePath("../../RestartLevel/SetRestartLevel")
 alignment = 2
-script = ExtResource("7_a747a")
 Action = "level_info"
 
 [node name="Edit" type="Label" parent="VBoxContainer"]
@@ -429,4 +406,5 @@ offset_top = 128.0
 offset_right = 604.0
 offset_bottom = 256.0
 
-[connection signal="pressed" from="Basic/Back" to="Basic/Back" method="JumpToScene" binds= [&"uid://2h2s1iqemydd"]]
+[connection signal="pressed" from="Basic/Back" to="." method="OnBackButtonPressed"]
+[connection signal="pressed" from="Basic/Back" to="Basic/Back" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]
