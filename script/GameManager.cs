@@ -15,10 +15,12 @@ public partial class GameManager : Node {
     public static bool TitleScreenAnimationFinished;
     
     public static int Time { get; set; }
-    public static int Life { get; set; } = 3;
+    public static int Life { get; set; } = 4;
     public static int Score { get; set; }
     public static int Coin { get; set; } = 99;
 
+    public static int InitialLivesOfSingleLevel = 4;
+    
     public static int CurrentCheckpointId;
     public static Array<int> ActivatedCheckpoints = [];
 
@@ -27,11 +29,6 @@ public partial class GameManager : Node {
 
     public static bool IsGameOver;
     public static bool IsLevelPass;
-
-    // Todo: for test only
-    public static bool IsGodMode = true;
-
-    public static bool IsColorAccessibilityMode;
     
     [Export] private ContinuousAudioStream2D _1UPAudioStream2DNode = null!;
     public static ContinuousAudioStream2D Sound1UPAudioStream2D = null!;
@@ -48,12 +45,23 @@ public partial class GameManager : Node {
     public static float BgmPosition;
     public static string CustomBgmPackage = "Example";
     
+    public static bool IsColorAccessibilityMode;
+    
+    // Todo: for test only
+    public static bool IsGodMode = true;
+    
+    // Todo: Edit Options
+    public static int TemporaryFiles = 100;
+    
     public static Node2D? Player;
     public static PlayerMovement? PlayerMovementNode;
 
     public override void _Ready() {
         Sound1UPAudioStream2D = _1UPAudioStream2DNode;
         _timeClearSounds = GetNode("TimeClearSoundGroup").GetChildren();
+        
+        // 读取配置文件
+        ConfigManager.LoadConfig();
     }
     
     public override void _PhysicsProcess(double delta) {
