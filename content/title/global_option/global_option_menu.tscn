@@ -29,6 +29,7 @@ focus_previous = NodePath("../GameConfig")
 text = "CONTROLS"
 
 [node name="StaffRoll" parent="." instance=ExtResource("1_uy1or")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 6
 focus_neighbor_left = NodePath("../../VBoxContainerOptions/InitialLives/InitialLives")

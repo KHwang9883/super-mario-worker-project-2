@@ -18,14 +18,16 @@ public partial class HUD : Control {
     [Export] private Label _levelInfo = null!;
     [Export] private Label _scrollDisabled = null!;
     
+    private Node2D? _player;
+    private PlayerGodMode? _godModeNode;
+    private LevelConfig? _levelConfig;
+    
     private bool _timeWarned;
     private RandomNumberGenerator _rng = new RandomNumberGenerator();
     private float _rock;
     private float _timeHUDShake;
     private Vector2 _timeOriginPosition;
-    private Node2D? _player;
-    private PlayerGodMode? _godModeNode;
-    private LevelConfig? _levelConfig;
+    private string? _smwpGameWindowTitle;
 
     public override void _Ready() {
         _player ??= (Node2D)GetTree().GetFirstNodeInGroup("player");
@@ -37,6 +39,7 @@ public partial class HUD : Control {
             $"MF Style Beet: {YesOrNo(_levelConfig.MfStyleBeet)}\n" +
             $"Celeste Style Switch: {YesOrNo(_levelConfig.CelesteStyleSwitch)}\n" +
             $"MF Style Pipe Exit: {YesOrNo(_levelConfig.MfStylePipeExit)}";
+        _smwpGameWindowTitle = GetTree().Root.GetWindow().Title;
     }
     public override void _PhysicsProcess(double delta) {
         _godModeNode = (PlayerGodMode)_player!.GetMeta("PlayerGodMode");
@@ -76,6 +79,13 @@ public partial class HUD : Control {
         
         // Level Info
         _levelInfo.Visible = Input.IsActionPressed("level_info");
+        if (Input.IsActionJustPressed("level_info")) {
+            // Todo: 增加 SMWP1 / SMWP2 版本号显示
+            DisplayServer.WindowSetTitle($"[Level Author]: {_levelConfig?.LevelAuthor}");
+        } 
+        if (Input.IsActionJustReleased("level_info")) {
+            DisplayServer.WindowSetTitle(_smwpGameWindowTitle);
+        }
         
         // God Mode 摄像机模式坐标显示
         if (_player != null) {
