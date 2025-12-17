@@ -105,6 +105,8 @@ text = "4"
 alignment = 2
 
 [node name="TemporaryFiles" type="Control" parent="VBoxContainerOptions"]
+process_mode = 4
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -233,6 +235,9 @@ offset_left = 444.0
 offset_top = 128.0
 offset_right = 604.0
 offset_bottom = 256.0
+
+[node name="StaffRoll" parent="VBoxContainerMenu" index="2"]
+visible = false
 
 [node name="SmwpPopupGroup" type="Node" parent="."]
 

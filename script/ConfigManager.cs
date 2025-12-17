@@ -23,7 +23,6 @@ public static class ConfigManager {
         SmwpConfig.Load(ConfigPath);
         
         // Todo: InitialLivesOfSingleLevel
-        
         GameManager.InitialLivesOfSingleLevel =
             (int)SmwpConfig.GetValue("game_config", "initial_lives", 4);
         
@@ -41,6 +40,11 @@ public static class ConfigManager {
         
         GameManager.IsColorAccessibilityMode =
             (bool)SmwpConfig.GetValue("game_config", "color_assist", false);
+        
+        // Todo: IsGodMode
+        
+        // Todo: ControlConfig
+        
     }
 
     public static void SaveConfig() {
