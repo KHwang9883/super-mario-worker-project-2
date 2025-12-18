@@ -336,10 +336,9 @@ public partial class SmwlLoader : Node {
             }
             var success = true;
             int id = -1;
-            var position = Vector2.Zero;
+            var position = Vector2I.Zero;
             success = success && int.TryParse(line.AsSpan()[..3], out id);
-            success = success && float.TryParse(line.AsSpan()[3..7], out position.X);
-            success = success && float.TryParse(line.AsSpan()[7..11], out position.Y);
+            success = success && ClassicSmwpCodec.TryDecodeCoordinate(line.AsSpan()[3..11], out position);
             var metadata = line.Length == 11 ? "" : line[11..];
             if (success) {
                 result.Add(new ClassicSmwlObject {
