@@ -166,6 +166,7 @@ offset_right = 413.0
 offset_bottom = 96.0
 
 [node name="LevelConfig" type="Node" parent="TestLevelNode2D" groups=["level_config"]]
+process_mode = 3
 script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
 RoomHeight = 6400.0
@@ -200,6 +201,7 @@ stream = ExtResource("5_i0wvf")
 script = ExtResource("6_sw1t7")
 
 [node name="Weather" type="Node" parent="TestLevelNode2D/LevelConfig"]
+process_mode = 1
 
 [node name="WeatherController" parent="TestLevelNode2D/LevelConfig/Weather" instance=ExtResource("2_fw3fg")]
 
@@ -1048,6 +1050,15 @@ position = Vector2(5520, 272)
 LinkedWithObject = 2
 BgmId = 116
 
+[node name="SpikeMW" parent="TestLevelNode2D" instance=ExtResource("13_dhetq")]
+position = Vector2(4816, 272)
+
+[node name="Beetroot" parent="TestLevelNode2D" instance=ExtResource("18_6xv5h")]
+position = Vector2(4816, 274)
+
+[node name="Beetroot2" parent="TestLevelNode2D" instance=ExtResource("18_6xv5h")]
+position = Vector2(4816, 274)
+
 [node name="Koopas" type="Node2D" parent="TestLevelNode2D"]
 
 [node name="Koopa" parent="TestLevelNode2D/Koopas" instance=ExtResource("90_13tsj")]
@@ -1056,17 +1067,8 @@ position = Vector2(5488, 248)
 [node name="Koopa2" parent="TestLevelNode2D/Koopas" instance=ExtResource("90_13tsj")]
 position = Vector2(6632, 416)
 
-[node name="SpikeMW" parent="." instance=ExtResource("13_dhetq")]
-position = Vector2(4816, 272)
-
-[node name="Beetroot" parent="." instance=ExtResource("18_6xv5h")]
-position = Vector2(4816, 274)
-
-[node name="Beetroot2" parent="." instance=ExtResource("18_6xv5h")]
-position = Vector2(4816, 274)
-
-[connection signal="popup_hide" from="TestLevelNode2D/GamePausePopup" to="TestLevelNode2D/LevelConfig" method="SetResume"]
 [connection signal="pressed" from="TestLevelNode2D/GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonYes" to="TestLevelNode2D/LevelConfig" method="QuitLevel"]
+[connection signal="pressed" from="TestLevelNode2D/GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonNo" to="TestLevelNode2D/LevelConfig" method="SetResume"]
 [connection signal="GamePaused" from="TestLevelNode2D/LevelConfig" to="TestLevelNode2D/GamePausePopup" method="show"]
 [connection signal="GameResumed" from="TestLevelNode2D/LevelConfig" to="TestLevelNode2D/GamePausePopup" method="hide"]
 [connection signal="ModuleResourceConvert" from="TestLevelNode2D/LevelConfig/BgmPlayer" to="TestLevelNode2D/LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]

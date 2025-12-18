@@ -1,16 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2yrgj2s3hg6f"]
+[gd_scene load_steps=3 format=3 uid="uid://d2yrgj2s3hg6f"]
 
 [ext_resource type="PackedScene" uid="uid://bxvt6eyfyn5b3" path="res://content/ui/popup/popup_component/smwp_popup_label.tscn" id="1_ug758"]
 [ext_resource type="PackedScene" uid="uid://caf7un75kne3a" path="res://content/ui/popup/popup_component/smwp_popup_button.tscn" id="3_genda"]
-
-[sub_resource type="GDScript" id="GDScript_d58o1"]
-script/source = "extends PopupPanel
-
-func _ready():
-	self.exclusive = true
-	print(\"exclusive： \", self.exclusive)
-	
-"
 
 [node name="GamePausePopup" type="PopupPanel"]
 process_mode = 3
@@ -19,7 +10,6 @@ initial_position = 2
 size = Vector2i(417, 100)
 visible = true
 always_on_top = true
-script = SubResource("GDScript_d58o1")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

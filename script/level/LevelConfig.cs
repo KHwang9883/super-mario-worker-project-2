@@ -126,16 +126,18 @@ public partial class LevelConfig : Node {
         SwitchSwitched += OnRedSwitchSwitched;
     }
 
-    public override void _Input(InputEvent @event) {
-        base._Input(@event);
-        if (Input.IsActionJustPressed("pause") && !GetTree().Paused) {
+    public override void _PhysicsProcess(double delta) {
+        if (Input.IsActionJustPressed("pause") && GetTree().Paused) {
+            SetResume();
+            EmitSignal(SignalName.GameResumed);
+        } else if (Input.IsActionJustPressed("pause") && !GetTree().Paused || GameManager.TimeCountPause) { 
             GetTree().Paused = true;
             GameManager.TimeCountPause = true;
             EmitSignal(SignalName.GamePaused);
-        } else if (Input.IsActionJustPressed("pause") && GetTree().Paused) {
-            GetTree().Paused = false;
-            GameManager.TimeCountPause = false;
-            EmitSignal(SignalName.GameResumed);
+        }
+
+        if (Input.IsActionJustPressed("confirm") && GameManager.TimeCountPause) {
+            QuitLevel();
         }
     }
 
