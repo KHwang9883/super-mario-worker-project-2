@@ -4,28 +4,30 @@ using System.Collections.Generic;
 
 public partial class ActionRemapButton : SmwpButton {
     [Export] public string Action = null!;
-    private bool _settingKey;
+    private bool _allowSetting;
+    private bool _setting;
 
     public override void _Ready() {
-        Text = InputMap.GetActionDescription(Action)
-            .ToUpper()
-            .Replace("(PHYSICAL)", "")
-            .Trim();
         DisplayInputSetting();
     }
 
     public void OnButtonPressed() {
         //GD.Print("Focused.");
+        if (_setting) return;
         Text = "Press a key...".ToUpper();
         ReleaseFocus();
-        _settingKey = true;
+        _allowSetting = true;
     }
 
     public override void _Input(InputEvent @event) {
-        if (!_settingKey) return;
+        if (_setting && !Input.IsAnythingPressed()) {
+            _setting = false;
+        }
+        if (!_allowSetting) return;
         if (!Input.IsAnythingPressed()) return;
         
-        _settingKey = false;
+        _allowSetting = false;
+        _setting = true;
         
         // 键盘等设备按键设置
         var events = InputMap.ActionGetEvents(Action);
@@ -44,7 +46,6 @@ public partial class ActionRemapButton : SmwpButton {
         ConfigManager.SmwpConfig.SetValue("control_config", Action, InputMap.ActionGetEvents(Action));
         GrabFocus();
     }
-
     public void DisplayInputSetting() {
         var events = InputMap.ActionGetEvents(Action);
         List<string> keyboardInputs = new List<string>();

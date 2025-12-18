@@ -8,4 +8,4 @@ text = "NONE"
 script = ExtResource("2_p47jk")
 Action = ""
 
-[connection signal="pressed" from="." to="." method="OnButtonPressed"]
+[connection signal="button_down" from="." to="." method="OnButtonPressed"]
