@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ClassicSmwlObjectDatabase" load_steps=5 format=3 uid="uid://0v4lhxyi8awe"]
+
+[ext_resource type="PackedScene" uid="uid://d2kvp8mnj0j4u" path="res://content/level/enemy/goomba/goomba.tscn" id="1_o6ugl"]
+[ext_resource type="Script" uid="uid://bi6n5skn23yi3" path="res://script/level/data/ClassicSmwlObject.cs" id="1_pnc3v"]
+[ext_resource type="Script" uid="uid://bv4jp5nnhdxls" path="res://script/level/data/ClassicSmwlObjectDatabase.cs" id="2_o6ugl"]
+
+[sub_resource type="Resource" id="Resource_onpqw"]
+script = ExtResource("1_pnc3v")
+Id = 1
+Object = ExtResource("1_o6ugl")
+metadata/_custom_type_script = "uid://bi6n5skn23yi3"
+
+[resource]
+script = ExtResource("2_o6ugl")
+Entries = Array[Resource]([SubResource("Resource_onpqw")])
+metadata/_custom_type_script = "uid://bv4jp5nnhdxls"

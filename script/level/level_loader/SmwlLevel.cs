@@ -32,6 +32,9 @@ public partial class SmwlLevel : Node2D {
 
     private Node2D? _levelTemplate;
     private LevelConfig? _levelConfig;
+    
+    // Todo: player position set
+    private Node2D? _player;
 
     public override void _Ready() {
         base._Ready();
@@ -59,8 +62,13 @@ public partial class SmwlLevel : Node2D {
     }
 
     public void Install(SmwlLevelData data) {
+        // 设置文件头数据
         InstallHeader(data.Header);
+        // 设置额外设置
+        InstallAdditions(data.AdditionalSettings);
+        // 设置 Blocks
         InstallBlocks(data);
+        // 设置模仿者
         ImitatorBuilder imitatorBuilder = new(DatabaseHolder, BlocksTilemap.TileSet);
         foreach (var @object in data.Objects) {
             switch (@object.Id) {
@@ -87,26 +95,25 @@ public partial class SmwlLevel : Node2D {
         }
         imitatorBuilder.Clear();
         
+        // 数据设置结束，实例化关卡模板
         OnDataInstallFinished();
     }
 
     public void InstallHeader(ClassicSmwlHeaderData header) {
-        /*var background = DatabaseHolder.Backgrounds.Entries.FirstOrDefault(entry => entry.BackgroundId == header.LevelBackground);
-        if (background != null) {
-            AddChild(background.BackgroundScene.Instantiate());
-        } else {
-            GD.PushWarning($"Unknown background id: {header.LevelBackground}");
-        }*/
-        _levelConfig.RoomWidth = header.Width;
-        _levelConfig.RoomHeight = header.Height;
-        _levelConfig.LevelTitle = header.Title;
-        _levelConfig.LevelAuthor = header.Author;
-        _levelConfig.Time = header.LevelTime;
+        if (_levelConfig == null) {
+            GD.PushError("InstallHeader: _levelConfig is null!");
+            return;
+        }
+        _levelConfig.RoomWidth = header.RoomWidth;
+        _levelConfig.RoomHeight = header.RoomHeight;
+        _levelConfig.LevelTitle = header.LevelTitle;
+        _levelConfig.LevelAuthor = header.LevelAuthor;
+        _levelConfig.Time = header.Time;
         _levelConfig.Gravity = header.Gravity;
-        _levelConfig.KoopaEnergy = header.BossEnergy;
-        _levelConfig.WaterHeight = header.WaterLevel;
-        _levelConfig.BgpId = header.LevelBackground;
-        _levelConfig.BgmId = header.BackgroundMusic;
+        _levelConfig.KoopaEnergy = header.KoopaEnergy;
+        _levelConfig.WaterHeight = header.WaterHeight;
+        _levelConfig.BgpId = header.BgpId;
+        _levelConfig.BgmId = header.BgmId;
         
     }
 
@@ -134,10 +141,47 @@ public partial class SmwlLevel : Node2D {
         }
     }
 
+    // Todo: ClassicSmwlObjectData 类?
+    public void InstallObjects() {
+        
+    }
+    
+    public void InstallAdditions(ClassicSmwlAdditionalSettingsData addition) {
+        if (_levelConfig == null) {
+            GD.PushError("InstallAddition: _levelConfig is null!");
+            return;
+        }
+        _levelConfig.ModifiedMovement = addition.ModifiedMovement;
+        _levelConfig.RotoDiscLayer = addition.RotoDiscLayer;
+        _levelConfig.LayerOrder = addition.LayerOrder;
+        _levelConfig.FluidType = addition.FluidType;
+        _levelConfig.AutoFluid = addition.AutoFluid;
+        _levelConfig.FluidT1 = addition.FluidT1;
+        _levelConfig.FluidT2 = addition.FluidT2;
+        _levelConfig.FluidSpeed = addition.FluidSpeed;
+        _levelConfig.FluidDelay = addition.FluidDelay;
+        _levelConfig.AdvancedSwitch = addition.AdvancedSwitch;
+        _levelConfig.FastRetry = addition.FastRetry;
+        _levelConfig.MfStyleBeet = addition.MfStyleBeet;
+        _levelConfig.CelesteStyleSwitch = addition.CelesteStyleSwitch;
+        _levelConfig.MfStylePipeExit = addition.MfStylePipeExit;
+        _levelConfig.FasterLevelPass = addition.FasterLevelPass;
+        _levelConfig.HUDDisplay = addition.HUDDisplay;
+        _levelConfig.RainyLevel = addition.RainyLevel;
+        _levelConfig.FallingStarsLevel = addition.FallingStarsLevel;
+        _levelConfig.SnowyLevel = addition.SnowyLevel;
+        _levelConfig.ThunderLevel = addition.ThunderLevel;
+        _levelConfig.WindyLevel = addition.WindyLevel;
+        _levelConfig.Darkness = addition.Darkness;
+        _levelConfig.Brightness = addition.Brightness;
+        _levelConfig.ThwompActivateBlocks = addition.ThwompActivateBlocks;
+    }
+    
     // 数据开始读取，准备填装数据
     public void OnDataInstallStarted() {
         _levelTemplate = LevelTemplate.Instantiate<Node2D>();
         _levelConfig = _levelTemplate.GetNode<LevelConfig>("LevelConfig");
+        _player = _levelTemplate.GetNode<Node2D>("Mario");
     }
 
     // 数据读取完毕，实例化关卡模版

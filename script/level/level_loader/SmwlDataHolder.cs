@@ -7,7 +7,7 @@ namespace SMWP.Level;
 
 public partial class SmwlDataHolder : Node {
     [Export] public SmwpBlockDatabase BlockDatabase { get; private set; } = null!;
-    [Export] public BackgroundDatabase Backgrounds { get; private set; } = null!;
+    [Export] public ClassicSmwlObjectDatabase ObjectDatabase { get; private set; } = null!;
 
     public bool TryGetBlock(BlockId id, [NotNullWhen(true)] out SmwpBlockDatabaseEntry? block) {
         return ByBlockId.TryGetValue(id, out block);

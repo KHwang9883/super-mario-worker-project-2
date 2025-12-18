@@ -1,14 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5d467llk4uur"]
+[gd_scene load_steps=9 format=3 uid="uid://c5d467llk4uur"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/level_loader/SmwlLevel.cs" id="1_rpefo"]
 [ext_resource type="Script" uid="uid://c8yu81i46jf4r" path="res://script/level/level_loader/SmwlLoader.cs" id="1_wc7qm"]
 [ext_resource type="TileSet" uid="uid://bnf7dwxlyydri" path="res://content/level/tile/obstacles.tileset.tres" id="2_dugl1"]
-[ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/facility/solid/solid.tscn" id="2_y2vn4"]
-[ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="5_s4cnv"]
+[ext_resource type="Resource" uid="uid://0v4lhxyi8awe" path="res://content/level/database/object_database.tres" id="4_3dhsb"]
 [ext_resource type="Script" uid="uid://bsg2x1q80u5ee" path="res://script/level/level_loader/SmwlDataHolder.cs" id="5_y2vn4"]
 [ext_resource type="Resource" uid="uid://dg3a08a8q43kb" path="res://content/level/database/block_database.tres" id="6_4alqs"]
 [ext_resource type="TileSet" uid="uid://obv64rtoaukf" path="res://content/level/tile/blocks.tileset.tres" id="7_fn8k0"]
-[ext_resource type="PackedScene" uid="uid://btrs3yxvgq8sl" path="res://content/level/level_template.tscn" id="9_2gmkb"]
 
 [sub_resource type="GDScript" id="GDScript_fn8k0"]
 script/source = "extends Camera2D
@@ -22,20 +20,13 @@ func _process(delta: float) -> void:
 	return
 "
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("BlocksTilemap", "DatabaseHolder", "ObstacleTileMap", "SmwlLoader", "OpenSmwlDialog")]
+[node name="Level" type="Node2D"]
 script = ExtResource("1_rpefo")
-LevelTemplate = ExtResource("9_2gmkb")
-BlocksTilemap = NodePath("Block Tile Map")
-DatabaseHolder = NodePath("Database Holder")
-ObstacleTileMap = NodePath("Obstacle Tile Map")
-UnalignedObstaclePrefab = ExtResource("2_y2vn4")
-SmwlLoader = NodePath("SMWL Loader")
-OpenSmwlDialog = NodePath("Open SMWL File")
 
 [node name="Database Holder" type="Node" parent="."]
 script = ExtResource("5_y2vn4")
 BlockDatabase = ExtResource("6_4alqs")
-Backgrounds = ExtResource("5_s4cnv")
+ObjectDatabase = ExtResource("4_3dhsb")
 
 [node name="Obstacle Tile Map" type="TileMapLayer" parent="."]
 visible = false
