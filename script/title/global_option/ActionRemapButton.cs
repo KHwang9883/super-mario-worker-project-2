@@ -32,15 +32,19 @@ public partial class ActionRemapButton : SmwpButton {
         // 键盘等设备按键设置
         var events = InputMap.ActionGetEvents(Action);
         if (@event is not InputEventJoypadButton or InputEventJoypadMotion) {
-            InputMap.ActionEraseEvent(Action, InputMap.ActionGetEvents(Action)[0]);
+            InputMap.ActionEraseEvents(Action);
             InputMap.ActionAddEvent(Action, @event);
+            if (events.Count > 1) {
+                InputMap.ActionAddEvent(Action, events[1]);
+            }
         }
         // 手柄按键设置
         else {
-            if (InputMap.ActionGetEvents(Action).Count > 1) {
-                InputMap.ActionEraseEvent(Action, InputMap.ActionGetEvents(Action)[1]);
+            InputMap.ActionEraseEvents(Action);
+            InputMap.ActionAddEvent(Action, events[0]);
+            if (events.Count > 1) {
+                InputMap.ActionAddEvent(Action, @event);
             }
-            InputMap.ActionAddEvent(Action, @event);
         }
 
         DisplayInputSetting();
