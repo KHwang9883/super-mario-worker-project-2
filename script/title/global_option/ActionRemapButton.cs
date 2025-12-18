@@ -37,7 +37,9 @@ public partial class ActionRemapButton : SmwpButton {
         }
         // 手柄按键设置
         else {
-            InputMap.ActionEraseEvent(Action, InputMap.ActionGetEvents(Action)[1]);
+            if (InputMap.ActionGetEvents(Action).Count > 1) {
+                InputMap.ActionEraseEvent(Action, InputMap.ActionGetEvents(Action)[1]);
+            }
             InputMap.ActionAddEvent(Action, @event);
         }
 
