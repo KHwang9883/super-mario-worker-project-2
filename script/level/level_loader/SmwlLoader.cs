@@ -60,9 +60,10 @@ public partial class SmwlLoader : Node {
         success = success && (title = line = await ReadLineAsync(reader)) != null;
         success = success && (author = line = await ReadLineAsync(reader)) != null;
         // 关卡时间，重力，boss 血量，水位深度
-        float time = 0, gravity = 0, waterLevel = 0;
+        int time = 0;
+        float gravity = 0, waterLevel = 0;
         int bossEnergy = 0;
-        success = success && float.TryParse(line = await ReadLineAsync(reader), out time);
+        success = success && int.TryParse(line = await ReadLineAsync(reader), out time);
         success = success && float.TryParse(line = await ReadLineAsync(reader), out gravity);
         success = success && int.TryParse(line = await ReadLineAsync(reader), out bossEnergy);
         success = success && float.TryParse(line = await ReadLineAsync(reader), out waterLevel);
