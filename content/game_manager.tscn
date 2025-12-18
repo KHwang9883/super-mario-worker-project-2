@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="3_7kt2t"]
 [ext_resource type="AudioStream" uid="uid://djho1koojamaj" path="res://content/sound/time_clear.se.wav" id="4_l1sjc"]
 
-[node name="GameManager" type="Node" node_paths=PackedStringArray("_1UPAudioStream2DNode")]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("_1UPAudioStream2DNode") groups=["game_manager"]]
 process_mode = 3
 script = ExtResource("1_tjkx6")
 _1UPAudioStream2DNode = NodePath("1UP")

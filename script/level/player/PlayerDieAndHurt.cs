@@ -66,6 +66,10 @@ public partial class PlayerDieAndHurt : Node {
             _deadTimer++;
             var deadTime = !_levelConfig.FastRetry ? 180 : 90;
             if (_deadTimer >= deadTime) {
+                // 设置状态全局记录
+                GameManager.PlayerSuitRestore = _playerMediator.playerSuit.Suit;
+                GameManager.PlayerPowerupRestore = _playerMediator.playerSuit.Powerup;
+                
                 // Restart Level
                 if (GameManager.Life > 0) {
                     GetTree().ReloadCurrentScene();
@@ -86,7 +90,8 @@ public partial class PlayerDieAndHurt : Node {
                         // Todo: 跳转到编辑界面或者标题界面
                         
                         GameManager.GameOverClear();
-                        GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
+                        var gameManager = GetTree().Root.GetNode<GameManager>("GameManager");
+                        gameManager.JumpToLevel();
                     }
                 }
             }
@@ -155,9 +160,6 @@ public partial class PlayerDieAndHurt : Node {
         _player.Visible = false;
         _player.ProcessMode = ProcessModeEnum.Disabled;
         EmitSignal(SignalName.PlayerDiedSucceeded);
-
-        // 变为小个子
-        _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Small;
         
         // 扣命
         GameManager.Life--;

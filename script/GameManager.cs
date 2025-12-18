@@ -20,6 +20,9 @@ public partial class GameManager : Node {
     public static int Coin { get; set; } = 99;
 
     public static int InitialLivesOfSingleLevel = 4;
+
+    public static PlayerSuit.SuitEnum PlayerSuitRestore = PlayerSuit.SuitEnum.Small;
+    public static PlayerSuit.PowerupEnum PlayerPowerupRestore = PlayerSuit.PowerupEnum.Fireball;
     
     public static int CurrentCheckpointId;
     public static Array<int> ActivatedCheckpoints = [];
@@ -213,7 +216,7 @@ public partial class GameManager : Node {
         IsLevelPass = false;
         
         // Todo: 关卡跳转 / 回到标题画面 / 编辑界面
+        // Todo: 非 Scenario 下一关则 PlayerSuitRestore 清空
         GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
-        
     }
 }

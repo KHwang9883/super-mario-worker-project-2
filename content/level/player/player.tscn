@@ -189,7 +189,6 @@ script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
 _starmanCombo = NodePath("../../ComboComponent")
 _smwpPointLight2D = NodePath("../../SmwpPointLight2D")
-Suit = 2
 
 [node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_starmanCombo", "_addScoreComponent")]
 script = ExtResource("12_tpspr")
@@ -275,6 +274,7 @@ script = ExtResource("30_sba15")
 [connection signal="PlaySoundBreak" from="PlayerMediator/PlayerDieAndHurt" to="Break" method="play"]
 [connection signal="PlaySoundGameOver" from="PlayerMediator/PlayerDieAndHurt" to="GameOver" method="play"]
 [connection signal="PlayerDied" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerInteraction" method="HurtSucceedSet"]
+[connection signal="PlayerDiedSucceeded" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerSuit" method="OnPlayerDied"]
 [connection signal="PlayerDiedSucceeded" from="PlayerMediator/PlayerDieAndHurt" to="Starman" method="stop"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerHurt"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerInteraction" method="HurtSucceedSet"]
