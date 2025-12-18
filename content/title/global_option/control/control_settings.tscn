@@ -17,6 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lghrj")
+InitialFocusButton = NodePath("VBoxContainer/Up/SetUp")
 
 [node name="Basic" type="Control" parent="."]
 layout_mode = 1
@@ -50,7 +51,7 @@ offset_top = 425.0
 offset_right = 622.0
 offset_bottom = 459.0
 focus_neighbor_left = NodePath("../../VBoxContainerOptions/InitialLives/SetInitialLives")
-focus_neighbor_top = NodePath("../../VBoxContainerMenu/GameConfig")
+focus_neighbor_top = NodePath("../../GlobalOptionMenu/GameConfig")
 text = ""
 script = ExtResource("4_a747a")
 
@@ -399,7 +400,7 @@ theme = ExtResource("5_yrvep")
 text = "COMING SOON!"
 uppercase = true
 
-[node name="VBoxContainerMenu" parent="." instance=ExtResource("6_6mkpa")]
+[node name="GlobalOptionMenu" parent="." instance=ExtResource("6_6mkpa")]
 layout_mode = 0
 offset_left = 444.0
 offset_top = 128.0
@@ -408,3 +409,5 @@ offset_bottom = 256.0
 
 [connection signal="pressed" from="Basic/Back" to="." method="OnBackButtonPressed"]
 [connection signal="pressed" from="Basic/Back" to="Basic/Back" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]
+
+[editable path="GlobalOptionMenu"]

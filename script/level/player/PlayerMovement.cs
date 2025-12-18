@@ -843,6 +843,9 @@ public partial class PlayerMovement : Node {
             && _player.Position.Y < autoScroll.ScrollRect.End.Y) {
                 
             _levelCamera.CameraMode = LevelCamera.CameraModeEnum.AutoScroll;
+            
+            // 镜头限制取消
+            CameraLimitFree();
         }
         
         // Checkpoint 处复活，检测周围滚屏节点，只检测一次
@@ -860,6 +863,8 @@ public partial class PlayerMovement : Node {
                 // 强行设置强制滚屏的节点
                 _levelCamera.ForceSetScrollNode(autoScrollCheckpoint);
                 //GD.Print($"Current CP Auto Scroll Node: {autoScrollCheckpoint.Name}");
+                // 镜头限制取消
+                CameraLimitFree();
                 // 检测到一个就停止
                 break;
             }
@@ -896,15 +901,23 @@ public partial class PlayerMovement : Node {
             // 自动滚屏会自动取消
             
             // 镜头限制取消
-            if (_levelConfig == null) {
-                GD.PushError("KoopaScrollDetect: LevelConfig is null!");
-                return;
-            }
-            
-            _levelCamera.LimitLeft = 0;
-            _levelCamera.LimitTop = 0;
-            _levelCamera.LimitRight = (int)_levelConfig.RoomWidth;
-            _levelCamera.LimitBottom = (int)_levelConfig.RoomHeight;
+            CameraLimitFree();
         }
+    }
+
+    public void CameraLimitFree() {
+        if (_levelConfig == null) {
+            GD.PushError("KoopaScrollDetect: LevelConfig is null!");
+            return;
+        }
+        if (_levelCamera == null) {
+            GD.PushError("KoopaScrollDetect: LevelCamera is null!");
+            return;
+        }
+            
+        _levelCamera.LimitLeft = 0;
+        _levelCamera.LimitTop = 0;
+        _levelCamera.LimitRight = (int)_levelConfig.RoomWidth;
+        _levelCamera.LimitBottom = (int)_levelConfig.RoomHeight;
     }
 }

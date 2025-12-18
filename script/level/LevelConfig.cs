@@ -10,6 +10,11 @@ namespace SMWP.Level;
 [GlobalClass]
 public partial class LevelConfig : Node {
     [Signal]
+    public delegate void GamePausedEventHandler();
+    [Signal]
+    public delegate void GameResumedEventHandler();
+    
+    [Signal]
     public delegate void SwitchSwitchedEventHandler(SwitchTypeEnum switchType);
     
     [ExportGroup("BasicLevelSettings")]
@@ -121,6 +126,29 @@ public partial class LevelConfig : Node {
         SwitchSwitched += OnRedSwitchSwitched;
     }
 
+    public override void _Input(InputEvent @event) {
+        base._Input(@event);
+        if (Input.IsActionJustPressed("pause") && !GetTree().Paused) {
+            GetTree().Paused = true;
+            GameManager.TimeCountPause = true;
+            EmitSignal(SignalName.GamePaused);
+        } else if (Input.IsActionJustPressed("pause") && GetTree().Paused) {
+            GetTree().Paused = false;
+            GameManager.TimeCountPause = false;
+            EmitSignal(SignalName.GameResumed);
+        }
+    }
+
+    public void SetResume() {
+        GetTree().Paused = false;
+        GameManager.TimeCountPause = false;
+    }
+
+    public void QuitLevel() {
+        var gameManager = GetTree().Root.GetNode<GameManager>("GameManager");
+        gameManager.JumpToLevel();
+    }
+    
     public void SetBgm(int bgmId) {
         BgmId = bgmId;
         GetNode<BgmPlayer>("BgmPlayer").SetBgm(true);

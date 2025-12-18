@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dt7l3dwnjlq3o" path="res://script/title/global_option/GlobalOptionMenu.cs" id="1_sp4ee"]
 [ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="1_uy1or"]
 
-[node name="VBoxContainerMenu" type="VBoxContainer"]
+[node name="GlobalOptionMenu" type="VBoxContainer"]
 offset_left = 448.0
 offset_top = 96.0
 offset_right = 608.0

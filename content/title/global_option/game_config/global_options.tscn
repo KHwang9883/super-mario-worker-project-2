@@ -61,7 +61,7 @@ offset_top = 425.0
 offset_right = 622.0
 offset_bottom = 459.0
 focus_neighbor_left = NodePath("../../VBoxContainerOptions/InitialLives/SetInitialLives")
-focus_neighbor_top = NodePath("../../VBoxContainerMenu/GameConfig")
+focus_neighbor_top = NodePath("../../GlobalOptionMenu/GameConfig")
 text = ""
 script = ExtResource("5_sxxdp")
 
@@ -229,15 +229,12 @@ focus_previous = NodePath("../../CustomMusic/SetCustomMusic")
 text = "NO"
 alignment = 2
 
-[node name="VBoxContainerMenu" parent="." instance=ExtResource("7_b2g60")]
+[node name="GlobalOptionMenu" parent="." instance=ExtResource("7_b2g60")]
 layout_mode = 0
 offset_left = 444.0
 offset_top = 128.0
 offset_right = 604.0
 offset_bottom = 256.0
-
-[node name="StaffRoll" parent="VBoxContainerMenu" index="2"]
-visible = false
 
 [node name="SmwpPopupGroup" type="Node" parent="."]
 
@@ -269,7 +266,7 @@ offset_bottom = 156.0
 [connection signal="pressed" from="SmwpPopupGroup/SmwpPopupTemporaryFiles/Control/VBoxContainer/Button" to="." method="SetTemporaryFiles"]
 [connection signal="pressed" from="SmwpPopupGroup/SmwpPopupCustomMusicPackage/Control/VBoxContainer/Button" to="." method="SetCustomMusicPackage"]
 
-[editable path="VBoxContainerMenu"]
+[editable path="GlobalOptionMenu"]
 [editable path="SmwpPopupGroup/SmwpPopupInitialLives"]
 [editable path="SmwpPopupGroup/SmwpPopupTemporaryFiles"]
 [editable path="SmwpPopupGroup/SmwpPopupCustomMusicPackage"]
