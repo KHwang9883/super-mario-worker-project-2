@@ -2,6 +2,9 @@ using Godot;
 
 namespace SMWP.Level.Data;
 
+/// <summary>
+/// 方块数据条目，一个实例代表一种方块。
+/// </summary>
 [GlobalClass]
 public partial class SmwpBlockDatabaseEntry : Resource {
     /// <summary>

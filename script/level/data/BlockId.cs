@@ -4,6 +4,11 @@ using Godot;
 
 namespace SMWP.Level.Data;
 
+/// <summary>
+/// 代表一个 BlocksData 中的两位数方块 id。
+/// </summary>
+/// <param name="Char0">方块 id 的第一个字符</param>
+/// <param name="Char1">方块 id 的第二个字符</param>
 [StructLayout(LayoutKind.Explicit)]
 public readonly record struct BlockId(
     [field: FieldOffset(0)] byte Char0,

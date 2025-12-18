@@ -1,0 +1,25 @@
+using Godot;
+using SMWP.Util;
+
+namespace SMWP.Level.Loader.Processing;
+
+/// <summary>
+/// 探照灯额外数据处理器
+/// </summary>
+public partial class RotoDiscMetadataProcessor : ObjectProcessor {
+    public override void ProcessObject(Node instance, string metadata) {
+        if (!instance.TryGetComponent(out RotoDiscMovement? movement)) {
+            return;
+        }
+        
+        if (float.TryParse(metadata[..3], out var radius)) {
+            movement.Radius = radius;
+        }
+        if (float.TryParse(metadata[3..6], out var angle)) {
+            movement.Angle = angle;
+        }
+        if (float.TryParse(metadata[6..9], out var speed)) {
+            movement.Speed = speed;
+        }
+    }
+}

@@ -97,6 +97,7 @@ public partial class SmwlLoader : Node {
     }
 
     private async ValueTask<ClassicSmwlAdditionalSettingsData?> ParseAddition(TextReader reader) {
+        return new ClassicSmwlAdditionalSettingsData();
         var success = true;
         var line = "";
 
@@ -321,13 +322,18 @@ public partial class SmwlLoader : Node {
         Array<ClassicSmwlObject> result = [];
         while (true) {
             // 检测到 SMWP 二期的扩展关卡数据则返回
-            if (!char.IsNumber((char)reader.Peek())) {
+            var first = (char)reader.Peek();
+            if (!char.IsNumber(first)) {
                 break;
             }
             var line = await ReadLineAsync(reader);
             // 关卡文件结尾，跳出循环
             if (line == null) {
                 break;
+            }
+            // 将水管连接的 id 转换为 499 以方便处理
+            if (first == '4') {
+                line = line.Insert(1, "99");
             }
             // 长度小于 11 的行为错误行，记录错误
             if (line.Length < 11) {

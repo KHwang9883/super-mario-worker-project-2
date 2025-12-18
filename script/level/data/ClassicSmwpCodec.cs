@@ -3,6 +3,10 @@ using Godot;
 
 namespace SMWP.Level.Data;
 
+/// <summary>
+/// 编解码旧版 smwp 的压缩数据的方法，
+/// 包括但不限于大于 9999 的四位数坐标（A000 - z999）等。
+/// </summary>
 public static class ClassicSmwpCodec {
     public static bool TryDecodeCoordinate(ReadOnlySpan<char> serialized, out Vector2I result) {
         if (serialized.Length != 8) {

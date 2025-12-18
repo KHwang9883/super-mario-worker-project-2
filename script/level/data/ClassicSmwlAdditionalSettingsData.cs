@@ -1,6 +1,6 @@
 using Godot;
-using System;
-using SMWP.Level;
+
+namespace SMWP.Level.Data;
 
 [GlobalClass]
 public partial class ClassicSmwlAdditionalSettingsData : Resource {

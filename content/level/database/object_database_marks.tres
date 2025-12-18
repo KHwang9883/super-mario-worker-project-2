@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=23 format=3 uid="uid://dl0a3bifygfie"]
+
+[ext_resource type="PackedScene" uid="uid://2i5erl0ya4vb" path="res://content/level/facility/giant_gate/giant_gate.tscn" id="1_qgjfj"]
+[ext_resource type="Script" uid="uid://cpxsb6lorrux4" path="res://script/level/data/SmwpObjectDatabaseEntry.cs" id="2_qgl4e"]
+[ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/facility/solid/solid.tscn" id="3_4by0s"]
+[ext_resource type="PackedScene" uid="uid://dwkukt5v4t3p5" path="res://content/level/player/player.tscn" id="4_2ce3g"]
+[ext_resource type="PackedScene" uid="uid://b28cg8xhy4d4y" path="res://content/level/facility/checkpoint/checkpoint.tscn" id="5_ng3f8"]
+[ext_resource type="PackedScene" uid="uid://cmmb4r0nb8788" path="res://content/level/facility/sealer/sealer.tscn" id="6_0uytu"]
+[ext_resource type="PackedScene" uid="uid://ql8eu02wkcf5" path="res://content/level/facility/auto_scroll/auto_scroll.tscn" id="7_liha5"]
+[ext_resource type="Script" uid="uid://bjb4gqto4sgu3" path="res://script/level/data/SmwpObjectDatabase.cs" id="8_15nfl"]
+[ext_resource type="PackedScene" uid="uid://d2hm1ej2l7abm" path="res://content/level/facility/platform/plarform_horizontal_marker.tscn" id="8_qgl4e"]
+[ext_resource type="PackedScene" uid="uid://1yjr75w8clry" path="res://content/level/block/message_block/message_block.tscn" id="9_y0f4k"]
+[ext_resource type="PackedScene" uid="uid://ix3t4xs7phce" path="res://content/level/block/ice_block/ice_block.tscn" id="10_bn5g2"]
+[ext_resource type="PackedScene" uid="uid://bh2mcrx4e1dx1" path="res://content/level/bad_object.tscn" id="11_mv5g0"]
+
+[sub_resource type="Resource" id="Resource_4by0s"]
+script = ExtResource("2_qgl4e")
+Id = 217
+Prefab = ExtResource("1_qgjfj")
+SpawnOffset = Vector2(16, 0)
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[sub_resource type="Resource" id="Resource_qgjfj"]
+script = ExtResource("2_qgl4e")
+Id = 218
+Prefab = ExtResource("3_4by0s")
+SpawnOffset = Vector2(0, 0)
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[sub_resource type="Resource" id="Resource_ng3f8"]
+script = ExtResource("2_qgl4e")
+Id = 219
+Prefab = ExtResource("4_2ce3g")
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[sub_resource type="Resource" id="Resource_2ce3g"]
+script = ExtResource("2_qgl4e")
+Id = 220
+Prefab = ExtResource("5_ng3f8")
+SpawnOffset = Vector2(16, 0)
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[sub_resource type="Resource" id="Resource_0uytu"]
+script = ExtResource("2_qgl4e")
+Id = 222
+Prefab = ExtResource("6_0uytu")
+SpawnOffset = Vector2(0, 0)
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[sub_resource type="Resource" id="Resource_liha5"]
+script = ExtResource("2_qgl4e")
+Id = 223
+Prefab = ExtResource("7_liha5")
+SpawnOffset = Vector2(0, 0)
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[sub_resource type="Resource" id="Resource_y0f4k"]
+script = ExtResource("2_qgl4e")
+Id = 224
+Prefab = ExtResource("8_qgl4e")
+SpawnOffset = Vector2(0, 0)
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[sub_resource type="Resource" id="Resource_qgl4e"]
+script = ExtResource("2_qgl4e")
+Id = 226
+Prefab = ExtResource("9_y0f4k")
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[sub_resource type="Resource" id="Resource_mv5g0"]
+script = ExtResource("2_qgl4e")
+Id = 230
+Prefab = ExtResource("10_bn5g2")
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[sub_resource type="Resource" id="Resource_bn5g2"]
+script = ExtResource("2_qgl4e")
+Id = 499
+Prefab = ExtResource("11_mv5g0")
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[resource]
+script = ExtResource("8_15nfl")
+Entries = Array[Object]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_4by0s"), SubResource("Resource_qgjfj"), SubResource("Resource_ng3f8"), SubResource("Resource_2ce3g"), null, SubResource("Resource_0uytu"), SubResource("Resource_liha5"), SubResource("Resource_y0f4k"), null, SubResource("Resource_qgl4e"), null, null, null, SubResource("Resource_mv5g0"), null, null, null, null, SubResource("Resource_bn5g2")])

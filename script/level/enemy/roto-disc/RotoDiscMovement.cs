@@ -5,9 +5,10 @@ using SMWP.Level;
 public partial class RotoDiscMovement : Node {
     [Export] private PackedScene _rotoDiscCenterScene = null!;
 
-    [Export] private float _radius = 32f;
-    [Export] private float _angle;
-    [Export] private float _speed = 1f;
+    /* 这些数据要被读取器设置，所以需要公开 */
+    [Export] public float Radius { get; set; } = 32f;
+    [Export] public float Angle { get; set; }
+    [Export] public float Speed { get; set; } = 1f;
 
     private Vector2 _originPosition;
     private Node2D? _parent;
@@ -27,17 +28,17 @@ public partial class RotoDiscMovement : Node {
     }
     public override void _PhysicsProcess(double delta) {
         if (_parent == null) return;
-        _angle = Mathf.Wrap(_angle + _speed, 0f, 360f);
+        Angle = Mathf.Wrap(Angle + Speed, 0f, 360f);
         _parent.Position =
             new Vector2(
-                _originPosition.X + Mathf.Sin(Mathf.DegToRad(_angle)) * _radius,
-                _originPosition.Y + Mathf.Cos(Mathf.DegToRad(_angle)) * _radius
+                _originPosition.X + Mathf.Sin(Mathf.DegToRad(Angle)) * Radius,
+                _originPosition.Y + Mathf.Cos(Mathf.DegToRad(Angle)) * Radius
                 );
     }
 
     public void OnSwitchToggled(LevelConfig.SwitchTypeEnum switchTypeEnum) {
         if (switchTypeEnum != LevelConfig.SwitchTypeEnum.Magenta) return;
         //GD.Print($"Advanced {switchTypeEnum} Switch Switched!");
-        _speed = -_speed;
+        Speed = -Speed;
     }
 }

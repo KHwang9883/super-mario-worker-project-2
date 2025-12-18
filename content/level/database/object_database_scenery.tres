@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=15 format=3 uid="uid://bkkmxp26vr8th"]
+
+[ext_resource type="PackedScene" uid="uid://3p80f56jyfek" path="res://content/level/scenery/scene/cloud.tscn" id="1_qq4ym"]
+[ext_resource type="Script" uid="uid://cpxsb6lorrux4" path="res://script/level/data/SmwpObjectDatabaseEntry.cs" id="2_4qocu"]
+[ext_resource type="PackedScene" uid="uid://dthyxr63w44iu" path="res://content/level/scenery/scene/bush.tscn" id="3_fskld"]
+[ext_resource type="PackedScene" uid="uid://buvk4q2wp25nn" path="res://content/level/scenery/scene/small_tree.tscn" id="4_fskld"]
+[ext_resource type="PackedScene" uid="uid://en6mqhriwi5c" path="res://content/level/scenery/scene/big_tree.tscn" id="5_dy1eh"]
+[ext_resource type="PackedScene" uid="uid://glk6udlnbi6p" path="res://content/level/scenery/scene/fence.tscn" id="6_uxyua"]
+[ext_resource type="PackedScene" uid="uid://cqa5wiuphnui0" path="res://content/level/scenery/scene/night_tree.tscn" id="7_uxyua"]
+[ext_resource type="Script" uid="uid://bjb4gqto4sgu3" path="res://script/level/data/SmwpObjectDatabase.cs" id="42_c502y"]
+
+[sub_resource type="Resource" id="Resource_hknmb"]
+script = ExtResource("2_4qocu")
+Id = 101
+Prefab = ExtResource("1_qq4ym")
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[sub_resource type="Resource" id="Resource_dy1eh"]
+script = ExtResource("2_4qocu")
+Id = 102
+Prefab = ExtResource("3_fskld")
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[sub_resource type="Resource" id="Resource_qq4ym"]
+script = ExtResource("2_4qocu")
+Id = 103
+Prefab = ExtResource("4_fskld")
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[sub_resource type="Resource" id="Resource_fskld"]
+script = ExtResource("2_4qocu")
+Id = 104
+Prefab = ExtResource("5_dy1eh")
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[sub_resource type="Resource" id="Resource_r4lll"]
+script = ExtResource("2_4qocu")
+Id = 105
+Prefab = ExtResource("6_uxyua")
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[sub_resource type="Resource" id="Resource_irntw"]
+script = ExtResource("2_4qocu")
+Id = 106
+Prefab = ExtResource("7_uxyua")
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
+[resource]
+script = ExtResource("42_c502y")
+Entries = Array[Object]([SubResource("Resource_hknmb"), SubResource("Resource_dy1eh"), SubResource("Resource_qq4ym"), SubResource("Resource_fskld"), SubResource("Resource_r4lll"), SubResource("Resource_irntw")])

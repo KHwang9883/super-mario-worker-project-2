@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using Godot;
+using Godot.Collections;
 using SMWP.Level.Data;
 
 namespace SMWP.Level;
@@ -20,18 +21,14 @@ public partial class SmwlLevel : Node2D {
     /// <summary>
     /// 坐标为 32 的整数倍的实心所用的 Tile 在 <see cref="ObstacleTileMap"/> 的 TileSet 的第 0 个 TileSource 中的坐标
     /// </summary>
-    [Export] public Vector2I ObstacleTileCoord { get; private set; }    
-    
-    /// <summary>
-    /// 坐标不为 32 的整数倍的实心的原型
-    /// </summary>
-    [Export] public PackedScene UnalignedObstaclePrefab { get; private set; } = null!;
+    [Export] public Vector2I ObstacleTileCoord { get; private set; }
     
     [Export] public SmwlLoader SmwlLoader { get; private set; } = null!;
     [Export] public FileDialog OpenSmwlDialog { get; private set; } = null!;
 
     private Node2D? _levelTemplate;
     private LevelConfig? _levelConfig;
+    private ImitatorBuilder _imitatorBuilder;
     
     // Todo: player position set
     private Node2D? _player;
@@ -39,8 +36,10 @@ public partial class SmwlLevel : Node2D {
     public override void _Ready() {
         base._Ready();
         // 测试用
-        OpenSmwlDialog.FileSelected += OnOpenSmwlDialogFileSelected;
-        OpenSmwlDialog.Visible = true;
+        // 改成拖拽加载了，更方便（
+        GetWindow().FilesDropped += files => OnOpenSmwlDialogFileSelected(files[0]);
+        // OpenSmwlDialog.FileSelected += OnOpenSmwlDialogFileSelected;
+        // OpenSmwlDialog.Visible = true;
     }
 
     private async void OnOpenSmwlDialogFileSelected(string file) {
@@ -66,34 +65,10 @@ public partial class SmwlLevel : Node2D {
         InstallHeader(data.Header);
         // 设置额外设置
         InstallAdditions(data.AdditionalSettings);
-        // 设置 Blocks
+        // 安装 Blocks
         InstallBlocks(data);
-        // 设置模仿者
-        ImitatorBuilder imitatorBuilder = new(DatabaseHolder, BlocksTilemap.TileSet);
-        foreach (var @object in data.Objects) {
-            switch (@object.Id) {
-                case 218: {
-                    var pos = @object.Position;
-                    if (pos.X % 32 == 0 && pos.Y % 32 == 0) {
-                        var tileCoord = (Vector2I)pos / 32;
-                        ObstacleTileMap.SetCell(tileCoord, 0, ObstacleTileCoord);
-                    } else {
-                        var obstacle = UnalignedObstaclePrefab.Instantiate<Node2D>();
-                        obstacle.GlobalPosition = pos;
-                        AddChild(obstacle);
-                    }
-                    break;
-                }
-                case SmwlLevelData.ImitatorId:
-                    imitatorBuilder.NextImitator(@object);
-                    break;
-            }
-        }
-        imitatorBuilder.Finish();
-        foreach (var tilemap in imitatorBuilder.FinishedTileMaps) {
-            AddChild(tilemap);
-        }
-        imitatorBuilder.Clear();
+        // 安装活动对象
+        InstallObjects(data.Objects);
         
         // 数据设置结束，实例化关卡模板
         OnDataInstallFinished();
@@ -141,9 +116,77 @@ public partial class SmwlLevel : Node2D {
         }
     }
 
-    // Todo: ClassicSmwlObjectData 类?
-    public void InstallObjects() {
-        
+    public void InstallObjects(Array<ClassicSmwlObject> objects) {
+        // 初始化模仿者 builder。
+        _imitatorBuilder = new ImitatorBuilder(DatabaseHolder, BlocksTilemap.TileSet);
+        // 安装物品
+        foreach (var @object in objects) {
+            // 安装需要特殊处理的对象（实心，模仿者等）
+            if (InstallSpecialObject(@object)) {
+                continue;
+            }
+            // 安装普通对象
+            // 每个对象对应一个 2D 场景。
+            InstallRegularObject(@object);
+        }
+        // 安装合并后的模仿者 TileMap
+        _imitatorBuilder.Finish();
+        foreach (var tilemap in _imitatorBuilder.FinishedTileMaps) {
+            AddChild(tilemap);
+        }
+        _imitatorBuilder.Clear();
+    }
+
+    private bool InstallSpecialObject(ClassicSmwlObject @object) {
+        switch (@object.Id) {
+            // 实心
+            case SpecialObjectIds.Obstacle: {
+                var pos = @object.Position;
+                if (pos.X % 32 == 0 && pos.Y % 32 == 0) {
+                    var tileCoord = (Vector2I)pos / 32;
+                    ObstacleTileMap.SetCell(tileCoord, 0, ObstacleTileCoord);
+                } else {
+                    InstallRegularObject(@object);
+                }
+                break;
+            }
+            // 模仿者
+            case SpecialObjectIds.Imitator:
+                _imitatorBuilder.NextImitator(@object);
+                break;
+            case SpecialObjectIds.LevelStart:
+                if (_player is { } player) {
+                    player.GlobalPosition = @object.Position;
+                    player.Translate(new Vector2(16, -16));
+                }
+                break;
+            default:
+                return false;
+        }
+        return true;
+    }
+
+    private void InstallRegularObject(ClassicSmwlObject @object) {
+        // 获取对象数据条目
+        if (!DatabaseHolder.TryGetObject(@object.Id, out var definition)) {
+            GD.PushWarning($"Unknown object id {@object.Id}");
+            return;
+        }
+        // 生成物品
+        if (definition.Prefab is not { } prefab) {
+            GD.PushError($"Trying to install regular object ({@object.Id}) with empty prefab");
+            return;
+        }
+        var instance = prefab.Instantiate();
+        if (instance is Node2D active) {
+            active.GlobalPosition = @object.Position;
+            active.Translate(definition.SpawnOffset);
+        }
+        if (definition.MetadataProcessor is { } processor) {
+            processor.ProcessObject(instance, @object.Metadata);
+        }
+        instance.ResetPhysicsInterpolation();
+        _levelTemplate!.AddChild(instance);
     }
     
     public void InstallAdditions(ClassicSmwlAdditionalSettingsData addition) {

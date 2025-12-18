@@ -2,6 +2,10 @@ using Godot;
 
 namespace SMWP.Level.Data;
 
+/// <summary>
+/// 经典 smwl 文件头数据。
+/// 存放了解析后的，从文件开头到 BlocksDataStart 之前的数据
+/// </summary>
 [GlobalClass]
 public partial class ClassicSmwlHeaderData : Resource {
     [Export] public int RoomWidth { get; set; } = 1024;
