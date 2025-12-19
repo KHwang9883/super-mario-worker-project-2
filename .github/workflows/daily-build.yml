@@ -10,7 +10,7 @@ permissions:
 # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
 
 env:
-  GODOT_VERSION: 4.5.1
+  GODOT_VERSION: 4.5
   EXPORT_NAME: SMWP2
   PROJECT_PATH: .
 
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-24.04  # Use 24.04 with godot 4
     environment: export
     container:
-      image: barichello/godot-ci:mono-4.5.1
+      image: barichello/godot-ci:mono-4.5
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -43,10 +43,10 @@ jobs:
           mkdir -v -p ~/.config/
           mv /root/.config/godot ~/.config/godot
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono
-      #- name: Build Godot .NET lib
-      #  run: |
-      #    cd $PROJECT_PATH
-      #    dotnet build
+      - name: Build Godot .NET lib
+        run: |
+          cd $PROJECT_PATH
+          dotnet build
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
@@ -63,7 +63,7 @@ jobs:
           DATE="$(date '+%Y%m%d')"
           SHORT_SHA="$(echo "${{ github.sha }}" | cut -c 1-7)"
           ZIP_NAME="${EXPORT_NAME}-windows-${DATE}-${SHORT_SHA}.zip"
-          zip -r "build/release/$ZIP_NAME" build/windows -x "*.DS_Store"
+          (cd build/windows && zip -r "../release/$ZIP_NAME" . -x "*.DS_Store")
           echo "ZIP created: build/release/$ZIP_NAME"
           echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
       - name: Install GitHub CLI and jq
@@ -102,3 +102,34 @@ jobs:
           prerelease: true
           generate_release_notes: false
           files: build/release/${{ env.ZIP_NAME }}
+      - name: Delete release assets older than 7 days
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          REPO="${{ github.repository }}"
+          TAG="daily-build"
+          echo "Looking up release for tag: $TAG"
+          RELEASE_JSON=$(gh api /repos/$REPO/releases/tags/$TAG 2>/dev/null || true)
+          if [ -z "$RELEASE_JSON" ]; then
+            echo "No release found for tag $TAG; nothing to delete"
+            exit 0
+          fi
+          RELEASE_ID=$(echo "$RELEASE_JSON" | jq -r '.id')
+          if [ -z "$RELEASE_ID" ] || [ "$RELEASE_ID" = "null" ]; then
+            echo "Failed to determine release id for tag $TAG"
+            exit 0
+          fi
+          now=$(date -u +%s)
+          cutoff=$((now - 7*24*3600))
+          echo "Release ID: $RELEASE_ID ; cutoff timestamp: $cutoff"
+          gh api /repos/$REPO/releases/$RELEASE_ID/assets --jq '.[] | "\(.id)\t\(.name)\t\(.created_at)"' | \
+            while IFS=$'\t' read -r id name created_at; do
+              created_ts=$(date -d "$created_at" +%s)
+              if [ "$created_ts" -lt "$cutoff" ]; then
+                echo "Deleting asset $name (id $id) created at $created_at"
+                gh api --method DELETE /repos/$REPO/releases/assets/$id || echo "Failed to delete asset id $id"
+              else
+                echo "Keeping asset $name (created at $created_at)"
+              fi
+            done
