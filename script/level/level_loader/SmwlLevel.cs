@@ -177,14 +177,16 @@ public partial class SmwlLevel : Node2D {
             GD.PushError($"Trying to install regular object ({@object.Id}) with empty prefab");
             return;
         }
-        var instance = prefab.Instantiate();
+        
+        var processor = definition.MetadataProcessor;
+        var instance = processor?.CreateInstance(definition, @object) ?? prefab.Instantiate();
+        
         if (instance is Node2D active) {
             active.GlobalPosition = @object.Position;
             active.Translate(definition.SpawnOffset);
         }
-        if (definition.MetadataProcessor is { } processor) {
-            processor.ProcessObject(instance, @object.Metadata);
-        }
+        processor?.ProcessObject(instance, @object.Metadata);
+        
         instance.ResetPhysicsInterpolation();
         _levelTemplate!.AddChild(instance);
     }

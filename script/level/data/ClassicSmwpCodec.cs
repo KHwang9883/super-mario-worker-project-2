@@ -43,13 +43,7 @@ public static class ClassicSmwpCodec {
             return OnTriageError($"Found non-number digit after first character when decoding coordinate value {serialized}", out result);
         }
         // 计算最高位
-        var headCharacter = serialized[0];
-        int head = headCharacter switch {
-            >= '0' and <= '9' => headCharacter - '0',
-            >= 'A' and <= 'Z' => headCharacter - 'A' + 10,
-            >= 'a' and <= 'z' => headCharacter - 'a' + 36,
-            _ => OnError<int>($"Unsupported first character: {headCharacter} when decoding coordinate value {serialized}"),
-        };
+        int head = Base62Decode(serialized[0]);
         
         result = head * 1000 + tail;
         return true;
@@ -72,20 +66,42 @@ public static class ClassicSmwpCodec {
             return true;
         }
         // 计算最高位，顺便计算余 1000 的部分（tail）
-        int head = Math.DivRem(value, 1000, out int tail);
-        int headCharacter = head switch {
-            >= 0 and < 10 => '0' + head,
-            >= 10 and < 36 => 'A' + head - 10,
-            >= 36 and < 62 => 'a' + head - 36,
-            _ => OnError("Coordinate value out of range, must be >= 0 and < 62000", -1),
-        };
-        if (headCharacter < 0) {
+        int head = Base62Encode(Math.DivRem(value, 1000, out int tail));
+        if (head < 0) {
             return false;
         }
         
-        buffer[0] = (char) headCharacter;
+        buffer[0] = (char) head;
         $"{tail:D3}".CopyTo(buffer[1..]);
         return true;
+    }
+
+    /// <summary>
+    /// 将一个字符解码为 0 ~ 62 范围内的数值。
+    /// </summary>
+    /// <param name="char">待解码的字符</param>
+    /// <returns>解码后的数值</returns>
+    public static int Base62Decode(char @char) {
+        return @char switch {
+            >= '0' and <= '9' => @char - '0',
+            >= 'A' and <= 'Z' => @char - 'A' + 10,
+            >= 'a' and <= 'z' => @char - 'a' + 36,
+            _ => OnError<int>($"Unsupported base62 character: {@char}"),
+        };
+    }
+
+    /// <summary>
+    /// 将 0 ~ 62 范围内的数值编码为一个字符。
+    /// </summary>
+    /// <param name="value">待编码的数值</param>
+    /// <returns>编码后的字符，遇到错误时返回 -1</returns>
+    public static int Base62Encode(int value) {
+        return (char) (value switch {
+            >= 0 and < 10 => '0' + value,
+            >= 10 and < 36 => 'A' + value - 10,
+            >= 36 and < 62 => 'a' + value - 36,
+            _ => OnError($"Base62 value {value} out of range", -1),
+        });
     }
 
     private static T OnError<T>(string message, T fallback = default) where T : struct {
