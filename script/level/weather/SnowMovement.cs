@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using SMWP.Level.Interface;
-using SMWP.Level.Tool;
+using SMWP.Util;
 
 public partial class SnowMovement : Node {
     public enum SnowStateEnum { Falling, Piece, Free }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using SMWP.Level;
-using SMWP.Level.Tool;
+using SMWP.Util;
 
 public partial class Lava : Area2D {
     [Export] private Water? _water;

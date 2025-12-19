@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using SMWP.Level.Block;
+using SMWP.Util;
 
 public partial class MessageBlock : BlockHit {
     [Export] private string _message = "";

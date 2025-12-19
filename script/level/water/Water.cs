@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using SMWP.Level;
-using SMWP.Level.Tool;
+using SMWP.Util;
 
 public partial class Water : Area2D {
     [Signal]

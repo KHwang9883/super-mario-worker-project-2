@@ -1,5 +1,5 @@
 using Godot;
-using SMWP.Level.Tool;
+using SMWP.Util;
 
 namespace SMWP.Level.Component;
 

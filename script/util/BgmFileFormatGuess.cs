@@ -1,9 +1,7 @@
-using System.IO;
 using System.Linq;
-using Godot;
 using FileAccess = Godot.FileAccess;
 
-namespace SMWP.Level.Tool;
+namespace SMWP.Util;
 
 public static class BgmFileFormatGuess {
     public enum BgmFileTypeEnum {

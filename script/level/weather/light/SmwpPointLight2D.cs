@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Linq.Expressions;
 using Godot.Collections;
-using SMWP.Level.Tool;
+using SMWP.Util;
 
 public partial class SmwpPointLight2D : Node2D {
     [Export] private Marker2D _marker = null!;

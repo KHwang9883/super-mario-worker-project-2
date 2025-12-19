@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using Godot.Collections;
-using SMWP.Level.Tool;
+using SMWP.Util;
 
 [Tool]
 public partial class CheepCheepArea : Area2D {
