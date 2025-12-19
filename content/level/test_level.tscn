@@ -45,7 +45,7 @@
 [ext_resource type="PackedScene" uid="uid://cejpown37o253" path="res://content/level/enemy/lakitu/lakitu.tscn" id="32_lxach"]
 [ext_resource type="PackedScene" uid="uid://btyhhhdhjf3sx" path="res://content/level/enemy/bullet_bill/bullet_bill.tscn" id="35_n7ka3"]
 [ext_resource type="PackedScene" uid="uid://dertrheuvws04" path="res://content/level/enemy/bullet_bill/bullet_bill_cannon.tscn" id="36_no08i"]
-[ext_resource type="PackedScene" uid="uid://yef1n42fxbd1" path="res://content/level/enemy/cheep-cheep/cheep-cheep_area/CheepCheepSwimArea.tscn" id="36_vgddd"]
+[ext_resource type="PackedScene" uid="uid://yef1n42fxbd1" path="res://content/level/enemy/cheep-cheep/cheep-cheep_area/cheep-cheep_area.tscn" id="36_vgddd"]
 [ext_resource type="PackedScene" uid="uid://cnljpmxjddchj" path="res://content/level/enemy/troopa/troopa_walking/troopa_blue.tscn" id="37_36qdp"]
 [ext_resource type="PackedScene" uid="uid://x2gl8vkl7afn" path="res://content/level/enemy/troopa/shell/shell_moving_beetle.tscn" id="37_lxach"]
 [ext_resource type="PackedScene" uid="uid://b2252u3w05f1u" path="res://content/level/enemy/cheep-cheep/cheep-cheep_spike.tscn" id="38_5t3id"]
