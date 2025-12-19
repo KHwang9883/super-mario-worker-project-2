@@ -3,8 +3,6 @@ on:
   # Uncomment this and remove `schedule` after the repository is made public.
   #push:
   #pull_request:
-  schedule:
-    - cron: '0 0 * * *'
   workflow_dispatch:
 
 # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
@@ -18,13 +16,25 @@ jobs:
   export-windows:
     name: Windows Export
     runs-on: ubuntu-24.04  # Use 24.04 with godot 4
+    environment: export
     container:
       image: barichello/godot-ci:mono-4.5
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           lfs: true
+          submodules: true
+      - name: Write Decrypt Key
+        shell: bash
+        run: |
+          set -e
+          KEY_DIR="content/smwp_1_file_decryptor/key"
+          KEY_FILE="$KEY_DIR/smwp1_decrypt_key.txt"
+          mkdir -p "$KEY_DIR"
+          printf "%s" "${{ secrets.SMWP1_DECRYPT_KEY }}" > "$KEY_FILE.utf8"
+          iconv -f UTF-8 -t GB18030 "$KEY_FILE.utf8" -o "$KEY_FILE"
+          rm "$KEY_FILE.utf8"
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
@@ -47,4 +57,3 @@ jobs:
         with:
           name: windows
           path: build/windows
-          retention-days: 3

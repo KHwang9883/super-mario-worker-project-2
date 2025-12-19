@@ -1,0 +1,135 @@
+name: "Daily Build"
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
+
+env:
+  GODOT_VERSION: 4.5
+  EXPORT_NAME: SMWP2
+  PROJECT_PATH: .
+
+jobs:
+  export-windows:
+    name: Windows Export
+    runs-on: ubuntu-24.04  # Use 24.04 with godot 4
+    environment: export
+    container:
+      image: barichello/godot-ci:mono-4.5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          lfs: true
+          submodules: true
+      - name: Write Decrypt Key
+        shell: bash
+        run: |
+          set -e
+          KEY_DIR="content/smwp_1_file_decryptor/key"
+          KEY_FILE="$KEY_DIR/smwp1_decrypt_key.txt"
+          mkdir -p "$KEY_DIR"
+          printf "%s" "${{ secrets.SMWP1_DECRYPT_KEY }}" > "$KEY_FILE.utf8"
+          iconv -f UTF-8 -t GB18030 "$KEY_FILE.utf8" -o "$KEY_FILE"
+          rm "$KEY_FILE.utf8"
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mkdir -v -p ~/.config/
+          mv /root/.config/godot ~/.config/godot
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono
+      - name: Build Godot .NET lib
+        run: |
+          cd $PROJECT_PATH
+          dotnet build
+      - name: Windows Build
+        run: |
+          mkdir -v -p build/windows
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
+          echo "SMWP2 Build: [$(echo "${{ github.sha }}" | cut -c 1-7)](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) from $(date '+%d-%b-%Y %T')" > "$EXPORT_DIR/windows/Readme.md"
+      - name: Compress
+        run: |
+          set -e
+          cd $PROJECT_PATH
+          mkdir -p build/release
+          if ! command -v zip > /dev/null; then apt-get update && apt-get install -y zip; fi
+          DATE="$(date '+%Y%m%d')"
+          SHORT_SHA="$(echo "${{ github.sha }}" | cut -c 1-7)"
+          ZIP_NAME="${EXPORT_NAME}-windows-${DATE}-${SHORT_SHA}.zip"
+          (cd build/windows && zip -r "../release/$ZIP_NAME" . -x "*.DS_Store")
+          echo "ZIP created: build/release/$ZIP_NAME"
+          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
+      - name: Install GitHub CLI and jq
+        run: |
+          set -e
+          if ! command -v gh >/dev/null 2>&1; then
+            apt-get update && apt-get install -y curl gnupg
+            curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+            chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+            echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list
+            apt-get update && apt-get install -y gh
+          fi
+          # Install jq if missing
+          if ! command -v jq >/dev/null 2>&1; then
+            apt-get update && apt-get install -y jq
+          fi
+      - name: Mark workspace as safe
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Create or update ref
+        id: create-or-update-ref
+        uses: ovsds/create-or-update-ref-action@v1
+        with:
+          ref: tags/daily-build
+          sha: ${{ github.sha }}
+      - name: Delete old tag
+        run: git tag -d daily-build
+        continue-on-error: true
+      - name: Upload assets to daily-build release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: daily-build
+          name: Daily Build
+          body: This is a daily build of SMWP2. Please don't use this version for production.
+          draft: false
+          prerelease: true
+          generate_release_notes: false
+          files: build/release/${{ env.ZIP_NAME }}
+      - name: Delete release assets older than 7 days
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          REPO="${{ github.repository }}"
+          TAG="daily-build"
+          echo "Looking up release for tag: $TAG"
+          RELEASE_JSON=$(gh api /repos/$REPO/releases/tags/$TAG 2>/dev/null || true)
+          if [ -z "$RELEASE_JSON" ]; then
+            echo "No release found for tag $TAG; nothing to delete"
+            exit 0
+          fi
+          RELEASE_ID=$(echo "$RELEASE_JSON" | jq -r '.id')
+          if [ -z "$RELEASE_ID" ] || [ "$RELEASE_ID" = "null" ]; then
+            echo "Failed to determine release id for tag $TAG"
+            exit 0
+          fi
+          now=$(date -u +%s)
+          cutoff=$((now - 7*24*3600))
+          echo "Release ID: $RELEASE_ID ; cutoff timestamp: $cutoff"
+          gh api /repos/$REPO/releases/$RELEASE_ID/assets --jq '.[] | "\(.id)\t\(.name)\t\(.created_at)"' | \
+            while IFS=$'\t' read -r id name created_at; do
+              created_ts=$(date -d "$created_at" +%s)
+              if [ "$created_ts" -lt "$cutoff" ]; then
+                echo "Deleting asset $name (id $id) created at $created_at"
+                gh api --method DELETE /repos/$REPO/releases/assets/$id || echo "Failed to delete asset id $id"
+              else
+                echo "Keeping asset $name (created at $created_at)"
+              fi
+            done
