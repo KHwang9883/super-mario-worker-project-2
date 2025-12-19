@@ -3,13 +3,9 @@ using System;
 using System.IO;
 using System.Text;
 
-public static partial class DecryptKey
-{
-    // 密钥变量
-    public static string GameId = "";
-    public static string CryptGmidInit = "";
-    public static string KeyStr = "";
+namespace SMWP.Smwp1FileDecryptor;
 
+public static partial class DecryptKeyGetter {
     // 密钥文件名称（固定）
     private const string KeyFileName = "smwp1_decrypt_key.txt";
 
@@ -18,11 +14,6 @@ public static partial class DecryptKey
     /// 自动注册 GB18030 编码提供程序，确保读取正常
     /// </summary>
     public static void GetKey() {
-        // 初始化为空字符串
-        GameId = "";
-        CryptGmidInit = "";
-        KeyStr = "";
-
         try {
             // 1. 注册 GB18030 编码提供程序（防止编码不支持）
             RegisterGb18030Encoding();
@@ -30,7 +21,7 @@ public static partial class DecryptKey
             // 2. 获取游戏程序同目录的密钥文件路径
             string keyFilePath = GetKeyFilePath();
             if (!File.Exists(keyFilePath)) {
-                GD.PrintErr($"密钥文件不存在：{keyFilePath}");
+                GD.Print($"密钥文件不存在：{keyFilePath}");
                 return;
             }
 
@@ -41,22 +32,23 @@ public static partial class DecryptKey
             // 4. 解析行数据（仅赋值非空行，无默认值）
             // 第一行：GameId
             if (lines.Length >= 1)
-                GameId = lines[0].Trim();
+                DecryptKey.GameId = lines[0].Trim();
             // 第二行：CryptGmidInit
             if (lines.Length >= 2)
-                CryptGmidInit = lines[1].Trim();
+                DecryptKey.CryptGmidInit = lines[1].Trim();
             // 第三行：KeyStr（保留换行/空格等特殊字符，仅Trim首尾）
             if (lines.Length >= 3)
-                KeyStr = lines[2].TrimEnd('\r', '\n').TrimStart();
-            
+                DecryptKey.KeyStr = lines[2].TrimEnd('\r', '\n').TrimStart();
+            /*
             GD.Print($"密钥读取成功！");
             GD.Print($"GameId: {GameId}");
             GD.Print($"CryptGmidInit: {CryptGmidInit}");
             GD.Print($"KeyStr: {KeyStr}");
+            */
         }
         catch (Exception ex) {
-            GD.PrintErr($"读取密钥文件失败：{ex.Message}");
-            GD.PrintErr($"异常详情：{ex.StackTrace}");
+            //GD.PushWarning($"读取密钥文件失败：{ex.Message}");
+            //GD.PushWarning($"异常详情：{ex.StackTrace}");
             // 读取失败保持空字符串
         }
     }

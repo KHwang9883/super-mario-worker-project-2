@@ -5,9 +5,12 @@ using System.IO.Compression;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SMWP;
+namespace SMWP.Smwp1FileDecryptor;
 
 public partial class SmwpFileDecryptor : Node {
+    // 保存解密后的文件，用于调试
+    [Export] private bool _saveDecryptedFile;
+    
     // GZip魔数（用于验证解压前的数据是否为合法GZip格式）
     private static readonly byte[] GZipMagicNumber = [0x1F, 0x8B];
 
@@ -43,7 +46,7 @@ public partial class SmwpFileDecryptor : Node {
             //GD.Print($"读取文件成功，字节长度：{originalBytes.Length}");
             
             // 获取密钥
-            DecryptKey.GetKey();
+            DecryptKeyGetter.GetKey();
             
             var gameId = DecryptKey.GameId;
             var cryptGmidInit = DecryptKey.CryptGmidInit;
@@ -69,20 +72,19 @@ public partial class SmwpFileDecryptor : Node {
 
             // === 调试 ===
             // 输出结果
-            
-            
-            GD.Print("解密解压成功！\n文本内容预览：");
-            string previewText = decodedText.Substring(0, Math.Min(500, decodedText.Length));
-            GD.Print(previewText);
+            if (_saveDecryptedFile) {
+                GD.Print("解密解压成功！\n文本内容预览：");
+                string previewText = decodedText.Substring(0, Math.Min(500, decodedText.Length));
+                GD.Print(previewText);
 
-            // 保存解密后的文本到文件
-            string outputPath = Path.Combine(
-                Path.GetDirectoryName(OS.GetExecutablePath()) ?? string.Empty,
-                $"{Path.GetFileNameWithoutExtension(file)}_decoded.txt"
+                // 保存解密后的文本到文件
+                string outputPath = Path.Combine(
+                    Path.GetDirectoryName(OS.GetExecutablePath()) ?? string.Empty,
+                    $"{Path.GetFileNameWithoutExtension(file)}_decoded.txt"
                 );
-            await File.WriteAllTextAsync(outputPath, decodedText, GetEncodingSafe("UTF8"));
-            GD.Print($"解密后的文本已保存到：{outputPath}");
-            
+                await File.WriteAllTextAsync(outputPath, decodedText, GetEncodingSafe("UTF8"));
+                GD.Print($"解密后的文本已保存到：{outputPath}");
+            }
         }
         catch (Exception ex) {
             GD.PrintErr($"处理失败：{ex.Message}");
@@ -92,13 +94,28 @@ public partial class SmwpFileDecryptor : Node {
 
     /// <summary>
     /// 安全获取编码（容错降级）
+    /// 修复：规范编码名称 + 避免无意义的降级警告
     /// </summary>
     private Encoding GetEncodingSafe(string encodingName) {
+        // 第一步：规范编码名称（统一转为标准名称）
+        string standardName = encodingName.ToLowerInvariant() switch {
+            "gb18030" => "GB18030",
+            "gb2312" => "GB2312",
+            "utf8" or "utf-8" => "utf-8",
+            "ansi" => "GB2312", // 兼容ANSI（Windows默认中文编码）
+            _ => encodingName,
+        };
+
         try {
-            return Encoding.GetEncoding(encodingName);
+            // 尝试获取标准编码
+            return Encoding.GetEncoding(standardName);
         }
         catch {
-            GD.PushWarning($"无法获取编码 {encodingName}，降级为 UTF8");
+            // 第二步：仅在非UTF8编码失败时，才打印警告并降级
+            if (standardName != "utf-8") {
+                GD.PushError($"无法获取编码 {encodingName}（标准名：{standardName}），降级为 UTF-8");
+            }
+            // UTF8是.NET内置编码，不可能失败，无需警告
             return Encoding.UTF8;
         }
     }

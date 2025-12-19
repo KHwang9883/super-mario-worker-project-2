@@ -1,12 +1,10 @@
 using Godot;
 using System;
-using System.IO;
 using System.Text;
 
-namespace SMWP;
+namespace SMWP.Smwp1FileDecryptor;
 
-public static class Xor
-{
+public static class Xor {
     // 静态构造函数：注册 GB18030 编码（全局只执行一次）
     static Xor() {
         try {

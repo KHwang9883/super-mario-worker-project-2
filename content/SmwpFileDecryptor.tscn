@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c66yrpqlakak7"]
-
-[ext_resource type="Script" uid="uid://cw6grshgvcjsi" path="res://script/SmwpFileDecryptor.cs" id="1_pnuix"]
-
-[node name="SmwpFileDecryptor" type="Node"]
-script = ExtResource("1_pnuix")
