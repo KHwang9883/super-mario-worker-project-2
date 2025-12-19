@@ -132,6 +132,7 @@ public partial class SmwlLevel : Node2D {
         // 安装合并后的模仿者 TileMap
         _imitatorBuilder.Finish();
         foreach (var tilemap in _imitatorBuilder.FinishedTileMaps) {
+            tilemap.CollisionEnabled = false;
             AddChild(tilemap);
         }
         _imitatorBuilder.Clear();
