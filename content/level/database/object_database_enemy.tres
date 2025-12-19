@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ctgqopj8q32nh" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_green.tscn" id="5_llua3"]
 [ext_resource type="PackedScene" uid="uid://lo64hov3eeo3" path="res://content/level/enemy/spiny/spiny.tscn" id="6_adiqc"]
 [ext_resource type="PackedScene" uid="uid://dh8pgpynxisry" path="res://content/level/enemy/piranha_plant/piranha_plant_green.tscn" id="7_gyedt"]
-[ext_resource type="PackedScene" path="res://content/level/bad_object.tscn" id="8_0wd3b"]
+[ext_resource type="PackedScene" uid="uid://bh2mcrx4e1dx1" path="res://content/level/bad_object.tscn" id="8_0wd3b"]
 [ext_resource type="PackedScene" uid="uid://cb62nwjb51k1v" path="res://content/level/enemy/piranha_plant/piranha_plant_fire.tscn" id="9_tfs4a"]
 [ext_resource type="PackedScene" uid="uid://cejpown37o253" path="res://content/level/enemy/lakitu/lakitu.tscn" id="10_6pmrl"]
 [ext_resource type="PackedScene" uid="uid://dertrheuvws04" path="res://content/level/enemy/bullet_bill/bullet_bill_cannon.tscn" id="11_xrdg5"]
@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://72d0sq841rbo" path="res://content/level/enemy/lava/lava_piece.tscn" id="17_ive3h"]
 [ext_resource type="PackedScene" uid="uid://bnnqci8eu7r01" path="res://content/level/enemy/hammer_bro/hammer_bro.tscn" id="18_pavau"]
 [ext_resource type="Resource" uid="uid://7nptcr4yp43g" path="res://content/level/database/processors/roto_disc_metadata_processor.tres" id="19_5t1ys"]
-[ext_resource type="PackedScene" uid="uid://7h1fe5wip7om" path="res://content/level/scenery/scene/roto-disc_core.tscn" id="20_dbiyf"]
+[ext_resource type="PackedScene" uid="uid://cw8qh44n2xkrx" path="res://content/level/enemy/roto-disc/roto-disc.tscn" id="20_ive3h"]
 [ext_resource type="PackedScene" uid="uid://damomv48gttr6" path="res://content/level/enemy/podoboo/podoboo.tscn" id="21_bwect"]
 [ext_resource type="PackedScene" uid="uid://dm7wuafwjjq1w" path="res://content/level/enemy/spike/spike_mw.tscn" id="22_poooy"]
 [ext_resource type="PackedScene" uid="uid://c6sorpmpi4oap" path="res://content/level/enemy/thwomp/thwomp.tscn" id="23_ehybk"]
@@ -38,7 +38,7 @@
 [ext_resource type="PackedScene" uid="uid://unijmmxn54ok" path="res://content/level/enemy/spike/coral_electric.tscn" id="34_6pmrl"]
 [ext_resource type="PackedScene" uid="uid://1px4xtvk4nkg" path="res://content/level/enemy/spike/spike_mf.tscn" id="35_xrdg5"]
 [ext_resource type="PackedScene" uid="uid://cdxpkopiyqfi4" path="res://content/level/enemy/troopa/troopa_walking/troopa_yellow.tscn" id="36_mc8ga"]
-[ext_resource type="PackedScene" uid="uid://yef1n42fxbd1" path="res://content/level/enemy/cheep-cheep/cheep-cheep_area/cheep-cheep_area.tscn" id="37_rbdqh"]
+[ext_resource type="PackedScene" uid="uid://yef1n42fxbd1" path="res://content/level/enemy/cheep-cheep/cheep-cheep_area/cheep-cheep_area.tscn" id="38_pavau"]
 [ext_resource type="PackedScene" uid="uid://fbxq1hg4e22f" path="res://content/level/enemy/roto-disc/roto-disc_still.tscn" id="38_r7sda"]
 [ext_resource type="PackedScene" uid="uid://chrmn2f5rir5y" path="res://content/level/enemy/piranha_plant/piranha_plant_blue.tscn" id="39_8lacj"]
 [ext_resource type="PackedScene" uid="uid://c23nkg11c62hp" path="res://content/level/enemy/piranha_plant/piranha_plant_stone.tscn" id="40_3ww0w"]
@@ -161,7 +161,7 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 [sub_resource type="Resource" id="Resource_5kfe5"]
 script = ExtResource("2_v7upk")
 Id = 20
-Prefab = ExtResource("20_dbiyf")
+Prefab = ExtResource("20_ive3h")
 MetadataProcessor = ExtResource("19_5t1ys")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
@@ -282,13 +282,13 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 [sub_resource type="Resource" id="Resource_8lacj"]
 script = ExtResource("2_v7upk")
 Id = 40
-Prefab = ExtResource("37_rbdqh")
+Prefab = ExtResource("38_pavau")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_3ww0w"]
 script = ExtResource("2_v7upk")
 Id = 41
-Prefab = ExtResource("37_rbdqh")
+Prefab = ExtResource("38_pavau")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_ive3h"]
