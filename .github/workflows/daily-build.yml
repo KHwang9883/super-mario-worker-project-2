@@ -1,15 +1,17 @@
-name: "Export binaries"
-on: 
-  # Uncomment this and remove `schedule` after the repository is made public.
-  #push:
-  #pull_request:
+name: "Daily Build"
+on:
+  schedule:
+    - cron: '0 0 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
 
 env:
   GODOT_VERSION: 4.5.1
-  EXPORT_NAME: SuperMarioWorkerProject2
+  EXPORT_NAME: SMWP2
   PROJECT_PATH: .
 
 jobs:
@@ -52,8 +54,35 @@ jobs:
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
           echo "SMWP2 Build: [$(echo "${{ github.sha }}" | cut -c 1-7)](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) from $(date '+%d-%b-%Y %T')" > "$EXPORT_DIR/windows/Readme.md"
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+      - name: Compress
+        run: |
+          set -e
+          cd $PROJECT_PATH
+          mkdir -p build/release
+          # install zip if missing
+          if ! command -v zip > /dev/null; then apt-get update && apt-get install -y zip; fi
+          DATE="$(date '+%Y%m%d')"
+          SHORT_SHA="$(echo "${{ github.sha }}" | cut -c 1-7)"
+          ZIP_NAME="${EXPORT_NAME}-windows-${DATE}-${SHORT_SHA}.zip"
+          zip -r "build/release/$ZIP_NAME" build/windows -x "*.DS_Store"
+          echo "ZIP created: build/release/$ZIP_NAME"
+          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
+      - name: Create or update ref
+        id: create-or-update-ref
+        uses: ovsds/create-or-update-ref-action@v1
         with:
-          name: windows
-          path: build/windows
+          ref: tags/daily-build
+          sha: ${{ github.sha }}
+      - name: Delete old tag
+        run: git tag -d daily-build
+        continue-on-error: true
+      - name: Upload assets to daily-build release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: daily-build
+          name: Daily Build
+          body: This is a daily build of SMWP2. Please don't use this version for production.
+          draft: false
+          prerelease: true
+          generate_release_notes: false
+          files: build/release/${{ env.ZIP_NAME }}
