@@ -62,7 +62,7 @@ jobs:
           if ! command -v zip > /dev/null; then apt-get update && apt-get install -y zip; fi
           DATE="$(date '+%Y%m%d')"
           SHORT_SHA="$(echo "${{ github.sha }}" | cut -c 1-7)"
-          ZIP_NAME="${EXPORT_NAME}-windows-${DATE}-${SHORT_SHA}.zip"
+          ZIP_NAME="SMWP2-windows-${DATE}-${SHORT_SHA}.zip"
           (cd build/windows && zip -r "../release/$ZIP_NAME" . -x "*.DS_Store")
           echo "ZIP created: build/release/$ZIP_NAME"
           echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
