@@ -2,7 +2,7 @@ using Godot;
 using System;
 using SMWP.Level.Score;
 using SMWP.Level.Sound;
-using SMWP.Level.Tool;
+using SMWP.Util;
 
 namespace SMWP.Level.Player;
 
@@ -23,15 +23,23 @@ public partial class PlayerDieAndHurt : Node {
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
     [Export] private PackedScene _playerDeadScene = null!;
-    [Export] public float InvincibleDuration = 200;
+    [Export] public float HurtInvincibleDuration = 200;
+    [Export] public int ExtraInvincibleTime = 10;
     [Export] private ContinuousAudioStream2D? _gameOverSound;
     [Export] private PackedScene _fireballExplosion = GD.Load<PackedScene>("uid://5mmyew6mh71p");
     
     public bool IsInvincible;
+    
     public bool IsHurtInvincible;
     public int HurtInvincibleTimer;
+    
     public bool IsStarmanInvincible;
+
+    public bool IsExtraInvincible;
+    private int _extraInvincibleTimer;
+    
     private LevelConfig? _levelConfig;
+    
     private bool _dead;
     private int _deadTimer;
 
@@ -58,15 +66,19 @@ public partial class PlayerDieAndHurt : Node {
             _deadTimer++;
             var deadTime = !_levelConfig.FastRetry ? 180 : 90;
             if (_deadTimer >= deadTime) {
+                // 设置状态全局记录
+                GameManager.PlayerSuitRestore = _playerMediator.playerSuit.Suit;
+                GameManager.PlayerPowerupRestore = _playerMediator.playerSuit.Powerup;
+                
                 // Restart Level
-                if (LevelManager.Life > 0) {
+                if (GameManager.Life > 0) {
                     GetTree().ReloadCurrentScene();
                 }
                 
                 // Game Over
                 else {
-                    if (!LevelManager.IsGameOver) {
-                        LevelManager.IsGameOver = true;
+                    if (!GameManager.IsGameOver) {
+                        GameManager.IsGameOver = true;
                         if (!_levelConfig.FastRetry) {
                             EmitSignal(SignalName.PlaySoundGameOver);
                         }
@@ -77,8 +89,9 @@ public partial class PlayerDieAndHurt : Node {
                         
                         // Todo: 跳转到编辑界面或者标题界面
                         
-                        LevelManager.GameOverClear();
-                        GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
+                        GameManager.GameOverClear();
+                        var gameManager = GetTree().Root.GetNode<GameManager>("GameManager");
+                        gameManager.JumpToLevel();
                     }
                 }
             }
@@ -96,7 +109,7 @@ public partial class PlayerDieAndHurt : Node {
         //GD.Print(_screenBottom);
         
         // 时间归零死亡
-        if (LevelManager.Time == 0) {
+        if (GameManager.Time == 0) {
             Die();
         }
         
@@ -114,7 +127,7 @@ public partial class PlayerDieAndHurt : Node {
         // 受伤无敌计时
         if (IsHurtInvincible) {
             HurtInvincibleTimer++;
-            if (HurtInvincibleTimer >= InvincibleDuration) {
+            if (HurtInvincibleTimer >= HurtInvincibleDuration) {
                 HurtEnd();
             }
         }
@@ -122,8 +135,17 @@ public partial class PlayerDieAndHurt : Node {
         // 无敌星状态
         IsStarmanInvincible = _playerMediator.playerSuit.Starman;
         
+        // 额外无敌时间计时
+        if (IsExtraInvincible) {
+            if (_extraInvincibleTimer > 0) {
+                _extraInvincibleTimer--;
+            } else {
+                IsExtraInvincible = false;
+            }
+        }
+        
         // 无敌状态标记
-        IsInvincible = (IsHurtInvincible || IsStarmanInvincible);
+        IsInvincible = (IsHurtInvincible || IsStarmanInvincible || IsExtraInvincible);
         
         // 首帧判定延迟
         //if (!_initialFrameDelay) _initialFrameDelay = true;
@@ -138,19 +160,16 @@ public partial class PlayerDieAndHurt : Node {
         _player.Visible = false;
         _player.ProcessMode = ProcessModeEnum.Disabled;
         EmitSignal(SignalName.PlayerDiedSucceeded);
-
-        // 变为小个子
-        _playerMediator.playerSuit.Suit = PlayerSuit.SuitEnum.Small;
         
         // 扣命
-        LevelManager.Life--;
+        GameManager.Life--;
             
         var playerDeadInstance = _playerDeadScene.Instantiate<PlayerDead>();
         playerDeadInstance.Position = _player.Position;
         _player.AddSibling(playerDeadInstance);
     }
     public void Hurt() {
-        if (IsStarmanInvincible || IsHurtInvincible) return;
+        if (IsStarmanInvincible || IsHurtInvincible || IsExtraInvincible) return;
         SetHurtInvincible();
         switch (_playerMediator.playerSuit.Suit) {
             case PlayerSuit.SuitEnum.Small:
@@ -175,5 +194,10 @@ public partial class PlayerDieAndHurt : Node {
         IsHurtInvincible = false;
         HurtInvincibleTimer = 0;
         EmitSignal(SignalName.PlayerInvincibleEnded);
+    }
+
+    public void SetStompInvincibleTime() {
+        _extraInvincibleTimer = ExtraInvincibleTime;
+        IsExtraInvincible = true;
     }
 }

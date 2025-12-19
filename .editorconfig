@@ -16,3 +16,7 @@ new_line_before_finally = false
 csharp_blank_lines_after_block_statements = 0
 # Trailing Comma
 trailing_comma_in_multiline_lists = true 
+# if while 等语句必须使用大括号，即使只有一行
+braces_for_ifelse = required
+braces_for_dowhile = required
+braces_for_while = required

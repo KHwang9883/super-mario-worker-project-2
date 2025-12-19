@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP;
 using SMWP.Level;
 
 public partial class Title : Node2D {
@@ -20,7 +21,7 @@ public partial class Title : Node2D {
     public override void _Ready() {
         if (_titleToSpin == null) return;
         _titleToSpin.Visible = true;
-        if (LevelManager.TitleScreenAnimationFinished) {
+        if (GameManager.TitleScreenAnimationFinished) {
             _animationStatus = TitleAnimationStatus.Light;
             return;
         }
@@ -65,10 +66,10 @@ public partial class Title : Node2D {
                         GetNode<Control>("Control/Edit").GrabFocus();
                     }).CallDeferred();
                     
-                    if (_animationPlayer != null && !LevelManager.TitleScreenAnimationFinished) {
+                    if (_animationPlayer != null && !GameManager.TitleScreenAnimationFinished) {
                         _animationPlayer.Active = true;
                         _animationPlayer.Play();
-                        LevelManager.TitleScreenAnimationFinished = true;
+                        GameManager.TitleScreenAnimationFinished = true;
                     }
                     if (_control != null) _control.ProcessMode = ProcessModeEnum.Inherit;
                 }

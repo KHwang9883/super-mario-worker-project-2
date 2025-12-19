@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP;
 using SMWP.Level;
 
 public partial class CoinEffect : Node2D {
@@ -7,7 +8,7 @@ public partial class CoinEffect : Node2D {
     private float _timer;
 
     public override void _Ready() {
-        LevelManager.AddCoin(1);
+        GameManager.AddCoin(1);
     }
     public override void _PhysicsProcess(double delta) {
         if (_timer < 16f) {

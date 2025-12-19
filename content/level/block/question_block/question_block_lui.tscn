@@ -1,0 +1,89 @@
+[gd_scene load_steps=16 format=3 uid="uid://cm2xcnm1f2b50"]
+
+[ext_resource type="Texture2D" uid="uid://dgukcgfkib00u" path="res://content/level/block/question_block/question_block.png" id="1_0yu0v"]
+[ext_resource type="Texture2D" uid="uid://d1c6ljxopww0p" path="res://content/level/block/block_hit.png" id="2_syq0s"]
+[ext_resource type="Script" uid="uid://csvist8po1wws" path="res://script/level/block/question_block/QuestionBlock.cs" id="3_ht5jy"]
+[ext_resource type="PackedScene" uid="uid://dsjr2jccad25d" path="res://content/level/block/block_collision_shape_2d.tscn" id="3_syq0s"]
+[ext_resource type="PackedScene" uid="uid://06fvxuvjbor0" path="res://content/level/bonus/mushroom/mushroom.tscn" id="4_jfj82"]
+[ext_resource type="PackedScene" uid="uid://506l0hik3qda" path="res://content/level/bonus/lui/lui.tscn" id="5_0yu0v"]
+[ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="6_dtecb"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="7_guvjn"]
+[ext_resource type="AudioStream" uid="uid://b1086m1dfb3rq" path="res://content/sound/item_sprout.se.wav" id="8_ippcc"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="9_67yqc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvcug"]
+atlas = ExtResource("1_0yu0v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuh18"]
+atlas = ExtResource("1_0yu0v")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5eart"]
+atlas = ExtResource("1_0yu0v")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bggvx"]
+atlas = ExtResource("2_syq0s")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6vwiv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvcug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuh18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5eart")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bggvx")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[node name="QuestionBlockLui" type="StaticBody2D"]
+z_index = 18
+collision_layer = 3
+collision_mask = 0
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6vwiv")
+autoplay = "default"
+
+[node name="BlockCollisionShape2D" parent="." instance=ExtResource("3_syq0s")]
+rotation = -3.1415925
+
+[node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("_ani", "Sprite", "_collisionShape2D")]
+script = ExtResource("3_ht5jy")
+SproutItemScene = ExtResource("4_jfj82")
+SproutItemAdvancedScene = ExtResource("5_0yu0v")
+_ani = NodePath("../Sprite2D")
+Bumpable = true
+BumpableOneShot = true
+Sprite = NodePath("../Sprite2D")
+_collisionShape2D = NodePath("../BlockCollisionShape2D")
+metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
+
+[node name="Break" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_dtecb")
+script = ExtResource("7_guvjn")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="Bump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ippcc")
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("9_67yqc")]
+
+[connection signal="BlockBreak" from="BlockHit" to="Break" method="play"]
+[connection signal="BlockBump" from="BlockHit" to="Bump" method="play"]

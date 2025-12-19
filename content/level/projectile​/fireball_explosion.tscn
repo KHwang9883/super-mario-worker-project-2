@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="3_j68d3"]
 
 [node name="FireballExplosion" type="Node2D"]
+process_mode = 3
 z_index = 80
 script = ExtResource("1_hp3kp")
 

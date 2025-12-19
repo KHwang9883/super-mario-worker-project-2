@@ -17,3 +17,4 @@
 *.smws
 *.smwp
 .vscode/settings.json
+/content/smwp_1_file_decryptor/key

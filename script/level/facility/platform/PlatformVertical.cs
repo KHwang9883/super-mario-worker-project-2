@@ -14,6 +14,7 @@ public partial class PlatformVertical : AnimatableBody2D, ISteppable {
 
     public override void _Ready() {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
+        _levelConfig.SwitchSwitched += OnSwitchToggled;
         _bottomLimit += _levelConfig.RoomHeight;
         var animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         _textureHeight = animatedSprite2D.SpriteFrames.GetFrameTexture(
@@ -36,11 +37,16 @@ public partial class PlatformVertical : AnimatableBody2D, ISteppable {
                 Position = Position with { Y = _topLimit + _textureHeight / 2f };
                 ResetPhysicsInterpolation();
             }
-            
-            // Todo: 开关砖第二功能：SpeedY *= -1
         }
     }
     public void OnStepped() {
         EmitSignal(SignalName.Stepped);
+    }
+    
+    // 开关砖第二功能
+    public void OnSwitchToggled(LevelConfig.SwitchTypeEnum switchTypeEnum) {
+        if (switchTypeEnum != LevelConfig.SwitchTypeEnum.Cyan) return;
+        //GD.Print($"Advanced {switchTypeEnum} Switch Switched!");
+        SpeedY = -SpeedY;
     }
 }

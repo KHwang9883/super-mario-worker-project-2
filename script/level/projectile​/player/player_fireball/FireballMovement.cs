@@ -19,7 +19,10 @@ public partial class FireballMovement : BasicMovement {
     public override void _PhysicsProcess(double delta) {
         base._PhysicsProcess(delta);
         if (!MoveObject.IsOnWall() && MoveObject.MoveAndCollide(Vector2.Zero, true) == null) return;
-        EmitSignal(SignalName.FireballExplode);
-        MoveObject.QueueFree();
+        // 延迟是为了给火球检测冰块留足时间
+        Callable.From(() => {
+            EmitSignal(SignalName.FireballExplode);
+            MoveObject.QueueFree();
+        }).CallDeferred();
     }
 }

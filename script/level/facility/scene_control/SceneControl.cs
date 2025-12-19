@@ -3,11 +3,16 @@ using System;
 using SMWP.Level;
 
 public partial class SceneControl : Area2D {
+    public enum LinkedWithObjectEnum {
+        None,
+        ViewControl,
+        Koopa,
+    }
+    [Export] public LinkedWithObjectEnum LinkedWithObject = LinkedWithObjectEnum.None;
     [Export] public bool ChangeBgm;
     [Export] public int BgmId = 1;
     [Export] public bool ChangeBgp;
     [Export] public int BgpId = 1;
-    public bool LinkedWithViewControl;
     [Export] public float WaterHeight = -64f;
     [Export] public bool ChangeWeather;
     [Export] public int RainyLevel;
@@ -17,18 +22,27 @@ public partial class SceneControl : Area2D {
     [Export] public int WindyLevel;
     [Export] public int Darkness;
     [Export] public int Brightness;
-
     
     private LevelConfig? _levelConfig;
 
     public override void _Ready() {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
+
+        switch (LinkedWithObject) {
+            case LinkedWithObjectEnum.None:
+                break;
+            case LinkedWithObjectEnum.ViewControl:
+                LinkWithViewControl();
+                break;
+            case LinkedWithObjectEnum.Koopa:
+                LinkWithKoopa();
+                break;
+        }
     }
+    
     public void OnBodyEntered(Node2D body) {
         SetSceneStatus();
     }
-    
-    // Todo: if (LinkedWithViewControl)
     
     public void SetSceneStatus() {
         if (_levelConfig == null) {
@@ -50,6 +64,37 @@ public partial class SceneControl : Area2D {
                 _levelConfig.WindyLevel = WindyLevel;
                 _levelConfig.Darkness = Darkness;
                 _levelConfig.Brightness = Brightness;
+            }
+        }
+    }
+    public void LinkWithViewControl() {
+        var viewControls = GetTree().GetNodesInGroup("view_control");
+        foreach (var node in viewControls) {
+            if (node is not ViewControl viewControl) continue;
+            var rect = viewControl.ViewRect;
+            if (Position.X > rect.Position.X
+                && Position.Y > rect.Position.Y
+                && Position.X < rect.End.X
+                && Position.Y < rect.End.Y) {
+                CollisionLayer = 0;
+                viewControl.SetSceneControl(this);
+            }
+        }
+    }
+    public void LinkWithKoopa() {
+        var koopaScrolls = GetTree().GetNodesInGroup("koopa_scroll");
+        foreach (var node in koopaScrolls) {
+            if (node is not KoopaScroll koopaScroll) continue;
+            var rect = new Rect2(
+                koopaScroll.SceneMarkerPos.GlobalPosition, 
+                koopaScroll.SceneMarkerSize.GlobalPosition
+                );
+            if (Position.X > rect.Position.X
+                && Position.Y > rect.Position.Y
+                && Position.X < rect.End.X
+                && Position.Y < rect.End.Y) {
+                CollisionLayer = 0;
+                koopaScroll.SetSceneControl(this);
             }
         }
     }

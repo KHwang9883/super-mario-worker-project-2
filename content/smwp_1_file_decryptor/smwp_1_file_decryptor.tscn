@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c66yrpqlakak7"]
+
+[ext_resource type="Script" uid="uid://cw6grshgvcjsi" path="res://script/smwp_1_file_decryptor/SmwpFileDecryptor.cs" id="1_lie6o"]
+
+[node name="Smwp1FileDecryptor" type="Node"]
+script = ExtResource("1_lie6o")
+_saveDecryptedFile = true

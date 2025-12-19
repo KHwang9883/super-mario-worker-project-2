@@ -1,13 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5d467llk4uur"]
+[gd_scene load_steps=13 format=3 uid="uid://c5d467llk4uur"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/level_loader/SmwlLevel.cs" id="1_rpefo"]
 [ext_resource type="Script" uid="uid://c8yu81i46jf4r" path="res://script/level/level_loader/SmwlLoader.cs" id="1_wc7qm"]
 [ext_resource type="TileSet" uid="uid://bnf7dwxlyydri" path="res://content/level/tile/obstacles.tileset.tres" id="2_dugl1"]
-[ext_resource type="PackedScene" uid="uid://d2n4sofwy5eyn" path="res://content/level/facility/solid/solid.tscn" id="2_y2vn4"]
-[ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="5_s4cnv"]
+[ext_resource type="PackedScene" uid="uid://btrs3yxvgq8sl" path="res://content/level/level_template.tscn" id="2_s4cnv"]
+[ext_resource type="Resource" uid="uid://ch6ocvrds2bxf" path="res://content/level/database/object_database_enemy.tres" id="4_3dhsb"]
 [ext_resource type="Script" uid="uid://bsg2x1q80u5ee" path="res://script/level/level_loader/SmwlDataHolder.cs" id="5_y2vn4"]
 [ext_resource type="Resource" uid="uid://dg3a08a8q43kb" path="res://content/level/database/block_database.tres" id="6_4alqs"]
+[ext_resource type="Resource" uid="uid://b0vehdd53vipj" path="res://content/level/database/object_database_scenery.tres" id="6_228od"]
 [ext_resource type="TileSet" uid="uid://obv64rtoaukf" path="res://content/level/tile/blocks.tileset.tres" id="7_fn8k0"]
+[ext_resource type="Resource" uid="uid://dp3ucvu1lpy7l" path="res://content/level/database/object_database_marks.tres" id="7_ysoro"]
+[ext_resource type="Resource" uid="uid://cjm2781r56j71" path="res://content/level/database/object_database_bonus.tres" id="8_ysoro"]
 
 [sub_resource type="GDScript" id="GDScript_fn8k0"]
 script/source = "extends Camera2D
@@ -21,18 +24,19 @@ func _process(delta: float) -> void:
 	return
 "
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("BlocksTilemap", "ObstacleTileMap", "SmwlLoader", "OpenSmwlDialog")]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("BlocksTilemap", "DatabaseHolder", "ObstacleTileMap", "SmwlLoader", "OpenSmwlDialog")]
 script = ExtResource("1_rpefo")
+LevelTemplate = ExtResource("2_s4cnv")
 BlocksTilemap = NodePath("Block Tile Map")
+DatabaseHolder = NodePath("Database Holder")
 ObstacleTileMap = NodePath("Obstacle Tile Map")
-UnalignedObstaclePrefab = ExtResource("2_y2vn4")
 SmwlLoader = NodePath("SMWL Loader")
 OpenSmwlDialog = NodePath("Open SMWL File")
 
 [node name="Database Holder" type="Node" parent="."]
 script = ExtResource("5_y2vn4")
 BlockDatabase = ExtResource("6_4alqs")
-Backgrounds = ExtResource("5_s4cnv")
+ObjectDatabases = Array[Object]([ExtResource("4_3dhsb"), ExtResource("6_228od"), ExtResource("7_ysoro"), ExtResource("8_ysoro")])
 
 [node name="Obstacle Tile Map" type="TileMapLayer" parent="."]
 visible = false
@@ -56,5 +60,7 @@ filters = PackedStringArray("*.smwl")
 use_native_dialog = true
 
 [node name="Debug Camera" type="Camera2D" parent="."]
+process_mode = 4
 position = Vector2(320, 240)
+enabled = false
 script = SubResource("GDScript_fn8k0")

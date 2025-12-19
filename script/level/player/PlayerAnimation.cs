@@ -48,6 +48,13 @@ public partial class PlayerAnimation : Node {
             if (_animatedSprite2D.GetAnimation().Equals("shoot")) {
                 _animatedSprite2D.Play("idle");
             }
+            if (_playerMediator.playerMovement.IsInWater) {
+                _animatedSprite2D.Play("swim");
+            }
+            if (_animatedSprite2D.GetAnimation().Equals("swim")
+                && !_playerMediator.playerMovement.IsInWater) {
+                _animatedSprite2D.Play("jump");
+            }
             if (_playerMediator.playerMovement.PipeTransportDir
                 is not (PlayerMovement.PipeTransportDirection.Left
                 or PlayerMovement.PipeTransportDirection.Right)) return;

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://doh3s55pkss2n"]
+
+[ext_resource type="Script" uid="uid://b5fgpcqewtcxl" path="res://script/level/block/BlockFragment.cs" id="1_yqvln"]
+[ext_resource type="Texture2D" uid="uid://b8ufbini7thyd" path="res://content/level/block/ice_block/ice_block.png" id="2_u1i54"]
+[ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="3_udb70"]
+
+[node name="BrickFragment" type="Node2D" node_paths=PackedStringArray("_sprite")]
+script = ExtResource("1_yqvln")
+_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_u1i54")
+
+[node name="OutOfBoundsQueueFree" type="Node" parent="."]
+script = ExtResource("3_udb70")
+OutOfScreenDetection = true
+ScreenDownOffset = 20.0
+RoomLeftOffset = 10.0
+RoomRightOffset = 10.0

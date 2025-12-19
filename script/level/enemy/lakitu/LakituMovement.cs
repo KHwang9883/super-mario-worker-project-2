@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using SMWP.Level.Sound;
-using SMWP.Level.Tool;
+using SMWP.Util;
 
 public partial class LakituMovement : Node {
     [Export] private float _trackDistance = 150f;

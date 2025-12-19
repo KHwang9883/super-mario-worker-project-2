@@ -4,3 +4,9 @@
 
 [node name="AutoScroll" type="Node2D"]
 script = ExtResource("1_kancu")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-320, -240, 320, -240, 320, 240, -320, 240)
+closed = true
+width = 2.0
+default_color = Color(0.07058824, 0.5372549, 0.07058824, 1)

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyxrx7o3vi7nf"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ah432"]
+load_path = "res://.godot/imported/re_scenery.png-af035d1e6d2557d6b2cde3b3e939a273.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bykc2"]
+atlas = SubResource("CompressedTexture2D_ah432")
+region = Rect2(128, 32, 32, 64)
+
+[node name="DuskTree" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_bykc2")
+offset = Vector2(0, -32)

@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=3 uid="uid://cqqq3dudrdi2l"]
+
+[ext_resource type="Texture2D" uid="uid://qpih0kc3uq1x" path="res://content/level/enemy/koopa/flame_koopa.png" id="1_t588f"]
+[ext_resource type="Script" uid="uid://d3l0uab88bpuj" path="res://script/level/enemy/koopa/FlameMovement.cs" id="2_a82ce"]
+[ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="3_70wp3"]
+[ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_sn5lo"]
+[ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="4_sn5lo"]
+[ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="5_e7hmf"]
+[ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="6_tjno5"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="7_hqpvc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcfbq"]
+atlas = ExtResource("1_t588f")
+region = Rect2(0, 0, 60, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chaw6"]
+atlas = ExtResource("1_t588f")
+region = Rect2(0, 32, 60, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di538"]
+atlas = ExtResource("1_t588f")
+region = Rect2(0, 64, 60, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_58e8v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcfbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chaw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di538")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihiq2"]
+size = Vector2(48, 26)
+
+[node name="FlameKoopa" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_58e8v")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ihiq2")
+debug_color = Color(0.99352473, 0, 0.2431364, 0.41960785)
+
+[node name="FlameMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
+script = ExtResource("2_a82ce")
+MoveObject = NodePath("..")
+SpeedX = -4.0
+Gravity = 0.0
+
+[node name="AutoSpriteFlipH" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
+script = ExtResource("3_sn5lo")
+_animatedSprite2D = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://t3te8lnb0byj"
+
+[node name="InteractionWithPlayer" type="Node" parent="."]
+script = ExtResource("3_70wp3")
+metadata/_custom_type_script = "uid://dk0y3j6216tik"
+
+[node name="InteractionWithFireball" type="Node" parent="."]
+script = ExtResource("4_sn5lo")
+metadata/_custom_type_script = "uid://ckwcmi42tdbmc"
+
+[node name="InteractionWithBeetroot" type="Node" parent="."]
+script = ExtResource("5_e7hmf")
+metadata/_custom_type_script = "uid://bkc8a0hddhajq"
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-300, -300, 600, 600)
+show_rect = false
+
+[node name="OutOfBoundsQueueFree" type="Node" parent="."]
+script = ExtResource("6_tjno5")
+OutOfScreenDetection = true
+ScreenDown = false
+ScreenLeftOffset = 300.0
+ScreenRightOffset = 300.0
+metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("7_hqpvc")]

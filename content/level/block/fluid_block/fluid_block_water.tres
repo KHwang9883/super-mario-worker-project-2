@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://7cvg5krxkrkh"]
+
+[ext_resource type="Texture2D" uid="uid://dg16475gpgar4" path="res://content/level/block/fluid_block/fluid_block.png" id="1_olbxr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qldty"]
+atlas = ExtResource("1_olbxr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nla2p"]
+atlas = ExtResource("1_olbxr")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcovp"]
+atlas = ExtResource("1_olbxr")
+region = Rect2(0, 64, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qldty")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nla2p")
+}],
+"loop": true,
+"name": &"disabled",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcovp")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}]

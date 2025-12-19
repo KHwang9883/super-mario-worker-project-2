@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://7nptcr4yp43g"]
+
+[ext_resource type="Script" uid="uid://cdu7e176phm0q" path="res://script/level/level_loader/processing/RotoDiscMetadataProcessor.cs" id="1_ggrpw"]
+
+[resource]
+script = ExtResource("1_ggrpw")

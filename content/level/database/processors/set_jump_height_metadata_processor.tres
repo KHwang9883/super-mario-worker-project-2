@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dcbn7l5hv061t"]
+
+[ext_resource type="Script" uid="uid://dhqgpg7knq2bn" path="res://script/level/level_loader/processing/SetJumpHeightMetaProcessor.cs" id="1_pcgua"]
+
+[resource]
+script = ExtResource("1_pcgua")

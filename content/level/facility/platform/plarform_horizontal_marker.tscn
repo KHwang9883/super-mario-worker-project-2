@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cwt7jk5e5rygs" path="res://content/level/facility/platform/plarform_horizontal_marker.png" id="1_ckl75"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_60x0t"]
-size = Vector2(32, 32)
+size = Vector2(31, 31)
 
 [node name="PlarformHorizontalMarker" type="Area2D"]
 collision_layer = 128

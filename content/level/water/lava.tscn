@@ -64,7 +64,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Lava" type="Area2D" node_paths=PackedStringArray("_lavaSurfaceSprite", "_lavaRect")]
+[node name="Lava" type="Area2D" node_paths=PackedStringArray("_lavaSurfaceSprite", "_lavaRect") groups=["lava_global"]]
 z_index = 300
 collision_layer = 16
 collision_mask = 8

@@ -59,8 +59,9 @@ SpeedX = -2.0
 MaxFallSpeed = 7.0
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
-[node name="InteractionWithBump" type="Node" parent="." node_paths=PackedStringArray("_mushroomMovement")]
+[node name="InteractionWithBump" type="Node" parent="." node_paths=PackedStringArray("_bonusSprout", "_mushroomMovement")]
 script = ExtResource("4_yy6md")
+_bonusSprout = NodePath("../BonusSprout")
 _mushroomMovement = NodePath("../MushroomMovement")
 metadata/_custom_type_script = "uid://dm4udnui5ktii"
 

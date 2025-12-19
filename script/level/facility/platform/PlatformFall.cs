@@ -23,7 +23,8 @@ public partial class PlatformFall : AnimatableBody2D, ISteppable {
         
         Position += new Vector2(0f, _speedY);
         
-        // Todo: 玩家踩到掉落平台后，无视其他平台
+        // 玩家踩到掉落平台后，无视其他平台
+        // 见 PlayerPenetration 组件，下降平台同理
     }
     public void OnStepped() {
         EmitSignal(SignalName.Stepped);

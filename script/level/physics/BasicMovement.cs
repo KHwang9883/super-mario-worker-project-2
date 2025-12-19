@@ -6,6 +6,9 @@ namespace SMWP.Level.Physics;
 
 [GlobalClass]
 public partial class BasicMovement : Node {
+    /*[Signal]
+    public delegate void MoveProcessDelegateEventHandler(Vector2 velocity);*/
+        
     [Export] public CharacterBody2D MoveObject = null!;
     [Export] public bool InitiallyFaceToPlayer = true;
     [Export] public float SpeedX;
@@ -14,8 +17,9 @@ public partial class BasicMovement : Node {
     [Export] public float MaxFallSpeed = 999f;
     [Export] public float JumpSpeed;
     [Export] public bool EdgeDetect;
+    //[Export] public bool DelegateMoveProcess;
     protected const float FramerateOrigin = 50f;
-    public CharacterBody2D? Player;
+    protected CharacterBody2D? Player;
 
     //private bool _debugBool;
     
@@ -84,7 +88,14 @@ public partial class BasicMovement : Node {
     public virtual void Move() {
         // 针对大部分敌人运动：卡墙处理
         if (MoveObject.MoveAndCollide(Vector2.Zero, true, 1f) == null) {
-            MoveObject.MoveAndSlide();
+            //if (!DelegateMoveProcess) {
+                MoveObject.MoveAndSlide();
+            //}
+            
+            // 针对极特殊情况，委托给 Interaction 组件处理运动（同时处理获取交互对象）
+            /*else {
+                EmitSignal(SignalName.MoveProcessDelegate, MoveObject.Velocity);
+            }*/
         }
     }
     public virtual void SetMovementDirection() {

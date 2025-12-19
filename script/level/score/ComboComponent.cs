@@ -23,8 +23,11 @@ public partial class ComboComponent : Node {
         Combo++;
         if (Combo > 7) Combo = 1;
         EmitSignal(SignalName.PlaySoundKick);
-        // 1UP 音效的播放见 LevelManager 的 AddLife 方法
+        // 1UP 音效的播放见 GameManager 的 AddLife 方法
         Score = ComboToScore[Combo];
         return Score;
+    }
+    public void ResetCombo() {
+        Combo = 0;
     }
 }

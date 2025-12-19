@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddqu2ik76sdd8"]
+[gd_scene load_steps=11 format=3 uid="uid://ddqu2ik76sdd8"]
 
 [ext_resource type="Texture2D" uid="uid://caoo0e1qx46vn" path="res://content/level/projectile​/fireball.png" id="1_l3dqx"]
 [ext_resource type="Script" uid="uid://oqtimqyv38fd" path="res://script/level/projectile​/player/player_fireball/FireballMovement.cs" id="2_u5ybu"]
 [ext_resource type="Script" uid="uid://ctpnsx7awriaq" path="res://script/level/projectile​/player/player_fireball/FireballInteraction.cs" id="3_u5ybu"]
+[ext_resource type="Script" uid="uid://bf7lqaq56etq7" path="res://script/level/projectile​/FireballInteractionWithIce.cs" id="4_72n31"]
 [ext_resource type="Script" uid="uid://cq48ngja8ythw" path="res://script/level/projectile​/FireballExplode.cs" id="4_k75hg"]
 [ext_resource type="Script" uid="uid://bchyfxjjtbl83" path="res://script/level/projectile​/player/player_fireball/FireballSprite.cs" id="5_ef5ss"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="6_tc1ec"]
@@ -14,7 +15,7 @@ size = Vector2(15, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5s1o"]
 size = Vector2(15, 16)
 
-[node name="PlayerFireball" type="CharacterBody2D" groups=["fireball"]]
+[node name="PlayerFireball" type="CharacterBody2D" groups=["fireball", "hittable_to_ice"]]
 z_index = 80
 collision_layer = 0
 collision_mask = 5
@@ -46,6 +47,11 @@ metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 script = ExtResource("3_u5ybu")
 _fireball = NodePath("..")
 
+[node name="FireballInteractionWithIce" type="Node" parent="." node_paths=PackedStringArray("_basicMovement")]
+script = ExtResource("4_72n31")
+_basicMovement = NodePath("../FireballMovement")
+metadata/_custom_type_script = "uid://bf7lqaq56etq7"
+
 [node name="FireballExplode" type="Node" parent="."]
 script = ExtResource("4_k75hg")
 
@@ -63,7 +69,8 @@ RoomLeftOffset = 10.0
 RoomRightOffset = 10.0
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 
-[node name="SmwpPointLight2D" parent="." instance=ExtResource("7_ubb6l")]
+[node name="SmwpPointLight2D" parent="." groups=["hittable_to_ice"] instance=ExtResource("7_ubb6l")]
 
 [connection signal="FireballExplode" from="FireballMovement" to="FireballExplode" method="OnFireballExplode"]
 [connection signal="FireballExplode" from="FireballInteraction" to="FireballExplode" method="OnFireballExplode"]
+[connection signal="FireballExplode" from="FireballInteractionWithIce" to="FireballExplode" method="OnFireballExplode"]

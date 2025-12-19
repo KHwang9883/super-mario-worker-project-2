@@ -14,11 +14,14 @@ public partial class BeetrootMovement : BasicMovement {
     private float _speedXFactor = 1f;
     private ShapeCast2D _shapeCast2D = null!;
 
-    [Export] public bool IsMwBeetroot;
+    public bool IsMwBeetroot;
     [Export] public float JumpSpeedMwBeetroot = -7f;
     [Export] public bool CanMwBeetrootClimbWallUpwards = true;
 
     public override void _Ready() {
+        // Beetroot Type
+        IsMwBeetroot = !LevelConfigAccess.GetLevelConfig(this).MfStyleBeet;
+        
         SpeedX = Mathf.Abs(SpeedX) * Direction;
         _shapeCast2D = GetParent().GetNode<ShapeCast2D>("AreaBodyCollision");
         

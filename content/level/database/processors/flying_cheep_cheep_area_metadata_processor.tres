@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c3fxeldmii0bb"]
+
+[ext_resource type="Script" uid="uid://b3j34kq1i1vfd" path="res://script/level/level_loader/processing/CheepCheepAreaMetaProcessor.cs" id="1_2vw2s"]
+
+[resource]
+script = ExtResource("1_2vw2s")
+Type = 1

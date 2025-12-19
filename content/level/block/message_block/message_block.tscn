@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=3 uid="uid://1yjr75w8clry"]
+
+[ext_resource type="Texture2D" uid="uid://bdvq66jd0y6cu" path="res://content/level/block/message_block/message_block.png" id="1_tiqtb"]
+[ext_resource type="Texture2D" uid="uid://d1c6ljxopww0p" path="res://content/level/block/block_hit.png" id="2_7m5g2"]
+[ext_resource type="PackedScene" uid="uid://dsjr2jccad25d" path="res://content/level/block/block_collision_shape_2d.tscn" id="3_6enii"]
+[ext_resource type="Script" uid="uid://byxprud0j2jl7" path="res://script/level/block/message_block/MessageBlock.cs" id="4_tiqtb"]
+[ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="5_22hp7"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="6_2w2xd"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="8_debah"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0mmn"]
+atlas = ExtResource("1_tiqtb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqlbo"]
+atlas = ExtResource("1_tiqtb")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5svu"]
+atlas = ExtResource("1_tiqtb")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bggvx"]
+atlas = ExtResource("2_7m5g2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7avrq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0mmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqlbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5svu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bggvx")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[node name="MessageBlock" type="StaticBody2D"]
+z_index = 18
+collision_layer = 3
+collision_mask = 0
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7avrq")
+autoplay = "default"
+
+[node name="BlockCollisionShape2D" parent="." instance=ExtResource("3_6enii")]
+rotation = -3.1415925
+
+[node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("Sprite", "_collisionShape2D")]
+script = ExtResource("4_tiqtb")
+_message = "おはよ#スーパーマリオ#啊啊啊啊啊啊啊啊啊啊啊啊啊#测试出字速度"
+Bumpable = true
+Sprite = NodePath("../Sprite2D")
+_collisionShape2D = NodePath("../BlockCollisionShape2D")
+metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
+
+[node name="Break" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_22hp7")
+script = ExtResource("6_2w2xd")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("8_debah")]
+
+[connection signal="BlockBreak" from="BlockHit" to="Break" method="play"]

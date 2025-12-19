@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsjr2jccad25d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p6wk"]
+size = Vector2(32, 32)
+
+[node name="BlockCollisionShape2D" type="CollisionShape2D"]
+rotation = 3.1415927
+shape = SubResource("RectangleShape2D_5p6wk")

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://hghv61ffn21i"]
+
+[ext_resource type="Script" uid="uid://lq6wrcwucbmm" path="res://script/level/level_loader/processing/HiddenBlockProcessor.cs" id="1_73yw2"]
+
+[resource]
+script = ExtResource("1_73yw2")

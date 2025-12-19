@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://2vuxafdyyhgx"]
+[gd_scene load_steps=13 format=3 uid="uid://2vuxafdyyhgx"]
 
 [ext_resource type="Texture2D" uid="uid://hgmroqnhbecu" path="res://content/level/water/water_surface.png" id="1_8j37s"]
 [ext_resource type="Script" uid="uid://ckibo4ofkc75a" path="res://script/level/water/Water.cs" id="1_opojc"]
+[ext_resource type="AudioStream" uid="uid://baujtl112q12d" path="res://content/sound/water_level.se.wav" id="3_oshm1"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="4_36hia"]
+[ext_resource type="AudioStream" uid="uid://diplwicv4mqtc" path="res://content/sound/lava_level.se.wav" id="5_nm6o4"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8j37s"]
 
@@ -80,3 +83,16 @@ position = Vector2(320, 8)
 sprite_frames = SubResource("SpriteFrames_g2rda")
 autoplay = "default"
 frame_progress = 1.0
+
+[node name="FluidWater" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_oshm1")
+script = ExtResource("4_36hia")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="FluidLava" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_nm6o4")
+script = ExtResource("4_36hia")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[connection signal="PlaySoundLavaLevel" from="." to="FluidLava" method="play"]
+[connection signal="PlaySoundWaterLevel" from="." to="FluidWater" method="play"]

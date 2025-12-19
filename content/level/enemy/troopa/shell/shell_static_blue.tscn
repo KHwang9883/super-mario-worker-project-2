@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bh54cpiym2xq5"]
+[gd_scene load_steps=19 format=3 uid="uid://bh54cpiym2xq5"]
 
 [ext_resource type="Texture2D" uid="uid://d2cjxtjvxmw83" path="res://content/level/enemy/troopa/shell/shell_blue.png" id="1_apav8"]
 [ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="2_6n3e2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="6_ayoyt"]
 [ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/level/enemy/general_visible_on_screen_enabler_2d.tscn" id="7_bmtb4"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="8_27w7o"]
+[ext_resource type="Script" uid="uid://digqxtvu8efas" path="res://script/level/enemy/troopa/shell/GreenSwitchSwitched.cs" id="8_y12ys"]
 [ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="9_2q4wx"]
 [ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="11_s1ioi"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="11_supmv"]
@@ -75,6 +76,9 @@ _enemyDeadPackedSceneUid = &"uid://7whmweafbswk"
 script = ExtResource("6_ayoyt")
 InternalScore = 0
 metadata/_custom_type_script = "uid://cnbadhjt53rkc"
+
+[node name="GreenSwitchSwitched" type="Node" parent="."]
+script = ExtResource("8_y12ys")
 
 [node name="GeneralVisibleOnScreenEnabler2d" parent="." instance=ExtResource("7_bmtb4")]
 

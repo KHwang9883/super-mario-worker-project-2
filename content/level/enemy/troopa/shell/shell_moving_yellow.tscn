@@ -1,14 +1,15 @@
-[gd_scene load_steps=23 format=3 uid="uid://02jpwc4jcvjt"]
+[gd_scene load_steps=24 format=3 uid="uid://02jpwc4jcvjt"]
 
 [ext_resource type="Texture2D" uid="uid://bx2mfyon04o57" path="res://content/level/enemy/troopa/shell/shell_yellow.png" id="1_kd204"]
 [ext_resource type="Script" uid="uid://m51cdt80w33w" path="res://script/level/enemy/troopa/shell/ShellMovingDirection.cs" id="2_hdjmv"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_rwg20"]
-[ext_resource type="Script" uid="uid://dkuti7ksh0pjy" path="res://script/level/enemy/goomba/GoombaEnemyInteraction.cs" id="4_eo711"]
+[ext_resource type="Script" uid="uid://bavc2of3311e" path="res://script/level/enemy/troopa/shell/ShellEnemyInteraction.cs" id="4_s3rs7"]
 [ext_resource type="Script" uid="uid://654jtvsrt54l" path="res://script/level/enemy/troopa/shell/ShellMovingPlayerInteractionDelay.cs" id="5_vst6s"]
 [ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="6_vdsd4"]
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="7_mjgh2"]
 [ext_resource type="Script" uid="uid://bch1tqb6dv6q2" path="res://script/level/enemy/troopa/shell/ShellMovingInteraction.cs" id="8_l6t24"]
 [ext_resource type="PackedScene" uid="uid://cf77lp7tg0d0l" path="res://content/level/score/combo_component.tscn" id="9_3gkbe"]
+[ext_resource type="Script" uid="uid://digqxtvu8efas" path="res://script/level/enemy/troopa/shell/GreenSwitchSwitched.cs" id="10_s3rs7"]
 [ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/level/enemy/general_visible_on_screen_enabler_2d.tscn" id="10_u2xue"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="11_r05x7"]
 [ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="12_7r0og"]
@@ -87,7 +88,7 @@ _animatedSprite2D = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://t3te8lnb0byj"
 
 [node name="EnemyInteraction" type="Node" parent="."]
-script = ExtResource("4_eo711")
+script = ExtResource("4_s3rs7")
 HurtType = 2
 HardLevel = 5
 metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
@@ -112,6 +113,9 @@ _shell = NodePath("..")
 _shellCombo = NodePath("../ComboComponent")
 
 [node name="ComboComponent" parent="." instance=ExtResource("9_3gkbe")]
+
+[node name="GreenSwitchSwitched" type="Node" parent="."]
+script = ExtResource("10_s3rs7")
 
 [node name="GeneralVisibleOnScreenEnabler2d" parent="." instance=ExtResource("10_u2xue")]
 
@@ -138,11 +142,11 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]
-[connection signal="GoombaStomped" from="EnemyInteraction" to="Die" method="OnDied" flags=3]
 [connection signal="NormalHitAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="PlaySoundBumped" from="EnemyInteraction" to="Bumped" method="play"]
 [connection signal="PlaySoundKicked" from="EnemyInteraction" to="Kicked" method="play"]
 [connection signal="PlaySoundStomped" from="EnemyInteraction" to="Stomped" method="play"]
+[connection signal="ShellStomped" from="EnemyInteraction" to="Die" method="OnDied" flags=3]
 [connection signal="Harded" from="ShellInteraction" to="Die" method="OnDied"]
 [connection signal="Harded" from="ShellInteraction" to="Kicked" method="play"]
 [connection signal="screen_entered" from="GeneralVisibleOnScreenEnabler2d" to="BasicMovement" method="SetMovementDirection"]

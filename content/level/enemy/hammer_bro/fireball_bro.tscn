@@ -1,9 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://yeb5uqj5t0hc"]
+[gd_scene load_steps=22 format=3 uid="uid://yeb5uqj5t0hc"]
 
 [ext_resource type="Texture2D" uid="uid://mkoly5p6sbcl" path="res://content/level/enemy/hammer_bro/fire_bro.png" id="1_qfp8t"]
 [ext_resource type="Script" uid="uid://dterbwolxicoy" path="res://script/level/enemy/hammer_bro/HammerBroMovement.cs" id="2_c8ycn"]
-[ext_resource type="PackedScene" uid="uid://crmwi70gb1hhx" path="res://content/level/projectile​/enemy/fireball_fireball_bro/fireball_fireball_bro.tscn" id="3_c8ycn"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_cyr3s"]
+[ext_resource type="Script" uid="uid://c8p6yqyitnsh8" path="res://script/level/enemy/hammer_bro/HammerBroShoot.cs" id="3_ocpj5"]
 [ext_resource type="Script" uid="uid://cx6s65j3v4cyn" path="res://script/level/enemy/EnemyInteraction.cs" id="4_ocpj5"]
 [ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="5_xrrnw"]
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="6_31ef5"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="11_hgqx8"]
 [ext_resource type="AudioStream" uid="uid://dbe1tmavcr73y" path="res://content/sound/fireball.se.wav" id="12_qfp8t"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="14_cyr3s"]
+[ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/level/enemy/general_visible_on_screen_enabler_2d.tscn" id="14_ocpj5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c8ycn"]
 atlas = ExtResource("1_qfp8t")
@@ -75,14 +76,19 @@ autoplay = "default"
 shape = SubResource("RectangleShape2D_53twd")
 debug_color = Color(0.99999994, 0.2781755, 0.13178176, 0.41960785)
 
-[node name="HammerBroMovement" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D", "_shootSound", "MoveObject")]
+[node name="HammerBroMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("2_c8ycn")
-_projectileScene = ExtResource("3_c8ycn")
-_animatedSprite2D = NodePath("../AnimatedSprite2D")
-_shootSound = NodePath("../Fireball")
 MoveObject = NodePath("..")
 JumpSpeed = -12.0
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
+
+[node name="HammerBroShoot" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D", "_shootSound")]
+script = ExtResource("3_ocpj5")
+_animatedSprite2D = NodePath("../AnimatedSprite2D")
+_shootSound = NodePath("../Fireball")
+
+[node name="GeneralVisibleOnScreenEnabler2d" parent="HammerBroShoot" instance=ExtResource("14_ocpj5")]
+DisableWhenOutOfScreen = true
 
 [node name="AutoSpriteFlipH" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
 script = ExtResource("3_cyr3s")

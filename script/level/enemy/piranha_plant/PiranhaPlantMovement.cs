@@ -49,8 +49,8 @@ public partial class PiranhaPlantMovement : Node {
         switch (_currentState) {
             case MoveState.Biting:
                 if (_fire && !_fired) {
-                    var enemyFireballCreator = _enemyFireballCreatorScene.Instantiate<EnemyFireballCreator>();
-                    enemyFireballCreator.Position = _parent.Position;
+                    var enemyFireballCreator = _enemyFireballCreatorScene.Instantiate<Node2D>();
+                    enemyFireballCreator.GlobalPosition = _parent.GlobalPosition;
                     AddSibling(enemyFireballCreator);
                     _fired = true;
                 }

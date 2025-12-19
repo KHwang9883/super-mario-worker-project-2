@@ -3,6 +3,9 @@ using Godot.Collections;
 
 namespace SMWP.Level.Data;
 
+/// <summary>
+/// 代表一个文件中 BlocksDataStart 和 BlocksDataEnd 中间的部分。
+/// </summary>
 [GlobalClass]
 public partial class ClassicSmwlBlocksData : Resource {
     /// <summary>

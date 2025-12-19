@@ -24,6 +24,10 @@ public partial class ThwompInteraction : Area2D {
             interactionWithBlockNode = (Node)staticBody2D.GetMeta("InteractionWithBlock");
         }
         if (interactionWithBlockNode is not BlockHit blockHit) return;
+        
+        // 隐藏砖不触发
+        if (blockHit.Hidden) return;
+        
         if (_thwomp != null) blockHit.OnBlockHit(_thwomp);
     }
 }

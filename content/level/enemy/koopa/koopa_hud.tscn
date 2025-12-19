@@ -1,0 +1,251 @@
+[gd_scene load_steps=6 format=3 uid="uid://fapw8rhv275x"]
+
+[ext_resource type="Texture2D" uid="uid://bvlk08o72wmxu" path="res://content/level/enemy/koopa/koopa_lives.png" id="1_aq0ck"]
+[ext_resource type="Script" uid="uid://7m5d2ba17cam" path="res://script/level/enemy/koopa/KoopaHUD.cs" id="1_ncmnn"]
+[ext_resource type="Texture2D" uid="uid://cob0h7kepuoqk" path="res://content/level/enemy/koopa/koopa_life_unit.png" id="2_ncmnn"]
+[ext_resource type="Texture2D" uid="uid://cl0orxulhcull" path="res://content/level/enemy/koopa/koopa_life_unit_ten.png" id="4_xlvnm"]
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="5_iletb"]
+
+[node name="KoopaHUD" type="CanvasLayer"]
+
+[node name="KoopaHUD" type="Node2D" parent="." node_paths=PackedStringArray("HpNormal", "HpAdvanced", "OverHpCounter") groups=["koopa_hud_node2d"]]
+process_mode = 3
+script = ExtResource("1_ncmnn")
+HpNormal = NodePath("SubViewportContainer/SubViewport/HpNormal")
+HpAdvanced = NodePath("SubViewportContainer/SubViewport/HpAdvanced")
+OverHpCounter = NodePath("SubViewportContainer/SubViewport/OverHpCounter")
+
+[node name="用SubViewport是因为不用的话就有" type="Node" parent="KoopaHUD"]
+
+[node name="库巴HUD血条出来一半才显示的问题" type="Node" parent="KoopaHUD"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="KoopaHUD"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="KoopaHUD/SubViewportContainer"]
+transparent_bg = true
+size = Vector2i(640, 480)
+
+[node name="Head" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -69.0
+offset_top = 60.0
+offset_right = -5.0
+offset_bottom = 102.0
+grow_horizontal = 0
+texture = ExtResource("1_aq0ck")
+stretch_mode = 2
+
+[node name="HpNormal" type="HBoxContainer" parent="KoopaHUD/SubViewportContainer/SubViewport"]
+offset_left = 483.0
+offset_top = 63.0
+offset_right = 569.0
+offset_bottom = 103.0
+alignment = 2
+
+[node name="Life" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpNormal"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_ncmnn")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life2" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpNormal"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_ncmnn")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life3" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpNormal"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_ncmnn")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life4" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpNormal"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_ncmnn")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life5" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpNormal"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_ncmnn")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life6" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpNormal"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_ncmnn")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life7" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpNormal"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_ncmnn")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life8" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpNormal"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_ncmnn")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life9" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpNormal"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_ncmnn")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life10" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpNormal"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_ncmnn")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="HpAdvanced" type="HBoxContainer" parent="KoopaHUD/SubViewportContainer/SubViewport"]
+offset_left = 483.0
+offset_top = 63.0
+offset_right = 569.0
+offset_bottom = 103.0
+alignment = 2
+
+[node name="Life" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpAdvanced"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_xlvnm")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life2" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpAdvanced"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_xlvnm")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life3" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpAdvanced"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_xlvnm")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life4" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpAdvanced"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_xlvnm")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life5" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpAdvanced"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_xlvnm")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life6" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpAdvanced"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_xlvnm")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life7" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpAdvanced"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_xlvnm")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life8" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpAdvanced"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_xlvnm")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life9" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpAdvanced"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_xlvnm")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Life10" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport/HpAdvanced"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_xlvnm")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="OverHpCounter" type="Label" parent="KoopaHUD/SubViewportContainer/SubViewport"]
+self_modulate = Color(1, 0, 0, 1)
+anchors_preset = -1
+anchor_left = 0.92
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.799988
+offset_top = 97.0
+offset_right = 27.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_iletb")
+text = "500"
+horizontal_alignment = 1
+uppercase = true

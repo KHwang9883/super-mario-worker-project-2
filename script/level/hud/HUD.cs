@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using SMWP.Level.Score;
+using SMWP.Util;
 
 namespace SMWP.Level.HUD;
 
@@ -18,14 +19,16 @@ public partial class HUD : Control {
     [Export] private Label _levelInfo = null!;
     [Export] private Label _scrollDisabled = null!;
     
+    private Node2D? _player;
+    private PlayerGodMode? _godModeNode;
+    private LevelConfig? _levelConfig;
+    
     private bool _timeWarned;
     private RandomNumberGenerator _rng = new RandomNumberGenerator();
     private float _rock;
     private float _timeHUDShake;
     private Vector2 _timeOriginPosition;
-    private Node2D? _player;
-    private PlayerGodMode? _godModeNode;
-    private LevelConfig? _levelConfig;
+    private string? _smwpGameWindowTitle;
 
     public override void _Ready() {
         _player ??= (Node2D)GetTree().GetFirstNodeInGroup("player");
@@ -37,29 +40,33 @@ public partial class HUD : Control {
             $"MF Style Beet: {YesOrNo(_levelConfig.MfStyleBeet)}\n" +
             $"Celeste Style Switch: {YesOrNo(_levelConfig.CelesteStyleSwitch)}\n" +
             $"MF Style Pipe Exit: {YesOrNo(_levelConfig.MfStylePipeExit)}";
+        _smwpGameWindowTitle = GetTree().Root.GetWindow().Title;
     }
     public override void _PhysicsProcess(double delta) {
         _godModeNode = (PlayerGodMode)_player!.GetMeta("PlayerGodMode");
         
         _life.Text = !_godModeNode.IsGodMode ?
-            $"MARIO {LevelManager.Life.ToString()}"
-            :$"GOD   {LevelManager.Life.ToString()}";
+            $"MARIO {GameManager.Life.ToString()}"
+            :$"GOD   {GameManager.Life.ToString()}";
         
-        _score.Text = LevelManager.Score.ToString();
+        _score.Text = GameManager.Score.ToString();
         
         // LevelTitle 特殊处理
         if (_levelConfig == null) {
             GD.PushError($"{this}: LevelConfig is null!");
         } else {
-            _levelTitle.Text = ConvertHashAndNewline(_levelConfig.LevelTitle);
+            _levelTitle.Text = StringProcess.ConvertHashAndNewline(_levelConfig.LevelTitle);
+            // 版本号小于 1712 则自动加上 WORLD 标题
+            // Todo: 待测试
+            if (_levelConfig.SmwpVersion < 1712) _levelTitle.Text = "WORLD\n" + _levelTitle.Text;
         }
         
         // 负数时间不显示
-        if (LevelManager.Time < 0) _timeHUD.Visible = false;
+        if (GameManager.Time < 0) _timeHUD.Visible = false;
             
         // 时钟警告！
-        _timeCounter.Text = LevelManager.Time.ToString();
-        if (LevelManager.Time < 100 && LevelManager.Time > 0 && !LevelManager.IsLevelPass) {
+        _timeCounter.Text = GameManager.Time.ToString();
+        if (GameManager.Time < 100 && GameManager.Time > 0 && !GameManager.IsLevelPass) {
             OnTimeWarning();
         }
         _timeHUDShake = _rng.RandfRange(0f, _rock) - _rng.RandfRange(0f, _rock);
@@ -67,15 +74,22 @@ public partial class HUD : Control {
         _rock = Mathf.Clamp(_rock - 0.1f, 0f, _rock);
 
         // 金币
-        _coin.Text = LevelManager.Coin.ToString();
+        _coin.Text = GameManager.Coin.ToString();
         
         // Game Over 展示
-        if (LevelManager.IsGameOver) {
+        if (GameManager.IsGameOver) {
             GameOverShow();
         }
         
         // Level Info
         _levelInfo.Visible = Input.IsActionPressed("level_info");
+        if (Input.IsActionJustPressed("level_info")) {
+            // Todo: 待测试
+            DisplayServer.WindowSetTitle($"[Level Author]: {_levelConfig?.LevelAuthor} ({_levelConfig?.SmwpVersion})");
+        } 
+        if (Input.IsActionJustReleased("level_info")) {
+            DisplayServer.WindowSetTitle(_smwpGameWindowTitle);
+        }
         
         // God Mode 摄像机模式坐标显示
         if (_player != null) {
@@ -87,15 +101,6 @@ public partial class HUD : Control {
         _scrollDisabled.Visible = _godModeNode.ForceScrollDisabled;
     }
     
-    public string ConvertHashAndNewline(string input) {
-        if (string.IsNullOrEmpty(input)) return input;
-
-        const string tempPlaceholder = "☃";
-        var step1 = input.Replace(@"\#", tempPlaceholder);
-        var step2 = step1.Replace("#", "\n");
-        var result = step2.Replace(tempPlaceholder, "#");
-        return result;
-    }
     public static string YesOrNo(bool boolean) {
         return boolean ? "Yes" : "No";
     }

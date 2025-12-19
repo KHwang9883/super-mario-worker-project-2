@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level;
 
 public partial class PlatformHorizontal : AnimatableBody2D {
     [Export] public float SpeedX = 1f;
@@ -7,6 +8,10 @@ public partial class PlatformHorizontal : AnimatableBody2D {
     private bool _turning;
     private float _targetSpeedX;
 
+    public override void _Ready() {
+        var levelConfig = LevelConfigAccess.GetLevelConfig(this);
+        levelConfig.SwitchSwitched += OnSwitchToggled;
+    }
     public override void _PhysicsProcess(double delta) {
         // 转向状态下无视碰撞检测，直到达到目标速度
         if (!_turning) {
@@ -51,7 +56,13 @@ public partial class PlatformHorizontal : AnimatableBody2D {
             SpeedX = _targetSpeedX;
             _turning = false;
         }
-        
-        // Todo: 开关砖第二功能：SpeedX 和 _targetSpeedX 均 *= -1
+    }
+    
+    // 开关砖第二功能
+    public void OnSwitchToggled(LevelConfig.SwitchTypeEnum switchTypeEnum) {
+        if (switchTypeEnum != LevelConfig.SwitchTypeEnum.Cyan) return;
+        //GD.Print($"Advanced {switchTypeEnum} Switch Switched!");
+        SpeedX = -SpeedX;
+        _targetSpeedX = -_targetSpeedX;
     }
 }

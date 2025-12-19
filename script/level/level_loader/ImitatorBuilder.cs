@@ -29,6 +29,7 @@ public record struct ImitatorBuilder(
             }
             CurrentAlign = align;
             CurrentTileMap = NewTileMap();
+            CurrentTileMap.Position = align;
         }
         CurrentTileMap ??= NewTileMap();
         // 把模仿者添加到 tilemap 里

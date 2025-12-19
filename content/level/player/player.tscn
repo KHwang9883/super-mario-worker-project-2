@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=39 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/level/player/mario_small.tres" id="1_o23i7"]
 [ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
@@ -47,6 +47,9 @@ points = PackedVector2Array(-12, 0, -12, -38, -2, -48, 2, -48, 12, -38, 12, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_rmk25"]
 radius = 8.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sba15"]
+size = Vector2(24, 2)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_sba15"]
 radius = 32.0
 
@@ -88,7 +91,7 @@ position = Vector2(0, 12)
 shape = SubResource("ConvexPolygonShape2D_gdtqi")
 target_position = Vector2(0, 0)
 max_results = 6
-collision_mask = 368
+collision_mask = 1392
 collide_with_areas = true
 
 [node name="OutWaterDetectSmall" type="ShapeCast2D" parent="."]
@@ -113,7 +116,7 @@ position = Vector2(0, 12)
 shape = SubResource("ConvexPolygonShape2D_y66qv")
 target_position = Vector2(0, 0)
 max_results = 6
-collision_mask = 368
+collision_mask = 1392
 collide_with_areas = true
 
 [node name="OutWaterDetectSuper" type="ShapeCast2D" parent="."]
@@ -123,8 +126,18 @@ position = Vector2(0, -28)
 shape = SubResource("CircleShape2D_rmk25")
 target_position = Vector2(0, 0)
 max_results = 3
-collision_mask = 112
+collision_mask = 64
 collide_with_areas = true
+
+[node name="OnIceDetect" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnIceDetect"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_sba15")
+debug_color = Color(0.3083697, 0.49670452, 0.99296016, 0.41960785)
 
 [node name="AroundWaterDetect" type="Area2D" parent="."]
 visible = false
@@ -144,10 +157,11 @@ playerAnimation = NodePath("PlayerAnimation")
 playerSuit = NodePath("PlayerSuit")
 playerGodMode = NodePath("PlayerGodMode")
 
-[node name="PlayerMovement" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_aroundWaterArea2D")]
+[node name="PlayerMovement" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_onIceArea2D", "_aroundWaterArea2D")]
 script = ExtResource("3_i4jjh")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
+_onIceArea2D = NodePath("../../OnIceDetect")
 _aroundWaterArea2D = NodePath("../../AroundWaterDetect")
 
 [node name="PlayerDieAndHurt" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_gameOverSound")]
@@ -170,17 +184,18 @@ _marioBeetroot = ExtResource("9_5unhu")
 _marioLui = ExtResource("10_tpspr")
 _playerEffectScene = ExtResource("11_q05y8")
 
-[node name="PlayerSuit" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator")]
+[node name="PlayerSuit" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_starmanCombo", "_smwpPointLight2D")]
 script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
-Suit = 2
-Powerup = 1
+_starmanCombo = NodePath("../../ComboComponent")
+_smwpPointLight2D = NodePath("../../SmwpPointLight2D")
 
-[node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_starmanCombo")]
+[node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_starmanCombo", "_addScoreComponent")]
 script = ExtResource("12_tpspr")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
 _starmanCombo = NodePath("../../ComboComponent")
+_addScoreComponent = NodePath("../../AddScoreComponent")
 
 [node name="PlayerShoot" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator")]
 script = ExtResource("13_v250f")
@@ -259,6 +274,7 @@ script = ExtResource("30_sba15")
 [connection signal="PlaySoundBreak" from="PlayerMediator/PlayerDieAndHurt" to="Break" method="play"]
 [connection signal="PlaySoundGameOver" from="PlayerMediator/PlayerDieAndHurt" to="GameOver" method="play"]
 [connection signal="PlayerDied" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerInteraction" method="HurtSucceedSet"]
+[connection signal="PlayerDiedSucceeded" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerSuit" method="OnPlayerDied"]
 [connection signal="PlayerDiedSucceeded" from="PlayerMediator/PlayerDieAndHurt" to="Starman" method="stop"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerAnimation" method="OnPlayerHurt"]
 [connection signal="PlayerHurted" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerInteraction" method="HurtSucceedSet"]
@@ -272,6 +288,8 @@ script = ExtResource("30_sba15")
 [connection signal="PlayerPowerup" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerAnimation" method="OnPLayerChangingSuit"]
 [connection signal="PlayerPowerup" from="PlayerMediator/PlayerInteraction" to="Powerup" method="play"]
 [connection signal="PlayerStomp" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerMovement" method="OnPlayerStomp"]
+[connection signal="PlayerStomp" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerDieAndHurt" method="SetStompInvincibleTime" unbinds=1]
+[connection signal="PlayerStompSetSpeedX" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerMovement" method="OnStompSetSpeedX"]
 [connection signal="PlayerShooting" from="PlayerMediator/PlayerShoot" to="PlayerShoot" method="play"]
 [connection signal="AddLife" from="PlayerMediator/PlayerGodMode" to="AddScoreComponent" method="AddScore"]
 [connection signal="finished" from="GameOver" to="GameOver" method="queue_free"]

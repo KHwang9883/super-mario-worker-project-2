@@ -6,6 +6,7 @@ using SMWP.Level.Player;
 using SMWP.Level.Block.Brick;
 using SMWP.Level.Bonus;
 using SMWP.Level.Interface;
+using SMWP.Level.Score;
 
 namespace SMWP.Level.Player;
 
@@ -17,6 +18,8 @@ public partial class PlayerInteraction : Node {
     [Signal]
     public delegate void PlayerStompEventHandler(float stompSpeedY);
     [Signal]
+    public delegate void PlayerStompSetSpeedXEventHandler(float stompSpeedX);
+    [Signal]
     public delegate void PlayerPowerupEventHandler();
     [Signal]
     public delegate void PlayerPowerPlainEventHandler();
@@ -25,6 +28,7 @@ public partial class PlayerInteraction : Node {
     [Export] private CharacterBody2D? _player;
 
     [Export] private ComboComponent? _starmanCombo;
+    [Export] private AddScoreComponent _addScoreComponent = null!;
 
     //private bool _isPlayerStomped;
     private bool _hurtFrame;
@@ -92,6 +96,12 @@ public partial class PlayerInteraction : Node {
                 || !(_player.GlobalPosition.Y < result.GlobalPosition.Y + stompable.StompOffset)) continue;
             result.SetMeta("InteractingObject", _player);
             EmitSignal(SignalName.PlayerStomp, stompable.OnStomped(_player));
+            
+            // 踩到库巴额外设置 x 速度
+            if (result.HasMeta("KoopaStomp")) {
+                EmitSignal(SignalName.PlayerStompSetSpeedX, 6f);
+            }
+            
             // 成功一次就停止 foreach
             //_isPlayerStomped = true;
             break;
@@ -177,6 +187,8 @@ public partial class PlayerInteraction : Node {
                     EmitSignal(SignalName.PlayerPowerup);
                 } else if (_playerMediator.playerSuit.Powerup == originalPowerup
                            && _playerMediator.playerSuit.Suit == originalSuit) {
+                    // 同类型道具加 1000 分
+                    _addScoreComponent.AddScore(1000);
                     EmitSignal(SignalName.PlayerPowerPlain);
                 }
             }
@@ -188,13 +200,13 @@ public partial class PlayerInteraction : Node {
         Node? blockHitNode = null;
 
         if (!(_playerMediator.playerMovement.SpeedY <= 0f)) return;
+
+        // 防止顶头时死亡（玩家禁用处理模式）报错
+        if (_player.ProcessMode == ProcessModeEnum.Disabled) return;
         
-        var collision = _player.MoveAndCollide(new Vector2(0f, -1f), true);
-        if (collision == null) {
-            return;
-        }
-        
-        var blockCollider = collision.GetCollider();
+        var collision = _player.MoveAndCollide(new Vector2(0f, -1f), true, 0.02f);
+
+        var blockCollider = collision?.GetCollider();
         //GD.Print(blockCollider);
         if (blockCollider is not StaticBody2D staticBody2D) return;
         if (staticBody2D.HasMeta("InteractionWithBlock")) {

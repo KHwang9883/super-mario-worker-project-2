@@ -1,15 +1,22 @@
 using Godot;
 using System;
-using System.IO;
+using System.Linq;
 using Godot.Collections;
 using SMWP.Level.Background;
-using SMWP.Level.Score;
 using FileAccess = Godot.FileAccess;
 
 namespace SMWP.Level;
 
 [GlobalClass]
 public partial class LevelConfig : Node {
+    [Signal]
+    public delegate void GamePausedEventHandler();
+    [Signal]
+    public delegate void GameResumedEventHandler();
+    
+    [Signal]
+    public delegate void SwitchSwitchedEventHandler(SwitchTypeEnum switchType);
+    
     [ExportGroup("BasicLevelSettings")]
     [Export] public float RoomWidth = 1024f;
     [Export] public float RoomHeight = 640f;
@@ -18,7 +25,6 @@ public partial class LevelConfig : Node {
     [Export] public string LevelAuthor = "";
     [Export] public int Time = 600;
     [Export] public float Gravity = 5f;
-    // Todo
     [Export] public int KoopaEnergy = 5;
     [Export] public float WaterHeight = 800f;
     [Export] public int BgpId = 1;
@@ -38,16 +44,11 @@ public partial class LevelConfig : Node {
     [Export] public float FluidT2 = -64;
     [Export(PropertyHint.Range, "0, 9, 1")] public float FluidSpeed = 1f;
     [Export] public int FluidDelay;
-    // Todo
     [Export] public bool AdvancedSwitch;
     [Export] public bool FastRetry;
-    // Todo
     [Export] public bool MfStyleBeet = true;
-    // Todo
     [Export] public bool CelesteStyleSwitch;
-    // Todo
     [Export] public bool MfStylePipeExit;
-    // Todo
     [Export] public bool FasterLevelPass;
     [Export] public bool HUDDisplay = true;
     
@@ -63,8 +64,10 @@ public partial class LevelConfig : Node {
     // Todo: 发光物体格式定义（二期工程、补丁和三期工程？）
     //[Export] public ... ???
 
-    // Todo
     [Export] public bool ThwompActivateBlocks;
+
+    // Todo: SmwpVersion 兼容性处理 
+    public int SmwpVersion = 2000;
     
     [ExportGroup("Database")]
     [Export] public BackgroundDatabase BgpDatabase { get; private set; } = null!;
@@ -72,19 +75,40 @@ public partial class LevelConfig : Node {
     
     private PackedScene? _backgroundScene;
     private BackgroundSet? _backgroundSet;
+    
+    // 开关砖
+    public enum SwitchTypeEnum {
+        Red,
+        Yellow,
+        Green,
+        Cyan,
+        Blue,
+        Magenta,
+        Kohl,
+        White,
+    }
+
+    public Godot.Collections.Dictionary<SwitchTypeEnum, bool> Switches { get; private set; } = null!;
+
+    // 关卡初始化
     public override void _Ready() {
-        // Room Size Set
-        // 见 LevelCamera
+        // Room Size 初始化见 LevelCamera
         
         // Time Set
-        LevelManager.SetLevelTime(Time);
+        GameManager.SetLevelTime(Time);
         
         // Set Player
-        LevelManager.Player = (Node2D)GetTree().GetFirstNodeInGroup("player");
+        GameManager.Player = (Node2D)GetTree().GetFirstNodeInGroup("player");
         
         // Water Height Set
+        //GD.Print($"IsCheckpointWaterHeightRecorded: {GameManager.IsCheckpointWaterHeightRecorded}");
         var water = (Water)GetTree().GetFirstNodeInGroup("water_global");
-        water.Position = water.Position with { Y = WaterHeight };
+        if (GameManager.IsCheckpointWaterHeightRecorded) {
+            water.Position = water.Position with { Y = GameManager.CheckpointWaterHeight };
+            //GD.Print($"Water Position Y: {water.Position.Y}");
+        } else {
+            water.Position = water.Position with { Y = WaterHeight };
+        }
         
         // Background Set
         SetBgp(BgpId);
@@ -92,9 +116,44 @@ public partial class LevelConfig : Node {
         // Bgm 初始化见 BgmPlayer
         
         // Faster Level Pass Set
-        LevelManager.IsFasterLevelPass = FasterLevelPass;
+        GameManager.IsFasterLevelPass = FasterLevelPass;
+        
+        // 初始化开关砖
+        Switches = new Godot.Collections.Dictionary<SwitchTypeEnum, bool>();
+        
+        foreach (SwitchTypeEnum type in Enum.GetValues(typeof(SwitchTypeEnum))) {
+            Switches.Add(type, false); 
+        }
+        
+        // 红色开关砖第二功能
+        SwitchSwitched += OnRedSwitchSwitched;
     }
 
+    public override void _PhysicsProcess(double delta) {
+        if (Input.IsActionJustPressed("pause") && GetTree().Paused) {
+            SetResume();
+            EmitSignal(SignalName.GameResumed);
+        } else if (Input.IsActionJustPressed("pause") && !GetTree().Paused || GameManager.TimeCountPause) { 
+            GetTree().Paused = true;
+            GameManager.TimeCountPause = true;
+            EmitSignal(SignalName.GamePaused);
+        }
+
+        if (Input.IsActionJustPressed("confirm") && GameManager.TimeCountPause) {
+            QuitLevel();
+        }
+    }
+
+    public void SetResume() {
+        GetTree().Paused = false;
+        GameManager.TimeCountPause = false;
+    }
+
+    public void QuitLevel() {
+        var gameManager = GetTree().Root.GetNode<GameManager>("GameManager");
+        gameManager.JumpToLevel();
+    }
+    
     public void SetBgm(int bgmId) {
         BgmId = bgmId;
         GetNode<BgmPlayer>("BgmPlayer").SetBgm(true);
@@ -118,5 +177,31 @@ public partial class LevelConfig : Node {
     public void SetWaterHeight(float waterHeight) {
         var globalWater = (Water)GetTree().GetFirstNodeInGroup("water_global");
         globalWater.SetWaterHeight(waterHeight);
+    }
+    
+    // 切换开关砖
+    public void ToggleSwitch(SwitchTypeEnum type, bool isOn, bool whiteAdv = false, bool kohlAdv = false) {
+        if (!Switches.ContainsKey(type)) return;
+        if (!kohlAdv) {
+            Switches[type] = isOn;
+        }
+
+        if (!AdvancedSwitch) return;
+        //GD.Print($"{this}: Advanced Switch Switched!");
+        if (whiteAdv) return;
+        EmitSignal(SignalName.SwitchSwitched, Variant.From(type));
+    }
+
+    // 红色开关砖第二功能
+    public void OnRedSwitchSwitched(SwitchTypeEnum type) {
+        if (type != SwitchTypeEnum.Red) return;
+        switch (FluidType) {
+            case Fluid.FluidTypeEnum.Water:
+                FluidType = Fluid.FluidTypeEnum.Lava;
+                break;
+            case Fluid.FluidTypeEnum.Lava:
+                FluidType = Fluid.FluidTypeEnum.Water;
+                break;
+        }
     }
 }
