@@ -67,7 +67,7 @@ public partial class LevelConfig : Node {
     [Export] public bool ThwompActivateBlocks;
 
     // Todo:
-    // if (SmwpVersion < 1712) LevelTitle = "World\n" + LevelTitle;
+    // 
     public int SmwpVersion = 2000;
     
     [ExportGroup("Database")]
