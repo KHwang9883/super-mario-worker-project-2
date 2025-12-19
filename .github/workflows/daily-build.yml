@@ -11,7 +11,7 @@ permissions:
 
 env:
   GODOT_VERSION: 4.5
-  EXPORT_NAME: SMWP2
+  EXPORT_NAME: SuperMarioWorkerProject2
   PROJECT_PATH: .
 
 jobs:
