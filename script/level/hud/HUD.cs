@@ -83,8 +83,8 @@ public partial class HUD : Control {
         // Level Info
         _levelInfo.Visible = Input.IsActionPressed("level_info");
         if (Input.IsActionJustPressed("level_info")) {
-            // Todo: 增加 SMWP1 / SMWP2 版本号显示
-            DisplayServer.WindowSetTitle($"[Level Author]: {_levelConfig?.LevelAuthor}");
+            // Todo: 待测试
+            DisplayServer.WindowSetTitle($"[Level Author]: {_levelConfig?.LevelAuthor} ({_levelConfig?.SmwpVersion})");
         } 
         if (Input.IsActionJustReleased("level_info")) {
             DisplayServer.WindowSetTitle(_smwpGameWindowTitle);

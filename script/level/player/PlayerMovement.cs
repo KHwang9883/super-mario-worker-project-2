@@ -349,12 +349,38 @@ public partial class PlayerMovement : Node {
 
         _wasStuck = Stuck;
 
+        if (_levelConfig == null) {
+            GD.PushError("Player: Push out from ceiling: LevelConfig is null!");
+            return;
+        }
+        
         if (!StuckSwitch) {
             if (Stuck) {
-                // 蹲滑起立卡墙挤出
-                SpeedX = 0f;
-                SpeedY = 0f;
-                _player.Position = new Vector2(_player.Position.X - 1f * Direction, _player.Position.Y);
+                if (_levelConfig.ModifiedMovement) {
+                    // 蹲滑起立卡墙挤出
+                    SpeedX = 0f;
+                    SpeedY = 0f;
+                    _player.Position += new Vector2(-1f * Direction, 0f);
+                } else {
+                    // 瞬间挤出
+                    if (_jump && Math.Abs(SpeedX) < 0.5f) {
+                        while (_player.MoveAndCollide(Vector2.Zero, true, 0.02f) != null) {
+                            if (_gravity < 10f
+                                && _playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Powered
+                                && _playerMediator.playerSuit.Powerup == PlayerSuit.PowerupEnum.Lui
+                                && Math.Abs(SpeedX) < 0.2f) {
+                                _player.Position += Vector2.Up;
+                            } else {
+                                _player.Position += Vector2.Down;
+                            }
+                        }
+                    } else {
+                        while (_player.MoveAndCollide(Vector2.Zero, true, 0.02f) != null) {
+                            _player.Position += new Vector2(-1f * Direction, 0f);
+                        }
+                    }
+                    _player.ResetPhysicsInterpolation();
+                }
             } else {
                 // 正常运动
                 _player.MoveAndSlide();

@@ -66,8 +66,7 @@ public partial class LevelConfig : Node {
 
     [Export] public bool ThwompActivateBlocks;
 
-    // Todo:
-    // 
+    // Todo: SmwpVersion 兼容性处理 
     public int SmwpVersion = 2000;
     
     [ExportGroup("Database")]
