@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using SMWP.Level.Tool;
+using SMWP.Util;
 
 public partial class FallingStar : Area2D {
     private Sprite2D? _sprite;

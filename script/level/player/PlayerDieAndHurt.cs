@@ -2,7 +2,7 @@ using Godot;
 using System;
 using SMWP.Level.Score;
 using SMWP.Level.Sound;
-using SMWP.Level.Tool;
+using SMWP.Util;
 
 namespace SMWP.Level.Player;
 

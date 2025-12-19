@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using SMWP.Level.Score;
+using SMWP.Util;
 
 namespace SMWP.Level.HUD;
 

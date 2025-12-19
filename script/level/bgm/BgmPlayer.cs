@@ -4,7 +4,7 @@ using System.IO;
 using SMWP;
 using SMWP.Level;
 using SMWP.Level.Player;
-using SMWP.Level.Tool;
+using SMWP.Util;
 using FileAccess = Godot.FileAccess;
 
 public partial class BgmPlayer : AudioStreamPlayer {

@@ -1,7 +1,6 @@
 using Godot;
-using System;
 
-namespace SMWP.Level.Tool;
+namespace SMWP.Util;
 
 [GlobalClass]
 public partial class SmwpFrameTimer : Node {

@@ -1,5 +1,4 @@
-using Godot;
-using System;
+namespace SMWP.Util;
 
 public static class StringProcess {
     public static string ConvertHashAndNewline(string input) {

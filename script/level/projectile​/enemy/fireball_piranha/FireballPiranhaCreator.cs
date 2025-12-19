@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using SMWP.Level.Tool;
+using SMWP.Util;
 
 namespace SMWP.Level.Projectile.Enemy;
 

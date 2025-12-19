@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Godot;
 using SMWP.Level.Interface;
 
-namespace SMWP.Level.Tool;
+namespace SMWP.Util;
 
 public class ObjectPool {
     /*public Queue<Node> FreePool = new();
