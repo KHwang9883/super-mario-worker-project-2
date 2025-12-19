@@ -362,19 +362,32 @@ public partial class PlayerMovement : Node {
                     SpeedY = 0f;
                     _player.Position += new Vector2(-1f * Direction, 0f);
                 } else {
-                    // 瞬间挤出
+                    // ModifiedMovement 关闭 / Classic Ver. 的瞬间挤出
                     if (_jump && Math.Abs(SpeedX) < 0.5f) {
                         while (_player.MoveAndCollide(Vector2.Zero, true, 0.02f) != null) {
+                            // 绿果状态挤出（对引力有要求、对 x 速度有进一步要求）
                             if (_gravity < 10f
                                 && _playerMediator.playerSuit.Suit == PlayerSuit.SuitEnum.Powered
                                 && _playerMediator.playerSuit.Powerup == PlayerSuit.PowerupEnum.Lui
                                 && Math.Abs(SpeedX) < 0.2f) {
                                 _player.Position += Vector2.Up;
-                            } else {
+                            }
+                            // 向下挤出
+                            else {
                                 _player.Position += Vector2.Down;
                             }
                         }
                     } else {
+                        // 横向挤出
+                        // 反身 / 反向挤出（对 x 速度有要求）
+                        if (Math.Abs(SpeedX) < 0.5f) {
+                            if (_left) {
+                                Direction = -1;
+                            }
+                            if (_right) {
+                                Direction = 1;
+                            }
+                        }
                         while (_player.MoveAndCollide(Vector2.Zero, true, 0.02f) != null) {
                             _player.Position += new Vector2(-1f * Direction, 0f);
                         }
