@@ -8,9 +8,8 @@ namespace SMWP.Level.Loader.Processing;
 /// </summary>
 public partial class HiddenBlockProcessor : ObjectProcessor {
     public override void ProcessObject(Node instance, string metadata) {
-        if (!instance.TryGetComponent(out QuestionBlock? component)) {
-            return;
+        if (instance.TryGetComponent(out QuestionBlock? component)) {
+            component.Hidden = true;
         }
-        component.SetHidden();
     }
 }

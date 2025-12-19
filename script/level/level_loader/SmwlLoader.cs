@@ -22,7 +22,29 @@ public partial class SmwlLoader : Node {
     }
 
     public ValueTask<SmwlLevelData?> Load(Stream compressedSmwl) {
-        return Load0(new StreamReader(new GZipStream(new BufferedStream(compressedSmwl), CompressionMode.Decompress)));
+        // 用缓冲区包装
+        var buffered = new BufferedStream(compressedSmwl);
+        // 检测文件类型是否为压缩的 smwl，并构建解压后的纯文本流
+        var decompressed = (Stream) (IsBinaryFile(compressedSmwl)
+            ? new GZipStream(buffered, CompressionMode.Decompress)
+            : buffered);
+        return Load0(new StreamReader(decompressed));
+    }
+
+    private static bool IsBinaryFile(Stream smwl) {
+        if (!smwl.CanSeek) {
+            throw new NotSupportedException("Unseekable file stream: unable to detect smwl type");
+        }
+        using var reader = new StreamReader(new GZipStream(smwl, CompressionMode.Decompress, true));
+        bool result;
+        try {
+            reader.Read();
+            result = true;
+        } catch (InvalidDataException) {
+            result = false;
+        }
+        smwl.Seek(0, SeekOrigin.Begin);
+        return result;
     }
 
     private async ValueTask<SmwlLevelData?> Load0(TextReader reader) {

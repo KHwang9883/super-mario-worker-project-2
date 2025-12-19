@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://1yjr75w8clry" path="res://content/level/block/message_block/message_block.tscn" id="9_y0f4k"]
 [ext_resource type="PackedScene" uid="uid://ix3t4xs7phce" path="res://content/level/block/ice_block/ice_block.tscn" id="10_bn5g2"]
 [ext_resource type="PackedScene" uid="uid://b8fi12ftk0dka" path="res://content/level/block/switch_block/switch_block.tscn" id="11_3f7fm"]
-[ext_resource type="PackedScene" path="res://content/level/bad_object.tscn" id="11_mv5g0"]
+[ext_resource type="PackedScene" uid="uid://bh2mcrx4e1dx1" path="res://content/level/bad_object.tscn" id="11_mv5g0"]
 [ext_resource type="PackedScene" uid="uid://cgmv1pxkk72ai" path="res://content/level/block/switch_block/dotted-line_block.tscn" id="12_2wq0b"]
 [ext_resource type="PackedScene" uid="uid://b1srfpaxhbli6" path="res://content/level/facility/scene_control/scene_control.tscn" id="14_shbq3"]
 [ext_resource type="PackedScene" uid="uid://vphreva4h736" path="res://content/level/facility/view_control/view_control.tscn" id="15_2nisv"]
