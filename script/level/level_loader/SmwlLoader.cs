@@ -345,7 +345,9 @@ public partial class SmwlLoader : Node {
         while (true) {
             // 检测到 SMWP 二期的扩展关卡数据则返回
             var first = (char)reader.Peek();
-            if (!char.IsNumber(first)) {
+            // 有的 smwl/mfl 的对象区里有空行，
+            // 所以遇到空行的时候不能停止对象加载。
+            if (!char.IsNumber(first) && !char.IsWhiteSpace(first)) {
                 break;
             }
             var line = await ReadLineAsync(reader);

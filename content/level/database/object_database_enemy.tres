@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ctgqopj8q32nh" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_green.tscn" id="5_llua3"]
 [ext_resource type="PackedScene" uid="uid://lo64hov3eeo3" path="res://content/level/enemy/spiny/spiny.tscn" id="6_adiqc"]
 [ext_resource type="PackedScene" uid="uid://dh8pgpynxisry" path="res://content/level/enemy/piranha_plant/piranha_plant_green.tscn" id="7_gyedt"]
-[ext_resource type="PackedScene" path="res://content/level/bad_object.tscn" id="8_0wd3b"]
+[ext_resource type="PackedScene" uid="uid://bh2mcrx4e1dx1" path="res://content/level/bad_object.tscn" id="8_0wd3b"]
 [ext_resource type="PackedScene" uid="uid://cb62nwjb51k1v" path="res://content/level/enemy/piranha_plant/piranha_plant_fire.tscn" id="9_tfs4a"]
 [ext_resource type="PackedScene" uid="uid://cejpown37o253" path="res://content/level/enemy/lakitu/lakitu.tscn" id="10_6pmrl"]
 [ext_resource type="PackedScene" uid="uid://dertrheuvws04" path="res://content/level/enemy/bullet_bill/bullet_bill_cannon.tscn" id="11_xrdg5"]

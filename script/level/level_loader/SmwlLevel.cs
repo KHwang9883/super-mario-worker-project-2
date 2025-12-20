@@ -1,5 +1,4 @@
 using System.IO;
-using System.Linq;
 using Godot;
 using Godot.Collections;
 using SMWP.Level.Data;
@@ -179,24 +178,26 @@ public partial class SmwlLevel : Node2D {
             return;
         }
         // 生成物品
-        if (definition.Prefab is not { } prefab) {
+        var prefab = definition.Prefab;
+        if (prefab == null && definition.MetadataProcessor == null) {
             GD.PushError($"Trying to install regular object ({@object.Id}) with empty prefab");
             return;
         }
-        
+
         var processor = definition.MetadataProcessor;
-        var instance = processor?.CreateInstance(definition, @object) ?? prefab.Instantiate();
-        
-        if (instance is Node2D active) {
-            active.GlobalPosition = @object.Position;
-            active.Translate(definition.SpawnOffset);
+        var instances = processor?.CreateInstance(definition, @object);
+        foreach (var instance in instances ?? (prefab is null ? [] : [prefab.Instantiate()])) {
+            if (instance is Node2D active && processor?.IsCreatedInstancePositioned() != true) {
+                active.GlobalPosition = @object.Position;
+                active.Translate(definition.SpawnOffset);
+            }
+            processor?.ProcessObject(instance, @object);
+
+            instance.ResetPhysicsInterpolation();
+            _levelTemplate!.AddChild(instance);
         }
-        processor?.ProcessObject(instance, @object);
-        
-        instance.ResetPhysicsInterpolation();
-        _levelTemplate!.AddChild(instance);
     }
-    
+
     public void InstallAdditions(ClassicSmwlAdditionalSettingsData addition) {
         if (_levelConfig == null) {
             GD.PushError("InstallAddition: _levelConfig is null!");

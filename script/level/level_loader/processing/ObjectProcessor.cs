@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using SMWP.Level.Data;
 
@@ -15,7 +16,14 @@ public abstract partial class ObjectProcessor : Resource {
     /// </summary>
     /// <param name="definition">对象的数据条目</param>
     /// <param name="instance">解析后的对象实例</param>
-    /// <returns>生成后的游戏引擎对象实例</returns>
-    public virtual Node? CreateInstance(SmwpObjectDatabaseEntry definition, ClassicSmwlObject instance) => null;
+    /// <returns>生成后的游戏引擎对象实例，可以返回多个（例如水管链接）</returns>
+    public virtual IEnumerable<Node>? CreateInstance(SmwpObjectDatabaseEntry definition, ClassicSmwlObject instance) => null;
+    
+    /// <summary>
+    /// 用于确定 <see cref="CreateInstance"/> 生成的物品是否已被赋予位置。
+    /// </summary>
+    /// <returns>如果为 true，那么关卡加载器不会改变 <see cref="CreateInstance"/> 生成的节点的位置。</returns>
+    public virtual bool IsCreatedInstancePositioned() => false;
+    
     public virtual void ProcessObject(Node node, ClassicSmwlObject instance) {}
 }

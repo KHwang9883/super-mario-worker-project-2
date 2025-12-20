@@ -1,5 +1,5 @@
+using System.Collections.Generic;
 using Godot;
-using Godot.Collections;
 using JetBrains.Annotations;
 using SMWP.Level.Data;
 using SMWP.Util;
@@ -7,8 +7,8 @@ using SMWP.Util;
 namespace SMWP.Level.Loader.Processing;
 
 public partial class PlatformProcessor : ObjectProcessor {
-    [Export] public Dictionary<PlatformType, PackedScene> PrefabByType { get; private set; } = [];
-    [Export] public Dictionary<int, SmwpPlatformProcessorEntry> DataById { get; private set; } = [];
+    [Export] public GDC.Dictionary<PlatformType, PackedScene> PrefabByType { get; private set; } = [];
+    [Export] public GDC.Dictionary<int, SmwpPlatformProcessorEntry> DataById { get; private set; } = [];
     
     public enum PlatformType {
         [UsedImplicitly] Falling,
@@ -16,7 +16,7 @@ public partial class PlatformProcessor : ObjectProcessor {
         [UsedImplicitly] Vertical,
     }
 
-    public override Node? CreateInstance(SmwpObjectDatabaseEntry definition, ClassicSmwlObject instance) {
+    public override IEnumerable<Node>? CreateInstance(SmwpObjectDatabaseEntry definition, ClassicSmwlObject instance) {
         if (!DataById.TryGetValue(instance.Id, out var data)) {
             return base.CreateInstance(definition, instance);
         }
@@ -35,6 +35,6 @@ public partial class PlatformProcessor : ObjectProcessor {
         if (node.TryGetComponent(out PlatformStyleSet? style)) {
             style.PlatformStyle = data.Style;
         }
-        return node;
+        return [node];
     }
 }

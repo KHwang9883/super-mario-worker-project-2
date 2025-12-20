@@ -36,7 +36,7 @@ public static class ClassicSmwpCodec {
         // 负数坐标的情况，
         // 不支持字母，-A00 这样的坐标会直接报错
         if (serialized[0] == '-') {
-            return int.TryParse(serialized[1..], out result) || OnTriageError($"Unsupported negative coordinate value: {serialized}", out result);
+            return int.TryParse(serialized, out result) || OnTriageError($"Unsupported negative coordinate value: {serialized}", out result);
         }
         // 计算余 1000 的部分
         if (!int.TryParse(serialized[1..], out int tail)) {

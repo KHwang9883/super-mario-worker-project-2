@@ -1,0 +1,1 @@
+global using GDC = Godot.Collections;

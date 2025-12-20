@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dx6i1xi1l3qy8"]
+
+[ext_resource type="Script" uid="uid://b1me6ip5t1chc" path="res://script/level/level_loader/processing/PassageMetadataProcessor.cs" id="1_nn3qq"]
+[ext_resource type="PackedScene" uid="uid://dbaiwwluu374c" path="res://content/level/facility/passage/passage_in.tscn" id="1_wuq4s"]
+[ext_resource type="PackedScene" uid="uid://cxqwys5a7a23" path="res://content/level/facility/passage/passage_out.tscn" id="2_ub4vu"]
+
+[resource]
+script = ExtResource("1_nn3qq")
+PassageIn = ExtResource("1_wuq4s")
+PassageOut = ExtResource("2_ub4vu")
+EntranceOffsetByDirection = Dictionary[int, Vector2]({
+0: Vector2(32, -32),
+1: Vector2(32, 64),
+2: Vector2(32, 32),
+3: Vector2(32, 32)
+})
+ExitOffsetByDirection = Dictionary[int, Vector2]({
+0: Vector2(32, 0),
+1: Vector2(32, 0),
+2: Vector2(32, 32),
+3: Vector2(32, 32)
+})
