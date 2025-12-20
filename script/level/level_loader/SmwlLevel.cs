@@ -165,7 +165,7 @@ public partial class SmwlLevel : Node2D {
             case SpecialObjectIds.LevelStart:
                 if (_player is { } player) {
                     player.GlobalPosition = @object.Position;
-                    player.Translate(new Vector2(16, -16));
+                    player.Translate(new Vector2(0, -12));
                 }
                 break;
             default:

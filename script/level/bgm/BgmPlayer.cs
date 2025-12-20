@@ -111,6 +111,7 @@ public partial class BgmPlayer : AudioStreamPlayer {
         switch (_levelConfig.BgmId) {
             // No Music
             case 600:
+                Stop();
                 Stream = null;
                 return;
             // 外置覆盖 BGM
