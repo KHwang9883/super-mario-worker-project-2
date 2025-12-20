@@ -1,0 +1,36 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dsaw1u3xb4r7a"]
+
+[ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="1_qkhnc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_33u7v"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkhnc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1pxm"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4ffj"]
+draw_center = false
+
+[sub_resource type="FontVariation" id="FontVariation_wi2gi"]
+base_font = ExtResource("1_qkhnc")
+variation_embolden = 1.0
+variation_transform = Transform2D(1, 0, 0, 1.4, 0, 0)
+spacing_glyph = 1
+spacing_top = 1
+
+[resource]
+default_font = SubResource("FontVariation_wi2gi")
+default_font_size = 9
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0.2, 0.2, 0.2, 0.7294118)
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 12
+Button/styles/focus = SubResource("StyleBoxFlat_33u7v")
+Button/styles/hover = SubResource("StyleBoxFlat_qkhnc")
+Button/styles/normal = SubResource("StyleBoxFlat_r1pxm")
+Button/styles/pressed = SubResource("StyleBoxFlat_w4ffj")

@@ -1,0 +1,347 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch83cdc1rsc6v"]
+
+[ext_resource type="Texture2D" uid="uid://dncuqjuh6rn40" path="res://content/edit/bgm_select.png" id="1_dk2u5"]
+[ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="3_q8e4b"]
+[ext_resource type="Theme" uid="uid://dsaw1u3xb4r7a" path="res://content/ui/bgm_choose.tres" id="4_ajy3m"]
+
+[node name="BackgroundMusicSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Basic" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="BgmBackground" type="Sprite2D" parent="Basic"]
+position = Vector2(320, 240)
+texture = ExtResource("1_dk2u5")
+metadata/_edit_lock_ = true
+
+[node name="Back" parent="Basic" instance=ExtResource("3_q8e4b")]
+layout_mode = 0
+offset_left = 563.0
+offset_top = 425.0
+offset_right = 622.0
+offset_bottom = 459.0
+text = ""
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 412.0
+offset_bottom = 476.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SmwpButton" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMW OVERWORLD"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton2" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "CAVE"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton3" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "ROCKLAND"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton4" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "YI CASTLE"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton21" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "RIOT (MAP 1)"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton22" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMB2U OVERWORLD"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton5" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMB1 UNDERWATER"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton6" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "GHOST HOUSE"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton7" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "HOLIDAY ANTHEM (MAP 2)"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton8" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "STARLAND"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton9" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "STARLAND PLATFORMS"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton10" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "UNDERGROUND"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton11" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "ONE FINE DAY (MAP 3)"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton12" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "YI THEME 4"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton13" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "TRANCOI (MAP4)"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton14" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "INTERFERENCE ENDING"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton15" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SIRENS"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton16" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "IN THE KITCHEN (MAP 5)"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton17" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "YKY"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton18" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "YET BONUS (MAP 6)"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton19" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "YI OVERWORLD"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton20" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "THE GOLDEN AGES (MAP 7)"
+alignment = 1
+clip_text = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="SmwpButton" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(160, 14)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMW CASTLE"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton3" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(160, 14)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "APOPLEXY-TANKS"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton4" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(160, 14)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "BIG BOWSER"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton5" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(160, 14)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "FEDERATION (MAP 8)"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton2" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(160, 14)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "GAME SELECT"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton6" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(160, 14)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SELECT SAVE"
+alignment = 1
+clip_text = true
+
+[node name="SmwpButton7" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(160, 14)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "ROCKLAND YOSHI"
+alignment = 1
+clip_text = true
