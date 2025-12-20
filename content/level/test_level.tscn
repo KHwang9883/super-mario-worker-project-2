@@ -1079,6 +1079,9 @@ Angle = 10.0
 Amount = 5
 Direction = true
 
+[node name="MushroomLife" parent="." instance=ExtResource("50_rjg3t")]
+position = Vector2(4748, 268)
+
 [connection signal="pressed" from="LevelTemplate/GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonYes" to="LevelTemplate/LevelConfig" method="QuitLevel"]
 [connection signal="pressed" from="LevelTemplate/GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonNo" to="LevelTemplate/LevelConfig" method="SetResume"]
 [connection signal="GamePaused" from="LevelTemplate/LevelConfig" to="LevelTemplate/GamePausePopup" method="show"]

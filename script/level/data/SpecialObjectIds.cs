@@ -17,6 +17,11 @@ public static class SpecialObjectIds {
     public const int LevelStart = 219;
     
     /// <summary>
+    /// 220 中途点
+    /// </summary>
+    public const int Checkpoint = 220;
+    
+    /// <summary>
     /// 999 自定义物品。
     /// 当前开发阶段暂无用途，该 id 保留后续使用
     /// </summary>

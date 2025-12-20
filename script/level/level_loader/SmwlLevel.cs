@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Godot;
 using Godot.Collections;
 using SMWP.Level.Data;
@@ -28,6 +30,7 @@ public partial class SmwlLevel : Node2D {
     private Node2D? _levelTemplate;
     private LevelConfig? _levelConfig;
     private ImitatorBuilder _imitatorBuilder;
+    private int _checkpointId;
     
     // Todo: player position set
     private Node2D? _player;
@@ -65,6 +68,7 @@ public partial class SmwlLevel : Node2D {
     }
 
     public void Install(SmwlLevelData data) {
+        _checkpointId = 1;
         // 设置文件头数据
         InstallHeader(data.Header);
         // 设置额外设置
@@ -161,8 +165,15 @@ public partial class SmwlLevel : Node2D {
                 break;
             case SpecialObjectIds.LevelStart:
                 if (_player is { } player) {
-                    player.GlobalPosition = @object.Position;
-                    player.Translate(new Vector2(0, -12));
+                    player.Position = @object.Position - new Vector2(0, 12);
+                }
+                break;
+            // Checkpoint
+            case SpecialObjectIds.Checkpoint:
+                foreach (var node in CreateRegularObject(@object)) {
+                    if (node is Checkpoint cp) {
+                        cp.Id = _checkpointId++;
+                    }
                 }
                 break;
             default:
@@ -172,16 +183,20 @@ public partial class SmwlLevel : Node2D {
     }
 
     private void InstallRegularObject(ClassicSmwlObject @object) {
+        _ = CreateRegularObject(@object).Count();
+    }
+
+    private IEnumerable<Node> CreateRegularObject(ClassicSmwlObject @object) {
         // 获取对象数据条目
         if (!DatabaseHolder.TryGetObject(@object.Id, out var definition)) {
             GD.PushWarning($"Unknown object id {@object.Id}");
-            return;
+            yield break;
         }
         // 生成物品
         var prefab = definition.Prefab;
         if (prefab == null && definition.MetadataProcessor == null) {
             GD.PushError($"Trying to install regular object ({@object.Id}) with empty prefab");
-            return;
+            yield break;
         }
 
         var processor = definition.MetadataProcessor;
@@ -195,6 +210,7 @@ public partial class SmwlLevel : Node2D {
 
             instance.ResetPhysicsInterpolation();
             _levelTemplate!.AddChild(instance);
+            yield return instance;
         }
     }
 

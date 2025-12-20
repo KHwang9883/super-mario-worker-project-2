@@ -1,0 +1,65 @@
+[gd_resource type="Resource" load_steps=10 format=3 uid="uid://dlo4kx7bs0n66"]
+
+[ext_resource type="Resource" uid="uid://dae8xphsfx1wi" path="res://content/level/database/processors/platform_processor.tres" id="1_8isnt"]
+[ext_resource type="Script" uid="uid://cnqofymib37k" path="res://script/level/level_loader/processing/SmwpPlatformProcessorEntry.cs" id="1_m8aqu"]
+[ext_resource type="Script" uid="uid://ddnx2m4iupe4f" path="res://script/level/level_loader/processing/NewPlatformProcessor.cs" id="1_xh0p3"]
+
+[sub_resource type="Resource" id="Resource_l2pm4"]
+script = ExtResource("1_m8aqu")
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_eylqe"]
+script = ExtResource("1_m8aqu")
+Type = 1
+Speed = 1.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_m8aqu"]
+script = ExtResource("1_m8aqu")
+Type = 1
+Speed = 2.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_ypuv5"]
+script = ExtResource("1_m8aqu")
+Type = 1
+Speed = 3.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_o5wa7"]
+script = ExtResource("1_m8aqu")
+Type = 2
+Speed = 1.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_rquas"]
+script = ExtResource("1_m8aqu")
+Type = 2
+Speed = -1.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[resource]
+script = ExtResource("1_xh0p3")
+DataSource = ExtResource("1_8isnt")
+ConfigByType = Array[Object]([SubResource("Resource_l2pm4"), SubResource("Resource_eylqe"), SubResource("Resource_m8aqu"), SubResource("Resource_ypuv5"), SubResource("Resource_o5wa7"), SubResource("Resource_rquas")])
+OffsetTable = Dictionary[int, Vector2]({
+0: Vector2(48, 8),
+1: Vector2(16, 8),
+2: Vector2(64, 16),
+3: Vector2(48, 8),
+4: Vector2(16, 8),
+5: Vector2(48, 8),
+6: Vector2(16, 8),
+7: Vector2(48, 8),
+8: Vector2(16, 8),
+9: Vector2(48, 8),
+10: Vector2(16, 8),
+11: Vector2(48, 8),
+12: Vector2(16, 8),
+13: Vector2(48, 8),
+14: Vector2(16, 8),
+15: Vector2(0, 0),
+16: Vector2(0, 0),
+17: Vector2(0, 0),
+18: Vector2(0, 0)
+})

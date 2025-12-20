@@ -39,7 +39,6 @@ public partial class PassageMetadataProcessor : ObjectProcessor {
             GD.PushError($"Invalid passage out direction: {outDirectionCode}");
             return base.CreateInstance(definition, instance);
         }
-        GD.Print($"Establishing passage connection from {instance.Position} to {outPosition}");
         return CreateInstance0(instance.Position, outPosition, inDirection, outDirection);
     }
 

@@ -6,6 +6,9 @@ using SMWP.Util;
 
 namespace SMWP.Level.Loader.Processing;
 
+/// <summary>
+/// 老式移动平台（200-216）的加载器
+/// </summary>
 public partial class PlatformProcessor : ObjectProcessor {
     [Export] public GDC.Dictionary<PlatformType, PackedScene> PrefabByType { get; private set; } = [];
     [Export] public GDC.Dictionary<int, SmwpPlatformProcessorEntry> DataById { get; private set; } = [];
@@ -20,21 +23,36 @@ public partial class PlatformProcessor : ObjectProcessor {
         if (!DataById.TryGetValue(instance.Id, out var data)) {
             return base.CreateInstance(definition, instance);
         }
-        // 生成平台对象
-        var node = PrefabByType[data.Type].Instantiate<Node2D>();
+        return [CreatePlatform(data, data.Style, out _)];
+    }
+
+    /// <summary>
+    /// 生成平台对象。
+    /// 这个方法也会被 <see cref="NewPlatformProcessor"/> 使用。
+    /// </summary>
+    public Node CreatePlatform(
+        SmwpPlatformProcessorEntry config,
+        PlatformStyleSet.PlatformStyleEnum style,
+        out Vector2 offset
+    ) {
+        // 创建平台节点
+        var node = PrefabByType[config.Type].Instantiate<Node2D>();
         // 设置速度
         switch (node) {
             case PlatformHorizontal horizontal:
-                horizontal.SpeedX = data.Speed;
+                horizontal.SpeedX = config.Speed;
                 break;
             case PlatformVertical vertical:
-                vertical.SpeedY = data.Speed;
+                vertical.SpeedY = config.Speed;
                 break;
         }
         // 设置样式
-        if (node.TryGetComponent(out PlatformStyleSet? style)) {
-            style.PlatformStyle = data.Style;
+        if (node.TryGetComponent(out PlatformStyleSet? styleSet)) {
+            styleSet.PlatformStyle = style;
+            offset = styleSet.GetShapeFor(style).Size / 2;
+        } else {
+            offset = Vector2.Zero;
         }
-        return [node];
+        return node;
     }
 }

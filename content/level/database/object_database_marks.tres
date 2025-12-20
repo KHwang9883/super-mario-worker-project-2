@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=51 format=3 uid="uid://dp3ucvu1lpy7l"]
+[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=53 format=3 uid="uid://dp3ucvu1lpy7l"]
 
 [ext_resource type="Resource" uid="uid://dae8xphsfx1wi" path="res://content/level/database/processors/platform_processor.tres" id="1_3f7fm"]
 [ext_resource type="PackedScene" uid="uid://2i5erl0ya4vb" path="res://content/level/facility/giant_gate/giant_gate.tscn" id="1_qgjfj"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bjb4gqto4sgu3" path="res://script/level/data/SmwpObjectDatabase.cs" id="8_15nfl"]
 [ext_resource type="PackedScene" uid="uid://d2hm1ej2l7abm" path="res://content/level/facility/platform/plarform_horizontal_marker.tscn" id="8_qgl4e"]
 [ext_resource type="PackedScene" uid="uid://1yjr75w8clry" path="res://content/level/block/message_block/message_block.tscn" id="9_y0f4k"]
+[ext_resource type="Resource" uid="uid://dlo4kx7bs0n66" path="res://content/level/database/processors/new_platform_processor.tres" id="10_3f7fm"]
 [ext_resource type="PackedScene" uid="uid://ix3t4xs7phce" path="res://content/level/block/ice_block/ice_block.tscn" id="10_bn5g2"]
 [ext_resource type="PackedScene" uid="uid://b8fi12ftk0dka" path="res://content/level/block/switch_block/switch_block.tscn" id="11_3f7fm"]
 [ext_resource type="PackedScene" uid="uid://cgmv1pxkk72ai" path="res://content/level/block/switch_block/dotted-line_block.tscn" id="12_2wq0b"]
@@ -192,6 +193,13 @@ Prefab = ExtResource("8_qgl4e")
 SpawnOffset = Vector2(0, 0)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
+[sub_resource type="Resource" id="Resource_o6vwv"]
+script = ExtResource("2_qgl4e")
+Id = 225
+SpawnOffset = Vector2(0, 0)
+MetadataProcessor = ExtResource("10_3f7fm")
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
 [sub_resource type="Resource" id="Resource_qgl4e"]
 script = ExtResource("2_qgl4e")
 Id = 226
@@ -243,4 +251,4 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [resource]
 script = ExtResource("8_15nfl")
-Entries = Array[Object]([SubResource("Resource_yqqvh"), SubResource("Resource_3f7fm"), SubResource("Resource_2wq0b"), SubResource("Resource_shbq3"), SubResource("Resource_2nisv"), SubResource("Resource_sxhxf"), SubResource("Resource_iie4m"), SubResource("Resource_ly2o4"), SubResource("Resource_t2h1o"), SubResource("Resource_t5qoa"), SubResource("Resource_7n08r"), SubResource("Resource_6gek4"), SubResource("Resource_msgq0"), SubResource("Resource_cxpqp"), SubResource("Resource_dk2hu"), SubResource("Resource_qnnht"), SubResource("Resource_jcga8"), SubResource("Resource_4by0s"), SubResource("Resource_qgjfj"), SubResource("Resource_ng3f8"), SubResource("Resource_2ce3g"), SubResource("Resource_brsw6"), SubResource("Resource_0uytu"), SubResource("Resource_liha5"), SubResource("Resource_y0f4k"), null, SubResource("Resource_qgl4e"), SubResource("Resource_0sell"), SubResource("Resource_vqq0m"), SubResource("Resource_c7oi4"), SubResource("Resource_mv5g0"), null, null, SubResource("Resource_d1wse"), SubResource("Resource_lgli7"), SubResource("Resource_bn5g2")])
+Entries = Array[Object]([SubResource("Resource_yqqvh"), SubResource("Resource_3f7fm"), SubResource("Resource_2wq0b"), SubResource("Resource_shbq3"), SubResource("Resource_2nisv"), SubResource("Resource_sxhxf"), SubResource("Resource_iie4m"), SubResource("Resource_ly2o4"), SubResource("Resource_t2h1o"), SubResource("Resource_t5qoa"), SubResource("Resource_7n08r"), SubResource("Resource_6gek4"), SubResource("Resource_msgq0"), SubResource("Resource_cxpqp"), SubResource("Resource_dk2hu"), SubResource("Resource_qnnht"), SubResource("Resource_jcga8"), SubResource("Resource_4by0s"), SubResource("Resource_qgjfj"), SubResource("Resource_ng3f8"), SubResource("Resource_2ce3g"), SubResource("Resource_brsw6"), SubResource("Resource_0uytu"), SubResource("Resource_liha5"), SubResource("Resource_y0f4k"), SubResource("Resource_o6vwv"), SubResource("Resource_qgl4e"), SubResource("Resource_0sell"), SubResource("Resource_vqq0m"), SubResource("Resource_c7oi4"), SubResource("Resource_mv5g0"), null, null, SubResource("Resource_d1wse"), SubResource("Resource_lgli7"), SubResource("Resource_bn5g2")])
