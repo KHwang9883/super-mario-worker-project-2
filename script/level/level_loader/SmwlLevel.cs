@@ -37,9 +37,15 @@ public partial class SmwlLevel : Node2D {
         base._Ready();
         // 测试用
         // 改成拖拽加载了，更方便（
-        GetWindow().FilesDropped += files => OnOpenSmwlDialogFileSelected(files[0]);
-        // OpenSmwlDialog.FileSelected += OnOpenSmwlDialogFileSelected;
-        // OpenSmwlDialog.Visible = true;
+        //GetWindow().FilesDropped += files => OnOpenSmwlDialogFileSelected(files[0]);
+
+        if (GameManager.LevelFileStream == null) {
+            OpenSmwlDialog.FileSelected += OnOpenSmwlDialogFileSelected;
+            OpenSmwlDialog.Visible = true;
+        } else {
+            OnDataInstallStarted();
+            Install(GameManager.LevelFileStream);
+        }
     }
 
     private async void OnOpenSmwlDialogFileSelected(string file) {
@@ -49,6 +55,7 @@ public partial class SmwlLevel : Node2D {
             OnDataInstallStarted();
             
             if (await SmwlLoader.Load(input) is { } data) {
+                GameManager.LevelFileStream = data;
                 Install(data);
             } else {
                 foreach (var error in SmwlLoader.ErrorMessage) {
@@ -132,6 +139,7 @@ public partial class SmwlLevel : Node2D {
         // 安装合并后的模仿者 TileMap
         _imitatorBuilder.Finish();
         foreach (var tilemap in _imitatorBuilder.FinishedTileMaps) {
+            tilemap.CollisionEnabled = false;
             AddChild(tilemap);
         }
         _imitatorBuilder.Clear();
@@ -157,7 +165,7 @@ public partial class SmwlLevel : Node2D {
             case SpecialObjectIds.LevelStart:
                 if (_player is { } player) {
                     player.GlobalPosition = @object.Position;
-                    player.Translate(new Vector2(16, -16));
+                    player.Translate(new Vector2(0, -12));
                 }
                 break;
             default:
@@ -232,5 +240,9 @@ public partial class SmwlLevel : Node2D {
     // 数据读取完毕，实例化关卡模版
     public void OnDataInstallFinished() {
         AddChild(_levelTemplate);
+    }
+
+    public void JumpToScene(string sceneUid) {
+        GetTree().ChangeSceneToFile(sceneUid);
     }
 }

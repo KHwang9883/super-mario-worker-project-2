@@ -107,16 +107,23 @@ public partial class BgmPlayer : AudioStreamPlayer {
             GD.PushError($"{this}: LevelConfig is null!");
             return;
         }
-        
-        // 外置覆盖 BGM
-        if (_levelConfig.BgmId < 627) {
-            LoadOverrideBgm();
+
+        switch (_levelConfig.BgmId) {
+            // No Music
+            case 600:
+                Stop();
+                Stream = null;
+                return;
+            // 外置覆盖 BGM
+            case < 627:
+                LoadOverrideBgm();
+                break;
+            // BGM ID >= 627：自定义 BGM
+            default:
+                LoadCustomBgm();
+                break;
         }
-        // BGM ID >= 627：自定义 BGM
-        else {
-            LoadCustomBgm();
-        }
-        
+
         // 设置的同时根据情况播放
         if (play && !_isPlayerStarman) Play();
     }

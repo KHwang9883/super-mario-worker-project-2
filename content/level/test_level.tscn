@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=105 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="PackedScene" uid="uid://d2yrgj2s3hg6f" path="res://content/ui/popup/smwp_popup_game_pause.tscn" id="1_13tsj"]
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
@@ -92,6 +92,7 @@
 [ext_resource type="PackedScene" uid="uid://d2hm1ej2l7abm" path="res://content/level/facility/platform/plarform_horizontal_marker.tscn" id="89_wy2fk"]
 [ext_resource type="PackedScene" uid="uid://b8yc6nx4n5gfp" path="res://content/level/enemy/koopa/koopa.tscn" id="90_13tsj"]
 [ext_resource type="PackedScene" uid="uid://5mfpp4cy76ja" path="res://content/level/facility/platform/platform_horizontal.tscn" id="90_ate2p"]
+[ext_resource type="PackedScene" uid="uid://dlfxd7ibjwut8" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_yellow_generator.tscn" id="93_gx40e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h8cb6"]
 shader = ExtResource("21_13tsj")
@@ -1064,6 +1065,19 @@ position = Vector2(5488, 248)
 
 [node name="Koopa2" parent="LevelTemplate/Koopas" instance=ExtResource("90_13tsj")]
 position = Vector2(6632, 416)
+
+[node name="TroopaFlyYellowGenerator" parent="." instance=ExtResource("93_gx40e")]
+position = Vector2(4592, 136)
+Radius = 96.0
+Angle = 10.0
+Amount = 5
+
+[node name="TroopaFlyYellowGenerator2" parent="." instance=ExtResource("93_gx40e")]
+position = Vector2(4888, 104)
+Radius = 96.0
+Angle = 10.0
+Amount = 5
+Direction = true
 
 [connection signal="pressed" from="LevelTemplate/GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonYes" to="LevelTemplate/LevelConfig" method="QuitLevel"]
 [connection signal="pressed" from="LevelTemplate/GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonNo" to="LevelTemplate/LevelConfig" method="SetResume"]

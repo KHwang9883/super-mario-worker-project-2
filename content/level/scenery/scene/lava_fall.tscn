@@ -127,5 +127,6 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6o8dh")
+autoplay = "default"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("2_4mhnh")]
