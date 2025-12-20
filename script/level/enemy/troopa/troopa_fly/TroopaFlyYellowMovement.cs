@@ -3,9 +3,9 @@ using System;
 using Godot.Collections;
 
 public partial class TroopaFlyYellowMovement : Node {
-    [Export] private float _radius;
-    [Export] private float _angle;
-    [Export] private float _direction;
+    [Export] public float Radius;
+    [Export] public float Angle;
+    [Export] public float Direction;
     
     private Node2D? _parent;
     private Vector2 _originPos;
@@ -20,14 +20,14 @@ public partial class TroopaFlyYellowMovement : Node {
         
         _parent.Position =
             new Vector2(
-                _originPos.X + Mathf.Sin(Mathf.DegToRad(_angle)) *_radius,
-                _originPos.Y + Mathf.Cos(Mathf.DegToRad(_angle)) *_radius
+                _originPos.X + Mathf.Sin(Mathf.DegToRad(Angle)) * Radius,
+                _originPos.Y + Mathf.Cos(Mathf.DegToRad(Angle)) * Radius
                 );
         
-        if (_radius <= 150) {
-            _angle -= _direction * 2f - 1f;
+        if (Radius <= 150) {
+            Angle -= Direction;
         } else {
-            _angle -= (150f / _radius) * (_direction * 2f - 1f);
+            Angle -= (150f / Radius) * Direction;
         }
     }
 }
