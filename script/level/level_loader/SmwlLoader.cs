@@ -114,7 +114,7 @@ public partial class SmwlLoader : Node {
             KoopaEnergy = bossEnergy,
             WaterHeight = waterLevel,
             // 将默认背景设置为 1 号背景
-            BgpId = bgp > 0 ? bgm : 1,
+            BgpId = bgp > 0 ? bgp : 1,
             BgmId = bgm,
         };
     }
