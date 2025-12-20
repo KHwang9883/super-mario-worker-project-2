@@ -37,9 +37,10 @@ public partial class SmwlLevel : Node2D {
         base._Ready();
         // 测试用
         // 改成拖拽加载了，更方便（
-        GetWindow().FilesDropped += files => OnOpenSmwlDialogFileSelected(files[0]);
-        // OpenSmwlDialog.FileSelected += OnOpenSmwlDialogFileSelected;
-        // OpenSmwlDialog.Visible = true;
+        //GetWindow().FilesDropped += files => OnOpenSmwlDialogFileSelected(files[0]);
+        
+        OpenSmwlDialog.FileSelected += OnOpenSmwlDialogFileSelected;
+        OpenSmwlDialog.Visible = true;
     }
 
     private async void OnOpenSmwlDialogFileSelected(string file) {
@@ -233,5 +234,9 @@ public partial class SmwlLevel : Node2D {
     // 数据读取完毕，实例化关卡模版
     public void OnDataInstallFinished() {
         AddChild(_levelTemplate);
+    }
+
+    public void JumpToScene(string sceneUid) {
+        GetTree().ChangeSceneToFile(sceneUid);
     }
 }
