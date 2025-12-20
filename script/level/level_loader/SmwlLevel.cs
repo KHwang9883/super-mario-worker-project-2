@@ -35,13 +35,11 @@ public partial class SmwlLevel : Node2D {
 
     public override void _Ready() {
         base._Ready();
-        // 测试用
-        // 改成拖拽加载了，更方便（
-        //GetWindow().FilesDropped += files => OnOpenSmwlDialogFileSelected(files[0]);
 
         if (GameManager.LevelFileStream == null) {
-            OpenSmwlDialog.FileSelected += OnOpenSmwlDialogFileSelected;
-            OpenSmwlDialog.Visible = true;
+            // 测试用
+            // 改成拖拽加载了，更方便（
+            GetWindow().FilesDropped += files => OnOpenSmwlDialogFileSelected(files[0]);
         } else {
             OnDataInstallStarted();
             Install(GameManager.LevelFileStream);
