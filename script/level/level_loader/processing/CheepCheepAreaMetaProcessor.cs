@@ -26,7 +26,7 @@ public partial class CheepCheepAreaMetaProcessor : ObjectProcessor {
             return;
         }
         // 读取并检查鱼类型
-        int cheepType = metadata[9] - '0';
+        int cheepType = metadata[8] - '0';
         if (cheepType is < 0 or > (int)CheepCheepArea.CheepTypeEnum.Spike) {
             GD.PushError($"Unknown cheep type {cheepType}. metadata string is {metadata}");
             return;
