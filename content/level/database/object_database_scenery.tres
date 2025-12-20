@@ -48,6 +48,7 @@
 script = ExtResource("2_4qocu")
 Id = 101
 Prefab = ExtResource("1_qq4ym")
+SpawnOffset = Vector2(16, 8)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_dy1eh"]
@@ -89,72 +90,84 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 script = ExtResource("2_4qocu")
 Id = 107
 Prefab = ExtResource("8_irntw")
+SpawnOffset = Vector2(16, 8)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_3xcvq"]
 script = ExtResource("2_4qocu")
 Id = 108
 Prefab = ExtResource("9_qnit1")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_ak0k0"]
 script = ExtResource("2_4qocu")
 Id = 109
 Prefab = ExtResource("10_7hpmc")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_id127"]
 script = ExtResource("2_4qocu")
 Id = 110
 Prefab = ExtResource("11_mdjbm")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_w4i4k"]
 script = ExtResource("2_4qocu")
 Id = 111
 Prefab = ExtResource("12_tg7um")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_a08cv"]
 script = ExtResource("2_4qocu")
 Id = 112
 Prefab = ExtResource("13_atg5a")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_vw0ed"]
 script = ExtResource("2_4qocu")
 Id = 113
 Prefab = ExtResource("14_t7kyr")
+SpawnOffset = Vector2(16, 8)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_poak2"]
 script = ExtResource("2_4qocu")
 Id = 114
 Prefab = ExtResource("15_hjs5b")
+SpawnOffset = Vector2(16, -32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_p7vw5"]
 script = ExtResource("2_4qocu")
 Id = 115
 Prefab = ExtResource("16_b7dou")
+SpawnOffset = Vector2(16, -8)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_8gejq"]
 script = ExtResource("2_4qocu")
 Id = 116
 Prefab = ExtResource("17_50t6m")
+SpawnOffset = Vector2(16, 64)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_hkqgr"]
 script = ExtResource("2_4qocu")
 Id = 117
 Prefab = ExtResource("18_2i1t6")
+SpawnOffset = Vector2(16, 160)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_8286u"]
 script = ExtResource("2_4qocu")
 Id = 118
 Prefab = ExtResource("19_atg5a")
+SpawnOffset = Vector2(64, 80)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_6t2rq"]
@@ -179,78 +192,91 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 script = ExtResource("2_4qocu")
 Id = 122
 Prefab = ExtResource("23_hjs5b")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_xcm8h"]
 script = ExtResource("2_4qocu")
 Id = 123
 Prefab = ExtResource("24_a08cv")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_7xqwo"]
 script = ExtResource("2_4qocu")
 Id = 124
 Prefab = ExtResource("25_vw0ed")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_4qocu"]
 script = ExtResource("2_4qocu")
 Id = 125
 Prefab = ExtResource("26_poak2")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_20s60"]
 script = ExtResource("2_4qocu")
 Id = 126
 Prefab = ExtResource("27_p7vw5")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_apwe0"]
 script = ExtResource("2_4qocu")
 Id = 127
 Prefab = ExtResource("28_8gejq")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_b4jpr"]
 script = ExtResource("2_4qocu")
 Id = 128
 Prefab = ExtResource("29_hkqgr")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_p1obm"]
 script = ExtResource("2_4qocu")
 Id = 129
 Prefab = ExtResource("30_xajxs")
+SpawnOffset = Vector2(16, 64)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_hbp2r"]
 script = ExtResource("2_4qocu")
 Id = 130
 Prefab = ExtResource("31_xcm8h")
+SpawnOffset = Vector2(16, 160)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_e2wek"]
 script = ExtResource("2_4qocu")
 Id = 131
 Prefab = ExtResource("32_7xqwo")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_ldhq2"]
 script = ExtResource("2_4qocu")
 Id = 132
 Prefab = ExtResource("33_4qocu")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_h3ixc"]
 script = ExtResource("2_4qocu")
 Id = 133
 Prefab = ExtResource("34_20s60")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_bg7in"]
 script = ExtResource("2_4qocu")
 Id = 134
 Prefab = ExtResource("35_apwe0")
+SpawnOffset = Vector2(16, 8)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_ibmp6"]
@@ -263,12 +289,14 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 script = ExtResource("2_4qocu")
 Id = 136
 Prefab = ExtResource("37_p1obm")
+SpawnOffset = Vector2(16, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_mhvgb"]
 script = ExtResource("2_4qocu")
 Id = 137
 Prefab = ExtResource("38_hbp2r")
+SpawnOffset = Vector2(16, 8)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_7ech4"]
@@ -281,18 +309,21 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 script = ExtResource("2_4qocu")
 Id = 139
 Prefab = ExtResource("40_4qocu")
+SpawnOffset = Vector2(16, -48)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_3ev8h"]
 script = ExtResource("2_4qocu")
 Id = 140
 Prefab = ExtResource("41_20s60")
+SpawnOffset = Vector2(16, -48)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_kwh7y"]
 script = ExtResource("2_4qocu")
 Id = 141
 Prefab = ExtResource("42_apwe0")
+SpawnOffset = Vector2(16, -48)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [resource]
