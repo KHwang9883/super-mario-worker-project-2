@@ -1,6 +1,8 @@
 using Godot;
 using System;
+using System.IO;
 using Godot.Collections;
+using SMWP.Level.Data;
 using SMWP.Level.Player;
 using SMWP.Level.Sound;
 using Array = Godot.Collections.Array;
@@ -15,6 +17,8 @@ public partial class GameManager : Node {
     public static bool TitleScreenAnimationFinished;
     
     public static bool GamePause;
+
+    public static SmwlLevelData? LevelFileStream;
     
     public static int Time { get; set; }
     public static int Life { get; set; } = 4;
@@ -199,6 +203,9 @@ public partial class GameManager : Node {
         }
     }
     public void JumpToLevel() {
+        // 清空关卡文件数据
+        LevelFileStream = null;
+        
         // 解除游戏暂停状态
         GetTree().Paused = false;
 

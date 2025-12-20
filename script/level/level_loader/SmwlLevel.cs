@@ -38,9 +38,14 @@ public partial class SmwlLevel : Node2D {
         // 测试用
         // 改成拖拽加载了，更方便（
         //GetWindow().FilesDropped += files => OnOpenSmwlDialogFileSelected(files[0]);
-        
-        OpenSmwlDialog.FileSelected += OnOpenSmwlDialogFileSelected;
-        OpenSmwlDialog.Visible = true;
+
+        if (GameManager.LevelFileStream == null) {
+            OpenSmwlDialog.FileSelected += OnOpenSmwlDialogFileSelected;
+            OpenSmwlDialog.Visible = true;
+        } else {
+            OnDataInstallStarted();
+            Install(GameManager.LevelFileStream);
+        }
     }
 
     private async void OnOpenSmwlDialogFileSelected(string file) {
@@ -50,6 +55,7 @@ public partial class SmwlLevel : Node2D {
             OnDataInstallStarted();
             
             if (await SmwlLoader.Load(input) is { } data) {
+                GameManager.LevelFileStream = data;
                 Install(data);
             } else {
                 foreach (var error in SmwlLoader.ErrorMessage) {
