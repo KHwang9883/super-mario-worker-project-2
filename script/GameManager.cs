@@ -14,6 +14,8 @@ public partial class GameManager : Node {
 
     public static bool TitleScreenAnimationFinished;
     
+    public static bool GamePause;
+    
     public static int Time { get; set; }
     public static int Life { get; set; } = 4;
     public static int Score { get; set; }
@@ -111,7 +113,7 @@ public partial class GameManager : Node {
         _levelTimeTimer = 0;
     }
     public void TimeCount() {
-        if (TimeCountPause || IsLevelPass) return;
+        if (TimeCountPause || IsLevelPass || GamePause) return;
         
         if (!IsInstanceValid(Player)) return;
         
@@ -206,6 +208,7 @@ public partial class GameManager : Node {
         PlayerMovementNode = null;
 
         TimeCountPause = false;
+        GamePause = false;
         
         CurrentCheckpointId = 0;
         ActivatedCheckpoints = [];

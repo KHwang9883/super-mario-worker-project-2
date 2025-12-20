@@ -133,20 +133,20 @@ public partial class LevelConfig : Node {
         if (Input.IsActionJustPressed("pause") && GetTree().Paused) {
             SetResume();
             EmitSignal(SignalName.GameResumed);
-        } else if (Input.IsActionJustPressed("pause") && !GetTree().Paused || GameManager.TimeCountPause) { 
+        } else if (Input.IsActionJustPressed("pause") && !GetTree().Paused || GameManager.GamePause) { 
             GetTree().Paused = true;
-            GameManager.TimeCountPause = true;
+            GameManager.GamePause = true;
             EmitSignal(SignalName.GamePaused);
         }
 
-        if (Input.IsActionJustPressed("confirm") && GameManager.TimeCountPause) {
+        if (Input.IsActionJustPressed("confirm") && GameManager.GamePause) {
             QuitLevel();
         }
     }
 
     public void SetResume() {
         GetTree().Paused = false;
-        GameManager.TimeCountPause = false;
+        GameManager.GamePause = false;
     }
 
     public void QuitLevel() {
