@@ -35,4 +35,5 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h26i2")
+autoplay = "default"
 offset = Vector2(0, -15)
