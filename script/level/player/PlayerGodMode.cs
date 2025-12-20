@@ -98,6 +98,8 @@ public partial class PlayerGodMode : Node {
                 // 在左右各一侧屏外取消飞行状态情况的处理
                 if (IsGodFly) return;
                 var playerMovement = _playerMediator.playerMovement;
+                playerMovement.SpeedX = 0f;
+                playerMovement.SpeedY = 0f;
                 playerMovement.LastPositionX = _playerMediator.player.Position.X;
                 break;
             
