@@ -10,8 +10,9 @@ namespace SMWP.Level.Loader.Processing;
 public partial class CheepCheepAreaMetaProcessor : ObjectProcessor {
     [Export] public CheepCheepArea.CheepAreaTypeEnum Type { get; set; }
 
-    public override void ProcessObject(Node instance, string metadata) {
-        if (instance is not CheepCheepArea area) {
+    public override void ProcessObject(Node node, ClassicSmwlObject instance) {
+        var metadata = instance.Metadata;
+        if (node is not CheepCheepArea area) {
             return;
         }
         // 检查元数据长度

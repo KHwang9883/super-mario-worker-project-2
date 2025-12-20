@@ -1,4 +1,5 @@
 using Godot;
+using SMWP.Level.Data;
 using SMWP.Util;
 
 namespace SMWP.Level.Loader.Processing;
@@ -7,8 +8,9 @@ namespace SMWP.Level.Loader.Processing;
 /// 探照灯额外数据处理器
 /// </summary>
 public partial class RotoDiscMetadataProcessor : ObjectProcessor {
-    public override void ProcessObject(Node instance, string metadata) {
-        if (!instance.TryGetComponent(out RotoDiscMovement? movement)) {
+    public override void ProcessObject(Node node, ClassicSmwlObject instance) {
+        var metadata = instance.Metadata;
+        if (!node.TryGetComponent(out RotoDiscMovement? movement)) {
             return;
         }
         

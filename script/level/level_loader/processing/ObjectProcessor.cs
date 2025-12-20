@@ -17,5 +17,5 @@ public abstract partial class ObjectProcessor : Resource {
     /// <param name="instance">解析后的对象实例</param>
     /// <returns>生成后的游戏引擎对象实例</returns>
     public virtual Node? CreateInstance(SmwpObjectDatabaseEntry definition, ClassicSmwlObject instance) => null;
-    public virtual void ProcessObject(Node instance, string metadata) {}
+    public virtual void ProcessObject(Node node, ClassicSmwlObject instance) {}
 }

@@ -185,7 +185,7 @@ public partial class SmwlLevel : Node2D {
             active.GlobalPosition = @object.Position;
             active.Translate(definition.SpawnOffset);
         }
-        processor?.ProcessObject(instance, @object.Metadata);
+        processor?.ProcessObject(instance, @object);
         
         instance.ResetPhysicsInterpolation();
         _levelTemplate!.AddChild(instance);

@@ -1,0 +1,149 @@
+[gd_resource type="Resource" load_steps=24 format=3 uid="uid://dae8xphsfx1wi"]
+
+[ext_resource type="PackedScene" uid="uid://bg6asflp8evek" path="res://content/level/facility/platform/platform_fall.tscn" id="1_8lewc"]
+[ext_resource type="Script" uid="uid://cnqofymib37k" path="res://script/level/level_loader/processing/SmwpPlatformProcessorEntry.cs" id="1_fv1s4"]
+[ext_resource type="Script" uid="uid://byejq2kxwchj3" path="res://script/level/level_loader/processing/PlatformProcessor.cs" id="1_lxcsg"]
+[ext_resource type="PackedScene" uid="uid://5mfpp4cy76ja" path="res://content/level/facility/platform/platform_horizontal.tscn" id="2_sf3lu"]
+[ext_resource type="PackedScene" uid="uid://dfundrwrpx7oa" path="res://content/level/facility/platform/platform_vertical.tscn" id="3_pn0ku"]
+
+[sub_resource type="Resource" id="Resource_dthx2"]
+script = ExtResource("1_fv1s4")
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_fv1s4"]
+script = ExtResource("1_fv1s4")
+Type = 1
+Speed = 1.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_a5ron"]
+script = ExtResource("1_fv1s4")
+Type = 1
+Speed = 2.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_l6x7c"]
+script = ExtResource("1_fv1s4")
+Type = 1
+Speed = 3.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_povvs"]
+script = ExtResource("1_fv1s4")
+Type = 2
+Speed = 1.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_35hve"]
+script = ExtResource("1_fv1s4")
+Type = 2
+Speed = -1.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_gipyy"]
+script = ExtResource("1_fv1s4")
+Style = 1
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_chf5i"]
+script = ExtResource("1_fv1s4")
+Type = 1
+Style = 1
+Speed = 1.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_74wvx"]
+script = ExtResource("1_fv1s4")
+Type = 1
+Style = 1
+Speed = 2.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_c1ys2"]
+script = ExtResource("1_fv1s4")
+Type = 1
+Style = 1
+Speed = 3.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_12o44"]
+script = ExtResource("1_fv1s4")
+Type = 2
+Style = 1
+Speed = 1.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_o622u"]
+script = ExtResource("1_fv1s4")
+Type = 1
+Style = 1
+Speed = -1.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_cfi5w"]
+script = ExtResource("1_fv1s4")
+Style = 2
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_lemnc"]
+script = ExtResource("1_fv1s4")
+Type = 1
+Style = 2
+Speed = 1.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_ynp8n"]
+script = ExtResource("1_fv1s4")
+Type = 1
+Style = 2
+Speed = 2.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_ufw8n"]
+script = ExtResource("1_fv1s4")
+Type = 1
+Style = 2
+Speed = 3.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_3ut08"]
+script = ExtResource("1_fv1s4")
+Type = 2
+Style = 2
+Speed = 1.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[sub_resource type="Resource" id="Resource_t6jf6"]
+script = ExtResource("1_fv1s4")
+Type = 2
+Style = 2
+Speed = -1.0
+metadata/_custom_type_script = "uid://cnqofymib37k"
+
+[resource]
+script = ExtResource("1_lxcsg")
+PrefabByType = Dictionary[int, PackedScene]({
+0: ExtResource("1_8lewc"),
+1: ExtResource("2_sf3lu"),
+2: ExtResource("3_pn0ku")
+})
+DataById = Dictionary[int, Object]({
+200: SubResource("Resource_dthx2"),
+201: SubResource("Resource_fv1s4"),
+202: SubResource("Resource_a5ron"),
+203: SubResource("Resource_l6x7c"),
+204: SubResource("Resource_povvs"),
+205: SubResource("Resource_35hve"),
+206: SubResource("Resource_gipyy"),
+207: SubResource("Resource_chf5i"),
+208: SubResource("Resource_74wvx"),
+209: SubResource("Resource_c1ys2"),
+210: SubResource("Resource_12o44"),
+211: SubResource("Resource_o622u"),
+212: SubResource("Resource_cfi5w"),
+213: SubResource("Resource_lemnc"),
+214: SubResource("Resource_ynp8n"),
+215: SubResource("Resource_ufw8n"),
+216: SubResource("Resource_3ut08"),
+221: SubResource("Resource_t6jf6")
+})
