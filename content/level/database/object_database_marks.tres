@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=56 format=3 uid="uid://dp3ucvu1lpy7l"]
+[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=58 format=3 uid="uid://dp3ucvu1lpy7l"]
 
 [ext_resource type="Resource" uid="uid://dae8xphsfx1wi" path="res://content/level/database/processors/platform_processor.tres" id="1_3f7fm"]
 [ext_resource type="PackedScene" uid="uid://2i5erl0ya4vb" path="res://content/level/facility/giant_gate/giant_gate.tscn" id="1_qgjfj"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b1srfpaxhbli6" path="res://content/level/facility/scene_control/scene_control.tscn" id="14_shbq3"]
 [ext_resource type="PackedScene" uid="uid://vphreva4h736" path="res://content/level/facility/view_control/view_control.tscn" id="15_2nisv"]
 [ext_resource type="Resource" uid="uid://dx6i1xi1l3qy8" path="res://content/level/database/processors/passage_meta_processor.tres" id="16_yqqvh"]
+[ext_resource type="Resource" uid="uid://dhx4vgd0obtxj" path="res://content/level/database/processors/special_solid_metadata_processor.tres" id="18_c7oi4"]
 
 [sub_resource type="Resource" id="Resource_yqqvh"]
 script = ExtResource("2_qgl4e")
@@ -237,6 +238,13 @@ Id = 230
 Prefab = ExtResource("10_bn5g2")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
+[sub_resource type="Resource" id="Resource_ah3w3"]
+script = ExtResource("2_qgl4e")
+Id = 231
+SpawnOffset = Vector2(0, 0)
+MetadataProcessor = ExtResource("18_c7oi4")
+metadata/_custom_type_script = "uid://cpxsb6lorrux4"
+
 [sub_resource type="Resource" id="Resource_d1wse"]
 script = ExtResource("2_qgl4e")
 Id = 233
@@ -258,4 +266,4 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [resource]
 script = ExtResource("8_15nfl")
-Entries = Array[Object]([SubResource("Resource_yqqvh"), SubResource("Resource_3f7fm"), SubResource("Resource_2wq0b"), SubResource("Resource_shbq3"), SubResource("Resource_2nisv"), SubResource("Resource_sxhxf"), SubResource("Resource_iie4m"), SubResource("Resource_ly2o4"), SubResource("Resource_t2h1o"), SubResource("Resource_t5qoa"), SubResource("Resource_7n08r"), SubResource("Resource_6gek4"), SubResource("Resource_msgq0"), SubResource("Resource_cxpqp"), SubResource("Resource_dk2hu"), SubResource("Resource_qnnht"), SubResource("Resource_jcga8"), SubResource("Resource_4by0s"), SubResource("Resource_qgjfj"), SubResource("Resource_ng3f8"), SubResource("Resource_2ce3g"), SubResource("Resource_brsw6"), SubResource("Resource_0uytu"), SubResource("Resource_liha5"), SubResource("Resource_y0f4k"), SubResource("Resource_o6vwv"), SubResource("Resource_qgl4e"), SubResource("Resource_0sell"), SubResource("Resource_vqq0m"), SubResource("Resource_c7oi4"), SubResource("Resource_mv5g0"), null, null, SubResource("Resource_d1wse"), SubResource("Resource_lgli7"), SubResource("Resource_bn5g2")])
+Entries = Array[Object]([SubResource("Resource_yqqvh"), SubResource("Resource_3f7fm"), SubResource("Resource_2wq0b"), SubResource("Resource_shbq3"), SubResource("Resource_2nisv"), SubResource("Resource_sxhxf"), SubResource("Resource_iie4m"), SubResource("Resource_ly2o4"), SubResource("Resource_t2h1o"), SubResource("Resource_t5qoa"), SubResource("Resource_7n08r"), SubResource("Resource_6gek4"), SubResource("Resource_msgq0"), SubResource("Resource_cxpqp"), SubResource("Resource_dk2hu"), SubResource("Resource_qnnht"), SubResource("Resource_jcga8"), SubResource("Resource_4by0s"), SubResource("Resource_qgjfj"), SubResource("Resource_ng3f8"), SubResource("Resource_2ce3g"), SubResource("Resource_brsw6"), SubResource("Resource_0uytu"), SubResource("Resource_liha5"), SubResource("Resource_y0f4k"), SubResource("Resource_o6vwv"), SubResource("Resource_qgl4e"), SubResource("Resource_0sell"), SubResource("Resource_vqq0m"), SubResource("Resource_c7oi4"), SubResource("Resource_mv5g0"), SubResource("Resource_ah3w3"), null, SubResource("Resource_d1wse"), SubResource("Resource_lgli7"), SubResource("Resource_bn5g2")])

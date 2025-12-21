@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dhx4vgd0obtxj"]
+
+[ext_resource type="PackedScene" uid="uid://22smr6kls4nc" path="res://content/level/facility/legde/obstacle_half.tscn" id="1_0r66e"]
+[ext_resource type="Script" uid="uid://b47wkn08jcjm2" path="res://script/level/level_loader/processing/SpecialSolidMetaProcessor.cs" id="1_7idds"]
+[ext_resource type="PackedScene" uid="uid://dri8grhd0ymhk" path="res://content/level/facility/legde/platform_solid.tscn" id="2_n8nff"]
+[ext_resource type="PackedScene" uid="uid://cecot3e5ux68q" path="res://content/level/enemy/troopa/shell/shell_static_red.tscn" id="3_86ics"]
+
+[resource]
+script = ExtResource("1_7idds")
+PrefabByType = Array[PackedScene]([ExtResource("1_0r66e"), ExtResource("2_n8nff"), ExtResource("3_86ics")])
