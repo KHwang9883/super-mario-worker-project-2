@@ -8,8 +8,7 @@ public partial class TroopaShellProcessor : ObjectProcessor {
     [Export] public PackedScene[] PrefabByType { get; set; } = [];
     
     public override IEnumerable<Node>? CreateInstance(SmwpObjectDatabaseEntry definition, ClassicSmwlObject instance) {
-        if (instance.Metadata.Length != 1) {
-            GD.PushError($"Metadata length should be 1 characters, found {instance.Metadata}");
+        if (MetadataLengthIsInvalid("turtle shell", instance.Metadata, 1)) {
             return base.CreateInstance(definition, instance);
         }
         int type = ClassicSmwpCodec.Base62Decode(instance.Metadata[0]);

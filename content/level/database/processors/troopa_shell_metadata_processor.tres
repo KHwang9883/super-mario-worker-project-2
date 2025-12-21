@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=12 format=3 uid="uid://omxnwwgdwdyq"]
+
+[ext_resource type="PackedScene" uid="uid://blc5665gyi7v8" path="res://content/level/enemy/troopa/shell/shell_static_green.tscn" id="1_oaajn"]
+[ext_resource type="Script" uid="uid://bg62w37ojxi0t" path="res://script/level/level_loader/processing/TroopaShellProcessor.cs" id="1_vtsjv"]
+[ext_resource type="PackedScene" uid="uid://c6iixdbmeknh0" path="res://content/level/enemy/troopa/shell/shell_moving_green.tscn" id="2_d3yde"]
+[ext_resource type="PackedScene" uid="uid://cecot3e5ux68q" path="res://content/level/enemy/troopa/shell/shell_static_red.tscn" id="3_1nuyf"]
+[ext_resource type="PackedScene" uid="uid://ljpeu72wwx3e" path="res://content/level/enemy/troopa/shell/shell_moving_red.tscn" id="4_yneii"]
+[ext_resource type="PackedScene" uid="uid://bh54cpiym2xq5" path="res://content/level/enemy/troopa/shell/shell_static_blue.tscn" id="5_uxtrm"]
+[ext_resource type="PackedScene" uid="uid://7whmweafbswk" path="res://content/level/enemy/troopa/shell/shell_moving_blue.tscn" id="6_e7tnl"]
+[ext_resource type="PackedScene" uid="uid://bgl13w58xfp4t" path="res://content/level/enemy/troopa/shell/shell_static_yellow.tscn" id="7_kii57"]
+[ext_resource type="PackedScene" uid="uid://02jpwc4jcvjt" path="res://content/level/enemy/troopa/shell/shell_moving_yellow.tscn" id="8_8kd5d"]
+[ext_resource type="PackedScene" uid="uid://d0opu4abayqda" path="res://content/level/enemy/troopa/shell/shell_static_beetle.tscn" id="9_j4ipe"]
+[ext_resource type="PackedScene" uid="uid://x2gl8vkl7afn" path="res://content/level/enemy/troopa/shell/shell_moving_beetle.tscn" id="10_kb0m3"]
+
+[resource]
+script = ExtResource("1_vtsjv")
+PrefabByType = Array[PackedScene]([ExtResource("1_oaajn"), ExtResource("2_d3yde"), ExtResource("3_1nuyf"), ExtResource("4_yneii"), ExtResource("5_uxtrm"), ExtResource("6_e7tnl"), ExtResource("7_kii57"), ExtResource("8_8kd5d"), ExtResource("9_j4ipe"), ExtResource("10_kb0m3")])

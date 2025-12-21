@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=95 format=3 uid="uid://ch6ocvrds2bxf"]
+[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=96 format=3 uid="uid://ch6ocvrds2bxf"]
 
 [ext_resource type="PackedScene" uid="uid://d2kvp8mnj0j4u" path="res://content/level/enemy/goomba/goomba.tscn" id="1_bmvpb"]
 [ext_resource type="Script" uid="uid://cpxsb6lorrux4" path="res://script/level/data/SmwpObjectDatabaseEntry.cs" id="2_v7upk"]
@@ -46,6 +46,7 @@
 [ext_resource type="PackedScene" uid="uid://c23nkg11c62hp" path="res://content/level/enemy/piranha_plant/piranha_plant_stone.tscn" id="40_3ww0w"]
 [ext_resource type="Resource" uid="uid://c3fxeldmii0bb" path="res://content/level/database/processors/flying_cheep_cheep_area_metadata_processor.tres" id="40_dbiyf"]
 [ext_resource type="PackedScene" uid="uid://v7rsq0tg4vjv" path="res://content/level/enemy/lakitu/lakitu_stone.tscn" id="41_ive3h"]
+[ext_resource type="Resource" uid="uid://omxnwwgdwdyq" path="res://content/level/database/processors/troopa_shell_metadata_processor.tres" id="43_poooy"]
 
 [sub_resource type="Resource" id="Resource_g1apy"]
 script = ExtResource("2_v7upk")
@@ -329,7 +330,7 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 [sub_resource type="Resource" id="Resource_pavau"]
 script = ExtResource("2_v7upk")
 Id = 43
-Prefab = ExtResource("8_0wd3b")
+MetadataProcessor = ExtResource("43_poooy")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_5t1ys"]
