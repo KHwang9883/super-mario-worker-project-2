@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://k2e46wcp3drp"]
+
+[ext_resource type="Script" uid="uid://7tve4jp86a3r" path="res://script/level/level_loader/processing/FluidAreaMetadataProcessor.cs" id="1_ysmgf"]
+
+[resource]
+script = ExtResource("1_ysmgf")

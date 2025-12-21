@@ -1,11 +1,11 @@
 using Godot;
-using System;
 
 public partial class FluidArea : Area2D {
     [Export] public CollisionShape2D CollisionShape = null!;
     [Export] public Rect2 FluidRect = new Rect2(Vector2.Zero, new Vector2(32f, 32f));
     [Export] public float TargetHeight;
     [Export] public float Speed = 1f;
+    [Export] public bool Reusable { get; set; }
     
     private Water? _water;
     private bool _set;
@@ -34,7 +34,11 @@ public partial class FluidArea : Area2D {
             return;
         }
         _water.FluidControlSet(TargetHeight, Speed);
-        
-        QueueFree();
+
+        if (Reusable) {
+            _set = false;
+        } else {
+            QueueFree();   
+        }
     }
 }
