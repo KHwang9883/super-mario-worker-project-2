@@ -45,7 +45,7 @@ Button/styles/hover = SubResource("StyleBoxFlat_6mkpa")
 Button/styles/normal = SubResource("StyleBoxFlat_wdnmx")
 Button/styles/pressed = SubResource("StyleBoxFlat_1a3sc")
 
-[node name="GlobalOptions" type="Control" node_paths=PackedStringArray("InitialLivesButton", "InitialLivesEdit", "TemporaryFilesButton", "TemporaryFilesEdit", "DisplayModeButton", "CustomMusicButton", "CustomMusicEdit", "ColorAssistButton")]
+[node name="GlobalOptions" type="Control" node_paths=PackedStringArray("InitialLivesButton", "InitialLivesEdit", "TemporaryFilesButton", "TemporaryFilesEdit", "DisplayModeButton", "CustomMusicButton", "CustomMusicEdit", "ColorAssistButton", "GodModeButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,6 +62,7 @@ DisplayModeButton = NodePath("VBoxContainerOptions/DisplayMode/SetDisplayMode")
 CustomMusicButton = NodePath("VBoxContainerOptions/CustomMusic/SetCustomMusic")
 CustomMusicEdit = NodePath("SmwpPopupGroup/SmwpPopupCustomMusicPackage/Control/VBoxContainer/LineEdit")
 ColorAssistButton = NodePath("VBoxContainerOptions/AccessibilityMode/SetAccessibilityMode")
+GodModeButton = NodePath("VBoxContainerOptions/PlayLevelInGodMode/SetPlayLevelInGodMode")
 
 [node name="Basic" type="Control" parent="."]
 layout_mode = 1
@@ -111,7 +112,7 @@ layout_mode = 0
 offset_left = 44.0
 offset_top = 88.0
 offset_right = 384.0
-offset_bottom = 260.0
+offset_bottom = 304.0
 
 [node name="InitialLives" type="Control" parent="VBoxContainerOptions"]
 layout_mode = 2
@@ -261,7 +262,48 @@ offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
 focus_neighbor_top = NodePath("../../CustomMusic/SetCustomMusic")
+focus_next = NodePath("../../PlayLevelInGodMode/SetPlayLevelInGodMode")
 focus_previous = NodePath("../../CustomMusic/SetCustomMusic")
+text = "NO"
+alignment = 2
+
+[node name="EmptyLine" type="Control" parent="VBoxContainerOptions"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EmptyLine" type="Label" parent="VBoxContainerOptions/EmptyLine"]
+layout_mode = 0
+offset_right = 258.0
+offset_bottom = 10.0
+size_flags_vertical = 2
+theme = ExtResource("6_h7q4w")
+uppercase = true
+
+[node name="PlayLevelInGodMode" type="Control" parent="VBoxContainerOptions"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayLevelInGodMode" type="Label" parent="VBoxContainerOptions/PlayLevelInGodMode"]
+layout_mode = 0
+offset_right = 258.0
+offset_bottom = 10.0
+size_flags_vertical = 2
+theme = ExtResource("6_h7q4w")
+text = "Play Level In God Mode"
+uppercase = true
+
+[node name="SetPlayLevelInGodMode" parent="VBoxContainerOptions/PlayLevelInGodMode" instance=ExtResource("4_opjjy")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+focus_neighbor_top = NodePath("../../AccessibilityMode/SetAccessibilityMode")
+focus_previous = NodePath("../../AccessibilityMode/SetAccessibilityMode")
 text = "NO"
 alignment = 2
 
@@ -301,6 +343,7 @@ offset_bottom = 156.0
 [connection signal="pressed" from="VBoxContainerOptions/DisplayMode/SetDisplayMode" to="." method="SetDisplayMode"]
 [connection signal="pressed" from="VBoxContainerOptions/CustomMusic/SetCustomMusic" to="SmwpPopupGroup/SmwpPopupCustomMusicPackage" method="show"]
 [connection signal="pressed" from="VBoxContainerOptions/AccessibilityMode/SetAccessibilityMode" to="." method="SetAccessibilityMode"]
+[connection signal="pressed" from="VBoxContainerOptions/PlayLevelInGodMode/SetPlayLevelInGodMode" to="." method="SetPlayLevelInGodMode"]
 [connection signal="pressed" from="SmwpPopupGroup/SmwpPopupInitialLives/Control/VBoxContainer/Button" to="." method="SetInitialLives"]
 [connection signal="pressed" from="SmwpPopupGroup/SmwpPopupTemporaryFiles/Control/VBoxContainer/Button" to="." method="SetTemporaryFiles"]
 [connection signal="pressed" from="SmwpPopupGroup/SmwpPopupCustomMusicPackage/Control/VBoxContainer/Button" to="." method="SetCustomMusicPackage"]

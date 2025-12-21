@@ -42,7 +42,8 @@ public static class ConfigManager {
         GameManager.IsColorAccessibilityMode =
             (bool)SmwpConfig.GetValue("game_config", "color_assist", false);
         
-        // Todo: IsGodMode
+        // IsGodMode: Temp for current version without editor part
+        GameManager.IsGodMode = (bool)SmwpConfig.GetValue("temporary_test_level", "play_level_in_god_mode", false);
         
         // Control Config
         var actions = InputMap.GetActions();

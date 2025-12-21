@@ -56,8 +56,8 @@ public partial class GameManager : Node {
     
     public static bool IsColorAccessibilityMode;
     
-    // Todo: for test only
-    public static bool IsGodMode = true;
+    // Edit 部分完成前在全局设置界面中可调
+    public static bool IsGodMode;
     
     // Todo: Edit Options
     public static int TemporaryFiles = 100;

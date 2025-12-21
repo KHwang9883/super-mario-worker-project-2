@@ -17,6 +17,8 @@ public partial class GlobalOptions : Control {
     [Export] public LineEdit CustomMusicEdit = null!;
     
     [Export] public Button ColorAssistButton = null!;
+
+    [Export] public Button GodModeButton = null!;
     
     public override void _Ready() {
         // 首先聚焦的选项
@@ -40,6 +42,7 @@ public partial class GlobalOptions : Control {
                 : "Fullscreen".ToUpper();
         CustomMusicButton.Text = GameManager.CustomBgmPackage.ToUpper();
         ColorAssistButton.Text = (GameManager.IsColorAccessibilityMode ? "Yes" : "No").ToUpper();
+        GodModeButton.Text = (GameManager.IsGodMode ? "Yes" : "No").ToUpper();
     }
     
     public void SetInitialLives() {
@@ -66,6 +69,10 @@ public partial class GlobalOptions : Control {
     public void SetAccessibilityMode() {
         GameManager.IsColorAccessibilityMode = !GameManager.IsColorAccessibilityMode;
         ConfigManager.SmwpConfig.SetValue("game_config", "color_assist", GameManager.IsColorAccessibilityMode);
+    }
+    public void SetPlayLevelInGodMode() {
+        GameManager.IsGodMode = !GameManager.IsGodMode;
+        ConfigManager.SmwpConfig.SetValue("temporary_test_level", "play_level_in_god_mode", GameManager.IsGodMode);
     }
 
     // 通过弹窗输入值的选项要让弹窗 LineEdit 更新一次
