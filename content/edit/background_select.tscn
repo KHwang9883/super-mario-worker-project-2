@@ -1,35 +1,35 @@
 [gd_scene load_steps=73 format=3 uid="uid://cfc2m8x3v4ib1"]
 
-[ext_resource type="Texture2D" uid="uid://dhketxxxmk7rt" path="res://content/ui/option.png" id="1_804os"]
-[ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="2_8bnxu"]
-[ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="3_pwoid"]
-[ext_resource type="Texture2D" uid="uid://b15l5knf8un71" path="res://content/ui/smwp_button_normal_with_shadow.png" id="4_euo51"]
-[ext_resource type="Texture2D" uid="uid://mqu6vke8b8sw" path="res://content/level/background/cave.bg.png" id="4_rnb1c"]
-[ext_resource type="Texture2D" uid="uid://ccsf82s5ygu7j" path="res://content/level/background/cave_gradient.bg.png" id="5_1knvu"]
-[ext_resource type="Texture2D" uid="uid://bed3y2dg7y6qm" path="res://content/level/background/glassland.bg.png" id="6_pwoid"]
-[ext_resource type="Texture2D" uid="uid://djmjx8tpn1g4q" path="res://content/level/background/cloud.bg.png" id="7_rnb1c"]
-[ext_resource type="Texture2D" uid="uid://06sma6w7r4af" path="res://content/level/background/cliff.bg.png" id="8_rnb1c"]
-[ext_resource type="Texture2D" uid="uid://dki2x8k0otq4k" path="res://content/level/background/underwater.bg.png" id="9_1knvu"]
-[ext_resource type="Texture2D" uid="uid://cyxdv8mbgohgt" path="res://content/level/background/castle.bg.png" id="10_nr17n"]
-[ext_resource type="FontFile" uid="uid://d2jn157s4g7a3" path="res://content/ui/font/IMPACT.TTF" id="11_0wk52"]
-[ext_resource type="Texture2D" uid="uid://d2c1wc47dqawf" path="res://content/level/background/starland.bg.png" id="11_gctlj"]
-[ext_resource type="Texture2D" uid="uid://crjhkohxpc4j1" path="res://content/level/background/cave_gradient_starland.bg.png" id="12_fd6ls"]
-[ext_resource type="Texture2D" uid="uid://ykb27xk20dcm" path="res://content/level/background/desert.bg.png" id="13_agxn0"]
-[ext_resource type="Texture2D" uid="uid://cimf2h37n5t3i" path="res://content/level/background/volcano_bottom.bg.png" id="14_3e44o"]
-[ext_resource type="Texture2D" uid="uid://c54jhb3lkoodg" path="res://content/level/background/volcano_sky.bg.png" id="15_txtw0"]
-[ext_resource type="Texture2D" uid="uid://8u7nebb77h14" path="res://content/level/background/forest.bg.png" id="16_txtw0"]
-[ext_resource type="Texture2D" uid="uid://jx340brb4q65" path="res://content/level/background/snow.bg.png" id="17_i6eck"]
-[ext_resource type="Texture2D" uid="uid://bt7bjglq6mko0" path="res://content/level/background/egyptian_temple.bg.png" id="18_qhh14"]
-[ext_resource type="Texture2D" uid="uid://doe5h7ylbwkyx" path="res://content/level/background/longzongcloud.bg.png" id="20_jhvaj"]
-[ext_resource type="Texture2D" uid="uid://c766j6e7ra03q" path="res://content/level/background/snow_new.bg.png" id="21_jhvaj"]
-[ext_resource type="Texture2D" uid="uid://cwismfntajvh3" path="res://content/level/background/lava_castle_pattern_normal.bg.png" id="22_it3kx"]
-[ext_resource type="Texture2D" uid="uid://oqcxthx5vyg7" path="res://content/level/background/lava_castle_pattern_bottom.bg.png" id="23_mc4mn"]
-[ext_resource type="Texture2D" uid="uid://4opq1b3ox1rq" path="res://content/level/background/grassland_flip.bg.png" id="24_mc4mn"]
-[ext_resource type="Texture2D" uid="uid://ds21ei2p0ire4" path="res://content/level/background/underwater2.bg.png" id="25_0oh16"]
-[ext_resource type="Texture2D" uid="uid://vea8y2dxssby" path="res://content/level/background/hl_cloud.bg.png" id="26_uwntx"]
-[ext_resource type="Texture2D" uid="uid://momvj86ptdck" path="res://content/level/background/deep_forest.bg.png" id="27_lw6np"]
-[ext_resource type="Texture2D" uid="uid://cgnlcbiks534c" path="res://content/level/background/seashore_cloud.png" id="28_4cx73"]
-[ext_resource type="Texture2D" uid="uid://bg4wkdtfg8kjd" path="res://content/level/background/seashore.png" id="29_3px6w"]
+[ext_resource type="Texture2D" uid="uid://dhketxxxmk7rt" path="res://content/ui/option.png" id="1_5uwvn"]
+[ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="2_r2dwn"]
+[ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="3_cpaqd"]
+[ext_resource type="Texture2D" uid="uid://b15l5knf8un71" path="res://content/ui/smwp_button_normal_with_shadow.png" id="4_dgse1"]
+[ext_resource type="Texture2D" uid="uid://mqu6vke8b8sw" path="res://content/level/background/cave.bg.png" id="5_bq05b"]
+[ext_resource type="Texture2D" uid="uid://ccsf82s5ygu7j" path="res://content/level/background/cave_gradient.bg.png" id="6_7vyhe"]
+[ext_resource type="Texture2D" uid="uid://bed3y2dg7y6qm" path="res://content/level/background/glassland.bg.png" id="7_5lm4o"]
+[ext_resource type="Texture2D" uid="uid://djmjx8tpn1g4q" path="res://content/level/background/cloud.bg.png" id="8_ut4d2"]
+[ext_resource type="Texture2D" uid="uid://06sma6w7r4af" path="res://content/level/background/cliff.bg.png" id="9_d162c"]
+[ext_resource type="Texture2D" uid="uid://dki2x8k0otq4k" path="res://content/level/background/underwater.bg.png" id="10_7qp1r"]
+[ext_resource type="Texture2D" uid="uid://cyxdv8mbgohgt" path="res://content/level/background/castle.bg.png" id="11_bvsvg"]
+[ext_resource type="FontFile" uid="uid://d2jn157s4g7a3" path="res://content/ui/font/IMPACT.TTF" id="12_gdexc"]
+[ext_resource type="Texture2D" uid="uid://d2c1wc47dqawf" path="res://content/level/background/starland.bg.png" id="13_3gkxp"]
+[ext_resource type="Texture2D" uid="uid://crjhkohxpc4j1" path="res://content/level/background/cave_gradient_starland.bg.png" id="14_8pv36"]
+[ext_resource type="Texture2D" uid="uid://ykb27xk20dcm" path="res://content/level/background/desert.bg.png" id="15_jhrjv"]
+[ext_resource type="Texture2D" uid="uid://cimf2h37n5t3i" path="res://content/level/background/volcano_bottom.bg.png" id="16_xgae2"]
+[ext_resource type="Texture2D" uid="uid://c54jhb3lkoodg" path="res://content/level/background/volcano_sky.bg.png" id="17_0wmq4"]
+[ext_resource type="Texture2D" uid="uid://8u7nebb77h14" path="res://content/level/background/forest.bg.png" id="18_ytvg8"]
+[ext_resource type="Texture2D" uid="uid://jx340brb4q65" path="res://content/level/background/snow.bg.png" id="19_5ierb"]
+[ext_resource type="Texture2D" uid="uid://bt7bjglq6mko0" path="res://content/level/background/egyptian_temple.bg.png" id="20_mjntr"]
+[ext_resource type="Texture2D" uid="uid://doe5h7ylbwkyx" path="res://content/level/background/longzongcloud.bg.png" id="21_a5tj6"]
+[ext_resource type="Texture2D" uid="uid://c766j6e7ra03q" path="res://content/level/background/snow_new.bg.png" id="22_mprks"]
+[ext_resource type="Texture2D" uid="uid://cwismfntajvh3" path="res://content/level/background/lava_castle_pattern_normal.bg.png" id="23_tqqh2"]
+[ext_resource type="Texture2D" uid="uid://oqcxthx5vyg7" path="res://content/level/background/lava_castle_pattern_bottom.bg.png" id="24_2iuyt"]
+[ext_resource type="Texture2D" uid="uid://4opq1b3ox1rq" path="res://content/level/background/grassland_flip.bg.png" id="25_8j0xs"]
+[ext_resource type="Texture2D" uid="uid://ds21ei2p0ire4" path="res://content/level/background/underwater2.bg.png" id="26_t38pd"]
+[ext_resource type="Texture2D" uid="uid://vea8y2dxssby" path="res://content/level/background/hl_cloud.bg.png" id="27_6vtl3"]
+[ext_resource type="Texture2D" uid="uid://momvj86ptdck" path="res://content/level/background/deep_forest.bg.png" id="28_5eu6p"]
+[ext_resource type="Texture2D" uid="uid://cgnlcbiks534c" path="res://content/level/background/seashore_cloud.png" id="29_v0j3p"]
+[ext_resource type="Texture2D" uid="uid://bg4wkdtfg8kjd" path="res://content/level/background/seashore.png" id="30_panry"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_euo51"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -46,7 +46,7 @@ draw_center = false
 draw_center = false
 
 [sub_resource type="FontVariation" id="FontVariation_exeya"]
-base_font = ExtResource("2_8bnxu")
+base_font = ExtResource("2_r2dwn")
 variation_embolden = 1.0
 variation_transform = Transform2D(1, 0, 0, 1.4, 0, 0)
 spacing_glyph = 1
@@ -228,7 +228,7 @@ width = 640
 height = 480
 fill_to = Vector2(0, 1)
 
-[node name="BackgroundSelection" type="Control"]
+[node name="BackgroundSelect" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -248,7 +248,7 @@ metadata/_edit_lock_ = true
 
 [node name="OptionBackground" type="Sprite2D" parent="Basic"]
 position = Vector2(320, 240)
-texture = ExtResource("1_804os")
+texture = ExtResource("1_5uwvn")
 metadata/_edit_lock_ = true
 
 [node name="OptionBackgroundLabel" type="Label" parent="Basic"]
@@ -259,12 +259,12 @@ offset_top = 37.0
 offset_right = 284.0
 offset_bottom = 76.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5686275)
-theme_override_fonts/font = ExtResource("2_8bnxu")
+theme_override_fonts/font = ExtResource("2_r2dwn")
 theme_override_font_sizes/font_size = 24
 text = "Global Options"
 vertical_alignment = 1
 
-[node name="Back" parent="Basic" instance=ExtResource("3_pwoid")]
+[node name="Back" parent="Basic" instance=ExtResource("3_cpaqd")]
 z_index = 1
 layout_mode = 0
 offset_left = 563.0
@@ -279,7 +279,7 @@ metadata/_edit_lock_ = true
 [node name="Sprite2D" type="Sprite2D" parent="Basic/Back"]
 z_index = -1
 position = Vector2(30, 17)
-texture = ExtResource("4_euo51")
+texture = ExtResource("4_dgse1")
 
 [node name="Bgp1" type="Control" parent="."]
 clip_contents = true
@@ -311,7 +311,7 @@ scale = Vector2(0.4, 0.4)
 metadata/_edit_lock_ = true
 
 [node name="Normal" type="Sprite2D" parent="Bgp2/Bgp2"]
-texture = ExtResource("4_rnb1c")
+texture = ExtResource("5_bq05b")
 offset = Vector2(255, 704)
 metadata/_edit_lock_ = true
 
@@ -321,7 +321,7 @@ texture = SubResource("GradientTexture2D_gctlj")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Bgp2/Bgp2"]
-texture = ExtResource("5_1knvu")
+texture = ExtResource("6_7vyhe")
 offset = Vector2(255, 512.5)
 metadata/_edit_lock_ = true
 
@@ -346,7 +346,7 @@ scale = Vector2(0.22, 0.22)
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp3/Bgp3"]
-texture = ExtResource("6_pwoid")
+texture = ExtResource("7_5lm4o")
 offset = Vector2(526, -70)
 metadata/_edit_lock_ = true
 
@@ -371,7 +371,7 @@ scale = Vector2(0.22, 0.22)
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp4/Bgp3"]
-texture = ExtResource("6_pwoid")
+texture = ExtResource("7_5lm4o")
 offset = Vector2(526, -70)
 metadata/_edit_lock_ = true
 
@@ -385,7 +385,7 @@ repeat_times = 40
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Bgp4/CloudTop/Parallax2DCloud2"]
-texture = ExtResource("7_rnb1c")
+texture = ExtResource("8_ut4d2")
 offset = Vector2(32, 82)
 metadata/_edit_lock_ = true
 
@@ -395,7 +395,7 @@ repeat_times = 40
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Bgp4/CloudTop/Parallax2DCloud"]
-texture = ExtResource("7_rnb1c")
+texture = ExtResource("8_ut4d2")
 offset = Vector2(32, 32)
 metadata/_edit_lock_ = true
 
@@ -407,7 +407,7 @@ offset_right = 139.0
 offset_bottom = 53.0
 rotation = 0.7853982
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.29411766)
-theme_override_fonts/font = ExtResource("2_8bnxu")
+theme_override_fonts/font = ExtResource("2_r2dwn")
 theme_override_font_sizes/font_size = 13
 text = "PARALLEX
 INCLUDED!"
@@ -434,7 +434,7 @@ repeat_times = 3
 metadata/_edit_lock_ = true
 
 [node name="Normal" type="Sprite2D" parent="Bgp5/Bgp5/Parallax2D"]
-texture = ExtResource("4_rnb1c")
+texture = ExtResource("5_bq05b")
 offset = Vector2(255, 224)
 metadata/_edit_lock_ = true
 
@@ -464,7 +464,7 @@ repeat_times = 13
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp6/Bgp6/Parallax2DBottom"]
-texture = ExtResource("8_rnb1c")
+texture = ExtResource("9_d162c")
 offset = Vector2(96, -50)
 metadata/_edit_lock_ = true
 
@@ -494,7 +494,7 @@ repeat_times = 2
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp7/Bgp7/Parallax2DBottom"]
-texture = ExtResource("9_1knvu")
+texture = ExtResource("10_7qp1r")
 offset = Vector2(414, -81)
 metadata/_edit_lock_ = true
 
@@ -530,7 +530,7 @@ metadata/_edit_lock_ = true
 [node name="Bottom" type="Sprite2D" parent="Bgp8/Bgp8/BottomBgpGroup/Parallax2DBottom3"]
 self_modulate = Color(1, 1, 1, 0.2)
 position = Vector2(159.99998, 0)
-texture = ExtResource("9_1knvu")
+texture = ExtResource("10_7qp1r")
 offset = Vector2(414, -121)
 metadata/_edit_lock_ = true
 
@@ -543,7 +543,7 @@ metadata/_edit_lock_ = true
 [node name="Bottom" type="Sprite2D" parent="Bgp8/Bgp8/BottomBgpGroup/Parallax2DBottom2"]
 self_modulate = Color(1, 1, 1, 0.8)
 position = Vector2(80, 0)
-texture = ExtResource("9_1knvu")
+texture = ExtResource("10_7qp1r")
 offset = Vector2(414, -101)
 metadata/_edit_lock_ = true
 
@@ -554,7 +554,7 @@ repeat_times = 2
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp8/Bgp8/BottomBgpGroup/Parallax2DBottom"]
-texture = ExtResource("9_1knvu")
+texture = ExtResource("10_7qp1r")
 offset = Vector2(414, -81)
 metadata/_edit_lock_ = true
 
@@ -566,7 +566,7 @@ offset_right = 139.0
 offset_bottom = 53.0
 rotation = 0.7853982
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.29411766)
-theme_override_fonts/font = ExtResource("2_8bnxu")
+theme_override_fonts/font = ExtResource("2_r2dwn")
 theme_override_font_sizes/font_size = 13
 text = "PARALLEX
 INCLUDED!"
@@ -594,7 +594,7 @@ repeat_times = 3
 metadata/_edit_lock_ = true
 
 [node name="Normal" type="Sprite2D" parent="Bgp9/Bgp9/Parallax2DNormal"]
-texture = ExtResource("10_nr17n")
+texture = ExtResource("11_bvsvg")
 offset = Vector2(511, 240)
 metadata/_edit_lock_ = true
 
@@ -606,7 +606,7 @@ offset_right = 139.0
 offset_bottom = 53.0
 rotation = 0.7853982
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.29411766)
-theme_override_fonts/font = ExtResource("2_8bnxu")
+theme_override_fonts/font = ExtResource("2_r2dwn")
 theme_override_font_sizes/font_size = 13
 text = "PARALLEX
 INCLUDED!"
@@ -644,7 +644,7 @@ anchor_bottom = 1.0
 offset_right = -1.5258789e-05
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("11_0wk52")
+theme_override_fonts/font = ExtResource("12_gdexc")
 text = "10"
 horizontal_alignment = 2
 metadata/_edit_lock_ = true
@@ -690,7 +690,7 @@ repeat_times = 3
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp12/Bgp12/Parallax2DBottom"]
-texture = ExtResource("11_gctlj")
+texture = ExtResource("13_3gkxp")
 offset = Vector2(256, -89)
 metadata/_edit_lock_ = true
 
@@ -709,7 +709,7 @@ scale = Vector2(0.4, 0.4)
 metadata/_edit_lock_ = true
 
 [node name="Normal" type="Sprite2D" parent="Bgp13/Bgp2"]
-texture = ExtResource("4_rnb1c")
+texture = ExtResource("5_bq05b")
 offset = Vector2(255, 704)
 metadata/_edit_lock_ = true
 
@@ -719,7 +719,7 @@ texture = SubResource("GradientTexture2D_dpmd3")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Bgp13/Bgp2"]
-texture = ExtResource("12_fd6ls")
+texture = ExtResource("14_8pv36")
 offset = Vector2(255, 512.5)
 metadata/_edit_lock_ = true
 
@@ -753,7 +753,7 @@ anchor_right = 0.95
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("11_0wk52")
+theme_override_fonts/font = ExtResource("12_gdexc")
 text = "14"
 horizontal_alignment = 2
 metadata/_edit_lock_ = true
@@ -799,7 +799,7 @@ repeat_times = 2
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp16/Bgp16/Parallax2DBottom"]
-texture = ExtResource("13_agxn0")
+texture = ExtResource("15_jhrjv")
 offset = Vector2(512, -240)
 metadata/_edit_lock_ = true
 
@@ -838,12 +838,12 @@ metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp18/Bgp18"]
 position = Vector2(0, 480)
-texture = ExtResource("14_3e44o")
+texture = ExtResource("16_xgae2")
 offset = Vector2(320, -84)
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Bgp18/Bgp18"]
-texture = ExtResource("15_txtw0")
+texture = ExtResource("17_0wmq4")
 offset = Vector2(320, 135)
 metadata/_edit_lock_ = true
 
@@ -873,7 +873,7 @@ repeat_times = 3
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp19/Bgp19/Parallax2DBottom"]
-texture = ExtResource("16_txtw0")
+texture = ExtResource("18_ytvg8")
 offset = Vector2(256, -240)
 metadata/_edit_lock_ = true
 
@@ -898,7 +898,7 @@ scale = Vector2(0.22, 0.22)
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp20/Bgp3"]
-texture = ExtResource("17_i6eck")
+texture = ExtResource("19_5ierb")
 offset = Vector2(526, -70)
 metadata/_edit_lock_ = true
 
@@ -922,7 +922,7 @@ repeat_times = 3
 metadata/_edit_lock_ = true
 
 [node name="Normal" type="Sprite2D" parent="Bgp21/Bgp21/Parallax2DNormal"]
-texture = ExtResource("18_qhh14")
+texture = ExtResource("20_mjntr")
 offset = Vector2(256, 320)
 metadata/_edit_lock_ = true
 
@@ -947,7 +947,7 @@ repeat_times = 3
 metadata/_edit_lock_ = true
 
 [node name="Normal" type="Sprite2D" parent="Bgp22/Bgp9/Parallax2DNormal"]
-texture = ExtResource("10_nr17n")
+texture = ExtResource("11_bvsvg")
 offset = Vector2(511, 240)
 metadata/_edit_lock_ = true
 
@@ -972,7 +972,7 @@ scale = Vector2(0.16, 0.16)
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp23/Bgp23"]
-texture = ExtResource("20_jhvaj")
+texture = ExtResource("21_a5tj6")
 offset = Vector2(497, -161)
 metadata/_edit_lock_ = true
 
@@ -997,7 +997,7 @@ scale = Vector2(0.3, 0.3)
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp24/Bgp24"]
-texture = ExtResource("21_jhvaj")
+texture = ExtResource("22_mprks")
 offset = Vector2(1499, -208)
 metadata/_edit_lock_ = true
 
@@ -1023,13 +1023,13 @@ metadata/_edit_lock_ = true
 [node name="PatternNormal" type="Sprite2D" parent="Bgp25/Bgp25"]
 position = Vector2(-19.999985, 0)
 scale = Vector2(1, 480)
-texture = ExtResource("22_it3kx")
+texture = ExtResource("23_tqqh2")
 offset = Vector2(512, 0.5)
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp25/Bgp25"]
 position = Vector2(-20.000015, 520)
-texture = ExtResource("23_mc4mn")
+texture = ExtResource("24_2iuyt")
 offset = Vector2(512, -65)
 metadata/_edit_lock_ = true
 
@@ -1054,13 +1054,13 @@ metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp26/Node2D"]
 position = Vector2(-5.684342e-14, 520)
-texture = ExtResource("6_pwoid")
+texture = ExtResource("7_5lm4o")
 offset = Vector2(526, -70)
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Bgp26/Node2D"]
 position = Vector2(-119.999985, 0)
-texture = ExtResource("24_mc4mn")
+texture = ExtResource("25_8j0xs")
 offset = Vector2(526, 69)
 metadata/_edit_lock_ = true
 
@@ -1090,7 +1090,7 @@ repeat_times = 2
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp27/Bgp27/Parallax2DBottom"]
-texture = ExtResource("25_0oh16")
+texture = ExtResource("26_t38pd")
 offset = Vector2(515, -96)
 metadata/_edit_lock_ = true
 
@@ -1120,7 +1120,7 @@ repeat_times = 2
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp28/Bgp7/Parallax2DBottom"]
-texture = ExtResource("9_1knvu")
+texture = ExtResource("10_7qp1r")
 offset = Vector2(414, -81)
 metadata/_edit_lock_ = true
 
@@ -1145,7 +1145,7 @@ scale = Vector2(0.22, 0.22)
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Sprite2D" parent="Bgp29/Bgp29"]
-texture = ExtResource("6_pwoid")
+texture = ExtResource("7_5lm4o")
 offset = Vector2(526, -70)
 metadata/_edit_lock_ = true
 
@@ -1156,12 +1156,12 @@ repeat_times = 20
 metadata/_edit_lock_ = true
 
 [node name="HLCloud2" type="Sprite2D" parent="Bgp29/Bgp29/Parallax2DTop"]
-texture = ExtResource("26_uwntx")
+texture = ExtResource("27_6vtl3")
 offset = Vector2(26, 32)
 metadata/_edit_lock_ = true
 
 [node name="HLCloud" type="Sprite2D" parent="Bgp29/Bgp29/Parallax2DTop"]
-texture = ExtResource("26_uwntx")
+texture = ExtResource("27_6vtl3")
 offset = Vector2(61, 14)
 metadata/_edit_lock_ = true
 
@@ -1185,7 +1185,7 @@ repeat_times = 3
 metadata/_edit_lock_ = true
 
 [node name="Normal" type="Sprite2D" parent="Bgp30/Node2D/Parallax2DNormal"]
-texture = ExtResource("27_lw6np")
+texture = ExtResource("28_5eu6p")
 offset = Vector2(512, 336)
 metadata/_edit_lock_ = true
 
@@ -1215,7 +1215,7 @@ metadata/_edit_lock_ = true
 
 [node name="Bottom2" type="Sprite2D" parent="Bgp31/Bgp31/Parallax2DBottom2"]
 position = Vector2(-9.536743e-07, 454.54547)
-texture = ExtResource("28_4cx73")
+texture = ExtResource("29_v0j3p")
 offset = Vector2(512, -80)
 metadata/_edit_lock_ = true
 
@@ -1227,7 +1227,7 @@ metadata/_edit_lock_ = true
 [node name="Bottom" type="Sprite2D" parent="Bgp31/Bgp31/Parallax2DBottom"]
 z_index = 1
 position = Vector2(0, 454.54547)
-texture = ExtResource("29_3px6w")
+texture = ExtResource("30_panry")
 offset = Vector2(252, -108)
 metadata/_edit_lock_ = true
 
