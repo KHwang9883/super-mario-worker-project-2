@@ -89,9 +89,6 @@ jobs:
         with:
           ref: tags/daily-build
           sha: ${{ github.sha }}
-      - name: Delete old tag
-        run: git tag -d daily-build
-        continue-on-error: true
       - name: Upload assets to daily-build release
         uses: softprops/action-gh-release@v2
         with:
