@@ -28,9 +28,9 @@ public partial class SwitchBlockMetaProcessor : ObjectProcessor {
             if (IsSolidById.TryGetValue(instance.Id, out var isSolid)) {
                 block.Solid = isSolid;
             }
-        } else if (node.TryGetComponent(out AnimatedSprite2D? sprite)) {
+        } else if (node.TryGetComponent(out SwitchBlock? @switch)) {
             // 设置开关砖样式
-            sprite.SpriteFrames = SpriteByType[type];
+            @switch.SwitchType = type;
         }
     }
 
