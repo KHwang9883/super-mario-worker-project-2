@@ -1,0 +1,28 @@
+[gd_resource type="Resource" load_steps=10 format=3 uid="uid://cniy10wkxwdsh"]
+
+[ext_resource type="SpriteFrames" uid="uid://kv2hcl11y8mg" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_red.tres" id="1_kx5e4"]
+[ext_resource type="SpriteFrames" uid="uid://4fu57yp3b855" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_yellow.tres" id="2_xytl2"]
+[ext_resource type="SpriteFrames" uid="uid://dx3p1hemgbqm" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_green.tres" id="3_6iv6u"]
+[ext_resource type="SpriteFrames" uid="uid://b2nc8dcxjt3n8" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_cyan.tres" id="4_qww4u"]
+[ext_resource type="SpriteFrames" uid="uid://ioswpbqnebjb" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_blue.tres" id="5_alwik"]
+[ext_resource type="SpriteFrames" uid="uid://c1oqfcvpm64ki" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_magenta.tres" id="6_0eq5d"]
+[ext_resource type="SpriteFrames" uid="uid://bds0owfeudtgc" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_kohl.tres" id="7_lkdpl"]
+[ext_resource type="SpriteFrames" uid="uid://cefm1s3buvaoo" path="res://content/level/block/switch_block/dotted-line_sprites/dotted-line_white.tres" id="8_rtmp1"]
+[ext_resource type="Script" uid="uid://wwmm6x3h8f4a" path="res://script/level/level_loader/processing/SwitchBlockMetaProcessor.cs" id="9_ok32q"]
+
+[resource]
+script = ExtResource("9_ok32q")
+SpriteByType = Dictionary[int, SpriteFrames]({
+0: ExtResource("1_kx5e4"),
+1: ExtResource("2_xytl2"),
+2: ExtResource("3_6iv6u"),
+3: ExtResource("4_qww4u"),
+4: ExtResource("5_alwik"),
+5: ExtResource("6_0eq5d"),
+6: ExtResource("7_lkdpl"),
+7: ExtResource("8_rtmp1")
+})
+IsSolidById = Dictionary[int, bool]({
+228: false,
+229: true
+})

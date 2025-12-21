@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using SMWP.Level.Block;
 using SMWP.Util;
 
@@ -25,6 +24,7 @@ public partial class MessageBlock : BlockHit {
         if (GetTree().GetFirstNodeInGroup("message_display") is MessageDisplay messageDisplay)
             _messageDisplay = messageDisplay;
     }
+    
     public override void _PhysicsProcess(double delta) {
         base._PhysicsProcess(delta);
         
@@ -54,5 +54,12 @@ public partial class MessageBlock : BlockHit {
 
     public void SetShown() {
         _isShown = true;
+    }
+
+    /// <summary>
+    /// 初始化信息砖信息，由关卡加载系统调用。
+    /// </summary>
+    public void InitMessage(string message) {
+        _message = message;
     }
 }

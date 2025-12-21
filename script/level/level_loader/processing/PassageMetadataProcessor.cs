@@ -21,8 +21,7 @@ public partial class PassageMetadataProcessor : ObjectProcessor {
 
     public override IEnumerable<Node>? CreateInstance(SmwpObjectDatabaseEntry definition, ClassicSmwlObject instance) {
         var metadata = instance.Metadata;
-        if (metadata.Length != 10) {
-            GD.PushError("Metadata for passage must be 10 characters length.");
+        if (MetadataLengthIsInvalid("passage", metadata, 10)) {
             return base.CreateInstance(definition, instance);
         }
         if (!ClassicSmwpCodec.TryDecodeCoordinate(metadata.AsSpan()[..8], out var outPosition)) {

@@ -77,17 +77,45 @@ public static class ClassicSmwpCodec {
     }
 
     /// <summary>
+    /// 尝试将一个字符解码为 0 ~ 62 范围内的数值。
+    /// </summary>
+    /// <param name="char">待解码的字符</param>
+    /// <param name="decoded">解码后的数值</param>
+    /// <returns>解码是否成功</returns>
+    public static bool TryBase62Decode(char @char, out int decoded) {
+        return (decoded = @char switch {
+            >= '0' and <= '9' => @char - '0',
+            >= 'A' and <= 'Z' => @char - 'A' + 10,
+            >= 'a' and <= 'z' => @char - 'a' + 36,
+            _ => OnError($"Unsupported base62 character: {@char}", -1),
+        }) >= 0;
+    }
+
+    /// <summary>
     /// 将一个字符解码为 0 ~ 62 范围内的数值。
     /// </summary>
     /// <param name="char">待解码的字符</param>
     /// <returns>解码后的数值</returns>
     public static int Base62Decode(char @char) {
-        return @char switch {
-            >= '0' and <= '9' => @char - '0',
-            >= 'A' and <= 'Z' => @char - 'A' + 10,
-            >= 'a' and <= 'z' => @char - 'a' + 36,
-            _ => OnError<int>($"Unsupported base62 character: {@char}"),
-        };
+        return TryBase62Decode(@char, out int decoded)
+            ? decoded
+            : OnError<int>($"Unsupported base62 character: {@char}");
+    }
+
+    /// <summary>
+    /// 尝试将 0 ~ 62 范围内的数值编码为一个字符。
+    /// </summary>
+    /// <param name="value">待编码的数值</param>
+    /// <param name="encoded">编码后的字符，遇到错误时返回 -1</param>
+    /// <returns>编码是否成功</returns>
+    public static bool TryBase62Encode(int value, out int encoded) {
+        encoded = (char) (value switch {
+            >= 0 and < 10 => '0' + value,
+            >= 10 and < 36 => 'A' + value - 10,
+            >= 36 and < 62 => 'a' + value - 36,
+            _ => OnError($"Base62 value {value} out of range", -1),
+        });
+        return encoded >= 0;
     }
 
     /// <summary>
@@ -96,12 +124,9 @@ public static class ClassicSmwpCodec {
     /// <param name="value">待编码的数值</param>
     /// <returns>编码后的字符，遇到错误时返回 -1</returns>
     public static int Base62Encode(int value) {
-        return (char) (value switch {
-            >= 0 and < 10 => '0' + value,
-            >= 10 and < 36 => 'A' + value - 10,
-            >= 36 and < 62 => 'a' + value - 36,
-            _ => OnError($"Base62 value {value} out of range", -1),
-        });
+        return TryBase62Encode(value, out int encoded)
+            ? encoded 
+            : OnError($"Base62 value {value} out of range", -1);
     }
 
     private static T OnError<T>(string message, T fallback = default) where T : struct {

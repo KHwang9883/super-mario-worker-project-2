@@ -16,8 +16,7 @@ public partial class CheepCheepAreaMetaProcessor : ObjectProcessor {
             return;
         }
         // 检查元数据长度
-        if (metadata.Length != 9) {
-            GD.PushError($"Length of cheep cheep metadata must be 9 characters. metadata string is {metadata}");
+        if (MetadataLengthIsInvalid("cheep cheep", metadata, 9)) {
             return;
         }
         // 读取末端坐标

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.IO.Compression;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
@@ -28,7 +29,8 @@ public partial class SmwlLoader : Node {
         var decompressed = (Stream) (IsBinaryFile(compressedSmwl)
             ? new GZipStream(buffered, CompressionMode.Decompress)
             : buffered);
-        return Load0(new StreamReader(decompressed));
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        return Load0(new StreamReader(decompressed, Encoding.GetEncoding("gb18030")));
     }
 
     private static bool IsBinaryFile(Stream smwl) {

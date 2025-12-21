@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=53 format=3 uid="uid://dp3ucvu1lpy7l"]
+[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=56 format=3 uid="uid://dp3ucvu1lpy7l"]
 
 [ext_resource type="Resource" uid="uid://dae8xphsfx1wi" path="res://content/level/database/processors/platform_processor.tres" id="1_3f7fm"]
 [ext_resource type="PackedScene" uid="uid://2i5erl0ya4vb" path="res://content/level/facility/giant_gate/giant_gate.tscn" id="1_qgjfj"]
@@ -13,8 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://1yjr75w8clry" path="res://content/level/block/message_block/message_block.tscn" id="9_y0f4k"]
 [ext_resource type="Resource" uid="uid://dlo4kx7bs0n66" path="res://content/level/database/processors/new_platform_processor.tres" id="10_3f7fm"]
 [ext_resource type="PackedScene" uid="uid://ix3t4xs7phce" path="res://content/level/block/ice_block/ice_block.tscn" id="10_bn5g2"]
+[ext_resource type="Resource" uid="uid://ctacc8tc4hlh3" path="res://content/level/database/processors/message_block_processor.tres" id="11_2nisv"]
 [ext_resource type="PackedScene" uid="uid://b8fi12ftk0dka" path="res://content/level/block/switch_block/switch_block.tscn" id="11_3f7fm"]
 [ext_resource type="PackedScene" uid="uid://cgmv1pxkk72ai" path="res://content/level/block/switch_block/dotted-line_block.tscn" id="12_2wq0b"]
+[ext_resource type="Resource" uid="uid://dnh4c3vtof6mr" path="res://content/level/database/processors/switch_block_processor.tres" id="12_shbq3"]
+[ext_resource type="Resource" uid="uid://cniy10wkxwdsh" path="res://content/level/database/processors/switch_solid_processor.tres" id="14_2nisv"]
 [ext_resource type="PackedScene" uid="uid://b1srfpaxhbli6" path="res://content/level/facility/scene_control/scene_control.tscn" id="14_shbq3"]
 [ext_resource type="PackedScene" uid="uid://vphreva4h736" path="res://content/level/facility/view_control/view_control.tscn" id="15_2nisv"]
 [ext_resource type="Resource" uid="uid://dx6i1xi1l3qy8" path="res://content/level/database/processors/passage_meta_processor.tres" id="16_yqqvh"]
@@ -204,24 +207,28 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 script = ExtResource("2_qgl4e")
 Id = 226
 Prefab = ExtResource("9_y0f4k")
+MetadataProcessor = ExtResource("11_2nisv")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_0sell"]
 script = ExtResource("2_qgl4e")
 Id = 227
 Prefab = ExtResource("11_3f7fm")
+MetadataProcessor = ExtResource("12_shbq3")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_vqq0m"]
 script = ExtResource("2_qgl4e")
 Id = 228
 Prefab = ExtResource("12_2wq0b")
+MetadataProcessor = ExtResource("14_2nisv")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_c7oi4"]
 script = ExtResource("2_qgl4e")
 Id = 229
 Prefab = ExtResource("12_2wq0b")
+MetadataProcessor = ExtResource("14_2nisv")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_mv5g0"]

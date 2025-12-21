@@ -16,8 +16,7 @@ public partial class NewPlatformProcessor : ObjectProcessor {
 
     public override IEnumerable<Node>? CreateInstance(SmwpObjectDatabaseEntry definition, ClassicSmwlObject instance) {
         var metadata = instance.Metadata;
-        if (metadata.Length != 6) {
-            GD.PushError("New platform's metadata must be 6 characters length");
+        if (MetadataLengthIsInvalid("new platform", metadata, 6)) {
             return base.CreateInstance(definition, instance);
         }
         if (!int.TryParse(metadata[..3], out var type) || !int.TryParse(metadata[3..], out var style)) {

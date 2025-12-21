@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=10 format=3 uid="uid://dnh4c3vtof6mr"]
+
+[ext_resource type="SpriteFrames" uid="uid://b5l3e3o5qcgle" path="res://content/level/block/switch_block/switch_sprites/switch_block_red.tres" id="1_i8hpj"]
+[ext_resource type="Script" uid="uid://wwmm6x3h8f4a" path="res://script/level/level_loader/processing/SwitchBlockMetaProcessor.cs" id="1_wwaf8"]
+[ext_resource type="SpriteFrames" uid="uid://bnqygyo046gfs" path="res://content/level/block/switch_block/switch_sprites/switch_block_yellow.tres" id="2_i8hpj"]
+[ext_resource type="SpriteFrames" uid="uid://c6kwg8o6khil4" path="res://content/level/block/switch_block/switch_sprites/switch_block_green.tres" id="3_i8hpj"]
+[ext_resource type="SpriteFrames" uid="uid://cmji8qqksb2fa" path="res://content/level/block/switch_block/switch_sprites/switch_block_cyan.tres" id="4_jd8l8"]
+[ext_resource type="SpriteFrames" uid="uid://jxie6hqmwvgk" path="res://content/level/block/switch_block/switch_sprites/switch_block_blue.tres" id="5_5jeik"]
+[ext_resource type="SpriteFrames" uid="uid://c8hr2ub5kybv1" path="res://content/level/block/switch_block/switch_sprites/switch_block_magenta.tres" id="6_kf5d3"]
+[ext_resource type="SpriteFrames" uid="uid://d30jifine2fin" path="res://content/level/block/switch_block/switch_sprites/switch_block_kohl.tres" id="7_04mqk"]
+[ext_resource type="SpriteFrames" uid="uid://wshny1w3lc6l" path="res://content/level/block/switch_block/switch_sprites/switch_block_white.tres" id="8_vsu1w"]
+
+[resource]
+script = ExtResource("1_wwaf8")
+SpriteByType = Dictionary[int, SpriteFrames]({
+0: ExtResource("1_i8hpj"),
+1: ExtResource("2_i8hpj"),
+2: ExtResource("3_i8hpj"),
+3: ExtResource("4_jd8l8"),
+4: ExtResource("5_5jeik"),
+5: ExtResource("6_kf5d3"),
+6: ExtResource("7_04mqk"),
+7: ExtResource("8_vsu1w")
+})
+IsSolidById = null

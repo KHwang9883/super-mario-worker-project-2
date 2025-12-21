@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ctacc8tc4hlh3"]
+
+[ext_resource type="Script" uid="uid://xdtfnb2mkri0" path="res://script/level/level_loader/processing/MessageBlockMetaProcessor.cs" id="1_l1ojb"]
+
+[resource]
+script = ExtResource("1_l1ojb")
