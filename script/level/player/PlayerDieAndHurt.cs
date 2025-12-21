@@ -59,8 +59,7 @@ public partial class PlayerDieAndHurt : Node {
         }
         
         // 水管传送状态下不处理
-        if (_playerMediator.playerMovement.IsInPipeTransport
-            || !_playerMediator.playerMovement.WasPipeOut) return;
+        if (_playerMediator.playerMovement.IsInPipeTransport) return;
         
         // 死亡计时结束后重启关卡
         if (_dead) {
@@ -99,16 +98,15 @@ public partial class PlayerDieAndHurt : Node {
         }
         
         // 掉崖死亡
+        _screenBottom = ScreenUtils.GetScreenRect(this).End.Y;
         if (_initialFrameDelay < 10) {
             _initialFrameDelay++;
         } else {
             if (_player.GlobalPosition.Y > _screenBottom + 30f) {
-                GD.Print("Dead by cliff.");
+                //GD.Print("Dead by cliff.");
                 Die();
             }
         }
-        _screenBottom = ScreenUtils.GetScreenRect(this).End.Y;
-        //GD.Print(_screenBottom);
         
         // 时间归零死亡
         if (GameManager.Time == 0) {

@@ -32,7 +32,7 @@ public partial class PlayerMovement : Node {
     // 水管传送状态
     public bool IsInPipeTransport;
     private bool _wasInPipe;
-    public bool WasPipeOut;
+    private bool _wasPipeOut;
     public int PipeTransportId;
     private int _pipeInTransportTimer;
 
@@ -77,19 +77,24 @@ public partial class PlayerMovement : Node {
     public bool IsOnWaterSurface = true;
     public bool IsAroundWater;
 
+    // 入力のprocess
     private bool _up;
     private bool _down;
     private bool _left;
     private bool _right;
+    
     public bool Fire;
+    
     private bool _jump;
     public bool Jumped;
+    private int _jumpBoostTimer;
+    
     public bool Crouched;
     private bool _wasCrouched;
+    
     public bool Stuck;
     public bool StuckSwitch;
     private bool _wasStuck;
-    private int _jumpBoostTimer;
 
     public bool OnVerticalPlatform;
 
@@ -759,7 +764,7 @@ public partial class PlayerMovement : Node {
                     break;
                 }
 
-                WasPipeOut = IsInPipeTransport;
+                _wasPipeOut = IsInPipeTransport;
 
                 switch (PipeTransportDir) {
                     case PipeTransportDirection.Up:
