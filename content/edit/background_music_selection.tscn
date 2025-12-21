@@ -1,10 +1,45 @@
-[gd_scene load_steps=12 format=3 uid="uid://ch83cdc1rsc6v"]
+[gd_scene load_steps=24 format=3 uid="uid://ch83cdc1rsc6v"]
 
 [ext_resource type="Texture2D" uid="uid://dncuqjuh6rn40" path="res://content/edit/bgm_select.png" id="1_dk2u5"]
 [ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="3_8sbms"]
 [ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="3_q8e4b"]
 [ext_resource type="Texture2D" uid="uid://b15l5knf8un71" path="res://content/ui/smwp_button_normal_with_shadow.png" id="4_56pog"]
 [ext_resource type="Theme" uid="uid://dsaw1u3xb4r7a" path="res://content/ui/bgm_choose.tres" id="4_ajy3m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qekok"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2v5x"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lockc"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rms3k"]
+draw_center = false
+
+[sub_resource type="FontVariation" id="FontVariation_de6vh"]
+base_font = ExtResource("3_8sbms")
+variation_embolden = 0.8
+variation_transform = Transform2D(1.1, 0.2, 0, 1.2, 0, 0)
+spacing_glyph = 1
+spacing_top = 4
+
+[sub_resource type="Theme" id="Theme_kknai"]
+default_font = SubResource("FontVariation_de6vh")
+default_font_size = 9
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0.2, 0.2, 0.2, 0.7294118)
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 10
+Button/styles/focus = SubResource("StyleBoxFlat_qekok")
+Button/styles/hover = SubResource("StyleBoxFlat_d2v5x")
+Button/styles/normal = SubResource("StyleBoxFlat_lockc")
+Button/styles/pressed = SubResource("StyleBoxFlat_rms3k")
+Label/colors/font_outline_color = Color(0.2, 0.2, 0.2, 0.7294118)
+Label/constants/outline_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b06xp"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -38,6 +73,42 @@ Button/styles/focus = SubResource("StyleBoxFlat_b06xp")
 Button/styles/hover = SubResource("StyleBoxFlat_ktd5f")
 Button/styles/normal = SubResource("StyleBoxFlat_vds4d")
 Button/styles/pressed = SubResource("StyleBoxFlat_exeya")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8e4b"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8sbms"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_56pog"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iq013"]
+draw_center = false
+
+[sub_resource type="FontVariation" id="FontVariation_qekok"]
+base_font = ExtResource("3_8sbms")
+variation_embolden = 1.0
+variation_transform = Transform2D(1, 0, 0, 1.4, 0, 0)
+spacing_glyph = 1
+spacing_top = 4
+
+[sub_resource type="Theme" id="Theme_d2v5x"]
+default_font = SubResource("FontVariation_qekok")
+default_font_size = 9
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0.2, 0.2, 0.2, 0.7294118)
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 10
+Button/styles/focus = SubResource("StyleBoxFlat_q8e4b")
+Button/styles/hover = SubResource("StyleBoxFlat_8sbms")
+Button/styles/normal = SubResource("StyleBoxFlat_56pog")
+Button/styles/pressed = SubResource("StyleBoxFlat_iq013")
+Label/colors/font_outline_color = Color(0.2, 0.2, 0.2, 0.7294118)
+Label/constants/outline_size = 5
 
 [node name="BackgroundMusicSelection" type="Control"]
 layout_mode = 3
@@ -61,6 +132,19 @@ position = Vector2(320, 240)
 texture = ExtResource("1_dk2u5")
 metadata/_edit_lock_ = true
 
+[node name="SelectTune" type="Label" parent="Basic"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 45.0
+offset_right = 424.0
+offset_bottom = 68.0
+theme = SubResource("Theme_kknai")
+theme_override_font_sizes/font_size = 9
+text = "Please Select Tune For Your Level."
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
 [node name="Back" parent="Basic" instance=ExtResource("3_q8e4b")]
 z_index = 1
 layout_mode = 0
@@ -73,22 +157,149 @@ text = "BACK"
 alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Basic/Back"]
+[node name="SmwpNormalButton" type="Sprite2D" parent="Basic/Back"]
 z_index = -1
 position = Vector2(30, 17)
 texture = ExtResource("4_56pog")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="NoMusic" parent="Basic" instance=ExtResource("3_q8e4b")]
+z_index = 1
+layout_mode = 0
+offset_left = 496.0
+offset_top = 425.0
+offset_right = 555.0
+offset_bottom = 459.0
+theme = SubResource("Theme_iq013")
+theme_override_font_sizes/font_size = 9
+text = "NO MUSIC"
+alignment = 1
+
+[node name="SmwpNormalButton" type="Sprite2D" parent="Basic/NoMusic"]
+z_index = -1
+position = Vector2(30, 17)
+texture = ExtResource("4_56pog")
+metadata/_edit_lock_ = true
+
+[node name="SelectMusicSeries" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 76.0
+offset_right = 607.0
+offset_bottom = 400.0
+
+[node name="SelectMusicSeries" type="Label" parent="SelectMusicSeries"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = SubResource("Theme_d2v5x")
+theme_override_font_sizes/font_size = 9
+text = "Select Music Series"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_lock_ = true
+
+[node name="SmwpButton" parent="SelectMusicSeries" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "ORIGINAL MARIO WORKER"
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="SmwpButton2" parent="SelectMusicSeries" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MARIO FOREVER REMAKE"
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="SmwpButton3" parent="SelectMusicSeries" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SUPER MARIO SERIES (1)"
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="SmwpButton4" parent="SelectMusicSeries" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SUPER MARIO SERIES (2)"
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="SmwpButton5" parent="SelectMusicSeries" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SOFTENDO SERIES"
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="SmwpButton6" parent="SelectMusicSeries" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMWP ORIGINAL SERIES"
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="SmwpButton7" parent="SelectMusicSeries" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "BOSS MUSIC"
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="SmwpButton8" parent="SelectMusicSeries" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "CUSTOM MUSIC"
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="OriginalMarioWorker" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 0
 offset_top = 80.0
 offset_right = 412.0
 offset_bottom = 476.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="OriginalMarioWorker"]
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 
-[node name="SmwpButton" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -96,9 +307,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "SMW OVERWORLD"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton2" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton2" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -106,9 +316,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "CAVE"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton3" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton3" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -116,9 +325,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "ROCKLAND"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton4" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton4" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -126,9 +334,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "YI CASTLE"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton21" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton21" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -136,9 +343,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "RIOT (MAP 1)"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton22" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton22" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -146,9 +352,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "SMB2U OVERWORLD"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton5" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton5" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -156,9 +361,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "SMB1 UNDERWATER"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton6" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton6" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -166,9 +370,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "GHOST HOUSE"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton7" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton7" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -176,9 +379,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "HOLIDAY ANTHEM (MAP 2)"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton8" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton8" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -186,9 +388,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "STARLAND"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton9" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton9" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -196,9 +397,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "STARLAND PLATFORMS"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton10" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton10" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -206,9 +406,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "UNDERGROUND"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton11" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton11" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -216,9 +415,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "ONE FINE DAY (MAP 3)"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton12" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton12" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -226,9 +424,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "YI THEME 4"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton13" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton13" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -236,9 +433,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "TRANCOI (MAP4)"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton14" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton14" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -246,9 +442,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "INTERFERENCE ENDING"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton15" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton15" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -256,9 +451,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "SIRENS"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton16" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton16" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -266,9 +460,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "IN THE KITCHEN (MAP 5)"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton17" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton17" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -276,9 +469,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "YKY"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton18" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton18" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -286,9 +478,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "YET BONUS (MAP 6)"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton19" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton19" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -296,9 +487,8 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "YI OVERWORLD"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton20" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_q8e4b")]
+[node name="SmwpButton20" parent="OriginalMarioWorker/VBoxContainer" instance=ExtResource("3_q8e4b")]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 size_flags_vertical = 0
@@ -306,85 +496,2006 @@ theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "THE GOLDEN AGES (MAP 7)"
 alignment = 1
-clip_text = true
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="OriginalMarioWorker"]
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 6
 
-[node name="SmwpButton" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_q8e4b")]
-custom_minimum_size = Vector2(160, 14)
+[node name="SmwpButton" parent="OriginalMarioWorker/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "SMW CASTLE"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton3" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_q8e4b")]
-custom_minimum_size = Vector2(160, 14)
+[node name="SmwpButton3" parent="OriginalMarioWorker/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "APOPLEXY-TANKS"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton4" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_q8e4b")]
-custom_minimum_size = Vector2(160, 14)
+[node name="SmwpButton4" parent="OriginalMarioWorker/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "BIG BOWSER"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton5" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_q8e4b")]
-custom_minimum_size = Vector2(160, 14)
+[node name="SmwpButton5" parent="OriginalMarioWorker/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "FEDERATION (MAP 8)"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton2" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_q8e4b")]
-custom_minimum_size = Vector2(160, 14)
+[node name="SmwpButton2" parent="OriginalMarioWorker/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "GAME SELECT"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton6" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_q8e4b")]
-custom_minimum_size = Vector2(160, 14)
+[node name="SmwpButton6" parent="OriginalMarioWorker/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "SELECT SAVE"
 alignment = 1
-clip_text = true
 
-[node name="SmwpButton7" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_q8e4b")]
-custom_minimum_size = Vector2(160, 14)
+[node name="SmwpButton7" parent="OriginalMarioWorker/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("4_ajy3m")
 theme_type_variation = &"FlatButton"
 text = "ROCKLAND YOSHI"
 alignment = 1
-clip_text = true
+
+[node name="MarioForeverRemake" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 80.0
+offset_right = 412.0
+offset_bottom = 476.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarioForeverRemake"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="SmwpButton" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "HISCORE (MFAE TITLE)"
+alignment = 1
+
+[node name="SmwpButton2" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MK64 FRAPPE SNOWLAND"
+alignment = 1
+
+[node name="SmwpButton3" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMB OVERWORLD"
+alignment = 1
+
+[node name="SmwpButton4" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "RAINBOW DESORT"
+alignment = 1
+
+[node name="SmwpButton5" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MK64 FARM"
+alignment = 1
+
+[node name="SmwpButton6" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SSBB WALUIGI"
+alignment = 1
+
+[node name="SmwpButton7" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMB3 FORTRESS"
+alignment = 1
+
+[node name="SmwpButton8" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "DYNA-K (MAP 9)"
+alignment = 1
+
+[node name="SmwpButton9" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "LAVA!"
+alignment = 1
+
+[node name="SmwpButton10" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "JUSTICE AND FREEDOM"
+alignment = 1
+
+[node name="SmwpButton11" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "TECHNIQUE (MAP 10)"
+alignment = 1
+
+[node name="SmwpButton12" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "COLD COLD MOUNTAIN"
+alignment = 1
+
+[node name="SmwpButton13" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SSBB UNDERGROUND"
+alignment = 1
+
+[node name="SmwpButton14" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SPILLER (MAP 12)"
+alignment = 1
+
+[node name="SmwpButton15" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "RUNNING THE DESERT"
+alignment = 1
+
+[node name="SmwpButton16" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SUNSET DESERT"
+alignment = 1
+
+[node name="SmwpButton17" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "LOZ-ST UNDERWATER"
+alignment = 1
+
+[node name="SmwpButton18" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "ALPACA'S ADVENTURE TENSE"
+alignment = 1
+
+[node name="SmwpButton19" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "HAUNTY HALLS GALAXY"
+alignment = 1
+
+[node name="SmwpButton20" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "THE WIND WAKER (MAP 13)"
+alignment = 1
+
+[node name="SmwpButton21" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "CHAIN LINK CHARGE"
+alignment = 1
+
+[node name="SmwpButton22" parent="MarioForeverRemake/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "DRAGON ROOST ISLAND"
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarioForeverRemake"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="SmwpButton" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "AIRSHIP FORTRESS"
+alignment = 1
+
+[node name="SmwpButton2" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "AIRSHIP BOSS ROOM"
+alignment = 1
+
+[node name="SmwpButton3" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "GREEN STAR"
+alignment = 1
+
+[node name="SmwpButton4" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "KAO THE KANGAROO (MAP U)"
+alignment = 1
+
+[node name="SmwpButton5" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMB2U UNDERGROUND"
+alignment = 1
+
+[node name="SmwpButton6" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMW VANILLADOME"
+alignment = 1
+
+[node name="SmwpButton7" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "DIRE DIRE DOCKS"
+alignment = 1
+
+[node name="SmwpButton8" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "ZELDA 2 PALACE"
+alignment = 1
+
+[node name="SmwpButton9" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "BOWSER'S ROAD"
+alignment = 1
+
+[node name="SmwpButton10" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM BRINSTAR"
+alignment = 1
+
+[node name="SmwpButton11" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "UNDERWATER YOSHI
+"
+alignment = 1
+
+[node name="SmwpButton12" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MARIO 3 WATER"
+alignment = 1
+
+[node name="SmwpButton13" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MUSIC HARDCORE 1-4"
+alignment = 1
+
+[node name="SmwpButton14" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SYNDROME LAND"
+alignment = 1
+
+[node name="SmwpButton15" parent="MarioForeverRemake/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "DREAM OFF"
+alignment = 1
+
+[node name="SuperMarioSeries1" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 80.0
+offset_right = 412.0
+offset_bottom = 476.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SuperMarioSeries1"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="SmwpButton" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMB OVERWORLD"
+alignment = 1
+
+[node name="SmwpButton2" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMB CASTLE"
+alignment = 1
+
+[node name="SmwpButton3" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM64 CAVE DUNGEON"
+alignment = 1
+
+[node name="SmwpButton4" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMS BIANCO HILLS"
+alignment = 1
+
+[node name="SmwpButton5" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMG ATHLETICS"
+alignment = 1
+
+[node name="SmwpButton6" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMG BATTLEROCK"
+alignment = 1
+
+[node name="SmwpButton7" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMG WALTZ OF THE BOOS"
+alignment = 1
+
+[node name="SmwpButton8" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMG BOWSER'S GALAXY"
+alignment = 1
+
+[node name="SmwpButton9" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMG2 YOSHI STAR"
+alignment = 1
+
+[node name="SmwpButton10" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMG2 PUZZLE PLANK"
+alignment = 1
+
+[node name="SmwpButton11" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMG2 FREEZY FLAKE"
+alignment = 1
+
+[node name="SmwpButton12" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMG2 MELTY MONSTER"
+alignment = 1
+
+[node name="SmwpButton13" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMG2 GENERATOR"
+alignment = 1
+
+[node name="SmwpButton14" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMBDS ATHLETICS"
+alignment = 1
+
+[node name="SmwpButton15" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMBDS CASTLE"
+alignment = 1
+
+[node name="SmwpButton16" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMBW UNDERWATER"
+alignment = 1
+
+[node name="SmwpButton17" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMBW CASTLE"
+alignment = 1
+
+[node name="SmwpButton18" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMBW BEACH"
+alignment = 1
+
+[node name="SmwpButton19" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMBW FOREST"
+alignment = 1
+
+[node name="SmwpButton20" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMBU OVERWORLD"
+alignment = 1
+
+[node name="SmwpButton21" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMBU SNOW"
+alignment = 1
+
+[node name="SmwpButton22" parent="SuperMarioSeries1/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DL DESERT"
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="SuperMarioSeries1"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="SmwpButton" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton2" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW FORTRESS"
+alignment = 1
+
+[node name="SmwpButton3" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW STARLAND
+"
+alignment = 1
+
+[node name="SmwpButton4" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW CANYON
+"
+alignment = 1
+
+[node name="SmwpButton5" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW SNOW"
+alignment = 1
+
+[node name="SmwpButton6" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW BRIGADE"
+alignment = 1
+
+[node name="SmwpButton7" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW FOREST"
+alignment = 1
+
+[node name="SmwpButton8" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW CASTLE"
+alignment = 1
+
+[node name="SmwpButton9" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW CHAMPION ROAD"
+alignment = 1
+
+[node name="SmwpButton10" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMO MOUNT VOLBONO"
+alignment = 1
+
+[node name="SmwpButton11" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMO TOP-HAT TOWER"
+alignment = 1
+
+[node name="SmwpButton12" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMRPG MUSHROOM WAY"
+alignment = 1
+
+[node name="SmwpButton13" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMRPG BANDIT'S WAY"
+alignment = 1
+
+[node name="SmwpButton14" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMRPG NIMBUS LAND"
+alignment = 1
+
+[node name="SmwpButton15" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MK64 SNOWLAND"
+alignment = 1
+
+[node name="SmwpButton16" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MKDS YOSHI FALLS"
+alignment = 1
+
+[node name="SmwpButton17" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MLRPG2 THWOMP VOLCANO"
+alignment = 1
+
+[node name="SmwpButton18" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MLRPG3 FINAL BOSS"
+alignment = 1
+
+[node name="SmwpButton19" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "PM MOUNTAIN"
+alignment = 1
+
+[node name="SmwpButton20" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "PM2 UNUSED2"
+alignment = 1
+
+[node name="SmwpButton21" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SSBB UNDERGROUND"
+alignment = 1
+
+[node name="SmwpButton22" parent="SuperMarioSeries1/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SSBB DESERT"
+alignment = 1
+
+[node name="SuperMarioSeries2" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 80.0
+offset_right = 412.0
+offset_bottom = 476.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SuperMarioSeries2"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="SmwpButton" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "YIDS WILDLANDS"
+alignment = 1
+
+[node name="SmwpButton2" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMG BEACH BOWL GALAXY"
+alignment = 1
+
+[node name="SmwpButton3" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMG BUOY BASE GALAXY"
+alignment = 1
+
+[node name="SmwpButton4" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMG SPACE JUNK GALAXY"
+alignment = 1
+
+[node name="SmwpButton5" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMG HONEYHIVE GALAXY"
+alignment = 1
+
+[node name="SmwpButton6" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMB2 OVERWORLD"
+alignment = 1
+
+[node name="SmwpButton7" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMBW BONUS STAGE"
+alignment = 1
+
+[node name="SmwpButton8" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "CTTT RUINS"
+alignment = 1
+
+[node name="SmwpButton9" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMO FOSSIL FALLS"
+alignment = 1
+
+[node name="SmwpButton10" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMO STEAM GARDENS"
+alignment = 1
+
+[node name="SmwpButton11" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMO TOSTARENA RUINS"
+alignment = 1
+
+[node name="SmwpButton12" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMO FORGOTTEN ISLE"
+alignment = 1
+
+[node name="SmwpButton13" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMO MOON CAVERNS"
+alignment = 1
+
+[node name="SmwpButton14" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SPM LINELAND ROAD"
+alignment = 1
+
+[node name="SmwpButton15" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SPM GLOAM VALLEY"
+alignment = 1
+
+[node name="SmwpButton16" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MKWII MUSHROOM GORGE"
+alignment = 1
+
+[node name="SmwpButton17" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MLRPG2 VIM FACTORY"
+alignment = 1
+
+[node name="SmwpButton18" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MLRPG3 FAWFUL CASTLE"
+alignment = 1
+
+[node name="SmwpButton19" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "RAINBOW ROAD MEDLEY"
+alignment = 1
+
+[node name="SmwpButton20" parent="SuperMarioSeries2/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW WORLD 3 MAP"
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="SuperMarioSeries2"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="SoftendoSeries" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 80.0
+offset_right = 412.0
+offset_bottom = 476.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SoftendoSeries"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="SmwpButton" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "PM2 PETAL MEADOWS"
+alignment = 1
+
+[node name="SmwpButton2" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MP5 HAPPY SEAFLOOR"
+alignment = 1
+
+[node name="SmwpButton3" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMW CASTLE REMIX"
+alignment = 1
+
+[node name="SmwpButton4" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SUPER MEAT BOY W1"
+alignment = 1
+
+[node name="SmwpButton5" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SUPER MEAT BOY W3"
+alignment = 1
+
+[node name="SmwpButton6" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "RAYMAN ORIGINS OPERA"
+alignment = 1
+
+[node name="SmwpButton7" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMF WATER SHIP"
+alignment = 1
+
+[node name="SmwpButton8" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMF CLOUDY 2"
+alignment = 1
+
+[node name="SmwpButton9" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SSBB BATTLEFIELD"
+alignment = 1
+
+[node name="SmwpButton10" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMF WORLD 7 MAP"
+alignment = 1
+
+[node name="SmwpButton11" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "LITTLE BIG PLANET"
+alignment = 1
+
+[node name="SmwpButton12" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MFG DARK"
+alignment = 1
+
+[node name="SmwpButton13" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MFG ESCAPE"
+alignment = 1
+
+[node name="SmwpButton14" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MFG GHOSTS"
+alignment = 1
+
+[node name="SmwpButton15" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MFG HARD SQUAD"
+alignment = 1
+
+[node name="SmwpButton16" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MFG CASTLE DUNGEON"
+alignment = 1
+
+[node name="SmwpButton17" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MFG REAL BATTLE"
+alignment = 1
+
+[node name="SmwpButton18" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SUPER JUNGLE BROTHERS"
+alignment = 1
+
+[node name="SmwpButton19" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "YI UNDERGROUND REMIX"
+alignment = 1
+
+[node name="SmwpButton20" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMB2 OVERWORLD REMIX"
+alignment = 1
+
+[node name="SmwpButton21" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "DIRE DIRE DOCKS REMIX"
+alignment = 1
+
+[node name="SmwpButton22" parent="SoftendoSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "BOWSER'S ROAD REMIX"
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="SoftendoSeries"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="SmwpButton" parent="SoftendoSeries/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MFBP BATTLE"
+alignment = 1
+
+[node name="SmwpButton2" parent="SoftendoSeries/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MFBP WORLD MAP"
+alignment = 1
+
+[node name="SMWPOriginalSeries" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 80.0
+offset_right = 412.0
+offset_bottom = 476.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SMWPOriginalSeries"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="SmwpButton" parent="SMWPOriginalSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 7
+text = "BOUNDLESS DESERT, ENDLESS RIVER"
+alignment = 1
+
+[node name="SmwpButton2" parent="SMWPOriginalSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "DANSE DES FLEURS"
+alignment = 1
+
+[node name="SmwpButton3" parent="SMWPOriginalSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "LAVA GOLEM"
+alignment = 1
+
+[node name="SmwpButton4" parent="SMWPOriginalSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "LEGENDARY CASTLE"
+alignment = 1
+
+[node name="SmwpButton5" parent="SMWPOriginalSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "LEISURELY SEASHORE"
+alignment = 1
+
+[node name="SmwpButton6" parent="SMWPOriginalSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "STARDUST"
+alignment = 1
+
+[node name="SmwpButton7" parent="SMWPOriginalSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "STEPS APPROACHING"
+alignment = 1
+
+[node name="SmwpButton8" parent="SMWPOriginalSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "EASY DAY"
+alignment = 1
+
+[node name="SmwpButton9" parent="SMWPOriginalSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "GHOST PARADE"
+alignment = 1
+
+[node name="SmwpButton10" parent="SMWPOriginalSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "FASTRUN FOR REBIRTH"
+alignment = 1
+
+[node name="SmwpButton11" parent="SMWPOriginalSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "EXPEDITION"
+alignment = 1
+
+[node name="SmwpButton12" parent="SMWPOriginalSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "LIGHTNING STRIKES"
+alignment = 1
+
+[node name="SmwpButton13" parent="SMWPOriginalSeries/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SANCTUARY"
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="SMWPOriginalSeries"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="BossMusic" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 412.0
+offset_bottom = 476.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BossMusic"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="SmwpButton" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "KAOSESSION"
+alignment = 1
+
+[node name="SmwpButton2" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMRPG BOWSER BATTLE"
+alignment = 1
+
+[node name="SmwpButton3" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "YI BIG BOSS"
+alignment = 1
+
+[node name="SmwpButton4" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMB BOWSER BATTLE"
+alignment = 1
+
+[node name="SmwpButton5" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMB FINAL BOWSER"
+alignment = 1
+
+[node name="SmwpButton6" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMB2 WART"
+alignment = 1
+
+[node name="SmwpButton7" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMB3 BOSS BATTLE"
+alignment = 1
+
+[node name="SmwpButton8" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMB3 BOWSER BATTLE"
+alignment = 1
+
+[node name="SmwpButton9" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMW BOSS BATTLE"
+alignment = 1
+
+[node name="SmwpButton10" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMW EVIL KING BOWSER"
+alignment = 1
+
+[node name="SmwpButton11" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM64 FINAL BOWSER"
+alignment = 1
+
+[node name="SmwpButton12" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMB BOSS BATTLE"
+alignment = 1
+
+[node name="SmwpButton13" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMBW BOWSER 1"
+alignment = 1
+
+[node name="SmwpButton14" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMBW BOWSER 2"
+alignment = 1
+
+[node name="SmwpButton15" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMBU BOWSER 1"
+alignment = 1
+
+[node name="SmwpButton16" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NSMBU BOWSER 2"
+alignment = 1
+
+[node name="SmwpButton17" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DL FINAL BOSS"
+alignment = 1
+
+[node name="SmwpButton18" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MLRPG2 BOWSER BATTLE"
+alignment = 1
+
+[node name="SmwpButton19" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "MLRPG3 BOWSER BATTLE"
+alignment = 1
+
+[node name="SmwpButton20" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SMO MADAM BROODE"
+alignment = 1
+
+[node name="SmwpButton21" parent="BossMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "NEWER BOWSER BRIDGE"
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BossMusic"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="CustomMusic" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 80.0
+offset_right = 412.0
+offset_bottom = 476.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CustomMusic"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="SmwpButton" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "自定义音乐 - 文件名.mp3"
+alignment = 1
+
+[node name="SmwpButton2" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton3" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton4" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton5" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton6" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton7" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton8" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton9" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton10" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton11" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton12" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton13" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton14" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton15" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton16" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton17" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton18" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton19" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton20" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton21" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton22" parent="CustomMusic/VBoxContainer" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CustomMusic"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="SmwpButton" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton2" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton3" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton4" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton5" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton6" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton7" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton8" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton9" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton10" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton11" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton12" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton13" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton14" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton15" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton16" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton17" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton18" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton19" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton20" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton21" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
+
+[node name="SmwpButton22" parent="CustomMusic/VBoxContainer2" instance=ExtResource("3_q8e4b")]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_ajy3m")
+theme_type_variation = &"FlatButton"
+text = "SM3DW HILL"
+alignment = 1
