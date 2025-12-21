@@ -32,7 +32,7 @@ public partial class PlayerMovement : Node {
     // 水管传送状态
     public bool IsInPipeTransport;
     private bool _wasInPipe;
-    private bool _wasPipeOut;
+    public bool WasPipeOut;
     public int PipeTransportId;
     private int _pipeInTransportTimer;
 
@@ -759,7 +759,7 @@ public partial class PlayerMovement : Node {
                     break;
                 }
 
-                _wasPipeOut = IsInPipeTransport;
+                WasPipeOut = IsInPipeTransport;
 
                 switch (PipeTransportDir) {
                     case PipeTransportDirection.Up:

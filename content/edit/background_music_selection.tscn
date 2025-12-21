@@ -25,7 +25,7 @@ base_font = ExtResource("3_8sbms")
 variation_embolden = 1.0
 variation_transform = Transform2D(1, 0, 0, 1.4, 0, 0)
 spacing_glyph = 1
-spacing_top = 5
+spacing_top = 4
 
 [sub_resource type="Theme" id="Theme_iq013"]
 default_font = SubResource("FontVariation_iy5de")
@@ -33,7 +33,7 @@ default_font_size = 9
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_outline_color = Color(0.2, 0.2, 0.2, 0.7294118)
 Button/constants/outline_size = 5
-Button/font_sizes/font_size = 11
+Button/font_sizes/font_size = 10
 Button/styles/focus = SubResource("StyleBoxFlat_b06xp")
 Button/styles/hover = SubResource("StyleBoxFlat_ktd5f")
 Button/styles/normal = SubResource("StyleBoxFlat_vds4d")

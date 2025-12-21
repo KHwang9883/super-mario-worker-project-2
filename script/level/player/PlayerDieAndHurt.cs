@@ -59,7 +59,8 @@ public partial class PlayerDieAndHurt : Node {
         }
         
         // 水管传送状态下不处理
-        if (_playerMediator.playerMovement.IsInPipeTransport) return;
+        if (_playerMediator.playerMovement.IsInPipeTransport
+            || !_playerMediator.playerMovement.WasPipeOut) return;
         
         // 死亡计时结束后重启关卡
         if (_dead) {
@@ -102,6 +103,7 @@ public partial class PlayerDieAndHurt : Node {
             _initialFrameDelay++;
         } else {
             if (_player.GlobalPosition.Y > _screenBottom + 30f) {
+                GD.Print("Dead by cliff.");
                 Die();
             }
         }
