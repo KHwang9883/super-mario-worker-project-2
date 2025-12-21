@@ -1,8 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch83cdc1rsc6v"]
+[gd_scene load_steps=12 format=3 uid="uid://ch83cdc1rsc6v"]
 
 [ext_resource type="Texture2D" uid="uid://dncuqjuh6rn40" path="res://content/edit/bgm_select.png" id="1_dk2u5"]
+[ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="3_8sbms"]
 [ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="3_q8e4b"]
+[ext_resource type="Texture2D" uid="uid://b15l5knf8un71" path="res://content/ui/smwp_button_normal_with_shadow.png" id="4_56pog"]
 [ext_resource type="Theme" uid="uid://dsaw1u3xb4r7a" path="res://content/ui/bgm_choose.tres" id="4_ajy3m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b06xp"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktd5f"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vds4d"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exeya"]
+draw_center = false
+
+[sub_resource type="FontVariation" id="FontVariation_iy5de"]
+base_font = ExtResource("3_8sbms")
+variation_embolden = 1.0
+variation_transform = Transform2D(1, 0, 0, 1.4, 0, 0)
+spacing_glyph = 1
+spacing_top = 5
+
+[sub_resource type="Theme" id="Theme_iq013"]
+default_font = SubResource("FontVariation_iy5de")
+default_font_size = 9
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0.2, 0.2, 0.2, 0.7294118)
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 11
+Button/styles/focus = SubResource("StyleBoxFlat_b06xp")
+Button/styles/hover = SubResource("StyleBoxFlat_ktd5f")
+Button/styles/normal = SubResource("StyleBoxFlat_vds4d")
+Button/styles/pressed = SubResource("StyleBoxFlat_exeya")
 
 [node name="BackgroundMusicSelection" type="Control"]
 layout_mode = 3
@@ -27,13 +62,21 @@ texture = ExtResource("1_dk2u5")
 metadata/_edit_lock_ = true
 
 [node name="Back" parent="Basic" instance=ExtResource("3_q8e4b")]
+z_index = 1
 layout_mode = 0
 offset_left = 563.0
 offset_top = 425.0
 offset_right = 622.0
 offset_bottom = 459.0
-text = ""
+theme = SubResource("Theme_iq013")
+text = "BACK"
+alignment = 1
 metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Basic/Back"]
+z_index = -1
+position = Vector2(30, 17)
+texture = ExtResource("4_56pog")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0

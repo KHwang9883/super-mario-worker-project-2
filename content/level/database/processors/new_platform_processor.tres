@@ -42,24 +42,3 @@ metadata/_custom_type_script = "uid://cnqofymib37k"
 script = ExtResource("1_xh0p3")
 DataSource = ExtResource("1_8isnt")
 ConfigByType = Array[Object]([SubResource("Resource_l2pm4"), SubResource("Resource_eylqe"), SubResource("Resource_m8aqu"), SubResource("Resource_ypuv5"), SubResource("Resource_o5wa7"), SubResource("Resource_rquas")])
-OffsetTable = Dictionary[int, Vector2]({
-0: Vector2(48, 8),
-1: Vector2(16, 8),
-2: Vector2(64, 16),
-3: Vector2(48, 8),
-4: Vector2(16, 8),
-5: Vector2(48, 8),
-6: Vector2(16, 8),
-7: Vector2(48, 8),
-8: Vector2(16, 8),
-9: Vector2(48, 8),
-10: Vector2(16, 8),
-11: Vector2(48, 8),
-12: Vector2(16, 8),
-13: Vector2(48, 8),
-14: Vector2(16, 8),
-15: Vector2(0, 0),
-16: Vector2(0, 0),
-17: Vector2(0, 0),
-18: Vector2(0, 0)
-})

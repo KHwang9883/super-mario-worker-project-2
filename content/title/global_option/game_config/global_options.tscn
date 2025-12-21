@@ -1,15 +1,49 @@
-[gd_scene load_steps=11 format=3 uid="uid://bh01ow2pgnsh5"]
+[gd_scene load_steps=18 format=3 uid="uid://bh01ow2pgnsh5"]
 
 [ext_resource type="Script" uid="uid://bmxfxho2l06rq" path="res://script/title/global_option/GlobalOptions.cs" id="1_1n04l"]
 [ext_resource type="Texture2D" uid="uid://dhketxxxmk7rt" path="res://content/ui/option.png" id="2_5c1ry"]
 [ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="3_051f2"]
 [ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="4_opjjy"]
 [ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="5_sxxdp"]
+[ext_resource type="Texture2D" uid="uid://b15l5knf8un71" path="res://content/ui/smwp_button_normal_with_shadow.png" id="6_051f2"]
 [ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="6_h7q4w"]
 [ext_resource type="PackedScene" uid="uid://iy10w4afpuo6" path="res://content/title/global_option/global_option_menu.tscn" id="7_b2g60"]
 [ext_resource type="PackedScene" uid="uid://ddlwq4a4b6iaf" path="res://content/ui/popup/smwp_popup_initial_lives.tscn" id="8_12rpg"]
 [ext_resource type="PackedScene" uid="uid://bw0aoogxdlcab" path="res://content/ui/popup/smwp_popup_temporary_files.tscn" id="9_e4wm5"]
 [ext_resource type="PackedScene" uid="uid://cungughiviaul" path="res://content/ui/popup/smwp_popup_custom_music_package.tscn" id="10_5c1ry"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrvep"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mkpa"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdnmx"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1a3sc"]
+draw_center = false
+
+[sub_resource type="FontVariation" id="FontVariation_kx81q"]
+base_font = ExtResource("3_051f2")
+variation_embolden = 1.0
+variation_transform = Transform2D(1, 0, 0, 1.4, 0, 0)
+spacing_glyph = 1
+spacing_top = 5
+
+[sub_resource type="Theme" id="Theme_opjjy"]
+default_font = SubResource("FontVariation_kx81q")
+default_font_size = 9
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0.2, 0.2, 0.2, 0.7294118)
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 11
+Button/styles/focus = SubResource("StyleBoxFlat_yrvep")
+Button/styles/hover = SubResource("StyleBoxFlat_6mkpa")
+Button/styles/normal = SubResource("StyleBoxFlat_wdnmx")
+Button/styles/pressed = SubResource("StyleBoxFlat_1a3sc")
 
 [node name="GlobalOptions" type="Control" node_paths=PackedStringArray("InitialLivesButton", "InitialLivesEdit", "TemporaryFilesButton", "TemporaryFilesEdit", "DisplayModeButton", "CustomMusicButton", "CustomMusicEdit", "ColorAssistButton")]
 layout_mode = 3
@@ -55,15 +89,22 @@ text = "Global Options"
 vertical_alignment = 1
 
 [node name="Back" parent="Basic" instance=ExtResource("4_opjjy")]
+z_index = 1
 layout_mode = 0
 offset_left = 563.0
 offset_top = 425.0
 offset_right = 622.0
 offset_bottom = 459.0
-focus_neighbor_left = NodePath("../../VBoxContainerOptions/InitialLives/SetInitialLives")
-focus_neighbor_top = NodePath("../../GlobalOptionMenu/GameConfig")
-text = ""
+theme = SubResource("Theme_opjjy")
+text = "BACK"
+alignment = 1
 script = ExtResource("5_sxxdp")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Basic/Back"]
+z_index = -1
+position = Vector2(30, 17)
+texture = ExtResource("6_051f2")
 
 [node name="VBoxContainerOptions" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -98,7 +139,6 @@ offset_bottom = 26.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_vertical = 8
-focus_neighbor_right = NodePath("../../../Basic/Back")
 focus_neighbor_bottom = NodePath("../../TemporaryFiles/SetTemporaryFiles")
 focus_next = NodePath("../../TemporaryFiles/SetTemporaryFiles")
 text = "4"
@@ -132,7 +172,6 @@ offset_bottom = 26.0
 grow_horizontal = 0
 size_flags_horizontal = 10
 focus_neighbor_top = NodePath("../../InitialLives/SetInitialLives")
-focus_neighbor_right = NodePath("../../../Basic/Back")
 focus_neighbor_bottom = NodePath("../../DisplayMode/SetDisplayMode")
 focus_next = NodePath("../../DisplayMode/SetDisplayMode")
 focus_previous = NodePath("../../InitialLives/SetInitialLives")
@@ -164,7 +203,6 @@ offset_bottom = 26.0
 grow_horizontal = 0
 size_flags_horizontal = 10
 focus_neighbor_top = NodePath("../../TemporaryFiles/SetTemporaryFiles")
-focus_neighbor_right = NodePath("../../../Basic/Back")
 focus_previous = NodePath("../../TemporaryFiles/SetTemporaryFiles")
 text = "WINDOW MODE"
 alignment = 2
@@ -193,7 +231,6 @@ offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
 focus_neighbor_top = NodePath("../../DisplayMode/SetDisplayMode")
-focus_neighbor_right = NodePath("../../../Basic/Back")
 focus_neighbor_bottom = NodePath("../../AccessibilityMode/SetAccessibilityMode")
 focus_next = NodePath("../../AccessibilityMode/SetAccessibilityMode")
 focus_previous = NodePath("../../DisplayMode/SetDisplayMode")
@@ -224,7 +261,6 @@ offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
 focus_neighbor_top = NodePath("../../CustomMusic/SetCustomMusic")
-focus_neighbor_right = NodePath("../../../Basic/Back")
 focus_previous = NodePath("../../CustomMusic/SetCustomMusic")
 text = "NO"
 alignment = 2
@@ -235,6 +271,9 @@ offset_left = 444.0
 offset_top = 128.0
 offset_right = 604.0
 offset_bottom = 256.0
+
+[node name="StaffRoll" parent="GlobalOptionMenu" index="2"]
+focus_neighbor_bottom = NodePath("")
 
 [node name="SmwpPopupGroup" type="Node" parent="."]
 

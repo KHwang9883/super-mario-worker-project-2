@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcl0tm0styfxp"]
+[gd_scene load_steps=16 format=3 uid="uid://bcl0tm0styfxp"]
 
 [ext_resource type="Script" uid="uid://dd50qmm5x0pnk" path="res://script/title/global_option/ControlSettings.cs" id="1_lghrj"]
 [ext_resource type="Texture2D" uid="uid://dhketxxxmk7rt" path="res://content/ui/option.png" id="1_yvftp"]
@@ -7,7 +7,41 @@
 [ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="4_a747a"]
 [ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="5_yrvep"]
 [ext_resource type="PackedScene" uid="uid://iy10w4afpuo6" path="res://content/title/global_option/global_option_menu.tscn" id="6_6mkpa"]
+[ext_resource type="Texture2D" uid="uid://b15l5knf8un71" path="res://content/ui/smwp_button_normal_with_shadow.png" id="6_a747a"]
 [ext_resource type="PackedScene" uid="uid://ldgs5y464vui" path="res://content/ui/action_remap_button.tscn" id="7_yrvep"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrvep"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mkpa"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdnmx"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1a3sc"]
+draw_center = false
+
+[sub_resource type="FontVariation" id="FontVariation_kx81q"]
+base_font = ExtResource("2_rmr6b")
+variation_embolden = 1.0
+variation_transform = Transform2D(1, 0, 0, 1.4, 0, 0)
+spacing_glyph = 1
+spacing_top = 5
+
+[sub_resource type="Theme" id="Theme_xbq5g"]
+default_font = SubResource("FontVariation_kx81q")
+default_font_size = 9
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0.2, 0.2, 0.2, 0.7294118)
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 11
+Button/styles/focus = SubResource("StyleBoxFlat_yrvep")
+Button/styles/hover = SubResource("StyleBoxFlat_6mkpa")
+Button/styles/normal = SubResource("StyleBoxFlat_wdnmx")
+Button/styles/pressed = SubResource("StyleBoxFlat_1a3sc")
 
 [node name="ControlSettings" type="Control"]
 layout_mode = 3
@@ -45,15 +79,22 @@ text = "Global Options"
 vertical_alignment = 1
 
 [node name="Back" parent="Basic" instance=ExtResource("3_lghrj")]
+z_index = 1
 layout_mode = 0
 offset_left = 563.0
 offset_top = 425.0
 offset_right = 622.0
 offset_bottom = 459.0
-focus_neighbor_left = NodePath("../../VBoxContainerOptions/InitialLives/SetInitialLives")
-focus_neighbor_top = NodePath("../../GlobalOptionMenu/GameConfig")
-text = ""
+theme = SubResource("Theme_xbq5g")
+text = "BACK"
+alignment = 1
 script = ExtResource("4_a747a")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Basic/Back"]
+z_index = -1
+position = Vector2(30, 17)
+texture = ExtResource("6_a747a")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -93,7 +134,6 @@ offset_left = -128.0
 offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
-focus_neighbor_right = NodePath("../../../Basic/Back")
 focus_neighbor_bottom = NodePath("../../Down/SetDown")
 focus_next = NodePath("../../Down/SetDown")
 alignment = 2
@@ -155,7 +195,6 @@ offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
 focus_neighbor_top = NodePath("../../Down/SetDown")
-focus_neighbor_right = NodePath("../../../Basic/Back")
 focus_neighbor_bottom = NodePath("../../Right/SetRight")
 focus_next = NodePath("../../Right/SetRight")
 focus_previous = NodePath("../../Down/SetDown")
@@ -187,7 +226,6 @@ offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
 focus_neighbor_top = NodePath("../../Left/SetLeft")
-focus_neighbor_right = NodePath("../../../Basic/Back")
 focus_neighbor_bottom = NodePath("../../Jump/SetJump")
 focus_next = NodePath("../../Jump/SetJump")
 focus_previous = NodePath("../../Left/SetLeft")
@@ -219,7 +257,6 @@ offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
 focus_neighbor_top = NodePath("../../Right/SetRight")
-focus_neighbor_right = NodePath("../../../Basic/Back")
 focus_neighbor_bottom = NodePath("../../Fire/SetFire")
 focus_next = NodePath("../../Fire/SetFire")
 focus_previous = NodePath("../../Right/SetRight")
@@ -251,7 +288,6 @@ offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
 focus_neighbor_top = NodePath("../../Jump/SetJump")
-focus_neighbor_right = NodePath("../../../Basic/Back")
 focus_neighbor_bottom = NodePath("../../Confirm/SetConfirm")
 focus_next = NodePath("../../Confirm/SetConfirm")
 focus_previous = NodePath("../../Jump/SetJump")
@@ -283,7 +319,6 @@ offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
 focus_neighbor_top = NodePath("../../Fire/SetFire")
-focus_neighbor_right = NodePath("../../../Basic/Back")
 focus_neighbor_bottom = NodePath("../../Pause/SetPause")
 focus_next = NodePath("../../Pause/SetPause")
 focus_previous = NodePath("../../Fire/SetFire")
@@ -315,7 +350,6 @@ offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
 focus_neighbor_top = NodePath("../../Confirm/SetConfirm")
-focus_neighbor_right = NodePath("../../../Basic/Back")
 focus_neighbor_bottom = NodePath("../../RestartLevel/SetRestartLevel")
 focus_next = NodePath("../../RestartLevel/SetRestartLevel")
 focus_previous = NodePath("../../Confirm/SetConfirm")
@@ -347,7 +381,6 @@ offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
 focus_neighbor_top = NodePath("../../Pause/SetPause")
-focus_neighbor_right = NodePath("../../../Basic/Back")
 focus_neighbor_bottom = NodePath("../../Info/SetInfo")
 focus_next = NodePath("../../Info/SetInfo")
 focus_previous = NodePath("../../Pause/SetPause")
@@ -379,9 +412,6 @@ offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
 focus_neighbor_top = NodePath("../../RestartLevel/SetRestartLevel")
-focus_neighbor_right = NodePath("../../../Basic/Back")
-focus_neighbor_bottom = NodePath("../../../Basic/Back")
-focus_next = NodePath("../../../Basic/Back")
 focus_previous = NodePath("../../RestartLevel/SetRestartLevel")
 alignment = 2
 Action = "level_info"
@@ -406,6 +436,9 @@ offset_left = 444.0
 offset_top = 128.0
 offset_right = 604.0
 offset_bottom = 256.0
+
+[node name="StaffRoll" parent="GlobalOptionMenu" index="2"]
+focus_neighbor_bottom = NodePath("")
 
 [connection signal="pressed" from="Basic/Back" to="." method="OnBackButtonPressed"]
 [connection signal="pressed" from="Basic/Back" to="Basic/Back" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]

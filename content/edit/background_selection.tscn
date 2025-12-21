@@ -1,8 +1,9 @@
-[gd_scene load_steps=66 format=3 uid="uid://cfc2m8x3v4ib1"]
+[gd_scene load_steps=73 format=3 uid="uid://cfc2m8x3v4ib1"]
 
 [ext_resource type="Texture2D" uid="uid://dhketxxxmk7rt" path="res://content/ui/option.png" id="1_804os"]
 [ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="2_8bnxu"]
 [ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="3_pwoid"]
+[ext_resource type="Texture2D" uid="uid://b15l5knf8un71" path="res://content/ui/smwp_button_normal_with_shadow.png" id="4_euo51"]
 [ext_resource type="Texture2D" uid="uid://mqu6vke8b8sw" path="res://content/level/background/cave.bg.png" id="4_rnb1c"]
 [ext_resource type="Texture2D" uid="uid://ccsf82s5ygu7j" path="res://content/level/background/cave_gradient.bg.png" id="5_1knvu"]
 [ext_resource type="Texture2D" uid="uid://bed3y2dg7y6qm" path="res://content/level/background/glassland.bg.png" id="6_pwoid"]
@@ -29,6 +30,39 @@
 [ext_resource type="Texture2D" uid="uid://momvj86ptdck" path="res://content/level/background/deep_forest.bg.png" id="27_lw6np"]
 [ext_resource type="Texture2D" uid="uid://cgnlcbiks534c" path="res://content/level/background/seashore_cloud.png" id="28_4cx73"]
 [ext_resource type="Texture2D" uid="uid://bg4wkdtfg8kjd" path="res://content/level/background/seashore.png" id="29_3px6w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_euo51"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b06xp"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktd5f"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vds4d"]
+draw_center = false
+
+[sub_resource type="FontVariation" id="FontVariation_exeya"]
+base_font = ExtResource("2_8bnxu")
+variation_embolden = 1.0
+variation_transform = Transform2D(1, 0, 0, 1.4, 0, 0)
+spacing_glyph = 1
+spacing_top = 5
+
+[sub_resource type="Theme" id="Theme_iv6kv"]
+default_font = SubResource("FontVariation_exeya")
+default_font_size = 9
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0.2, 0.2, 0.2, 0.7294118)
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 11
+Button/styles/focus = SubResource("StyleBoxFlat_euo51")
+Button/styles/hover = SubResource("StyleBoxFlat_b06xp")
+Button/styles/normal = SubResource("StyleBoxFlat_ktd5f")
+Button/styles/pressed = SubResource("StyleBoxFlat_vds4d")
 
 [sub_resource type="Gradient" id="Gradient_w3slq"]
 colors = PackedColorArray(0.56078434, 0.6784314, 1, 1, 0.92941177, 0.9490196, 1, 1)
@@ -231,13 +265,21 @@ text = "Global Options"
 vertical_alignment = 1
 
 [node name="Back" parent="Basic" instance=ExtResource("3_pwoid")]
+z_index = 1
 layout_mode = 0
 offset_left = 563.0
 offset_top = 425.0
 offset_right = 622.0
 offset_bottom = 459.0
-text = ""
+theme = SubResource("Theme_iv6kv")
+text = "BACK"
+alignment = 1
 metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Basic/Back"]
+z_index = -1
+position = Vector2(30, 17)
+texture = ExtResource("4_euo51")
 
 [node name="Bgp1" type="Control" parent="."]
 clip_contents = true
