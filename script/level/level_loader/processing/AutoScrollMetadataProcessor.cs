@@ -11,7 +11,7 @@ public partial class AutoScrollMetadataProcessor : ObjectProcessor {
             return;
         }
         // 自动卷轴速度
-        if (!ClassicSmwpCodec.TryDecodeAutoScrollValue(metadata.AsSpan()[..3], 3, out int speed)) {
+        if (!ClassicSmwpCodec.TryDecodeValue(metadata.AsSpan()[..3], 3, out int speed)) {
             GD.PushError($"Invalid speed {metadata[..3]} for auto scroll");
             return;
         }

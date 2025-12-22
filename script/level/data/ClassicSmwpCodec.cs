@@ -49,7 +49,7 @@ public static class ClassicSmwpCodec {
         return true;
     }
     
-    public static bool TryDecodeAutoScrollValue(ReadOnlySpan<char> serialized, int exceptedLength, out int result) {
+    public static bool TryDecodeValue(ReadOnlySpan<char> serialized, int exceptedLength, out int result) {
         if (serialized.Length != exceptedLength) {
             return OnTriageError($"Classic SMWP coordinate value must be 4 characters length, given {serialized}", out result);
         }
