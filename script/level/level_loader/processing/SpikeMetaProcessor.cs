@@ -9,7 +9,6 @@ public partial class SpikeMetaProcessor : ObjectProcessor {
             return;
         }
         if (node is not Node2D node2D) return;
-        GD.Print(instance.Metadata[0]);
         if (!int.TryParse(instance.Metadata, out var direction)) return;
         node2D.GlobalRotationDegrees = direction switch {
             0 => 0f,
@@ -18,6 +17,5 @@ public partial class SpikeMetaProcessor : ObjectProcessor {
             3 => 90f,
             _ => 0f,
         };
-        GD.Print(node2D.GlobalRotationDegrees);
     }
 }

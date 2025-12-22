@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cvm540k7umj5r"]
+
+[ext_resource type="Script" uid="uid://dkhuadhrs4qf2" path="res://script/level/level_loader/processing/BulletBillCannonProcessor.cs" id="1_6bko3"]
+
+[resource]
+script = ExtResource("1_6bko3")
