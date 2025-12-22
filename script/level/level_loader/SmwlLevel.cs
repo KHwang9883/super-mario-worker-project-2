@@ -32,8 +32,10 @@ public partial class SmwlLevel : Node2D {
     private ImitatorBuilder _imitatorBuilder;
     private int _checkpointId;
     
-    // Todo: player position set
+    // Player Position Set
     private Node2D? _player;
+    // 有多个起点时，以最先放置的起点为目标起点
+    private bool _playerSet;
 
     public override void _Ready() {
         base._Ready();
@@ -164,8 +166,9 @@ public partial class SmwlLevel : Node2D {
                 _imitatorBuilder.NextImitator(@object);
                 break;
             case SpecialObjectIds.LevelStart:
-                if (_player is { } player) {
+                if (!_playerSet && _player is { } player) {
                     player.Position = @object.Position - new Vector2(0, 12);
+                    _playerSet = true;
                 }
                 break;
             // Checkpoint
