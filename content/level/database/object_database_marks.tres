@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=62 format=3 uid="uid://dp3ucvu1lpy7l"]
+[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=63 format=3 uid="uid://dp3ucvu1lpy7l"]
 
 [ext_resource type="Resource" uid="uid://dae8xphsfx1wi" path="res://content/level/database/processors/platform_processor.tres" id="1_3f7fm"]
 [ext_resource type="PackedScene" uid="uid://2i5erl0ya4vb" path="res://content/level/facility/giant_gate/giant_gate.tscn" id="1_qgjfj"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cmmb4r0nb8788" path="res://content/level/facility/sealer/sealer.tscn" id="6_0uytu"]
 [ext_resource type="PackedScene" uid="uid://ql8eu02wkcf5" path="res://content/level/facility/auto_scroll/auto_scroll.tscn" id="7_liha5"]
 [ext_resource type="Script" uid="uid://bjb4gqto4sgu3" path="res://script/level/data/SmwpObjectDatabase.cs" id="8_15nfl"]
+[ext_resource type="Resource" uid="uid://cbwb7iljp45t" path="res://content/level/database/processors/auto_scroll_metadata_processor.tres" id="8_d1wse"]
 [ext_resource type="PackedScene" uid="uid://d2hm1ej2l7abm" path="res://content/level/facility/platform/plarform_horizontal_marker.tscn" id="8_qgl4e"]
 [ext_resource type="PackedScene" uid="uid://1yjr75w8clry" path="res://content/level/block/message_block/message_block.tscn" id="9_y0f4k"]
 [ext_resource type="Resource" uid="uid://dlo4kx7bs0n66" path="res://content/level/database/processors/new_platform_processor.tres" id="10_3f7fm"]
@@ -190,7 +191,7 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 script = ExtResource("2_qgl4e")
 Id = 223
 Prefab = ExtResource("7_liha5")
-SpawnOffset = Vector2(0, 0)
+MetadataProcessor = ExtResource("8_d1wse")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_y0f4k"]

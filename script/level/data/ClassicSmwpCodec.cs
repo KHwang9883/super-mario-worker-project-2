@@ -48,6 +48,26 @@ public static class ClassicSmwpCodec {
         result = head * 1000 + tail;
         return true;
     }
+    
+    public static bool TryDecodeAutoScrollValue(ReadOnlySpan<char> serialized, int exceptedLength, out int result) {
+        if (serialized.Length != exceptedLength) {
+            return OnTriageError($"Classic SMWP coordinate value must be 4 characters length, given {serialized}", out result);
+        }
+        // 负数坐标的情况，
+        // 不支持字母，-A00 这样的坐标会直接报错
+        if (serialized[0] == '-') {
+            return int.TryParse(serialized, out result) || OnTriageError($"Unsupported negative coordinate value: {serialized}", out result);
+        }
+        // 计算余 Math.Pow(10, exceptedLength - 1) 的部分
+        if (!int.TryParse(serialized[1..], out int tail)) {
+            return OnTriageError($"Found non-number digit after first character when decoding coordinate value {serialized}", out result);
+        }
+        // 计算最高位
+        int head = Base62Decode(serialized[0]);
+        
+        result = (int)(head * Math.Pow(10, exceptedLength - 1) + tail);
+        return true;
+    }
 
     public static bool TryEncodeCoordinateValue(Span<char> buffer, int value) {
         if (buffer.Length != 4) {

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cbwb7iljp45t"]
+
+[ext_resource type="Script" uid="uid://3dn2riiyn4dm" path="res://script/level/level_loader/processing/AutoScrollMetadataProcessor.cs" id="1_qmdrr"]
+
+[resource]
+script = ExtResource("1_qmdrr")
