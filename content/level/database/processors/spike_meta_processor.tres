@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://df235dpk5jmwa"]
+
+[ext_resource type="Script" uid="uid://b06742a5qsouj" path="res://script/level/level_loader/processing/SpikeMetaProcessor.cs" id="1_xxbjv"]
+
+[resource]
+script = ExtResource("1_xxbjv")
