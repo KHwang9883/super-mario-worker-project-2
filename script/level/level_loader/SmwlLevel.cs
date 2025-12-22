@@ -70,6 +70,10 @@ public partial class SmwlLevel : Node2D {
     }
 
     public void Install(SmwlLevelData data) {
+#if TOOLS
+        // 编辑器环境里永远开启 God 模式
+        GameManager.IsGodMode = true;
+#endif
         _checkpointId = 1;
         // 设置文件头数据
         InstallHeader(data.Header);
