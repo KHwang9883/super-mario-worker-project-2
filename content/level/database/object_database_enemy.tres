@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=96 format=3 uid="uid://ch6ocvrds2bxf"]
+[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=97 format=3 uid="uid://ch6ocvrds2bxf"]
 
 [ext_resource type="PackedScene" uid="uid://d2kvp8mnj0j4u" path="res://content/level/enemy/goomba/goomba.tscn" id="1_bmvpb"]
 [ext_resource type="Script" uid="uid://cpxsb6lorrux4" path="res://script/level/data/SmwpObjectDatabaseEntry.cs" id="2_v7upk"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://ctgqopj8q32nh" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_green.tscn" id="5_llua3"]
 [ext_resource type="PackedScene" uid="uid://lo64hov3eeo3" path="res://content/level/enemy/spiny/spiny.tscn" id="6_adiqc"]
 [ext_resource type="PackedScene" uid="uid://dh8pgpynxisry" path="res://content/level/enemy/piranha_plant/piranha_plant_green.tscn" id="7_gyedt"]
-[ext_resource type="PackedScene" uid="uid://bh2mcrx4e1dx1" path="res://content/level/bad_object.tscn" id="8_0wd3b"]
 [ext_resource type="PackedScene" uid="uid://cb62nwjb51k1v" path="res://content/level/enemy/piranha_plant/piranha_plant_fire.tscn" id="9_tfs4a"]
 [ext_resource type="PackedScene" uid="uid://cejpown37o253" path="res://content/level/enemy/lakitu/lakitu.tscn" id="10_6pmrl"]
 [ext_resource type="PackedScene" uid="uid://dertrheuvws04" path="res://content/level/enemy/bullet_bill/bullet_bill_cannon.tscn" id="11_xrdg5"]
@@ -39,7 +38,9 @@
 [ext_resource type="PackedScene" uid="uid://unijmmxn54ok" path="res://content/level/enemy/spike/coral_electric.tscn" id="34_6pmrl"]
 [ext_resource type="PackedScene" uid="uid://1px4xtvk4nkg" path="res://content/level/enemy/spike/spike_mf.tscn" id="35_xrdg5"]
 [ext_resource type="PackedScene" uid="uid://cdxpkopiyqfi4" path="res://content/level/enemy/troopa/troopa_walking/troopa_yellow.tscn" id="36_mc8ga"]
+[ext_resource type="Resource" uid="uid://do7jdu6unddop" path="res://content/level/database/processors/fly_troopa_gold_generator_processor.tres" id="38_ehybk"]
 [ext_resource type="PackedScene" uid="uid://yef1n42fxbd1" path="res://content/level/enemy/cheep-cheep/cheep-cheep_area/cheep-cheep_area.tscn" id="38_pavau"]
+[ext_resource type="PackedScene" uid="uid://dlfxd7ibjwut8" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_yellow_generator.tscn" id="38_poooy"]
 [ext_resource type="PackedScene" uid="uid://fbxq1hg4e22f" path="res://content/level/enemy/roto-disc/roto-disc_still.tscn" id="38_r7sda"]
 [ext_resource type="PackedScene" uid="uid://chrmn2f5rir5y" path="res://content/level/enemy/piranha_plant/piranha_plant_blue.tscn" id="39_8lacj"]
 [ext_resource type="Resource" uid="uid://s0eg8lyoxrjg" path="res://content/level/database/processors/swimming_cheep_cheep_area_metadata_processor.tres" id="39_bwect"]
@@ -304,7 +305,8 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 [sub_resource type="Resource" id="Resource_r7sda"]
 script = ExtResource("2_v7upk")
 Id = 39
-Prefab = ExtResource("8_0wd3b")
+Prefab = ExtResource("38_poooy")
+MetadataProcessor = ExtResource("38_ehybk")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_8lacj"]

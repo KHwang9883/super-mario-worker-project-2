@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://do7jdu6unddop"]
+
+[ext_resource type="Script" uid="uid://0pm8qscsop4d" path="res://script/level/level_loader/processing/TroopaFlyYellowGeneratorProcessor.cs" id="1_b2x71"]
+
+[resource]
+script = ExtResource("1_b2x71")
