@@ -34,7 +34,7 @@ public partial class BgmPlayer : AudioStreamPlayer {
             _playerDieAndHurt.PlayerDiedSucceeded += OnPlayerDied;
             _playerSuit = (PlayerSuit)_player.GetMeta("PlayerSuit");
             _playerSuit.PlayerStarmanStarted += OnPlayerStarmanStart;
-            _playerSuit.PlayerStarmanFinished += OnPlayerStarmanEnd;
+            _playerSuit.PlayerStarmanFinishedBgmReset += OnPlayerStarmanEnd;
             
             // Fast Retry 读取 BGM 位置
             if (_levelConfig.BgmId != GameManager.CurrentBgmId) {

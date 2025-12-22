@@ -9,6 +9,8 @@ public partial class PlayerSuit : Node {
     public delegate void PlayerStarmanStartedEventHandler();
     [Signal]
     public delegate void PlayerStarmanFinishedEventHandler();
+    [Signal]
+    public delegate void PlayerStarmanFinishedBgmResetEventHandler();
     
     [Export] private PlayerMediator _playerMediator = null!;
     
@@ -67,10 +69,11 @@ public partial class PlayerSuit : Node {
         Starman = true;
         EmitSignal(SignalName.PlayerStarmanStarted);
     }
-    public void StarmanOver() {
+    public void StarmanOver(bool bgmReset = true) {
         Starman = false;
         StarmanTimer = 0;
         _starmanCombo.ResetCombo();
         EmitSignal(SignalName.PlayerStarmanFinished);
+        if (bgmReset) EmitSignal(SignalName.PlayerStarmanFinishedBgmReset);
     }
 }
