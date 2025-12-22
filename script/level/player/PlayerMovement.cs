@@ -119,6 +119,7 @@ public partial class PlayerMovement : Node {
     private ShapeCast2D _outWaterDetectSuper = null!;
 
     private LevelCamera? _levelCamera;
+    private bool _levelStartAutoScrollDetect;
     private bool _autoScrollCheckpointDetect;
     private bool _autoScrollCheckpointDetected;
 
@@ -888,13 +889,15 @@ public partial class PlayerMovement : Node {
         var autoScrollNode = GetTree().GetFirstNodeInGroup("auto_scroll");
         if (autoScrollNode == null) return;
         if (autoScrollNode is not AutoScroll autoScroll) return;
-        if (_player.Position.X > autoScroll.ScrollRect.Position.X
-            && _player.Position.X < autoScroll.ScrollRect.End.X
-            && _player.Position.Y > autoScroll.ScrollRect.Position.Y
-            && _player.Position.Y < autoScroll.ScrollRect.End.Y) {
-                
+        if (IsPlayerInAutoScrollNodeRect(autoScroll)) {
             _levelCamera.CameraMode = LevelCamera.CameraModeEnum.AutoScroll;
-            
+            if (!_levelStartAutoScrollDetect) {
+                // 起始点在自动卷轴范围内，设置位置为滚屏节点
+                _levelCamera.Position = autoScroll.Position;
+                _levelCamera.ResetPhysicsInterpolation();
+                _levelStartAutoScrollDetect = true;
+            }
+            _levelStartAutoScrollDetect = true;
             // 镜头限制取消
             CameraLimitFree();
         }
@@ -905,14 +908,13 @@ public partial class PlayerMovement : Node {
         var autoScrollNodes = GetTree().GetNodesInGroup("auto_scroll");
         foreach (var node in autoScrollNodes) {
             if (node is not AutoScroll autoScrollCheckpoint) continue;
-            if (_player.Position.X > autoScrollCheckpoint.ScrollRect.Position.X
-                && _player.Position.X < autoScrollCheckpoint.ScrollRect.End.X
-                && _player.Position.Y > autoScrollCheckpoint.ScrollRect.Position.Y
-                && _player.Position.Y < autoScrollCheckpoint.ScrollRect.End.Y) {
-                
+            if (IsPlayerInAutoScrollNodeRect(autoScrollCheckpoint)) {
                 _levelCamera.CameraMode = LevelCamera.CameraModeEnum.AutoScroll;
                 // 强行设置强制滚屏的节点
                 _levelCamera.ForceSetScrollNode(autoScrollCheckpoint);
+                // 并设置位置为滚屏节点
+                _levelCamera.Position = autoScrollCheckpoint.Position;
+                _levelCamera.ResetPhysicsInterpolation();
                 //GD.Print($"Current CP Auto Scroll Node: {autoScrollCheckpoint.Name}");
                 // 镜头限制取消
                 CameraLimitFree();
@@ -920,6 +922,12 @@ public partial class PlayerMovement : Node {
                 break;
             }
         }
+    }
+    public bool IsPlayerInAutoScrollNodeRect(AutoScroll autoScroll) {
+        return _player.Position.X > autoScroll.ScrollRect.Position.X
+               && _player.Position.X < autoScroll.ScrollRect.End.X
+               && _player.Position.Y > autoScroll.ScrollRect.Position.Y
+               && _player.Position.Y < autoScroll.ScrollRect.End.Y;
     }
 
     public void KoopaScrollDetect() {
