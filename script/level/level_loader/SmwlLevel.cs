@@ -171,7 +171,7 @@ public partial class SmwlLevel : Node2D {
                 break;
             case SpecialObjectIds.LevelStart:
                 if (!_playerSet && _player is { } player) {
-                    player.Position = @object.Position - new Vector2(0, 12);
+                    player.Position = @object.Position + new Vector2(0, -12);
                     _playerSet = true;
                 }
                 break;
