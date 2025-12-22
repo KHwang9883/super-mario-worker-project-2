@@ -1,6 +1,10 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://k2e46wcp3drp"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://k2e46wcp3drp"]
 
+[ext_resource type="PackedScene" uid="uid://ck3jt1w1cix41" path="res://content/level/block/fluid_block/fluid_block.tscn" id="1_qqm3l"]
+[ext_resource type="PackedScene" uid="uid://l6agvoyyts2r" path="res://content/level/facility/fluid_area/fluid_area.tscn" id="1_x2jgj"]
 [ext_resource type="Script" uid="uid://7tve4jp86a3r" path="res://script/level/level_loader/processing/FluidAreaMetadataProcessor.cs" id="1_ysmgf"]
 
 [resource]
 script = ExtResource("1_ysmgf")
+FluidBlockPrefab = ExtResource("1_qqm3l")
+FluidAreaPrefab = ExtResource("1_x2jgj")

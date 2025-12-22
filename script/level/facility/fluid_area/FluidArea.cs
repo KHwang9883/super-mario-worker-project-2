@@ -5,6 +5,10 @@ public partial class FluidArea : Area2D {
     [Export] public Rect2 FluidRect = new Rect2(Vector2.Zero, new Vector2(32f, 32f));
     [Export] public float TargetHeight;
     [Export] public float Speed = 1f;
+    
+    /// <summary>
+    /// 暂未使用
+    /// </summary>
     [Export] public bool Reusable { get; set; }
     
     private Water? _water;
