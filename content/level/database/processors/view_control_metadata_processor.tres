@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://6riagohig8v5"]
+
+[ext_resource type="Script" uid="uid://oyj6282r0dbe" path="res://script/level/level_loader/processing/ViewControlMetadataProcessor.cs" id="1_6g7s7"]
+
+[resource]
+script = ExtResource("1_6g7s7")
