@@ -150,7 +150,7 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 script = ExtResource("2_qgl4e")
 Id = 217
 Prefab = ExtResource("1_qgjfj")
-SpawnOffset = Vector2(16, 0)
+SpawnOffset = Vector2(80, 32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_qgjfj"]
