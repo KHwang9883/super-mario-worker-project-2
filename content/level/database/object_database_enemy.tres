@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=99 format=3 uid="uid://ch6ocvrds2bxf"]
+[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=100 format=3 uid="uid://ch6ocvrds2bxf"]
 
 [ext_resource type="PackedScene" uid="uid://d2kvp8mnj0j4u" path="res://content/level/enemy/goomba/goomba.tscn" id="1_bmvpb"]
 [ext_resource type="Script" uid="uid://cpxsb6lorrux4" path="res://script/level/data/SmwpObjectDatabaseEntry.cs" id="2_v7upk"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ctgqopj8q32nh" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_green.tscn" id="5_llua3"]
 [ext_resource type="PackedScene" uid="uid://lo64hov3eeo3" path="res://content/level/enemy/spiny/spiny.tscn" id="6_adiqc"]
 [ext_resource type="PackedScene" uid="uid://dh8pgpynxisry" path="res://content/level/enemy/piranha_plant/piranha_plant_green.tscn" id="7_gyedt"]
+[ext_resource type="Resource" uid="uid://cjlc55x666qg2" path="res://content/level/database/processors/piranha_plant_processor.tres" id="8_wv0lx"]
 [ext_resource type="PackedScene" uid="uid://cb62nwjb51k1v" path="res://content/level/enemy/piranha_plant/piranha_plant_fire.tscn" id="9_tfs4a"]
 [ext_resource type="PackedScene" uid="uid://cejpown37o253" path="res://content/level/enemy/lakitu/lakitu.tscn" id="10_6pmrl"]
 [ext_resource type="PackedScene" uid="uid://dertrheuvws04" path="res://content/level/enemy/bullet_bill/bullet_bill_cannon.tscn" id="11_xrdg5"]
@@ -98,6 +99,7 @@ script = ExtResource("2_v7upk")
 Id = 7
 Prefab = ExtResource("7_gyedt")
 SpawnOffset = Vector2(0, 0)
+MetadataProcessor = ExtResource("8_wv0lx")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_55wj5"]
@@ -112,6 +114,7 @@ script = ExtResource("2_v7upk")
 Id = 9
 Prefab = ExtResource("9_tfs4a")
 SpawnOffset = Vector2(0, 0)
+MetadataProcessor = ExtResource("8_wv0lx")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_axiuw"]
@@ -354,6 +357,7 @@ script = ExtResource("2_v7upk")
 Id = 45
 Prefab = ExtResource("39_8lacj")
 SpawnOffset = Vector2(0, 0)
+MetadataProcessor = ExtResource("8_wv0lx")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_bwect"]
@@ -368,6 +372,7 @@ script = ExtResource("2_v7upk")
 Id = 47
 Prefab = ExtResource("40_3ww0w")
 SpawnOffset = Vector2(0, 0)
+MetadataProcessor = ExtResource("8_wv0lx")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_ehybk"]

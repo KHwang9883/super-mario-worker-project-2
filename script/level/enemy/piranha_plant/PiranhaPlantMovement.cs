@@ -82,4 +82,11 @@ public partial class PiranhaPlantMovement : Node {
         _currentState = newState;
         _stateTimer = timerStart;
     }
+
+    /// <summary>
+    /// 给元数据处理器用的角度初始化
+    /// </summary>
+    public void SetAngle(float angle) {
+        _angle = angle;
+    }
 }

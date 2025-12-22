@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cjlc55x666qg2"]
+
+[ext_resource type="Script" uid="uid://dui5m64omg0km" path="res://script/level/level_loader/processing/PiranhaPlantProcessor.cs" id="1_sh7qk"]
+
+[resource]
+script = ExtResource("1_sh7qk")
