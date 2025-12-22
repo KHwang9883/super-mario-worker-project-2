@@ -43,7 +43,7 @@ visible = false
 tile_set = ExtResource("2_dugl1")
 
 [node name="Block Tile Map" type="TileMapLayer" parent="."]
-z_index = 1
+z_index = 90
 tile_set = ExtResource("7_fn8k0")
 collision_enabled = false
 
