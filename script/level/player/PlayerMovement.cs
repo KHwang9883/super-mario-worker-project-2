@@ -171,7 +171,7 @@ public partial class PlayerMovement : Node {
         _right = Input.IsActionPressed("move_right");
         Fire = Input.IsActionPressed("move_fire");
         _jump = Input.IsActionPressed("move_jump");
-
+        
         // 自动滚屏检测
         AutoScrollDetect();
         
@@ -835,7 +835,7 @@ public partial class PlayerMovement : Node {
 
     public void ViewControlDetect() {
         if (_levelCamera == null) {
-            GD.PushError("AutoScrollDetect: LevelCamera is null!");
+            GD.PushError("ViewControlDetect: LevelCamera is null!");
             return;
         }
 
@@ -856,6 +856,13 @@ public partial class PlayerMovement : Node {
                 _levelCamera.LimitTop = (int)viewControl.ViewRect.Position.Y;
                 _levelCamera.LimitRight = (int)viewControl.ViewRect.End.X;
                 _levelCamera.LimitBottom = (int)viewControl.ViewRect.End.Y;
+
+                /*
+                GD.Print($"_levelCamera.LimitLeft: {_levelCamera.LimitLeft}");
+                GD.Print($"_levelCamera.LimitTop: {_levelCamera.LimitTop}");
+                GD.Print($"_levelCamera.LimitRight: {_levelCamera.LimitRight}");
+                GD.Print($"_levelCamera.LimitBottom: {_levelCamera.LimitBottom}");
+                */
                 
                 // 同时触发场景控制元件
                 viewControl.SetLevelScene();

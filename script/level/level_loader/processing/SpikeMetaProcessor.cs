@@ -5,9 +5,6 @@ using SMWP.Level.Loader.Processing;
 
 public partial class SpikeMetaProcessor : ObjectProcessor {
     public override void ProcessObject(Node node, ClassicSmwlObject instance) {
-        if (MetadataLengthIsInvalid("spike", instance.Metadata, 1)) {
-            return;
-        }
         if (node is not Node2D node2D) return;
         if (!int.TryParse(instance.Metadata, out var direction)) return;
         node2D.GlobalRotationDegrees = direction switch {

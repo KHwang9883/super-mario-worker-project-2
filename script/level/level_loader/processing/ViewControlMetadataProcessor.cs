@@ -12,16 +12,17 @@ public partial class ViewControlMetadataProcessor : ObjectProcessor {
             return;
         }
         // 镜头范围
-        if (!ClassicSmwpCodec.TryDecodeCoordinateValue(metadata.AsSpan()[..4], out int viewWidth)) {
+        if (!ClassicSmwpCodec.TryDecodeCoordinateValue(metadata.AsSpan()[..4], out int viewWidthEnd)) {
             GD.PushError($"Invalid view width {metadata[..4]} for view control");
             return;
         }
-        if (!ClassicSmwpCodec.TryDecodeCoordinateValue(metadata.AsSpan()[4..8], out int viewHeight)) {
+        if (!ClassicSmwpCodec.TryDecodeCoordinateValue(metadata.AsSpan()[4..8], out int viewHeightEnd)) {
             GD.PushError($"Invalid view height {metadata[4..8]} for view control");
             return;
         }
         // 给镜头属性赋值
         if (node is not ViewControl viewControl) return;
-        viewControl.ViewRect = new Rect2(instance.Position, new Vector2(viewWidth, viewHeight));
+        viewControl.ViewRect = new Rect2(instance.Position,
+            new Vector2(viewWidthEnd - instance.Position.X, viewHeightEnd - instance.Position.Y));
     }
 }

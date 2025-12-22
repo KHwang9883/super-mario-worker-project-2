@@ -23,7 +23,7 @@ public partial class GameManager : Node {
     public static int Time { get; set; }
     public static int Life { get; set; } = 4;
     public static int Score { get; set; }
-    public static int Coin { get; set; } = 99;
+    public static int Coin { get; set; }
 
     public static int InitialLivesOfSingleLevel = 4;
 
