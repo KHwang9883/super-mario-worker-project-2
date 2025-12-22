@@ -14,6 +14,9 @@ public partial class Sealer : StaticBody2D {
             singleSolid.Position = Position;
             AddSibling(singleSolid);
         }).CallDeferred();
+        if (!Engine.IsEditorHint()) {
+            Visible = false;
+        }
     }
     public override void _PhysicsProcess(double delta) {
         if (Engine.IsEditorHint()) {

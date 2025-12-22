@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d3mnohesqhxcc"]
+
+[ext_resource type="Script" uid="uid://bgwchs424wqni" path="res://script/level/level_loader/processing/SceneControlMetaProcessor.cs" id="1_8tn0m"]
+
+[resource]
+script = ExtResource("1_8tn0m")

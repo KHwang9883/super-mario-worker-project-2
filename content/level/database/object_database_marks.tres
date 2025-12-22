@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=63 format=3 uid="uid://dp3ucvu1lpy7l"]
+[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=64 format=3 uid="uid://dp3ucvu1lpy7l"]
 
 [ext_resource type="Resource" uid="uid://dae8xphsfx1wi" path="res://content/level/database/processors/platform_processor.tres" id="1_3f7fm"]
 [ext_resource type="PackedScene" uid="uid://2i5erl0ya4vb" path="res://content/level/facility/giant_gate/giant_gate.tscn" id="1_qgjfj"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://l6agvoyyts2r" path="res://content/level/facility/fluid_area/fluid_area.tscn" id="19_0sell"]
 [ext_resource type="Resource" uid="uid://k2e46wcp3drp" path="res://content/level/database/processors/fluid_area_metadata_processor.tres" id="19_vqq0m"]
 [ext_resource type="Resource" uid="uid://6riagohig8v5" path="res://content/level/database/processors/view_control_metadata_processor.tres" id="22_c7oi4"]
+[ext_resource type="Resource" uid="uid://d3mnohesqhxcc" path="res://content/level/database/processors/scene_control_meta_processor.tres" id="22_lgli7"]
 
 [sub_resource type="Resource" id="Resource_yqqvh"]
 script = ExtResource("2_qgl4e")
@@ -261,6 +262,7 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 script = ExtResource("2_qgl4e")
 Id = 233
 Prefab = ExtResource("14_shbq3")
+MetadataProcessor = ExtResource("22_lgli7")
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_lgli7"]
