@@ -17,11 +17,9 @@ public partial class BasicMovement : Node {
     [Export] public float MaxFallSpeed = 999f;
     [Export] public float JumpSpeed;
     [Export] public bool EdgeDetect;
-    //[Export] public bool DelegateMoveProcess;
+    
     protected const float FramerateOrigin = 50f;
     protected CharacterBody2D? Player;
-
-    //private bool _debugBool;
     
     public override void _Ready() {
         MoveObject = (CharacterBody2D)GetParent();
@@ -49,25 +47,18 @@ public partial class BasicMovement : Node {
     public void TurnDetect() {
         // 自动转向检测
         if (EdgeDetect && MoveObject.IsOnFloor()) {
-            //GD.Print("==========");
-            //GD.Print(MoveObject.Position);
             var originPosition = MoveObject.Position;
-            MoveObject.Position =
-                new Vector2(originPosition.X + 33f * Mathf.Sign(SpeedX), originPosition.Y + 20f);
+            MoveObject.Position +=
+                // y 方向上的平移检测交由 MoveAndCollide 处理，否则可能有遇到悬崖或墙角提前转向的问题
+                new Vector2(33f * Mathf.Sign(SpeedX), 0f /*20f*/);
             MoveObject.ForceUpdateTransform();
-            // MoveAndCollide的safeMargin参数必须为一个较小值，否则运动体会有约半截卡进地面边缘，原因未知
-            var collision = MoveObject.MoveAndCollide(Vector2.Zero, true, 0.01f);
-            //GD.Print(collision);
+            // MoveAndCollide 的 safeMargin 参数必须为一个较小值，否则运动体会有约半截卡进地面边缘，原因未知
+            var collision = MoveObject.MoveAndCollide(Vector2.Down * 20f, true, 0.05f);
             if (collision == null) {
                 SpeedX *= -1f;
-                //GD.Print(MoveObject.Position);
-                //_debugBool = true;
-                //MoveObject.ProcessMode = ProcessModeEnum.Disabled;
             }
-            //if (_debugBool) return;
             MoveObject.Position = originPosition;
             MoveObject.ForceUpdateTransform();
-            //GD.Print(MoveObject.Position);
         }
     }
     public virtual void SpeedXProcess() {
