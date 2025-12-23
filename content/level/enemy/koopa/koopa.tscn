@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="7_6dy1i"]
 [ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="7_itggb"]
 [ext_resource type="Script" uid="uid://celwrvkx10fgr" path="res://script/level/enemy/koopa/KoopaAttacked.cs" id="8_wurfv"]
-[ext_resource type="Script" uid="uid://ds6karhquifmk" path="res://script/tool/SmwpFrameTimer.cs" id="9_lmwrr"]
+[ext_resource type="Script" uid="uid://ds6karhquifmk" path="res://script/util/SmwpFrameTimer.cs" id="9_lmwrr"]
 [ext_resource type="AudioStream" uid="uid://bixfickw63hvd" path="res://content/sound/koopa_attacked.se.wav" id="13_itggb"]
 [ext_resource type="AudioStream" uid="uid://bjtv7m65s7cp5" path="res://content/sound/koopa_defeated.se.wav" id="14_wurfv"]
 
@@ -79,7 +79,6 @@ polygon = PackedVector2Array(8, -32, 24, -28, 32, -20, 28, 20, 24, 36, -24, 36, 
 [node name="KoopaScroll" type="Node2D" parent="." node_paths=PackedStringArray("SceneMarkerPos", "SceneMarkerSize") groups=["koopa_scroll"]]
 process_mode = 3
 script = ExtResource("2_6dy1i")
-Speed = 3.0
 SceneMarkerPos = NodePath("SceneMarkerPos")
 SceneMarkerSize = NodePath("SceneMarkerSize")
 
