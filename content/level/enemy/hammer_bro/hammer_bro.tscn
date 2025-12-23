@@ -88,9 +88,9 @@ script = ExtResource("3_qv25u")
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
 _shootSound = NodePath("../Hammer")
 
-[node name="GeneralVisibleOnScreenEnabler2d" parent="HammerBroShoot" instance=ExtResource("13_qv25u")]
-enable_node_path = NodePath("../../Hammer")
-Path = NodePath("../../Hammer")
+[node name="GeneralVisibleOnScreenEnabler2d" parent="." instance=ExtResource("13_qv25u")]
+enable_node_path = NodePath("../HammerBroShoot")
+Path = NodePath("../HammerBroShoot")
 DisableWhenOutOfScreen = true
 
 [node name="AutoSpriteFlipH" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
