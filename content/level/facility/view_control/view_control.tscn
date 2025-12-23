@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://vphreva4h736"]
+[gd_scene load_steps=4 format=3 uid="uid://vphreva4h736"]
 
 [ext_resource type="Script" uid="uid://c7x4p3ey3kect" path="res://script/level/facility/view_control/ViewControl.cs" id="1_j5vxi"]
+[ext_resource type="Texture2D" uid="uid://dxx5pu1gl7eb4" path="res://content/level/facility/view_control/view_control_top_left.png" id="2_tabh8"]
+[ext_resource type="Texture2D" uid="uid://blfqdsh4ew2x6" path="res://content/level/facility/view_control/view_control_bottom_right.png" id="3_uukhu"]
 
-[node name="ViewControl" type="Node2D" groups=["view_control"]]
+[node name="ViewControl" type="Node2D" node_paths=PackedStringArray("_line2D", "_topLeft", "_bottomRight") groups=["view_control"]]
+z_index = 200
 script = ExtResource("1_j5vxi")
+_line2D = NodePath("Line2D")
+_topLeft = NodePath("TopLeft")
+_bottomRight = NodePath("BottomRight")
+
+[node name="Line2D" type="Line2D" parent="."]
+closed = true
+width = 1.0
+default_color = Color(0.6784314, 0.0627451, 0, 1)
+
+[node name="TopLeft" type="Sprite2D" parent="."]
+texture = ExtResource("2_tabh8")
+offset = Vector2(16, 16)
+
+[node name="BottomRight" type="Sprite2D" parent="."]
+texture = ExtResource("3_uukhu")
+offset = Vector2(-16, -16)
