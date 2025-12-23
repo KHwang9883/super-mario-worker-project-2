@@ -63,6 +63,7 @@ use_native_dialog = true
 process_mode = 4
 position = Vector2(320, 240)
 enabled = false
+process_callback = 0
 script = SubResource("GDScript_fn8k0")
 
 [connection signal="canceled" from="Open SMWL File" to="." method="JumpToScene" binds= ["uid://2h2s1iqemydd"]]
