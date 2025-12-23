@@ -170,7 +170,7 @@ process_mode = 3
 script = ExtResource("7_tmrn4")
 RoomWidth = 10016.0
 RoomHeight = 6400.0
-KoopaEnergy = 1
+KoopaEnergy = 3
 WaterHeight = 444.0
 BgpId = 9
 BgmId = 120
@@ -1045,6 +1045,7 @@ position = Vector2(5496, 432)
 [node name="SceneControl2" parent="LevelTemplate" instance=ExtResource("63_i0wvf")]
 position = Vector2(5520, 272)
 LinkedWithObject = 2
+ChangeBgm = true
 BgmId = 116
 
 [node name="SpikeMW" parent="LevelTemplate" instance=ExtResource("13_dhetq")]

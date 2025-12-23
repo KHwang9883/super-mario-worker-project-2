@@ -26,15 +26,15 @@ public partial class KoopaAttacked : Node {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
     }
     public override void _PhysicsProcess(double delta) {
-        if (!_isHurtInvincible) return;
-
         if (_levelConfig == null) {
             GD.Print($"{this}: LevelConfig is null!");
             return;
         }
-        
         KoopaEnergy = _levelConfig.KoopaEnergy;
+        GD.Print($"KoopaEnergy: {KoopaEnergy}");
         
+        if (!_isHurtInvincible) return;
+
         if (Math.Abs(_alphaValue - 1f) < 0.01f) {
             _alphaTwist = true;
         }
