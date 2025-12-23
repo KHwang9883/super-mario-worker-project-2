@@ -1,25 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://c25jnama51dur"]
+[gd_scene load_steps=4 format=3 uid="uid://c25jnama51dur"]
 
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="1_588n5"]
 
-[node name="LavaBottom" type="Control"]
-z_index = 100
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 3
-anchors_preset = 0
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
+[sub_resource type="Gradient" id="Gradient_588n5"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.48235294, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.48235294, 0, 0, 1)
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j1x8r"]
+gradient = SubResource("Gradient_588n5")
+width = 32
+height = 32
+
+[node name="LavaBottom" type="Node2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_j1x8r")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("1_588n5")]
 
