@@ -6,7 +6,7 @@ using SMWP.Util;
 public partial class Lava : Area2D {
     [Export] private Water? _water;
     [Export] private AnimatedSprite2D _lavaSurfaceSprite = null!;
-    [Export] private ColorRect _lavaRect = null!;
+    [Export] private Sprite2D _lavaRect = null!;
     
     private Fluid? _fluid;
     private LevelConfig? _levelConfig;

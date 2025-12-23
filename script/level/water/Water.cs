@@ -10,7 +10,7 @@ public partial class Water : Area2D {
     public delegate void PlaySoundLavaLevelEventHandler();
     
     [Export] private AnimatedSprite2D _waterSurfaceSprite = null!;
-    [Export] private ColorRect _waterRect = null!;
+    [Export] private Sprite2D _waterRect = null!;
     
     private Fluid? _fluid;
     private LevelConfig? _levelConfig;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c414widu608jg"]
+[gd_scene load_steps=16 format=3 uid="uid://c414widu608jg"]
 
 [ext_resource type="Texture2D" uid="uid://co5vfivmfbnid" path="res://content/level/water/lava_surface.png" id="1_dg040"]
 [ext_resource type="Script" uid="uid://dhal02ex7mk0n" path="res://script/level/water/Lava.cs" id="1_iod5y"]
@@ -64,13 +64,22 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_oo7s2"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.48235294, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3co6v"]
+gradient = SubResource("Gradient_oo7s2")
+width = 1920
+height = 512
+
 [node name="Lava" type="Area2D" node_paths=PackedStringArray("_lavaSurfaceSprite", "_lavaRect") groups=["lava_global"]]
 z_index = 300
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("1_iod5y")
 _lavaSurfaceSprite = NodePath("LavaSprite/LavaSurfaceParallax2D/AnimatedSprite2D")
-_lavaRect = NodePath("LavaSprite/ColorRect")
+_lavaRect = NodePath("LavaSprite/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -87,12 +96,10 @@ position = Vector2(320, 8)
 sprite_frames = SubResource("SpriteFrames_3co6v")
 autoplay = "default"
 
-[node name="ColorRect" type="ColorRect" parent="LavaSprite"]
-offset_left = -640.0
-offset_top = 25.0
-offset_right = 1280.0
-offset_bottom = 537.0
-color = Color(0.48235294, 0, 0, 1)
+[node name="Sprite2D" type="Sprite2D" parent="LavaSprite"]
+position = Vector2(320, 25)
+texture = SubResource("GradientTexture2D_3co6v")
+offset = Vector2(0, 256)
 
 [node name="InteractionWithPlayer" type="Node" parent="."]
 script = ExtResource("2_iod5y")

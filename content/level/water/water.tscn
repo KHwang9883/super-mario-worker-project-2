@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://2vuxafdyyhgx"]
+[gd_scene load_steps=15 format=3 uid="uid://2vuxafdyyhgx"]
 
 [ext_resource type="Texture2D" uid="uid://hgmroqnhbecu" path="res://content/level/water/water_surface.png" id="1_8j37s"]
 [ext_resource type="Script" uid="uid://ckibo4ofkc75a" path="res://script/level/water/Water.cs" id="1_opojc"]
@@ -7,6 +7,15 @@
 [ext_resource type="AudioStream" uid="uid://diplwicv4mqtc" path="res://content/sound/lava_level.se.wav" id="5_nm6o4"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8j37s"]
+
+[sub_resource type="Gradient" id="Gradient_oshm1"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.3529412, 0.54901963, 0.90588236, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_36hia"]
+gradient = SubResource("Gradient_oshm1")
+width = 1920
+height = 512
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3t2h"]
 atlas = ExtResource("1_8j37s")
@@ -57,7 +66,7 @@ collision_layer = 64
 collision_mask = 56
 script = ExtResource("1_opojc")
 _waterSurfaceSprite = NodePath("WaterSprite/WaterSurfaceParallax2D/AnimatedSprite2D")
-_waterRect = NodePath("WaterSprite/ColorRect")
+_waterRect = NodePath("WaterSprite/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -65,13 +74,11 @@ shape = SubResource("WorldBoundaryShape2D_8j37s")
 
 [node name="WaterSprite" type="Node2D" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="WaterSprite"]
+[node name="Sprite2D" type="Sprite2D" parent="WaterSprite"]
 self_modulate = Color(1, 1, 1, 0.5294118)
-offset_left = -640.0
-offset_top = 16.0
-offset_right = 1280.0
-offset_bottom = 528.0
-color = Color(0.3529412, 0.54901963, 0.90588236, 1)
+position = Vector2(320, 17)
+texture = SubResource("GradientTexture2D_36hia")
+offset = Vector2(0, 256)
 
 [node name="WaterSurfaceParallax2D" type="Parallax2D" parent="WaterSprite"]
 repeat_size = Vector2(640, 0)
