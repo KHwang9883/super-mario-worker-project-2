@@ -6,5 +6,6 @@
 [resource]
 fallbacks = Array[Font]([ExtResource("2_yvfaf")])
 base_font = ExtResource("1_hr8ee")
-spacing_bottom = 6
+spacing_top = -2
+spacing_bottom = 9
 baseline_offset = -0.15
