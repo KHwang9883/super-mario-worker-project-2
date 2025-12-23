@@ -17,8 +17,3 @@ height = 32
 texture = SubResource("GradientTexture2D_j1x8r")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("1_588n5")]
-
-[node name="LightOffset" parent="SmwpPointLight2D" index="1"]
-position = Vector2(16, 16)
-
-[editable path="SmwpPointLight2D"]
