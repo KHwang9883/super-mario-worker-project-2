@@ -153,6 +153,7 @@ cancel={
 2d_physics/layer_9="Passage"
 2d_physics/layer_10="Hidden Block"
 2d_physics/layer_11="Switch"
+2d_physics/layer_12="HittableBlock"
 
 [physics]
 

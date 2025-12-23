@@ -17,10 +17,14 @@ public partial class ShellMovingBlockHitInteraction : Node {
         if (_shellHard == null) return;
         
         Node? interactionWithBlockNode = null;
+        var originCollisionMask = _shellHard.CollisionMask;
+        // 检测砖块类所在的物理层，同时无视地面实心物理层
+        _shellHard.CollisionMask = 2048;
         var blockCollider =
             _shellHard.MoveAndCollide(
                 new Vector2(1f * Mathf.Sign(_basicMovement.SpeedX), 0f), true)?.GetCollider();
         //GD.Print(blockCollider);
+        _shellHard.CollisionMask = originCollisionMask;
         if (blockCollider is not StaticBody2D staticBody2D) return;
         if (staticBody2D.HasMeta("InteractionWithBlock")) {
             interactionWithBlockNode = (Node)staticBody2D.GetMeta("InteractionWithBlock");
