@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://ds3uq7lyxof1e"]
 
-[ext_resource type="FontVariation" uid="uid://drebqqlb8awl" path="res://content/level/hud/mw/font_theme/mw_hud_with_fallback_variation.tres" id="1_gv86p"]
+[ext_resource type="FontVariation" uid="uid://drebqqlb8awl" path="res://content/level/hud/mw/font_theme/mw_hud_with_fallback_variation.tres" id="1_x5e55"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rj6nb"]
 content_margin_bottom = 16.0
@@ -18,7 +18,7 @@ draw_center = false
 draw_center = false
 
 [resource]
-default_font = ExtResource("1_gv86p")
+default_font = ExtResource("1_x5e55")
 default_font_size = 16
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
@@ -48,7 +48,7 @@ Button/styles/normal = SubResource("StyleBoxFlat_rj6nb")
 Button/styles/normal_mirrored = SubResource("StyleBoxFlat_rj6nb")
 Button/styles/pressed = SubResource("StyleBoxFlat_rj6nb")
 Button/styles/pressed_mirrored = SubResource("StyleBoxFlat_rj6nb")
-Label/constants/paragraph_spacing = 2
+Label/constants/paragraph_spacing = -13
 LineEdit/colors/caret_color = Color(0.95, 0.95, 0.95, 1)
 LineEdit/colors/clear_button_color = Color(0.875, 0.875, 0.875, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)

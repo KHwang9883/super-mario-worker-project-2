@@ -1,10 +1,11 @@
 [gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://bb2j3l450lg2l"]
 
-[ext_resource type="FontFile" uid="uid://cy77repuuq0o7" path="res://content/level/hud/最像素EX2.ttf" id="1_b0e2p"]
+[ext_resource type="FontFile" uid="uid://cy77repuuq0o7" path="res://content/level/hud/最像素EX2.ttf" id="1_ac822"]
 
 [resource]
-base_font = ExtResource("1_b0e2p")
+base_font = ExtResource("1_ac822")
 variation_embolden = 0.45
 variation_transform = Transform2D(1, 0, 0, 1.1, 0, 0)
-spacing_top = -4
-baseline_offset = 0.25
+spacing_top = -2
+spacing_bottom = 13
+baseline_offset = 0.5
