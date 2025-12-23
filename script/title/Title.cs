@@ -99,12 +99,6 @@ public partial class Title : Node2D {
         // Todo: Create Scenario 功能
         GD.Print("Todo: Create Scenario 功能");
     }
-    /*
-    public void OnPlayLevelPressed() {
-        // Todo: Play Level 跳转
-        GD.Print("Todo: Play Level 跳转");
-    }
-    */
     public void OnPlayScenarioPressed() {
         // Todo: Play Scenario 跳转
         GD.Print("Todo: Play Scenario 跳转");

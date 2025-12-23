@@ -138,13 +138,6 @@ libraries = {
 }
 autoplay = "RESET"
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-self_modulate = Color(1, 1, 1, 0.5019608)
-offset_right = 640.0
-offset_bottom = 480.0
-mouse_filter = 2
-
 [node name="title_screen" type="Sprite2D" parent="."]
 use_parent_material = true
 position = Vector2(320, 240)

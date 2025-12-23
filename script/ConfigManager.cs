@@ -45,6 +45,8 @@ public static class ConfigManager {
         // IsGodMode: Temp for current version without editor part
         GameManager.IsGodMode = (bool)SmwpConfig.GetValue("temporary_test_level", "play_level_in_god_mode", false);
         
+        GameManager.ShowFps = (bool)SmwpConfig.GetValue("game_config", "show_fps", false);
+        
         // Control Config
         var actions = InputMap.GetActions();
         foreach (var action in actions) {

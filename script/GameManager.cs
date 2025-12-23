@@ -58,6 +58,8 @@ public partial class GameManager : Node {
     
     // Edit 部分完成前在全局设置界面中可调
     public static bool IsGodMode;
+
+    public static bool ShowFps;
     
     // Todo: Edit Options
     public static int TemporaryFiles = 100;

@@ -45,7 +45,7 @@ Button/styles/hover = SubResource("StyleBoxFlat_6mkpa")
 Button/styles/normal = SubResource("StyleBoxFlat_wdnmx")
 Button/styles/pressed = SubResource("StyleBoxFlat_1a3sc")
 
-[node name="GlobalOptions" type="Control" node_paths=PackedStringArray("InitialLivesButton", "InitialLivesEdit", "TemporaryFilesButton", "TemporaryFilesEdit", "DisplayModeButton", "CustomMusicButton", "CustomMusicEdit", "ColorAssistButton", "GodModeButton")]
+[node name="GlobalOptions" type="Control" node_paths=PackedStringArray("InitialLivesButton", "InitialLivesEdit", "TemporaryFilesButton", "TemporaryFilesEdit", "DisplayModeButton", "CustomMusicButton", "CustomMusicEdit", "ColorAssistButton", "GodModeButton", "ShowFps")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,6 +63,7 @@ CustomMusicButton = NodePath("VBoxContainerOptions/CustomMusic/SetCustomMusic")
 CustomMusicEdit = NodePath("SmwpPopupGroup/SmwpPopupCustomMusicPackage/Control/VBoxContainer/LineEdit")
 ColorAssistButton = NodePath("VBoxContainerOptions/AccessibilityMode/SetAccessibilityMode")
 GodModeButton = NodePath("VBoxContainerOptions/PlayLevelInGodMode/SetPlayLevelInGodMode")
+ShowFps = NodePath("VBoxContainerOptions/ShowFps/SetShowFps")
 
 [node name="Basic" type="Control" parent="."]
 layout_mode = 1
@@ -112,7 +113,7 @@ layout_mode = 0
 offset_left = 44.0
 offset_top = 88.0
 offset_right = 384.0
-offset_bottom = 304.0
+offset_bottom = 320.0
 
 [node name="InitialLives" type="Control" parent="VBoxContainerOptions"]
 layout_mode = 2
@@ -307,6 +308,34 @@ focus_previous = NodePath("../../AccessibilityMode/SetAccessibilityMode")
 text = "NO"
 alignment = 2
 
+[node name="ShowFps" type="Control" parent="VBoxContainerOptions"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ShowFps" type="Label" parent="VBoxContainerOptions/ShowFps"]
+layout_mode = 0
+offset_right = 258.0
+offset_bottom = 10.0
+size_flags_vertical = 2
+theme = ExtResource("6_h7q4w")
+text = "Show Fps"
+uppercase = true
+
+[node name="SetShowFps" parent="VBoxContainerOptions/ShowFps" instance=ExtResource("4_opjjy")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+focus_neighbor_top = NodePath("../../AccessibilityMode/SetAccessibilityMode")
+focus_previous = NodePath("../../AccessibilityMode/SetAccessibilityMode")
+text = "NO"
+alignment = 2
+
 [node name="GlobalOptionMenu" parent="." instance=ExtResource("7_b2g60")]
 layout_mode = 0
 offset_left = 444.0
@@ -344,6 +373,7 @@ offset_bottom = 156.0
 [connection signal="pressed" from="VBoxContainerOptions/CustomMusic/SetCustomMusic" to="SmwpPopupGroup/SmwpPopupCustomMusicPackage" method="show"]
 [connection signal="pressed" from="VBoxContainerOptions/AccessibilityMode/SetAccessibilityMode" to="." method="SetAccessibilityMode"]
 [connection signal="pressed" from="VBoxContainerOptions/PlayLevelInGodMode/SetPlayLevelInGodMode" to="." method="SetPlayLevelInGodMode"]
+[connection signal="pressed" from="VBoxContainerOptions/ShowFps/SetShowFps" to="." method="SetShowFps"]
 [connection signal="pressed" from="SmwpPopupGroup/SmwpPopupInitialLives/Control/VBoxContainer/Button" to="." method="SetInitialLives"]
 [connection signal="pressed" from="SmwpPopupGroup/SmwpPopupTemporaryFiles/Control/VBoxContainer/Button" to="." method="SetTemporaryFiles"]
 [connection signal="pressed" from="SmwpPopupGroup/SmwpPopupCustomMusicPackage/Control/VBoxContainer/Button" to="." method="SetCustomMusicPackage"]

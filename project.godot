@@ -23,6 +23,7 @@ config/icon="uid://cdllu6eprpokv"
 
 GameManager="*res://content/game_manager.tscn"
 SoundManager="*res://content/sound/SoundManager.tscn"
+FpsDisplay="*res://content/fps_display.tscn"
 
 [display]
 
