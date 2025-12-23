@@ -275,7 +275,6 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("12_6hwhs")
@@ -316,29 +315,6 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 visible = false
 position = Vector2(288, 230)
 texture = ExtResource("16_ti3gh")
-
-[node name="HUDFontTest" type="Label" parent="HUD/HUD"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("12_6hwhs")
-theme_override_font_sizes/font_size = 10
-text = "HUD Test
-
-aaa
-bbb
-iii
-ai bi ib ia
-abcdefghijklmnopqrstuvwxyz
-
-0123456789"
-horizontal_alignment = 1
-uppercase = true
-metadata/_edit_lock_ = true
 
 [node name="MessageDisplay" type="Label" parent="HUD" groups=["message_display"]]
 anchors_preset = 15
