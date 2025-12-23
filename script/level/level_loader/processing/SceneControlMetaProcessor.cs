@@ -23,7 +23,7 @@ public partial class SceneControlMetaProcessor : ObjectProcessor {
             2 => SceneControl.LinkedWithObjectEnum.Koopa,
             _ => throw new ArgumentOutOfRangeException(),
         };
-        if (!ClassicSmwpCodec.TryDecodeCoordinateValue(metadata.AsSpan()[8..12], out int waterHeight)) {
+        if (!ClassicSmwpCodec.TryDecodeValue(metadata.AsSpan()[8..12], 4, out int waterHeight)) {
             GD.PushError($"Invalid water height {metadata[8..12]} for scene control");
         }
         sceneControl.WaterHeight = waterHeight;

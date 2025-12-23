@@ -52,7 +52,7 @@ public partial class SceneControl : Area2D {
 
             if (ChangeBgp && _levelConfig.BgpId != BgpId) _levelConfig.SetBgp(BgpId);
 
-            if (Math.Abs(WaterHeight - (-64f)) > 0.2f) {
+            if (WaterHeight > -64f) {
                 _levelConfig.SetWaterHeight(WaterHeight);
             }
             
