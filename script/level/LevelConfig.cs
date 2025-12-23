@@ -160,6 +160,8 @@ public partial class LevelConfig : Node {
         GetNode<BgmPlayer>("BgmPlayer").SetBgm(true);
     }
     public void SetBgp(int bgpId) {
+        BgpId = bgpId;
+        
         foreach (var entry in BgpDatabase.Entries) {
             if (entry.BackgroundId != bgpId) continue;
             _backgroundScene = entry.BackgroundScene;

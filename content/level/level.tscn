@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 	return
 "
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("BlocksTilemap", "DatabaseHolder", "ObstacleTileMap", "SmwlLoader", "OpenSmwlDialog")]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("BlocksTilemap", "DatabaseHolder", "ObstacleTileMap", "SmwlLoader", "OpenSmwlDialog") groups=["smwl_level"]]
 script = ExtResource("1_rpefo")
 LevelTemplate = ExtResource("2_s4cnv")
 BlocksTilemap = NodePath("Block Tile Map")

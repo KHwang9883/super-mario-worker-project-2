@@ -8,6 +8,9 @@ using SMWP.Level.Data;
 namespace SMWP.Level;
 
 public partial class SmwlLevel : Node2D {
+    [Signal]
+    public delegate void LevelLoadedEventHandler();
+    
     [ExportGroup("References")]
     
     [Export] public PackedScene LevelTemplate = null!;
@@ -265,6 +268,7 @@ public partial class SmwlLevel : Node2D {
         // 开始时禁用玩家的 ProcessMode，以防穿透实心等未知问题
         Callable.From(() => {
             _player!.ProcessMode = ProcessModeEnum.Inherit;
+            EmitSignal(SignalName.LevelLoaded);
         }).CallDeferred();
     }
 

@@ -28,6 +28,14 @@ public partial class SceneControl : Area2D {
     public override void _Ready() {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
 
+        Callable.From(SetLinkedObject).CallDeferred();
+    }
+    
+    public void OnBodyEntered(Node2D body) {
+        SetSceneStatus();
+    }
+
+    public void SetLinkedObject() {
         switch (LinkedWithObject) {
             case LinkedWithObjectEnum.None:
                 break;
@@ -38,10 +46,6 @@ public partial class SceneControl : Area2D {
                 LinkWithKoopa();
                 break;
         }
-    }
-    
-    public void OnBodyEntered(Node2D body) {
-        SetSceneStatus();
     }
     
     public void SetSceneStatus() {

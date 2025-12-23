@@ -158,7 +158,18 @@ public partial class PlayerMovement : Node {
         _outWaterDetectSuper = _player.GetNode<ShapeCast2D>("OutWaterDetectSuper");
 
         // 镜头控制元件检测
-        Callable.From(ViewControlDetect).CallDeferred();
+        // 顺序必须比较晚，因为 SceneControl 可能因为读取顺序后进入场景树
+        // 因此与 ViewControl 的连接检测放在帧末执行
+        // 因而 Player 的检测必须更晚，故用 SmwlLevel 的 LevelLoaded 信号作为检测的时间点
+        var smwlLevel = (SmwlLevel)GetTree().GetFirstNodeInGroup("smwl_level");
+        if (smwlLevel != null) {
+            GD.Print("PlayerMovement: SmwlLevel got.");
+            smwlLevel.LevelLoaded += ViewControlDetect;
+        }
+        // 用于测试关卡测试
+        else {
+            Callable.From(ViewControlDetect).CallDeferred();
+        }
         
         // 摄像机
         _levelCamera ??= (LevelCamera)GetTree().GetFirstNodeInGroup("camera");
