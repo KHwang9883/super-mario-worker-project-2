@@ -215,6 +215,7 @@ metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 script = ExtResource("2_v7upk")
 Id = 24
 Prefab = ExtResource("24_bop37")
+SpawnOffset = Vector2(0, -32)
 metadata/_custom_type_script = "uid://cpxsb6lorrux4"
 
 [sub_resource type="Resource" id="Resource_ccmek"]
