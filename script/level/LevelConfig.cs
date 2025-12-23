@@ -150,6 +150,7 @@ public partial class LevelConfig : Node {
     }
 
     public void QuitLevel() {
+        GameManager.GameOverClear();
         var gameManager = GetTree().Root.GetNode<GameManager>("GameManager");
         gameManager.JumpToLevel();
     }
