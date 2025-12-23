@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://ds3uq7lyxof1e"]
 
-[ext_resource type="FontFile" uid="uid://em53psx0nwwf" path="res://content/level/hud/mw/mw_hud.fnt" id="1_70ik3"]
+[ext_resource type="FontVariation" uid="uid://drebqqlb8awl" path="res://content/level/hud/mw/font_theme/mw_hud_with_fallback_variation.tres" id="1_gv86p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rj6nb"]
 content_margin_bottom = 16.0
@@ -18,8 +18,8 @@ draw_center = false
 draw_center = false
 
 [resource]
-default_font = ExtResource("1_70ik3")
-default_font_size = 10
+default_font = ExtResource("1_gv86p")
+default_font_size = 16
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)

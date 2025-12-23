@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxvt6eyfyn5b3"]
 
-[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="1_lx46e"]
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="1_lx46e"]
 
 [sub_resource type="FontFile" id="FontFile_ls210"]
 subpixel_positioning = 0

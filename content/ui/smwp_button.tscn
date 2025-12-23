@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bp2o2sissltwg"]
 
-[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="1_ifaju"]
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="1_ifaju"]
 [ext_resource type="Shader" uid="uid://c8pmk3etlsqug" path="res://content/ui/smwp_button.gdshader" id="1_m3866"]
 [ext_resource type="PackedScene" uid="uid://dwgoeyciwh6p" path="res://content/ui/select_light_mask.tscn" id="2_x8656"]
 [ext_resource type="Script" uid="uid://d3ibnu6mnrr75" path="res://script/ui/SmwpButton.cs" id="3_m3866"]

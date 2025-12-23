@@ -1,0 +1,10 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://bb2j3l450lg2l"]
+
+[ext_resource type="FontFile" uid="uid://cy77repuuq0o7" path="res://content/level/hud/最像素EX2.ttf" id="1_b0e2p"]
+
+[resource]
+base_font = ExtResource("1_b0e2p")
+variation_embolden = 0.45
+variation_transform = Transform2D(1, 0, 0, 1.1, 0, 0)
+spacing_top = -4
+baseline_offset = 0.25

@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=104 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="PackedScene" uid="uid://d2yrgj2s3hg6f" path="res://content/ui/popup/smwp_popup_game_pause.tscn" id="1_13tsj"]
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
 [ext_resource type="Texture2D" uid="uid://c2qyxcvftu6cd" path="res://content/level/hud/game_over.png" id="7_yeotl"]
 [ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/level/facility/solid/solid.png" id="8_1mjcm"]
-[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="8_bfx67"]
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="8_bfx67"]
 [ext_resource type="Texture2D" uid="uid://celf82o4sjyxr" path="res://content/level/hud/mw/hud_mw_coin.png" id="8_lgciv"]
 [ext_resource type="Script" uid="uid://c7ql70nglpnhx" path="res://script/level/hud/HUD.cs" id="8_mfxe6"]
 [ext_resource type="PackedScene" uid="uid://dwkukt5v4t3p5" path="res://content/level/player/player.tscn" id="9_hgnsp"]
@@ -41,7 +41,6 @@
 [ext_resource type="PackedScene" uid="uid://c414widu608jg" path="res://content/level/water/lava.tscn" id="21_o2382"]
 [ext_resource type="PackedScene" uid="uid://b4b6pch7u4iem" path="res://content/level/block/brick/brick.tscn" id="23_dmmuc"]
 [ext_resource type="PackedScene" uid="uid://72d0sq841rbo" path="res://content/level/enemy/lava/lava_piece.tscn" id="29_buyip"]
-[ext_resource type="PackedScene" uid="uid://c25jnama51dur" path="res://content/level/enemy/lava/lava_bottom.tscn" id="30_a0ied"]
 [ext_resource type="PackedScene" uid="uid://cejpown37o253" path="res://content/level/enemy/lakitu/lakitu.tscn" id="32_lxach"]
 [ext_resource type="PackedScene" uid="uid://btyhhhdhjf3sx" path="res://content/level/enemy/bullet_bill/bullet_bill.tscn" id="35_n7ka3"]
 [ext_resource type="PackedScene" uid="uid://dertrheuvws04" path="res://content/level/enemy/bullet_bill/bullet_bill_cannon.tscn" id="36_no08i"]
@@ -287,7 +286,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("8_bfx67")
-text = "Level 1"
+theme_override_colors/font_outline_color = Color(0.13725491, 0.13725491, 0.5176471, 1)
+theme_override_constants/outline_size = 8
+text = "Level 1
+哇多么好的关卡文本啊
+Test
+TestText 2
+水平 1
+课程清洁！
+nsll"
 horizontal_alignment = 1
 uppercase = true
 metadata/_edit_lock_ = true
@@ -443,7 +450,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 128.0
-offset_top = -10010.0
+offset_top = -100010.0
 offset_right = 99487.0
 offset_bottom = -10.0
 grow_horizontal = 2
@@ -598,10 +605,6 @@ position = Vector2(2096, 368)
 
 [node name="LavaPiece" parent="LevelTemplate/Enemies" instance=ExtResource("29_buyip")]
 position = Vector2(1136, 208)
-
-[node name="LavaBottom2" parent="LevelTemplate/Enemies" instance=ExtResource("30_a0ied")]
-
-[node name="LavaBottom" parent="LevelTemplate/Enemies" instance=ExtResource("30_a0ied")]
 
 [node name="LavaPiece2" parent="LevelTemplate/Enemies" instance=ExtResource("29_buyip")]
 position = Vector2(1168, 208)

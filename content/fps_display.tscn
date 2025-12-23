@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://boufs5b1hubqw"]
 
 [ext_resource type="Script" uid="uid://d057h6bs3i5wg" path="res://script/FpsDisplay.cs" id="1_362ng"]
-[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="2_f2xjj"]
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="2_f2xjj"]
 
 [node name="FpsDisplay" type="CanvasLayer" node_paths=PackedStringArray("_label")]
 layer = 10

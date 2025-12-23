@@ -1,0 +1,10 @@
+[gd_resource type="FontVariation" load_steps=3 format=3 uid="uid://drebqqlb8awl"]
+
+[ext_resource type="FontVariation" uid="uid://c8ftl08prvgsq" path="res://content/level/hud/mw/font_theme/mw_hud_variation.tres" id="1_hr8ee"]
+[ext_resource type="FontVariation" uid="uid://bb2j3l450lg2l" path="res://content/level/hud/mw/font_theme/最像素EX2_variation.tres" id="2_yvfaf"]
+
+[resource]
+fallbacks = Array[Font]([ExtResource("2_yvfaf")])
+base_font = ExtResource("1_hr8ee")
+spacing_top = -7
+baseline_offset = -0.6

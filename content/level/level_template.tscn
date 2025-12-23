@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://brdcmv5xpmxgc" path="res://content/level/weather/wind/wind.tscn" id="9_wdsgs"]
 [ext_resource type="Shader" uid="uid://jyowme5g625v" path="res://content/level/weather/light/smwp_point_light_2d.gdshader" id="10_wiivk"]
 [ext_resource type="Script" uid="uid://c7ql70nglpnhx" path="res://script/level/hud/HUD.cs" id="11_6dib1"]
-[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="12_6hwhs"]
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="12_6hwhs"]
 [ext_resource type="Texture2D" uid="uid://celf82o4sjyxr" path="res://content/level/hud/mw/hud_mw_coin.png" id="13_0tnlk"]
 [ext_resource type="AudioStream" uid="uid://crsc1hhhou5gu" path="res://content/sound/time_warning.se.wav" id="14_hd0qj"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="15_rek63"]
@@ -187,6 +187,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("12_6hwhs")
+theme_override_colors/font_outline_color = Color(0.13725491, 0.13725491, 0.5176471, 1)
+theme_override_constants/outline_size = 8
 text = "Level 1"
 horizontal_alignment = 1
 uppercase = true
@@ -343,7 +345,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 128.0
-offset_top = -10010.0
+offset_top = -100010.0
 offset_right = 99487.0
 offset_bottom = -10.0
 grow_horizontal = 2

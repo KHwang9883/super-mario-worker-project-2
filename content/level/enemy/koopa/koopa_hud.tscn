@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://7m5d2ba17cam" path="res://script/level/enemy/koopa/KoopaHUD.cs" id="1_ncmnn"]
 [ext_resource type="Texture2D" uid="uid://cob0h7kepuoqk" path="res://content/level/enemy/koopa/koopa_life_unit.png" id="2_ncmnn"]
 [ext_resource type="Texture2D" uid="uid://cl0orxulhcull" path="res://content/level/enemy/koopa/koopa_life_unit_ten.png" id="4_xlvnm"]
-[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/mw_hud.tres" id="5_iletb"]
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="5_iletb"]
 
 [node name="KoopaHUD" type="CanvasLayer"]
 
