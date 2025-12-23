@@ -262,6 +262,10 @@ public partial class SmwlLevel : Node2D {
     // 数据读取完毕，实例化关卡模版
     public void OnDataInstallFinished() {
         AddChild(_levelTemplate);
+        // 开始时禁用玩家的 ProcessMode，以防穿透实心等未知问题
+        Callable.From(() => {
+            _player!.ProcessMode = ProcessModeEnum.Inherit;
+        }).CallDeferred();
     }
 
     public void JumpToScene(string sceneUid) {
