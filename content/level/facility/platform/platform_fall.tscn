@@ -312,5 +312,6 @@ metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 script = ExtResource("11_q4fj0")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("10_q4fj0")]
+Smwp1LightId = Array[int]([3])
 
 [connection signal="Stepped" from="." to="PlayerPenetration" method="OnPlayerCurrentStep"]

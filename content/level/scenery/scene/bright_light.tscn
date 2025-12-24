@@ -61,4 +61,4 @@ autoplay = "default"
 offset = Vector2(1, 26)
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("2_nk6ji")]
-offset = Vector2(0, 28)
+Smwp1LightId = Array[int]([6])

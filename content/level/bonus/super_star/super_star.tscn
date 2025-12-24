@@ -75,3 +75,4 @@ JumpSpeed = -10.0
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("4_auit7")]
+Smwp1LightId = Array[int]([15])

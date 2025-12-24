@@ -14,4 +14,4 @@ texture = SubResource("AtlasTexture_i82qb")
 offset = Vector2(0, -32)
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("2_i82qb")]
-offset = Vector2(0, -48)
+Smwp1LightId = Array[int]([4])

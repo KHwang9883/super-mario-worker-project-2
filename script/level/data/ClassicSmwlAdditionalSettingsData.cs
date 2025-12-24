@@ -30,8 +30,8 @@ public partial class ClassicSmwlAdditionalSettingsData : Resource {
     [Export(PropertyHint.Range,"0, 9, 1")] public int Darkness;
     [Export(PropertyHint.Range,"0, 5, 1")] public int Brightness;
     
-    // Todo: 发光物体格式定义（二期工程、补丁和三期工程？）
-    //[Export] public ... ???
+    [Export] public string Smwp1LightObjectString =
+        "0000000000000000000000000000000000000000000000000000000000000000000";
 
     [Export] public bool ThwompActivateBlocks;
 

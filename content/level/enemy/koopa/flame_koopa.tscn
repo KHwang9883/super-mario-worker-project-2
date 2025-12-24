@@ -90,3 +90,4 @@ ScreenRightOffset = 300.0
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("7_hqpvc")]
+Smwp1LightId = Array[int]([65])

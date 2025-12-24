@@ -96,7 +96,6 @@ _beetrootMovement = NodePath("../BeetrootMovement")
 
 [node name="BeetrootMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("2_bdhfo")
-IsMwBeetroot = true
 CanMwBeetrootClimbWallUpwards = false
 MoveObject = NodePath("..")
 SpeedX = 1.0
@@ -115,7 +114,8 @@ script = ExtResource("5_kyeb2")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("8_3qlfe")]
+Smwp1LightId = Array[int]([60])
 
-[connection signal="HitBlock" from="BeetrootMovement" to="BeetrootInteraction" method="Explode"]
 [connection signal="HitBlock" from="BeetrootMovement" to="BeetrootInteraction" method="BlockHitDetect"]
+[connection signal="HitBlock" from="BeetrootMovement" to="BeetrootInteraction" method="Explode"]
 [connection signal="HitBlock" from="BeetrootMovement" to="ContinuousAudioStream2D" method="play"]

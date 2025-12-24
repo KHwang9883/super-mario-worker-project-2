@@ -67,7 +67,6 @@ metadata/_custom_type_script = "uid://t3te8lnb0byj"
 
 [node name="TroopaFlyYellowMovement" type="Node" parent="."]
 script = ExtResource("3_ixhtc")
-_radius = 64.0
 
 [node name="EnemyInteraction" type="Node" parent="."]
 script = ExtResource("4_mghp3")
@@ -104,6 +103,7 @@ script = ExtResource("9_8wjl7")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("12_losdi")]
+Smwp1LightId = Array[int]([53])
 
 [connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]

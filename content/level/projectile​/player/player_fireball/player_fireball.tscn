@@ -70,6 +70,7 @@ RoomRightOffset = 10.0
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 
 [node name="SmwpPointLight2D" parent="." groups=["hittable_to_ice"] instance=ExtResource("7_ubb6l")]
+Smwp1LightId = Array[int]([59])
 
 [connection signal="FireballExplode" from="FireballMovement" to="FireballExplode" method="OnFireballExplode"]
 [connection signal="FireballExplode" from="FireballInteraction" to="FireballExplode" method="OnFireballExplode"]

@@ -26,5 +26,6 @@ script = ExtResource("4_aydh5")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("5_lcejg")]
+Smwp1LightId = Array[int]([27])
 
 [connection signal="PlaySoundBullet" from="BulletBillCannonMovement" to="ContinuousAudioStream2D" method="play"]

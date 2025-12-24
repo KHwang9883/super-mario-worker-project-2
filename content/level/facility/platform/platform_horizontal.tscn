@@ -320,3 +320,4 @@ debug_color = Color(0.1485925, 0.6457087, 7.70092e-07, 0.41960785)
 script = ExtResource("9_kn8jb")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("10_l2xg7")]
+Smwp1LightId = Array[int]([3])

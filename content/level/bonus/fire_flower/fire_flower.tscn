@@ -69,3 +69,4 @@ PowerupType = 1
 script = ExtResource("4_iqi8q")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("3_dqu1t")]
+Smwp1LightId = Array[int]([12])

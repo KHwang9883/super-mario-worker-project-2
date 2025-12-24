@@ -13,3 +13,4 @@ region = Rect2(384, 0, 128, 160)
 texture = SubResource("AtlasTexture_k4up4")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("2_k4up4")]
+Smwp1LightId = Array[int]([7])

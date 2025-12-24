@@ -82,6 +82,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 stream = ExtResource("7_eefu0")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("8_8ceaw")]
+Smwp1LightId = Array[int]([10])
 
 [connection signal="BlockBreak" from="BlockHit" to="Break" method="play"]
 [connection signal="BlockBump" from="BlockHit" to="Bump" method="play"]

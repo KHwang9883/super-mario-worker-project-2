@@ -252,7 +252,7 @@ public partial class SmwlLevel : Node2D {
         _levelConfig.WindyLevel = addition.WindyLevel;
         _levelConfig.Darkness = addition.Darkness;
         _levelConfig.Brightness = addition.Brightness;
-        // Todo: lightobject
+        _levelConfig.Smwp1LightObjectString = addition.Smwp1LightObjectString;
         _levelConfig.ThwompActivateBlocks = addition.ThwompActivateBlocks;
         _levelConfig.SmwpVersion = addition.SmwpVersion;
     }

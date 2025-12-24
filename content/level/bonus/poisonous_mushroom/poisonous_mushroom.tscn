@@ -77,6 +77,7 @@ ScreenRightOffset = 10.0
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("7_m4ucj")]
+Smwp1LightId = Array[int]([32])
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="MushroomAnimation" method="OnAnimationFinished"]
 [connection signal="SideTurned" from="MushroomAnimation" to="MushroomMovement" method="OnTurned"]

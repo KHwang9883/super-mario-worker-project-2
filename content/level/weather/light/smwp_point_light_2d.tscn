@@ -6,7 +6,6 @@
 process_priority = 1
 script = ExtResource("1_s8w6v")
 _marker = NodePath("LightOffset")
-Enabled = true
 metadata/_edit_lock_ = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenEnabler2D" parent="."]

@@ -86,3 +86,4 @@ HurtType = 1
 metadata/_custom_type_script = "uid://dk0y3j6216tik"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("3_og6mh")]
+Smwp1LightId = Array[int]([34])

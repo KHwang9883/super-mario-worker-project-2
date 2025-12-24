@@ -36,6 +36,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 stream = ExtResource("8_67i3a")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("6_isag7")]
+Smwp1LightId = Array[int]([17])
 
 [node name="BrickCoinSwitch" type="Node" parent="."]
 script = ExtResource("8_bbsxl")

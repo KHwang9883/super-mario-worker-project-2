@@ -130,3 +130,4 @@ sprite_frames = SubResource("SpriteFrames_6o8dh")
 autoplay = "default"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("2_4mhnh")]
+Smwp1LightId = Array[int]([8])

@@ -32,3 +32,4 @@ script = ExtResource("4_r3isd")
 metadata/_custom_type_script = "uid://bkc8a0hddhajq"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("5_o56d7")]
+Smwp1LightId = Array[int]([38])

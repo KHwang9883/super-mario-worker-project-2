@@ -102,3 +102,4 @@ _bonusSprout = NodePath("../BonusSprout")
 _lui = NodePath("..")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("4_tsfwx")]
+Smwp1LightId = Array[int]([14])

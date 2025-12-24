@@ -60,6 +60,7 @@ script = ExtResource("4_iaikp")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("4_04258")]
+Smwp1LightId = Array[int]([18])
 
 [node name="CoinBrickSwitch" type="Node" parent="."]
 script = ExtResource("6_8x6rj")

@@ -250,12 +250,8 @@ public partial class SmwlLoader : Node {
             WindyLevel = ConfigurationExtensions.GetIntValueOrDefault(config, "windy", 0),
             Darkness = ConfigurationExtensions.GetIntValueOrDefault(config, "darkness", 0),
             Brightness = ConfigurationExtensions.GetIntValueOrDefault(config, "brightness", 0),
-            
-            // Todo: lightobject
-            // lightobject
-            //lightobject=0000000000000000000000000000000000000000000000000000000000000000000
-            //
-            
+            Smwp1LightObjectString = config.GetValueOrDefault("lightobject",
+                "0000000000000000000000000000000000000000000000000000000000000000000"),
             ThwompActivateBlocks = config.GetValueOrDefault("stunblock") == "1",
             SmwpVersion = ConfigurationExtensions.GetIntValueOrDefault(config, "version", 0)
                           // 部分早期版本版本号为五位数，实际上读取的时候只读取前四位

@@ -44,5 +44,6 @@ sprite_frames = SubResource("SpriteFrames_1irng")
 autoplay = "default"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("2_k7xpn")]
+Smwp1LightId = Array[int]([37])
 
 [connection signal="animation_finished" from="." to="." method="queue_free"]

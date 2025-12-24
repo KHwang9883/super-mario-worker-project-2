@@ -308,5 +308,6 @@ _shapeMapping = Dictionary[int, RectangleShape2D]({
 script = ExtResource("9_8spri")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("10_fbkgm")]
+Smwp1LightId = Array[int]([3])
 
 [connection signal="Stepped" from="." to="PlayerPenetration" method="OnPlayerCurrentStep"]
