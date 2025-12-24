@@ -2,11 +2,14 @@ using Godot;
 using System;
 using SMWP.Level.Data;
 using SMWP.Level.Loader.Processing;
+using SMWP.Util;
 
 public partial class SpikeMetaProcessor : ObjectProcessor {
     public override void ProcessObject(Node node, ClassicSmwlObject instance) {
         if (node is not Node2D node2D) return;
         if (!int.TryParse(instance.Metadata, out var direction)) return;
+        node.TryGetComponent(out Sprite2D? sprite2D);
+        node.TryGetComponent(out AnimatedSprite2D? ani);
         node2D.GlobalRotationDegrees = direction switch {
             0 => 0f,
             1 => 180f,
@@ -14,5 +17,7 @@ public partial class SpikeMetaProcessor : ObjectProcessor {
             3 => 90f,
             _ => 0f,
         };
+        sprite2D?.SetFlipH(direction is 2 or 1);
+        ani?.SetFlipH(direction is 2 or 1);
     }
 }
