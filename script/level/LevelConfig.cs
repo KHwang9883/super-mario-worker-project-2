@@ -31,7 +31,6 @@ public partial class LevelConfig : Node {
     [Export] public int BgmId = 1;
 
     [ExportGroup("AdditionalSettings")]
-    // Todo: 默认为 true，后续若有 bug / 特性复现可以使用这个变量
     [Export] public bool ModifiedMovement = true;
     [Export] public bool RotoDiscLayer;
 

@@ -27,9 +27,6 @@ public partial class PlayerGodMode : Node {
         if (_playerMediator == null) return;
         if (_playerMediator.playerMovement.IsInPipeTransport) return;
         if (@event is not InputEventKey { Pressed: true } keyEvent) return;
-        
-        // Todo: God Mode 开启检测
-        //if (!GameManager.IsGodMode) return; ???
 
         var pSuit = _playerMediator.playerSuit;
         

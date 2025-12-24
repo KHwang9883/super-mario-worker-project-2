@@ -4,9 +4,11 @@ using System.IO.Compression;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 using SMWP.Level.Data;
+using SMWP.Util;
 
 namespace SMWP.Level;
 
@@ -121,194 +123,6 @@ public partial class SmwlLoader : Node {
         };
     }
 
-    private async ValueTask<ClassicSmwlAdditionalSettingsData?> ParseAddition(TextReader reader) {
-        return new ClassicSmwlAdditionalSettingsData();
-        var success = true;
-        var line = "";
-
-        // Todo: example
-        /*
-        // 检测到 SMWP 二期的扩展关卡数据则返回
-        if (!char.IsNumber((char)reader.Peek())) {
-            break;
-        }
-        var line = await ReadLineAsync(reader);
-        // 关卡文件结尾，跳出循环
-        if (line == null) {
-            break;
-        }
-        // 长度小于 11 的行为错误行，记录错误
-        if (line.Length < 11) {
-            ErrorMessage.Add($"Insufficient length for object {line} at line {LineNum}");
-            continue;
-        }
-        int id = -1;
-        var position = Vector2.Zero;
-        success = success && int.TryParse(line.AsSpan()[..3], out id);
-        success = success && float.TryParse(line.AsSpan()[3..7], out position.X);
-        success = success && float.TryParse(line.AsSpan()[7..11], out position.Y);
-        var metadata = line.Length == 11 ? "" : line[11..];
-        */
-
-        // modifiedmov
-        //modifiedmov=1
-        bool modifiedMovement = true;
-        success = success && bool.TryParse(line.AsSpan()[13..14], out modifiedMovement);
-
-        // rotodisclay
-        //rotodisclay=0
-        bool rotoDiscLayer = false;
-        success = success && bool.TryParse(line.AsSpan()[13..14], out rotoDiscLayer);
-
-        // layerord
-        //layerord=2
-        LevelConfig.LayerOrderEnum layerOrder = LevelConfig.LayerOrderEnum.Modified;
-        success = success && int.TryParse(line.AsSpan()[5..6], out int value) &&
-                  (layerOrder = value switch
-                  {
-                      0 => LevelConfig.LayerOrderEnum.Classic,
-                      1 => LevelConfig.LayerOrderEnum.WaterAbove,
-                      2 => LevelConfig.LayerOrderEnum.Modified,
-                      _ => LevelConfig.LayerOrderEnum.Classic,
-                  }) == layerOrder;
-
-        // lava
-        //lava=0
-        Fluid.FluidTypeEnum fluidType = Fluid.FluidTypeEnum.Water;
-        if (success && int.TryParse(line.AsSpan()[5..6], out var lavaValue)) {
-            fluidType = lavaValue == 0 ? Fluid.FluidTypeEnum.Water : Fluid.FluidTypeEnum.Lava;
-            success = true;
-        } else {
-            success = false;
-        }
-
-        // auto
-        //auto=0
-        bool autoFluid = false;
-
-        // T1
-        //T1=0
-        float t1 = 0f;
-
-        // T2
-        //T2=-64
-        float t2 = -64f;
-
-        // velocity
-        //velocity=1
-        float fluidSpeed = 1f;
-
-        // delay
-        //delay=0
-        int fluidDelay = 0;
-
-        // advswitch
-        //advswitch=0
-        bool advancedSwitch = false;
-
-        // fastretry
-        //fastretry=0
-        bool fastRetry = false;
-
-        // MFbeet
-        //MFbeet=1
-        bool mfStyleBeet = true;
-
-        // celeste
-        //celeste=1
-        bool celesteStyleSwitch = true;
-
-        // pipeout
-        //pipeout=0
-        bool mfStylePipeExit = false;
-
-        // fastpass
-        //fastpass=0
-        bool fasterLevelPass = false;
-
-        // huddisplay
-        //huddisplay=0
-        bool hudDisplay = false;
-
-        // rainy
-        //rainy=0
-        int rainyLevel = 0;
-
-        // fallingstars
-        //fallingstars=0
-        int fallingStarsLevel = 0;
-
-        // snowy
-        //snowy=0
-        int snowyLevel = 0;
-
-        // thunder
-        //thunder=0
-        int thunderLevel = 0;
-
-        // windy
-        //windy=0
-        int windyLevel = 0;
-
-        // darkness
-        //darkness=0
-        int darkness = 0;
-
-        // brightness
-        //brightness=0
-        int brightness = 0;
-
-        // lightobject
-        //lightobject=0000000000000000000000000000000000000000000000000000000000000000000
-        string lightObject = "";
-
-        // stunblock
-        //stunblock=0
-        bool thwompActivateBlocks = false;
-
-        // version
-        //version=1712
-        int smwpVersion;
-
-        if (!success) {
-            ErrorMessage.Add($"Corrupted SMWL additional settings {line} at line {LineNum}");
-            return null;
-        }
-        return new ClassicSmwlAdditionalSettingsData {
-            ModifiedMovement = modifiedMovement,
-            RotoDiscLayer = rotoDiscLayer,
-            LayerOrder = layerOrder,
-            FluidType = fluidType,
-            AutoFluid = autoFluid,
-            FluidT1 = t1,
-            FluidT2 = t2,
-            FluidSpeed = fluidSpeed,
-            FluidDelay = fluidDelay,
-            AdvancedSwitch = advancedSwitch,
-            FastRetry = fastRetry,
-            MfStyleBeet = mfStyleBeet,
-            CelesteStyleSwitch = celesteStyleSwitch,
-            MfStylePipeExit = mfStylePipeExit,
-            FasterLevelPass = fasterLevelPass,
-            HUDDisplay = hudDisplay,
-            RainyLevel = rainyLevel,
-            FallingStarsLevel = fallingStarsLevel,
-            SnowyLevel = snowyLevel,
-            ThunderLevel = thunderLevel,
-            WindyLevel = windyLevel,
-            Darkness = darkness,
-            Brightness = brightness,
-
-            // Todo: lightobject
-            //
-
-            ThwompActivateBlocks = thwompActivateBlocks,
-        };
-
-        // Placeholder
-        return new ClassicSmwlAdditionalSettingsData();
-    }
-
     private async ValueTask<ClassicSmwlBlocksData?> ParseBlocks(TextReader reader) {
         // 检查 BlocksDataStart
         if (!await Check(reader, BlockDataStart)) {
@@ -386,8 +200,71 @@ public partial class SmwlLoader : Node {
         return result;
     }
 
-    public async ValueTask<Dictionary<string, string>> ParseV2Metadata(TextReader reader) {
-        Dictionary<string, string> result = [];
+    private async ValueTask<ClassicSmwlAdditionalSettingsData?> ParseAddition(TextReader reader) {
+        var config = new System.Collections.Generic.Dictionary<string, string>();
+    
+        // 读取所有配置行
+        while (true) {
+            var line = await ReadLineAsync(reader);
+            if (string.IsNullOrEmpty(line) || !line.Contains('='))
+                break;  // 遇到非配置行或空行结束
+        
+            var separatorIndex = line.IndexOf('=');
+            if (separatorIndex > 0) {
+                var key = line[..separatorIndex].Trim();
+                var value = line[(separatorIndex + 1)..].Trim();
+                config[key] = value;
+            }
+        }
+
+        return new ClassicSmwlAdditionalSettingsData {
+            ModifiedMovement = config.GetValueOrDefault("modifiedmov") == "1",
+            RotoDiscLayer = config.GetValueOrDefault("rotodisclay") == "1",
+            LayerOrder = config.GetValueOrDefault("layerord") switch {
+                "0" => LevelConfig.LayerOrderEnum.Classic,
+                "1" => LevelConfig.LayerOrderEnum.WaterAbove,
+                "2" => LevelConfig.LayerOrderEnum.Modified,
+                _ => LevelConfig.LayerOrderEnum.Classic,
+            },
+            FluidType = config.GetValueOrDefault("lava") switch {
+                "0" => Fluid.FluidTypeEnum.Water,
+                "1" => Fluid.FluidTypeEnum.Lava,
+                _ => Fluid.FluidTypeEnum.Water,
+            },
+            AutoFluid = config.GetValueOrDefault("auto") == "1",
+            FluidT1 = ConfigurationExtensions.GetIntValueOrDefault(config, "T1", 0),
+            FluidT2 = ConfigurationExtensions.GetIntValueOrDefault(config, "T2", -64),
+            FluidSpeed = ConfigurationExtensions.GetIntValueOrDefault(config, "velocity", 1),
+            FluidDelay = ConfigurationExtensions.GetIntValueOrDefault(config, "delay", 0),
+            AdvancedSwitch = config.GetValueOrDefault("advswitch") == "1",
+            FastRetry = config.GetValueOrDefault("fastretry") == "1",
+            MfStyleBeet = config.GetValueOrDefault("MFbeet") == "1",
+            CelesteStyleSwitch = config.GetValueOrDefault("celeste") == "1",
+            MfStylePipeExit = config.GetValueOrDefault("pipeout") == "1",
+            FasterLevelPass = config.GetValueOrDefault("fastpass") == "1",
+            HUDDisplay = config.GetValueOrDefault("huddisplay", "0") == "0",
+            RainyLevel = ConfigurationExtensions.GetIntValueOrDefault(config, "rainy", 0),
+            FallingStarsLevel = ConfigurationExtensions.GetIntValueOrDefault(config, "fallingstars", 0),
+            SnowyLevel = ConfigurationExtensions.GetIntValueOrDefault(config, "snowy", 0),
+            ThunderLevel = ConfigurationExtensions.GetIntValueOrDefault(config, "thunder", 0),
+            WindyLevel = ConfigurationExtensions.GetIntValueOrDefault(config, "windy", 0),
+            Darkness = ConfigurationExtensions.GetIntValueOrDefault(config, "darkness", 0),
+            Brightness = ConfigurationExtensions.GetIntValueOrDefault(config, "brightness", 0),
+            
+            // Todo: lightobject
+            // lightobject
+            //lightobject=0000000000000000000000000000000000000000000000000000000000000000000
+            //
+            
+            ThwompActivateBlocks = config.GetValueOrDefault("stunblock") == "1",
+            SmwpVersion = ConfigurationExtensions.GetIntValueOrDefault(config, "version", 0)
+                          // 部分早期版本版本号为五位数，实际上读取的时候只读取前四位
+                          % 10000,
+        };
+    }
+
+    public async ValueTask<GDC.Dictionary<string, string>> ParseV2Metadata(TextReader reader) {
+        GDC.Dictionary<string, string> result = [];
         while (true) {
             var line = await ReadLineAsync(reader);
             if (line == null) {

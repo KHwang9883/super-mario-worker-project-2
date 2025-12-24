@@ -6,7 +6,6 @@ namespace SMWP.Level.Data;
 public partial class ClassicSmwlAdditionalSettingsData : Resource {
     [Export] public bool ModifiedMovement = true;
     [Export] public bool RotoDiscLayer;
-
     [Export] public LevelConfig.LayerOrderEnum LayerOrder = LevelConfig.LayerOrderEnum.Modified;
     [Export] public Fluid.FluidTypeEnum FluidType = Fluid.FluidTypeEnum.Water;
     [Export] public bool AutoFluid;
@@ -19,6 +18,7 @@ public partial class ClassicSmwlAdditionalSettingsData : Resource {
     [Export] public bool MfStyleBeet = true;
     [Export] public bool CelesteStyleSwitch;
     [Export] public bool MfStylePipeExit;
+    
     [Export] public bool FasterLevelPass;
     [Export] public bool HUDDisplay = true;
     
@@ -27,7 +27,6 @@ public partial class ClassicSmwlAdditionalSettingsData : Resource {
     [Export(PropertyHint.Range,"0, 5, 1")] public int SnowyLevel;
     [Export(PropertyHint.Range,"0, 1, 1")] public int ThunderLevel;
     [Export(PropertyHint.Range,"0, 3, 1")] public int WindyLevel;
-    
     [Export(PropertyHint.Range,"0, 9, 1")] public int Darkness;
     [Export(PropertyHint.Range,"0, 5, 1")] public int Brightness;
     
@@ -35,4 +34,6 @@ public partial class ClassicSmwlAdditionalSettingsData : Resource {
     //[Export] public ... ???
 
     [Export] public bool ThwompActivateBlocks;
+
+    [Export] public int SmwpVersion;
 }

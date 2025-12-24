@@ -57,7 +57,7 @@ public partial class HUD : Control {
         } else {
             _levelTitle.Text = StringProcess.ConvertHashAndNewline(_levelConfig.LevelTitle);
             // 版本号小于 1712 则自动加上 WORLD 标题
-            // Todo: 待测试
+            //GD.Print($"SmwpVersion: {_levelConfig.SmwpVersion}");
             if (_levelConfig.SmwpVersion < 1712) _levelTitle.Text = "WORLD\n" + _levelTitle.Text;
         }
         

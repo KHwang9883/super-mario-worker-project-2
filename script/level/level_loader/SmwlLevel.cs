@@ -80,12 +80,12 @@ public partial class SmwlLevel : Node2D {
         _checkpointId = 1;
         // 设置文件头数据
         InstallHeader(data.Header);
-        // 设置额外设置
-        InstallAdditions(data.AdditionalSettings);
         // 安装 Blocks
         InstallBlocks(data);
         // 安装活动对象
         InstallObjects(data.Objects);
+        // 设置额外设置
+        InstallAdditions(data.AdditionalSettings);
         
         // 数据设置结束，实例化关卡模板
         OnDataInstallFinished();
@@ -252,7 +252,9 @@ public partial class SmwlLevel : Node2D {
         _levelConfig.WindyLevel = addition.WindyLevel;
         _levelConfig.Darkness = addition.Darkness;
         _levelConfig.Brightness = addition.Brightness;
+        // Todo: lightobject
         _levelConfig.ThwompActivateBlocks = addition.ThwompActivateBlocks;
+        _levelConfig.SmwpVersion = addition.SmwpVersion;
     }
     
     // 数据开始读取，准备填装数据

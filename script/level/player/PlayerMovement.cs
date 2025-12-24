@@ -163,7 +163,7 @@ public partial class PlayerMovement : Node {
         // 因而 Player 的检测必须更晚，故用 SmwlLevel 的 LevelLoaded 信号作为检测的时间点
         var smwlLevel = (SmwlLevel)GetTree().GetFirstNodeInGroup("smwl_level");
         if (smwlLevel != null) {
-            GD.Print("PlayerMovement: SmwlLevel got.");
+            //GD.Print("PlayerMovement: SmwlLevel got.");
             smwlLevel.LevelLoaded += ViewControlDetect;
         }
         // 用于测试关卡测试
