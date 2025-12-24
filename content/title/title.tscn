@@ -316,6 +316,7 @@ LightShining = true
 [connection signal="pressed" from="Control/Edit" to="." method="OnEditPressed"]
 [connection signal="pressed" from="Control/UploadDownload" to="." method="OnUploadDownloadPressed"]
 [connection signal="pressed" from="Control/CreateScenario" to="." method="OnCreateScenarioPressed"]
+[connection signal="pressed" from="Control/PlayLevel" to="." method="SetPlayLevelInitialLives"]
 [connection signal="pressed" from="Control/PlayLevel" to="." method="JumpToScene" binds= ["uid://c5d467llk4uur"]]
 [connection signal="pressed" from="Control/PlayScenario" to="." method="OnPlayScenarioPressed"]
 [connection signal="pressed" from="Control/Quit" to="." method="OnQuitPressed"]

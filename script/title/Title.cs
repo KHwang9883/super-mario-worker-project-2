@@ -119,6 +119,10 @@ public partial class Title : Node2D {
         OS.ShellOpen("https://zh.wiki.marioforever.net/wiki/%E9%A6%96%E9%A1%B5");
     }
     
+    public void SetPlayLevelInitialLives() {
+        GameManager.Life = GameManager.InitialLivesOfSingleLevel;
+    }
+    
     public void JumpToScene(String sceneUid) {
         GetTree().ChangeSceneToFile(sceneUid);
     }
