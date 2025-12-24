@@ -2,6 +2,7 @@ using Godot;
 using System;
 using SMWP;
 using SMWP.Level;
+using SMWP.Util;
 
 public partial class Title : Node2D {
     [Export] private Node2D? _titleToSpin;
@@ -10,6 +11,8 @@ public partial class Title : Node2D {
     [Export] private bool _creatingLightStar;
     [Export] private PackedScene _lightStarScene = GD.Load<PackedScene>("uid://cg1273gwl8g68");
     [Export] private Control? _control;
+    [Export] public NodePath InitialFocusButton = null!;
+    
     private bool _inputReleased;
     
     public enum TitleAnimationStatus { Spin, Light, Lighting, Over}
@@ -61,9 +64,11 @@ public partial class Title : Node2D {
                     }
                     _animationStatus = TitleAnimationStatus.Over;
                     
-                    // Cursor focus
+                    // 首先聚焦的选项
                     Callable.From(() => {
-                        GetNode<Control>("Control/Edit").GrabFocus();
+                        if (!LastInputDevice.IsMouseLastInputDevice()) {
+                            GetNode<Control>(InitialFocusButton).GrabFocus();
+                        }
                     }).CallDeferred();
                     
                     if (_animationPlayer != null && !GameManager.TitleScreenAnimationFinished) {

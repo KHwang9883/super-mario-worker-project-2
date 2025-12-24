@@ -130,6 +130,7 @@ _titleToSpin = NodePath("TitleToSpin")
 _animationPlayer = NodePath("AnimationPlayer")
 _marioworkerCup = NodePath("MarioworkerCup")
 _control = NodePath("Control")
+InitialFocusButton = NodePath("Control/Edit")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 active = false

@@ -1,12 +1,15 @@
 using Godot;
 using System;
+using SMWP.Util;
 
 public partial class ControlSettings : Control {
     [Export] public NodePath InitialFocusButton = null!;
     
     public override void _Ready() {
         // 首先聚焦的选项
-        GetNode<SmwpButton>(InitialFocusButton).CallDeferred("grab_focus");
+        if (!LastInputDevice.IsMouseLastInputDevice()) {
+            GetNode<SmwpButton>(InitialFocusButton).CallDeferred("grab_focus");
+        }
     }
     
     public void OnBackButtonPressed() {

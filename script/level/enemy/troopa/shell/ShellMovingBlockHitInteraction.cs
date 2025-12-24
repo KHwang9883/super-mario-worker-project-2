@@ -18,6 +18,7 @@ public partial class ShellMovingBlockHitInteraction : Node {
         
         Node? interactionWithBlockNode = null;
         var originCollisionMask = _shellHard.CollisionMask;
+        // 砖块边界与地面实心重叠时，依然可以被触发
         // 检测砖块类所在的物理层，同时无视地面实心物理层
         _shellHard.CollisionMask = 2048;
         var blockCollider =

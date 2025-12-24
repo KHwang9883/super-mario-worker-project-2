@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using SMWP;
+using SMWP.Util;
 
 public partial class GlobalOptions : Control {
     [Export] public NodePath InitialFocusButton = null!;
@@ -24,8 +25,10 @@ public partial class GlobalOptions : Control {
     
     public override void _Ready() {
         // 首先聚焦的选项
-        GetNode<SmwpButton>(InitialFocusButton).CallDeferred("grab_focus");
-        
+        if (!LastInputDevice.IsMouseLastInputDevice()) {
+            GetNode<SmwpButton>(InitialFocusButton).CallDeferred("grab_focus");
+        }
+
         OptionDisplayUpdate();
         
         LineEditUpdate();

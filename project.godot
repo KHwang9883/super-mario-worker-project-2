@@ -24,6 +24,7 @@ config/icon="uid://cdllu6eprpokv"
 GameManager="*res://content/game_manager.tscn"
 SoundManager="*res://content/sound/SoundManager.tscn"
 FpsDisplay="*res://content/fps_display.tscn"
+LastInputDevice="*res://content/ui/last_input_device.tscn"
 
 [display]
 
