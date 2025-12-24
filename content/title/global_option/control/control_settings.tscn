@@ -86,6 +86,7 @@ offset_top = 425.0
 offset_right = 622.0
 offset_bottom = 459.0
 theme = SubResource("Theme_xbq5g")
+theme_override_font_sizes/font_size = 12
 text = "BACK"
 alignment = 1
 script = ExtResource("4_a747a")
@@ -136,6 +137,7 @@ offset_bottom = 26.0
 grow_horizontal = 0
 focus_neighbor_bottom = NodePath("../../Down/SetDown")
 focus_next = NodePath("../../Down/SetDown")
+theme_override_constants/line_spacing = 6
 alignment = 2
 Action = "move_up"
 
@@ -167,6 +169,7 @@ focus_neighbor_top = NodePath("../../Up/SetUp")
 focus_neighbor_bottom = NodePath("../../Left/SetLeft")
 focus_next = NodePath("../../Left/SetLeft")
 focus_previous = NodePath("../../Up/SetUp")
+theme_override_constants/line_spacing = 6
 alignment = 2
 Action = "move_down"
 
@@ -198,6 +201,7 @@ focus_neighbor_top = NodePath("../../Down/SetDown")
 focus_neighbor_bottom = NodePath("../../Right/SetRight")
 focus_next = NodePath("../../Right/SetRight")
 focus_previous = NodePath("../../Down/SetDown")
+theme_override_constants/line_spacing = 6
 alignment = 2
 Action = "move_left"
 
@@ -229,6 +233,7 @@ focus_neighbor_top = NodePath("../../Left/SetLeft")
 focus_neighbor_bottom = NodePath("../../Jump/SetJump")
 focus_next = NodePath("../../Jump/SetJump")
 focus_previous = NodePath("../../Left/SetLeft")
+theme_override_constants/line_spacing = 6
 alignment = 2
 Action = "move_right"
 
@@ -260,6 +265,7 @@ focus_neighbor_top = NodePath("../../Right/SetRight")
 focus_neighbor_bottom = NodePath("../../Fire/SetFire")
 focus_next = NodePath("../../Fire/SetFire")
 focus_previous = NodePath("../../Right/SetRight")
+theme_override_constants/line_spacing = 6
 alignment = 2
 Action = "move_jump"
 
@@ -291,6 +297,7 @@ focus_neighbor_top = NodePath("../../Jump/SetJump")
 focus_neighbor_bottom = NodePath("../../Confirm/SetConfirm")
 focus_next = NodePath("../../Confirm/SetConfirm")
 focus_previous = NodePath("../../Jump/SetJump")
+theme_override_constants/line_spacing = 6
 alignment = 2
 Action = "move_fire"
 
@@ -322,6 +329,7 @@ focus_neighbor_top = NodePath("../../Fire/SetFire")
 focus_neighbor_bottom = NodePath("../../Pause/SetPause")
 focus_next = NodePath("../../Pause/SetPause")
 focus_previous = NodePath("../../Fire/SetFire")
+theme_override_constants/line_spacing = 6
 alignment = 2
 Action = "confirm"
 
@@ -353,6 +361,7 @@ focus_neighbor_top = NodePath("../../Confirm/SetConfirm")
 focus_neighbor_bottom = NodePath("../../RestartLevel/SetRestartLevel")
 focus_next = NodePath("../../RestartLevel/SetRestartLevel")
 focus_previous = NodePath("../../Confirm/SetConfirm")
+theme_override_constants/line_spacing = 6
 alignment = 2
 Action = "pause"
 
@@ -384,6 +393,7 @@ focus_neighbor_top = NodePath("../../Pause/SetPause")
 focus_neighbor_bottom = NodePath("../../Info/SetInfo")
 focus_next = NodePath("../../Info/SetInfo")
 focus_previous = NodePath("../../Pause/SetPause")
+theme_override_constants/line_spacing = 6
 alignment = 2
 Action = "move_restart_level"
 
@@ -413,6 +423,7 @@ offset_bottom = 26.0
 grow_horizontal = 0
 focus_neighbor_top = NodePath("../../RestartLevel/SetRestartLevel")
 focus_previous = NodePath("../../RestartLevel/SetRestartLevel")
+theme_override_constants/line_spacing = 6
 alignment = 2
 Action = "level_info"
 

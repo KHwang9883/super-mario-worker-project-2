@@ -3,7 +3,6 @@
 [ext_resource type="FontVariation" uid="uid://drebqqlb8awl" path="res://content/level/hud/mw/font_theme/mw_hud_with_fallback_variation.tres" id="1_x5e55"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rj6nb"]
-content_margin_bottom = 16.0
 bg_color = Color(1, 1, 1, 0.3529412)
 draw_center = false
 border_color = Color(0.8, 0.8, 0.8, 0)

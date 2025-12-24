@@ -17,9 +17,9 @@ shader_parameter/fade_curve = 4.50000016625
 [node name="SmwpButton" type="Button"]
 material = SubResource("ShaderMaterial_fqxcy")
 offset_right = 116.0
-offset_bottom = 64.0
+offset_bottom = 65.0
 theme = ExtResource("1_ifaju")
-theme_override_constants/line_spacing = 6
+theme_override_constants/line_spacing = -1
 text = "TEST
 TEST2
 TEST233"

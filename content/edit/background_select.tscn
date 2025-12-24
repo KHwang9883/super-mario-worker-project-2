@@ -272,6 +272,7 @@ offset_top = 425.0
 offset_right = 622.0
 offset_bottom = 459.0
 theme = SubResource("Theme_iv6kv")
+theme_override_font_sizes/font_size = 12
 text = "BACK"
 alignment = 1
 metadata/_edit_lock_ = true

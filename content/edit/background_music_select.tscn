@@ -156,6 +156,7 @@ offset_top = 425.0
 offset_right = 622.0
 offset_bottom = 459.0
 theme = SubResource("Theme_iq013")
+theme_override_font_sizes/font_size = 12
 text = "BACK"
 alignment = 1
 metadata/_edit_lock_ = true
@@ -1794,7 +1795,6 @@ layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("5_xu0q8")
 theme_type_variation = &"FlatButton"
-theme_override_font_sizes/font_size = 7
 text = "BOUNDLESS DESERT, ENDLESS RIVER"
 alignment = 1
 
