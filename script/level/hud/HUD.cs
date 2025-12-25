@@ -85,7 +85,6 @@ public partial class HUD : Control {
         // Level Info
         _levelInfo.Visible = Input.IsActionPressed("level_info");
         if (Input.IsActionJustPressed("level_info")) {
-            // Todo: 待测试
             DisplayServer.WindowSetTitle($"[Level Author]: {_levelConfig?.LevelAuthor} ({_levelConfig?.SmwpVersion})");
         } 
         if (Input.IsActionJustReleased("level_info")) {

@@ -23,7 +23,6 @@ public static class ConfigManager {
         // 读取配置
         SmwpConfig.Load(ConfigPath);
         
-        // Todo: InitialLivesOfSingleLevel
         GameManager.InitialLivesOfSingleLevel =
             (int)SmwpConfig.GetValue("game_config", "initial_lives", 4);
         

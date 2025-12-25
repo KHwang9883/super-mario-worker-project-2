@@ -92,7 +92,24 @@ alignment = 1
 script = ExtResource("4_a747a")
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Basic/Back"]
+[node name="SmwpNormalButton" type="Sprite2D" parent="Basic/Back"]
+z_index = -1
+position = Vector2(30, 17)
+texture = ExtResource("6_a747a")
+
+[node name="ResetControls" parent="Basic" instance=ExtResource("3_lghrj")]
+z_index = 1
+layout_mode = 0
+offset_left = 496.0
+offset_top = 425.0
+offset_right = 555.0
+offset_bottom = 459.0
+theme = SubResource("Theme_xbq5g")
+theme_override_font_sizes/font_size = 11
+text = "RESET"
+alignment = 1
+
+[node name="SmwpNormalButton" type="Sprite2D" parent="Basic/ResetControls"]
 z_index = -1
 position = Vector2(30, 17)
 texture = ExtResource("6_a747a")
@@ -187,7 +204,7 @@ theme = ExtResource("5_yrvep")
 text = "Left"
 uppercase = true
 
-[node name="SetLeft" parent="VBoxContainer/Left" instance=ExtResource("7_yrvep")]
+[node name="SetLeft" parent="VBoxContainer/Left" groups=["set_control"] instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -219,7 +236,7 @@ theme = ExtResource("5_yrvep")
 text = "Right"
 uppercase = true
 
-[node name="SetRight" parent="VBoxContainer/Right" instance=ExtResource("7_yrvep")]
+[node name="SetRight" parent="VBoxContainer/Right" groups=["set_control"] instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -251,7 +268,7 @@ theme = ExtResource("5_yrvep")
 text = "Jump"
 uppercase = true
 
-[node name="SetJump" parent="VBoxContainer/Jump" instance=ExtResource("7_yrvep")]
+[node name="SetJump" parent="VBoxContainer/Jump" groups=["set_control"] instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -283,7 +300,7 @@ theme = ExtResource("5_yrvep")
 text = "Fire"
 uppercase = true
 
-[node name="SetFire" parent="VBoxContainer/Fire" instance=ExtResource("7_yrvep")]
+[node name="SetFire" parent="VBoxContainer/Fire" groups=["set_control"] instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -315,7 +332,7 @@ theme = ExtResource("5_yrvep")
 text = "Confirm"
 uppercase = true
 
-[node name="SetConfirm" parent="VBoxContainer/Confirm" instance=ExtResource("7_yrvep")]
+[node name="SetConfirm" parent="VBoxContainer/Confirm" groups=["set_control"] instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -347,7 +364,7 @@ theme = ExtResource("5_yrvep")
 text = "Pause"
 uppercase = true
 
-[node name="SetPause" parent="VBoxContainer/Pause" instance=ExtResource("7_yrvep")]
+[node name="SetPause" parent="VBoxContainer/Pause" groups=["set_control"] instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -379,7 +396,7 @@ theme = ExtResource("5_yrvep")
 text = "Restart Level"
 uppercase = true
 
-[node name="SetRestartLevel" parent="VBoxContainer/RestartLevel" instance=ExtResource("7_yrvep")]
+[node name="SetRestartLevel" parent="VBoxContainer/RestartLevel" groups=["set_control"] instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -411,7 +428,7 @@ theme = ExtResource("5_yrvep")
 text = "Level Info"
 uppercase = true
 
-[node name="SetInfo" parent="VBoxContainer/Info" instance=ExtResource("7_yrvep")]
+[node name="SetInfo" parent="VBoxContainer/Info" groups=["set_control"] instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -441,7 +458,7 @@ theme = ExtResource("5_yrvep")
 text = "Switch Sound"
 uppercase = true
 
-[node name="SetSwitchSound" parent="VBoxContainer/SwitchSound" instance=ExtResource("7_yrvep")]
+[node name="SetSwitchSound" parent="VBoxContainer/SwitchSound" groups=["set_control"] instance=ExtResource("7_yrvep")]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
@@ -490,5 +507,6 @@ focus_neighbor_bottom = NodePath("")
 
 [connection signal="pressed" from="Basic/Back" to="." method="OnBackButtonPressed"]
 [connection signal="pressed" from="Basic/Back" to="Basic/Back" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]
+[connection signal="pressed" from="Basic/ResetControls" to="." method="ResetControls"]
 
 [editable path="GlobalOptionMenu"]
