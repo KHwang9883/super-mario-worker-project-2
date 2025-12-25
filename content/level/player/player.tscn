@@ -262,6 +262,7 @@ stream = ExtResource("29_lc6mo")
 script = ExtResource("30_sba15")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("29_kphem")]
+editor_description = "玩家光源与无敌星状态光源一共有两个独立的标记，在 PlayerSuit 组件中特殊处理"
 Smwp1LightId = Array[int]([1, 61])
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="PlayerMediator/PlayerAnimation" method="OnAnimationFinished"]
