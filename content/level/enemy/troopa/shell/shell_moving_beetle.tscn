@@ -97,6 +97,7 @@ metadata/_custom_type_script = "uid://t3te8lnb0byj"
 
 [node name="EnemyInteraction" type="Node" parent="."]
 script = ExtResource("4_jjsol")
+HurtType = 2
 ImmuneToFireball = true
 ImmuneToBeetroot = true
 HardLevel = 15
