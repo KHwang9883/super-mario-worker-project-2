@@ -521,6 +521,11 @@ tile_set = ExtResource("11_877iw")
 [node name="BlockTileLayer" type="Node" parent="LevelTemplate/TestTileMapLayerBlocks" node_paths=PackedStringArray("_blockTile")]
 script = ExtResource("25_gx40e")
 _blockTile = NodePath("..")
+_targetZIndex = Dictionary[int, int]({
+0: 350,
+1: 99,
+2: 5
+})
 
 [node name="Mario" parent="LevelTemplate" instance=ExtResource("9_hgnsp")]
 unique_name_in_owner = true

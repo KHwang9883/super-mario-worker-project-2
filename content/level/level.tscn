@@ -48,9 +48,15 @@ z_index = 90
 tile_set = ExtResource("7_fn8k0")
 collision_enabled = false
 
-[node name="BlockTileLayer" type="Node" parent="Block Tile Map" node_paths=PackedStringArray("_blockTile")]
+[node name="BlockTileLayer" type="Node" parent="Block Tile Map" node_paths=PackedStringArray("_smwlLevel", "_blockTile")]
 script = ExtResource("11_d3lay")
+_smwlLevel = NodePath("../..")
 _blockTile = NodePath("..")
+_targetZIndex = Dictionary[int, int]({
+0: 350,
+1: 99,
+2: 5
+})
 
 [node name="SMWL Loader" type="Node" parent="."]
 script = ExtResource("1_wc7qm")
