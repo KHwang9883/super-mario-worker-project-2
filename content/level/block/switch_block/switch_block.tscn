@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8fi12ftk0dka"]
+[gd_scene load_steps=16 format=3 uid="uid://b8fi12ftk0dka"]
 
 [ext_resource type="SpriteFrames" uid="uid://b5l3e3o5qcgle" path="res://content/level/block/switch_block/switch_sprites/switch_block_red.tres" id="1_l5qlt"]
 [ext_resource type="PackedScene" uid="uid://dsjr2jccad25d" path="res://content/level/block/block_collision_shape_2d.tscn" id="3_0282c"]
@@ -14,6 +14,7 @@
 [ext_resource type="SpriteFrames" uid="uid://d30jifine2fin" path="res://content/level/block/switch_block/switch_sprites/switch_block_kohl.tres" id="9_c8a8x"]
 [ext_resource type="SpriteFrames" uid="uid://wshny1w3lc6l" path="res://content/level/block/switch_block/switch_sprites/switch_block_white.tres" id="10_j3g3g"]
 [ext_resource type="AudioStream" uid="uid://cborw2h6n706m" path="res://content/sound/switch.se.wav" id="13_njdno"]
+[ext_resource type="Script" uid="uid://by25ib7vu6vql" path="res://script/level/block/switch_block/SwitchSound.cs" id="14_y10g6"]
 
 [node name="SwitchBlock" type="StaticBody2D"]
 z_index = 18
@@ -52,6 +53,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Bump" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_njdno")
+script = ExtResource("14_y10g6")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("8_ar7as")]
 Smwp1LightId = Array[int]([10])

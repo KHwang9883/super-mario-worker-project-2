@@ -227,7 +227,7 @@ material = SubResource("CanvasItemMaterial_kynl2")
 [node name="HUD" type="CanvasLayer" parent="LevelTemplate"]
 layer = 4
 
-[node name="HUD" type="Control" parent="LevelTemplate/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite", "_godPosition", "_levelInfo", "_scrollDisabled")]
+[node name="HUD" type="Control" parent="LevelTemplate/HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite", "_godPosition", "_levelInfo", "_switchSound", "_scrollDisabled")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -249,6 +249,7 @@ _coin = NodePath("Coin")
 _gameOverSprite = NodePath("GameOver")
 _godPosition = NodePath("GodPosition")
 _levelInfo = NodePath("LevelInfo")
+_switchSound = NodePath("SwitchSound")
 _scrollDisabled = NodePath("ScrollDisabled")
 metadata/_edit_lock_ = true
 
@@ -373,6 +374,23 @@ Celeste Style Switch: Yes
 MF Style Pipe Exit: No"
 uppercase = true
 metadata/_edit_lock_ = true
+
+[node name="SwitchSound" type="Label" parent="LevelTemplate/HUD/HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_bfx67")
+text = "Switch Sound: OFF"
+horizontal_alignment = 2
+vertical_alignment = 2
+uppercase = true
+metadata/_edit_lock_ = true
+
+[node name="Timer" type="Timer" parent="LevelTemplate/HUD/HUD/SwitchSound"]
 
 [node name="GodPosition" type="Label" parent="LevelTemplate/HUD/HUD"]
 visible = false
@@ -711,6 +729,25 @@ position = Vector2(2864, 120)
 [node name="RotoDisc2" parent="LevelTemplate/Enemies" instance=ExtResource("88_8hkbm")]
 position = Vector2(2888, 76)
 
+[node name="FireballBro4" parent="LevelTemplate/Enemies" instance=ExtResource("48_yeotl")]
+position = Vector2(5496, 432)
+
+[node name="SpikeMW5" parent="LevelTemplate/Enemies" instance=ExtResource("13_dhetq")]
+position = Vector2(4816, 272)
+
+[node name="TroopaFlyYellowGenerator" parent="LevelTemplate/Enemies" instance=ExtResource("93_gx40e")]
+position = Vector2(4592, 136)
+Radius = 96.0
+Angle = 10.0
+Amount = 5
+
+[node name="TroopaFlyYellowGenerator2" parent="LevelTemplate/Enemies" instance=ExtResource("93_gx40e")]
+position = Vector2(4944, 80)
+Radius = 96.0
+Angle = 10.0
+Amount = 5
+Direction = true
+
 [node name="Bonus" type="Node2D" parent="LevelTemplate"]
 
 [node name="FireFlower" parent="LevelTemplate/Bonus" instance=ExtResource("17_d2gt5")]
@@ -772,6 +809,18 @@ position = Vector2(2672, 208)
 
 [node name="SuperStar2" parent="LevelTemplate/Bonus" instance=ExtResource("18_mlotv")]
 position = Vector2(2856, 392)
+
+[node name="MushroomLife2" parent="LevelTemplate/Bonus" instance=ExtResource("50_rjg3t")]
+position = Vector2(4748, 268)
+
+[node name="Beetroot3" parent="LevelTemplate/Bonus" instance=ExtResource("18_6xv5h")]
+position = Vector2(4816, 274)
+
+[node name="Beetroot4" parent="LevelTemplate/Bonus" instance=ExtResource("18_6xv5h")]
+position = Vector2(4816, 274)
+
+[node name="SuperStar3" parent="LevelTemplate/Bonus" instance=ExtResource("18_mlotv")]
+position = Vector2(4480, 208)
 
 [node name="Facilities" type="Node2D" parent="LevelTemplate"]
 
@@ -1002,6 +1051,14 @@ Solid = false
 position = Vector2(2676, 48)
 SwitchType = 6
 
+[node name="PassageIn4" parent="LevelTemplate/Facilities" instance=ExtResource("66_kwmt5")]
+position = Vector2(4768, 224)
+PassageId = 10
+
+[node name="PassageOut2" parent="LevelTemplate/Facilities" instance=ExtResource("67_s6ftr")]
+position = Vector2(4768, 160)
+PassageId = 10
+
 [node name="Checkpoints" type="Node2D" parent="LevelTemplate"]
 
 [node name="Checkpoint" parent="LevelTemplate/Checkpoints" instance=ExtResource("54_813lr")]
@@ -1038,23 +1095,11 @@ ViewRect = Rect2(2944, 0, 10016, 480)
 position = Vector2(2984, 204)
 BgmId = 119
 
-[node name="FireballBro2" parent="LevelTemplate" instance=ExtResource("48_yeotl")]
-position = Vector2(5496, 432)
-
 [node name="SceneControl2" parent="LevelTemplate" instance=ExtResource("63_i0wvf")]
 position = Vector2(5520, 272)
 LinkedWithObject = 2
 ChangeBgm = true
 BgmId = 116
-
-[node name="SpikeMW" parent="LevelTemplate" instance=ExtResource("13_dhetq")]
-position = Vector2(4816, 272)
-
-[node name="Beetroot" parent="LevelTemplate" instance=ExtResource("18_6xv5h")]
-position = Vector2(4816, 274)
-
-[node name="Beetroot2" parent="LevelTemplate" instance=ExtResource("18_6xv5h")]
-position = Vector2(4816, 274)
 
 [node name="Koopas" type="Node2D" parent="LevelTemplate"]
 
@@ -1064,32 +1109,14 @@ position = Vector2(5488, 248)
 [node name="Koopa2" parent="LevelTemplate/Koopas" instance=ExtResource("90_13tsj")]
 position = Vector2(6632, 416)
 
-[node name="SuperStar" parent="LevelTemplate" instance=ExtResource("18_mlotv")]
-position = Vector2(4480, 208)
+[node name="SwitchBlock" parent="LevelTemplate" instance=ExtResource("86_8ggsa")]
+position = Vector2(4880, 272)
 
-[node name="TroopaFlyYellowGenerator" parent="." instance=ExtResource("93_gx40e")]
-position = Vector2(4592, 136)
-Radius = 96.0
-Angle = 10.0
-Amount = 5
+[node name="BlockHit" parent="LevelTemplate/SwitchBlock" index="2"]
+SwitchType = 0
 
-[node name="TroopaFlyYellowGenerator2" parent="." instance=ExtResource("93_gx40e")]
-position = Vector2(4944, 80)
-Radius = 96.0
-Angle = 10.0
-Amount = 5
-Direction = true
-
-[node name="MushroomLife" parent="." instance=ExtResource("50_rjg3t")]
-position = Vector2(4748, 268)
-
-[node name="PassageIn" parent="." instance=ExtResource("66_kwmt5")]
-position = Vector2(4768, 224)
-PassageId = 10
-
-[node name="PassageOut" parent="." instance=ExtResource("67_s6ftr")]
-position = Vector2(4768, 160)
-PassageId = 10
+[node name="ShellMovingBeetle" parent="LevelTemplate" instance=ExtResource("37_lxach")]
+position = Vector2(4944, 264)
 
 [connection signal="pressed" from="LevelTemplate/GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonYes" to="LevelTemplate/LevelConfig" method="QuitLevel"]
 [connection signal="pressed" from="LevelTemplate/GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonNo" to="LevelTemplate/LevelConfig" method="SetResume"]
@@ -1099,7 +1126,9 @@ PassageId = 10
 [connection signal="finished" from="LevelTemplate/LevelConfig/BgmPlayer" to="LevelTemplate/LevelConfig/BgmPlayer" method="play"]
 [connection signal="tree_exiting" from="LevelTemplate/LevelConfig/BgmPlayer" to="LevelTemplate/LevelConfig/BgmPlayer" method="OnTreeExiting"]
 [connection signal="PlaySoundTimeWarning" from="LevelTemplate/HUD/HUD" to="LevelTemplate/HUD/HUD/TimeWarning" method="play"]
+[connection signal="timeout" from="LevelTemplate/HUD/HUD/SwitchSound/Timer" to="LevelTemplate/HUD/HUD" method="OnSwitchSoundLabelTimerTimeout"]
 [connection signal="PlaySoundMessageDisplay" from="LevelTemplate/HUD/MessageDisplay" to="LevelTemplate/HUD/MessageDisplay/MsgDisplaySE" method="play"]
 [connection signal="PlaySoundMessageUndisplay" from="LevelTemplate/HUD/MessageDisplay" to="LevelTemplate/HUD/MessageDisplay/MsgUndisplaySE" method="play"]
 
 [editable path="LevelTemplate/GamePausePopup"]
+[editable path="LevelTemplate/SwitchBlock"]

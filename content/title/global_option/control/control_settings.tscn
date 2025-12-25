@@ -102,7 +102,7 @@ layout_mode = 0
 offset_left = 44.0
 offset_top = 88.0
 offset_right = 384.0
-offset_bottom = 432.0
+offset_bottom = 448.0
 
 [node name="Play" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -426,6 +426,43 @@ focus_previous = NodePath("../../RestartLevel/SetRestartLevel")
 theme_override_constants/line_spacing = 6
 alignment = 2
 Action = "level_info"
+
+[node name="SwitchSound" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SwitchSound" type="Label" parent="VBoxContainer/SwitchSound"]
+layout_mode = 0
+offset_right = 267.0
+offset_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("5_yrvep")
+text = "Switch Sound"
+uppercase = true
+
+[node name="SetSwitchSound" parent="VBoxContainer/SwitchSound" instance=ExtResource("7_yrvep")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+focus_neighbor_top = NodePath("../../RestartLevel/SetRestartLevel")
+focus_previous = NodePath("../../RestartLevel/SetRestartLevel")
+theme_override_constants/line_spacing = 6
+alignment = 2
+Action = "switch_sound"
+
+[node name="EmptyLine" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_yrvep")
+uppercase = true
 
 [node name="Edit" type="Label" parent="VBoxContainer"]
 layout_mode = 2

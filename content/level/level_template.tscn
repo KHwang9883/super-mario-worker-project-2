@@ -128,7 +128,7 @@ material = SubResource("CanvasItemMaterial_kynl2")
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 4
 
-[node name="HUD" type="Control" parent="HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite", "_godPosition", "_levelInfo", "_scrollDisabled")]
+[node name="HUD" type="Control" parent="HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite", "_godPosition", "_levelInfo", "_switchSound", "_scrollDisabled")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -150,6 +150,7 @@ _coin = NodePath("Coin")
 _gameOverSprite = NodePath("GameOver")
 _godPosition = NodePath("GodPosition")
 _levelInfo = NodePath("LevelInfo")
+_switchSound = NodePath("SwitchSound")
 _scrollDisabled = NodePath("ScrollDisabled")
 metadata/_edit_lock_ = true
 
@@ -268,6 +269,23 @@ Celeste Style Switch: Yes
 MF Style Pipe Exit: No"
 uppercase = true
 metadata/_edit_lock_ = true
+
+[node name="SwitchSound" type="Label" parent="HUD/HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("12_6hwhs")
+text = "Switch Sound: OFF"
+horizontal_alignment = 2
+vertical_alignment = 2
+uppercase = true
+metadata/_edit_lock_ = true
+
+[node name="Timer" type="Timer" parent="HUD/HUD/SwitchSound"]
 
 [node name="GodPosition" type="Label" parent="HUD/HUD"]
 visible = false
@@ -394,6 +412,7 @@ position = Vector2(0, 444)
 [connection signal="finished" from="LevelConfig/BgmPlayer" to="LevelConfig/BgmPlayer" method="play"]
 [connection signal="tree_exiting" from="LevelConfig/BgmPlayer" to="LevelConfig/BgmPlayer" method="OnTreeExiting"]
 [connection signal="PlaySoundTimeWarning" from="HUD/HUD" to="HUD/HUD/TimeWarning" method="play"]
+[connection signal="timeout" from="HUD/HUD/SwitchSound/Timer" to="HUD/HUD" method="OnSwitchSoundLabelTimerTimeout"]
 [connection signal="PlaySoundMessageDisplay" from="HUD/MessageDisplay" to="HUD/MessageDisplay/MsgDisplaySE" method="play"]
 [connection signal="PlaySoundMessageUndisplay" from="HUD/MessageDisplay" to="HUD/MessageDisplay/MsgUndisplaySE" method="play"]
 

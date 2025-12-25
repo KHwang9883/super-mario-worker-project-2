@@ -17,6 +17,7 @@ public partial class HUD : Control {
     [Export] private Sprite2D _gameOverSprite = null!;
     [Export] private Label _godPosition = null!;
     [Export] private Label _levelInfo = null!;
+    [Export] private Label _switchSound = null!;
     [Export] private Label _scrollDisabled = null!;
     
     private Node2D? _player;
@@ -91,6 +92,13 @@ public partial class HUD : Control {
             DisplayServer.WindowSetTitle(_smwpGameWindowTitle);
         }
         
+        // Switch Sound
+        if (Input.IsActionJustReleased("switch_sound")) {
+            _switchSound.Visible = true;
+            _switchSound.GetNode<Timer>("Timer").Start();
+        }
+        _switchSound.Text = "Switch Sound: " + (_levelConfig!.SwitchSound ? "ON" : "OFF");
+        
         // God Mode 摄像机模式坐标显示
         if (_player != null) {
             _godPosition.Visible = _godModeNode.IsGodFly;
@@ -109,6 +117,9 @@ public partial class HUD : Control {
         _timeWarned = true;
         EmitSignal(SignalName.PlaySoundTimeWarning);
         _rock = 10f;
+    }
+    public void OnSwitchSoundLabelTimerTimeout() {
+        _switchSound.Visible = false;
     }
     public void GameOverShow() {
         _gameOverSprite.Visible = true;

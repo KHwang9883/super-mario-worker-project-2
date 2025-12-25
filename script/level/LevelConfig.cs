@@ -87,6 +87,9 @@ public partial class LevelConfig : Node {
     }
 
     public Godot.Collections.Dictionary<SwitchTypeEnum, bool> Switches { get; private set; } = null!;
+    
+    // 开关砖音效
+    public bool SwitchSound = true;
 
     // 关卡初始化
     public override void _Ready() {
@@ -128,6 +131,7 @@ public partial class LevelConfig : Node {
     }
 
     public override void _PhysicsProcess(double delta) {
+        // 暂停
         if (Input.IsActionJustPressed("pause") && GetTree().Paused) {
             SetResume();
             EmitSignal(SignalName.GameResumed);
@@ -139,6 +143,11 @@ public partial class LevelConfig : Node {
 
         if (Input.IsActionJustPressed("confirm") && GameManager.GamePause) {
             QuitLevel();
+        }
+        
+        // 开关砖音效
+        if (Input.IsActionJustPressed("switch_sound")) {
+            SwitchSound = !SwitchSound;
         }
     }
 
