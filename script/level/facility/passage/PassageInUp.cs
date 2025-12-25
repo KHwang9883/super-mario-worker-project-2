@@ -33,7 +33,7 @@ public partial class PassageInUp : Area2D {
                 _collisionShape2D.ResetPhysicsInterpolation();
             } else {
                 _collisionShape2D.Shape = _shapeNormal;
-                _collisionShape2D.Position = Position - new Vector2(0f, 26f);
+                _collisionShape2D.Position = Position - new Vector2(0f, -8f);
                 _collisionShape2D.ResetPhysicsInterpolation();
             }
         }
