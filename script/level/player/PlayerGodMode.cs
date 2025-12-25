@@ -127,9 +127,7 @@ public partial class PlayerGodMode : Node {
                 foreach (var node in _checkpoints) {
                     if (node is not Checkpoint checkpoint) continue;
                     if (GameManager.CurrentCheckpointId != checkpoint.Id) continue;
-                    _playerMediator.player.Position = checkpoint.Position + Vector2.Up * 8f;
-                    _playerMediator.player.ForceUpdateTransform();
-                    _playerMediator.player.ResetPhysicsInterpolation();
+                    _playerMediator.playerMovement.SetPositionToCheckpoint(checkpoint);
                     // 检测镜头控制元件
                     _playerMediator.playerMovement.ViewControlDetect();
                     break;
@@ -146,9 +144,7 @@ public partial class PlayerGodMode : Node {
                 foreach (var node in _checkpoints) {
                     if (node is not Checkpoint checkpoint) continue;
                     if (GameManager.CurrentCheckpointId != checkpoint.Id) continue;
-                    _playerMediator.player.Position = checkpoint.Position + Vector2.Up * 8f;
-                    _playerMediator.player.ForceUpdateTransform();
-                    _playerMediator.player.ResetPhysicsInterpolation();
+                    _playerMediator.playerMovement.SetPositionToCheckpoint(checkpoint);
                     // 检测镜头控制元件
                     _playerMediator.playerMovement.ViewControlDetect();
                     break;

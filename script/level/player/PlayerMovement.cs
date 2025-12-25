@@ -132,7 +132,7 @@ public partial class PlayerMovement : Node {
             foreach (var node in checkpoints) {
                 if (node is not Checkpoint checkpoint) continue;
                 if (GameManager.CurrentCheckpointId != checkpoint.Id) continue;
-                _player.Position = checkpoint.Position + new Vector2(0, -12);
+                SetPositionToCheckpoint(checkpoint);
 
                 _autoScrollCheckpointDetect = true;
 
@@ -158,9 +158,11 @@ public partial class PlayerMovement : Node {
         _outWaterDetectSuper = _player.GetNode<ShapeCast2D>("OutWaterDetectSuper");
 
         // 镜头控制元件检测
+        
         // 顺序必须比较晚，因为 SceneControl 可能因为读取顺序后进入场景树
         // 因此与 ViewControl 的连接检测放在帧末执行
         // 因而 Player 的检测必须更晚，故用 SmwlLevel 的 LevelLoaded 信号作为检测的时间点
+        
         var smwlLevel = (SmwlLevel)GetTree().GetFirstNodeInGroup("smwl_level");
         if (smwlLevel != null) {
             //GD.Print("PlayerMovement: SmwlLevel got.");
@@ -609,6 +611,15 @@ public partial class PlayerMovement : Node {
             GD.Print("启用临时重力修正");
             SpeedY += (IsInWater ? 0.2f : 1.0f);
         }
+    }
+    
+    // 中途点位置设置
+    public void SetPositionToCheckpoint(Checkpoint checkpoint) {
+        Callable.From(() => {
+            _player.Position = checkpoint.Position + Vector2.Up * 12f;
+            _player.ResetPhysicsInterpolation();
+            LastPositionX = _player.Position.X;
+        }).CallDeferred();
     }
     
     // 水管传送处理
