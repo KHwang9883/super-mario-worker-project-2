@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bx2mfyon04o57" path="res://content/level/enemy/troopa/shell/shell_yellow.png" id="1_8c2fs"]
 [ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="2_dqlca"]
+[ext_resource type="Shape2D" uid="uid://dkk21y61xps0j" path="res://content/level/enemy/troopa/shell/shell_static_shape.tres" id="2_ykv1t"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_r5ejp"]
 [ext_resource type="Script" uid="uid://n6fjmnacteg3" path="res://script/level/enemy/troopa/shell/ShellStaticInteraction.cs" id="4_8hg31"]
 [ext_resource type="Script" uid="uid://dotclkl6vqu5p" path="res://script/level/enemy/troopa/shell/ShellStaticPlayerInteractionDelay.cs" id="5_00u4i"]
@@ -31,9 +32,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nr65"]
-size = Vector2(31, 31)
-
 [node name="ShellStaticYellow" type="CharacterBody2D"]
 z_index = 30
 collision_layer = 16
@@ -45,7 +43,7 @@ floor_block_on_wall = false
 sprite_frames = SubResource("SpriteFrames_r5ejp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_4nr65")
+shape = ExtResource("2_ykv1t")
 debug_color = Color(0.66792136, 0.5692672, 0, 0.41960785)
 
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]

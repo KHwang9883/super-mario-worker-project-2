@@ -130,6 +130,8 @@ public partial class PlayerGodMode : Node {
                     _playerMediator.player.Position = checkpoint.Position + Vector2.Up * 8f;
                     _playerMediator.player.ForceUpdateTransform();
                     _playerMediator.player.ResetPhysicsInterpolation();
+                    // 检测镜头控制元件
+                    _playerMediator.playerMovement.ViewControlDetect();
                     break;
                 }
                 break;
@@ -147,6 +149,8 @@ public partial class PlayerGodMode : Node {
                     _playerMediator.player.Position = checkpoint.Position + Vector2.Up * 8f;
                     _playerMediator.player.ForceUpdateTransform();
                     _playerMediator.player.ResetPhysicsInterpolation();
+                    // 检测镜头控制元件
+                    _playerMediator.playerMovement.ViewControlDetect();
                     break;
                 }
                 break;

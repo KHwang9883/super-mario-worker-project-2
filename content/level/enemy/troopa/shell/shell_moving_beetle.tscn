@@ -1,6 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://x2gl8vkl7afn"]
 
 [ext_resource type="Texture2D" uid="uid://pau5gllvaqrr" path="res://content/level/enemy/troopa/shell/shell_beetle.png" id="1_n7rmi"]
+[ext_resource type="Shape2D" uid="uid://1ttrcjiuuv6l" path="res://content/level/enemy/troopa/shell/shell_moving_shape.tres" id="2_lvkjf"]
 [ext_resource type="Script" uid="uid://m51cdt80w33w" path="res://script/level/enemy/troopa/shell/ShellMovingDirection.cs" id="2_ukljn"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_cqudt"]
 [ext_resource type="Script" uid="uid://bavc2of3311e" path="res://script/level/enemy/troopa/shell/ShellEnemyInteraction.cs" id="4_jjsol"]
@@ -58,9 +59,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhxmt"]
 size = Vector2(32, 28)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nr65"]
-size = Vector2(31, 31)
-
 [node name="ShellMovingBeetle" type="CharacterBody2D" groups=["moving_shell"]]
 z_index = 30
 collision_layer = 16
@@ -81,7 +79,7 @@ collide_with_areas = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource("RectangleShape2D_4nr65")
+shape = ExtResource("2_lvkjf")
 debug_color = Color(0.7241838, 0.5225501, 0.38869995, 0.41960785)
 
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]

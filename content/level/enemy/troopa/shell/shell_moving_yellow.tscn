@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bx2mfyon04o57" path="res://content/level/enemy/troopa/shell/shell_yellow.png" id="1_kd204"]
 [ext_resource type="Script" uid="uid://m51cdt80w33w" path="res://script/level/enemy/troopa/shell/ShellMovingDirection.cs" id="2_hdjmv"]
+[ext_resource type="Shape2D" uid="uid://1ttrcjiuuv6l" path="res://content/level/enemy/troopa/shell/shell_moving_shape.tres" id="2_mstu6"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_rwg20"]
 [ext_resource type="Script" uid="uid://bavc2of3311e" path="res://script/level/enemy/troopa/shell/ShellEnemyInteraction.cs" id="4_s3rs7"]
 [ext_resource type="Script" uid="uid://654jtvsrt54l" path="res://script/level/enemy/troopa/shell/ShellMovingPlayerInteractionDelay.cs" id="5_vst6s"]
@@ -50,9 +51,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhxmt"]
 size = Vector2(32, 28)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nr65"]
-size = Vector2(31, 31)
-
 [node name="ShellMovingYellow" type="CharacterBody2D" groups=["moving_shell"]]
 z_index = 30
 collision_layer = 16
@@ -73,7 +71,7 @@ collide_with_areas = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource("RectangleShape2D_4nr65")
+shape = ExtResource("2_mstu6")
 debug_color = Color(0.66792136, 0.5692672, 0, 0.41960785)
 
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
