@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bb2rj6y5h51gn" path="res://script/level/block/BumpArea2D.cs" id="1_aru6u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnn1b"]
-size = Vector2(32, 7)
+size = Vector2(31, 7)
 
 [node name="BumpArea2d" type="Area2D"]
 collision_layer = 0
