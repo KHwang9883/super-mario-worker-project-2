@@ -253,9 +253,12 @@ public partial class SmwlLoader : Node {
             Smwp1LightObjectString = config.GetValueOrDefault("lightobject",
                 "0000000000000000000000000000000000000000000000000000000000000000000"),
             ThwompActivateBlocks = config.GetValueOrDefault("stunblock") == "1",
-            SmwpVersion = ConfigurationExtensions.GetIntValueOrDefault(config, "version", 0)
-                          // 部分早期版本版本号为五位数，实际上读取的时候只读取前四位
-                          % 10000,
+            SmwpVersion =
+                ConfigurationExtensions.GetIntValueOrDefault(config, "version", 0) < 10000
+                    ? ConfigurationExtensions.GetIntValueOrDefault(config, "version", 0)
+                    // 部分早期版本版本号为五位数，实际上读取的时候只读取前四位
+                    : ConfigurationExtensions.GetIntValueOrDefault(config, "version", 0) / 10,
+                    
         };
     }
 
