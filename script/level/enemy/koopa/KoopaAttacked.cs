@@ -31,7 +31,7 @@ public partial class KoopaAttacked : Node {
             return;
         }
         KoopaEnergy = _levelConfig.KoopaEnergy;
-        GD.Print($"KoopaEnergy: {KoopaEnergy}");
+        //GD.Print($"KoopaEnergy: {KoopaEnergy}");
         
         if (!_isHurtInvincible) return;
 
