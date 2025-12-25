@@ -35,7 +35,6 @@ public partial class LevelConfig : Node {
     [Export] public bool RotoDiscLayer;
 
     public enum LayerOrderEnum { Classic, WaterAbove, Modified }
-    // Todo: 读取时确定 Z Index
     [Export] public LayerOrderEnum LayerOrder = LayerOrderEnum.Modified;
     [Export] public Fluid.FluidTypeEnum FluidType = Fluid.FluidTypeEnum.Water;
     [Export] public bool AutoFluid;

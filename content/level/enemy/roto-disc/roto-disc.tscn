@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cw8qh44n2xkrx"]
+[gd_scene load_steps=37 format=3 uid="uid://cw8qh44n2xkrx"]
 
 [ext_resource type="Texture2D" uid="uid://dl8vjok5s2jtl" path="res://content/level/enemy/roto-disc/roto-disc.png" id="1_dsby6"]
 [ext_resource type="Script" uid="uid://bg8j5xb0vfwqq" path="res://script/level/enemy/roto-disc/RotoDiscMovement.cs" id="2_ce4je"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://vcoiykbd4gn" path="res://content/level/enemy/roto-disc/roto-disc_center.tscn" id="3_f4ayu"]
 [ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="4_f4ayu"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="7_f4ayu"]
+[ext_resource type="Script" uid="uid://yka3buxett1v" path="res://script/level/enemy/roto-disc/RotoDiscLayer.cs" id="8_teaio"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_snkjq"]
 atlas = ExtResource("1_dsby6")
@@ -233,3 +234,7 @@ metadata/_custom_type_script = "uid://bkc8a0hddhajq"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("7_f4ayu")]
 Smwp1LightId = Array[int]([36])
+
+[node name="RotoDiscLayer" type="Node" parent="." node_paths=PackedStringArray("_rotoDisc")]
+script = ExtResource("8_teaio")
+_rotoDisc = NodePath("..")

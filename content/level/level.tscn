@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c5d467llk4uur"]
+[gd_scene load_steps=14 format=3 uid="uid://c5d467llk4uur"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/level_loader/SmwlLevel.cs" id="1_rpefo"]
 [ext_resource type="Script" uid="uid://c8yu81i46jf4r" path="res://script/level/level_loader/SmwlLoader.cs" id="1_wc7qm"]
@@ -11,6 +11,7 @@
 [ext_resource type="TileSet" uid="uid://obv64rtoaukf" path="res://content/level/tile/blocks.tileset.tres" id="7_fn8k0"]
 [ext_resource type="Resource" uid="uid://dp3ucvu1lpy7l" path="res://content/level/database/object_database_marks.tres" id="7_ysoro"]
 [ext_resource type="Resource" uid="uid://cjm2781r56j71" path="res://content/level/database/object_database_bonus.tres" id="8_ysoro"]
+[ext_resource type="Script" uid="uid://daesa20urbh15" path="res://script/level/tile/BlockTileLayer.cs" id="11_d3lay"]
 
 [sub_resource type="GDScript" id="GDScript_fn8k0"]
 script/source = "extends Camera2D
@@ -46,6 +47,10 @@ tile_set = ExtResource("2_dugl1")
 z_index = 90
 tile_set = ExtResource("7_fn8k0")
 collision_enabled = false
+
+[node name="BlockTileLayer" type="Node" parent="Block Tile Map" node_paths=PackedStringArray("_blockTile")]
+script = ExtResource("11_d3lay")
+_blockTile = NodePath("..")
 
 [node name="SMWL Loader" type="Node" parent="."]
 script = ExtResource("1_wc7qm")

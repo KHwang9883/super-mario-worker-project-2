@@ -61,7 +61,7 @@ public partial class GameManager : Node {
 
     public static bool ShowFps;
     
-    // Todo: Edit Options
+    // Todo: Edit Options (TemporaryFiles)
     public static int TemporaryFiles = 100;
     
     public static Node2D? Player;
