@@ -55,7 +55,8 @@ _bonusSprout = NodePath("../BonusSprout")
 _collisionShape2D = NodePath("../CollisionShape2D")
 _mushroomAnimation = NodePath("../MushroomAnimation")
 MoveObject = NodePath("..")
-SpeedX = -2.0
+InitiallyFaceToPlayer = false
+SpeedX = 2.0
 MaxFallSpeed = 7.0
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
