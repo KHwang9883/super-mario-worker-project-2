@@ -29,11 +29,11 @@ public partial class PassageInUp : Area2D {
             // 根据玩家状态决定碰撞箱大小和位置
             if (_playerSuit.Suit == PlayerSuit.SuitEnum.Small) {
                 _collisionShape2D.Shape = _shapeSmall;
-                _collisionShape2D.Position = Position - new Vector2(0f, 12f);
+                _collisionShape2D.Position = Position - new Vector2(0f, 28f);
                 _collisionShape2D.ResetPhysicsInterpolation();
             } else {
                 _collisionShape2D.Shape = _shapeNormal;
-                _collisionShape2D.Position = Position - new Vector2(0f, -8f);
+                _collisionShape2D.Position = Position - new Vector2(0f, 26f);
                 _collisionShape2D.ResetPhysicsInterpolation();
             }
         }
