@@ -52,9 +52,10 @@ slide_on_ceiling = false
 floor_block_on_wall = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_t8ljq")
 autoplay = "default"
+offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8sqss")
