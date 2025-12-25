@@ -123,6 +123,7 @@ _shellCombo = NodePath("../ComboComponent")
 HardLevel = 15
 
 [node name="ShellBlockHitInteraction" type="Node" parent="." node_paths=PackedStringArray("_basicMovement")]
+process_physics_priority = -1
 script = ExtResource("9_ukljn")
 _basicMovement = NodePath("../BasicMovement")
 
