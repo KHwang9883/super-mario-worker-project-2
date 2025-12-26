@@ -19,7 +19,7 @@ public partial class FireballInteractionWithIce : Node {
         Node? interactionWithBlockNode = null;
         
         var collision = _fireball.MoveAndCollide(
-            new Vector2(_basicMovement.SpeedX, _basicMovement.SpeedY), true, 0.02f
+            new Vector2(_basicMovement.SpeedX, _basicMovement.SpeedY), true, 2f
             );
         var collider = collision?.GetCollider();
         if (!IsInstanceValid(collider)) return;
