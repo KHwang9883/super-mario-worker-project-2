@@ -319,6 +319,7 @@ LightShining = true
 [connection signal="pressed" from="Control/PlayLevel" to="." method="SetPlayLevelInitialLives"]
 [connection signal="pressed" from="Control/PlayLevel" to="." method="JumpToScene" binds= ["uid://c5d467llk4uur"]]
 [connection signal="pressed" from="Control/PlayScenario" to="." method="OnPlayScenarioPressed"]
+[connection signal="pressed" from="Control/PlayScenario" to="." method="JumpToScene" binds= ["uid://c8ls5xyw1g2q5"]]
 [connection signal="pressed" from="Control/Quit" to="." method="OnQuitPressed"]
 [connection signal="pressed" from="Control/Home" to="." method="OnHomePressed"]
 [connection signal="pressed" from="Control/Option" to="." method="JumpToScene" binds= ["uid://bh01ow2pgnsh5"]]

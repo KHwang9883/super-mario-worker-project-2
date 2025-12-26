@@ -48,7 +48,6 @@ public partial class SmwlLevel : Node2D {
             // 改成拖拽加载了，更方便（
             GetWindow().FilesDropped += files => OnOpenSmwlDialogFileSelected(files[0]);
         } else {
-            OnDataInstallStarted();
             Install(GameManager.LevelFileStream);
         }
     }
@@ -56,9 +55,6 @@ public partial class SmwlLevel : Node2D {
     private async void OnOpenSmwlDialogFileSelected(string file) {
         if (File.Exists(file)) {
             await using var input = File.OpenRead(file);
-            
-            OnDataInstallStarted();
-            
             if (await SmwlLoader.Load(input) is { } data) {
                 GameManager.LevelFileStream = data;
                 Install(data);
@@ -78,6 +74,8 @@ public partial class SmwlLevel : Node2D {
         GameManager.IsGodMode = true;
 #endif
         _checkpointId = 1;
+        
+        OnDataInstallStarted();
         // 设置文件头数据
         InstallHeader(data.Header);
         // 安装 Blocks

@@ -105,8 +105,7 @@ public partial class Title : Node2D {
         GD.Print("Todo: Create Scenario 功能");
     }
     public void OnPlayScenarioPressed() {
-        // Todo: Play Scenario 跳转
-        GD.Print("Todo: Play Scenario 跳转");
+        GameManager.IsPlayingScenario = true;
     }
     public void OnQuitPressed() {
         GetTree().Quit();

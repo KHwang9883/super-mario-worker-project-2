@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8ls5xyw1g2q5"]
+
+[ext_resource type="Script" uid="uid://cxhg2y014u5cg" path="res://script/level/level_loader/SmwsLevel.cs" id="1_jtnl8"]
+[ext_resource type="Script" uid="uid://15cgdfnvj6k6" path="res://script/level/level_loader/SmwsLoader.cs" id="2_dyfvc"]
+
+[node name="Scenario" type="Node2D" node_paths=PackedStringArray("SmwsLoader")]
+script = ExtResource("1_jtnl8")
+SmwsLoader = NodePath("SmwsLoader")
+
+[node name="SmwsLoader" type="Node" parent="."]
+script = ExtResource("2_dyfvc")
+metadata/_custom_type_script = "uid://15cgdfnvj6k6"

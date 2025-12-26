@@ -13,6 +13,8 @@ namespace SMWP;
 public partial class GameManager : Node {
     [Signal]
     public delegate void PlaySound1UPEventHandler();
+    [Signal]
+    public delegate void ScenarioNextLevelEventHandler();
 
     public static bool TitleScreenAnimationFinished;
     
@@ -49,6 +51,11 @@ public partial class GameManager : Node {
     public static bool IsFasterLevelPass;
     private static int _timeClearTimer;
     private static int _timeClearedTimer;
+
+    public static bool IsPlayingScenario;
+    public static int ScenarioLevelCount;
+    public static int CurrentScenarioLevel;
+    public static Dictionary<int, int> ScenarioNewLevelLineNum = [];
     
     public static int CurrentBgmId;
     public static float BgmPosition;
@@ -111,6 +118,13 @@ public partial class GameManager : Node {
         Life = 4;
         Coin = 0;
         Score = 0;
+
+        PlayerSuitRestore = PlayerSuit.SuitEnum.Small;
+        
+        IsPlayingScenario = false;
+        ScenarioLevelCount = 0;
+        CurrentScenarioLevel = 0;
+        ScenarioNewLevelLineNum = [];
     }
     
     // Level Timer
@@ -205,9 +219,6 @@ public partial class GameManager : Node {
         }
     }
     public void JumpToLevel() {
-        // 清空关卡文件数据
-        LevelFileStream = null;
-        
         // 解除游戏暂停状态
         GetTree().Paused = false;
 
@@ -228,7 +239,24 @@ public partial class GameManager : Node {
         IsLevelPass = false;
         
         // Todo: 关卡跳转 / 回到标题画面 / 编辑界面
-        // Todo: 非 Scenario 下一关则 PlayerSuitRestore 清空
-        GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
+        
+        if (!IsPlayingScenario) {
+            // 清空关卡文件数据
+            LevelFileStream = null;
+            // 非 Scenario 下一关则 PlayerSuitRestore 等状态清空
+            GameOverClear();
+            GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
+        }
+        
+        else {
+            CurrentScenarioLevel++;
+            if (CurrentScenarioLevel >= ScenarioLevelCount) {
+                GameOverClear();
+                GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
+            } else {
+                // 下一个关卡：删除当前关卡
+                EmitSignal(SignalName.ScenarioNextLevel);
+            }
+        }
     }
 }
