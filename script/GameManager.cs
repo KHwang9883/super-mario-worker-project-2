@@ -20,7 +20,8 @@ public partial class GameManager : Node {
     
     public static bool GamePause;
 
-    public static SmwlLevelData? LevelFileStream;
+    public static SmwlLevelData? LevelFileData;
+    public static string? ScenarioFile;
     
     public static int Time { get; set; }
     public static int Life { get; set; } = 4;
@@ -63,7 +64,7 @@ public partial class GameManager : Node {
     
     public static bool IsColorAccessibilityMode;
     
-    // Edit 部分完成前在全局设置界面中可调
+    // Todo: Edit 部分完成前在全局设置界面中可调
     public static bool IsGodMode;
 
     public static bool ShowFps;
@@ -242,7 +243,7 @@ public partial class GameManager : Node {
         
         if (!IsPlayingScenario) {
             // 清空关卡文件数据
-            LevelFileStream = null;
+            LevelFileData = null;
             // 非 Scenario 下一关则 PlayerSuitRestore 等状态清空
             GameOverClear();
             GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
@@ -252,6 +253,7 @@ public partial class GameManager : Node {
             CurrentScenarioLevel++;
             if (CurrentScenarioLevel >= ScenarioLevelCount) {
                 GameOverClear();
+                ScenarioFile = null;
                 GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
             } else {
                 // 下一个关卡：删除当前关卡

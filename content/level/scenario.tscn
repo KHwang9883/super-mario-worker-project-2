@@ -10,3 +10,13 @@ SmwsLoader = NodePath("SmwsLoader")
 [node name="SmwsLoader" type="Node" parent="."]
 script = ExtResource("2_dyfvc")
 metadata/_custom_type_script = "uid://15cgdfnvj6k6"
+
+[node name="Open SMWL File" type="FileDialog" parent="."]
+oversampling_override = 1.0
+title = "Open a File"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.smwl")
+use_native_dialog = true
+
+[connection signal="canceled" from="Open SMWL File" to="." method="JumpToScene" binds= ["uid://2h2s1iqemydd"]]

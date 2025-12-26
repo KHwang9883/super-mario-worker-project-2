@@ -43,31 +43,37 @@ public partial class SmwlLevel : Node2D {
     public override void _Ready() {
         base._Ready();
 
-        if (GameManager.LevelFileStream == null) {
-            // 测试用
-            // 改成拖拽加载了，更方便（
-            GetWindow().FilesDropped += files => OnOpenSmwlDialogFileSelected(files[0]);
+        if (GameManager.LevelFileData == null) {
+            if (!GameManager.IsPlayingScenario) {
+                // 测试用
+                // 改成拖拽加载了，更方便（
+                GetWindow().FilesDropped += files => OnOpenSmwlDialogFileSelected(files[0]);
+            }
         } else {
-            Install(GameManager.LevelFileStream);
+            Install(GameManager.LevelFileData);
         }
     }
 
-    private async void OnOpenSmwlDialogFileSelected(string file) {
+    public async void OnOpenSmwlDialogFileSelected(string file) {
         if (File.Exists(file)) {
             await using var input = File.OpenRead(file);
-            if (await SmwlLoader.Load(input) is { } data) {
-                GameManager.LevelFileStream = data;
-                Install(data);
-            } else {
-                foreach (var error in SmwlLoader.ErrorMessage) {
-                    GD.PrintErr(error);
-                }
-            }
+            SmwlLoad(input);
         } else {
             GD.PrintErr($"File {file} does not exist");
         }
     }
 
+    public async void SmwlLoad(FileStream input) {
+        if (await SmwlLoader.Load(input) is { } data) {
+            GameManager.LevelFileData = data;
+            Install(data);
+        } else {
+            foreach (var error in SmwlLoader.ErrorMessage) {
+                GD.PrintErr(error);
+            }
+        }
+    }
+    
     public void Install(SmwlLevelData data) {
 #if TOOLS
         // 编辑器环境里永远开启 God 模式
