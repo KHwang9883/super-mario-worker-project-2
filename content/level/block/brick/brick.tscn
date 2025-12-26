@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://qph15p4aijrg" path="res://script/level/block/brick/BrickCoinSwitch.cs" id="8_bbsxl"]
 
 [node name="Brick" type="StaticBody2D"]
-z_index = 18
+z_index = 50
 collision_layer = 2051
 collision_mask = 0
 

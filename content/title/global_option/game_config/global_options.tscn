@@ -112,9 +112,9 @@ texture = ExtResource("6_051f2")
 [node name="VBoxContainerOptions" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 44.0
-offset_top = 88.0
+offset_top = 100.0
 offset_right = 384.0
-offset_bottom = 320.0
+offset_bottom = 296.0
 
 [node name="InitialLives" type="Control" parent="VBoxContainerOptions"]
 layout_mode = 2
@@ -211,6 +211,7 @@ text = "WINDOW MODE"
 alignment = 2
 
 [node name="CustomMusic" type="Control" parent="VBoxContainerOptions"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 

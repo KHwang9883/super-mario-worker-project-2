@@ -54,7 +54,7 @@ _smwlLevel = NodePath("../..")
 _blockTile = NodePath("..")
 _targetZIndex = Dictionary[int, int]({
 0: 350,
-1: 99,
+1: 96,
 2: 5
 })
 

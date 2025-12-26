@@ -6,6 +6,7 @@
 size = Vector2(32, 16)
 
 [node name="ObstacleHalf" type="StaticBody2D"]
+visible = false
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(16, 8)

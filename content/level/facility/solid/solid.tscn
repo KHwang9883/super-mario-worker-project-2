@@ -5,10 +5,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7igh6"]
 size = Vector2(32, 32)
 
-[node name="Obstacle2" type="StaticBody2D"]
-visible = false
+[node name="Obstacle3" type="StaticBody2D"]
 
 [node name="Sprite" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(16, 16)
 texture = ExtResource("1_rrfqg")
 
