@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dptyprqct11s0"]
+
+[ext_resource type="Script" uid="uid://5nnb01jn6780" path="res://script/level/enemy/troopa/shell/WalkOnAir.cs" id="1_sheli"]
+
+[node name="WalkOnAir" type="Node"]
+script = ExtResource("1_sheli")

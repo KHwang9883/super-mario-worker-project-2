@@ -64,7 +64,7 @@ public partial class LevelConfig : Node {
 
     [Export] public bool ThwompActivateBlocks;
 
-    public int SmwpVersion = 2000;
+    [Export] public int SmwpVersion = 2000;
     
     [ExportGroup("Database")]
     [Export] public BackgroundDatabase BgpDatabase { get; private set; } = null!;

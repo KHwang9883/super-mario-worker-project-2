@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Super Mario Worker Project 2"
-run/main_scene="uid://2h2s1iqemydd"
+run/main_scene="uid://c5d467llk4uur"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/fullsize=false

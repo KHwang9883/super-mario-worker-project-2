@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://7whmweafbswk"]
+[gd_scene load_steps=25 format=3 uid="uid://7whmweafbswk"]
 
 [ext_resource type="Texture2D" uid="uid://d2cjxtjvxmw83" path="res://content/level/enemy/troopa/shell/shell_blue.png" id="1_83t0b"]
 [ext_resource type="Shape2D" uid="uid://1ttrcjiuuv6l" path="res://content/level/enemy/troopa/shell/shell_moving_shape.tres" id="2_fcv27"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="14_1c2b5"]
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="15_pfsbr"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="16_fsk2x"]
+[ext_resource type="PackedScene" uid="uid://dptyprqct11s0" path="res://content/level/enemy/troopa/shell/walk_on_air.tscn" id="18_82bxo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3shq"]
 atlas = ExtResource("1_83t0b")
@@ -140,6 +141,9 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("16_fsk2x")]
 Smwp1LightId = Array[int]([55])
+
+[node name="WalkOnAir" parent="." node_paths=PackedStringArray("_basicMovement") instance=ExtResource("18_82bxo")]
+_basicMovement = NodePath("../BasicMovement")
 
 [connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]
