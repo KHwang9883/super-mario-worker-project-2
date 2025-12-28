@@ -689,7 +689,7 @@ public partial class PlayerMovement : Node {
             // 进入水管
             case PipeTransportStatusEnum.In:
                 _pipeInTransportTimer++;
-                if (_pipeInTransportTimer <= 33) {
+                if (_pipeInTransportTimer <= 45) {
                     switch (PipeTransportDir) {
                         case PipeTransportDirection.Up:
                             _player.Position -= new Vector2(0f, 0.7f);
