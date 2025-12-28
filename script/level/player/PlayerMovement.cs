@@ -917,12 +917,11 @@ public partial class PlayerMovement : Node {
                 // 起始点在自动卷轴范围内，设置位置为滚屏节点
                 _levelCamera.Position = autoScroll.Position;
                 _levelCamera.ResetPhysicsInterpolation();
-                _levelStartAutoScrollDetect = true;
             }
-            _levelStartAutoScrollDetect = true;
             // 镜头限制取消
             CameraLimitFree();
         }
+        _levelStartAutoScrollDetect = true;
         
         // Checkpoint 处复活，检测周围滚屏节点，只检测一次
         if (!_autoScrollCheckpointDetect || _autoScrollCheckpointDetected) return;
