@@ -103,7 +103,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          set -euo pipefail
+          set -e
           REPO="${{ github.repository }}"
           TAG="daily-build"
           echo "Looking up release for tag: $TAG"
