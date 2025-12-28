@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.IO;
+using SMWP.Util;
 
 public partial class ScreenFreeze : CanvasLayer {
     [Signal]
@@ -9,18 +10,26 @@ public partial class ScreenFreeze : CanvasLayer {
     [Export] private Sprite2D _frozenScreenSprite = null!;
     [Export] private Node2D _loadingSprites = null!;
     [Export] private bool _showLoading;
+    [Export] private SmwpFrameTimer _timer = null!;
     [Export] private int _freezeTime = 2;
     
     private Viewport _viewport = null!;
+    private Vector2 _viewportSize = new Vector2(1280f, 960f);
     private Image _frozenScreenImage = new();
     private bool _visibility;
     private bool _freeze;
     private int _freezeTimer;
 
     public override void _Ready() {
-        _viewport = GetTree().Root.GetViewport();
+        GetTree().SceneChanged += UpdateViewport;
         _loadingSprites.Visible = _showLoading;
         //RenderingServer.FramePostDraw += DrawFreeze;
+    }
+
+    public void UpdateViewport() {
+        _viewport = GetTree().Root.GetViewport();
+        _viewportSize = _viewport.GetVisibleRect().Size;
+        _viewport.SizeChanged += UpdateViewportSize;
     }
     public override void _Process(double delta) {
         if (_freeze) {
@@ -32,8 +41,7 @@ public partial class ScreenFreeze : CanvasLayer {
             }
             
             if (Visible && _visibility != Visible) {
-                _frozenScreenSprite.Visible = true;
-                EmitSignal(SignalName.ScreenFrozen);
+                _timer.Start();
             }
         } else {
             Visible = false;
@@ -42,6 +50,11 @@ public partial class ScreenFreeze : CanvasLayer {
         _visibility = Visible;
     }
 
+    public void OnTimerTimeout() {
+        _frozenScreenSprite.Visible = true;
+        EmitSignal(SignalName.ScreenFrozen);
+    }
+    
     public void SetFreeze() {
         _freeze = true;
         _freezeTimer = 0;
@@ -56,8 +69,12 @@ public partial class ScreenFreeze : CanvasLayer {
             _frozenScreenSprite.Texture = ImageTexture.CreateFromImage(_frozenScreenImage);
             var textureSize = _frozenScreenImage.GetSize();
             //GD.Print($"The frozen screen texture size is: {textureSize}");
-            _frozenScreenSprite.Scale = _viewport.GetVisibleRect().Size / textureSize;
+            _frozenScreenSprite.Scale = _viewportSize / textureSize;
             Visible = true;
         }
+    }
+
+    public void UpdateViewportSize() {
+        _viewportSize = _viewport.GetVisibleRect().Size;
     }
 }
