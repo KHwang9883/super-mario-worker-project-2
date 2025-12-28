@@ -108,7 +108,7 @@ jobs:
           TAG="daily-build"
           echo "Looking up release for tag: $TAG"
           RELEASE_JSON=$(gh api /repos/$REPO/releases/tags/$TAG 2>/dev/null || true)
-          if [ -z "$RELEASE_JSON" ]; then
+          if [ -z "$RELEASE_JSON" ] || [ "$RELEASE_JSON" = "null" ]; then
             echo "No release found for tag $TAG; nothing to delete"
             exit 0
           fi
@@ -119,14 +119,24 @@ jobs:
           fi
           now=$(date -u +%s)
           cutoff=$((now - 7*24*3600))
-          echo "Release ID: $RELEASE_ID ; cutoff timestamp: $cutoff"
-          gh api /repos/$REPO/releases/$RELEASE_ID/assets --jq '.[] | "\(.id)\t\(.name)\t\(.created_at)"' | \
-            while IFS=$'\t' read -r id name created_at; do
-              created_ts=$(date -d "$created_at" +%s)
-              if [ "$created_ts" -lt "$cutoff" ]; then
-                echo "Deleting asset $name (id $id) created at $created_at"
-                gh api --method DELETE /repos/$REPO/releases/assets/$id || echo "Failed to delete asset id $id"
-              else
-                echo "Keeping asset $name (created at $created_at)"
-              fi
-            done
+          echo "Release ID: $RELEASE_ID"
+          echo "Cutoff timestamp (UTC): $cutoff ($(date -u -d "@$cutoff"))"
+          echo
+          echo "$RELEASE_JSON" |
+          jq -r '.assets[] | [.id, .name, .created_at] | @tsv' |
+          while IFS=$'\t' read -r id name created_at; do
+            if [ -z "$created_at" ] || [ "$created_at" = "null" ]; then
+              echo "Skipping asset $name (id $id): no created_at"
+              continue
+            fi
+            created_ts=$(date -d "$created_at" +%s)
+            if [ "$created_ts" -lt "$cutoff" ]; then
+              echo "Deleting asset: $name"
+              echo "  id: $id"
+              echo "  created_at: $created_at"
+              gh api --method DELETE /repos/$REPO/releases/assets/$id \
+                || echo "Failed to delete asset id $id"
+            else
+              echo "Keeping asset: $name (created at $created_at)"
+            fi
+          done
