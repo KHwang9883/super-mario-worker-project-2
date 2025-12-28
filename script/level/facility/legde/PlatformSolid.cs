@@ -7,6 +7,7 @@ public partial class PlatformSolid : StaticBody2D {
     
     private bool _activate;
     private bool _detected;
+    private bool _created;
     
     public override void _Ready() {
         Callable.From(() => {
@@ -31,11 +32,24 @@ public partial class PlatformSolid : StaticBody2D {
             if (platformSolid == this) {
                 continue;
             }
-            var perpetualMotionMachineMarker = _perpetualMotionMachineMarkerScene.Instantiate<Node2D>();
-            AddChild(perpetualMotionMachineMarker);
-            perpetualMotionMachineMarker.Position = new Vector2(16f, 16f);
-            _detected = true;
-            break;
+            
+            // 生成永动机标识
+            if (!_created) {
+                var perpetualMotionMachineMarker = _perpetualMotionMachineMarkerScene.Instantiate<Node2D>();
+                AddChild(perpetualMotionMachineMarker);
+                perpetualMotionMachineMarker.Position = new Vector2(16f, 16f);
+                _created = true;
+                _detected = true;
+            }
+            
+            // 位于其他平台实心下方，玩家不可踩踏
+            if (Position.Y > platformSolid.Position.Y) {
+                Callable.From(() => {
+                    ProcessMode = ProcessModeEnum.Disabled;
+                }).CallDeferred();
+                //GD.Print("PlatformSolid Disabled");
+                break;
+            }
         }
     }
 
