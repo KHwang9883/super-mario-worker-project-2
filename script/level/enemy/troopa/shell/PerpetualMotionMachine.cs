@@ -15,7 +15,10 @@ public partial class PerpetualMotionMachine : Node2D {
             GD.PushError($"PerpetualMotionMachine: _basicMovement is null!");
             return;
         }
-        
+
+        if (_basicMovement.SpeedY <= 0f) {
+            return;
+        }
         var results = _shellMovingInteraction.GetOverlapResult();
         var shell = _basicMovement.MoveObject;
         var originMask = shell.CollisionMask;
@@ -31,12 +34,16 @@ public partial class PerpetualMotionMachine : Node2D {
             var collideResult = shell.MoveAndCollide(
                 new Vector2(_basicMovement.SpeedX, 0f), false, 0.09f);
             //GD.Print($"撞了个{collideResult}");
-            while (collideResult is not null) {
-                //GD.Print($"撞到了吗？撞到了，撞了个{collideResult}");
-                shell.Position += Vector2.Up * 1.01f;
-                shell.ForceUpdateTransform();
-                collideResult = shell.MoveAndCollide(
-                    new Vector2(_basicMovement.SpeedX, 0f), false, 0.09f);
+            // 循环有限次，防止意外情况
+            for (var i = 0; i < 2400; i++) {
+                if (collideResult != null) {
+                    shell.Position += Vector2.Up * 1.01f;
+                    shell.ForceUpdateTransform();
+                    collideResult = shell.MoveAndCollide(
+                        new Vector2(_basicMovement.SpeedX, 0f), false, 0.09f);
+                } else {
+                    break;
+                }
             }
             shell.ResetPhysicsInterpolation();
         }
