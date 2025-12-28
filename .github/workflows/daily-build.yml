@@ -120,13 +120,16 @@ jobs:
           now=$(date -u +%s)
           cutoff=$((now - 7*24*3600))
           echo "Release ID: $RELEASE_ID ; cutoff timestamp: $cutoff"
-          gh api /repos/$REPO/releases/$RELEASE_ID/assets --jq '.[] | "\(.id)\t\(.name)\t\(.created_at)"' | \
-            while IFS=$'\t' read -r id name created_at; do
-              created_ts=$(date -d "$created_at" +%s)
-              if [ "$created_ts" -lt "$cutoff" ]; then
-                echo "Deleting asset $name (id $id) created at $created_at"
-                gh api --method DELETE /repos/$REPO/releases/assets/$id || echo "Failed to delete asset id $id"
-              else
-                echo "Keeping asset $name (created at $created_at)"
-              fi
-            done
+          gh api /repos/$REPO/releases/$RELEASE_ID/assets \
+            --paginate \
+            --jq '.[] | [.id, .name, .created_at] | @tsv' | \
+          while IFS=$'\t' read -r id name created_at; do
+            created_ts=$(date -d "$created_at" +%s)
+            if [ "$created_ts" -lt "$cutoff" ]; then
+              echo "Deleting asset $name (id $id) created at $created_at"
+              gh api --method DELETE /repos/$REPO/releases/assets/$id \
+                || echo "Failed to delete asset id $id"
+            else
+              echo "Keeping asset $name (created at $created_at)"
+            fi
+          done
