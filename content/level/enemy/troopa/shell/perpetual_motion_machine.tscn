@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv1l4euat0iyo"]
+
+[ext_resource type="Script" uid="uid://urdgvdteutyf" path="res://script/level/enemy/troopa/shell/PerpetualMotionMachine.cs" id="1_fd7xh"]
+
+[node name="PerpetualMotionMachine" type="Node2D"]
+process_physics_priority = -1
+script = ExtResource("1_fd7xh")

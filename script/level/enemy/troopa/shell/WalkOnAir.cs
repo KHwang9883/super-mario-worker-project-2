@@ -38,7 +38,7 @@ public partial class WalkOnAir : Node {
             return;
         }
         if (_basicMovement.MoveObject.IsOnFloor()) {
-            if (Math.Abs(_basicMovement.MoveObject.Position.Y - _lastOnLandPosY) < 12f) {
+            if (Math.Abs(_basicMovement.MoveObject.Position.Y - _lastOnLandPosY) is < 12f and > 0.8f) {
                 _basicMovement.Gravity = 0f;
             }
             _lastOnLandPosY = _basicMovement.MoveObject.Position.Y;

@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="12_grk8g"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="16_1q4fm"]
 [ext_resource type="PackedScene" uid="uid://dptyprqct11s0" path="res://content/level/enemy/troopa/shell/walk_on_air.tscn" id="19_11cv4"]
+[ext_resource type="PackedScene" uid="uid://dv1l4euat0iyo" path="res://content/level/enemy/troopa/shell/perpetual_motion_machine.tscn" id="20_jg1hu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fl846"]
 atlas = ExtResource("1_6ud8b")
@@ -56,9 +57,6 @@ animations = [{
 "speed": 20.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhxmt"]
-size = Vector2(32, 28)
-
 [node name="ShellMovingGreen" type="CharacterBody2D" groups=["moving_shell"]]
 z_index = 30
 collision_layer = 16
@@ -71,10 +69,10 @@ sprite_frames = SubResource("SpriteFrames_w7xia")
 autoplay = "default"
 
 [node name="AreaBodyCollision" type="ShapeCast2D" parent="."]
-shape = SubResource("RectangleShape2D_rhxmt")
+shape = ExtResource("2_kj41t")
 target_position = Vector2(0, 0)
 max_results = 6
-collision_mask = 16
+collision_mask = 48
 collide_with_areas = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -148,6 +146,10 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 Smwp1LightId = Array[int]([55])
 
 [node name="WalkOnAir" parent="." node_paths=PackedStringArray("_basicMovement") instance=ExtResource("19_11cv4")]
+_basicMovement = NodePath("../BasicMovement")
+
+[node name="PerpetualMotionMachine" parent="." node_paths=PackedStringArray("_shellMovingInteraction", "_basicMovement") instance=ExtResource("20_jg1hu")]
+_shellMovingInteraction = NodePath("../ShellInteraction")
 _basicMovement = NodePath("../BasicMovement")
 
 [connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]

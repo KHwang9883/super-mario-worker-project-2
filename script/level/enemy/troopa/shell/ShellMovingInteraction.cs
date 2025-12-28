@@ -16,7 +16,7 @@ public partial class ShellMovingInteraction : Node {
         _parent.SetMeta("ShellInteraction", this);
     }
     public override void _PhysicsProcess(double delta) {
-        var results = ShapeQueryResult.ShapeQuery(_shell, _shell.GetNode<ShapeCast2D>("AreaBodyCollision"));
+        var results = GetOverlapResult();
 
         foreach (var result in results) {
             // ShapeCast2D ExcludeParent 属性疑似无用，因此额外检查是不是自身
@@ -61,5 +61,9 @@ public partial class ShellMovingInteraction : Node {
                 EmitSignal(SignalName.Harded);
             }
         }
+    }
+
+    public GDC.Array<Node2D> GetOverlapResult() {
+        return ShapeQueryResult.ShapeQuery(_shell, _shell.GetNode<ShapeCast2D>("AreaBodyCollision"));
     }
 }

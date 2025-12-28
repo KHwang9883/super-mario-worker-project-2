@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvcg3dkclrihf"]
+
+[ext_resource type="Script" uid="uid://mw5x33ie7xdp" path="res://script/level/enemy/troopa/shell/PerpetualMotionMachineMarker.cs" id="1_m4g1q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8sly"]
+size = Vector2(32, 32)
+
+[node name="PerpetualMotionMachineMarker" type="StaticBody2D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_m4g1q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_m8sly")
+debug_color = Color(2.4546682e-06, 0.6322983, 0.45642376, 0.41960785)

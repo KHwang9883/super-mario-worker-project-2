@@ -57,7 +57,14 @@ public partial class SmwlLevel : Node2D {
     public async void OnOpenSmwlDialogFileSelected(string file) {
         if (File.Exists(file)) {
             await using var input = File.OpenRead(file);
-            SmwlLoad(input);
+            if (await SmwlLoader.Load(input) is { } data) {
+                GameManager.LevelFileData = data;
+                Install(data);
+            } else {
+                foreach (var error in SmwlLoader.ErrorMessage) {
+                    GD.PrintErr(error);
+                }
+            }
         } else {
             GD.PrintErr($"File {file} does not exist");
         }
