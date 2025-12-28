@@ -53,6 +53,7 @@ public partial class SmwsLevel : Node2D {
         
         _smwlLevel = _smwlLevelScene.Instantiate<SmwlLevel>();
         ScenarioNewLevelLineNum.TryGetValue(CurrentScenarioLevel, out var lineNum);
+        GD.Print($"lineNum: {lineNum}");
         _smwlLevel.SmwlLoader.LineNum = lineNum;
         _smwlLevel.OnOpenSmwlDialogFileSelected(file);
         AddChild(_smwlLevel);

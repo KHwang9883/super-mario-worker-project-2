@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp32vttchoq1u"]
+
+[ext_resource type="Script" uid="uid://by8c8tfpmy03i" path="res://script/ScreenFreeze.cs" id="1_g6ro0"]
+[ext_resource type="Texture2D" uid="uid://cuuuk7nsn0yn" path="res://mw_hammer.png" id="2_1oh2b"]
+
+[node name="ScreenFreeze" type="CanvasLayer" node_paths=PackedStringArray("_frozenScreenSprite")]
+layer = 8
+visible = false
+script = ExtResource("1_g6ro0")
+_frozenScreenSprite = NodePath("FrozenScreenTexture")
+
+[node name="FrozenScreenTexture" type="Sprite2D" parent="."]
+position = Vector2(320, 240)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(580, 416)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("2_1oh2b")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(64, 63.99997)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("2_1oh2b")
+
+[connection signal="ScreenFrozen" from="." to="Timer" method="start"]
+[connection signal="timeout" from="Timer" to="." method="SetInvisible"]

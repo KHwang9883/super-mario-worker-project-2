@@ -174,7 +174,6 @@ RoomHeight = 6400.0
 KoopaEnergy = 3
 WaterHeight = 444.0
 BgpId = 9
-BgmId = 120
 FluidT1 = 448.0
 FluidT2 = 500.0
 FluidSpeed = 3.0
