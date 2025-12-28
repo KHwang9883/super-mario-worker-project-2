@@ -3,28 +3,25 @@
 [ext_resource type="Script" uid="uid://by8c8tfpmy03i" path="res://script/ScreenFreeze.cs" id="1_g6ro0"]
 [ext_resource type="Texture2D" uid="uid://cuuuk7nsn0yn" path="res://mw_hammer.png" id="2_1oh2b"]
 
-[node name="ScreenFreeze" type="CanvasLayer" node_paths=PackedStringArray("_frozenScreenSprite")]
+[node name="ScreenFreeze" type="CanvasLayer" node_paths=PackedStringArray("_frozenScreenSprite", "_loadingSprites")]
+process_priority = 2333
 editor_description = "玩家死亡后关卡重新加载好之前保持当前的画面，防止关卡未加载完毕就渲染而露馅"
-layer = 8
-visible = false
+layer = 32
 script = ExtResource("1_g6ro0")
 _frozenScreenSprite = NodePath("FrozenScreenTexture")
+_loadingSprites = NodePath("LoadingSprites")
 
 [node name="FrozenScreenTexture" type="Sprite2D" parent="."]
 position = Vector2(320, 240)
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 4.0
+[node name="LoadingSprites" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="TestSprite2D" type="Sprite2D" parent="LoadingSprites"]
 position = Vector2(580, 416)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("2_1oh2b")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="TestSprite2D2" type="Sprite2D" parent="LoadingSprites"]
 position = Vector2(64, 63.99997)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("2_1oh2b")
-
-[connection signal="ScreenFrozen" from="." to="Timer" method="start"]
-[connection signal="timeout" from="Timer" to="." method="SetInvisible"]

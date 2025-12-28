@@ -121,7 +121,6 @@ public partial class Title : Node2D {
     public void SetPlayLevelInitialLives() {
         GameManager.Life = GameManager.InitialLivesOfSingleLevel;
     }
-    
     public void JumpToScene(String sceneUid) {
         GetTree().ChangeSceneToFile(sceneUid);
     }

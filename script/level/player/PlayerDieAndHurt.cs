@@ -47,10 +47,14 @@ public partial class PlayerDieAndHurt : Node {
     private float _screenBottom = 9999999f;
     private int _playerInScreenBottomTimer;
     private int _initialFrameDelay;
+    
+    private ScreenFreeze _screenFreeze = null!;
 
     public override void _Ready() {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         _levelCamera ??= (LevelCamera)GetTree().GetFirstNodeInGroup("camera");
+        
+        _screenFreeze = GetTree().Root.GetNode<ScreenFreeze>("ScreenFreeze");
     }
     public override void _PhysicsProcess(double delta) {
         if (_levelConfig == null) {
@@ -65,6 +69,12 @@ public partial class PlayerDieAndHurt : Node {
         if (_dead) {
             _deadTimer++;
             var deadTime = !_levelConfig.FastRetry ? 180 : 90;
+            
+            // 冻结画面用，防止重新加载关卡准备完毕前画面渲染导致露馅
+            if (_deadTimer >= deadTime - 2 && GameManager.Life > 0) {   // 别问，问就是给延迟留足时间
+                _screenFreeze.SetFreeze();
+            }
+            
             if (_deadTimer >= deadTime) {
                 // 设置状态全局记录
                 GameManager.PlayerSuitRestore = _playerMediator.playerSuit.Suit;
