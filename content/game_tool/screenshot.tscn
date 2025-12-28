@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bipvy6jycubj5"]
+
+[ext_resource type="Script" uid="uid://bkbp4pfj6tn0u" path="res://script/Screenshot.cs" id="1_j33i6"]
+
+[node name="Screenshot" type="Node"]
+script = ExtResource("1_j33i6")

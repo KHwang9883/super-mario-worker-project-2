@@ -26,49 +26,16 @@ public partial class ScreenFreeze : CanvasLayer {
     }
 
     public void DrawFreeze() {
-        if (Input.IsActionJustPressed("screenshot")) {
+        // 画面暂留
+        
+        // Todo: test button
+        if (Input.IsActionJustPressed("confirm")) {
             var viewport = GetTree().Root.GetViewport();
             var viewportTexture = viewport.GetTexture();
             _resolution = viewportTexture.GetSize();
             _frozenScreenImage = viewportTexture.GetImage();
             Visible = true;
-            
-            // 保存游戏截图
-            SavePngFile();
-            GD.Print(_frozenScreenImage);
         }
-    }
-
-    public void SavePngFile() {
-        string directory = Path.GetDirectoryName(OS.GetExecutablePath())!;
-        string baseName = "smwp2_screenshot_";
-        
-        // 获取目录中所有已有的截图文件
-        string pattern = baseName + "*.png";
-        string[] existingFiles = Directory.GetFiles(directory, pattern);
-        
-        int maxNumber = 0;
-        
-        // 提取已有的最大编号
-        foreach (string file in existingFiles) {
-            string fileName = Path.GetFileNameWithoutExtension(file);
-            if (fileName.StartsWith(baseName)) {
-                string numberPart = fileName.Substring(baseName.Length);
-                if (int.TryParse(numberPart, out int number)) {
-                    if (number > maxNumber) {
-                        maxNumber = number;
-                    }
-                }
-            }
-        }
-        
-        // 下一个编号
-        int nextNumber = maxNumber + 1;
-        string filePath = Path.Combine(directory, $"{baseName}{nextNumber}.png");
-        
-        _frozenScreenImage.SavePng(filePath);
-        
-        GD.Print($"截图已保存: {filePath}");
     }
 
     // 异常的屏幕冻结时长（超时）

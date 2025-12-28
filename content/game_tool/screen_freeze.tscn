@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cuuuk7nsn0yn" path="res://mw_hammer.png" id="2_1oh2b"]
 
 [node name="ScreenFreeze" type="CanvasLayer" node_paths=PackedStringArray("_frozenScreenSprite")]
+editor_description = "玩家死亡后关卡重新加载好之前保持当前的画面，防止关卡未加载完毕就渲染而露馅"
 layer = 8
 visible = false
 script = ExtResource("1_g6ro0")

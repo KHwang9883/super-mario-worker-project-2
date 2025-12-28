@@ -23,9 +23,10 @@ config/icon="uid://cdllu6eprpokv"
 
 GameManager="*res://content/game_manager.tscn"
 SoundManager="*res://content/sound/SoundManager.tscn"
-FpsDisplay="*res://content/fps_display.tscn"
+FpsDisplay="*res://content/game_tool/fps_display.tscn"
 LastInputDevice="*res://content/ui/last_input_device.tscn"
-ScreenFreeze="*res://content/screen_freeze.tscn"
+ScreenFreeze="*res://content/game_tool/screen_freeze.tscn"
+Screenshot="*res://content/game_tool/screenshot.tscn"
 
 [display]
 
