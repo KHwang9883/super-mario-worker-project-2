@@ -36,6 +36,11 @@ public partial class BgmPlayer : AudioStreamPlayer {
             _playerSuit.PlayerStarmanStarted += OnPlayerStarmanStart;
             _playerSuit.PlayerStarmanFinishedBgmReset += OnPlayerStarmanEnd;
             
+            // Checkpoint 场景控制元件更改 BGM 记录
+            if (GameManager.ActivatedCheckpoints.Count > 0) {
+                _levelConfig.BgmId = GameManager.CheckpointBgmId;
+            }
+            
             // Fast Retry 读取 BGM 位置
             if (_levelConfig.BgmId != GameManager.CurrentBgmId) {
                 GameManager.BgmPosition = 0f;

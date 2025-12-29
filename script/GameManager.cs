@@ -38,6 +38,16 @@ public partial class GameManager : Node {
 
     public static bool IsCheckpointWaterHeightRecorded;
     public static float CheckpointWaterHeight;
+    
+    public static int CheckpointBgmId = 1;
+    public static int CheckpointBgpId = 1;
+    public static int CheckpointRainyLevel;
+    public static int CheckpointFallingStarsLevel;
+    public static int CheckpointSnowyLevel;
+    public static int CheckpointThunderLevel;
+    public static int CheckpointWindyLevel;
+    public static int CheckpointDarkness;
+    public static int CheckpointBrightness;
 
     public static bool IsGameOver;
     public static bool IsLevelPass;
@@ -233,8 +243,18 @@ public partial class GameManager : Node {
         
         CurrentCheckpointId = 0;
         ActivatedCheckpoints = [];
+        
         IsCheckpointWaterHeightRecorded = false;
         CheckpointWaterHeight = 0;
+        CheckpointBgmId = 0;
+        CheckpointBgpId = 0;
+        CheckpointRainyLevel = 0;
+        CheckpointFallingStarsLevel = 0;
+        CheckpointSnowyLevel = 0;
+        CheckpointThunderLevel = 0;
+        CheckpointWindyLevel = 0;
+        CheckpointDarkness = 0;
+        CheckpointBrightness = 0;
 
         IsGameOver = false;
         IsLevelPass = false;

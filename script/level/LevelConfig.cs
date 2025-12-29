@@ -111,8 +111,18 @@ public partial class LevelConfig : Node {
         }
         
         // Background Set
-        SetBgp(BgpId);
-        
+        SetBgp(!(GameManager.ActivatedCheckpoints.Count > 0) ? BgpId : GameManager.CheckpointBgpId);
+
+        if (GameManager.ActivatedCheckpoints.Count > 0) {
+            RainyLevel = GameManager.CheckpointRainyLevel;
+            FallingStarsLevel = GameManager.CheckpointFallingStarsLevel;
+            SnowyLevel = GameManager.CheckpointSnowyLevel;
+            ThunderLevel = GameManager.CheckpointThunderLevel;
+            WindyLevel = GameManager.CheckpointWindyLevel;
+            Darkness = GameManager.CheckpointDarkness;
+            Brightness = GameManager.CheckpointBrightness;
+        }
+
         // Bgm 初始化见 BgmPlayer
         
         // Faster Level Pass Set
