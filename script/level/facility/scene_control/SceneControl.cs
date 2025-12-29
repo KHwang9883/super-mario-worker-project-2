@@ -24,6 +24,7 @@ public partial class SceneControl : Area2D {
     [Export] public int Brightness;
     
     private LevelConfig? _levelConfig;
+    private int _activateTimer;
     private bool _triggerred;
 
     public override void _Ready() {
@@ -32,6 +33,10 @@ public partial class SceneControl : Area2D {
         Callable.From(SetLinkedObject).CallDeferred();
     }
     public override void _PhysicsProcess(double delta) {
+        if (_activateTimer < 2) {
+            _activateTimer++;
+            return;
+        }
         if (_triggerred) {
             return;
         }
@@ -40,8 +45,11 @@ public partial class SceneControl : Area2D {
             SetSceneStatus();
         }
     }
-
+    
     public void OnBodyEntered(Node2D body) {
+        if (_activateTimer < 2) {
+            return;
+        }
         SetSceneStatus();
     }
     public void OnBodyExited(Node2D body) {
@@ -91,8 +99,8 @@ public partial class SceneControl : Area2D {
             var rect = viewControl.ViewRect;
             if (Position.X > rect.Position.X
                 && Position.Y > rect.Position.Y
-                && Position.X < rect.End.X
-                && Position.Y < rect.End.Y) {
+                && Position.X < rect.Position.X + 64f
+                && Position.Y < rect.Position.Y + 32f) {
                 CollisionLayer = 0;
                 viewControl.SetSceneControl(this);
             }

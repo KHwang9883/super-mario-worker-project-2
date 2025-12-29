@@ -117,7 +117,6 @@ public partial class SmwlLevel : Node2D {
         _levelConfig.WaterHeight = header.WaterHeight;
         _levelConfig.BgpId = header.BgpId;
         _levelConfig.BgmId = header.BgmId;
-        
     }
 
     private void InstallBlocks(SmwlLevelData data) {

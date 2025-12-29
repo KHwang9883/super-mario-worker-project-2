@@ -38,13 +38,15 @@ public partial class BgmPlayer : AudioStreamPlayer {
             
             // Checkpoint 场景控制元件更改 BGM 记录
             if (GameManager.ActivatedCheckpoints.Count > 0) {
-                _levelConfig.BgmId = GameManager.CheckpointBgmId;
+                _levelConfig.BgmId = GameManager.CurrentBgmId;
+                //GD.Print($"_levelConfig.BgmId: {_levelConfig.BgmId}");
             }
             
             // Fast Retry 读取 BGM 位置
             if (_levelConfig.BgmId != GameManager.CurrentBgmId) {
                 GameManager.BgmPosition = 0f;
             }
+            
             SetBgm(false);
             Play(_levelConfig.FastRetry ? GameManager.BgmPosition : 0f);
         }).CallDeferred();
@@ -116,10 +118,9 @@ public partial class BgmPlayer : AudioStreamPlayer {
         switch (_levelConfig.BgmId) {
             // No Music
             case 600:
-            case <= 0:
+            case <= 0:  // SMWP v1.7 早期版本设置 No Music 的情况
                 Stop();
                 Stream = null;
-                play = false;
                 return;
             // 外置覆盖 BGM
             case < 627:
@@ -181,7 +182,6 @@ public partial class BgmPlayer : AudioStreamPlayer {
         
         foreach (var entry in _levelConfig.BgmDatabase.Entries) {
             if (entry.BgmId != _levelConfig.BgmId) continue;
-            GameManager.CurrentBgmId = _levelConfig.BgmId;
             
             // 先清空原来的 BGM 资源
             Stream = null;

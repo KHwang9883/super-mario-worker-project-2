@@ -129,7 +129,7 @@ public partial class LevelConfig : Node {
         GameManager.IsFasterLevelPass = FasterLevelPass;
         
         // 初始化开关砖
-        Switches = new Godot.Collections.Dictionary<SwitchTypeEnum, bool>();
+        Switches = new Dictionary<SwitchTypeEnum, bool>();
         
         foreach (SwitchTypeEnum type in Enum.GetValues(typeof(SwitchTypeEnum))) {
             Switches.Add(type, false); 
@@ -173,6 +173,8 @@ public partial class LevelConfig : Node {
     
     public void SetBgm(int bgmId) {
         BgmId = bgmId;
+        GameManager.CurrentBgmId = BgmId;
+        //GD.Print($"GameManager.CurrentBgmId: {GameManager.CurrentBgmId}");
         GetNode<BgmPlayer>("BgmPlayer").SetBgm(true);
     }
     public void SetBgp(int bgpId) {
