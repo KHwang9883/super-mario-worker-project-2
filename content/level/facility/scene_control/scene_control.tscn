@@ -14,4 +14,9 @@ script = ExtResource("1_rrqq2")
 shape = SubResource("RectangleShape2D_4npsf")
 debug_color = Color(0.59353757, 0.374498, 1, 0.41960785)
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-16, -16, 32, 32)
+show_rect = false
+
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnBodyExited"]

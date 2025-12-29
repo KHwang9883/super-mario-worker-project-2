@@ -24,15 +24,28 @@ public partial class SceneControl : Area2D {
     [Export] public int Brightness;
     
     private LevelConfig? _levelConfig;
+    private bool _triggerred;
 
     public override void _Ready() {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
 
         Callable.From(SetLinkedObject).CallDeferred();
     }
-    
+    public override void _PhysicsProcess(double delta) {
+        if (_triggerred) {
+            return;
+        }
+        var bodies = GetOverlappingBodies();
+        if (bodies.Count > 0) {
+            SetSceneStatus();
+        }
+    }
+
     public void OnBodyEntered(Node2D body) {
         SetSceneStatus();
+    }
+    public void OnBodyExited(Node2D body) {
+        _triggerred = false;
     }
 
     public void SetLinkedObject() {
