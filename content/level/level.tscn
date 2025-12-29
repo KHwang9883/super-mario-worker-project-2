@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c5d467llk4uur"]
+[gd_scene load_steps=26 format=3 uid="uid://c5d467llk4uur"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/level_loader/SmwlLevel.cs" id="1_rpefo"]
 [ext_resource type="Script" uid="uid://c8yu81i46jf4r" path="res://script/level/level_loader/SmwlLoader.cs" id="1_wc7qm"]
@@ -12,6 +12,12 @@
 [ext_resource type="Resource" uid="uid://dp3ucvu1lpy7l" path="res://content/level/database/object_database_marks.tres" id="7_ysoro"]
 [ext_resource type="Resource" uid="uid://cjm2781r56j71" path="res://content/level/database/object_database_bonus.tres" id="8_ysoro"]
 [ext_resource type="Script" uid="uid://daesa20urbh15" path="res://script/level/tile/BlockTileLayer.cs" id="11_d3lay"]
+[ext_resource type="Texture2D" uid="uid://dhketxxxmk7rt" path="res://content/ui/option.png" id="13_ovbgs"]
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="14_vqugj"]
+[ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="15_23xuv"]
+[ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="16_aecfo"]
+[ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="17_20wvl"]
+[ext_resource type="Texture2D" uid="uid://b15l5knf8un71" path="res://content/ui/smwp_button_normal_with_shadow.png" id="18_fjxnd"]
 
 [sub_resource type="GDScript" id="GDScript_fn8k0"]
 script/source = "extends Camera2D
@@ -24,6 +30,39 @@ func _process(delta: float) -> void:
 	translate(Vector2i(x, y) * speed * delta)
 	return
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrvep"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mkpa"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdnmx"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1a3sc"]
+draw_center = false
+
+[sub_resource type="FontVariation" id="FontVariation_kx81q"]
+base_font = ExtResource("16_aecfo")
+variation_embolden = 1.0
+variation_transform = Transform2D(1, 0, 0, 1.4, 0, 0)
+spacing_glyph = 1
+spacing_top = 5
+
+[sub_resource type="Theme" id="Theme_x3yqh"]
+default_font = SubResource("FontVariation_kx81q")
+default_font_size = 9
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0.2, 0.2, 0.2, 0.7294118)
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 11
+Button/styles/focus = SubResource("StyleBoxFlat_yrvep")
+Button/styles/hover = SubResource("StyleBoxFlat_6mkpa")
+Button/styles/normal = SubResource("StyleBoxFlat_wdnmx")
+Button/styles/pressed = SubResource("StyleBoxFlat_1a3sc")
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("BlocksTilemap", "DatabaseHolder", "ObstacleTileMap", "SmwlLoader", "OpenSmwlDialog") groups=["smwl_level"]]
 script = ExtResource("1_rpefo")
@@ -55,7 +94,7 @@ _blockTile = NodePath("..")
 _targetZIndex = Dictionary[int, int]({
 0: 350,
 1: 96,
-2: 20
+2: 35
 })
 
 [node name="SMWL Loader" type="Node" parent="."]
@@ -77,4 +116,58 @@ enabled = false
 process_callback = 0
 script = SubResource("GDScript_fn8k0")
 
+[node name="Basic" type="Control" parent="."]
+z_index = -1024
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionBackground" type="Sprite2D" parent="Basic"]
+position = Vector2(320, 240)
+texture = ExtResource("13_ovbgs")
+metadata/_edit_lock_ = true
+
+[node name="Play" type="Label" parent="Basic"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -12.5
+offset_right = 55.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme = ExtResource("14_vqugj")
+text = "Level is Loading..."
+uppercase = true
+
+[node name="Back" parent="Basic" instance=ExtResource("15_23xuv")]
+z_index = 1
+layout_mode = 0
+offset_left = 563.0
+offset_top = 425.0
+offset_right = 622.0
+offset_bottom = 459.0
+theme = SubResource("Theme_x3yqh")
+theme_override_font_sizes/font_size = 12
+text = "BACK"
+alignment = 1
+script = ExtResource("17_20wvl")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Basic/Back"]
+z_index = -1
+position = Vector2(30, 17)
+texture = ExtResource("18_fjxnd")
+
 [connection signal="canceled" from="Open SMWL File" to="." method="JumpToScene" binds= ["uid://2h2s1iqemydd"]]
+[connection signal="pressed" from="Basic/Back" to="Basic/Back" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]

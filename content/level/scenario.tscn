@@ -1,7 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8ls5xyw1g2q5"]
+[gd_scene load_steps=15 format=3 uid="uid://c8ls5xyw1g2q5"]
 
 [ext_resource type="Script" uid="uid://cxhg2y014u5cg" path="res://script/level/level_loader/SmwsLevel.cs" id="1_jtnl8"]
 [ext_resource type="Script" uid="uid://15cgdfnvj6k6" path="res://script/level/level_loader/SmwsLoader.cs" id="2_dyfvc"]
+[ext_resource type="Texture2D" uid="uid://dhketxxxmk7rt" path="res://content/ui/option.png" id="3_3h7le"]
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="4_njp68"]
+[ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="5_jjila"]
+[ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="6_kjihh"]
+[ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="7_x23y0"]
+[ext_resource type="Texture2D" uid="uid://b15l5knf8un71" path="res://content/ui/smwp_button_normal_with_shadow.png" id="8_6wsjs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrvep"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mkpa"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdnmx"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1a3sc"]
+draw_center = false
+
+[sub_resource type="FontVariation" id="FontVariation_kx81q"]
+base_font = ExtResource("6_kjihh")
+variation_embolden = 1.0
+variation_transform = Transform2D(1, 0, 0, 1.4, 0, 0)
+spacing_glyph = 1
+spacing_top = 5
+
+[sub_resource type="Theme" id="Theme_uqlla"]
+default_font = SubResource("FontVariation_kx81q")
+default_font_size = 9
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0.2, 0.2, 0.2, 0.7294118)
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 11
+Button/styles/focus = SubResource("StyleBoxFlat_yrvep")
+Button/styles/hover = SubResource("StyleBoxFlat_6mkpa")
+Button/styles/normal = SubResource("StyleBoxFlat_wdnmx")
+Button/styles/pressed = SubResource("StyleBoxFlat_1a3sc")
 
 [node name="Scenario" type="Node2D" node_paths=PackedStringArray("SmwsLoader")]
 script = ExtResource("1_jtnl8")
@@ -19,4 +58,58 @@ access = 2
 filters = PackedStringArray("*.smwl")
 use_native_dialog = true
 
+[node name="Basic" type="Control" parent="."]
+z_index = -1024
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionBackground" type="Sprite2D" parent="Basic"]
+position = Vector2(320, 240)
+texture = ExtResource("3_3h7le")
+metadata/_edit_lock_ = true
+
+[node name="Play" type="Label" parent="Basic"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -12.5
+offset_right = 55.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme = ExtResource("4_njp68")
+text = "Scenario is Loading..."
+uppercase = true
+
+[node name="Back" parent="Basic" instance=ExtResource("5_jjila")]
+z_index = 1
+layout_mode = 0
+offset_left = 563.0
+offset_top = 425.0
+offset_right = 622.0
+offset_bottom = 459.0
+theme = SubResource("Theme_uqlla")
+theme_override_font_sizes/font_size = 12
+text = "BACK"
+alignment = 1
+script = ExtResource("7_x23y0")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Basic/Back"]
+z_index = -1
+position = Vector2(30, 17)
+texture = ExtResource("8_6wsjs")
+
 [connection signal="canceled" from="Open SMWL File" to="." method="JumpToScene" binds= ["uid://2h2s1iqemydd"]]
+[connection signal="pressed" from="Basic/Back" to="Basic/Back" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]

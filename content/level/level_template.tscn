@@ -77,13 +77,6 @@ animations = [{
 
 [node name="LevelTemplate" type="Node2D"]
 
-[node name="GamePausePopup" parent="." instance=ExtResource("1_f02dn")]
-visible = false
-
-[node name="Control" parent="GamePausePopup" index="1"]
-offset_right = 413.0
-offset_bottom = 96.0
-
 [node name="LevelConfig" type="Node" parent="." groups=["level_config"]]
 process_mode = 3
 script = ExtResource("2_lf2h4")
@@ -124,6 +117,13 @@ texture = SubResource("GradientTexture2D_rgyew")
 [node name="CanvasModulate" type="CanvasModulate" parent="LevelConfig/Weather" groups=["canvas_modulate"]]
 process_mode = 4
 material = SubResource("CanvasItemMaterial_kynl2")
+
+[node name="GamePausePopup" parent="." instance=ExtResource("1_f02dn")]
+visible = false
+
+[node name="Control" parent="GamePausePopup" index="1"]
+offset_right = 413.0
+offset_bottom = 96.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 4
@@ -404,13 +404,13 @@ _water = NodePath("../Water")
 [node name="Water" parent="Fluid" instance=ExtResource("29_s4pso")]
 position = Vector2(0, 444)
 
-[connection signal="pressed" from="GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonYes" to="LevelConfig" method="QuitLevel"]
-[connection signal="pressed" from="GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonNo" to="LevelConfig" method="SetResume"]
 [connection signal="GamePaused" from="LevelConfig" to="GamePausePopup" method="show"]
 [connection signal="GameResumed" from="LevelConfig" to="GamePausePopup" method="hide"]
 [connection signal="ModuleResourceConvert" from="LevelConfig/BgmPlayer" to="LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="LevelConfig/BgmPlayer" to="LevelConfig/BgmPlayer" method="play"]
 [connection signal="tree_exiting" from="LevelConfig/BgmPlayer" to="LevelConfig/BgmPlayer" method="OnTreeExiting"]
+[connection signal="pressed" from="GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonYes" to="LevelConfig" method="QuitLevel"]
+[connection signal="pressed" from="GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonNo" to="LevelConfig" method="SetResume"]
 [connection signal="PlaySoundTimeWarning" from="HUD/HUD" to="HUD/HUD/TimeWarning" method="play"]
 [connection signal="timeout" from="HUD/HUD/SwitchSound/Timer" to="HUD/HUD" method="OnSwitchSoundLabelTimerTimeout"]
 [connection signal="PlaySoundMessageDisplay" from="HUD/MessageDisplay" to="HUD/MessageDisplay/MsgDisplaySE" method="play"]
