@@ -275,6 +275,7 @@ animation = &"PurpleLong"
 autoplay = "RedLong"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = ExtResource("2_tf1pi")
 one_way_collision = true
 
