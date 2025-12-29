@@ -32,6 +32,10 @@ public partial class ScreenFreeze : CanvasLayer {
         _viewport.SizeChanged += UpdateViewportSize;
     }
     public override void _Process(double delta) {
+        if (Input.IsActionJustPressed("confirm")) {
+            var viewport = GetTree().Root.GetViewport();
+            GD.Print($"Size is {viewport.GetStretchTransform()}");
+        }
         if (_freeze) {
             _freezeTimer++;
             if (_freezeTimer >= _freezeTime) {
@@ -69,7 +73,7 @@ public partial class ScreenFreeze : CanvasLayer {
             _frozenScreenSprite.Texture = ImageTexture.CreateFromImage(_frozenScreenImage);
             var textureSize = _frozenScreenImage.GetSize();
             //GD.Print($"The frozen screen texture size is: {textureSize}");
-            _frozenScreenSprite.Scale = _viewportSize / textureSize;
+            _frozenScreenSprite.Scale = Vector2.One / _viewport.GetStretchTransform().Scale;
             Visible = true;
         }
     }
