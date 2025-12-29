@@ -22,7 +22,10 @@ public partial class BackgroundParallax : Parallax2D {
             || (_levelConfig == null)
             || !(Math.Abs(_playerLastPositionX - _player.Position.X) > 0.1f)
             || !(_player.Position.X > screen.Size.X / 2)
-            || !(_player.Position.X < _levelConfig.RoomWidth - screen.Size.X / 2)) return;
+            || !(_player.Position.X < _levelConfig.RoomWidth - screen.Size.X / 2)) {
+            _playerLastPositionX = _player!.Position.X;
+            return;
+        }
         
         var deltaX = _player.Position.X - _playerLastPositionX;
         _playerLastPositionX = _player.Position.X;
