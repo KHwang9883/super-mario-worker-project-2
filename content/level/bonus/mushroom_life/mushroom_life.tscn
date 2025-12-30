@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgp4dh2ioc4gl"]
+[gd_scene load_steps=13 format=3 uid="uid://bgp4dh2ioc4gl"]
 
 [ext_resource type="Texture2D" uid="uid://6tphawnqs6fp" path="res://content/level/bonus/mushroom_life/mushroom_life.png" id="1_acdwr"]
+[ext_resource type="Script" uid="uid://bfcingtbno6hx" path="res://script/level/bonus/mushroom/MarioworkerChaoJiBug.cs" id="2_6sw8c"]
 [ext_resource type="Script" uid="uid://br3a3a746vl0y" path="res://script/level/bonus/mushroom/MushroomAnimation.cs" id="2_80nmw"]
 [ext_resource type="Script" uid="uid://brqbgelfy4s1w" path="res://script/level/bonus/mushroom/MushroomMovement.cs" id="3_sjhgg"]
 [ext_resource type="Script" uid="uid://b60bkp628v2ri" path="res://script/level/bonus/BonusSprout.cs" id="4_ktm21"]
@@ -34,6 +35,16 @@ floor_block_on_wall = false
 position = Vector2(0, 16)
 sprite_frames = SubResource("SpriteFrames_6sw8c")
 offset = Vector2(0, -16)
+script = ExtResource("2_6sw8c")
+
+[node name="MouseDetect" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_filter = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ugk4p")
@@ -81,6 +92,10 @@ script = ExtResource("6_80nmw")
 visible = false
 shape = SubResource("RectangleShape2D_ugk4p")
 debug_color = Color(4.0911136e-06, 0.7277569, 0.0006380212, 0.41960785)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Area2D"]
+rect = Rect2(-16, -16, 32, 32)
+show_rect = false
 
 [node name="AddScoreComponent" type="Node" parent="."]
 script = ExtResource("7_sjhgg")

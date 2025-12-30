@@ -140,6 +140,7 @@ offset_right = -22.0
 offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("11_6dib1")
 _life = NodePath("Life")
 _score = NodePath("Score")

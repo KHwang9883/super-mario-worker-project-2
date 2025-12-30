@@ -22,10 +22,13 @@ OverHpCounter = NodePath("SubViewportContainer/SubViewport/OverHpCounter")
 [node name="SubViewportContainer" type="SubViewportContainer" parent="KoopaHUD"]
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="SubViewport" type="SubViewport" parent="KoopaHUD/SubViewportContainer"]
 transparent_bg = true
+handle_input_locally = false
 size = Vector2i(640, 480)
+render_target_update_mode = 4
 
 [node name="Head" type="TextureRect" parent="KoopaHUD/SubViewportContainer/SubViewport"]
 anchors_preset = 1
