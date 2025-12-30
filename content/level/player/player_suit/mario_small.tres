@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://bs88b30blplhb"]
 
-[ext_resource type="Texture2D" uid="uid://pomneoabybfr" path="res://content/level/player/mario_small.png" id="1_vxhk5"]
+[ext_resource type="Texture2D" uid="uid://pomneoabybfr" path="res://content/level/player/player_suit/mario_small.png" id="1_vxhk5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vxhk5"]
 atlas = ExtResource("1_vxhk5")

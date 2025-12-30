@@ -13,6 +13,7 @@ public partial class MarioworkerChaoJiBug : AnimatedSprite2D {
 
     public override void _Ready() {
         Callable.From(() => {
+            // SMWP1 限定彩蛋
             _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
             if (_levelConfig.SmwpVersion < 2000) {
                 _version = true;
@@ -20,7 +21,7 @@ public partial class MarioworkerChaoJiBug : AnimatedSprite2D {
         }).CallDeferred();
         
         _control = GetNode<Control>("../MouseDetect");
-        GD.Print(_control);
+        //GD.Print(_control);
         _control.MouseEntered += OnMouseEntered;
         _control.MouseExited += OnMouseExited;
     }
