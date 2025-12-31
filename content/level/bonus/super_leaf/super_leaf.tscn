@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdogcnnwijtjy"]
+
+[ext_resource type="Texture2D" uid="uid://klfyb7w6rtku" path="res://content/level/bonus/super_leaf/super_leaf.png" id="1_akbyl"]
+[ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="2_gr8cv"]
+[ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/level/enemy/general_visible_on_screen_enabler_2d.tscn" id="3_pk6bn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fo5h4"]
+size = Vector2(31, 31)
+
+[node name="SuperLeaf" type="Area2D"]
+z_index = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_akbyl")
+offset = Vector2(0.5, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fo5h4")
+debug_color = Color(0.8373251, 0.386871, 0, 0.41960785)
+
+[node name="SmwpPointLight2D" parent="." instance=ExtResource("2_gr8cv")]
+Smwp1LightId = Array[int]([-1])
+
+[node name="GeneralVisibleOnScreenEnabler2d" parent="." instance=ExtResource("3_pk6bn")]
+rect = Rect2(-16, -16, 32, 32)

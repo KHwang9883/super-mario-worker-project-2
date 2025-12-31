@@ -4,6 +4,7 @@ using System;
 using System.Text.RegularExpressions;
 using SMWP.Level.Debug;
 using SMWP.Level.Physics;
+using SMWP.Level.Sound;
 using SMWP.Util;
 
 namespace SMWP.Level.Player;
@@ -21,6 +22,9 @@ public partial class PlayerMovement : Node {
     public delegate void ForceScrollDeathEventHandler();
     [Signal]
     public delegate void PlaySoundPowerDownEventHandler();
+    
+    [Signal]
+    public delegate void PlaySoundSpinEventHandler();
 
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private CharacterBody2D _player = null!;
@@ -66,6 +70,19 @@ public partial class PlayerMovement : Node {
     public float SpeedY;
     private float _lastSpeedY;
     private float _maxFallingSpeed = 13f;
+
+    // 浣熊装
+    public bool RaccoonFall;
+    private int _raccoonFallTimer;
+    private int _raccoonFallTime = 12;
+
+    public int PMeterCounter;
+    public int MaxPMeter = 40;
+    public bool RaccoonAllowFly;
+    public int RaccoonFlyTime = 212;
+    public int RaccoonFlyTimer;
+    private float _raccoonFlySpeedY = -8;
+    [Export] private ContinuousAudioStream2D _pMeterActiveSound = null!;
 
     private float _waterHorizontalAcceleration = 0.05f;
     private float _waterMaxWalkingSpeed = 1f;
@@ -272,7 +289,10 @@ public partial class PlayerMovement : Node {
                 > 0f => 1,
                 _ => Direction,
             };
-
+            
+            // 浣熊装奔跑
+            RaccoonRun();
+            
             // y 速度
             _lastSpeedY = SpeedY;
 
@@ -506,10 +526,13 @@ public partial class PlayerMovement : Node {
 
         // Debug
         //GD.Print(ShapeQueryResult.ShapeQuery(this, GetNode<ShapeCast2D>("AreaBodyCollision")));
-
+        
+        // 浣熊装 y 速度
+        RaccoonFly();
+        
         // 重力
         SpeedY += (IsInWater ? 0.2f : 1.0f);
-
+        
         // GM8版注释：尝试性修复非整格实心穿墙
         // 为保持精确性，故各自方向速度为零分别进行一次取整，但是该做法会导致楼梯地形贴墙原地起跳边缘卡脚，因此禁用
 
@@ -587,6 +610,8 @@ public partial class PlayerMovement : Node {
     // 玩家踩踏处理
     public void OnPlayerStomp(float stompSpeedY = 8f) {
         SpeedY = stompSpeedY;
+        // 浣熊装飞行时踩踏：续航飞行时间
+        RaccoonFlyTimer = 0;
     }
 
     public void InWaterDetect() {
@@ -999,5 +1024,108 @@ public partial class PlayerMovement : Node {
         _levelCamera.LimitTop = 0;
         _levelCamera.LimitRight = (int)_levelConfig.RoomWidth;
         _levelCamera.LimitBottom = (int)_levelConfig.RoomHeight;
+    }
+
+    public void RaccoonRun() {
+        // 不在状态时 P-Meter 依然计数，允许奔跑满足条件后获取状态的瞬间立即起飞
+        if (RaccoonAllowFly && PMeterCounter < MaxPMeter) {
+            RaccoonAllowFly = false;
+        }
+        if (IsRaccoonDashAble()
+            && !IsInWater
+            && _player.IsOnFloorOnly()) {
+            if (PMeterCounter < MaxPMeter) {
+                PMeterCounter++;
+            }
+        } else {
+            if (!RaccoonAllowFly) {
+                PMeterCounter = Mathf.Clamp(PMeterCounter - 1, 0, MaxPMeter);
+            }
+        }
+        if (IsInWater) {
+            PMeterCounter = 0;
+            RaccoonAllowFly = false;
+        }
+        
+        // 不在状态时清空状态相关变量（不清空奔跑检测，但是不允许飞行与存留飞行计时）
+        if (_playerMediator.playerSuit is not
+            { Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon }) {
+            RaccoonFlyTimer = 0;
+            RaccoonAllowFly = false;
+            _pMeterActiveSound.Stop();
+            return;
+        }
+        
+        if (PMeterCounter >= MaxPMeter) {
+            RaccoonAllowFly = true;
+        }
+
+        if (RaccoonAllowFly) {
+            // 飞行时在地面上奔跑可以续上飞行时间
+            if (Mathf.Abs(SpeedX) > _maxRunningSpeed * 0.75f
+                && !IsInWater
+                && _player.IsOnFloorOnly()) {
+                RaccoonFlyTimer = 0;
+            }
+            if (!_pMeterActiveSound.Playing) {
+                _pMeterActiveSound.Play();
+            }
+            PMeterCounter = MaxPMeter;
+            if (!_player.IsOnFloor()) {
+                RaccoonFlyTimer += 1;
+            }
+            if (_player.IsOnFloor() && !IsRaccoonDashAble()) {
+                RaccoonFlyTimer += 6;
+            }
+            if (RaccoonFlyTimer > RaccoonFlyTime) {
+                RaccoonFlyTimer = 0;
+                RaccoonAllowFly = false;
+                PMeterCounter = 0;
+            }
+        } else {
+            _pMeterActiveSound.Stop();
+        }
+    }
+    public bool IsRaccoonDashAble() {
+        return (Mathf.Abs(SpeedX) > _maxRunningSpeed * 0.75f);
+    }
+    public void RaccoonFly() {
+        // 不在状态时清空状态相关变量
+        if (_playerMediator.playerSuit
+            is not{ Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon }) {
+            _raccoonFallTimer = 0;
+        }
+        
+        if (SpeedY > 0f
+            && Input.IsActionJustPressed("move_jump")
+            && !RaccoonFall
+            && !IsInWater
+            && !RaccoonAllowFly) {
+            RaccoonFall = true;
+            SpeedX = Mathf.Min(_maxRunningSpeed * 0.5f, SpeedX);
+            EmitSignal(SignalName.PlaySoundSpin);
+        }
+        if (_playerMediator.playerSuit
+                is { Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon }
+            && Input.IsActionJustPressed("move_jump")
+            && RaccoonAllowFly
+            && !Jumped) {
+            SpeedY = _raccoonFlySpeedY;
+            SpeedX = Mathf.Min(_maxRunningSpeed * 0.5f, SpeedX);
+            EmitSignal(SignalName.PlaySoundSpin);
+        }
+        if (RaccoonFall) {
+            if (SpeedY > 0f && !IsInWater) {
+                SpeedY = _gravity / 5f;
+                _raccoonFallTimer++;
+                if (_raccoonFallTimer > _raccoonFallTime) {
+                    _raccoonFallTimer = 0;
+                    RaccoonFall = false;
+                }
+            } else {
+                _raccoonFallTimer = 0;
+                RaccoonFall = false;
+            }
+        }
     }
 }

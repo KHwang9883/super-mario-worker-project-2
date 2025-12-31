@@ -1,12 +1,11 @@
 using Godot;
 using System;
-using SMWP.Level.Player;
 
 namespace SMWP.Level.Player;
 
 public partial class PlayerAnimation : Node {
     [Export] private PlayerMediator _playerMediator = null!;
-    [Export] private AnimatedSprite2D _animatedSprite2D = null!;
+    [Export] private AnimatedSprite2D _ani = null!;
     [Export] private CharacterBody2D _player = null!;
 
     [Export] private SpriteFrames _marioSmall = null!;
@@ -14,6 +13,7 @@ public partial class PlayerAnimation : Node {
     [Export] private SpriteFrames _marioFireball = null!;
     [Export] private SpriteFrames _marioBeetroot = null!;
     [Export] private SpriteFrames _marioLui = null!;
+    [Export] private SpriteFrames _marioRaccoon = null!;
     
     [Export] private PackedScene _playerEffectScene = null!;
     
@@ -44,51 +44,54 @@ public partial class PlayerAnimation : Node {
     public override void _PhysicsProcess(double delta) {
         // 水管传送状态的动画处理
         if (_playerMediator.playerMovement.IsInPipeTransport) {
-            _animatedSprite2D.Frame = 0;
-            if (_animatedSprite2D.GetAnimation().Equals("shoot")) {
-                _animatedSprite2D.Play("idle");
+            _ani.Frame = 0;
+            if (_ani.GetAnimation().Equals("shoot")) {
+                _ani.Play("idle");
             }
             if (_playerMediator.playerMovement.IsInWater) {
-                _animatedSprite2D.Play("swim");
+                _ani.Play("swim");
             }
-            if (_animatedSprite2D.GetAnimation().Equals("swim")
+            if (_ani.GetAnimation().Equals("swim")
                 && !_playerMediator.playerMovement.IsInWater) {
-                _animatedSprite2D.Play("jump");
+                _ani.Play("jump");
             }
             if (_playerMediator.playerMovement.PipeTransportDir
                 is not (PlayerMovement.PipeTransportDirection.Left
                 or PlayerMovement.PipeTransportDirection.Right)) return;
-            _animatedSprite2D.FlipH = (_player.Position.X - _lastPlayerX < 0f);
+            _ani.FlipH = (_player.Position.X - _lastPlayerX < 0f);
             _lastPlayerX = _player.Position.X;
             return;
         }
         
         // 上帝模式飞行状态下动画禁用处理
         if (_playerMediator.playerGodMode.IsGodFly) {
-            _animatedSprite2D.ProcessMode = ProcessModeEnum.Disabled;
+            _ani.ProcessMode = ProcessModeEnum.Disabled;
             return;
         }
-        _animatedSprite2D.ProcessMode = ProcessModeEnum.Inherit;
+        _ani.ProcessMode = ProcessModeEnum.Inherit;
         
         // Powerup SpriteFrames
         if (!_hurting) {
             switch (_playerMediator.playerSuit.Suit) {
                 case PlayerSuit.SuitEnum.Small:
-                    _animatedSprite2D.SpriteFrames = _marioSmall;
+                    _ani.SpriteFrames = _marioSmall;
                     break;
                 case PlayerSuit.SuitEnum.Super:
-                    _animatedSprite2D.SpriteFrames = _marioSuper;
+                    _ani.SpriteFrames = _marioSuper;
                     break;
                 case PlayerSuit.SuitEnum.Powered:
                     switch (_playerMediator.playerSuit.Powerup) {
                         case PlayerSuit.PowerupEnum.Fireball:
-                            _animatedSprite2D.SpriteFrames = _marioFireball;
+                            _ani.SpriteFrames = _marioFireball;
                             break;
                         case PlayerSuit.PowerupEnum.Beetroot:
-                            _animatedSprite2D.SpriteFrames = _marioBeetroot;
+                            _ani.SpriteFrames = _marioBeetroot;
                             break;
                         case PlayerSuit.PowerupEnum.Lui:
-                            _animatedSprite2D.SpriteFrames = _marioLui;
+                            _ani.SpriteFrames = _marioLui;
+                            break;
+                        case PlayerSuit.PowerupEnum.Raccoon:
+                            _ani.SpriteFrames = _marioRaccoon;
                             break;
                     }
                     break;
@@ -100,71 +103,96 @@ public partial class PlayerAnimation : Node {
 
         // Direction
         if (_playerMovement.SpeedX > 0f) {
-            _animatedSprite2D.FlipH = false;
+            _ani.FlipH = false;
         } else if (_playerMovement.SpeedX < 0f) {
-            _animatedSprite2D.FlipH = true;
+            _ani.FlipH = true;
         }
         
         // Walk Jump Idle Fire
         if (!_playerMovement.IsInWater) {
             if (!_player.IsOnFloor()) {
-                _animatedSprite2D.Animation = "jump";
+                // 浣熊装
+                if (_playerMediator.playerSuit
+                    is { Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon }
+                    ) {
+                    if (_playerMovement.RaccoonFall && !_ani.Animation.Equals("fall")) {
+                        _ani.Play("fall");
+                    }
+                    if (_playerMovement.RaccoonAllowFly && !_ani.Animation.Equals("fly")) {
+                        _ani.Play("fly");
+                    }
+                    if (_playerMovement is { RaccoonFall: false, RaccoonAllowFly: false }) {
+                        _ani.Animation = "jump";
+                    }
+                }
+                else {
+                    _ani.Animation = "jump";
+                }
             } else {
-                if (Fire && _animatedSprite2D.SpriteFrames.HasAnimation("shoot")) {
-                    _animatedSprite2D.Play("shoot");
+                if (Fire && _ani.SpriteFrames.HasAnimation("shoot")) {
+                    _ani.Play("shoot");
                 } else if (Mathf.Abs(_playerMovement.SpeedX) < 0.01f) {
-                    _animatedSprite2D.Animation = "idle";
+                    _ani.Animation = "idle";
                 } else {
-                    _animatedSprite2D.Animation = "walk";
-                    if (!_hurting && !_powerupChanging) {
-                        _imageIndex += _playerMovement.SpeedX / 10f;
-                        _frameCount = _animatedSprite2D.SpriteFrames.GetFrameCount("walk");
-                        if (_frameCount > 0) {
-                            int frame = (int)Mathf.Abs(_imageIndex) % _frameCount;
-                            _animatedSprite2D.Frame = frame;
+                    if (_playerMediator.playerSuit
+                        is { Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon }
+                       && _playerMovement.RaccoonAllowFly
+                       && _playerMovement.IsRaccoonDashAble()) {
+                        _ani.Play("run");
+                    }
+                    else {
+                        _ani.Animation = "walk";
+                        if (!_hurting && !_powerupChanging) {
+                            _imageIndex += _playerMovement.SpeedX / 10f;
+                            _frameCount = _ani.SpriteFrames.GetFrameCount("walk");
+                            if (_frameCount > 0) {
+                                int frame = (int)Mathf.Abs(_imageIndex) % _frameCount;
+                                _ani.Frame = frame;
+                            }
                         }
                     }
+                    
                 }
             }
             if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small
                 && _playerMovement.Crouched) {
-                _animatedSprite2D.Animation = "crouch";
+                _ani.Animation = "crouch";
             }
         } else {
             if (!_player.IsOnFloor()) {
-                if (_animatedSprite2D.Animation != "swim" || _playerMovement.Jumped)
-                    _animatedSprite2D.Play("swim");
+                if (_ani.Animation != "swim" || _playerMovement.Jumped)
+                    _ani.Play("swim");
             } else {
-                if (Fire && _animatedSprite2D.SpriteFrames.HasAnimation("shoot")) {
-                    _animatedSprite2D.Play("shoot");
+                if (Fire && _ani.SpriteFrames.HasAnimation("shoot")) {
+                    _ani.Play("shoot");
                 } else if (Mathf.Abs(_playerMovement.SpeedX) < 0.01f) {
-                    _animatedSprite2D.Animation = "idle";
+                    _ani.Animation = "idle";
                 } else {
-                    _animatedSprite2D.Animation = "walk";
+                    _ani.Animation = "walk";
                     if (!_hurting && !_powerupChanging) {
                         _imageIndex += _playerMovement.SpeedX / 20f;
-                        _frameCount = _animatedSprite2D.SpriteFrames.GetFrameCount("walk");
+                        _frameCount = _ani.SpriteFrames.GetFrameCount("walk");
                         if (_frameCount > 0) {
                             int frame = (int)Mathf.Abs(_imageIndex) % _frameCount;
-                            _animatedSprite2D.Frame = frame;
+                            _ani.Frame = frame;
                         }
                     }
                 }
             }
             if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small
                 && _playerMovement.Crouched) {
-                _animatedSprite2D.Animation = "crouch";
+                _ani.Animation = "crouch";
             }
         }
         // Hurting Animation
         if (_hurting || _powerupChanging) {
             _hurtEffectSinePhase += 10f;
-            _animatedSprite2D.Scale = new Vector2(1f, (float)(1f + Mathf.Sin(Mathf.DegToRad(_hurtEffectSinePhase)) / 3f));
+            _ani.Scale = new Vector2(1f, (float)(1f + Mathf.Sin(Mathf.DegToRad(_hurtEffectSinePhase)) / 3f));
             _hurtAnimationTimer++;
             if (_hurtAnimationTimer > 60) {
                 _hurtAnimationTimer = 0;
                 _hurtEffectSinePhase = 0f;
-                _animatedSprite2D.Scale = new Vector2(1f, 1f);
+                _ani.Scale = new Vector2(1f, 1f);
                 ProcessMode = ProcessModeEnum.Inherit;
                 GetTree().Paused = false;
                 _hurting = false;
@@ -174,7 +202,7 @@ public partial class PlayerAnimation : Node {
         // Hurt Animation
         if (_playerMediator.playerDieAndHurt.IsHurtInvincible && !_hurting && !_powerupChanging) {
             _hurtFlashCounter++;
-            _animatedSprite2D.Visible = ((_hurtFlashCounter / 4) % 2 == 0);
+            _ani.Visible = ((_hurtFlashCounter / 4) % 2 == 0);
         }
         
         // 尝试性加入玩家阴影特效，但是参数不会调，所以暂时禁用
@@ -193,7 +221,7 @@ public partial class PlayerAnimation : Node {
         */
     }
     public void OnJumpStarted() {
-        _animatedSprite2D.Frame = 0;
+        _ani.Frame = 0;
     }
     public void OnPlayerHurt() {
         GetTree().Paused = true;
@@ -201,7 +229,7 @@ public partial class PlayerAnimation : Node {
         _hurting = true;
     }
     public void OnPlayerInvincibleEnded() {
-        _animatedSprite2D.Visible = true;
+        _ani.Visible = true;
         _hurtFlashCounter = 0;
     }
     public void OnPLayerChangingSuit() {
@@ -210,7 +238,7 @@ public partial class PlayerAnimation : Node {
         _powerupChanging = true;
     }
     public void OnAnimationFinished() {
-        if (_animatedSprite2D.Animation == "shoot") {
+        if (_ani.Animation == "shoot") {
             Fire = false;
         }
     }

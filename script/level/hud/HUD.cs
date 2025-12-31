@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level.Player;
 using SMWP.Level.Score;
 using SMWP.Util;
 
@@ -19,8 +20,14 @@ public partial class HUD : Control {
     [Export] private Label _levelInfo = null!;
     [Export] private Label _switchSound = null!;
     [Export] private Label _scrollDisabled = null!;
+
+    [Export] private Control _raccoonBar = null!;
+    [Export] private AnimatedSprite2D _raccoonActive = null!;
+    [Export] private Sprite2D _raccoonProgress = null!;
     
     private Node2D? _player;
+    private PlayerSuit _playerSuit = null!;
+    private PlayerMovement _playerMovement = null!;
     private PlayerGodMode? _godModeNode;
     private LevelConfig? _levelConfig;
     
@@ -33,6 +40,10 @@ public partial class HUD : Control {
 
     public override void _Ready() {
         _player ??= (Node2D)GetTree().GetFirstNodeInGroup("player");
+        Callable.From(() => {
+            _playerSuit = (PlayerSuit)_player.GetMeta("PlayerSuit");
+            _playerMovement = (PlayerMovement)_player.GetMeta("PlayerMovement");
+        }).CallDeferred();
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         if (!_levelConfig.HUDDisplay) Visible = false;
         _levelInfo.Text =
@@ -106,6 +117,13 @@ public partial class HUD : Control {
         
         // God Mode 强制滚屏禁用
         _scrollDisabled.Visible = _godModeNode.ForceScrollDisabled;
+        
+        // 浣熊装
+        _raccoonBar.Visible = _playerSuit
+            is { Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon };
+        _raccoonProgress.Frame =
+            (int)((float)_playerMovement.PMeterCounter / (float)_playerMovement.MaxPMeter * 6f);
+        _raccoonActive.Play(_playerMovement.RaccoonAllowFly ? "active" : "default");
     }
     
     public static string YesOrNo(bool boolean) {

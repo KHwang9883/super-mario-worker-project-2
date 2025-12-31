@@ -28,6 +28,7 @@ public partial class PlayerSuit : Node {
         Fireball,
         Beetroot,
         Lui,
+        Raccoon,
     }
     [Export] public PowerupEnum Powerup = PowerupEnum.Fireball;
     [Export] public bool Starman;

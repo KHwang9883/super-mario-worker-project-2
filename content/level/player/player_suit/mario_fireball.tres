@@ -2,55 +2,55 @@
 
 [ext_resource type="Texture2D" uid="uid://cjwmn08wu7riq" path="res://content/level/player/player_suit/mario_fireball.png" id="1_5uru1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mth83"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6upb"]
 atlas = ExtResource("1_5uru1")
-region = Rect2(288, 0, 48, 64)
+region = Rect2(288, 0, 48, 66)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6t6v3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_75qpd"]
 atlas = ExtResource("1_5uru1")
-region = Rect2(0, 0, 48, 64)
+region = Rect2(0, 0, 48, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnhmh"]
 atlas = ExtResource("1_5uru1")
-region = Rect2(240, 0, 48, 64)
+region = Rect2(240, 0, 48, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5uru1"]
 atlas = ExtResource("1_5uru1")
-region = Rect2(192, 0, 48, 64)
+region = Rect2(192, 0, 48, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ddnbu"]
 atlas = ExtResource("1_5uru1")
-region = Rect2(336, 0, 48, 64)
+region = Rect2(336, 0, 48, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_noad2"]
 atlas = ExtResource("1_5uru1")
-region = Rect2(384, 0, 48, 64)
+region = Rect2(384, 0, 48, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahj8q"]
 atlas = ExtResource("1_5uru1")
-region = Rect2(432, 0, 48, 64)
+region = Rect2(432, 0, 48, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0r3w8"]
 atlas = ExtResource("1_5uru1")
-region = Rect2(480, 0, 48, 64)
+region = Rect2(480, 0, 48, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5jyg"]
 atlas = ExtResource("1_5uru1")
-region = Rect2(0, 0, 48, 64)
+region = Rect2(0, 0, 48, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l3d54"]
 atlas = ExtResource("1_5uru1")
-region = Rect2(96, 0, 48, 64)
+region = Rect2(96, 0, 48, 66)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jbef6"]
 atlas = ExtResource("1_5uru1")
-region = Rect2(48, 0, 48, 64)
+region = Rect2(48, 0, 48, 66)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mth83")
+"texture": SubResource("AtlasTexture_e6upb")
 }],
 "loop": false,
 "name": &"crouch",
@@ -58,7 +58,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6t6v3")
+"texture": SubResource("AtlasTexture_75qpd")
 }],
 "loop": false,
 "name": &"idle",

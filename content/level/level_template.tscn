@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://btrs3yxvgq8sl"]
+[gd_scene load_steps=24 format=3 uid="uid://btrs3yxvgq8sl"]
 
 [ext_resource type="PackedScene" uid="uid://d2yrgj2s3hg6f" path="res://content/ui/popup/smwp_popup_game_pause.tscn" id="1_f02dn"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="2_lf2h4"]
@@ -10,16 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://b1dp7ghajo2rv" path="res://content/level/weather/weather_controller.tscn" id="8_ns3tf"]
 [ext_resource type="PackedScene" uid="uid://brdcmv5xpmxgc" path="res://content/level/weather/wind/wind.tscn" id="9_wdsgs"]
 [ext_resource type="Shader" uid="uid://jyowme5g625v" path="res://content/level/weather/light/smwp_point_light_2d.gdshader" id="10_wiivk"]
-[ext_resource type="Script" uid="uid://c7ql70nglpnhx" path="res://script/level/hud/HUD.cs" id="11_6dib1"]
+[ext_resource type="PackedScene" uid="uid://c1as2qsn1iqfx" path="res://content/level/hud/hud.tscn" id="11_f0nw8"]
 [ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="12_6hwhs"]
-[ext_resource type="Texture2D" uid="uid://celf82o4sjyxr" path="res://content/level/hud/mw/hud_mw_coin.png" id="13_0tnlk"]
-[ext_resource type="AudioStream" uid="uid://crsc1hhhou5gu" path="res://content/sound/time_warning.se.wav" id="14_hd0qj"]
-[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="15_rek63"]
-[ext_resource type="Texture2D" uid="uid://c2qyxcvftu6cd" path="res://content/level/hud/game_over.png" id="16_ti3gh"]
-[ext_resource type="FontFile" uid="uid://cy77repuuq0o7" path="res://content/level/hud/最像素EX2.ttf" id="17_whxgr"]
-[ext_resource type="Script" uid="uid://dhpcfsgd4eu3h" path="res://script/level/hud/MessageDisplay.cs" id="18_xcl7m"]
-[ext_resource type="AudioStream" uid="uid://4ja2i3t2p3r4" path="res://content/sound/message.se.wav" id="19_jxf7a"]
-[ext_resource type="AudioStream" uid="uid://cborw2h6n706m" path="res://content/sound/switch.se.wav" id="20_o7hhm"]
 [ext_resource type="PackedScene" uid="uid://fapw8rhv275x" path="res://content/level/enemy/koopa/koopa_hud.tscn" id="21_u3sfa"]
 [ext_resource type="Script" uid="uid://dsl20o7a2l7a0" path="res://script/level/debug/TestLabel.cs" id="22_wbivr"]
 [ext_resource type="PackedScene" uid="uid://dwkukt5v4t3p5" path="res://content/level/player/player.tscn" id="25_7m4a3"]
@@ -45,35 +37,6 @@ height = 480
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kynl2"]
 blend_mode = 2
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
-atlas = ExtResource("13_0tnlk")
-region = Rect2(0, 0, 50, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6xv5h"]
-atlas = ExtResource("13_0tnlk")
-region = Rect2(0, 20, 50, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iae4c"]
-atlas = ExtResource("13_0tnlk")
-region = Rect2(0, 40, 50, 20)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_venmc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d2gt5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6xv5h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iae4c")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
 
 [node name="LevelTemplate" type="Node2D"]
 
@@ -125,242 +88,7 @@ visible = false
 offset_right = 413.0
 offset_bottom = 96.0
 
-[node name="HUD" type="CanvasLayer" parent="."]
-layer = 4
-
-[node name="HUD" type="Control" parent="HUD" node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite", "_godPosition", "_levelInfo", "_switchSound", "_scrollDisabled")]
-process_mode = 3
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 10.0
-offset_right = -22.0
-offset_bottom = -12.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("11_6dib1")
-_life = NodePath("Life")
-_score = NodePath("Score")
-_levelTitle = NodePath("LevelTitle")
-_timeHUD = NodePath("Time")
-_timeCounter = NodePath("Time/TimeCounter")
-_coin = NodePath("Coin")
-_gameOverSprite = NodePath("GameOver")
-_godPosition = NodePath("GodPosition")
-_levelInfo = NodePath("LevelInfo")
-_switchSound = NodePath("SwitchSound")
-_scrollDisabled = NodePath("ScrollDisabled")
-metadata/_edit_lock_ = true
-
-[node name="Life" type="Label" parent="HUD/HUD"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("12_6hwhs")
-text = "Mario 4"
-uppercase = true
-metadata/_edit_lock_ = true
-
-[node name="Score" type="Label" parent="HUD/HUD"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("12_6hwhs")
-text = "0"
-uppercase = true
-metadata/_edit_lock_ = true
-
-[node name="LevelTitle" type="Label" parent="HUD/HUD"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.33
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("12_6hwhs")
-theme_override_colors/font_outline_color = Color(0.13725491, 0.13725491, 0.5176471, 1)
-theme_override_constants/outline_size = 8
-text = "Level 1"
-horizontal_alignment = 1
-uppercase = true
-metadata/_edit_lock_ = true
-
-[node name="Time" type="Control" parent="HUD/HUD"]
-layout_mode = 1
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="Time" type="Label" parent="HUD/HUD/Time"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.92
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 502.32
-offset_right = 541.12
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("12_6hwhs")
-text = "Time"
-horizontal_alignment = 1
-uppercase = true
-metadata/_edit_lock_ = true
-
-[node name="TimeCounter" type="Label" parent="HUD/HUD/Time"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.92
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 497.26
-offset_top = 16.0
-offset_right = 551.06
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("12_6hwhs")
-text = "600"
-horizontal_alignment = 1
-uppercase = true
-metadata/_edit_lock_ = true
-
-[node name="Coin" type="Label" parent="HUD/HUD"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.303
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("12_6hwhs")
-text = "0"
-uppercase = true
-metadata/_edit_lock_ = true
-
-[node name="LevelInfo" type="Label" parent="HUD/HUD"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -140.0
-offset_right = 243.0
-offset_bottom = -20.0
-grow_vertical = 0
-theme = ExtResource("12_6hwhs")
-theme_override_constants/line_spacing = 12
-text = "Modified Movement: Yes
-Advanced Switch: Yes
-MF Style Beet: Yes
-Celeste Style Switch: Yes
-MF Style Pipe Exit: No"
-uppercase = true
-metadata/_edit_lock_ = true
-
-[node name="SwitchSound" type="Label" parent="HUD/HUD"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("12_6hwhs")
-text = "Switch Sound: OFF"
-horizontal_alignment = 2
-vertical_alignment = 2
-uppercase = true
-metadata/_edit_lock_ = true
-
-[node name="Timer" type="Timer" parent="HUD/HUD/SwitchSound"]
-
-[node name="GodPosition" type="Label" parent="HUD/HUD"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("12_6hwhs")
-text = "(000, 000)"
-horizontal_alignment = 2
-vertical_alignment = 2
-uppercase = true
-metadata/_edit_lock_ = true
-
-[node name="ScrollDisabled" type="Label" parent="HUD/HUD"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -20.0
-offset_right = 243.0
-offset_bottom = 8.0
-grow_vertical = 0
-theme = ExtResource("12_6hwhs")
-theme_override_constants/line_spacing = 12
-text = "Scroll Disabled"
-uppercase = true
-metadata/_edit_lock_ = true
-
-[node name="HUDCoin" type="AnimatedSprite2D" parent="HUD/HUD"]
-position = Vector2(167, 14)
-sprite_frames = SubResource("SpriteFrames_venmc")
-autoplay = "default"
-metadata/_edit_lock_ = true
-
-[node name="TimeWarning" type="AudioStreamPlayer2D" parent="HUD/HUD"]
-stream = ExtResource("14_hd0qj")
-script = ExtResource("15_rek63")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
-
-[node name="GameOver" type="Sprite2D" parent="HUD/HUD"]
-visible = false
-position = Vector2(288, 230)
-texture = ExtResource("16_ti3gh")
-
-[node name="MessageDisplay" type="Label" parent="HUD" groups=["message_display"]]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 128.0
-offset_top = -100010.0
-offset_right = 99487.0
-offset_bottom = -10.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("17_whxgr")
-theme_override_font_sizes/font_size = 20
-vertical_alignment = 2
-script = ExtResource("18_xcl7m")
-metadata/_edit_lock_ = true
-
-[node name="MsgDisplaySE" type="AudioStreamPlayer2D" parent="HUD/MessageDisplay"]
-stream = ExtResource("19_jxf7a")
-script = ExtResource("15_rek63")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
-
-[node name="MsgUndisplaySE" type="AudioStreamPlayer2D" parent="HUD/MessageDisplay"]
-stream = ExtResource("20_o7hhm")
-script = ExtResource("15_rek63")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
+[node name="HUD" parent="." instance=ExtResource("11_f0nw8")]
 
 [node name="KoopaHUD" parent="." instance=ExtResource("21_u3sfa")]
 layer = 3
@@ -412,9 +140,5 @@ position = Vector2(0, 444)
 [connection signal="tree_exiting" from="LevelConfig/BgmPlayer" to="LevelConfig/BgmPlayer" method="OnTreeExiting"]
 [connection signal="pressed" from="GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonYes" to="LevelConfig" method="QuitLevel"]
 [connection signal="pressed" from="GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonNo" to="LevelConfig" method="SetResume"]
-[connection signal="PlaySoundTimeWarning" from="HUD/HUD" to="HUD/HUD/TimeWarning" method="play"]
-[connection signal="timeout" from="HUD/HUD/SwitchSound/Timer" to="HUD/HUD" method="OnSwitchSoundLabelTimerTimeout"]
-[connection signal="PlaySoundMessageDisplay" from="HUD/MessageDisplay" to="HUD/MessageDisplay/MsgDisplaySE" method="play"]
-[connection signal="PlaySoundMessageUndisplay" from="HUD/MessageDisplay" to="HUD/MessageDisplay/MsgUndisplaySE" method="play"]
 
 [editable path="GamePausePopup"]

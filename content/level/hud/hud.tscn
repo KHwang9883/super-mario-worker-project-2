@@ -1,0 +1,341 @@
+[gd_scene load_steps=21 format=3 uid="uid://c1as2qsn1iqfx"]
+
+[ext_resource type="Script" uid="uid://c7ql70nglpnhx" path="res://script/level/hud/HUD.cs" id="1_p4kh2"]
+[ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="2_uaqjk"]
+[ext_resource type="Texture2D" uid="uid://celf82o4sjyxr" path="res://content/level/hud/mw/hud_mw_coin.png" id="3_f5a6m"]
+[ext_resource type="AudioStream" uid="uid://crsc1hhhou5gu" path="res://content/sound/time_warning.se.wav" id="4_2807d"]
+[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="5_67vgx"]
+[ext_resource type="Texture2D" uid="uid://c2qyxcvftu6cd" path="res://content/level/hud/game_over.png" id="6_rb3u4"]
+[ext_resource type="FontFile" uid="uid://cy77repuuq0o7" path="res://content/level/hud/最像素EX2.ttf" id="7_3m03c"]
+[ext_resource type="Texture2D" uid="uid://dxpfrx251golx" path="res://content/level/hud/p_meter_active.png" id="7_f5a6m"]
+[ext_resource type="Texture2D" uid="uid://dywjsmq175xgn" path="res://content/level/hud/p_meter_progress.png" id="8_2807d"]
+[ext_resource type="Script" uid="uid://dhpcfsgd4eu3h" path="res://script/level/hud/MessageDisplay.cs" id="8_7081b"]
+[ext_resource type="AudioStream" uid="uid://4ja2i3t2p3r4" path="res://content/sound/message.se.wav" id="9_fv3wf"]
+[ext_resource type="AudioStream" uid="uid://cborw2h6n706m" path="res://content/sound/switch.se.wav" id="10_8ujtp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2gt5"]
+atlas = ExtResource("3_f5a6m")
+region = Rect2(0, 0, 50, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xv5h"]
+atlas = ExtResource("3_f5a6m")
+region = Rect2(0, 20, 50, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iae4c"]
+atlas = ExtResource("3_f5a6m")
+region = Rect2(0, 40, 50, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_venmc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2gt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xv5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iae4c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67vgx"]
+atlas = ExtResource("7_f5a6m")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb3u4"]
+atlas = ExtResource("7_f5a6m")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3m03c"]
+atlas = ExtResource("7_f5a6m")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7081b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67vgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb3u4")
+}],
+"loop": true,
+"name": &"active",
+"speed": 12.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3m03c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 4
+
+[node name="HUD" type="Control" parent="." node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite", "_godPosition", "_levelInfo", "_switchSound", "_scrollDisabled", "_raccoonBar", "_raccoonActive", "_raccoonProgress")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 10.0
+offset_right = -22.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_p4kh2")
+_life = NodePath("Life")
+_score = NodePath("Score")
+_levelTitle = NodePath("LevelTitle")
+_timeHUD = NodePath("Time")
+_timeCounter = NodePath("Time/TimeCounter")
+_coin = NodePath("Coin")
+_gameOverSprite = NodePath("GameOver")
+_godPosition = NodePath("GodPosition")
+_levelInfo = NodePath("LevelInfo")
+_switchSound = NodePath("SwitchSound")
+_scrollDisabled = NodePath("ScrollDisabled")
+_raccoonBar = NodePath("Raccoon")
+_raccoonActive = NodePath("Raccoon/PMeterActive")
+_raccoonProgress = NodePath("Raccoon/PMeterProgress")
+metadata/_edit_lock_ = true
+
+[node name="Life" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_uaqjk")
+text = "Mario 4"
+uppercase = true
+metadata/_edit_lock_ = true
+
+[node name="Score" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_uaqjk")
+text = "0"
+uppercase = true
+metadata/_edit_lock_ = true
+
+[node name="LevelTitle" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_uaqjk")
+theme_override_colors/font_outline_color = Color(0.13725491, 0.13725491, 0.5176471, 1)
+theme_override_constants/outline_size = 8
+text = "Level 1"
+horizontal_alignment = 1
+uppercase = true
+metadata/_edit_lock_ = true
+
+[node name="Time" type="Control" parent="HUD"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Time" type="Label" parent="HUD/Time"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.92
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 502.32
+offset_right = 541.12
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_uaqjk")
+text = "Time"
+horizontal_alignment = 1
+uppercase = true
+metadata/_edit_lock_ = true
+
+[node name="TimeCounter" type="Label" parent="HUD/Time"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.92
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 497.26
+offset_top = 16.0
+offset_right = 551.06
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_uaqjk")
+text = "600"
+horizontal_alignment = 1
+uppercase = true
+metadata/_edit_lock_ = true
+
+[node name="Coin" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.303
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_uaqjk")
+text = "0"
+uppercase = true
+metadata/_edit_lock_ = true
+
+[node name="LevelInfo" type="Label" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -140.0
+offset_right = 243.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme = ExtResource("2_uaqjk")
+theme_override_constants/line_spacing = 12
+text = "Modified Movement: Yes
+Advanced Switch: Yes
+MF Style Beet: Yes
+Celeste Style Switch: Yes
+MF Style Pipe Exit: No"
+uppercase = true
+metadata/_edit_lock_ = true
+
+[node name="SwitchSound" type="Label" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_uaqjk")
+text = "Switch Sound: OFF"
+horizontal_alignment = 2
+vertical_alignment = 2
+uppercase = true
+metadata/_edit_lock_ = true
+
+[node name="Timer" type="Timer" parent="HUD/SwitchSound"]
+
+[node name="GodPosition" type="Label" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_uaqjk")
+text = "(000, 000)"
+horizontal_alignment = 2
+vertical_alignment = 2
+uppercase = true
+metadata/_edit_lock_ = true
+
+[node name="ScrollDisabled" type="Label" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+offset_right = 243.0
+offset_bottom = 8.0
+grow_vertical = 0
+theme = ExtResource("2_uaqjk")
+theme_override_constants/line_spacing = 12
+text = "Scroll Disabled"
+uppercase = true
+metadata/_edit_lock_ = true
+
+[node name="HUDCoin" type="AnimatedSprite2D" parent="HUD"]
+position = Vector2(167, 14)
+sprite_frames = SubResource("SpriteFrames_venmc")
+autoplay = "default"
+metadata/_edit_lock_ = true
+
+[node name="TimeWarning" type="AudioStreamPlayer2D" parent="HUD"]
+stream = ExtResource("4_2807d")
+script = ExtResource("5_67vgx")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="GameOver" type="Sprite2D" parent="HUD"]
+visible = false
+position = Vector2(288, 230)
+texture = ExtResource("6_rb3u4")
+
+[node name="Raccoon" type="Control" parent="HUD"]
+anchors_preset = 0
+offset_left = 96.0
+offset_top = 438.0
+offset_right = 384.0
+offset_bottom = 518.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="PMeterActive" type="AnimatedSprite2D" parent="HUD/Raccoon"]
+position = Vector2(112, 6)
+sprite_frames = SubResource("SpriteFrames_7081b")
+autoplay = "default"
+
+[node name="PMeterProgress" type="Sprite2D" parent="HUD/Raccoon"]
+position = Vector2(48, 14)
+texture = ExtResource("8_2807d")
+vframes = 7
+
+[node name="MessageDisplay" type="Label" parent="." groups=["message_display"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -100010.0
+offset_right = 99487.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("7_3m03c")
+theme_override_font_sizes/font_size = 20
+vertical_alignment = 2
+script = ExtResource("8_7081b")
+metadata/_edit_lock_ = true
+
+[node name="MsgDisplaySE" type="AudioStreamPlayer2D" parent="MessageDisplay"]
+stream = ExtResource("9_fv3wf")
+script = ExtResource("5_67vgx")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="MsgUndisplaySE" type="AudioStreamPlayer2D" parent="MessageDisplay"]
+stream = ExtResource("10_8ujtp")
+script = ExtResource("5_67vgx")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[connection signal="PlaySoundTimeWarning" from="HUD" to="HUD/TimeWarning" method="play"]
+[connection signal="timeout" from="HUD/SwitchSound/Timer" to="HUD" method="OnSwitchSoundLabelTimerTimeout"]
+[connection signal="PlaySoundMessageDisplay" from="MessageDisplay" to="MessageDisplay/MsgDisplaySE" method="play"]
+[connection signal="PlaySoundMessageUndisplay" from="MessageDisplay" to="MessageDisplay/MsgUndisplaySE" method="play"]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=39 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=42 format=3 uid="uid://dwkukt5v4t3p5"]
 
+[ext_resource type="SpriteFrames" uid="uid://bdp171jf0f5bh" path="res://content/level/player/player_suit/mario_raccoon.tres" id="1_0mhof"]
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/level/player/player_suit/mario_small.tres" id="1_o23i7"]
 [ext_resource type="Script" uid="uid://do32t5e0ijewj" path="res://script/level/player/PlayerMediator.cs" id="2_3ac0f"]
 [ext_resource type="Script" uid="uid://b0fnoqvdxlts0" path="res://script/level/player/PlayerInvincibleEffect.cs" id="2_3brj4"]
@@ -31,6 +32,8 @@
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="29_kphem"]
 [ext_resource type="AudioStream" uid="uid://bl5ufvx763kni" path="res://content/bgm/MW/ktkm3.it" id="29_lc6mo"]
 [ext_resource type="Script" uid="uid://bovsx2vj7p1o3" path="res://script/level/player/StarmanSound.cs" id="30_sba15"]
+[ext_resource type="AudioStream" uid="uid://d2357ld8v3x10" path="res://content/sound/smw_spin.wav" id="32_t5v1q"]
+[ext_resource type="AudioStream" uid="uid://woda5s14vv5r" path="res://content/sound/smb3_p_meter.wav" id="33_vkq5q"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0cq6f"]
 blend_mode = 1
@@ -69,7 +72,7 @@ position = Vector2(0, 13)
 sprite_frames = ExtResource("1_o23i7")
 animation = &"idle"
 autoplay = "idle"
-offset = Vector2(0, -32)
+offset = Vector2(0, -33)
 
 [node name="InvincibleEffect" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
 visible = false
@@ -157,12 +160,13 @@ playerAnimation = NodePath("PlayerAnimation")
 playerSuit = NodePath("PlayerSuit")
 playerGodMode = NodePath("PlayerGodMode")
 
-[node name="PlayerMovement" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_onIceArea2D", "_aroundWaterArea2D")]
+[node name="PlayerMovement" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_onIceArea2D", "_aroundWaterArea2D", "_pMeterActiveSound")]
 script = ExtResource("3_i4jjh")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
 _onIceArea2D = NodePath("../../OnIceDetect")
 _aroundWaterArea2D = NodePath("../../AroundWaterDetect")
+_pMeterActiveSound = NodePath("../../RaccoonRun")
 
 [node name="PlayerDieAndHurt" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_gameOverSound")]
 process_mode = 1
@@ -172,16 +176,17 @@ _player = NodePath("../..")
 _playerDeadScene = ExtResource("5_3ac0f")
 _gameOverSound = NodePath("../../GameOver")
 
-[node name="PlayerAnimation" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_animatedSprite2D", "_player")]
+[node name="PlayerAnimation" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_ani", "_player")]
 script = ExtResource("6_o23i7")
 _playerMediator = NodePath("..")
-_animatedSprite2D = NodePath("../../AnimatedSprite2D")
+_ani = NodePath("../../AnimatedSprite2D")
 _player = NodePath("../..")
 _marioSmall = ExtResource("1_o23i7")
 _marioSuper = ExtResource("7_cvehv")
 _marioFireball = ExtResource("8_vx4xa")
 _marioBeetroot = ExtResource("9_5unhu")
 _marioLui = ExtResource("10_tpspr")
+_marioRaccoon = ExtResource("1_0mhof")
 _playerEffectScene = ExtResource("11_q05y8")
 
 [node name="PlayerSuit" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_starmanCombo", "_smwpPointLight2D")]
@@ -189,6 +194,8 @@ script = ExtResource("11_vx4xa")
 _playerMediator = NodePath("..")
 _starmanCombo = NodePath("../../ComboComponent")
 _smwpPointLight2D = NodePath("../../SmwpPointLight2D")
+Suit = 2
+Powerup = 3
 
 [node name="PlayerInteraction" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_starmanCombo", "_addScoreComponent")]
 script = ExtResource("12_tpspr")
@@ -215,19 +222,19 @@ InternalScore = -1
 CustomPosition = Vector2(0, -24)
 metadata/_custom_type_script = "uid://cnbadhjt53rkc"
 
-[node name="PlayerJump" type="AudioStreamPlayer2D" parent="."]
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
 stream = ExtResource("16_sks62")
 script = ExtResource("18_8jrco")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[node name="PlayerSwim" type="AudioStreamPlayer2D" parent="."]
+[node name="Swim" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
 stream = ExtResource("18_fmriv")
 script = ExtResource("18_8jrco")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[node name="PlayerShoot" type="AudioStreamPlayer2D" parent="."]
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
 stream = ExtResource("19_8jrco")
 script = ExtResource("18_8jrco")
@@ -261,6 +268,16 @@ process_mode = 3
 stream = ExtResource("29_lc6mo")
 script = ExtResource("30_sba15")
 
+[node name="Spin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("32_t5v1q")
+script = ExtResource("18_8jrco")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
+[node name="RaccoonRun" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("33_vkq5q")
+script = ExtResource("18_8jrco")
+metadata/_custom_type_script = "uid://yo6j623q6jsk"
+
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("29_kphem")]
 editor_description = "玩家光源与无敌星状态光源一共有两个独立的标记，在 PlayerSuit 组件中特殊处理"
 Smwp1LightId = Array[int]([1, 61])
@@ -268,11 +285,12 @@ Smwp1LightId = Array[int]([1, 61])
 [connection signal="animation_finished" from="AnimatedSprite2D" to="PlayerMediator/PlayerAnimation" method="OnAnimationFinished"]
 [connection signal="ForceScrollDeath" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerDieAndHurt" method="Die"]
 [connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerAnimation" method="OnJumpStarted"]
-[connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="PlayerJump" method="play"]
+[connection signal="JumpStarted" from="PlayerMediator/PlayerMovement" to="Jump" method="play"]
 [connection signal="PipeIn" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerAnimation" method="OnPipeEntered"]
 [connection signal="PlaySoundPowerDown" from="PlayerMediator/PlayerMovement" to="Powerdown" method="play"]
+[connection signal="PlaySoundSpin" from="PlayerMediator/PlayerMovement" to="Spin" method="play"]
 [connection signal="SetPipeOutInvincible" from="PlayerMediator/PlayerMovement" to="PlayerMediator/PlayerDieAndHurt" method="SetHurtInvincible"]
-[connection signal="SwimStarted" from="PlayerMediator/PlayerMovement" to="PlayerSwim" method="play"]
+[connection signal="SwimStarted" from="PlayerMediator/PlayerMovement" to="Swim" method="play"]
 [connection signal="PlaySoundBreak" from="PlayerMediator/PlayerDieAndHurt" to="Break" method="play"]
 [connection signal="PlaySoundGameOver" from="PlayerMediator/PlayerDieAndHurt" to="GameOver" method="play"]
 [connection signal="PlayerDied" from="PlayerMediator/PlayerDieAndHurt" to="PlayerMediator/PlayerInteraction" method="HurtSucceedSet"]
@@ -292,7 +310,7 @@ Smwp1LightId = Array[int]([1, 61])
 [connection signal="PlayerStomp" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerMovement" method="OnPlayerStomp"]
 [connection signal="PlayerStomp" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerDieAndHurt" method="SetStompInvincibleTime" unbinds=1]
 [connection signal="PlayerStompSetSpeedX" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerMovement" method="OnStompSetSpeedX"]
-[connection signal="PlayerShooting" from="PlayerMediator/PlayerShoot" to="PlayerShoot" method="play"]
+[connection signal="PlayerShooting" from="PlayerMediator/PlayerShoot" to="Shoot" method="play"]
 [connection signal="AddLife" from="PlayerMediator/PlayerGodMode" to="AddScoreComponent" method="AddScore"]
 [connection signal="finished" from="GameOver" to="GameOver" method="queue_free"]
 [connection signal="finished" from="Starman" to="Starman" method="play"]
