@@ -85,7 +85,7 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Create or update ref
         id: create-or-update-ref
-        uses: ovsds/create-or-update-ref-action@v1
+        uses: ovsds/create-or-update-ref-action@v1.0.1
         with:
           ref: tags/daily-build
           sha: ${{ github.sha }}
