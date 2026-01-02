@@ -5,13 +5,24 @@ using SMWP.Level.Interface;
 namespace SMWP.Level.Enemy;
 
 [GlobalClass]
-public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, IFireballHittable, IBeetrootHittable, IStarHittable, IShellHittable, IBumpHittable {
+public partial class EnemyInteraction : Node,
+    IStompable,
+    IHurtableAndKillable,
+    IFireballHittable,
+    IBeetrootHittable,
+    IRaccoonTailHittable,
+    IStarHittable,
+    IShellHittable,
+    IBumpHittable {
+    
     [Signal]
     public delegate void StompedEventHandler();
     [Signal]
     public delegate void FireballHitEventHandler();
     [Signal]
     public delegate void BeetrootHitEventHandler();
+    [Signal]
+    public delegate void RaccoonTailHitEventHandler();
     [Signal]
     public delegate void BumpedEventHandler();
     [Signal]
@@ -50,6 +61,11 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
     [Export] public bool ImmuneToBeetroot { get; set; }
     [Export] public bool BeetrootBump { get; set; }
     
+    [ExportGroup("RaccoonTail")]
+    [Export] public bool IsRaccoonTailHittable { get; set; } = true;
+
+    [Export] public bool ImmuneToTail { get; set; }
+    
     [ExportGroup("Star")]
     [Export] public bool IsStarHittable { get; set; } = true;
     [Export] public bool ImmuneToStar { get; set; }
@@ -86,6 +102,9 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
         }
         if (this is IBumpHittable bumpHittable) {
             bumpHittable.MetadataInject(_parent);
+        }
+        if (this is IRaccoonTailHittable tailHittable) {
+            tailHittable.MetadataInject(_parent);
         }
     }
     
@@ -143,6 +162,21 @@ public partial class EnemyInteraction : Node, IStompable, IHurtableAndKillable, 
         OnDied();
         return BeetrootBump;
     }
+    // 尾巴
+    void IRaccoonTailHittable.MetadataInject(Node2D parent) {
+        parent?.SetMeta("InteractionWithTail", this);
+    }
+    public bool OnRaccoonTailHit(Node2D tail) {
+        if (!IsRaccoonTailHittable) return false;
+        if (ImmuneToTail) {
+            return ImmuneToTail;
+        }
+        EmitSignal(SignalName.RaccoonTailHit);
+        OnNormalAddScore();
+        OnDied();
+        return true;
+    }
+
     // 无敌星
     void IStarHittable.MetadataInject(Node2D parent) {
         parent?.SetMeta("InteractionWithStar", this);

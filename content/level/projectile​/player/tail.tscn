@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://jjsjqrrsbj2e"]
+
+[ext_resource type="Script" uid="uid://p4ior5uk4uit" path="res://script/level/projectile​/player/Tail.cs" id="1_pnh36"]
+[ext_resource type="SpriteFrames" uid="uid://bdp171jf0f5bh" path="res://content/level/player/player_suit/mario_raccoon.tres" id="2_s8m7l"]
+[ext_resource type="Script" uid="uid://u03pqr8pkufh" path="res://script/level/projectile​/player/TailInteraction.cs" id="3_s8m7l"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_s8m7l"]
+points = PackedVector2Array(-12, 0, -12, -38, -2, -48, 2, -48, 12, -38, 12, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jx2ji"]
+size = Vector2(18, 24)
+
+[sub_resource type="Animation" id="Animation_ls6oj"]
+length = 0.50000334
+
+[sub_resource type="Animation" id="Animation_s8m7l"]
+resource_name = "right"
+length = 0.50000334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.10000001, 0.20000002, 0.3, 0.50000006),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 20.0, -20.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jf1nl"]
+resource_name = "new_animation"
+length = 0.50000334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.10000001, 0.20000002, 0.3, 0.50000006),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -20.0, 20.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6svbj"]
+_data = {
+&"RESET": SubResource("Animation_ls6oj"),
+&"left": SubResource("Animation_jf1nl"),
+&"right": SubResource("Animation_s8m7l")
+}
+
+[node name="Tail" type="CharacterBody2D" node_paths=PackedStringArray("_tailAniPos") groups=["tail"]]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_pnh36")
+_tailAniPos = NodePath("TailAniPos")
+
+[node name="PreviewRaccoonPlayerAttack" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, 13)
+sprite_frames = ExtResource("2_s8m7l")
+animation = &"shoot"
+frame = 3
+frame_progress = 1.0
+speed_scale = 0.15
+offset = Vector2(0, -33)
+metadata/_edit_lock_ = true
+
+[node name="PreviewAreaBodyCollisionSuper" type="ShapeCast2D" parent="."]
+process_mode = 4
+visible = false
+position = Vector2(0, 12)
+shape = SubResource("ConvexPolygonShape2D_s8m7l")
+target_position = Vector2(0, 0)
+max_results = 6
+collision_mask = 1392
+collide_with_areas = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jx2ji")
+debug_color = Color(0.77908206, 0.43845388, 0, 0.41960785)
+
+[node name="AreaBodyCollision" type="ShapeCast2D" parent="CollisionShape2D"]
+visible = false
+shape = SubResource("RectangleShape2D_jx2ji")
+target_position = Vector2(0, 0)
+max_results = 4
+collision_mask = 2064
+
+[node name="TailInteraction" type="Node" parent="." node_paths=PackedStringArray("_tail", "_cast2D")]
+script = ExtResource("3_s8m7l")
+_tail = NodePath("..")
+_cast2D = NodePath("../CollisionShape2D/AreaBodyCollision")
+
+[node name="TailAniPos" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6svbj")
+}
+
+[connection signal="animation_finished" from="TailAniPos" to="." method="queue_free" unbinds=1]
+[connection signal="animation_started" from="TailAniPos" to="PreviewRaccoonPlayerAttack" method="play" unbinds=1]

@@ -302,7 +302,14 @@ public partial class PlayerMovement : Node {
             }
 
             // 大个子下蹲与起身
-            if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small) {
+            if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small
+               // 浣熊装尾巴攻击
+                && _playerMediator is not
+                { playerSuit:
+                    { Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon },
+                    playerAnimation.Fire: true,
+                }
+               ) {
                 if (_player.IsOnFloor() && _down && !Stuck) {
                     Crouched = true;
                 }
@@ -1092,7 +1099,7 @@ public partial class PlayerMovement : Node {
     public void RaccoonFly() {
         // 不在状态时清空状态相关变量
         if (_playerMediator.playerSuit
-            is not{ Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon }) {
+            is not { Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon }) {
             _raccoonFallTimer = 0;
             return;
         }

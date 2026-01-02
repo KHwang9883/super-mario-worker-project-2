@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqqq3dudrdi2l"]
+[gd_scene load_steps=15 format=3 uid="uid://cqqq3dudrdi2l"]
 
 [ext_resource type="Texture2D" uid="uid://qpih0kc3uq1x" path="res://content/level/enemy/koopa/flame_koopa.png" id="1_t588f"]
 [ext_resource type="Script" uid="uid://d3l0uab88bpuj" path="res://script/level/enemy/koopa/FlameMovement.cs" id="2_a82ce"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="5_e7hmf"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="6_tjno5"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="7_hqpvc"]
+[ext_resource type="Script" uid="uid://v32r6flsywfb" path="res://script/level/projectile​/FireInteractionWithTail.cs" id="7_sn5lo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kcfbq"]
 atlas = ExtResource("1_t588f")
@@ -77,6 +78,12 @@ metadata/_custom_type_script = "uid://ckwcmi42tdbmc"
 [node name="InteractionWithBeetroot" type="Node" parent="."]
 script = ExtResource("5_e7hmf")
 metadata/_custom_type_script = "uid://bkc8a0hddhajq"
+
+[node name="FireInteractionWithTail" type="Node" parent="."]
+script = ExtResource("7_sn5lo")
+_smallerSmoke = false
+IsRaccoonTailHittable = true
+metadata/_custom_type_script = "uid://bjv84tw3lfs25"
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 rect = Rect2(-300, -300, 600, 600)

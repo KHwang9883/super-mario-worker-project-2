@@ -22,7 +22,7 @@ public partial class PerpetualMotionMachine : Node2D {
         var results = _shellMovingInteraction.GetOverlapResult();
         var shell = _basicMovement.MoveObject;
         var originMask = shell.CollisionMask;
-        shell.CollisionMask = 37;
+        shell.CollisionMask = 4101;
         
         foreach (var result in results) {
             if (result is not PerpetualMotionMachineMarker) {

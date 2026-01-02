@@ -42,12 +42,18 @@ public partial class SceneControl : Area2D {
         }
         var bodies = GetOverlappingBodies();
         if (bodies.Count > 0) {
+            if (LinkedWithObject != LinkedWithObjectEnum.None) {
+                return;
+            }
             SetSceneStatus();
         }
     }
     
     public void OnBodyEntered(Node2D body) {
         if (_activateTimer < 2) {
+            return;
+        }
+        if (LinkedWithObject != LinkedWithObjectEnum.None) {
             return;
         }
         SetSceneStatus();
@@ -72,24 +78,25 @@ public partial class SceneControl : Area2D {
     public void SetSceneStatus() {
         if (_levelConfig == null) {
             GD.PushError($"{this}: LevelConfig is null!");
-        } else {
-            if (ChangeBgm && _levelConfig.BgmId != BgmId) _levelConfig.SetBgm(BgmId);
+            return;
+        }
+        
+        if (ChangeBgm && _levelConfig.BgmId != BgmId) _levelConfig.SetBgm(BgmId);
 
-            if (ChangeBgp && _levelConfig.BgpId != BgpId) _levelConfig.SetBgp(BgpId);
+        if (ChangeBgp && _levelConfig.BgpId != BgpId) _levelConfig.SetBgp(BgpId);
 
-            if (WaterHeight > -64f) {
+        if (WaterHeight > -64f) {
                 _levelConfig.SetWaterHeight(WaterHeight);
-            }
+        }
             
-            if (ChangeWeather) {
-                _levelConfig.RainyLevel = RainyLevel;
-                _levelConfig.FallingStarsLevel = FallingStarsLevel;
-                _levelConfig.SnowyLevel = SnowyLevel;
-                _levelConfig.ThunderLevel = ThunderLevel;
-                _levelConfig.WindyLevel = WindyLevel;
-                _levelConfig.Darkness = Darkness;
-                _levelConfig.Brightness = Brightness;
-            }
+        if (ChangeWeather) {
+            _levelConfig.RainyLevel = RainyLevel;
+            _levelConfig.FallingStarsLevel = FallingStarsLevel;
+            _levelConfig.SnowyLevel = SnowyLevel;
+            _levelConfig.ThunderLevel = ThunderLevel;
+            _levelConfig.WindyLevel = WindyLevel;
+            _levelConfig.Darkness = Darkness;
+            _levelConfig.Brightness = Brightness;
         }
     }
     public void LinkWithViewControl() {

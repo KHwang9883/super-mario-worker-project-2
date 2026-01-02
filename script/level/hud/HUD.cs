@@ -121,8 +121,12 @@ public partial class HUD : Control {
         // 浣熊装
         _raccoonBar.Visible = _playerSuit
             is { Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon };
-        _raccoonProgress.Frame =
-            (int)((float)_playerMovement.PMeterCounter / (float)_playerMovement.MaxPMeter * 6f);
+        if (_raccoonProgress == null) {
+            GD.PushError("HUD: _raccoonProgress is null!");
+        } else {
+            _raccoonProgress.Frame =
+                (int)((float)_playerMovement.PMeterCounter / (float)_playerMovement.MaxPMeter * 6f);
+        }
         _raccoonActive.Play(_playerMovement.RaccoonAllowFly ? "active" : "default");
     }
     

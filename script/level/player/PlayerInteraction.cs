@@ -173,6 +173,7 @@ public partial class PlayerInteraction : Node {
                         PowerupSet.PowerupEnum.FireFlower => PlayerSuit.PowerupEnum.Fireball,
                         PowerupSet.PowerupEnum.Beetroot => PlayerSuit.PowerupEnum.Beetroot,
                         PowerupSet.PowerupEnum.Lui => PlayerSuit.PowerupEnum.Lui,
+                        PowerupSet.PowerupEnum.Raccoon => PlayerSuit.PowerupEnum.Raccoon,
                         _ => _playerMediator.playerSuit.Powerup,
                     };
                     if (powerupSet.PowerupType != PowerupSet.PowerupEnum.Mushroom) {

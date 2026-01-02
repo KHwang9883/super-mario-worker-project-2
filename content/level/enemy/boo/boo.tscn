@@ -72,6 +72,7 @@ script = ExtResource("4_i66a3")
 Stompable = false
 ImmuneToFireball = true
 ImmuneToBeetroot = true
+IsRaccoonTailHittable = false
 IsStarHittable = false
 IsShellHittable = false
 IsBumpHittable = false

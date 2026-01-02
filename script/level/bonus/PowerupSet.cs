@@ -9,6 +9,7 @@ public partial class PowerupSet : Node {
         FireFlower,
         Beetroot,
         Lui,
+        Raccoon,
         SuperStar,
     }
     [Export] private Node2D _powerup = null!;

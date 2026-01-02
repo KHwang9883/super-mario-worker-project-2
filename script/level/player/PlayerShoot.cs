@@ -8,11 +8,14 @@ namespace SMWP.Level.Player;
 
 public partial class PlayerShoot : Node {
     [Signal]
-    public delegate void PlayerShootingEventHandler();
+    public delegate void PlaySoundShootEventHandler();
+    [Signal]
+    public delegate void PlaySoundSpinEventHandler();
     
     [Export] private PlayerMediator _playerMediator = null!;
     [Export] private PackedScene _fireballScene = null!;
     [Export] private PackedScene _beetrootScene = null!;
+    [Export] private PackedScene _raccoonTailScene = null!;
     
     public override void _PhysicsProcess(double delta) {
         if (_playerMediator.playerGodMode.IsGodFly || _playerMediator.playerMovement.IsInPipeTransport) return;
@@ -32,7 +35,7 @@ public partial class PlayerShoot : Node {
                 fireballMovement.Direction = _playerMediator.playerMovement.Direction;
                 _playerMediator.player.AddSibling(fireballInstance);
                 _playerMediator.playerAnimation.Fire = true;
-                EmitSignal(SignalName.PlayerShooting);
+                EmitSignal(SignalName.PlaySoundShoot);
                 break;
             
             case PlayerSuit.PowerupEnum.Beetroot:
@@ -47,7 +50,18 @@ public partial class PlayerShoot : Node {
                 beetrootMovement.Direction = _playerMediator.playerMovement.Direction;
                 _playerMediator.player.AddSibling(beetrootInstance);
                 _playerMediator.playerAnimation.Fire = true;
-                EmitSignal(SignalName.PlayerShooting);
+                EmitSignal(SignalName.PlaySoundShoot);
+                break;
+            
+            case PlayerSuit.PowerupEnum.Raccoon:
+                if (GetTree().GetNodesInGroup("tail").Count > 0
+                    || _playerMediator.playerMovement.Crouched) break;
+                
+                var tail = _raccoonTailScene.Instantiate<CharacterBody2D>();
+                tail.Position = Vector2.Zero;
+                _playerMediator.player.AddChild(tail);
+                _playerMediator.playerAnimation.Fire = true;
+                EmitSignal(SignalName.PlaySoundSpin);
                 break;
         }
     }

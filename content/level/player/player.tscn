@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=43 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="SpriteFrames" uid="uid://bdp171jf0f5bh" path="res://content/level/player/player_suit/mario_raccoon.tres" id="1_0mhof"]
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/level/player/player_suit/mario_small.tres" id="1_o23i7"]
@@ -24,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://d0g5dfs0iupih" path="res://content/sound/mario_swim.se.wav" id="18_fmriv"]
 [ext_resource type="Script" uid="uid://daeveelxolofq" path="res://script/level/player/PlayerGodMode.cs" id="18_sfeyr"]
 [ext_resource type="AudioStream" uid="uid://dbe1tmavcr73y" path="res://content/sound/fireball.se.wav" id="19_8jrco"]
+[ext_resource type="PackedScene" uid="uid://jjsjqrrsbj2e" path="res://content/level/projectile​/player/tail.tscn" id="19_kypo8"]
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="20_80kuj"]
 [ext_resource type="AudioStream" uid="uid://bfhqh4egowku5" path="res://content/sound/powerup.se.wav" id="20_pull8"]
 [ext_resource type="AudioStream" uid="uid://bqndr8vnrf8wk" path="res://content/sound/powerdown.se.wav" id="21_1esvc"]
@@ -209,6 +210,7 @@ script = ExtResource("13_v250f")
 _playerMediator = NodePath("..")
 _fireballScene = ExtResource("14_q05y8")
 _beetrootScene = ExtResource("16_1esvc")
+_raccoonTailScene = ExtResource("19_kypo8")
 
 [node name="PlayerGodMode" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator")]
 script = ExtResource("18_sfeyr")
@@ -310,7 +312,8 @@ Smwp1LightId = Array[int]([1, 61])
 [connection signal="PlayerStomp" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerMovement" method="OnPlayerStomp"]
 [connection signal="PlayerStomp" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerDieAndHurt" method="SetStompInvincibleTime" unbinds=1]
 [connection signal="PlayerStompSetSpeedX" from="PlayerMediator/PlayerInteraction" to="PlayerMediator/PlayerMovement" method="OnStompSetSpeedX"]
-[connection signal="PlayerShooting" from="PlayerMediator/PlayerShoot" to="Shoot" method="play"]
+[connection signal="PlaySoundShoot" from="PlayerMediator/PlayerShoot" to="Shoot" method="play"]
+[connection signal="PlaySoundSpin" from="PlayerMediator/PlayerShoot" to="Spin" method="play"]
 [connection signal="AddLife" from="PlayerMediator/PlayerGodMode" to="AddScoreComponent" method="AddScore"]
 [connection signal="finished" from="GameOver" to="GameOver" method="queue_free"]
 [connection signal="finished" from="Starman" to="Starman" method="play"]

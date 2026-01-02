@@ -115,14 +115,17 @@ public partial class PlayerAnimation : Node {
                 if (_playerMediator.playerSuit
                     is { Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon }
                     ) {
-                    if (_playerMovement.RaccoonFall && !_ani.Animation.Equals("fall")) {
+                    if (_playerMovement.RaccoonFall && !Fire) {
                         _ani.Play("fall");
                     }
-                    if (_playerMovement.RaccoonAllowFly && !_ani.Animation.Equals("fly")) {
+                    if (_playerMovement.RaccoonAllowFly && !Fire) {
                         _ani.Play("fly");
                     }
-                    if (_playerMovement is { RaccoonFall: false, RaccoonAllowFly: false }) {
+                    if (_playerMovement is { RaccoonFall: false, RaccoonAllowFly: false } && !Fire) {
                         _ani.Animation = "jump";
+                    }
+                    if (Fire && _ani.Animation != "shoot") {
+                        _ani.Play("shoot");
                     }
                 }
                 else {
@@ -158,23 +161,31 @@ public partial class PlayerAnimation : Node {
                 && _playerMovement.Crouched) {
                 _ani.Animation = "crouch";
             }
-        } else {
-            if (!_player.IsOnFloor()) {
-                if (_ani.Animation != "swim" || _playerMovement.Jumped)
-                    _ani.Play("swim");
+        }
+        // 水中动画处理
+        else {
+            if (_playerMediator.playerSuit is
+                { Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon }
+                && Fire) {
+                _ani.Play("shoot");
             } else {
-                if (Fire && _ani.SpriteFrames.HasAnimation("shoot")) {
-                    _ani.Play("shoot");
-                } else if (Mathf.Abs(_playerMovement.SpeedX) < 0.01f) {
-                    _ani.Animation = "idle";
+                if (!_player.IsOnFloor()) {
+                    if (_ani.Animation != "swim" || _playerMovement.Jumped)
+                        _ani.Play("swim");
                 } else {
-                    _ani.Animation = "walk";
-                    if (!_hurting && !_powerupChanging) {
-                        _imageIndex += _playerMovement.SpeedX / 20f;
-                        _frameCount = _ani.SpriteFrames.GetFrameCount("walk");
-                        if (_frameCount > 0) {
-                            int frame = (int)Mathf.Abs(_imageIndex) % _frameCount;
-                            _ani.Frame = frame;
+                    if (Fire && _ani.SpriteFrames.HasAnimation("shoot")) {
+                        _ani.Play("shoot");
+                    } else if (Mathf.Abs(_playerMovement.SpeedX) < 0.01f) {
+                        _ani.Animation = "idle";
+                    } else {
+                        _ani.Animation = "walk";
+                        if (!_hurting && !_powerupChanging) {
+                            _imageIndex += _playerMovement.SpeedX / 20f;
+                            _frameCount = _ani.SpriteFrames.GetFrameCount("walk");
+                            if (_frameCount > 0) {
+                                int frame = (int)Mathf.Abs(_imageIndex) % _frameCount;
+                                _ani.Frame = frame;
+                            }
                         }
                     }
                 }
@@ -240,6 +251,7 @@ public partial class PlayerAnimation : Node {
     public void OnAnimationFinished() {
         if (_ani.Animation == "shoot") {
             Fire = false;
+            GD.Print($"PlayerAnimation: Finished, Fire: {Fire}");
         }
     }
     public void OnPipeEntered() {

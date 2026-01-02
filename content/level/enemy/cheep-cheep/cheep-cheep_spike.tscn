@@ -93,6 +93,7 @@ script = ExtResource("4_hqgl2")
 Stompable = false
 ImmuneToFireball = true
 ImmuneToBeetroot = true
+IsRaccoonTailHittable = false
 HardLevel = 8
 metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
 

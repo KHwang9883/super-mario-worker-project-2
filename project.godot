@@ -173,13 +173,14 @@ mouse_wheel_down={
 2d_physics/layer_3="Blocks except Player"
 2d_physics/layer_4="Player"
 2d_physics/layer_5="Enemy"
-2d_physics/layer_6="Item"
+2d_physics/layer_6="Bonus"
 2d_physics/layer_7="Water"
 2d_physics/layer_8="PlatformTurn"
 2d_physics/layer_9="Passage"
 2d_physics/layer_10="Hidden Block"
 2d_physics/layer_11="Switch"
 2d_physics/layer_12="HittableBlock"
+2d_physics/layer_13="PerpetualMotionMachine"
 
 [physics]
 
