@@ -197,7 +197,6 @@ layer = 3
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="LevelTemplate"]
 layer = 4
-visible = false
 
 [node name="DebugLabel" type="Label" parent="LevelTemplate/DebugCanvasLayer" node_paths=PackedStringArray("_player")]
 process_mode = 3

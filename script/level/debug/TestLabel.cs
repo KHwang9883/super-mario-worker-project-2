@@ -30,7 +30,7 @@ public partial class TestLabel : Label {
                $"OnWaterSurface: {_playerMovement.IsOnWaterSurface}\n" +
                $"Stuck: {_playerMovement.Stuck}\n\n" +
                $"PMeterCounter: {_playerMovement.PMeterCounter}\n" +
-               $"MaxPMeter: {_playerMovement.MaxPMeter}"
+               $"PMeterContinuousRunningTimer: {_playerMovement.PMeterContinuousRunningTimer}"
                ;
     }
 }

@@ -81,6 +81,9 @@ public partial class PlayerMovement : Node {
     public bool RaccoonAllowFly;
     public int RaccoonFlyTime = 212;
     public int RaccoonFlyTimer;
+    private bool _raccoonFlew;
+    public int PMeterContinuousRunningTimer;
+    private int _pMeterContinuousRunningTime = 35;
     private float _raccoonFlySpeedY = -8;
     [Export] private ContinuousAudioStream2D _pMeterActiveSound = null!;
 
@@ -1059,6 +1062,8 @@ public partial class PlayerMovement : Node {
             { Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon }) {
             RaccoonFlyTimer = 0;
             RaccoonAllowFly = false;
+            PMeterContinuousRunningTimer = 0;
+            _raccoonFlew = false;
             _pMeterActiveSound.Stop();
             return;
         }
@@ -1072,8 +1077,16 @@ public partial class PlayerMovement : Node {
             if (Mathf.Abs(SpeedX) > _maxRunningSpeed * 0.75f
                 && !IsInWater
                 && _player.IsOnFloorOnly()) {
-                RaccoonFlyTimer = 0;
+                PMeterContinuousRunningTimer++;
+                if (!_raccoonFlew) {
+                    RaccoonFlyTimer = 0;
+                } else {
+                    if (PMeterContinuousRunningTimer >= _pMeterContinuousRunningTime) {
+                        RaccoonFlyTimer = 0;
+                    }
+                }
             }
+            
             if (!_pMeterActiveSound.Playing) {
                 _pMeterActiveSound.Play();
             }
@@ -1088,6 +1101,8 @@ public partial class PlayerMovement : Node {
                 RaccoonFlyTimer = 0;
                 RaccoonAllowFly = false;
                 PMeterCounter = 0;
+                PMeterContinuousRunningTimer = 0;
+                _raccoonFlew = false;
             }
         } else {
             _pMeterActiveSound.Stop();
@@ -1104,6 +1119,7 @@ public partial class PlayerMovement : Node {
             return;
         }
         
+        // 缓降
         if (SpeedY > 0f
             && Input.IsActionJustPressed("move_jump")
             && !RaccoonFall
@@ -1113,6 +1129,7 @@ public partial class PlayerMovement : Node {
             SpeedX = Mathf.Min(_maxRunningSpeed * 0.5f, SpeedX);
             EmitSignal(SignalName.PlaySoundSpin);
         }
+        // 飞行
         if (_playerMediator.playerSuit
                 is { Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon }
             && Input.IsActionJustPressed("move_jump")
@@ -1120,6 +1137,8 @@ public partial class PlayerMovement : Node {
             && !Jumped) {
             SpeedY = _raccoonFlySpeedY;
             SpeedX = Mathf.Min(_maxRunningSpeed * 0.5f, SpeedX);
+            PMeterContinuousRunningTimer = 0;
+            _raccoonFlew = true;
             EmitSignal(SignalName.PlaySoundSpin);
         }
         if (RaccoonFall) {
