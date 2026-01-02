@@ -845,6 +845,9 @@ position = Vector2(8272, 304)
 [node name="TroopaYellow" parent="LevelTemplate" instance=ExtResource("38_gctg4")]
 position = Vector2(10840, 392)
 
+[node name="FireFlower" parent="." instance=ExtResource("17_d2gt5")]
+position = Vector2(8528, 400)
+
 [connection signal="GamePaused" from="LevelTemplate/LevelConfig" to="LevelTemplate/GamePausePopup" method="show"]
 [connection signal="GameResumed" from="LevelTemplate/LevelConfig" to="LevelTemplate/GamePausePopup" method="hide"]
 [connection signal="ModuleResourceConvert" from="LevelTemplate/LevelConfig/BgmPlayer" to="LevelTemplate/LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]

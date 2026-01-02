@@ -1094,6 +1094,7 @@ public partial class PlayerMovement : Node {
         if (_playerMediator.playerSuit
             is not{ Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon }) {
             _raccoonFallTimer = 0;
+            return;
         }
         
         if (SpeedY > 0f
