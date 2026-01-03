@@ -15,7 +15,7 @@ length = 0.50000334
 
 [sub_resource type="Animation" id="Animation_jf1nl"]
 resource_name = "new_animation"
-length = 0.50000334
+length = 0.40000334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,7 +23,7 @@ tracks/0/path = NodePath("CollisionShape2D:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.10000001, 0.20000002, 0.3, 0.50000006),
+"times": PackedFloat32Array(0.06666667, 0.13333334, 0.23333335, 0.40000004),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, -20.0, 20.0, 0.0]
@@ -31,7 +31,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_s8m7l"]
 resource_name = "right"
-length = 0.50000334
+length = 0.40000334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -39,7 +39,7 @@ tracks/0/path = NodePath("CollisionShape2D:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.10000001, 0.20000002, 0.3, 0.50000006),
+"times": PackedFloat32Array(0.06666667, 0.13333334, 0.23333335, 0.40000004),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 20.0, -20.0, 0.0]
