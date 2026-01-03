@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://cejpown37o253"]
+[gd_scene load_steps=46 format=4 uid="uid://cejpown37o253"]
 
 [ext_resource type="Texture2D" uid="uid://d3ecln7pv6bo8" path="res://content/level/enemy/lakitu/lakitu.png" id="1_28d7i"]
 [ext_resource type="Script" uid="uid://n0708hxxrd76" path="res://script/level/enemy/lakitu/LakituMovement.cs" id="3_28d7i"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="8_wwo45"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="9_efm35"]
 [ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="10_0mjyw"]
+[ext_resource type="Script" uid="uid://cwwfegi1sp8pa" path="res://script/level/enemy/EnemyKickedSound.cs" id="10_xoc3p"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="11_28d7i"]
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="11_qryjs"]
 
@@ -288,7 +289,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Kicked" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_0mjyw")
-script = ExtResource("9_efm35")
+script = ExtResource("10_xoc3p")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Bumped" type="AudioStreamPlayer2D" parent="."]

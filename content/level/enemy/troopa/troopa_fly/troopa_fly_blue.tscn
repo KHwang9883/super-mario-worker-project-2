@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://rmc4tiejgsom"]
+[gd_scene load_steps=21 format=3 uid="uid://rmc4tiejgsom"]
 
 [ext_resource type="Texture2D" uid="uid://c1fpv33yj8ap5" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_blue.png" id="1_lw3t0"]
 [ext_resource type="Script" uid="uid://irxc0ivnkey5" path="res://script/level/enemy/troopa/troopa_fly/TroopaFlyBlueMovement.cs" id="2_lw3t0"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="11_owxbu"]
 [ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="12_ucqri"]
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="13_bnsxs"]
+[ext_resource type="Script" uid="uid://cwwfegi1sp8pa" path="res://script/level/enemy/EnemyKickedSound.cs" id="13_hg3bt"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="14_hidvs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hg3bt"]
@@ -100,7 +101,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Kicked" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_ucqri")
-script = ExtResource("11_owxbu")
+script = ExtResource("13_hg3bt")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Bumped" type="AudioStreamPlayer2D" parent="."]

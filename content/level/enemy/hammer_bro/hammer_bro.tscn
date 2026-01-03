@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bnnqci8eu7r01"]
+[gd_scene load_steps=23 format=3 uid="uid://bnnqci8eu7r01"]
 
 [ext_resource type="Texture2D" uid="uid://b70ursjs8g36f" path="res://content/level/enemy/hammer_bro/hammer_bro.png" id="1_gmfje"]
 [ext_resource type="Script" uid="uid://dterbwolxicoy" path="res://script/level/enemy/hammer_bro/HammerBroMovement.cs" id="2_gmfje"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="12_nqwsk"]
 [ext_resource type="AudioStream" uid="uid://c4qouvko7vp74" path="res://content/sound/hammer.se.wav" id="13_65npk"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="13_aixyc"]
+[ext_resource type="Script" uid="uid://cwwfegi1sp8pa" path="res://script/level/enemy/EnemyKickedSound.cs" id="13_hegfx"]
 [ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/level/enemy/general_visible_on_screen_enabler_2d.tscn" id="13_qv25u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_65npk"]
@@ -123,7 +124,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Kicked" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_6qh2p")
-script = ExtResource("10_hdxqd")
+script = ExtResource("13_hegfx")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Bumped" type="AudioStreamPlayer2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c6tj25uk58s28"]
+[gd_scene load_steps=27 format=3 uid="uid://c6tj25uk58s28"]
 
 [ext_resource type="Texture2D" uid="uid://bi4jwm8v42q71" path="res://content/level/enemy/bullet_bill/missile_bill.png" id="1_2wcjj"]
 [ext_resource type="Script" uid="uid://2vego63liagm" path="res://script/level/enemy/bullet_bill/MissileBillMovement.cs" id="2_2wcjj"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="8_ivqk2"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="9_g336l"]
 [ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="10_2aro0"]
+[ext_resource type="Script" uid="uid://cwwfegi1sp8pa" path="res://script/level/enemy/EnemyKickedSound.cs" id="11_44rlq"]
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="11_v5wnm"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="12_b1kwu"]
 
@@ -158,7 +159,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Kicked" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_2aro0")
-script = ExtResource("9_g336l")
+script = ExtResource("11_44rlq")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Bumped" type="AudioStreamPlayer2D" parent="."]

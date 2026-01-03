@@ -67,7 +67,7 @@ public partial class EnemyDie : Node {
                 if (!_parent.HasMeta("InteractingObject")) break;
                 enemyDeadNormalInstance.SetMeta("InteractingObject", Variant.From(_parent.GetMeta("InteractingObject")));
                 break;
-            case EnemyDieEnum.CreateInstance: {
+            case EnemyDieEnum.CreateInstance:
                 if (_enemyDeadPackedScene != null) {
                     var enemyDeadInstance = _enemyDeadPackedScene.Instantiate<Node2D>();
                     enemyDeadInstance.Position = _parent.Position;
@@ -81,7 +81,6 @@ public partial class EnemyDie : Node {
                     enemyDeadInstance.SetMeta("InteractingObject", Variant.From(_parent.GetMeta("InteractingObject")));
                 }
                 break;
-            }
         }
         _parent.QueueFree();
         }).CallDeferred();

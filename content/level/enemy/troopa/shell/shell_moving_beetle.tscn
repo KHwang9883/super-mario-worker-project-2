@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://x2gl8vkl7afn"]
+[gd_scene load_steps=28 format=3 uid="uid://x2gl8vkl7afn"]
 
 [ext_resource type="Texture2D" uid="uid://pau5gllvaqrr" path="res://content/level/enemy/troopa/shell/shell_beetle.png" id="1_n7rmi"]
 [ext_resource type="Shape2D" uid="uid://1ttrcjiuuv6l" path="res://content/level/enemy/troopa/shell/shell_moving_shape.tres" id="2_lvkjf"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="14_updju"]
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="15_3vvpq"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="17_cqudt"]
+[ext_resource type="Script" uid="uid://cwwfegi1sp8pa" path="res://script/level/enemy/EnemyKickedSound.cs" id="18_q6x12"]
 [ext_resource type="PackedScene" uid="uid://dptyprqct11s0" path="res://content/level/enemy/troopa/shell/walk_on_air.tscn" id="20_8fpoq"]
 [ext_resource type="PackedScene" uid="uid://dv1l4euat0iyo" path="res://content/level/enemy/troopa/shell/perpetual_motion_machine.tscn" id="21_fbrqc"]
 
@@ -143,7 +144,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Kicked" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_updju")
-script = ExtResource("13_hyh2v")
+script = ExtResource("18_q6x12")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Bumped" type="AudioStreamPlayer2D" parent="."]

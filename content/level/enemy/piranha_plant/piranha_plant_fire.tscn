@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cb62nwjb51k1v"]
+[gd_scene load_steps=17 format=3 uid="uid://cb62nwjb51k1v"]
 
 [ext_resource type="Texture2D" uid="uid://b6w64t6t3e13o" path="res://content/level/enemy/piranha_plant/piranha_plant_fire.png" id="1_nag1w"]
 [ext_resource type="Script" uid="uid://ddd5i7fa58ayn" path="res://script/level/enemy/piranha_plant/PiranhaPlantMovement.cs" id="2_hqnsl"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="8_nrkli"]
 [ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="9_ur3in"]
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="10_g0kj8"]
+[ext_resource type="Script" uid="uid://cwwfegi1sp8pa" path="res://script/level/enemy/EnemyKickedSound.cs" id="10_yjuke"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="11_hqnsl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqnsl"]
@@ -81,7 +82,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Kicked" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_ur3in")
-script = ExtResource("8_nrkli")
+script = ExtResource("10_yjuke")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Bumped" type="AudioStreamPlayer2D" parent="."]

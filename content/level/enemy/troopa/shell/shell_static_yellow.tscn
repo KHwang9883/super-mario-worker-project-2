@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bgl13w58xfp4t"]
+[gd_scene load_steps=20 format=3 uid="uid://bgl13w58xfp4t"]
 
 [ext_resource type="Texture2D" uid="uid://bx2mfyon04o57" path="res://content/level/enemy/troopa/shell/shell_yellow.png" id="1_8c2fs"]
 [ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="2_dqlca"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="11_3dg7y"]
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="12_octmt"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="14_20urp"]
+[ext_resource type="Script" uid="uid://cwwfegi1sp8pa" path="res://script/level/enemy/EnemyKickedSound.cs" id="15_6xnae"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqlca"]
 atlas = ExtResource("1_8c2fs")
@@ -92,7 +93,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Kicked" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_3dg7y")
-script = ExtResource("10_iy8j3")
+script = ExtResource("15_6xnae")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Bumped" type="AudioStreamPlayer2D" parent="."]

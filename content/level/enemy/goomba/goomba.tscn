@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d2kvp8mnj0j4u"]
+[gd_scene load_steps=19 format=3 uid="uid://d2kvp8mnj0j4u"]
 
 [ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="1_siph3"]
 [ext_resource type="Texture2D" uid="uid://c30tfd1s6hvdn" path="res://content/level/enemy/goomba/goomba.png" id="1_w821v"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="10_l5187"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="10_rvd6n"]
 [ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="12_4nr65"]
+[ext_resource type="Script" uid="uid://cwwfegi1sp8pa" path="res://script/level/enemy/EnemyKickedSound.cs" id="12_eb6bs"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="13_3tfb7"]
 [ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="17_dbsim"]
 
@@ -93,7 +94,7 @@ metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Kicked" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_4nr65")
-script = ExtResource("10_rvd6n")
+script = ExtResource("12_eb6bs")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="Bumped" type="AudioStreamPlayer2D" parent="."]
