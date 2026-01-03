@@ -34,6 +34,8 @@ public partial class PlayerAnimation : Node {
     private bool _powerupChanging;
     public bool Fire;
 
+    public bool RaccoonFlyingUp;
+
     public override void _Ready() {
         _playerMovement = _playerMediator.GetNode<PlayerMovement>("PlayerMovement");
         _playerMovement.JumpStarted += OnJumpStarted;
@@ -119,7 +121,19 @@ public partial class PlayerAnimation : Node {
                         _ani.Play("fall");
                     }
                     if (_playerMovement.RaccoonAllowFly && !Fire) {
-                        _ani.Play("fly");
+                        if (Input.IsActionJustPressed("move_jump")
+                            && !_player.IsOnFloor()
+                            && !_playerMovement.Jumped
+                            ) {
+                            _ani.Frame = 0;
+                            RaccoonFlyingUp = true;
+                        }
+                        if (!RaccoonFlyingUp) {
+                            _ani.Animation = "fly";
+                            _ani.Frame = _playerMovement.SpeedY < 0f ? 3 : 1;
+                        } else {
+                            _ani.Play("fly");
+                        }
                     }
                     if (_playerMovement is { RaccoonFall: false, RaccoonAllowFly: false } && !Fire) {
                         _ani.Animation = "jump";
@@ -252,6 +266,9 @@ public partial class PlayerAnimation : Node {
         if (_ani.Animation == "shoot") {
             Fire = false;
             //GD.Print($"PlayerAnimation: Finished, Fire: {Fire}");
+        }
+        if (_ani.Animation == "fly") {
+            RaccoonFlyingUp = false;
         }
     }
     public void OnPipeEntered() {

@@ -61,13 +61,13 @@ script = ExtResource("3_w18dy")
 Stompable = false
 ImmuneToFireball = true
 ImmuneToBeetroot = true
+IsRaccoonTailHittable = false
 HardLevel = 10
 metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
 
 [node name="Die" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
 script = ExtResource("4_h04io")
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
-_enemyDeadPackedSceneUid = &"uid://cguk5ao66bepv"
 
 [node name="AddScoreComponent" type="Node" parent="."]
 script = ExtResource("5_mac0g")

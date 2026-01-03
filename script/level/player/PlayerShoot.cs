@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.InteropServices.ComTypes;
 using SMWP.Level.Player;
 using SMWP.Level.Projectile.Player.Beetroot;
 using SMWP.Level.Projectile.Player.PlayerFireball;
@@ -20,8 +21,14 @@ public partial class PlayerShoot : Node {
     public override void _PhysicsProcess(double delta) {
         if (_playerMediator.playerGodMode.IsGodFly || _playerMediator.playerMovement.IsInPipeTransport) return;
 
-        if (!Input.IsActionJustPressed("move_fire") /*_playerMediator.playerMovement.Fire &&*/ ||
-            _playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Powered) return;
+        if (!Input.IsActionJustPressed("move_fire")) {
+            return;
+        }
+        if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Powered) {
+            _playerMediator.playerAnimation.Fire = false;
+            _playerMediator.playerAnimation.RaccoonFlyingUp = false;
+            return;
+        }
         switch (_playerMediator.playerSuit.Powerup) {
             case PlayerSuit.PowerupEnum.Fireball:
                 if (GetTree().GetNodesInGroup("fireball").Count >= 2) break;

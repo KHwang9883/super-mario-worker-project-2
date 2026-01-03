@@ -852,9 +852,6 @@ position = Vector2(10840, 392)
 [node name="QuestionBlock" parent="LevelTemplate" instance=ExtResource("69_q0l1p")]
 position = Vector2(8720, 336)
 
-[node name="FireFlower" parent="." instance=ExtResource("17_d2gt5")]
-position = Vector2(8432, 400)
-
 [node name="QuestionBlock" parent="." instance=ExtResource("69_q0l1p")]
 position = Vector2(8720, 304)
 
