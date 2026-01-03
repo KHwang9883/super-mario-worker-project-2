@@ -6,7 +6,7 @@
 
 [node name="FireballExplosion" type="Node2D"]
 process_mode = 3
-z_index = 80
+z_index = 5
 script = ExtResource("1_hp3kp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
