@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1waxffc2n6a5"]
+[gd_scene load_steps=17 format=3 uid="uid://c1waxffc2n6a5"]
 
 [ext_resource type="Texture2D" uid="uid://dgukcgfkib00u" path="res://content/level/block/question_block/question_block.png" id="1_31g45"]
 [ext_resource type="Texture2D" uid="uid://d1c6ljxopww0p" path="res://content/level/block/block_hit.png" id="2_yeo03"]
 [ext_resource type="PackedScene" uid="uid://dsjr2jccad25d" path="res://content/level/block/block_collision_shape_2d.tscn" id="3_bkbtr"]
 [ext_resource type="Script" uid="uid://csvist8po1wws" path="res://script/level/block/question_block/QuestionBlock.cs" id="3_xnsnl"]
+[ext_resource type="PackedScene" uid="uid://dups68txi3mkw" path="res://content/level/block/hidden_block_tail_detector.tscn" id="4_2l01l"]
 [ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="4_bkbtr"]
 [ext_resource type="PackedScene" uid="uid://06fvxuvjbor0" path="res://content/level/bonus/mushroom/mushroom.tscn" id="4_xnsnl"]
 [ext_resource type="PackedScene" uid="uid://cb81b1j6kxba1" path="res://content/level/bonus/fire_flower/fire_flower.tscn" id="4_yeo03"]
@@ -63,6 +64,9 @@ autoplay = "default"
 
 [node name="BlockCollisionShape2D" parent="." instance=ExtResource("3_bkbtr")]
 rotation = -3.1415925
+
+[node name="HiddenBlockTailDetector" parent="." node_paths=PackedStringArray("_hiddenBlock") instance=ExtResource("4_2l01l")]
+_hiddenBlock = NodePath("../BlockHit")
 
 [node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("_ani", "Sprite", "_collisionShape2D")]
 script = ExtResource("3_xnsnl")

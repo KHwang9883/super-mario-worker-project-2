@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dups68txi3mkw"]
+
+[ext_resource type="Script" uid="uid://cfikxjgt86hut" path="res://script/level/block/HiddenBlockTailDetector.cs" id="1_dmpev"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yi1s"]
+size = Vector2(32, 32)
+
+[node name="HiddenBlockTailDetector" type="Area2D"]
+visible = false
+collision_layer = 0
+collision_mask = 8192
+script = ExtResource("1_dmpev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7yi1s")
+debug_color = Color(0.75351673, 0.4576373, 0, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cgegxokohdrj6"]
+[gd_scene load_steps=16 format=3 uid="uid://cgegxokohdrj6"]
 
 [ext_resource type="Texture2D" uid="uid://dgukcgfkib00u" path="res://content/level/block/question_block/question_block.png" id="1_t1iij"]
 [ext_resource type="Texture2D" uid="uid://d1c6ljxopww0p" path="res://content/level/block/block_hit.png" id="2_unyt2"]
 [ext_resource type="Script" uid="uid://csvist8po1wws" path="res://script/level/block/question_block/QuestionBlock.cs" id="3_1abpy"]
 [ext_resource type="PackedScene" uid="uid://dsjr2jccad25d" path="res://content/level/block/block_collision_shape_2d.tscn" id="3_unyt2"]
+[ext_resource type="PackedScene" uid="uid://dups68txi3mkw" path="res://content/level/block/hidden_block_tail_detector.tscn" id="4_1abpy"]
 [ext_resource type="PackedScene" uid="uid://dhq4p7f4dvkh4" path="res://content/level/bonus/poisonous_mushroom/poisonous_mushroom.tscn" id="4_t1iij"]
 [ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="5_qtua8"]
 [ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="6_tb4y6"]
@@ -62,6 +63,9 @@ autoplay = "default"
 
 [node name="BlockCollisionShape2D" parent="." instance=ExtResource("3_unyt2")]
 rotation = -3.1415925
+
+[node name="HiddenBlockTailDetector" parent="." node_paths=PackedStringArray("_hiddenBlock") instance=ExtResource("4_1abpy")]
+_hiddenBlock = NodePath("../BlockHit")
 
 [node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("_ani", "Sprite", "_collisionShape2D")]
 script = ExtResource("3_1abpy")

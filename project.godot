@@ -181,6 +181,7 @@ mouse_wheel_down={
 2d_physics/layer_11="Switch"
 2d_physics/layer_12="HittableBlock"
 2d_physics/layer_13="PerpetualMotionMachine"
+2d_physics/layer_14="RaccoonTail"
 
 [physics]
 

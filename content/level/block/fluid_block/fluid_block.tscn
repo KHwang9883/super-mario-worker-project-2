@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ck3jt1w1cix41"]
+[gd_scene load_steps=9 format=3 uid="uid://ck3jt1w1cix41"]
 
 [ext_resource type="SpriteFrames" uid="uid://7cvg5krxkrkh" path="res://content/level/block/fluid_block/fluid_block_water.tres" id="1_m4ksq"]
+[ext_resource type="PackedScene" uid="uid://dups68txi3mkw" path="res://content/level/block/hidden_block_tail_detector.tscn" id="3_0gu1h"]
 [ext_resource type="Script" uid="uid://cv1awkq82gkc8" path="res://script/level/block/fluid_block/FluidBlock.cs" id="3_ncmvd"]
 [ext_resource type="PackedScene" uid="uid://dsjr2jccad25d" path="res://content/level/block/block_collision_shape_2d.tscn" id="3_o02yf"]
 [ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="5_3wk0e"]
@@ -19,6 +20,9 @@ autoplay = "default"
 
 [node name="BlockCollisionShape2D" parent="." instance=ExtResource("3_o02yf")]
 rotation = -3.1415925
+
+[node name="HiddenBlockTailDetector" parent="." node_paths=PackedStringArray("_hiddenBlock") instance=ExtResource("3_0gu1h")]
+_hiddenBlock = NodePath("../BlockHit")
 
 [node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("Sprite", "_collisionShape2D")]
 script = ExtResource("3_ncmvd")

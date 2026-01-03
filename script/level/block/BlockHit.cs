@@ -183,8 +183,10 @@ public partial class BlockHit : Node, IBlockHittable {
         Parent.Visible = false;
         _collisionShape2D.Position = Vector2.Down * 13f;
         Parent.CollisionLayer = 2;
-        _collisionShape2D.Shape = _hiddenShape;
-        _collisionShape2D.OneWayCollision = true;
+        Callable.From(() => {
+            _collisionShape2D.Shape = _hiddenShape;
+            _collisionShape2D.OneWayCollision = true;
+        }).CallDeferred();
     }
     public void SetVisible() {
         if (Parent == null) {
@@ -194,8 +196,10 @@ public partial class BlockHit : Node, IBlockHittable {
         Hidden = false;
         Parent.Visible = true;
         Parent.CollisionLayer = _originCollisionLayer;
-        _collisionShape2D.Shape = _originalCollisionShape2D;
+        Callable.From(() => {
+            _collisionShape2D.Shape = _originalCollisionShape2D;
+            _collisionShape2D.OneWayCollision = false;
+        }).CallDeferred();
         _collisionShape2D.Position = Vector2.Zero;
-        _collisionShape2D.OneWayCollision = false;
     }
 }

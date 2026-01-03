@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level.Block;
 using SMWP.Level.Player;
 
 namespace SMWP.Level.Projectile.Player;
@@ -45,5 +46,21 @@ public partial class Tail: CharacterBody2D {
         if (_playerSuit is not { Suit: PlayerSuit.SuitEnum.Powered, Powerup: PlayerSuit.PowerupEnum.Raccoon }) {
             QueueFree();
         }
+
+        // 撞砖判定
+        Node? interactionWithBlockNode = null;
+        var blockCollider =
+            MoveAndCollide(Vector2.Zero, true)?.GetCollider();
+        //GD.Print(blockCollider);
+        if (blockCollider is not StaticBody2D staticBody2D) return;
+        if (staticBody2D.HasMeta("InteractionWithBlock")) {
+            interactionWithBlockNode = (Node)staticBody2D.GetMeta("InteractionWithBlock");
+        }
+        if (interactionWithBlockNode is not BlockHit blockHit) return;
+        
+        // 隐藏砖可以触发
+        //if (blockHit.Hidden) return;
+
+        blockHit.OnBlockHit(this);
     }
 }

@@ -77,7 +77,7 @@ public partial class PlayerMovement : Node {
     private int _raccoonFallTime = 12;
 
     public int PMeterCounter;
-    public int MaxPMeter = 40;
+    public int MaxPMeter = 50;
     public bool RaccoonAllowFly;
     public int RaccoonFlyTime = 212;
     public int RaccoonFlyTimer;

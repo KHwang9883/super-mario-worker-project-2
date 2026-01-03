@@ -251,7 +251,7 @@ public partial class PlayerAnimation : Node {
     public void OnAnimationFinished() {
         if (_ani.Animation == "shoot") {
             Fire = false;
-            GD.Print($"PlayerAnimation: Finished, Fire: {Fire}");
+            //GD.Print($"PlayerAnimation: Finished, Fire: {Fire}");
         }
     }
     public void OnPipeEntered() {

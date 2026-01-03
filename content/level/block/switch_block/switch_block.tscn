@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://b8fi12ftk0dka"]
+[gd_scene load_steps=17 format=3 uid="uid://b8fi12ftk0dka"]
 
 [ext_resource type="SpriteFrames" uid="uid://b5l3e3o5qcgle" path="res://content/level/block/switch_block/switch_sprites/switch_block_red.tres" id="1_l5qlt"]
 [ext_resource type="PackedScene" uid="uid://dsjr2jccad25d" path="res://content/level/block/block_collision_shape_2d.tscn" id="3_0282c"]
+[ext_resource type="PackedScene" uid="uid://dups68txi3mkw" path="res://content/level/block/hidden_block_tail_detector.tscn" id="3_cep1y"]
 [ext_resource type="Script" uid="uid://btbqxxr0kxy5v" path="res://script/level/block/switch_block/SwitchBlock.cs" id="4_522hf"]
 [ext_resource type="SpriteFrames" uid="uid://bnqygyo046gfs" path="res://content/level/block/switch_block/switch_sprites/switch_block_yellow.tres" id="4_njdno"]
 [ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="5_1iap1"]
@@ -27,6 +28,9 @@ autoplay = "default"
 
 [node name="BlockCollisionShape2D" parent="." instance=ExtResource("3_0282c")]
 rotation = -3.1415925
+
+[node name="HiddenBlockTailDetector" parent="." node_paths=PackedStringArray("_hiddenBlock") instance=ExtResource("3_cep1y")]
+_hiddenBlock = NodePath("../BlockHit")
 
 [node name="BlockHit" type="Node" parent="." node_paths=PackedStringArray("Sprite", "_collisionShape2D")]
 script = ExtResource("4_522hf")
