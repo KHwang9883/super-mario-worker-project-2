@@ -89,6 +89,7 @@ shape = SubResource("RectangleShape2D_jx2ji")
 target_position = Vector2(0, 0)
 max_results = 4
 collision_mask = 16
+collide_with_areas = true
 
 [node name="TailInteraction" type="Node" parent="." node_paths=PackedStringArray("_tail", "_cast2D")]
 script = ExtResource("3_s8m7l")

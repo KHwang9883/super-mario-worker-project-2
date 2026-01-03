@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level.Enemy.Troopa.Shell;
 
 namespace SMWP.Level.Enemy;
 
@@ -17,10 +18,10 @@ public partial class EnemyDie : Node {
     [Export] private AnimatedSprite2D _animatedSprite2D = null!;
     [Export] private PackedScene _fireballExplosionScene = GD.Load<PackedScene>("uid://5mmyew6mh71p");
     [Export] private PackedScene _enemyDeadNormalPackedScene = GD.Load<PackedScene>("uid://ctlj6wtkwhahy");
-    [Export] private AtlasTexture _enemyDeadNormalTextureOverride = null!;
+    [Export] private AtlasTexture? _enemyDeadNormalTextureOverride;
     
     // 进行特定交互方式生成的物件
-    [Export] private StringName? _enemyDeadPackedSceneUid;
+    [Export] public StringName? EnemyDeadPackedSceneUid { get; private set; }
     private PackedScene? _enemyDeadPackedScene;
     
     private Node2D _parent = null!;
@@ -36,8 +37,8 @@ public partial class EnemyDie : Node {
         _texture2D = _animatedSprite2D.SpriteFrames.GetFrameTexture(_animatedSprite2D.Animation, _animatedSprite2D.Frame);
         
         // 进行特定交互方式生成的物件
-        if (_enemyDeadPackedSceneUid == null) return;
-        _enemyDeadPackedScene = GD.Load<PackedScene>(_enemyDeadPackedSceneUid);
+        if (EnemyDeadPackedSceneUid == null) return;
+        _enemyDeadPackedScene = GD.Load<PackedScene>(EnemyDeadPackedSceneUid);
     }
     public virtual void OnDied() {
         OnDied(_enemyDieType, false, false);
@@ -75,6 +76,16 @@ public partial class EnemyDie : Node {
                     
                     if (shellSet) {
                         enemyDeadInstance.SetMeta("ShellSwitchDirection", shellDir);
+                        
+                    }
+                    
+                    // 龟壳被浣熊装打贴图倒置的情况
+                    if (_parent.HasMeta("AnimationFlipV")) {
+                        enemyDeadInstance.GetNode<AnimatedSprite2D>("AnimatedSprite2D").FlipV = true;
+                        enemyDeadInstance
+                            .GetNodeOrNull<ShellMovingPlayerInteractionDelay>("InteractionWithPlayerDelay")
+                            ?.SetDelay(50);
+                        enemyDeadInstance.SetMeta("AnimationFlipV", true);
                     }
                     
                     if (!_parent.HasMeta("InteractingObject")) break;

@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://rmc4tiejgsom"]
+[gd_scene load_steps=22 format=3 uid="uid://rmc4tiejgsom"]
 
 [ext_resource type="Texture2D" uid="uid://c1fpv33yj8ap5" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_blue.png" id="1_lw3t0"]
 [ext_resource type="Script" uid="uid://irxc0ivnkey5" path="res://script/level/enemy/troopa/troopa_fly/TroopaFlyBlueMovement.cs" id="2_lw3t0"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_hg3bt"]
-[ext_resource type="Script" uid="uid://dkuti7ksh0pjy" path="res://script/level/enemy/goomba/GoombaEnemyInteraction.cs" id="4_brgri"]
+[ext_resource type="Script" uid="uid://nwpoktuden0j" path="res://script/level/enemy/troopa/TroopaEnemyInteraction.cs" id="4_hg3bt"]
+[ext_resource type="PackedScene" uid="uid://bh54cpiym2xq5" path="res://content/level/enemy/troopa/shell/shell_static_blue.tscn" id="5_brgri"]
 [ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="5_riiwe"]
 [ext_resource type="Texture2D" uid="uid://d2cjxtjvxmw83" path="res://content/level/enemy/troopa/shell/shell_blue.png" id="6_hidvs"]
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="7_3jkj5"]
@@ -74,7 +75,8 @@ _animatedSprite2D = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://t3te8lnb0byj"
 
 [node name="EnemyInteraction" type="Node" parent="."]
-script = ExtResource("4_brgri")
+script = ExtResource("4_hg3bt")
+_shellStaticScene = ExtResource("5_brgri")
 metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
 
 [node name="Die" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
@@ -82,7 +84,7 @@ script = ExtResource("5_riiwe")
 _enemyDieType = 2
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
 _enemyDeadNormalTextureOverride = SubResource("AtlasTexture_lfwe0")
-_enemyDeadPackedSceneUid = &"uid://cnljpmxjddchj"
+EnemyDeadPackedSceneUid = &"uid://cnljpmxjddchj"
 
 [node name="AddScoreComponent" type="Node" parent="."]
 script = ExtResource("7_3jkj5")

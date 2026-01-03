@@ -67,7 +67,7 @@ public partial class BasicMovement : Node {
             SpeedX *= -1f;
         }
     }
-    public void SpeedYProcess() {
+    public virtual void SpeedYProcess() {
         // y 速度
         if (!MoveObject.IsOnFloor()) {
             SpeedY = Mathf.Clamp(SpeedY + Gravity, -999f, MaxFallSpeed);

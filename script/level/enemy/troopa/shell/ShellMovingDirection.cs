@@ -4,7 +4,7 @@ using SMWP.Level.Physics;
 
 public partial class ShellMovingDirection : BasicMovement {
     [Export] public bool DirForSwitch;
-    
+
     public override void SetMovementDirection() {
         // 绿色开关砖第二功能
         if (MoveObject.HasMeta("ShellSwitchDirection")) {

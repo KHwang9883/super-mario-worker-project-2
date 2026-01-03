@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=3 uid="uid://blc5665gyi7v8"]
 
 [ext_resource type="Texture2D" uid="uid://6pahwp3aegan" path="res://content/level/enemy/troopa/shell/shell_green.png" id="1_45emd"]
-[ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="2_p8qye"]
 [ext_resource type="Shape2D" uid="uid://dkk21y61xps0j" path="res://content/level/enemy/troopa/shell/shell_static_shape.tres" id="2_vbs43"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_bk406"]
+[ext_resource type="Script" uid="uid://dycuaqc6luvl1" path="res://script/level/enemy/troopa/shell/ShellStaticMovement.cs" id="3_n5vmk"]
 [ext_resource type="Script" uid="uid://n6fjmnacteg3" path="res://script/level/enemy/troopa/shell/ShellStaticInteraction.cs" id="4_ye8sk"]
 [ext_resource type="Script" uid="uid://dotclkl6vqu5p" path="res://script/level/enemy/troopa/shell/ShellStaticPlayerInteractionDelay.cs" id="5_c5sgk"]
 [ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="5_gyx5c"]
@@ -48,7 +48,7 @@ shape = ExtResource("2_vbs43")
 debug_color = Color(3.0322374e-06, 0.6762431, 0.49805695, 0.41960785)
 
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
-script = ExtResource("2_p8qye")
+script = ExtResource("3_n5vmk")
 MoveObject = NodePath("..")
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
@@ -70,7 +70,7 @@ _enemyInteractionComponent = NodePath("../EnemyInteraction")
 script = ExtResource("5_gyx5c")
 _enemyDieType = 2
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
-_enemyDeadPackedSceneUid = &"uid://c6iixdbmeknh0"
+EnemyDeadPackedSceneUid = &"uid://c6iixdbmeknh0"
 
 [node name="AddScoreComponent" type="Node" parent="."]
 script = ExtResource("7_o4wyc")

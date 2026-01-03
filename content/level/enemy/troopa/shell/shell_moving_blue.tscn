@@ -4,8 +4,8 @@
 [ext_resource type="Shape2D" uid="uid://1ttrcjiuuv6l" path="res://content/level/enemy/troopa/shell/shell_moving_shape.tres" id="2_fcv27"]
 [ext_resource type="Script" uid="uid://m51cdt80w33w" path="res://script/level/enemy/troopa/shell/ShellMovingDirection.cs" id="2_y3shq"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_gejls"]
-[ext_resource type="Script" uid="uid://bavc2of3311e" path="res://script/level/enemy/troopa/shell/ShellEnemyInteraction.cs" id="4_fsk2x"]
 [ext_resource type="Script" uid="uid://654jtvsrt54l" path="res://script/level/enemy/troopa/shell/ShellMovingPlayerInteractionDelay.cs" id="5_d5w68"]
+[ext_resource type="Script" uid="uid://nwpoktuden0j" path="res://script/level/enemy/troopa/TroopaEnemyInteraction.cs" id="6_aul2m"]
 [ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="6_woxy2"]
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="7_p2bn2"]
 [ext_resource type="Script" uid="uid://bch1tqb6dv6q2" path="res://script/level/enemy/troopa/shell/ShellMovingInteraction.cs" id="8_7jrqu"]
@@ -93,21 +93,20 @@ script = ExtResource("3_gejls")
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://t3te8lnb0byj"
 
-[node name="EnemyInteraction" type="Node" parent="."]
-script = ExtResource("4_fsk2x")
-HurtType = 2
-HardLevel = 5
-metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
-
 [node name="InteractionWithPlayerDelay" type="Node" parent="." node_paths=PackedStringArray("_enemyInteractionComponent")]
 script = ExtResource("5_d5w68")
 _enemyInteractionComponent = NodePath("../EnemyInteraction")
+
+[node name="EnemyInteraction" type="Node" parent="."]
+script = ExtResource("6_aul2m")
+HardLevel = 5
+metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
 
 [node name="Die" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
 script = ExtResource("6_woxy2")
 _enemyDieType = 2
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
-_enemyDeadPackedSceneUid = &"uid://bh54cpiym2xq5"
+EnemyDeadPackedSceneUid = &"uid://bh54cpiym2xq5"
 
 [node name="AddScoreComponent" type="Node" parent="."]
 script = ExtResource("7_p2bn2")
@@ -153,11 +152,11 @@ _basicMovement = NodePath("../BasicMovement")
 
 [connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]
+[connection signal="GoombaStomped" from="EnemyInteraction" to="Die" method="OnDied" flags=3]
 [connection signal="NormalHitAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="PlaySoundBumped" from="EnemyInteraction" to="Bumped" method="play"]
 [connection signal="PlaySoundKicked" from="EnemyInteraction" to="Kicked" method="play"]
 [connection signal="PlaySoundStomped" from="EnemyInteraction" to="Stomped" method="play"]
-[connection signal="ShellStomped" from="EnemyInteraction" to="Die" method="OnDied" flags=3]
 [connection signal="Harded" from="ShellInteraction" to="Die" method="OnDied"]
 [connection signal="Harded" from="ShellInteraction" to="Kicked" method="play"]
 [connection signal="screen_entered" from="GeneralVisibleOnScreenEnabler2d" to="BasicMovement" method="SetMovementDirection"]

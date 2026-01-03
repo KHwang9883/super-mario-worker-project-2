@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cs65iy4m45oyw" path="res://content/level/enemy/troopa/troopa_walking/troopa_blue.png" id="1_of27e"]
 [ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="2_of27e"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_d1wsa"]
-[ext_resource type="Script" uid="uid://dkuti7ksh0pjy" path="res://script/level/enemy/goomba/GoombaEnemyInteraction.cs" id="4_kfv21"]
+[ext_resource type="Script" uid="uid://nwpoktuden0j" path="res://script/level/enemy/troopa/TroopaEnemyInteraction.cs" id="4_l1ncu"]
 [ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="5_wb8e0"]
 [ext_resource type="Texture2D" uid="uid://d2cjxtjvxmw83" path="res://content/level/enemy/troopa/shell/shell_blue.png" id="6_d1wsa"]
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="6_t8ljq"]
@@ -73,7 +73,7 @@ _animatedSprite2D = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://t3te8lnb0byj"
 
 [node name="EnemyInteraction" type="Node" parent="."]
-script = ExtResource("4_kfv21")
+script = ExtResource("4_l1ncu")
 metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
 
 [node name="Die" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
@@ -81,7 +81,7 @@ script = ExtResource("5_wb8e0")
 _enemyDieType = 2
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
 _enemyDeadNormalTextureOverride = SubResource("AtlasTexture_r6syu")
-_enemyDeadPackedSceneUid = &"uid://bh54cpiym2xq5"
+EnemyDeadPackedSceneUid = &"uid://bh54cpiym2xq5"
 
 [node name="AddScoreComponent" type="Node" parent="."]
 script = ExtResource("6_t8ljq")

@@ -70,8 +70,8 @@ platform_on_leave = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 13)
-sprite_frames = ExtResource("1_0mhof")
-animation = &"shoot"
+sprite_frames = ExtResource("1_o23i7")
+animation = &"idle"
 autoplay = "idle"
 offset = Vector2(0, -33)
 

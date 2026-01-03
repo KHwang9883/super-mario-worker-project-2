@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://big0o6q2i6vyq"]
+[gd_scene load_steps=21 format=3 uid="uid://big0o6q2i6vyq"]
 
 [ext_resource type="Texture2D" uid="uid://cf2kwk5tqyywc" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_red.png" id="1_1qnq3"]
 [ext_resource type="Script" uid="uid://c2mcl7le67un3" path="res://script/level/enemy/troopa/troopa_fly/TroopaFlyRedMovement.cs" id="3_0ikvn"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_o2oie"]
-[ext_resource type="Script" uid="uid://dkuti7ksh0pjy" path="res://script/level/enemy/goomba/GoombaEnemyInteraction.cs" id="4_idf05"]
+[ext_resource type="Script" uid="uid://nwpoktuden0j" path="res://script/level/enemy/troopa/TroopaEnemyInteraction.cs" id="4_lfwm1"]
 [ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="5_fmbjy"]
+[ext_resource type="PackedScene" uid="uid://cecot3e5ux68q" path="res://content/level/enemy/troopa/shell/shell_static_red.tscn" id="5_g1jog"]
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="7_iin1e"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="9_xwjnf"]
 [ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="10_k0seq"]
@@ -70,7 +71,8 @@ metadata/_custom_type_script = "uid://t3te8lnb0byj"
 script = ExtResource("3_0ikvn")
 
 [node name="EnemyInteraction" type="Node" parent="."]
-script = ExtResource("4_idf05")
+script = ExtResource("4_lfwm1")
+_shellStaticScene = ExtResource("5_g1jog")
 metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
 
 [node name="Die" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
@@ -78,7 +80,7 @@ script = ExtResource("5_fmbjy")
 _enemyDieType = 2
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
 _enemyDeadNormalTextureOverride = SubResource("AtlasTexture_m61lm")
-_enemyDeadPackedSceneUid = &"uid://dvxny3btmnf18"
+EnemyDeadPackedSceneUid = &"uid://dvxny3btmnf18"
 
 [node name="AddScoreComponent" type="Node" parent="."]
 script = ExtResource("7_iin1e")

@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://beu17ywe4r7u8" path="res://content/level/enemy/troopa/shell/shell_red.png" id="1_o8xse"]
 [ext_resource type="Shape2D" uid="uid://dkk21y61xps0j" path="res://content/level/enemy/troopa/shell/shell_static_shape.tres" id="2_dr4eb"]
-[ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="2_orvct"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_cbcen"]
+[ext_resource type="Script" uid="uid://dycuaqc6luvl1" path="res://script/level/enemy/troopa/shell/ShellStaticMovement.cs" id="3_e5aap"]
 [ext_resource type="Script" uid="uid://n6fjmnacteg3" path="res://script/level/enemy/troopa/shell/ShellStaticInteraction.cs" id="4_d7jb0"]
 [ext_resource type="Script" uid="uid://dotclkl6vqu5p" path="res://script/level/enemy/troopa/shell/ShellStaticPlayerInteractionDelay.cs" id="5_3caie"]
 [ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="5_q2biw"]
@@ -48,7 +48,7 @@ shape = ExtResource("2_dr4eb")
 debug_color = Color(0.9999998, 0.2584613, 0.20868418, 0.41960785)
 
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
-script = ExtResource("2_orvct")
+script = ExtResource("3_e5aap")
 MoveObject = NodePath("..")
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
@@ -70,7 +70,7 @@ _enemyInteractionComponent = NodePath("../EnemyInteraction")
 script = ExtResource("5_q2biw")
 _enemyDieType = 2
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
-_enemyDeadPackedSceneUid = &"uid://ljpeu72wwx3e"
+EnemyDeadPackedSceneUid = &"uid://ljpeu72wwx3e"
 
 [node name="AddScoreComponent" type="Node" parent="."]
 script = ExtResource("6_lc7xp")

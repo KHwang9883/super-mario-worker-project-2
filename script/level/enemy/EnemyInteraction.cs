@@ -218,7 +218,7 @@ public partial class EnemyInteraction : Node,
     }
     
     // 死亡
-    public void OnDied() {
+    public virtual void OnDied() {
         EmitSignal(SignalName.Died);
     }
     // 普通死亡加分

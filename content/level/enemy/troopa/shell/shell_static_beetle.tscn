@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=3 uid="uid://d0opu4abayqda"]
 
 [ext_resource type="Texture2D" uid="uid://pau5gllvaqrr" path="res://content/level/enemy/troopa/shell/shell_beetle.png" id="1_ur0kf"]
-[ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="2_2vc6k"]
 [ext_resource type="Shape2D" uid="uid://dkk21y61xps0j" path="res://content/level/enemy/troopa/shell/shell_static_shape.tres" id="2_l84sl"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="3_sg4rg"]
+[ext_resource type="Script" uid="uid://dycuaqc6luvl1" path="res://script/level/enemy/troopa/shell/ShellStaticMovement.cs" id="3_xtc3n"]
 [ext_resource type="Script" uid="uid://n6fjmnacteg3" path="res://script/level/enemy/troopa/shell/ShellStaticInteraction.cs" id="4_ur0kf"]
 [ext_resource type="Script" uid="uid://dotclkl6vqu5p" path="res://script/level/enemy/troopa/shell/ShellStaticPlayerInteractionDelay.cs" id="5_2vc6k"]
 [ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="5_l84sl"]
@@ -48,7 +48,7 @@ shape = ExtResource("2_l84sl")
 debug_color = Color(0.7241838, 0.5225501, 0.38869995, 0.41960785)
 
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
-script = ExtResource("2_2vc6k")
+script = ExtResource("3_xtc3n")
 MoveObject = NodePath("..")
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
@@ -56,6 +56,10 @@ metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 script = ExtResource("3_sg4rg")
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://t3te8lnb0byj"
+
+[node name="InteractionWithPlayerDelay" type="Node" parent="." node_paths=PackedStringArray("_enemyInteractionComponent")]
+script = ExtResource("5_2vc6k")
+_enemyInteractionComponent = NodePath("../EnemyInteraction")
 
 [node name="EnemyInteraction" type="Node" parent="."]
 script = ExtResource("4_ur0kf")
@@ -65,15 +69,11 @@ ImmuneToBeetroot = true
 HardLevel = 14
 metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
 
-[node name="InteractionWithPlayerDelay" type="Node" parent="." node_paths=PackedStringArray("_enemyInteractionComponent")]
-script = ExtResource("5_2vc6k")
-_enemyInteractionComponent = NodePath("../EnemyInteraction")
-
 [node name="Die" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
 script = ExtResource("5_l84sl")
 _enemyDieType = 2
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
-_enemyDeadPackedSceneUid = &"uid://x2gl8vkl7afn"
+EnemyDeadPackedSceneUid = &"uid://x2gl8vkl7afn"
 
 [node name="AddScoreComponent" type="Node" parent="."]
 script = ExtResource("6_xtc3n")
