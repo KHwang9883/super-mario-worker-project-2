@@ -6,6 +6,7 @@ using SMWP.Level.Projectile.Player;
 
 public partial class ShellStaticInteraction : GoombaEnemyInteraction {
     [Export] private int _delay = 10;
+    private int _delayTimer;
     
     [Export] private float _kickSpeedY = -11f;
     [Export] private float _kickSpeedX = 1.1f;
@@ -27,11 +28,12 @@ public partial class ShellStaticInteraction : GoombaEnemyInteraction {
         _player = (Node2D)GetTree().GetFirstNodeInGroup("player");
         _originCollisionLayer = _parent.CollisionLayer;
         _parent.CollisionLayer = 0;
+        _delayTimer = _delay;
     }
     public override void _PhysicsProcess(double delta) {
-        if (_delay <= 0) return;
-        _delay--;
-        if (_delay > 0) return;
+        if (_delayTimer <= 0) return;
+        _delayTimer--;
+        if (_delayTimer > 0) return;
         /*
         _enemyInteractionComponent.HurtType = IHurtableAndKillable.HurtEnum.Hurt;
         */
@@ -39,13 +41,10 @@ public partial class ShellStaticInteraction : GoombaEnemyInteraction {
     }
     
     public override void PlayerHurtCheck(bool check) {
-        if (_ani.FlipV) {
-            _parent.SetMeta("AnimationFlipV", true);
-        }
         EmitSignal(EnemyInteraction.SignalName.PlaySoundStomped);
         EmitSignal(GoombaEnemyInteraction.SignalName.GoombaStomped, Variant.From(EnemyDieType));
     }
-
+    /*
     public override float OnStomped(Node2D stomper) {
         if (_dead) {
             return StompSpeedY;
@@ -53,12 +52,9 @@ public partial class ShellStaticInteraction : GoombaEnemyInteraction {
         _dead = true;
         return base.OnStomped(stomper);
     }
+    */
 
     public override void OnDied() {
-        if (_dead) {
-            return;
-        }
-        _dead = true;
         if (_parent.HasMeta("InteractingObject")) {
             var interactingObj = (Node)_parent.GetMeta("InteractingObject");
             if (interactingObj is Tail) {
@@ -72,6 +68,8 @@ public partial class ShellStaticInteraction : GoombaEnemyInteraction {
     }
 
     public void AttackedByTail() {
+        _delayTimer = _delay;
+        _parent.CollisionLayer = 0;
         _ani.FlipV = true;
         _parent.SetMeta("AnimationFlipV", _ani.FlipV);
         _basicMovement.SpeedY = _kickSpeedY;
