@@ -50,6 +50,7 @@ debug_color = Color(0.66792136, 0.5692672, 0, 0.41960785)
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("3_6xnae")
 MoveObject = NodePath("..")
+InitiallyFaceToPlayer = false
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
 [node name="AutoSpriteFlipH" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]

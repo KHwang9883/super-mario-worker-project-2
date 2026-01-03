@@ -82,9 +82,11 @@ public partial class EnemyDie : Node {
                     // 龟壳被浣熊装尾巴打贴图倒置的情况
                     if (_parent.HasMeta("AnimationFlipV")) {
                         enemyDeadInstance.GetNode<AnimatedSprite2D>("AnimatedSprite2D").FlipV = true;
+                        /*
                         enemyDeadInstance
                             .GetNodeOrNull<ShellMovingPlayerInteractionDelay>("InteractionWithPlayerDelay")
                             ?.SetDelay(50);
+                        */
                         enemyDeadInstance.SetMeta("AnimationFlipV", true);
                     }
                     

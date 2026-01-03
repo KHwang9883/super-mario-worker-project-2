@@ -49,6 +49,7 @@ shape = ExtResource("2_p7sul")
 [node name="BasicMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("3_3hcmw")
 MoveObject = NodePath("..")
+InitiallyFaceToPlayer = false
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 
 [node name="AutoSpriteFlipH" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
