@@ -1041,10 +1041,15 @@ public partial class PlayerMovement : Node {
         if (RaccoonAllowFly && PMeterCounter < MaxPMeter) {
             RaccoonAllowFly = false;
         }
+        var screen = ScreenUtils.GetScreenRect(this);
         if (IsRaccoonDashAble()
             && !IsInWater
             && _player.IsOnFloorOnly()) {
-            if (PMeterCounter < MaxPMeter) {
+            if (PMeterCounter < MaxPMeter
+                // 处理贴镜头边缘起跑的情形
+                && _player.Position.X > screen.Position.X + 14f
+                && _player.Position.X < screen.End.X - 14f
+                ) {
                 PMeterCounter++;
             }
         } else {
