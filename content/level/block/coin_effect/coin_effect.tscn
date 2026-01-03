@@ -89,6 +89,7 @@ animations = [{
 }]
 
 [node name="CoinEffect" type="Node2D" node_paths=PackedStringArray("_ani")]
+z_index = 15
 script = ExtResource("1_macs8")
 _ani = NodePath("AnimatedSprite2D")
 

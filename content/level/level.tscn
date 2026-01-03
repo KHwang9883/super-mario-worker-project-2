@@ -94,7 +94,7 @@ _blockTile = NodePath("..")
 _targetZIndex = Dictionary[int, int]({
 0: 350,
 1: 96,
-2: 35
+2: 50
 })
 
 [node name="SMWL Loader" type="Node" parent="."]

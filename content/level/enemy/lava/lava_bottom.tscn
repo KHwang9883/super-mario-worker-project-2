@@ -12,6 +12,7 @@ width = 32
 height = 32
 
 [node name="LavaBottom" type="Node2D"]
+z_index = 45
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_j1x8r")

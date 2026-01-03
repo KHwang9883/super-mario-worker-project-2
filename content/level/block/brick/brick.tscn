@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dups68txi3mkw" path="res://content/level/block/hidden_block_tail_detector.tscn" id="9_jjl7y"]
 
 [node name="Brick" type="StaticBody2D"]
-z_index = 50
+z_index = 45
 collision_layer = 2051
 collision_mask = 0
 

@@ -40,6 +40,7 @@ animations = [{
 }]
 
 [node name="Checkpoint" type="Area2D" groups=["checkpoint"]]
+z_index = 5
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_uboex")

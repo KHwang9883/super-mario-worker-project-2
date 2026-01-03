@@ -12,6 +12,7 @@
 size = Vector2(24, 33)
 
 [node name="HammerHammerBro" type="CharacterBody2D"]
+z_index = 45
 collision_layer = 16
 collision_mask = 0
 

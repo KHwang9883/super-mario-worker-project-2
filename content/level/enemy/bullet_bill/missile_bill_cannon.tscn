@@ -10,6 +10,7 @@
 size = Vector2(32, 32)
 
 [node name="MissileBillCannon" type="AnimatableBody2D"]
+z_index = 60
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_oi86d")

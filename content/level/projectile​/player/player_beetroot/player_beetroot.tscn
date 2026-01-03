@@ -66,7 +66,7 @@ size = Vector2(27, 33)
 size = Vector2(27, 33)
 
 [node name="PlayerBeetroot" type="CharacterBody2D" groups=["beetroot"]]
-z_index = 80
+z_index = 45
 collision_layer = 0
 collision_mask = 5
 

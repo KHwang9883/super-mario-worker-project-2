@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bh2mcrx4e1dx1"]
+[gd_scene load_steps=2 format=3 uid="uid://oxcq1n1rw6yj"]
 
 [ext_resource type="Texture2D" uid="uid://cv3tkkipa3ql1" path="res://content/placeholder_texture.png" id="1_gycwh"]
 
 [node name="Bad Object" type="Node2D"]
+z_index = 1024
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1, -1)

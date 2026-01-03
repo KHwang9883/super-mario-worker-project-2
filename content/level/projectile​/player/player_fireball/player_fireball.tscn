@@ -16,7 +16,7 @@ size = Vector2(15, 16)
 size = Vector2(15, 16)
 
 [node name="PlayerFireball" type="CharacterBody2D" groups=["fireball", "hittable_to_ice"]]
-z_index = 80
+z_index = 45
 collision_layer = 0
 collision_mask = 5
 

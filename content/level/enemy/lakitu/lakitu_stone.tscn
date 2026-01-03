@@ -208,6 +208,7 @@ script = ExtResource("9_4qb1w")
 metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("12_qxplx")]
+z_index = 10
 Smwp1LightId = Array[int]([58])
 
 [connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]

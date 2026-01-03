@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://d1pmkaxewsua6" path="res://content/sound/faster_level_pass.se.mp3" id="4_arhaw"]
 
 [node name="GiantGate" type="Node2D"]
+z_index = 5
 
 [node name="Gate" type="Sprite2D" parent="."]
 position = Vector2(0, -143)

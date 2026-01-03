@@ -225,7 +225,7 @@ _blockTile = NodePath("..")
 _targetZIndex = Dictionary[int, int]({
 0: 350,
 1: 96,
-2: 35
+2: 50
 })
 
 [node name="Mario" parent="LevelTemplate" instance=ExtResource("9_hgnsp")]
@@ -896,10 +896,13 @@ position = Vector2(8944, 400)
 [node name="Brick" parent="." instance=ExtResource("23_dmmuc")]
 position = Vector2(9104, 400)
 
+[node name="TroopaBlue" parent="." instance=ExtResource("37_36qdp")]
+position = Vector2(8880, 384)
+
 [node name="QuestionBlock14" parent="." instance=ExtResource("69_q0l1p")]
 position = Vector2(9200, 400)
 
-[node name="BlockHit" parent="QuestionBlock14" index="2"]
+[node name="BlockHit" parent="QuestionBlock14" index="3"]
 Hidden = true
 
 [connection signal="GamePaused" from="LevelTemplate/LevelConfig" to="LevelTemplate/GamePausePopup" method="show"]
