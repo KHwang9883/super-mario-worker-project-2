@@ -159,6 +159,8 @@ _basicMovement = NodePath("../BasicMovement")
 [connection signal="PlaySoundBumped" from="EnemyInteraction" to="Bumped" method="play"]
 [connection signal="PlaySoundKicked" from="EnemyInteraction" to="Kicked" method="play"]
 [connection signal="PlaySoundStomped" from="EnemyInteraction" to="Stomped" method="play"]
+[connection signal="FlipVCollided" from="ShellInteraction" to="Die" method="OnDied"]
+[connection signal="FlipVCollided" from="ShellInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="Harded" from="ShellInteraction" to="Die" method="OnDied"]
 [connection signal="Harded" from="ShellInteraction" to="Kicked" method="play"]
 [connection signal="screen_entered" from="GeneralVisibleOnScreenEnabler2d" to="BasicMovement" method="SetMovementDirection"]

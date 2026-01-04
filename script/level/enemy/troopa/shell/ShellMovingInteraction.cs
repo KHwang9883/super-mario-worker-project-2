@@ -6,6 +6,9 @@ using SMWP.Level.Physics;
 public partial class ShellMovingInteraction : Node {
     [Signal]
     public delegate void HardedEventHandler();
+    [Signal]
+    public delegate void FlipVCollidedEventHandler();
+    
     [Export] private CharacterBody2D _shell = null!;
     [Export] private ComboComponent? _shellCombo;
     [Export] public int HardLevel = 5;
@@ -26,6 +29,15 @@ public partial class ShellMovingInteraction : Node {
             if (result.HasMeta("ShellInteraction")) {
                 var shellInteraction = (ShellMovingInteraction)result.GetMeta("ShellInteraction");
                 if (HardLevel == shellInteraction.HardLevel) {
+                    // 正倒运动龟壳相撞
+                    if (_parent!.HasMeta("AnimationFlipV") ^ result.HasMeta("AnimationFlipV")) {
+                        if (!_parent.HasMeta("Die") && !shellInteraction.HasMeta("Die")) {
+                            _parent.SetMeta("Died", true);
+                            shellInteraction.SetMeta("Died", true);
+                            shellInteraction.EmitSignal(SignalName.Harded);
+                            EmitSignal(SignalName.FlipVCollided);
+                        }
+                    }
                     continue;
                 }
                 // 硬度较小（硬度较大则无事发生）

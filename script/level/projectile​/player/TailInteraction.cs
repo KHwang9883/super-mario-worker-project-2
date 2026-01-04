@@ -28,6 +28,7 @@ public partial class TailInteraction : Node {
                 var kickEffect = _kickEffectScene.Instantiate<Node2D>();
                 _tail.GetParent<Node2D>().AddSibling(kickEffect);
                 kickEffect.GlobalPosition = _tail.GetNode<CollisionShape2D>("CollisionShape2D").GlobalPosition;
+                kickEffect.ResetPhysicsInterpolation();
                 
                 // 成功一次就结束本物理帧的遍历
                 break;
