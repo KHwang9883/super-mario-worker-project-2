@@ -65,7 +65,7 @@ _data = {
 }
 
 [node name="KickEffect" type="Node2D"]
-z_index = 5
+z_index = 46
 script = ExtResource("1_hrhtt")
 
 [node name="KickEffect" type="Sprite2D" parent="."]
