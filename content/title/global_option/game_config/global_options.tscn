@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bh01ow2pgnsh5"]
+[gd_scene load_steps=19 format=3 uid="uid://bh01ow2pgnsh5"]
 
 [ext_resource type="Script" uid="uid://bmxfxho2l06rq" path="res://script/title/global_option/GlobalOptions.cs" id="1_1n04l"]
 [ext_resource type="Texture2D" uid="uid://dhketxxxmk7rt" path="res://content/ui/option.png" id="2_5c1ry"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ddlwq4a4b6iaf" path="res://content/ui/popup/smwp_popup_initial_lives.tscn" id="8_12rpg"]
 [ext_resource type="PackedScene" uid="uid://bw0aoogxdlcab" path="res://content/ui/popup/smwp_popup_temporary_files.tscn" id="9_e4wm5"]
 [ext_resource type="PackedScene" uid="uid://cungughiviaul" path="res://content/ui/popup/smwp_popup_custom_music_package.tscn" id="10_5c1ry"]
+[ext_resource type="PackedScene" uid="uid://lwkhbaiodods" path="res://content/ui/popup/smwp_popup_color_assist.tscn" id="12_opjjy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrvep"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -367,6 +368,10 @@ visible = false
 offset_right = 413.0
 offset_bottom = 156.0
 
+[node name="SmwpPopupColorAssist" parent="SmwpPopupGroup" instance=ExtResource("12_opjjy")]
+visible = false
+
+[connection signal="ColorAssistHint" from="." to="SmwpPopupGroup/SmwpPopupColorAssist" method="show"]
 [connection signal="pressed" from="Basic/Back" to="." method="OnBackButtonPressed"]
 [connection signal="pressed" from="Basic/Back" to="Basic/Back" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]
 [connection signal="pressed" from="VBoxContainerOptions/InitialLives/SetInitialLives" to="SmwpPopupGroup/SmwpPopupInitialLives" method="show"]

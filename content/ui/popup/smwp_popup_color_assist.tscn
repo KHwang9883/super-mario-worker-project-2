@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://lwkhbaiodods"]
+
+[ext_resource type="PackedScene" uid="uid://bxvt6eyfyn5b3" path="res://content/ui/popup/popup_component/smwp_popup_label.tscn" id="1_u5mje"]
+[ext_resource type="PackedScene" uid="uid://caf7un75kne3a" path="res://content/ui/popup/popup_component/smwp_popup_button.tscn" id="3_76a3q"]
+
+[node name="SmwpPopupColorAssist" type="PopupPanel"]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(500, 200)
+visible = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.99000007
+anchor_bottom = 0.96000004
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 0.9999695
+offset_bottom = 4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorAssist" parent="Control/VBoxContainer" instance=ExtResource("1_u5mje")]
+layout_mode = 2
+theme_override_constants/line_spacing = -4
+theme_override_constants/paragraph_spacing = 6
+text = "Attention: This function aims to help users distinguish colors.
+Switch blocks and dotted-line blocks will be marked with letters corresponding to their colors:
+R-Red, G-Green, B-Blue, C-Cyan, M-Magenta, Y-Yellow, K-Black, W-White."
+autowrap_mode = 3
+
+[node name="Button" parent="Control/VBoxContainer" instance=ExtResource("3_76a3q")]
+layout_mode = 2
+
+[connection signal="pressed" from="Control/VBoxContainer/Button" to="." method="hide"]

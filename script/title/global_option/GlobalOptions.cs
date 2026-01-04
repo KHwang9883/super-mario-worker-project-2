@@ -4,6 +4,9 @@ using SMWP;
 using SMWP.Util;
 
 public partial class GlobalOptions : Control {
+    [Signal]
+    public delegate void ColorAssistHintEventHandler();
+    
     [Export] public NodePath InitialFocusButton = null!;
     
     [Export] public Button InitialLivesButton = null!;
@@ -74,6 +77,9 @@ public partial class GlobalOptions : Control {
     }
     public void SetAccessibilityMode() {
         GameManager.IsColorAccessibilityMode = !GameManager.IsColorAccessibilityMode;
+        if (GameManager.IsColorAccessibilityMode) {
+            EmitSignal(SignalName.ColorAssistHint);
+        }
         ConfigManager.SmwpConfig.SetValue("game_config", "color_assist", GameManager.IsColorAccessibilityMode);
     }
     public void SetPlayLevelInGodMode() {
