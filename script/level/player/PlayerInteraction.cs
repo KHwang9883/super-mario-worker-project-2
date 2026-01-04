@@ -127,7 +127,7 @@ public partial class PlayerInteraction : Node {
                 if (!(_player.GlobalPosition.Y >=
                       result.GlobalPosition.Y + stompableAndHurtable.StompOffset)) {
                     // 此举针对静止龟壳
-                    if (hurtableAndKillable.HurtType == IHurtableAndKillable.HurtEnum.Nothing) {
+                    if (hurtableAndKillable.HurtType != IHurtableAndKillable.HurtEnum.Die) {
                         hurtableAndKillable.PlayerHurtCheck(_hurtFrame);
                     }
                     continue;

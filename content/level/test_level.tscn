@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=100 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="PackedScene" uid="uid://d2yrgj2s3hg6f" path="res://content/ui/popup/smwp_popup_game_pause.tscn" id="1_13tsj"]
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
@@ -80,6 +80,7 @@
 [ext_resource type="PackedScene" uid="uid://ck3jt1w1cix41" path="res://content/level/block/fluid_block/fluid_block.tscn" id="85_bmkva"]
 [ext_resource type="PackedScene" uid="uid://b8fi12ftk0dka" path="res://content/level/block/switch_block/switch_block.tscn" id="86_8ggsa"]
 [ext_resource type="PackedScene" uid="uid://cgmv1pxkk72ai" path="res://content/level/block/switch_block/dotted-line_block.tscn" id="87_8hkbm"]
+[ext_resource type="PackedScene" uid="uid://lo64hov3eeo3" path="res://content/level/enemy/spiny/spiny.tscn" id="87_13tsj"]
 [ext_resource type="PackedScene" uid="uid://ctgqopj8q32nh" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_green.tscn" id="87_ate2p"]
 [ext_resource type="PackedScene" uid="uid://cw8qh44n2xkrx" path="res://content/level/enemy/roto-disc/roto-disc.tscn" id="88_8hkbm"]
 [ext_resource type="PackedScene" uid="uid://big0o6q2i6vyq" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_red.tscn" id="88_13tsj"]
@@ -236,7 +237,7 @@ _targetZIndex = Dictionary[int, int]({
 unique_name_in_owner = true
 process_priority = -10
 process_physics_priority = -10
-position = Vector2(8560, 400)
+position = Vector2(8400, 400)
 
 [node name="LevelCamera" parent="LevelTemplate" instance=ExtResource("10_8mywb")]
 position = Vector2(0, 9999999)
@@ -851,6 +852,12 @@ position = Vector2(10840, 392)
 
 [node name="QuestionBlock" parent="LevelTemplate" instance=ExtResource("69_q0l1p")]
 position = Vector2(8720, 336)
+
+[node name="Spiny" parent="LevelTemplate" instance=ExtResource("87_13tsj")]
+position = Vector2(8624, 400)
+
+[node name="Spiny2" parent="LevelTemplate" instance=ExtResource("87_13tsj")]
+position = Vector2(8784, 400)
 
 [node name="QuestionBlock" parent="." instance=ExtResource("69_q0l1p")]
 position = Vector2(8720, 304)

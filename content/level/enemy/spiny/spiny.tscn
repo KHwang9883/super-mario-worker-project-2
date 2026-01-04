@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://lo64hov3eeo3"]
+[gd_scene load_steps=20 format=3 uid="uid://lo64hov3eeo3"]
 
 [ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="1_siph3"]
 [ext_resource type="Texture2D" uid="uid://c8id45lbmq788" path="res://content/level/enemy/spiny/spiny.png" id="1_uapxd"]
 [ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="4_0x71s"]
-[ext_resource type="Script" uid="uid://cx6s65j3v4cyn" path="res://script/level/enemy/EnemyInteraction.cs" id="4_db8fb"]
+[ext_resource type="Script" uid="uid://nwpoktuden0j" path="res://script/level/enemy/troopa/TroopaEnemyInteraction.cs" id="4_i4126"]
+[ext_resource type="PackedScene" uid="uid://cyllqfxtegidq" path="res://content/level/enemy/spiny/shell_static_spiny.tscn" id="5_gt6bl"]
 [ext_resource type="Script" uid="uid://t3te8lnb0byj" path="res://script/level/component/AutoSpriteFlipH.cs" id="6_7qvs1"]
 [ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/level/enemy/general_visible_on_screen_enabler_2d.tscn" id="7_uapxd"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="8_dcvjf"]
@@ -67,7 +68,8 @@ _animatedSprite2D = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://t3te8lnb0byj"
 
 [node name="EnemyInteraction" type="Node" parent="."]
-script = ExtResource("4_db8fb")
+script = ExtResource("4_i4126")
+_shellStaticScene = ExtResource("5_gt6bl")
 Stompable = false
 metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
 
