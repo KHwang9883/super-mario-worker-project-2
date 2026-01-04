@@ -21,7 +21,7 @@ metadata/_custom_type_script = "uid://bt70774414ws0"
 
 [node name="Parallax2DNormal" type="Parallax2D" parent="."]
 repeat_size = Vector2(511, 449)
-repeat_times = 3
+repeat_times = 5
 
 [node name="Normal" type="Sprite2D" parent="Parallax2DNormal"]
 texture = ExtResource("2_npft5")
