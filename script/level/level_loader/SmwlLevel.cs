@@ -72,7 +72,6 @@ public partial class SmwlLevel : Node2D {
 
     public async void SmwlLoad(FileStream input) {
         if (await SmwlLoader.Load(input) is { } data) {
-            GameManager.LevelFileData = data;
             Install(data);
         } else {
             foreach (var error in SmwlLoader.ErrorMessage) {
@@ -82,6 +81,7 @@ public partial class SmwlLevel : Node2D {
     }
     
     public void Install(SmwlLevelData data) {
+        GameManager.LevelFileData = data;
 #if TOOLS
         // 编辑器环境里永远开启 God 模式
         GameManager.IsGodMode = true;

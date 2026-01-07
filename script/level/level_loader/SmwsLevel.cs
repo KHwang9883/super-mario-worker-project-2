@@ -1,16 +1,18 @@
 using Godot;
-using System;
 using System.IO;
 using SMWP;
 using SMWP.Level;
+using SMWP.Level.Data;
 using static SMWP.GameManager;
 
 public partial class SmwsLevel : Node2D {
     [Export] private PackedScene _smwlLevelScene = GD.Load<PackedScene>("uid://c5d467llk4uur");
     [Export] public SmwsLoader SmwsLoader = null!;
 
+    private SmwsScenarioData? _scenario;
     private SmwlLevel? _smwlLevel;
     private GameManager? _gameManager;
+    private int _currentLevel = 0;
     
     public override void _Ready() {
         base._Ready();
@@ -32,8 +34,11 @@ public partial class SmwsLevel : Node2D {
             ScenarioFile = file;
             await using var input = File.OpenRead(file);
             
-            if (await SmwsLoader.Load(input)) {
-                NextLevel(file);
+            if (await SmwsLoader.Load(input, _smwlLevel.SmwlLoader) is {} scenario) {
+                _scenario = scenario;
+                if (scenario.Levels.Count > 0) {
+                    NextLevel(scenario.Levels[0]);   
+                }
             } else {
                 foreach (var error in SmwsLoader.ErrorMessage) {
                     GD.PrintErr(error);
@@ -46,16 +51,26 @@ public partial class SmwsLevel : Node2D {
     
     // 下一个关卡：删除当前关卡（由 GameManager 发射信号）
     public void NextLevel() {
-        NextLevel(ScenarioFile!);
+        if (_scenario is not { } scenario) {
+            GD.PushError($"No loaded scenario in {nameof(SmwsLevel)}");
+            return;
+        }
+        if (_currentLevel + 1 >= scenario.Levels.Count) {
+            // Scenario 全部完成，此时应返回标题界面
+            return;
+        }
+        _currentLevel++;
+        NextLevel(scenario.Levels[_currentLevel]);
     }
-    public void NextLevel(string file) {
+    
+    public void NextLevel(SmwlLevelData levelData) {
         _smwlLevel?.QueueFree();
         
         _smwlLevel = _smwlLevelScene.Instantiate<SmwlLevel>();
         ScenarioNewLevelLineNum.TryGetValue(CurrentScenarioLevel, out var lineNum);
         GD.Print($"lineNum: {lineNum}");
         _smwlLevel.SmwlLoader.LineNum = lineNum;
-        _smwlLevel.OnOpenSmwlDialogFileSelected(file);
+        _smwlLevel.Install(levelData);
         AddChild(_smwlLevel);
     }
     

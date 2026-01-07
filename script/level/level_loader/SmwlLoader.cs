@@ -21,37 +21,21 @@ public partial class SmwlLoader : Node {
     public volatile int LineNum;
 
     public ValueTask<SmwlLevelData?> Load(string content) {
-        return Load0(new StringReader(content));
+        return Load(new StringReader(content));
     }
 
     public ValueTask<SmwlLevelData?> Load(Stream compressedSmwl) {
         // 用缓冲区包装
         var buffered = new BufferedStream(compressedSmwl);
         // 检测文件类型是否为压缩的 smwl，并构建解压后的纯文本流
-        var decompressed = (Stream) (IsBinaryFile(compressedSmwl)
+        var decompressed = (Stream) (LoaderHelper.IsBinaryFile(compressedSmwl)
             ? new GZipStream(buffered, CompressionMode.Decompress)
             : buffered);
-        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-        return Load0(new StreamReader(decompressed, Encoding.GetEncoding("gb18030")));
+        
+        return Load(new StreamReader(decompressed, LoaderHelper.GetGb18030()));
     }
 
-    private static bool IsBinaryFile(Stream smwl) {
-        if (!smwl.CanSeek) {
-            throw new NotSupportedException("Unseekable file stream: unable to detect smwl type");
-        }
-        using var reader = new StreamReader(new GZipStream(smwl, CompressionMode.Decompress, true));
-        bool result;
-        try {
-            reader.Read();
-            result = true;
-        } catch (InvalidDataException) {
-            result = false;
-        }
-        smwl.Seek(0, SeekOrigin.Begin);
-        return result;
-    }
-
-    private async ValueTask<SmwlLevelData?> Load0(TextReader reader) {
+    public async ValueTask<SmwlLevelData?> Load(TextReader reader) {
         // 解析文件头
         var header = await ParseHeader(reader);
         if (header == null) {
@@ -69,14 +53,12 @@ public partial class SmwlLoader : Node {
         if (addition == null) {
             return null;
         }
-        // 解析 SMWP 2.0 的新配置项
-        var v2Meta = await ParseV2Metadata(reader);
         return new SmwlLevelData {
             Header = header,
             AdditionalSettings = addition,
             Blocks = blocks,
             Objects = objects,
-            V2Metadata = v2Meta,
+            V2Metadata = [],
         };
     }
 
@@ -160,6 +142,10 @@ public partial class SmwlLoader : Node {
     private async ValueTask<Array<ClassicSmwlObject>> ParseObjects(TextReader reader) {
         Array<ClassicSmwlObject> result = [];
         while (true) {
+            // 检测到文件结尾或 New Level 就停止解析
+            if (await LoaderHelper.PeekLineAsync(reader) is null or "New Level") {
+                break;
+            }
             // 检测到 SMWP 二期的扩展关卡数据则返回
             var first = (char)reader.Peek();
             // 有的 smwl/mfl 的对象区里有空行，
@@ -205,9 +191,18 @@ public partial class SmwlLoader : Node {
     
         // 读取所有配置行
         while (true) {
+            // 检测到文件结尾或 New Level 就停止解析
+            if (await LoaderHelper.PeekLineAsync(reader) is null or "New Level") {
+                break;
+            }
             var line = await ReadLineAsync(reader);
-            if (string.IsNullOrEmpty(line) || !line.Contains('='))
-                break;  // 遇到非配置行或空行结束
+            if (line == null) {
+                break;
+            }
+            if (string.IsNullOrWhiteSpace(line) || !line.Contains('=')) {
+                // 要把空行读完，确保后面是 EOF 或者 New Level。
+                continue;
+            }
         
             var separatorIndex = line.IndexOf('=');
             if (separatorIndex > 0) {
@@ -260,24 +255,6 @@ public partial class SmwlLoader : Node {
                     : ConfigurationExtensions.GetIntValueOrDefault(config, "version", 0) / 10,
                     
         };
-    }
-
-    public async ValueTask<GDC.Dictionary<string, string>> ParseV2Metadata(TextReader reader) {
-        GDC.Dictionary<string, string> result = [];
-        while (true) {
-            var line = await ReadLineAsync(reader);
-            if (line == null) {
-                break;
-            }
-            // 关卡文件结尾，跳出循环
-            int separator;
-            if ((separator = line.IndexOf('=')) < 0) {
-                ErrorMessage.Add($"'=' not found in metadata {line} at line {LineNum}");
-                continue;
-            }
-            result[line[..separator].Trim()] = line[(separator + 1)..].Trim();
-        }
-        return result;
     }
 
     private async ValueTask<bool> Check(TextReader reader, string expected) {
