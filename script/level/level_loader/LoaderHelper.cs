@@ -12,7 +12,7 @@ public static class LoaderHelper {
         if (!smwl.CanSeek) {
             throw new NotSupportedException("Unseekable file stream: unable to detect smwl type");
         }
-        var originalOffset = smwl.Position;
+        var pos = smwl.Position;
         using var reader = new StreamReader(new GZipStream(smwl, CompressionMode.Decompress, true));
         bool result;
         try {
@@ -21,19 +21,21 @@ public static class LoaderHelper {
         } catch (InvalidDataException) {
             result = false;
         }
-        smwl.Seek(originalOffset, SeekOrigin.Begin);
+        smwl.Seek(pos - smwl.Position, SeekOrigin.Current);
         return result;
     }
 
-    public static async ValueTask<string?> PeekLineAsync(TextReader reader) {
-        if (reader is not StreamReader sr) {
-            throw new NotSupportedException($"Only {nameof(StreamReader)}s can be peeked");
+    public static Stream MakeBuffered(Stream original) {
+        return original as BufferedStream ?? new BufferedStream(original);
+    }
+
+    public static async ValueTask<Stream> MakeSeekableAsync(Stream original) {
+        if (original.CanSeek) {
+            return original;
         }
-        var stream = sr.BaseStream;
-        var pos = stream.Position;
-        var line = await reader.ReadLineAsync();
-        stream.Seek(pos, SeekOrigin.Begin);
-        return line;
+        using var buf = new MemoryStream();
+        await original.CopyToAsync(buf);
+        return new MemoryStream(buf.GetBuffer(), 0, (int)buf.Length);
     }
 
     public static Encoding GetGb18030() {

@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.IO.Compression;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -24,17 +23,29 @@ public partial class SmwlLoader : Node {
         return Load(new StringReader(content));
     }
 
-    public ValueTask<SmwlLevelData?> Load(Stream compressedSmwl) {
+    /// <summary>
+    /// 读取一个 smwl 关卡。
+    /// 注意：这个方法不会释放 <paramref name="file"/>
+    /// </summary>
+    /// <param name="file">关卡文件流</param>
+    /// <returns>读取后的关卡</returns>
+    public async ValueTask<SmwlLevelData?> Load(Stream file) {
         // 用缓冲区包装
-        var buffered = new BufferedStream(compressedSmwl);
+        var buffered = LoaderHelper.MakeBuffered(await LoaderHelper.MakeSeekableAsync(file));
         // 检测文件类型是否为压缩的 smwl，并构建解压后的纯文本流
-        var decompressed = (Stream) (LoaderHelper.IsBinaryFile(compressedSmwl)
-            ? new GZipStream(buffered, CompressionMode.Decompress)
-            : buffered);
+        var decompressed = LoaderHelper.IsBinaryFile(file)
+            ? await LoaderHelper.MakeSeekableAsync(new GZipStream(buffered, CompressionMode.Decompress))
+            : buffered;
         
-        return Load(new StreamReader(decompressed, LoaderHelper.GetGb18030()));
+        return await Load(new StreamReader(decompressed, LoaderHelper.GetGb18030()));
     }
 
+    /// <summary>
+    /// 读取一个 smwl 关卡。<p/>
+    /// 在读取 smws 时，这个方法会连带下一关的 "New Level" 行一起读取。
+    /// </summary>
+    /// <param name="reader">关卡字符流</param>
+    /// <returns>读取后的关卡</returns>
     public async ValueTask<SmwlLevelData?> Load(TextReader reader) {
         // 解析文件头
         var header = await ParseHeader(reader);
@@ -142,10 +153,6 @@ public partial class SmwlLoader : Node {
     private async ValueTask<Array<ClassicSmwlObject>> ParseObjects(TextReader reader) {
         Array<ClassicSmwlObject> result = [];
         while (true) {
-            // 检测到文件结尾或 New Level 就停止解析
-            if (await LoaderHelper.PeekLineAsync(reader) is null or "New Level") {
-                break;
-            }
             // 检测到 SMWP 二期的扩展关卡数据则返回
             var first = (char)reader.Peek();
             // 有的 smwl/mfl 的对象区里有空行，
@@ -154,8 +161,8 @@ public partial class SmwlLoader : Node {
                 break;
             }
             var line = await ReadLineAsync(reader);
-            // 关卡文件结尾，跳出循环
-            if (line == null) {
+            // 关卡文件结尾或 New Level，跳出循环
+            if (line is null or "New Level") {
                 break;
             }
             // 将水管连接的 id 转换为 499 以方便处理
@@ -191,12 +198,9 @@ public partial class SmwlLoader : Node {
     
         // 读取所有配置行
         while (true) {
-            // 检测到文件结尾或 New Level 就停止解析
-            if (await LoaderHelper.PeekLineAsync(reader) is null or "New Level") {
-                break;
-            }
             var line = await ReadLineAsync(reader);
-            if (line == null) {
+            // 关卡文件结尾或 New Level，跳出循环
+            if (line is null or "New Level") {
                 break;
             }
             if (string.IsNullOrWhiteSpace(line) || !line.Contains('=')) {

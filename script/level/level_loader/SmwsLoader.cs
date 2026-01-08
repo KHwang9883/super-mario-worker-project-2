@@ -10,42 +10,37 @@ namespace SMWP.Level;
 public partial class SmwsLoader : Node {
     public GDC.Array<string> ErrorMessage { get; } = [];
 
-    public async ValueTask<SmwsScenarioData?> Load(Stream compressedSmws, SmwlLoader levelLoader) {
+    public async ValueTask<SmwsScenarioData?> Load(Stream file, SmwlLoader levelLoader) {
         ErrorMessage.Clear();
         
         // 用缓冲区包装
-        var buffered = new BufferedStream(compressedSmws);
-        // 检测文件类型是否为压缩的 smws，并构建解压后的纯文本流
-        var decompressed = (Stream)(LoaderHelper.IsBinaryFile(compressedSmws)
-            ? new GZipStream(buffered, CompressionMode.Decompress)
-            : buffered);
+        var buffered = LoaderHelper.MakeBuffered(await LoaderHelper.MakeSeekableAsync(file));
+        // 检测文件类型是否为压缩的 smwl，并构建解压后的纯文本流
+        var decompressed = LoaderHelper.IsBinaryFile(file)
+            ? await LoaderHelper.MakeSeekableAsync(new GZipStream(buffered, CompressionMode.Decompress))
+            : buffered;
         
         return await Load0(new StreamReader(decompressed, LoaderHelper.GetGb18030()), levelLoader);
     }
 
     private async ValueTask<SmwsScenarioData?> Load0(TextReader reader, SmwlLoader levelLoader) {
-        string? current;
-        if (int.TryParse(current = await reader.ReadLineAsync(), out int lives)) {
-            ErrorMessage.Add($"Invalid live number line, found {current}");
+        string? line1;
+        if (!int.TryParse(line1 = await reader.ReadLineAsync(), out int lives)) {
+            ErrorMessage.Add($"Invalid live number line, found {line1}");
             return null;
         }
         GDC.Array<SmwlLevelData> levels = [];
+        
+        var line2 = await reader.ReadLineAsync();
+        if (line2 != "New Level") {
+            return null;
+        }
 
         levelLoader.ErrorMessage.Clear();
         while (reader.Peek() >= 0) {
-            var line = await reader.ReadLineAsync();
-            if (line == null) {
-                break;
+            if (await levelLoader.Load(reader) is { } level) {
+                levels.Add(level);
             }
-            if (string.IsNullOrWhiteSpace(line)) {
-                continue;
-            }
-            if (line == "New Level") {
-                if (await levelLoader.Load(reader) is { } level) {
-                    levels.Add(level);
-                }
-            }
-            ErrorMessage.Add($"Unexpected line \"{line}\" in smws scenario");
         }
         
         ErrorMessage.AddRange(levelLoader.ErrorMessage);

@@ -89,6 +89,9 @@ public partial class SmwlLevel : Node2D {
         _checkpointId = 1;
         
         OnDataInstallStarted();
+        // 对数据库进行索引（线性表 -> 字典）
+        // 不能在 ready 的时候进行索引。因为加载 smws 的时候会在 ready 前调用 Install
+        DatabaseHolder.Index();
         // 设置文件头数据
         InstallHeader(data.Header);
         // 安装 Blocks

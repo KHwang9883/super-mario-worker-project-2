@@ -32,9 +32,11 @@ public partial class SmwsLevel : Node2D {
     private async void OnOpenSmwlDialogFileSelected(string file) {
         if (File.Exists(file)) {
             ScenarioFile = file;
+            
+            var smwlLoader = new SmwlLoader();
             await using var input = File.OpenRead(file);
             
-            if (await SmwsLoader.Load(input, _smwlLevel.SmwlLoader) is {} scenario) {
+            if (await SmwsLoader.Load(input, smwlLoader) is {} scenario) {
                 _scenario = scenario;
                 if (scenario.Levels.Count > 0) {
                     NextLevel(scenario.Levels[0]);   
@@ -44,6 +46,8 @@ public partial class SmwsLevel : Node2D {
                     GD.PrintErr(error);
                 }
             }
+            
+            smwlLoader.QueueFree();
         } else {
             GD.PrintErr($"File {file} does not exist");
         }

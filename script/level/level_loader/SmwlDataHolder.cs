@@ -35,9 +35,10 @@ public partial class SmwlDataHolder : Node {
         Index();
     }
 
-    private void Index() {
+    public void Index() {
         // 索引方块
         ByBlockId.Clear();
+        BySerialNumber.Clear();
         foreach (var entry in BlockDatabase.Entries) {
             if (BlockId.TryParse(entry.Id, out var rid)) {
                 ByBlockId[rid] = entry;
@@ -47,6 +48,7 @@ public partial class SmwlDataHolder : Node {
             }
         }
         // 索引活动对象
+        ObjectById.Clear();
         foreach (var db in ObjectDatabases) {
             foreach (var entry in db.Entries) {
                 if (entry is not null) {
