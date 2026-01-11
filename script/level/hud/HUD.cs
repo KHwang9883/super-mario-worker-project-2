@@ -39,8 +39,8 @@ public partial class HUD : Control {
     private string? _smwpGameWindowTitle;
 
     public override void _Ready() {
-        _player ??= (Node2D)GetTree().GetFirstNodeInGroup("player");
         Callable.From(() => {
+            _player ??= (Node2D)GetTree().GetFirstNodeInGroup("player");
             _playerSuit = (PlayerSuit)_player.GetMeta("PlayerSuit");
             _playerMovement = (PlayerMovement)_player.GetMeta("PlayerMovement");
         }).CallDeferred();

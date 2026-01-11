@@ -132,6 +132,7 @@ public partial class GameManager : Node {
         PlayerSuitRestore = PlayerSuit.SuitEnum.Small;
         
         IsPlayingScenario = false;
+        ScenarioFile = null;
         ScenarioLevelCount = 0;
         CurrentScenarioLevel = 0;
         ScenarioNewLevelLineNum = [];
@@ -164,6 +165,8 @@ public partial class GameManager : Node {
     // Level Pass
     public void LevelPass() {
         if (!IsLevelPass) return;
+
+        Player!.ProcessMode = ProcessModeEnum.Disabled;
         
         _levelPassTimer++;
         

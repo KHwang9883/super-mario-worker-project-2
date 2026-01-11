@@ -40,6 +40,7 @@ public partial class SmwsLoader : Node {
         while (reader.Peek() >= 0) {
             if (await levelLoader.Load(reader) is { } level) {
                 levels.Add(level);
+                GameManager.ScenarioLevelCount++;
             }
         }
         

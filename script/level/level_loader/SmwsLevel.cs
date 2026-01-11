@@ -16,6 +16,9 @@ public partial class SmwsLevel : Node2D {
     
     public override void _Ready() {
         base._Ready();
+        
+        // 禁止 God Mode
+        IsGodMode = false;
 
         _gameManager ??= GetTree().Root.GetNode<GameManager>("/root/GameManager");
         _gameManager.ScenarioNextLevel += NextLevel;
@@ -25,8 +28,36 @@ public partial class SmwsLevel : Node2D {
             // 改成拖拽加载了，更方便（
             GetWindow().FilesDropped += files => OnOpenSmwlDialogFileSelected(files[0]);
         } else {
-            NextLevel();
+            // 加载Scenario数据
+            LoadScenario();
         }
+    }
+    
+    private async void LoadScenario() {
+        if (ScenarioFile == null || !File.Exists(ScenarioFile)) {
+            return;
+        }
+        
+        var smwlLoader = new SmwlLoader();
+        await using var input = File.OpenRead(ScenarioFile);
+        
+        if (await SmwsLoader.Load(input, smwlLoader) is {} scenario) {
+            _scenario = scenario;
+            // 设置GameManager的Scenario相关变量
+            IsPlayingScenario = true;
+            ScenarioLevelCount = scenario.Levels.Count;
+            // 加载当前关卡，而不是下一个关卡
+            _currentLevel = CurrentScenarioLevel;
+            if (_currentLevel < _scenario.Levels.Count) {
+                NextLevel(_scenario.Levels[_currentLevel]);
+            }
+        } else {
+            foreach (var error in SmwsLoader.ErrorMessage) {
+                GD.PrintErr(error);
+            }
+        }
+        
+        smwlLoader.QueueFree();
     }
 
     private async void OnOpenSmwlDialogFileSelected(string file) {
@@ -38,6 +69,10 @@ public partial class SmwsLevel : Node2D {
             
             if (await SmwsLoader.Load(input, smwlLoader) is {} scenario) {
                 _scenario = scenario;
+                // 设置GameManager的Scenario相关变量
+                IsPlayingScenario = true;
+                ScenarioLevelCount = scenario.Levels.Count;
+                CurrentScenarioLevel = 0;
                 if (scenario.Levels.Count > 0) {
                     NextLevel(scenario.Levels[0]);   
                 }
@@ -60,19 +95,21 @@ public partial class SmwsLevel : Node2D {
             return;
         }
         if (_currentLevel + 1 >= scenario.Levels.Count) {
-            // Scenario 全部完成，此时应返回标题界面
+            // Scenario 全部完成，此时GameManager会处理返回标题界面和重置数据
             return;
         }
         _currentLevel++;
-        NextLevel(scenario.Levels[_currentLevel]);
+        NextLevel(_scenario.Levels[_currentLevel]);
     }
     
     public void NextLevel(SmwlLevelData levelData) {
-        _smwlLevel?.QueueFree();
+        if (_smwlLevel != null && IsInstanceValid(_smwlLevel)) {
+            _smwlLevel.Free();
+        }
         
         _smwlLevel = _smwlLevelScene.Instantiate<SmwlLevel>();
         ScenarioNewLevelLineNum.TryGetValue(CurrentScenarioLevel, out var lineNum);
-        GD.Print($"lineNum: {lineNum}");
+        //GD.Print($"lineNum: {lineNum}");
         _smwlLevel.SmwlLoader.LineNum = lineNum;
         _smwlLevel.Install(levelData);
         AddChild(_smwlLevel);

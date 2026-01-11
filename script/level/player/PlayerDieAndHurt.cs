@@ -119,7 +119,8 @@ public partial class PlayerDieAndHurt : Node {
         }
         
         // 时间归零死亡
-        if (GameManager.Time == 0) {
+        if (GameManager.Time == 0 && !GameManager.IsLevelPass
+            && _player.ProcessMode != ProcessModeEnum.Disabled) {
             Die();
         }
         
