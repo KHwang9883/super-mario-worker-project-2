@@ -30,8 +30,14 @@ public partial class GameManager : Node {
 
     public static int InitialLivesOfSingleLevel = 4;
 
+    // 浣熊装测试
+    /*
     public static PlayerSuit.SuitEnum PlayerSuitRestore = PlayerSuit.SuitEnum.Powered;
     public static PlayerSuit.PowerupEnum PlayerPowerupRestore = PlayerSuit.PowerupEnum.Raccoon;
+    */
+    
+    public static PlayerSuit.SuitEnum PlayerSuitRestore = PlayerSuit.SuitEnum.Small;
+    public static PlayerSuit.PowerupEnum PlayerPowerupRestore = PlayerSuit.PowerupEnum.Fireball;
     
     public static int CurrentCheckpointId;
     public static Array<int> ActivatedCheckpoints = [];

@@ -103,7 +103,7 @@ metadata/_custom_type_script = "uid://c8yu81i46jf4r"
 
 [node name="Open SMWL File" type="FileDialog" parent="."]
 oversampling_override = 1.0
-title = "Open a File"
+title = "Open a SMWL File"
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.smwl")

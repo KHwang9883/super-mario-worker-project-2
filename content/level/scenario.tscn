@@ -43,10 +43,11 @@ Button/styles/hover = SubResource("StyleBoxFlat_6mkpa")
 Button/styles/normal = SubResource("StyleBoxFlat_wdnmx")
 Button/styles/pressed = SubResource("StyleBoxFlat_1a3sc")
 
-[node name="Scenario" type="Node2D" node_paths=PackedStringArray("SmwsLoader", "SmwpFileDecryptor")]
+[node name="Scenario" type="Node2D" node_paths=PackedStringArray("SmwsLoader", "SmwpFileDecryptor", "OpenSmwlDialog")]
 script = ExtResource("1_jtnl8")
 SmwsLoader = NodePath("SmwsLoader")
 SmwpFileDecryptor = NodePath("Smwp1FileDecryptor")
+OpenSmwlDialog = NodePath("Open SMWL File")
 
 [node name="SmwsLoader" type="Node" parent="."]
 script = ExtResource("2_dyfvc")
@@ -54,10 +55,10 @@ metadata/_custom_type_script = "uid://15cgdfnvj6k6"
 
 [node name="Open SMWL File" type="FileDialog" parent="."]
 oversampling_override = 1.0
-title = "Open a File"
+title = "Open a SMWS or SMWP File"
 file_mode = 0
 access = 2
-filters = PackedStringArray("*.smwl")
+filters = PackedStringArray("*.smws", "*.smwp")
 use_native_dialog = true
 
 [node name="Smwp1FileDecryptor" parent="." instance=ExtResource("3_njp68")]

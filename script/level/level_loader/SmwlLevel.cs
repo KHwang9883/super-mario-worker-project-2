@@ -48,6 +48,9 @@ public partial class SmwlLevel : Node2D {
                 // 测试用
                 // 改成拖拽加载了，更方便（
                 GetWindow().FilesDropped += files => OnOpenSmwlDialogFileSelected(files[0]);
+                
+                OpenSmwlDialog.Show();
+                OpenSmwlDialog.FileSelected += OnOpenSmwlDialogFileSelected;
             }
         } else if (!GameManager.IsPlayingScenario) {
             // 只有在 PlayLevel 下才直接调用 Install

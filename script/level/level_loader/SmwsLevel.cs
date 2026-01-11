@@ -11,6 +11,7 @@ public partial class SmwsLevel : Node2D {
     [Export] private PackedScene _smwlLevelScene = GD.Load<PackedScene>("uid://c5d467llk4uur");
     [Export] public SmwsLoader SmwsLoader = null!;
     [Export] public SmwpFileDecryptor SmwpFileDecryptor = null!;
+    [Export] public FileDialog OpenSmwlDialog { get; private set; } = null!;
 
     private SmwsScenarioData? _scenario;
     private SmwlLevel? _smwlLevel;
@@ -30,6 +31,9 @@ public partial class SmwsLevel : Node2D {
             // 测试用
             // 改成拖拽加载了，更方便（
             GetWindow().FilesDropped += files => OnOpenSmwlDialogFileSelected(files[0]);
+            
+            OpenSmwlDialog.Show();
+            OpenSmwlDialog.FileSelected += OnOpenSmwlDialogFileSelected;
         } else {
             // 加载Scenario数据
             LoadScenario();
