@@ -61,7 +61,7 @@ debug_color = Color(0.547634, 0.5650954, 0, 0.41960785)
 [node name="PowerupSet" type="Node" parent="." node_paths=PackedStringArray("_powerup")]
 script = ExtResource("2_rx0bl")
 _powerup = NodePath("..")
-PowerupType = 4
+PowerupType = 5
 
 [node name="BonusSprout" type="Node" parent="."]
 script = ExtResource("3_n4ll0")
