@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://c8ls5xyw1g2q5"]
+[gd_scene load_steps=16 format=3 uid="uid://c8ls5xyw1g2q5"]
 
 [ext_resource type="Script" uid="uid://cxhg2y014u5cg" path="res://script/level/level_loader/SmwsLevel.cs" id="1_jtnl8"]
 [ext_resource type="Script" uid="uid://15cgdfnvj6k6" path="res://script/level/level_loader/SmwsLoader.cs" id="2_dyfvc"]
 [ext_resource type="Texture2D" uid="uid://dhketxxxmk7rt" path="res://content/ui/option.png" id="3_3h7le"]
+[ext_resource type="PackedScene" uid="uid://c66yrpqlakak7" path="res://content/smwp_1_file_decryptor/smwp_1_file_decryptor.tscn" id="3_njp68"]
 [ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="4_njp68"]
 [ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="5_jjila"]
 [ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="6_kjihh"]
@@ -42,9 +43,10 @@ Button/styles/hover = SubResource("StyleBoxFlat_6mkpa")
 Button/styles/normal = SubResource("StyleBoxFlat_wdnmx")
 Button/styles/pressed = SubResource("StyleBoxFlat_1a3sc")
 
-[node name="Scenario" type="Node2D" node_paths=PackedStringArray("SmwsLoader")]
+[node name="Scenario" type="Node2D" node_paths=PackedStringArray("SmwsLoader", "SmwpFileDecryptor")]
 script = ExtResource("1_jtnl8")
 SmwsLoader = NodePath("SmwsLoader")
+SmwpFileDecryptor = NodePath("Smwp1FileDecryptor")
 
 [node name="SmwsLoader" type="Node" parent="."]
 script = ExtResource("2_dyfvc")
@@ -57,6 +59,8 @@ file_mode = 0
 access = 2
 filters = PackedStringArray("*.smwl")
 use_native_dialog = true
+
+[node name="Smwp1FileDecryptor" parent="." instance=ExtResource("3_njp68")]
 
 [node name="Basic" type="Control" parent="."]
 z_index = -1024

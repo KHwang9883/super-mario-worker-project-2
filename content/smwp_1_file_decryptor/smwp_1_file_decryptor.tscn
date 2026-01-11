@@ -4,4 +4,3 @@
 
 [node name="Smwp1FileDecryptor" type="Node"]
 script = ExtResource("1_lie6o")
-_saveDecryptedFile = true

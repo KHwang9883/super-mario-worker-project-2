@@ -3,11 +3,14 @@ using System.IO;
 using SMWP;
 using SMWP.Level;
 using SMWP.Level.Data;
+using SMWP.Smwp1FileDecryptor;
 using static SMWP.GameManager;
+using FileAccess = Godot.FileAccess;
 
 public partial class SmwsLevel : Node2D {
     [Export] private PackedScene _smwlLevelScene = GD.Load<PackedScene>("uid://c5d467llk4uur");
     [Export] public SmwsLoader SmwsLoader = null!;
+    [Export] public SmwpFileDecryptor SmwpFileDecryptor = null!;
 
     private SmwsScenarioData? _scenario;
     private SmwlLevel? _smwlLevel;
@@ -41,19 +44,57 @@ public partial class SmwsLevel : Node2D {
         var smwlLoader = new SmwlLoader();
         await using var input = File.OpenRead(ScenarioFile);
         
-        if (await SmwsLoader.Load(input, smwlLoader) is {} scenario) {
-            _scenario = scenario;
-            // 设置GameManager的Scenario相关变量
-            IsPlayingScenario = true;
-            ScenarioLevelCount = scenario.Levels.Count;
-            // 加载当前关卡，而不是下一个关卡
-            _currentLevel = CurrentScenarioLevel;
-            if (_currentLevel < _scenario.Levels.Count) {
-                NextLevel(_scenario.Levels[_currentLevel]);
+        if (ScenarioFile.GetExtension() == "smwp") {
+            // 读取原始文件字节
+            byte[] originalBytes = await File.ReadAllBytesAsync(ScenarioFile);
+            
+            // 获取密钥
+            DecryptKeyGetter.GetKey();
+            
+            var gameId = DecryptKey.GameId;
+            var cryptGmidInit = DecryptKey.CryptGmidInit;
+            var keyStr = DecryptKey.KeyStr;
+            
+            // 先执行 XOR 解密
+            byte[] decryptedBytes = Xor.ScriptTextCryptBytes(
+                originalBytes, keyStr, gameId, cryptGmidInit
+                );
+            
+            // 使用解密后的字节创建MemoryStream
+            await using var decryptedStream = new MemoryStream(decryptedBytes);
+            
+            // 使用解密后的流进行加载
+            if (await SmwsLoader.Load(decryptedStream, smwlLoader) is {} scenario) {
+                _scenario = scenario;
+                // 设置GameManager的Scenario相关变量
+                IsPlayingScenario = true;
+                ScenarioLevelCount = scenario.Levels.Count;
+                // 加载当前关卡，而不是下一个关卡
+                _currentLevel = CurrentScenarioLevel;
+                if (_currentLevel < _scenario.Levels.Count) {
+                    NextLevel(_scenario.Levels[_currentLevel]);
+                }
+            } else {
+                foreach (var error in SmwsLoader.ErrorMessage) {
+                    GD.PrintErr(error);
+                }
             }
         } else {
-            foreach (var error in SmwsLoader.ErrorMessage) {
-                GD.PrintErr(error);
+            // 非smwp文件直接加载
+            if (await SmwsLoader.Load(input, smwlLoader) is {} scenario) {
+                _scenario = scenario;
+                // 设置GameManager的Scenario相关变量
+                IsPlayingScenario = true;
+                ScenarioLevelCount = scenario.Levels.Count;
+                // 加载当前关卡，而不是下一个关卡
+                _currentLevel = CurrentScenarioLevel;
+                if (_currentLevel < _scenario.Levels.Count) {
+                    NextLevel(_scenario.Levels[_currentLevel]);
+                }
+            } else {
+                foreach (var error in SmwsLoader.ErrorMessage) {
+                    GD.PrintErr(error);
+                }
             }
         }
         
@@ -65,20 +106,58 @@ public partial class SmwsLevel : Node2D {
             ScenarioFile = file;
             
             var smwlLoader = new SmwlLoader();
-            await using var input = File.OpenRead(file);
             
-            if (await SmwsLoader.Load(input, smwlLoader) is {} scenario) {
-                _scenario = scenario;
-                // 设置GameManager的Scenario相关变量
-                IsPlayingScenario = true;
-                ScenarioLevelCount = scenario.Levels.Count;
-                CurrentScenarioLevel = 0;
-                if (scenario.Levels.Count > 0) {
-                    NextLevel(scenario.Levels[0]);   
+            if (ScenarioFile.GetExtension() == "smwp") {
+                // 读取原始文件字节
+                byte[] originalBytes = await File.ReadAllBytesAsync(file);
+                
+                // 获取密钥
+                DecryptKeyGetter.GetKey();
+                
+                var gameId = DecryptKey.GameId;
+                var cryptGmidInit = DecryptKey.CryptGmidInit;
+                var keyStr = DecryptKey.KeyStr;
+                
+                // 先执行 XOR 解密
+                byte[] decryptedBytes = Xor.ScriptTextCryptBytes(
+                    originalBytes, keyStr, gameId, cryptGmidInit
+                    );
+                
+                // 使用解密后的字节创建MemoryStream
+                await using var decryptedStream = new MemoryStream(decryptedBytes);
+                
+                // 使用解密后的流进行加载
+                if (await SmwsLoader.Load(decryptedStream, smwlLoader) is {} scenario) {
+                    _scenario = scenario;
+                    // 设置GameManager的Scenario相关变量
+                    IsPlayingScenario = true;
+                    ScenarioLevelCount = scenario.Levels.Count;
+                    CurrentScenarioLevel = 0;
+                    if (scenario.Levels.Count > 0) {
+                        NextLevel(scenario.Levels[0]);   
+                    }
+                } else {
+                    foreach (var error in SmwsLoader.ErrorMessage) {
+                        GD.PrintErr(error);
+                    }
                 }
             } else {
-                foreach (var error in SmwsLoader.ErrorMessage) {
-                    GD.PrintErr(error);
+                // 非smwp文件直接加载
+                await using var input = File.OpenRead(file);
+                
+                if (await SmwsLoader.Load(input, smwlLoader) is {} scenario) {
+                    _scenario = scenario;
+                    // 设置GameManager的Scenario相关变量
+                    IsPlayingScenario = true;
+                    ScenarioLevelCount = scenario.Levels.Count;
+                    CurrentScenarioLevel = 0;
+                    if (scenario.Levels.Count > 0) {
+                        NextLevel(scenario.Levels[0]);   
+                    }
+                } else {
+                    foreach (var error in SmwsLoader.ErrorMessage) {
+                        GD.PrintErr(error);
+                    }
                 }
             }
             
