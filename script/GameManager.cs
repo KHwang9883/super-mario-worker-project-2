@@ -72,6 +72,8 @@ public partial class GameManager : Node {
     public static int ScenarioLevelCount;
     public static int CurrentScenarioLevel;
     public static Dictionary<int, int> ScenarioNewLevelLineNum = [];
+
+    public static string LoadCurrentDir;
     
     public static int CurrentBgmId;
     public static float BgmPosition;
