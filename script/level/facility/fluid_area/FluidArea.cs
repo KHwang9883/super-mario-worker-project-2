@@ -17,8 +17,10 @@ public partial class FluidArea : Area2D {
     public override void _Ready() {
         _water ??= (Water)GetTree().GetFirstNodeInGroup("water_global");
         CollisionShape.GlobalPosition = GlobalPosition + FluidRect.Size / 2;
-        var shape = (RectangleShape2D)CollisionShape.Shape;
+        var shapeResource = CollisionShape.Shape;
+        var shape = (RectangleShape2D)shapeResource.Duplicate();
         shape.Size = FluidRect.Size;
+        CollisionShape.Shape = shape;
     }
     public override void _PhysicsProcess(double delta) {
         if (GetOverlappingBodies().Count <= 0) return;

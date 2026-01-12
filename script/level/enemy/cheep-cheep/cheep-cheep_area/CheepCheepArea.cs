@@ -35,8 +35,10 @@ public partial class CheepCheepArea : Area2D {
         _waterGlobal ??= (Node2D)GetTree().GetFirstNodeInGroup("water_global");
         _collisionShape2D = GetNode<CollisionShape2D>("CollisionShape2D");
         _collisionShape2D.GlobalPosition = CheepAreaRect.Position + CheepAreaRect.Size / 2f;
-        var rectangleShape2D = (RectangleShape2D)_collisionShape2D.Shape;
+        var shapeResource = _collisionShape2D.Shape;
+        var rectangleShape2D = (RectangleShape2D)shapeResource.Duplicate();
         rectangleShape2D.Size = CheepAreaRect.Size;
+        _collisionShape2D.Shape = rectangleShape2D;
     }
     public override void _PhysicsProcess(double delta) {
         // 编辑器内矩形区域预览
