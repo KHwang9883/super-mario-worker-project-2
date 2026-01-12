@@ -33,7 +33,11 @@ public partial class SmwsLoader : Node {
         
         var line2 = await reader.ReadLineAsync();
         if (line2 != "New Level") {
-            return null;
+            GameManager.CustomBgmPackage = line2;
+            var line3 = await reader.ReadLineAsync();
+            if (line3 != "New Level") {
+                return null;
+            }
         }
 
         levelLoader.ErrorMessage.Clear();

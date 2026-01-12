@@ -75,7 +75,7 @@ public partial class GameManager : Node {
     
     public static int CurrentBgmId;
     public static float BgmPosition;
-    public static string CustomBgmPackage = "Example";
+    public static string? CustomBgmPackage = "Example";
     
     public static bool IsColorAccessibilityMode;
     
