@@ -29,6 +29,8 @@ public partial class SmwsLoader : Node {
             ErrorMessage.Add($"Invalid live number line, found {line1}");
             return null;
         }
+        GameManager.Life = lives;
+        
         GDC.Array<SmwlLevelData> levels = [];
         
         var line2 = await reader.ReadLineAsync();
