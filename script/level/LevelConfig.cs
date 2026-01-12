@@ -141,13 +141,16 @@ public partial class LevelConfig : Node {
 
     public override void _PhysicsProcess(double delta) {
         // 暂停
-        if (Input.IsActionJustPressed("pause") && GetTree().Paused) {
-            SetResume();
-            EmitSignal(SignalName.GameResumed);
-        } else if (Input.IsActionJustPressed("pause") && !GetTree().Paused || GameManager.GamePause) { 
-            GetTree().Paused = true;
-            GameManager.GamePause = true;
-            EmitSignal(SignalName.GamePaused);
+        if (Input.IsActionJustPressed("pause")) {
+            if (!GameManager.GamePause && !GameManager.IsLevelPass) {
+                GetTree().Paused = true;
+                GameManager.GamePause = true;
+                EmitSignal(SignalName.GamePaused);
+            }
+            else if (GameManager.GamePause) {
+                SetResume();
+                EmitSignal(SignalName.GameResumed);
+            }
         }
 
         if (Input.IsActionJustPressed("confirm") && GameManager.GamePause) {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c5d467llk4uur"]
+[gd_scene load_steps=28 format=3 uid="uid://c5d467llk4uur"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/level_loader/SmwlLevel.cs" id="1_rpefo"]
 [ext_resource type="Script" uid="uid://c8yu81i46jf4r" path="res://script/level/level_loader/SmwlLoader.cs" id="1_wc7qm"]
@@ -13,11 +13,13 @@
 [ext_resource type="Resource" uid="uid://cjm2781r56j71" path="res://content/level/database/object_database_bonus.tres" id="8_ysoro"]
 [ext_resource type="Script" uid="uid://daesa20urbh15" path="res://script/level/tile/BlockTileLayer.cs" id="11_d3lay"]
 [ext_resource type="Texture2D" uid="uid://dhketxxxmk7rt" path="res://content/ui/option.png" id="13_ovbgs"]
+[ext_resource type="Script" uid="uid://cayiadpkhvsar" path="res://script/LoadCurrentDirSave.cs" id="13_vqugj"]
 [ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="14_vqugj"]
 [ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="15_23xuv"]
 [ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="16_aecfo"]
 [ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="17_20wvl"]
 [ext_resource type="Texture2D" uid="uid://b15l5knf8un71" path="res://content/ui/smwp_button_normal_with_shadow.png" id="18_fjxnd"]
+[ext_resource type="Script" uid="uid://comv3gkk7rud8" path="res://script/level/LoadFileButtonDisabled.cs" id="19_23xuv"]
 
 [sub_resource type="GDScript" id="GDScript_fn8k0"]
 script/source = "extends Camera2D
@@ -108,6 +110,7 @@ file_mode = 0
 access = 2
 filters = PackedStringArray("*.smwl")
 use_native_dialog = true
+script = ExtResource("13_vqugj")
 
 [node name="Debug Camera" type="Camera2D" parent="."]
 process_mode = 4
@@ -151,6 +154,7 @@ text = "Level is Loading..."
 uppercase = true
 
 [node name="Back" parent="Basic" instance=ExtResource("15_23xuv")]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 563.0
@@ -159,10 +163,14 @@ offset_right = 622.0
 offset_bottom = 459.0
 theme = SubResource("Theme_x3yqh")
 theme_override_font_sizes/font_size = 12
+disabled = true
 text = "BACK"
 alignment = 1
 script = ExtResource("17_20wvl")
 metadata/_edit_lock_ = true
+
+[node name="LoadFileButtonDisabled" type="Node" parent="Basic/Back"]
+script = ExtResource("19_23xuv")
 
 [node name="Sprite2D" type="Sprite2D" parent="Basic/Back"]
 z_index = -1

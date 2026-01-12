@@ -1,14 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8ls5xyw1g2q5"]
+[gd_scene load_steps=18 format=3 uid="uid://c8ls5xyw1g2q5"]
 
 [ext_resource type="Script" uid="uid://cxhg2y014u5cg" path="res://script/level/level_loader/SmwsLevel.cs" id="1_jtnl8"]
 [ext_resource type="Script" uid="uid://15cgdfnvj6k6" path="res://script/level/level_loader/SmwsLoader.cs" id="2_dyfvc"]
 [ext_resource type="Texture2D" uid="uid://dhketxxxmk7rt" path="res://content/ui/option.png" id="3_3h7le"]
+[ext_resource type="Script" uid="uid://cayiadpkhvsar" path="res://script/LoadCurrentDirSave.cs" id="3_jjila"]
 [ext_resource type="PackedScene" uid="uid://c66yrpqlakak7" path="res://content/smwp_1_file_decryptor/smwp_1_file_decryptor.tscn" id="3_njp68"]
 [ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="4_njp68"]
 [ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="5_jjila"]
 [ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="6_kjihh"]
 [ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="7_x23y0"]
 [ext_resource type="Texture2D" uid="uid://b15l5knf8un71" path="res://content/ui/smwp_button_normal_with_shadow.png" id="8_6wsjs"]
+[ext_resource type="Script" uid="uid://comv3gkk7rud8" path="res://script/level/LoadFileButtonDisabled.cs" id="10_kjihh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrvep"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -47,19 +49,20 @@ Button/styles/pressed = SubResource("StyleBoxFlat_1a3sc")
 script = ExtResource("1_jtnl8")
 SmwsLoader = NodePath("SmwsLoader")
 SmwpFileDecryptor = NodePath("Smwp1FileDecryptor")
-OpenSmwlDialog = NodePath("Open SMWL File")
+OpenSmwlDialog = NodePath("Open SMWS File")
 
 [node name="SmwsLoader" type="Node" parent="."]
 script = ExtResource("2_dyfvc")
 metadata/_custom_type_script = "uid://15cgdfnvj6k6"
 
-[node name="Open SMWL File" type="FileDialog" parent="."]
+[node name="Open SMWS File" type="FileDialog" parent="."]
 oversampling_override = 1.0
 title = "Open a SMWS or SMWP File"
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.smws", "*.smwp")
 use_native_dialog = true
+script = ExtResource("3_jjila")
 
 [node name="Smwp1FileDecryptor" parent="." instance=ExtResource("3_njp68")]
 
@@ -98,6 +101,7 @@ text = "Scenario is Loading..."
 uppercase = true
 
 [node name="Back" parent="Basic" instance=ExtResource("5_jjila")]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 563.0
@@ -106,15 +110,19 @@ offset_right = 622.0
 offset_bottom = 459.0
 theme = SubResource("Theme_uqlla")
 theme_override_font_sizes/font_size = 12
+disabled = true
 text = "BACK"
 alignment = 1
 script = ExtResource("7_x23y0")
 metadata/_edit_lock_ = true
+
+[node name="LoadFileButtonDisabled" type="Node" parent="Basic/Back"]
+script = ExtResource("10_kjihh")
 
 [node name="Sprite2D" type="Sprite2D" parent="Basic/Back"]
 z_index = -1
 position = Vector2(30, 17)
 texture = ExtResource("8_6wsjs")
 
-[connection signal="canceled" from="Open SMWL File" to="." method="JumpToScene" binds= ["uid://2h2s1iqemydd"]]
+[connection signal="canceled" from="Open SMWS File" to="." method="JumpToScene" binds= ["uid://2h2s1iqemydd"]]
 [connection signal="pressed" from="Basic/Back" to="Basic/Back" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]
