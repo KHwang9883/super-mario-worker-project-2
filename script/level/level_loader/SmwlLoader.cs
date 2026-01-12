@@ -250,7 +250,7 @@ public partial class SmwlLoader : Node {
             Darkness = ConfigurationExtensions.GetIntValueOrDefault(config, "darkness", 0),
             Brightness = ConfigurationExtensions.GetIntValueOrDefault(config, "brightness", 0),
             Smwp1LightObjectString = config.GetValueOrDefault("lightobject",
-                "0000000000000000000000000000000000000000000000000000000000000000000"),
+                "000000000000000000000000000000000000000000000000000000000000000000000"),
             ThwompActivateBlocks = config.GetValueOrDefault("stunblock") == "1",
             SmwpVersion =
                 ConfigurationExtensions.GetIntValueOrDefault(config, "version", 0) < 10000

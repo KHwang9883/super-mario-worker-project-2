@@ -59,7 +59,7 @@ public partial class BrightController : Node {
 
             _positionCount = 0;
             Positions = new Vector2[MaxLights];
-            LightRadius = new  float[MaxLights];
+            LightRadius = new float[MaxLights];
             foreach (var node in nodes) {
                 if (node is not SmwpPointLight2D light) continue;
                 if (!light.Activate) continue;

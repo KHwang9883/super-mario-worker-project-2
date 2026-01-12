@@ -51,4 +51,4 @@ shape = SubResource("RectangleShape2D_do0cy")
 debug_color = Color(0.7, 0.7, 0.7, 0.28235295)
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("10_oufb1")]
-Smwp1LightId = Array[int]([10])
+Smwp1LightId = Array[int]([69])
