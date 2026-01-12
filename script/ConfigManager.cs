@@ -46,6 +46,10 @@ public static class ConfigManager {
         
         GameManager.ShowFps = (bool)SmwpConfig.GetValue("game_config", "show_fps", false);
         
+        GameManager.LoadCurrentDir = (string)SmwpConfig.GetValue(
+            "misc", "load_current_dir", OS.GetExecutablePath().GetBaseDir()
+            );
+        
         // Control Config
         var actions = InputMap.GetActions();
         foreach (var action in actions) {
