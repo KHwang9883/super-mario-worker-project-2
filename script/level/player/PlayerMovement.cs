@@ -1047,8 +1047,8 @@ public partial class PlayerMovement : Node {
             && _player.IsOnFloorOnly()) {
             if (PMeterCounter < MaxPMeter
                 // 处理贴镜头边缘起跑的情形
-                && _player.Position.X > screen.Position.X + 14f
-                && _player.Position.X < screen.End.X - 14f
+                && _player.Position.X > screen.Position.X + 24f
+                && _player.Position.X < screen.End.X - 24f
                 ) {
                 PMeterCounter++;
             }
