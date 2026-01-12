@@ -43,6 +43,7 @@ public partial class HUD : Control {
             _player ??= (Node2D)GetTree().GetFirstNodeInGroup("player");
             _playerSuit = (PlayerSuit)_player.GetMeta("PlayerSuit");
             _playerMovement = (PlayerMovement)_player.GetMeta("PlayerMovement");
+            _godModeNode = (PlayerGodMode)_player!.GetMeta("PlayerGodMode");
         }).CallDeferred();
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         if (!_levelConfig.HUDDisplay) Visible = false;
@@ -55,7 +56,9 @@ public partial class HUD : Control {
         _smwpGameWindowTitle = GetTree().Root.GetWindow().Title;
     }
     public override void _PhysicsProcess(double delta) {
-        _godModeNode = (PlayerGodMode)_player!.GetMeta("PlayerGodMode");
+        if (_godModeNode == null) {
+            return;
+        }
         
         _life.Text = !_godModeNode.IsGodMode ?
             $"MARIO {GameManager.Life.ToString()}"
