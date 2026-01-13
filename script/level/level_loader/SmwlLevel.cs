@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -39,6 +40,8 @@ public partial class SmwlLevel : Node2D {
     private Node2D? _player;
     // 有多个起点时，以最先放置的起点为目标起点
     private bool _playerSet;
+
+    private GDC.Dictionary<Node, ProcessModeEnum> _disabledObjects = [];
 
     public override void _Ready() {
         base._Ready();
@@ -236,6 +239,9 @@ public partial class SmwlLevel : Node2D {
             processor?.ProcessObject(instance, @object);
 
             instance.ResetPhysicsInterpolation();
+            // 关卡读取完毕准备好开始之前一律禁用，防止玩家无法与开头重叠的道具等交互
+            _disabledObjects.Add(instance, instance.ProcessMode);
+            instance.ProcessMode = ProcessModeEnum.Disabled;
             _levelTemplate!.AddChild(instance);
             yield return instance;
         }
@@ -284,6 +290,11 @@ public partial class SmwlLevel : Node2D {
     // 数据读取完毕，实例化关卡模版
     public void OnDataInstallFinished() {
         AddChild(_levelTemplate);
+        // 关卡准备完毕，读取生成的 Node 节点恢复为原来的 ProcessMode
+        foreach (var instance in _disabledObjects) {
+            instance.Key.ProcessMode = instance.Value;
+        }
+        _disabledObjects = [];
         // 开始时禁用玩家的 ProcessMode，以防穿透实心等未知问题
         Callable.From(() => {
             _player!.ProcessMode = ProcessModeEnum.Inherit;
