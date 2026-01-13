@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://diw458q4nqbbe" path="res://content/sound/mario_fast_retry.se.wav" id="5_h02kv"]
 
 [node name="PlayerDead" type="Node2D"]
-z_index = 50
+z_index = 49
 script = ExtResource("1_lsddu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
