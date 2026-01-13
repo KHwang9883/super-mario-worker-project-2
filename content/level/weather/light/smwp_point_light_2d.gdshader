@@ -31,10 +31,11 @@ void fragment() {
 		}
 		
 		float d;
+		// 普通光源的距离计算
 		if (!is_lava_light[i]) {
 			d = length(frag_pos - positions[i]);
 		}
-		// 全局流体岩浆光源
+		// 全局流体岩浆光源的距离计算
 		else {
 			d = abs(frag_pos.y - positions[i].y);
 		}
@@ -49,7 +50,7 @@ void fragment() {
 		d /= single_radius[i];
 
 		if (d < 640.0) {
-			alpha_reduction =
+			float current_alpha =
 				min(1.0, max(0.0, (
 					-0.00000252 * d * d * d
 					+ 0.00011728 * d * d
@@ -57,6 +58,13 @@ void fragment() {
 					+ 0.98487793)
 					)
 				);
+			if (alpha_reduction == 0.0) {
+				alpha_reduction = current_alpha;
+			} else {
+				alpha_reduction =
+					alpha_reduction + current_alpha - alpha_reduction * current_alpha;
+			}
+			
 			max_alpha[i] = origin_alpha - alpha_reduction;
 			final_color.a = min(final_color.a, max_alpha[i]);
 			
