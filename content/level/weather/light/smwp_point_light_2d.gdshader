@@ -6,6 +6,7 @@ uniform float darkness = 1.0;
 uniform float radius_ratio = 1.0;
 uniform vec2 positions[MAX_LIGHTS];
 uniform float single_radius[MAX_LIGHTS];
+uniform bool is_lava_light[MAX_LIGHTS];
 
 void fragment() {
 	float origin_alpha = 1.0;
@@ -20,14 +21,23 @@ void fragment() {
 	//frag_pos = UV * vec2(640.0, 480.0);
 
 	float max_alpha[MAX_LIGHTS];
+	float alpha_reduction = 0.0;
+	
 	// 遍历所有灯光位置
 	for (int i = 0; i < MAX_LIGHTS; i++) {
 		// 跳过无效位置
 		if (positions[i].x == 0.0 && positions[i].y == 0.0) {
 			continue;
 		}
-
-		float d = length(frag_pos - positions[i]);
+		
+		float d;
+		if (!is_lava_light[i]) {
+			d = length(frag_pos - positions[i]);
+		}
+		// 全局流体岩浆光源
+		else {
+			d = abs(frag_pos.y - positions[i].y);
+		}
 
 		// Easy version test
 		/*if (d < 100.0) {
@@ -39,7 +49,7 @@ void fragment() {
 		d /= single_radius[i];
 
 		if (d < 640.0) {
-			float alpha_reduction =
+			alpha_reduction =
 				min(1.0, max(0.0, (
 					-0.00000252 * d * d * d
 					+ 0.00011728 * d * d
@@ -49,7 +59,7 @@ void fragment() {
 				);
 			max_alpha[i] = origin_alpha - alpha_reduction;
 			final_color.a = min(final_color.a, max_alpha[i]);
-
+			
 			// 原版直接叠加，光源之间有部分重合不美观
 			//final_color.a = final_color.a - alpha_reduction;
 		}

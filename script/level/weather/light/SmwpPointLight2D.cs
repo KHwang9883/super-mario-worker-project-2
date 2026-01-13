@@ -9,6 +9,7 @@ public partial class SmwpPointLight2D : Node2D {
     [Export] private Marker2D _marker = null!;
     [Export] public bool Enabled;
     [Export] public Array<int>? Smwp1LightId;
+    [Export] public bool IsLavaLight { get; private set; }
     
     public bool Activate;
     public Vector2 LightPosition;
@@ -41,7 +42,12 @@ public partial class SmwpPointLight2D : Node2D {
     public override void _Process(double delta) {
         if (!Enabled) return;
         Activate = true;
-        LightPosition = _marker!.GlobalPosition;
+        LightPosition = _marker.GlobalPosition;
+        
+        // 全局流体岩浆的特殊情形
+        if (IsLavaLight) {
+            GlobalPosition = GlobalPosition with { X = ScreenUtils.GetScreenRect(this).Position.X };
+        }
     }
 
     public override void _PhysicsProcess(double delta) {

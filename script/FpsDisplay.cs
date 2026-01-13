@@ -4,7 +4,7 @@ using SMWP;
 
 public partial class FpsDisplay : CanvasLayer {
     [Export] private Label? _label;
-    [Export] private double _inquiryTime = 0.010;
+    [Export] private double _inquiryTime = 0.500;
     
     private double _timer;
     
@@ -18,6 +18,6 @@ public partial class FpsDisplay : CanvasLayer {
             return;
         }
         _label?.SetText($"FPS: {Engine.GetFramesPerSecond()}");
-        _timer = 0.0;
+        _timer -=  _inquiryTime;
     }
 }

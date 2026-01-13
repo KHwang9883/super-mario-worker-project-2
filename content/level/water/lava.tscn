@@ -80,6 +80,7 @@ collision_mask = 8
 script = ExtResource("1_iod5y")
 _lavaSurfaceSprite = NodePath("LavaSprite/LavaSurfaceParallax2D/AnimatedSprite2D")
 _lavaRect = NodePath("LavaSprite/Sprite2D")
+_waterPosYOffset = -10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -109,3 +110,10 @@ metadata/_custom_type_script = "uid://dk0y3j6216tik"
 [node name="Todo_ InteracionWithIce" type="Node" parent="."]
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("4_oo7s2")]
+Smwp1LightId = Array[int]([68])
+IsLavaLight = true
+
+[node name="LightOffset" parent="SmwpPointLight2D" index="1"]
+position = Vector2(0, 8)
+
+[editable path="SmwpPointLight2D"]

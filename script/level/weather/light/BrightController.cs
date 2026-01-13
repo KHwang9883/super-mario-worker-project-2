@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 using SMWP.Level;
 using SMWP.Util;
 
@@ -13,6 +14,9 @@ public partial class BrightController : Node {
     public const int MaxLights = 256;   // 重要：与 Shader 中的 MAX_LIGHTS 保持一致
     private static Vector2[] Positions = new Vector2[MaxLights];
     private static float[] LightRadius = new float[MaxLights];
+    private static GDC.Array<bool> IsLavaLight = new GDC.Array<bool>(
+        Enumerable.Repeat(false, MaxLights)
+    );
     private static int _positionCount = 0;
     private float _radiusRatio;
     
@@ -66,6 +70,7 @@ public partial class BrightController : Node {
             
                 Positions[_positionCount] = light.LightPosition - screen.Position;
                 LightRadius[_positionCount] = light.LightRadius;
+                IsLavaLight[_positionCount] = light.IsLavaLight;
                 _positionCount++;
                 // 大于最大光源数就停止遍历
                 if (_positionCount < MaxLights) continue;
@@ -75,6 +80,7 @@ public partial class BrightController : Node {
             
             _shaderMaterial?.SetShaderParameter("positions", Positions);
             _shaderMaterial?.SetShaderParameter("radius_ratio", _radiusRatio);
+            _shaderMaterial?.SetShaderParameter("is_lava_light", IsLavaLight);
             _shaderMaterial?.SetShaderParameter("single_radius", LightRadius);
         //}).CallDeferred();
     }

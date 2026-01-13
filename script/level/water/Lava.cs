@@ -7,6 +7,8 @@ public partial class Lava : Area2D {
     [Export] private Water? _water;
     [Export] private AnimatedSprite2D _lavaSurfaceSprite = null!;
     [Export] private Sprite2D _lavaRect = null!;
+
+    [Export] private float _waterPosYOffset = -10f;
     
     private Fluid? _fluid;
     private LevelConfig? _levelConfig;
@@ -60,7 +62,7 @@ public partial class Lava : Area2D {
             if (_disappear) return;
             switch (_fluid.FluidType) {
                 case Fluid.FluidTypeEnum.Lava:
-                    Position = Position with { Y = _water.Position.Y };
+                    Position = Position with { Y = _water.Position.Y - _waterPosYOffset};
                     ResetPhysicsInterpolation();
                     break;
                 case Fluid.FluidTypeEnum.Water:
