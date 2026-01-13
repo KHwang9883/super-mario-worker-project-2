@@ -3,7 +3,7 @@ using System;
 
 public partial class LoadFileButtonDisabled : Node {
     [Export] private NodePath _buttonPath = "..";
-    [Export] private NodePath _fileDialogPath = "../..";
+    [Export] private NodePath _fileDialogPath = "../../../OpenFile";
     private Button? _button;
     private FileDialog? _fileDialog;
 
