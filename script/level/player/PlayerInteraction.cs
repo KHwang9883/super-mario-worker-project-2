@@ -166,8 +166,13 @@ public partial class PlayerInteraction : Node {
             // 无敌星
             if (powerupSet.PowerupType == PowerupSet.PowerupEnum.SuperStar) {
                 _playerMediator.playerSuit.SetStarmanState();
-            } else {
-                // 常规补给
+            }
+            // 绿蘑菇
+            else if (powerupSet.PowerupType == PowerupSet.PowerupEnum.LifeMushroom) {
+                _addScoreComponent.AddScore();
+            }
+            // 常规补给
+            else {
                 if (_playerMediator.playerSuit.Suit != PlayerSuit.SuitEnum.Small) {
                     _playerMediator.playerSuit.Powerup = powerupSet.PowerupType switch {
                         PowerupSet.PowerupEnum.FireFlower => PlayerSuit.PowerupEnum.Fireball,

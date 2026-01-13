@@ -11,6 +11,7 @@ public partial class PowerupSet : Node {
         Lui,
         Raccoon,
         SuperStar,
+        LifeMushroom,
     }
     [Export] private Node2D _powerup = null!;
     [Export] public PowerupEnum PowerupType = PowerupEnum.Mushroom;
