@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="2_f2xjj"]
 
 [node name="FpsDisplay" type="CanvasLayer" node_paths=PackedStringArray("_label")]
+process_mode = 3
 layer = 10
 script = ExtResource("1_362ng")
 _label = NodePath("Control/Fps")
