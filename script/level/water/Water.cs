@@ -11,6 +11,7 @@ public partial class Water : Area2D {
     
     [Export] private AnimatedSprite2D _waterSurfaceSprite = null!;
     [Export] private Sprite2D _waterRect = null!;
+    [Export] private CollisionShape2D _collisionShape2D { get; set; } = null!;
     
     private Fluid? _fluid;
     private LevelConfig? _levelConfig;
@@ -29,6 +30,8 @@ public partial class Water : Area2D {
 
     private bool _disappear;
     private uint _originCollisionLayer;
+    
+    private Vector2 _collisionShapeOriginPos;
 
     public override void _Ready() {
         _fluid ??= GetParent<Fluid>();
@@ -36,6 +39,8 @@ public partial class Water : Area2D {
 
         _levelConfig.SwitchSwitched += OnSwitchToggled;
         _originCollisionLayer = CollisionLayer;
+
+        _collisionShapeOriginPos = _collisionShape2D.Position;
         
         // Position 初始化见 LevelConfig
         _autoFluid = _levelConfig.AutoFluid;
@@ -97,9 +102,11 @@ public partial class Water : Area2D {
         switch (_fluid.FluidType) {
             case Fluid.FluidTypeEnum.Water:
                 Visible = true;
+                _collisionShape2D.Position = _collisionShapeOriginPos;
                 break;
             case Fluid.FluidTypeEnum.Lava:
                 Visible = false;
+                _collisionShape2D.Position = new Vector2(0f, 16f);
                 break;
         }
     }
@@ -125,6 +132,7 @@ public partial class Water : Area2D {
                 EmitSignal(SignalName.PlaySoundWaterLevel);
                 break;
             case Fluid.FluidTypeEnum.Lava:
+                CollisionLayer = 0;
                 EmitSignal(SignalName.PlaySoundLavaLevel);
                 break;
         }
