@@ -90,7 +90,7 @@ public partial class Title : Node2D {
             _marioworkerCup.Position
             + new Vector2(_rng.RandfRange(0, 60) - _rng.RandfRange(0, 60),
                 _rng.RandfRange(0, 150) - _rng.RandfRange(0, 200));
-        AddSibling(lightStar);
+        AddChild(lightStar);
     }
 
     public void OnEditPressed() {
