@@ -61,9 +61,12 @@ public partial class BrightController : Node {
         //Callable.From(() => {
             var nodes = GetTree().GetNodesInGroup("lights");
 
+            // 每一帧都要初始化
             _positionCount = 0;
             Positions = new Vector2[MaxLights];
             LightRadius = new float[MaxLights];
+            IsLavaLight = new GDC.Array<bool>(IsLavaLight);
+            
             foreach (var node in nodes) {
                 if (node is not SmwpPointLight2D light) continue;
                 if (!light.Activate) continue;
