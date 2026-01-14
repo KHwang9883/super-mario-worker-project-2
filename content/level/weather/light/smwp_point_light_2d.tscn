@@ -10,7 +10,7 @@ _marker = NodePath("LightOffset")
 metadata/_edit_lock_ = true
 
 [node name="LightVisibleOnScreenEnabler2d" parent="." instance=ExtResource("2_hmdm2")]
-rect = Rect2(-160, -160, 320, 320)
+rect = Rect2(-320, -320, 640, 640)
 DisableWhenOutOfScreen = true
 
 [node name="LightOffset" type="Marker2D" parent="."]

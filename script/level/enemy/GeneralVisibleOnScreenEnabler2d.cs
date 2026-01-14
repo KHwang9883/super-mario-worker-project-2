@@ -1,14 +1,13 @@
 using Godot;
 using System;
 
-public partial class GeneralVisibleOnScreenEnabler2d : VisibleOnScreenNotifier2D {
-    [Export] public NodePath Path = "..";
-    [Export] public bool DisableWhenOutOfScreen;
+public partial class GeneralVisibleOnScreenEnabler2d : VisibleOnScreenEnabler2D {
+    [Export] public bool DisableWhenOutOfScreen { get; set; }
 
     private Node? _parent;
 
     public override void _Ready() {
-        _parent = GetNode(Path);
+        _parent = GetNode(EnableNodePath);
     }
     
     public void OnScreenEntered() {
@@ -19,6 +18,7 @@ public partial class GeneralVisibleOnScreenEnabler2d : VisibleOnScreenNotifier2D
         _parent.ProcessMode = ProcessModeEnum.Inherit;
         if (!DisableWhenOutOfScreen) QueueFree();
     }
+    /*
     public void OnScreenExited() {
         if (_parent == null) {
             GD.Print("GeneralVisibleOnScreenEnabler2d: _parent is null!");
@@ -26,4 +26,5 @@ public partial class GeneralVisibleOnScreenEnabler2d : VisibleOnScreenNotifier2D
         }
         _parent.ProcessMode = ProcessModeEnum.Disabled;
     }
+    */
 }
