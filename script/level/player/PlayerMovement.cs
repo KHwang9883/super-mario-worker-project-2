@@ -1011,29 +1011,31 @@ public partial class PlayerMovement : Node {
         
         // 检测第一个滚屏节点
         if (_levelCamera.CameraMode == LevelCamera.CameraModeEnum.Koopa) return;
-        var koopaScrollNode = GetTree().GetFirstNodeInGroup("koopa_scroll");
-        if (koopaScrollNode == null) return;
-        if (koopaScrollNode is not KoopaScroll koopaScroll) return;
-        var screen = ScreenUtils.GetScreenRect(this);
-        var screenCenterX = screen.Position.X + screen.Size.X / 2f;
-        if (screenCenterX > koopaScroll.GlobalPosition.X - koopaScroll.ScrollTriggerDistance
-            && screenCenterX < koopaScroll.GlobalPosition.X + koopaScroll.ScrollTriggerDistance) {
-            _levelCamera.CameraMode = LevelCamera.CameraModeEnum.Koopa;
+        var koopaScrollNodes = GetTree().GetNodesInGroup("koopa_scroll");
+        if (koopaScrollNodes == null) return;
+        foreach (var node in koopaScrollNodes) {
+            if (node is not KoopaScroll koopaScroll) continue;
+            var screen = ScreenUtils.GetScreenRect(this);
+            var screenCenterX = screen.Position.X + screen.Size.X / 2f;
+            if (screenCenterX > koopaScroll.GlobalPosition.X - koopaScroll.ScrollTriggerDistance
+                && screenCenterX < koopaScroll.GlobalPosition.X + koopaScroll.ScrollTriggerDistance) {
+                _levelCamera.CameraMode = LevelCamera.CameraModeEnum.Koopa;
             
-            // 设置默认音乐
-            koopaScroll.SetBgm();
+                // 设置默认音乐
+                koopaScroll.SetBgm();
             
-            // 设置场景控制元件
-            koopaScroll.SetLevelScene();
+                // 设置场景控制元件
+                koopaScroll.SetLevelScene();
             
-            // 激活库巴血条 HUD 显示
-            var koopaHudNode = (KoopaHUD)GetTree().GetFirstNodeInGroup("koopa_hud_node2d");
-            koopaHudNode.Activate = true;
+                // 激活库巴血条 HUD 显示
+                var koopaHudNode = (KoopaHUD)GetTree().GetFirstNodeInGroup("koopa_hud_node2d");
+                koopaHudNode.Activate = true;
             
-            // 自动滚屏会自动取消
+                // 自动滚屏会自动取消
             
-            // 镜头限制取消
-            CameraLimitFree();
+                // 镜头限制取消
+                CameraLimitFree();
+            }
         }
     }
 
