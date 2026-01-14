@@ -5,3 +5,4 @@
 [node name="PerpetualMotionMachine" type="Node2D"]
 process_physics_priority = -1
 script = ExtResource("1_fd7xh")
+_moveUpDistance = 4.0
