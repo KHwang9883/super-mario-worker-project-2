@@ -75,7 +75,7 @@ metadata/_custom_type_script = "uid://cx6s65j3v4cyn"
 script = ExtResource("4_0x71s")
 _enemyDieType = 2
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
-_enemyDeadPackedSceneUid = &"uid://cguk5ao66bepv"
+EnemyDeadPackedSceneUid = &"uid://cguk5ao66bepv"
 
 [node name="AddScoreComponent" type="Node" parent="."]
 script = ExtResource("10_5jubr")
