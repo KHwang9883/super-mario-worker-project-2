@@ -70,7 +70,7 @@ colors = PackedColorArray(0.48235294, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3co6v"]
 gradient = SubResource("Gradient_oo7s2")
-width = 1920
+width = 640
 height = 512
 
 [node name="Lava" type="Area2D" node_paths=PackedStringArray("_lavaSurfaceSprite", "_lavaRect") groups=["lava_global"]]
@@ -79,8 +79,7 @@ collision_layer = 16
 collision_mask = 8
 script = ExtResource("1_iod5y")
 _lavaSurfaceSprite = NodePath("LavaSprite/LavaSurfaceParallax2D/AnimatedSprite2D")
-_lavaRect = NodePath("LavaSprite/Sprite2D")
-_waterPosYOffset = -10.0
+_lavaRect = NodePath("LavaSprite/LavaSurfaceParallax2D/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -90,14 +89,14 @@ shape = SubResource("WorldBoundaryShape2D_oo7s2")
 
 [node name="LavaSurfaceParallax2D" type="Parallax2D" parent="LavaSprite"]
 repeat_size = Vector2(640, 0)
-repeat_times = 2
+repeat_times = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LavaSprite/LavaSurfaceParallax2D"]
 position = Vector2(320, 8)
 sprite_frames = SubResource("SpriteFrames_3co6v")
 autoplay = "default"
 
-[node name="Sprite2D" type="Sprite2D" parent="LavaSprite"]
+[node name="Sprite2D" type="Sprite2D" parent="LavaSprite/LavaSurfaceParallax2D"]
 position = Vector2(320, 25)
 texture = SubResource("GradientTexture2D_3co6v")
 offset = Vector2(0, 256)

@@ -47,13 +47,13 @@ public partial class Lava : Area2D {
         var screen = ScreenUtils.GetScreenRect(this);
 
         //Callable.From(() => {
-        _lavaRect.GlobalPosition = new Vector2(
-            screen.Position.X - 16f,
-            Mathf.Max(
-                GlobalPosition.Y + currentTexture.GetHeight() - 16f,
-                screen.Position.Y - 16f
-            )
-        );
+            _lavaRect.GlobalPosition = new Vector2(
+                screen.Position.X - 16f,
+                Mathf.Max(
+                    GlobalPosition.Y + currentTexture.GetHeight() - 16f,
+                    screen.Position.Y - 16f
+                )
+            );
         //}).CallDeferred();
         
         if (_water == null) {

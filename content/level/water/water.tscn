@@ -8,15 +8,6 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8j37s"]
 
-[sub_resource type="Gradient" id="Gradient_oshm1"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.3529412, 0.54901963, 0.90588236, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_36hia"]
-gradient = SubResource("Gradient_oshm1")
-width = 1920
-height = 512
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3t2h"]
 atlas = ExtResource("1_8j37s")
 region = Rect2(0, 0, 640, 16)
@@ -60,13 +51,22 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_oshm1"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.3529412, 0.54901963, 0.90588236, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_36hia"]
+gradient = SubResource("Gradient_oshm1")
+width = 640
+height = 512
+
 [node name="Water" type="Area2D" node_paths=PackedStringArray("_waterSurfaceSprite", "_waterRect") groups=["water", "water_global"]]
 z_index = 100
 collision_layer = 64
 collision_mask = 56
 script = ExtResource("1_opojc")
 _waterSurfaceSprite = NodePath("WaterSprite/WaterSurfaceParallax2D/AnimatedSprite2D")
-_waterRect = NodePath("WaterSprite/Sprite2D")
+_waterRect = NodePath("WaterSprite/WaterSurfaceParallax2D/Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -74,15 +74,9 @@ shape = SubResource("WorldBoundaryShape2D_8j37s")
 
 [node name="WaterSprite" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="WaterSprite"]
-self_modulate = Color(1, 1, 1, 0.5294118)
-position = Vector2(320, 17)
-texture = SubResource("GradientTexture2D_36hia")
-offset = Vector2(0, 256)
-
 [node name="WaterSurfaceParallax2D" type="Parallax2D" parent="WaterSprite"]
 repeat_size = Vector2(640, 0)
-repeat_times = 2
+repeat_times = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WaterSprite/WaterSurfaceParallax2D"]
 self_modulate = Color(1, 1, 1, 0.5294118)
@@ -90,6 +84,12 @@ position = Vector2(320, 8)
 sprite_frames = SubResource("SpriteFrames_g2rda")
 autoplay = "default"
 frame_progress = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="WaterSprite/WaterSurfaceParallax2D"]
+self_modulate = Color(1, 1, 1, 0.5294118)
+position = Vector2(320, 17)
+texture = SubResource("GradientTexture2D_36hia")
+offset = Vector2(0, 256)
 
 [node name="FluidWater" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_oshm1")
