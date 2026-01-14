@@ -276,7 +276,9 @@ public partial class GameManager : Node {
             LevelFileData = null;
             // 非 Scenario 下一关则 PlayerSuitRestore 等状态清空
             GameOverClear();
-            GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
+            Callable.From(() => {
+                GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
+            }).CallDeferred();
         }
         
         else {
@@ -284,7 +286,9 @@ public partial class GameManager : Node {
             if (CurrentScenarioLevel >= ScenarioLevelCount) {
                 GameOverClear();
                 ScenarioFile = null;
-                GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
+                Callable.From(() => {
+                    GetTree().ChangeSceneToFile("uid://2h2s1iqemydd");
+                }).CallDeferred();
             } else {
                 // 下一个关卡：删除当前关卡
                 EmitSignal(SignalName.ScenarioNextLevel);
