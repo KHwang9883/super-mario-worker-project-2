@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkak64p718ktt"]
+[gd_scene load_steps=3 format=3 uid="uid://bkak64p718ktt"]
 
 [ext_resource type="Script" uid="uid://c4pbvo15giepw" path="res://script/level/weather/light/SmwpPointLight2D.cs" id="1_s8w6v"]
+[ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/level/enemy/general_visible_on_screen_enabler_2d.tscn" id="2_hmdm2"]
 
 [node name="SmwpPointLight2D" type="Node2D" node_paths=PackedStringArray("_marker") groups=["lights"]]
 process_priority = 1
@@ -8,13 +9,9 @@ script = ExtResource("1_s8w6v")
 _marker = NodePath("LightOffset")
 metadata/_edit_lock_ = true
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenEnabler2D" parent="."]
-rect = Rect2(-320, -320, 640, 640)
-show_rect = false
-script = ExtResource("1_s8w6v")
-metadata/_edit_lock_ = true
+[node name="LightVisibleOnScreenEnabler2d" parent="." instance=ExtResource("2_hmdm2")]
+rect = Rect2(-160, -160, 320, 320)
+DisableWhenOutOfScreen = true
 
 [node name="LightOffset" type="Marker2D" parent="."]
 gizmo_extents = 4.0
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnScreenExited"]

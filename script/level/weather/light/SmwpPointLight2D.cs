@@ -39,7 +39,7 @@ public partial class SmwpPointLight2D : Node2D {
     }
 
     // 发光默认一直禁用，直到入屏启用
-    public override void _Process(double delta) {
+    public override void _PhysicsProcess(double delta) {
         if (!Enabled) return;
         Activate = true;
         LightPosition = _marker.GlobalPosition;
@@ -48,13 +48,6 @@ public partial class SmwpPointLight2D : Node2D {
         if (IsLavaLight) {
             GlobalPosition = GlobalPosition with { X = ScreenUtils.GetScreenRect(this).Position.X };
         }
-    }
-
-    public override void _PhysicsProcess(double delta) {
-        // 假装自己动起来，这样就可以被物理插值了……吗？
-        /*if (!Enabled) return;
-        var targetGlobalPosition = GetParent<Node2D>().GlobalPosition + Vector2.Zero;
-        GlobalPosition = targetGlobalPosition;*/
     }
 
     public void OnScreenExited() {
