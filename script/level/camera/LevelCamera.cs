@@ -43,10 +43,14 @@ public partial class LevelCamera : Camera2D {
         _player ??= (CharacterBody2D)GetTree().GetFirstNodeInGroup("player");
         
         // 设置到玩家位置
-        Position = _player.Position;
-        ResetPhysicsInterpolation();
+        //Position = _player.Position;
+        //ResetPhysicsInterpolation();
         
         Callable.From(() => {
+            // 设置到玩家位置
+            Position = _player.Position;
+            ResetPhysicsInterpolation();
+            
             // 获取第一个滚屏节点
             
             // 强制滚屏节点组获取

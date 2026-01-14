@@ -142,23 +142,29 @@ public partial class PlayerMovement : Node {
     private bool _levelStartAutoScrollDetect;
     private bool _autoScrollCheckpointDetect;
     private bool _autoScrollCheckpointDetected;
+    private int _forceScrollDeathDetectDelay;
 
     public override void _Ready() {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         
+        // 摄像机
+        _levelCamera ??= (LevelCamera)GetTree().GetFirstNodeInGroup("camera");
+        
         // Checkpoint
-        var checkpoints = GetTree().GetNodesInGroup("checkpoint");
-        if (checkpoints != null) {
-            foreach (var node in checkpoints) {
-                if (node is not Checkpoint checkpoint) continue;
-                if (GameManager.CurrentCheckpointId != checkpoint.Id) continue;
-                SetPositionToCheckpoint(checkpoint);
+        Callable.From(() => {
+            var checkpoints = GetTree().GetNodesInGroup("checkpoint");
+            if (checkpoints != null) {
+                foreach (var node in checkpoints) {
+                    if (node is not Checkpoint checkpoint) continue;
+                    if (GameManager.CurrentCheckpointId != checkpoint.Id) continue;
+                    SetPositionToCheckpoint(checkpoint);
 
-                _autoScrollCheckpointDetect = true;
+                    _autoScrollCheckpointDetect = true;
 
-                // 设置 CP 触发时记录的流体高度见 LevelConfig
+                    // 设置 CP 触发时记录的流体高度见 LevelConfig
+                }
             }
-        }
+        }).CallDeferred();
         
         // 关卡重力设置
         var levelConfig = LevelConfigAccess.GetLevelConfig(this);
@@ -192,9 +198,6 @@ public partial class PlayerMovement : Node {
         else {
             Callable.From(ViewControlDetect).CallDeferred();
         }
-        
-        // 摄像机
-        _levelCamera ??= (LevelCamera)GetTree().GetFirstNodeInGroup("camera");
     }
 
     public override void _PhysicsProcess(double delta) {
@@ -479,34 +482,40 @@ public partial class PlayerMovement : Node {
         if (_levelCamera == null) {
             GD.PushError($"{this}: LevelCamera is null!");
         } else {
-            if (_levelCamera.CameraMode != LevelCamera.CameraModeEnum.FollowPlayer) {
-                // 玩家不与墙体重合时才进行强制挤出
-                if (_player.MoveAndCollide(new Vector2(_levelCamera.DeltaPosition.X, 0f), true, 0.02f) == null) {
-                    var forceScrollPush =
-                        Mathf.Abs(_levelCamera.DeltaPosition.X) + Mathf.Abs(_player.Position.X - LastPositionX);
+            if (_forceScrollDeathDetectDelay < 10) {
+                _forceScrollDeathDetectDelay++;
+            } else {
+                if (_levelCamera.CameraMode != LevelCamera.CameraModeEnum.FollowPlayer) {
+                    // 玩家不与墙体重合时才进行强制挤出
+                    if (_player.MoveAndCollide(new Vector2(_levelCamera.DeltaPosition.X, 0f), true, 0.02f) == null) {
+                        var forceScrollPush =
+                            Mathf.Abs(_levelCamera.DeltaPosition.X) + Mathf.Abs(_player.Position.X - LastPositionX);
                 
-                    if (_player.Position.X < screen.Position.X + 14f)
-                        _player.Position += Vector2.Right * forceScrollPush;
-                    if (_player.Position.X > screen.End.X - 14f)
-                        _player.Position += Vector2.Left * forceScrollPush;
-                }
+                        if (_player.Position.X < screen.Position.X + 14f)
+                            _player.Position += Vector2.Right * forceScrollPush;
+                        if (_player.Position.X > screen.End.X - 14f)
+                            _player.Position += Vector2.Left * forceScrollPush;
+                    }
 
-                switch (_levelCamera.CameraMode) {
-                    case LevelCamera.CameraModeEnum.AutoScroll:
-                        // 在自动滚屏下在左或右一侧界外则死亡
-                        if (_player.Position.X < screen.Position.X - 14f || _player.Position.X > screen.End.X + 14f) {
-                            EmitSignal(SignalName.ForceScrollDeath);
-                        }
-                        break;
-                    
-                    case LevelCamera.CameraModeEnum.Koopa:
-                        // 在库巴滚屏下在左或右一侧界边缘则死亡
-                        if (_player.MoveAndCollide(new Vector2(_levelCamera.DeltaPosition.X, 0f), true, 0.02f) != null) {
-                            if (_player.Position.X < screen.Position.X + 14f || _player.Position.X > screen.End.X - 14f) {
+                    switch (_levelCamera.CameraMode) {
+                        case LevelCamera.CameraModeEnum.AutoScroll:
+                            // 在自动滚屏下在左或右一侧界外则死亡
+                            if (_player.Position.X < screen.Position.X - 14f || _player.Position.X > screen.End.X + 14f) {
+                                GD.Print($"Player Death Caused by Auto Scroll at {_player.Position}");
                                 EmitSignal(SignalName.ForceScrollDeath);
                             }
-                        }
-                        break;
+                            break;
+                    
+                        case LevelCamera.CameraModeEnum.Koopa:
+                            // 在库巴滚屏下在左或右一侧界边缘则死亡
+                            if (_player.MoveAndCollide(new Vector2(_levelCamera.DeltaPosition.X, 0f), true, 0.02f) != null) {
+                                if (_player.Position.X < screen.Position.X + 14f || _player.Position.X > screen.End.X - 14f) {
+                                    GD.Print($"Player Death Caused by Koopa Scroll at {_player.Position}");
+                                    EmitSignal(SignalName.ForceScrollDeath);
+                                }
+                            }
+                            break;
+                    }
                 }
             }
         }
@@ -650,11 +659,17 @@ public partial class PlayerMovement : Node {
     
     // 中途点位置设置
     public void SetPositionToCheckpoint(Checkpoint checkpoint) {
+        _player.Position = checkpoint.Position + Vector2.Up * 12f;
+        GD.Print($"Player restarted at checkpoint {_player.Position}");
+        _player.ResetPhysicsInterpolation();
+        _levelCamera!.Position = _player.Position;
+        LastPositionX = _player.Position.X;
+        /*
         Callable.From(() => {
-            _player.Position = checkpoint.Position + Vector2.Up * 12f;
-            _player.ResetPhysicsInterpolation();
+            _levelCamera.Position = _player.Position;
             LastPositionX = _player.Position.X;
         }).CallDeferred();
+        */
     }
     
     // 水管传送处理
@@ -960,7 +975,9 @@ public partial class PlayerMovement : Node {
         
         // Checkpoint 处复活，检测周围滚屏节点，只检测一次
         if (!_autoScrollCheckpointDetect || _autoScrollCheckpointDetected) return;
-        _autoScrollCheckpointDetected = true;
+        Callable.From(() => {
+            _autoScrollCheckpointDetected = true;
+        }).CallDeferred();
         var autoScrollNodes = GetTree().GetNodesInGroup("auto_scroll");
         foreach (var node in autoScrollNodes) {
             if (node is not AutoScroll autoScrollCheckpoint) continue;
