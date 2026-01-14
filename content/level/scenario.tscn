@@ -49,13 +49,13 @@ Button/styles/pressed = SubResource("StyleBoxFlat_1a3sc")
 script = ExtResource("1_jtnl8")
 SmwsLoader = NodePath("SmwsLoader")
 SmwpFileDecryptor = NodePath("Smwp1FileDecryptor")
-OpenSmwlDialog = NodePath("Open SMWS File")
+OpenSmwlDialog = NodePath("OpenFile")
 
 [node name="SmwsLoader" type="Node" parent="."]
 script = ExtResource("2_dyfvc")
 metadata/_custom_type_script = "uid://15cgdfnvj6k6"
 
-[node name="Open SMWS File" type="FileDialog" parent="."]
+[node name="OpenFile" type="FileDialog" parent="."]
 oversampling_override = 1.0
 title = "Open a SMWS or SMWP File"
 file_mode = 0
@@ -124,5 +124,5 @@ z_index = -1
 position = Vector2(30, 17)
 texture = ExtResource("8_6wsjs")
 
-[connection signal="canceled" from="Open SMWS File" to="." method="JumpToScene" binds= ["uid://2h2s1iqemydd"]]
+[connection signal="canceled" from="OpenFile" to="." method="JumpToScene" binds= ["uid://2h2s1iqemydd"]]
 [connection signal="pressed" from="Basic/Back" to="Basic/Back" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]

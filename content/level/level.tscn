@@ -73,7 +73,7 @@ BlocksTilemap = NodePath("Block Tile Map")
 DatabaseHolder = NodePath("Database Holder")
 ObstacleTileMap = NodePath("Obstacle Tile Map")
 SmwlLoader = NodePath("SMWL Loader")
-OpenSmwlDialog = NodePath("Open SMWL File")
+OpenSmwlDialog = NodePath("OpenFile")
 
 [node name="Database Holder" type="Node" parent="."]
 script = ExtResource("5_y2vn4")
@@ -103,7 +103,7 @@ _targetZIndex = Dictionary[int, int]({
 script = ExtResource("1_wc7qm")
 metadata/_custom_type_script = "uid://c8yu81i46jf4r"
 
-[node name="Open SMWL File" type="FileDialog" parent="."]
+[node name="OpenFile" type="FileDialog" parent="."]
 oversampling_override = 1.0
 title = "Open a SMWL File"
 file_mode = 0
@@ -177,5 +177,5 @@ z_index = -1
 position = Vector2(30, 17)
 texture = ExtResource("18_fjxnd")
 
-[connection signal="canceled" from="Open SMWL File" to="." method="JumpToScene" binds= ["uid://2h2s1iqemydd"]]
+[connection signal="canceled" from="OpenFile" to="." method="JumpToScene" binds= ["uid://2h2s1iqemydd"]]
 [connection signal="pressed" from="Basic/Back" to="Basic/Back" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]
