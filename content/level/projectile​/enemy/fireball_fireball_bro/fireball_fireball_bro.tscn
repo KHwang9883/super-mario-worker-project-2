@@ -37,6 +37,11 @@ collide_with_areas = true
 visible = false
 shape = SubResource("RectangleShape2D_w5s1o")
 
+[node name="FireballInteractionWithIce" type="Node" parent="." node_paths=PackedStringArray("_basicMovement")]
+script = ExtResource("3_te2sn")
+_basicMovement = NodePath("../FireballMovement")
+metadata/_custom_type_script = "uid://bf7lqaq56etq7"
+
 [node name="FireballMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("2_gfdvg")
 MoveObject = NodePath("..")
@@ -44,11 +49,6 @@ SpeedX = -5.0
 MaxFallSpeed = 10.0
 JumpSpeed = -4.0
 metadata/_custom_type_script = "uid://chn4gqrm87qtl"
-
-[node name="FireballInteractionWithIce" type="Node" parent="." node_paths=PackedStringArray("_basicMovement")]
-script = ExtResource("3_te2sn")
-_basicMovement = NodePath("../FireballMovement")
-metadata/_custom_type_script = "uid://bf7lqaq56etq7"
 
 [node name="FireballExplode" type="Node" parent="."]
 script = ExtResource("3_8b56x")
@@ -87,5 +87,5 @@ metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 [node name="SmwpPointLight2D" parent="." groups=["hittable_to_ice"] instance=ExtResource("9_5list")]
 Smwp1LightId = Array[int]([67])
 
-[connection signal="FireballExplode" from="FireballMovement" to="FireballExplode" method="OnFireballExplode"]
 [connection signal="FireballExplode" from="FireballInteractionWithIce" to="FireballExplode" method="OnFireballExplode"]
+[connection signal="FireballExplode" from="FireballMovement" to="FireballExplode" method="OnFireballExplode"]

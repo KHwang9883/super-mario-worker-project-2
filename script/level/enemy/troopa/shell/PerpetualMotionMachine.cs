@@ -28,7 +28,7 @@ public partial class PerpetualMotionMachine : Node2D {
         _basicMovement.MoveObject.ForceUpdateTransform();
         var results = _shellMovingInteraction.GetOverlapResult();
         
-        GD.Print($"Overlap Results: {results}");
+        //GD.Print($"Overlap Results: {results}");
         
         foreach (var result in results) {
             if (result is not PerpetualMotionMachineMarker) {
@@ -36,10 +36,10 @@ public partial class PerpetualMotionMachine : Node2D {
             }
             // 上穿
             _basicMovement.SpeedY = 0f;
-            GD.Print($"Collided with PerpetualMotionMachineMarker: {result}");
+            //GD.Print($"Collided with PerpetualMotionMachineMarker: {result}");
             var collideResult = shell.MoveAndCollide(
                 new Vector2(_basicMovement.SpeedX, 0f), true, 0.09f);
-            GD.Print($"MoveAndCollide Result: {collideResult}");
+            //GD.Print($"MoveAndCollide Result: {collideResult}");
             // 循环有限次，防止意外情况
             for (var i = 0; i < 600; i++) {
                 if (collideResult != null) {

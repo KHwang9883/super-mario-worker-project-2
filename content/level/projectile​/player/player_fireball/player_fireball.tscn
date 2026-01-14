@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddqu2ik76sdd8"]
+[gd_scene load_steps=10 format=3 uid="uid://ddqu2ik76sdd8"]
 
 [ext_resource type="Texture2D" uid="uid://caoo0e1qx46vn" path="res://content/level/projectile​/fireball.png" id="1_l3dqx"]
 [ext_resource type="Script" uid="uid://oqtimqyv38fd" path="res://script/level/projectile​/player/player_fireball/FireballMovement.cs" id="2_u5ybu"]
@@ -8,9 +8,6 @@
 [ext_resource type="Script" uid="uid://bchyfxjjtbl83" path="res://script/level/projectile​/player/player_fireball/FireballSprite.cs" id="5_ef5ss"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="6_tc1ec"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="7_ubb6l"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3dqx"]
-size = Vector2(15, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5s1o"]
 size = Vector2(15, 16)
@@ -24,7 +21,7 @@ collision_mask = 5
 texture = ExtResource("1_l3dqx")
 
 [node name="AreaBodyCollision" type="ShapeCast2D" parent="."]
-shape = SubResource("RectangleShape2D_l3dqx")
+shape = SubResource("RectangleShape2D_w5s1o")
 target_position = Vector2(0, 0)
 max_results = 6
 collision_mask = 16
@@ -33,6 +30,11 @@ collide_with_areas = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_w5s1o")
+
+[node name="FireballInteractionWithIce" type="Node" parent="." node_paths=PackedStringArray("_basicMovement")]
+script = ExtResource("4_72n31")
+_basicMovement = NodePath("../FireballMovement")
+metadata/_custom_type_script = "uid://bf7lqaq56etq7"
 
 [node name="FireballMovement" type="Node" parent="." node_paths=PackedStringArray("MoveObject")]
 script = ExtResource("2_u5ybu")
@@ -46,11 +48,6 @@ metadata/_custom_type_script = "uid://chn4gqrm87qtl"
 [node name="FireballInteraction" type="Node" parent="." node_paths=PackedStringArray("_fireball")]
 script = ExtResource("3_u5ybu")
 _fireball = NodePath("..")
-
-[node name="FireballInteractionWithIce" type="Node" parent="." node_paths=PackedStringArray("_basicMovement")]
-script = ExtResource("4_72n31")
-_basicMovement = NodePath("../FireballMovement")
-metadata/_custom_type_script = "uid://bf7lqaq56etq7"
 
 [node name="FireballExplode" type="Node" parent="."]
 script = ExtResource("4_k75hg")
@@ -72,6 +69,6 @@ metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 [node name="SmwpPointLight2D" parent="." groups=["hittable_to_ice"] instance=ExtResource("7_ubb6l")]
 Smwp1LightId = Array[int]([59])
 
+[connection signal="FireballExplode" from="FireballInteractionWithIce" to="FireballExplode" method="OnFireballExplode"]
 [connection signal="FireballExplode" from="FireballMovement" to="FireballExplode" method="OnFireballExplode"]
 [connection signal="FireballExplode" from="FireballInteraction" to="FireballExplode" method="OnFireballExplode"]
-[connection signal="FireballExplode" from="FireballInteractionWithIce" to="FireballExplode" method="OnFireballExplode"]
