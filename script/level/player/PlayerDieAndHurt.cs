@@ -27,6 +27,7 @@ public partial class PlayerDieAndHurt : Node {
     [Export] public int ExtraInvincibleTime = 10;
     [Export] private ContinuousAudioStream2D? _gameOverSound;
     [Export] private PackedScene _fireballExplosion = GD.Load<PackedScene>("uid://5mmyew6mh71p");
+    [Export] private SmwpPointLight2D _light { get; set; } = null!;
     
     public bool IsInvincible;
     
@@ -67,6 +68,9 @@ public partial class PlayerDieAndHurt : Node {
         
         // 死亡计时结束后重启关卡
         if (_dead) {
+            if (IsInstanceValid(_light)) {
+                _light.QueueFree();
+            }
             _deadTimer++;
             var deadTime = !_levelConfig.FastRetry ? 180 : 90;
             

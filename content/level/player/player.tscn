@@ -169,13 +169,14 @@ _onIceArea2D = NodePath("../../OnIceDetect")
 _aroundWaterArea2D = NodePath("../../AroundWaterDetect")
 _pMeterActiveSound = NodePath("../../RaccoonRun")
 
-[node name="PlayerDieAndHurt" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_gameOverSound")]
+[node name="PlayerDieAndHurt" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_player", "_gameOverSound", "_light")]
 process_mode = 1
 script = ExtResource("4_5unhu")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
 _playerDeadScene = ExtResource("5_3ac0f")
 _gameOverSound = NodePath("../../GameOver")
+_light = NodePath("../../SmwpPointLight2D")
 
 [node name="PlayerAnimation" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_ani", "_player")]
 script = ExtResource("6_o23i7")
