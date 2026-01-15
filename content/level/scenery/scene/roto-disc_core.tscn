@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="2_418k7"]
 
 [node name="RotoDiscCore" type="Node2D"]
-z_index = 98
+z_index = 360
 
 [node name="RotoDiscCenter" type="Sprite2D" parent="."]
 texture = ExtResource("1_vkl0k")
