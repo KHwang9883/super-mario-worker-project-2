@@ -25,6 +25,7 @@ public partial class RotoDiscMovement : Node {
 
         var levelConfig = LevelConfigAccess.GetLevelConfig(this);
         levelConfig.SwitchSwitched += OnSwitchToggled;
+        Angle += 90f;
     }
     public override void _PhysicsProcess(double delta) {
         if (_parent == null) return;
