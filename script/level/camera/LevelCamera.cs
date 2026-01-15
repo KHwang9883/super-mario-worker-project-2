@@ -125,9 +125,7 @@ public partial class LevelCamera : Camera2D {
                 if (!ForceScrollDisabled) AutoScrollEnded = false;
                 
                 Position += (_targetAutoScrollNode.Position - Position).Normalized() * autoSpeed;
-                if (Math.Abs(Position.X - _targetAutoScrollNode.Position.X) < autoSpeed
-                    && Math.Abs(Position.Y - _targetAutoScrollNode.Position.Y) < autoSpeed) {
-                    
+                if ((Position - _targetAutoScrollNode.Position).Length() <= autoSpeed * 1.5f) {
                     if (_autoScrollIndex < _autoScrollNodes.Count) {
                         _autoScrollIndex++;
                     }
