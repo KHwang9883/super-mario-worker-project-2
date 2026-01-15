@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://csb0kyl7vmlsu" path="res://content/level/bonus/poisonous_mushroom/poisonous_mushroom.png" id="1_fkiam"]
 [ext_resource type="Script" uid="uid://bfcingtbno6hx" path="res://script/level/bonus/mushroom/MarioworkerChaoJiBug.cs" id="2_sk1kw"]
 [ext_resource type="Script" uid="uid://br3a3a746vl0y" path="res://script/level/bonus/mushroom/MushroomAnimation.cs" id="3_5k7fp"]
+[ext_resource type="Shape2D" uid="uid://bfxcusgxrmjck" path="res://content/level/bonus/mushroom_collision_shape.tres" id="3_7om57"]
 [ext_resource type="Script" uid="uid://brqbgelfy4s1w" path="res://script/level/bonus/mushroom/MushroomMovement.cs" id="4_cm2jx"]
 [ext_resource type="Script" uid="uid://b60bkp628v2ri" path="res://script/level/bonus/BonusSprout.cs" id="4_jw2i5"]
 [ext_resource type="Script" uid="uid://dk0y3j6216tik" path="res://script/level/enemy/InteractionWithPlayer.cs" id="4_oqpsa"]
@@ -20,9 +21,6 @@ animations = [{
 "name": &"default",
 "speed": 25.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugk4p"]
-size = Vector2(31, 31)
 
 [node name="PoisonousMushroom" type="CharacterBody2D"]
 z_index = 15
@@ -47,7 +45,7 @@ offset_bottom = 16.0
 mouse_filter = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ugk4p")
+shape = ExtResource("3_7om57")
 debug_color = Color(0.577708, 0.38519022, 1, 0.41960785)
 
 [node name="BonusSprout" type="Node" parent="."]

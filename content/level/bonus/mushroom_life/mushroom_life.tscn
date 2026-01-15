@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bfcingtbno6hx" path="res://script/level/bonus/mushroom/MarioworkerChaoJiBug.cs" id="2_6sw8c"]
 [ext_resource type="Script" uid="uid://br3a3a746vl0y" path="res://script/level/bonus/mushroom/MushroomAnimation.cs" id="2_80nmw"]
 [ext_resource type="Script" uid="uid://b5yntrwmtxv27" path="res://script/level/bonus/PowerupSet.cs" id="3_5wk2r"]
+[ext_resource type="Shape2D" uid="uid://bfxcusgxrmjck" path="res://content/level/bonus/mushroom_collision_shape.tres" id="3_6sw8c"]
 [ext_resource type="Script" uid="uid://brqbgelfy4s1w" path="res://script/level/bonus/mushroom/MushroomMovement.cs" id="3_sjhgg"]
 [ext_resource type="Script" uid="uid://b60bkp628v2ri" path="res://script/level/bonus/BonusSprout.cs" id="4_ktm21"]
 [ext_resource type="Script" uid="uid://bbrm8h5kl684k" path="res://script/level/bonus/mushroom/MushroomBumpInteraction.cs" id="4_yy6md"]
@@ -20,9 +21,6 @@ animations = [{
 "name": &"default",
 "speed": 25.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugk4p"]
-size = Vector2(31, 31)
 
 [node name="MushroomLife" type="CharacterBody2D"]
 z_index = 15
@@ -46,7 +44,7 @@ offset_bottom = 16.0
 mouse_filter = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ugk4p")
+shape = ExtResource("3_6sw8c")
 debug_color = Color(4.0911136e-06, 0.7277569, 0.0006380212, 0.41960785)
 
 [node name="PowerupSet" type="Node" parent="." node_paths=PackedStringArray("_powerup")]

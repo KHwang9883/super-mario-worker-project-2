@@ -13,10 +13,18 @@ public partial class MushroomMovement : BasicMovement {
     public bool Turning;
     private bool _turned;
     private float _originalSpeedX;
+
+    private bool _moveAfterReady;
+
+    public override void _Ready() {
+        Callable.From(() => {
+            _moveAfterReady = true;
+        }).CallDeferred();
+    }
     
     public override void _PhysicsProcess(double delta) {
         // 不在 Sprout 状态才开始执行
-        if (_bonusSprout.Overlapping) return;
+        if (_bonusSprout.Overlapping || !_moveAfterReady) return;
 
         // x 速度
         if (MoveObject.IsOnWall() && !_turned) {
