@@ -188,14 +188,17 @@ public partial class SmwsLevel : Node2D {
     public void NextLevel(SmwlLevelData levelData) {
         if (_smwlLevel != null && IsInstanceValid(_smwlLevel)) {
             _smwlLevel.Free();
+            _smwlLevel = null;
         }
         
-        _smwlLevel = _smwlLevelScene.Instantiate<SmwlLevel>();
-        ScenarioNewLevelLineNum.TryGetValue(CurrentScenarioLevel, out var lineNum);
-        //GD.Print($"lineNum: {lineNum}");
-        _smwlLevel.SmwlLoader.LineNum = lineNum;
-        AddChild(_smwlLevel);
-        _smwlLevel.Install(levelData);
+        Callable.From(() => {
+            _smwlLevel = _smwlLevelScene.Instantiate<SmwlLevel>();
+            ScenarioNewLevelLineNum.TryGetValue(CurrentScenarioLevel, out var lineNum);
+            //GD.Print($"lineNum: {lineNum}");
+            _smwlLevel.SmwlLoader.LineNum = lineNum;
+            AddChild(_smwlLevel);
+            _smwlLevel.Install(levelData);
+        }).CallDeferred();
     }
     
     public void JumpToScene(string sceneUid) {
