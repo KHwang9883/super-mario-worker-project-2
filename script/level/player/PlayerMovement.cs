@@ -1019,13 +1019,10 @@ public partial class PlayerMovement : Node {
             var screenCenterX = screen.Position.X + screen.Size.X / 2f;
             if (screenCenterX > koopaScroll.GlobalPosition.X - koopaScroll.ScrollTriggerDistance
                 && screenCenterX < koopaScroll.GlobalPosition.X + koopaScroll.ScrollTriggerDistance) {
-                _levelCamera.CameraMode = LevelCamera.CameraModeEnum.Koopa;
-            
-                // 设置默认音乐
-                koopaScroll.SetBgm();
-            
                 // 设置场景控制元件
                 koopaScroll.SetLevelScene();
+                
+                _levelCamera.CameraMode = LevelCamera.CameraModeEnum.Koopa;
             
                 // 激活库巴血条 HUD 显示
                 var koopaHudNode = (KoopaHUD)GetTree().GetFirstNodeInGroup("koopa_hud_node2d");

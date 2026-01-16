@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SMWP.Level;
 
 public partial class KoopaScroll : Node2D {
     [Export] public float ScrollTriggerDistance = 640f;
@@ -15,8 +16,14 @@ public partial class KoopaScroll : Node2D {
     
     private SceneControl? _sceneControl;
 
+    //private LevelConfig? _levelConfig;
+    private LevelCamera? _levelCamera;
+
     public override void _Ready() {
         ScrollPosX = GlobalPosition.X;
+        
+        //_levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
+        _levelCamera ??= (LevelCamera)GetTree().GetFirstNodeInGroup("camera");
     }
     /*public override void _PhysicsProcess(double delta) {
         if (IsInGroup("koopa_scroll")) {
@@ -27,7 +34,7 @@ public partial class KoopaScroll : Node2D {
     public override void _ExitTree() {
         RemoveFromGroup("koopa_scroll");
     }
-
+    
     public void SetBgm() {
         var levelConfig = LevelConfigAccess.GetLevelConfig(this);
         // Default Bgm Id
@@ -41,7 +48,14 @@ public partial class KoopaScroll : Node2D {
     }
     public void SetLevelScene() {
         // 没有与场景控制元件相连
-        if (_sceneControl == null) return;
+        if (_sceneControl == null) {
+            //if (_levelConfig!.SmwpVersion >= 1709) {
+                if (_levelCamera!.CameraMode != LevelCamera.CameraModeEnum.Koopa) {
+                    SetBgm();
+                }
+            //}
+            return;
+        }
         _sceneControl.SetSceneStatus();
     }
 }
