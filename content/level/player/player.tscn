@@ -112,11 +112,13 @@ process_mode = 4
 visible = false
 position = Vector2(0, 12)
 polygon = PackedVector2Array(-12, 0, -12, -38, -2, -48, 2, -48, 12, -38, 12, 0)
+disabled = true
 
 [node name="AreaBodyCollisionSuper" type="ShapeCast2D" parent="."]
 process_mode = 4
 visible = false
 position = Vector2(0, 12)
+enabled = false
 shape = SubResource("ConvexPolygonShape2D_y66qv")
 target_position = Vector2(0, 0)
 max_results = 6
@@ -127,6 +129,7 @@ collide_with_areas = true
 process_mode = 4
 visible = false
 position = Vector2(0, -28)
+enabled = false
 shape = SubResource("CircleShape2D_rmk25")
 target_position = Vector2(0, 0)
 max_results = 3
