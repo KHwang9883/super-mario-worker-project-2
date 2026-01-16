@@ -155,6 +155,7 @@ public partial class PlayerGodMode : Node {
 #if TOOLS
             case Key.P:
                 GameManager.IsLevelPass = true;
+                GameManager.IsFasterLevelPass = true;
                 break;
 #endif            
         }
