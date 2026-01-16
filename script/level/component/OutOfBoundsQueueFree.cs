@@ -43,7 +43,7 @@ public partial class OutOfBoundsQueueFree : Node
     public override void _PhysicsProcess(double delta) {
         bool destroy = false;
         
-        // 出屏检测（核心修改：按方向偏移量判断）
+        // 出屏检测
         if (OutOfScreenDetection) {
             var screenRect = ScreenUtils.GetScreenRect(_target);
             
@@ -53,7 +53,7 @@ public partial class OutOfBoundsQueueFree : Node
             if (_target.Position.X > screenRect.End.X + ScreenRightOffset) destroy = true;
         }
 
-        // 出房间检测（同理，按方向偏移量判断）
+        // 出房间检测
         if (OutOfRoomDetection) {
             if (_target.Position.Y < _roomBounds.Position.Y - RoomUpOffset) destroy = true;
             if (_target.Position.Y > _roomBounds.End.Y + RoomDownOffset) destroy = true;

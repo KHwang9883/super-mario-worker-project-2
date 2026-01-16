@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpkbiapa0g2kg" path="res://script/level/enemy/cheep-cheep/cheep-cheep_area/CheepCheepArea.cs" id="1_dmnbm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8eky2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jai18"]
 size = Vector2(160, 160)
 
 [node name="CheepCheepArea" type="Area2D"]
@@ -12,9 +12,11 @@ script = ExtResource("1_dmnbm")
 CheepAreaRect = Rect2(1928, 28, 160, 160)
 CheepAreaType = 1
 CheepAreaLevel = 1
+CheepType = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_8eky2")
+position = Vector2(2008, 108)
+shape = SubResource("RectangleShape2D_jai18")
 debug_color = Color(0.5746067, 0.387493, 1, 0.41960785)
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -54,6 +54,7 @@ public partial class CheepCheepArea : Area2D {
         if (!_isPlayerIn) return;
         
         _timer++;
+        GD.Print($"CheepCheepArea: _timer: {_timer}");
         
         switch (CheepAreaType) {
             case CheepAreaTypeEnum.Swim:
@@ -168,7 +169,10 @@ public partial class CheepCheepArea : Area2D {
         }
     }
     public void Create(int maxCount = 3) {
-        if (!_cheepDict.TryGetValue(CheepType, out var cheepScene)) return;
+        if (!_cheepDict.TryGetValue(CheepType, out var cheepScene)) {
+            GD.PushError("CheepCheepArea: None cheep type found!");
+            return;
+        }
         
         var screen = ScreenUtils.GetScreenRect(this);
         var screenCenterX = screen.Position.X + (screen.Size.X / 2f);
@@ -180,7 +184,10 @@ public partial class CheepCheepArea : Area2D {
         var waterGlobal = (Node2D)GetTree().GetFirstNodeInGroup("water_global");
         switch (CheepAreaType) {
             case CheepAreaTypeEnum.Swim:
-                if (GetTree().GetNodeCountInGroup("CreatedCheepCheepSwim") >= maxCount) return;
+                if (GetTree().GetNodeCountInGroup("CreatedCheepCheepSwim") >= maxCount) {
+                    GD.Print("CheepCheepArea: Reach max count. Can't create cheep-cheep swim!");
+                    return;
+                }
                 _cheep = cheepScene.Instantiate<Node2D>();
                 _cheep.AddToGroup("CreatedCheepCheepSwim");
                 _cheep.Position = new Vector2(
@@ -190,20 +197,21 @@ public partial class CheepCheepArea : Area2D {
                 _cheepSwimCreateHeightShift = !_cheepSwimCreateHeightShift;
                 break;
             case CheepAreaTypeEnum.Fly:
-                if (GetTree().GetNodeCountInGroup("CreatedCheepCheepFly") >= maxCount) return;
+                if (GetTree().GetNodeCountInGroup("CreatedCheepCheepFly") >= maxCount) {
+                    GD.Print("CheepCheepArea: Reach max count. Can't create cheep-cheep fly!");
+                    return;
+                }
                 _cheep = cheepScene.Instantiate<Node2D>();
+                _cheep.GetNode<GeneralVisibleOnScreenEnabler2d>("GeneralVisibleOnScreenEnabler2d").Free();
                 _cheep.AddToGroup("CreatedCheepCheepFly");
                 _cheep.Position = new Vector2(
                     screenCenterX + (screen.Size.X / 2f + 34f) * direction,
                     screen.End.Y + 22f + _rng.RandfRange(0f, 300f));
                 break;
         }
-        AddSibling(_cheep);
-
         if (_cheep == null) return;
         // 方向设置
-        if (!_cheep.HasMeta("CheepCheepMovement")) return;
-        var cheepCheepMovement = (CheepCheepMovement)_cheep.GetMeta("CheepCheepMovement");
+        var cheepCheepMovement = _cheep.GetNode<CheepCheepMovement>("CheepCheepMovement");
         cheepCheepMovement.CheepMoveMode = CheepAreaType switch {
             CheepAreaTypeEnum.Swim => CheepCheepMovement.CheepCheepMoveEnum.Swim,
             CheepAreaTypeEnum.Fly => CheepCheepMovement.CheepCheepMoveEnum.Fly,
@@ -214,5 +222,6 @@ public partial class CheepCheepArea : Area2D {
             CheepAreaDirectionEnum.Right => Mathf.Abs(cheepCheepMovement.SpeedX),
             _ => cheepCheepMovement.SpeedX,
         };
+        AddSibling(_cheep);
     }
 }

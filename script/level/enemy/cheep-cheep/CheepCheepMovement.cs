@@ -20,7 +20,7 @@ public partial class CheepCheepMovement : BasicMovement {
     
     public override void _Ready() {
         base._Ready();
-        MoveObject.SetMeta("CheepCheepMovement", this);
+        //MoveObject.SetMeta("CheepCheepMovement", this);
         if (CheepMoveMode == CheepCheepMoveEnum.Fly) _flyMode = true;
     }
     public override void _PhysicsProcess(double delta) {
@@ -83,6 +83,10 @@ public partial class CheepCheepMovement : BasicMovement {
         base._PhysicsProcess(delta);
     }
     public void OnScreenExited() {
+        RemoveFromGroup();
+    }
+
+    public void RemoveFromGroup() {
         if (_flewOutOfWater && MoveObject.IsInGroup("CreatedCheepCheepFly")) {
             MoveObject.RemoveFromGroup("CreatedCheepCheepFly");
         }

@@ -67,7 +67,7 @@ script = ExtResource("2_l5e5c")
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://t3te8lnb0byj"
 
-[node name="CheepCheepBlueMovement" type="Node" parent="." node_paths=PackedStringArray("_area2D", "_enemyInteraction", "MoveObject")]
+[node name="CheepCheepMovement" type="Node" parent="." node_paths=PackedStringArray("_area2D", "_enemyInteraction", "MoveObject")]
 script = ExtResource("3_xawo5")
 _area2D = NodePath("../WaterDetect")
 _enemyInteraction = NodePath("../EnemyInteraction")
@@ -96,6 +96,9 @@ metadata/_custom_type_script = "uid://cnbadhjt53rkc"
 
 [node name="OutOfBoundsQueueFree" type="Node" parent="."]
 script = ExtResource("8_kjgfa")
+RoomDownOffset = 300.0
+RoomLeftOffset = 96.0
+RoomRightOffset = 96.0
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 
 [node name="Stomped" type="AudioStreamPlayer2D" parent="."]
@@ -122,4 +125,4 @@ Smwp1LightId = Array[int]([30])
 [connection signal="PlaySoundBumped" from="EnemyInteraction" to="Bumped" method="play"]
 [connection signal="PlaySoundKicked" from="EnemyInteraction" to="Kicked" method="play"]
 [connection signal="PlaySoundStomped" from="EnemyInteraction" to="Stomped" method="play"]
-[connection signal="screen_exited" from="GeneralVisibleOnScreenEnabler2d" to="CheepCheepBlueMovement" method="OnScreenExited"]
+[connection signal="screen_exited" from="GeneralVisibleOnScreenEnabler2d" to="CheepCheepMovement" method="OnScreenExited"]

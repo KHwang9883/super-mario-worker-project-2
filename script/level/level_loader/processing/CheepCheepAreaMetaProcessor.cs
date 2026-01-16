@@ -31,8 +31,42 @@ public partial class CheepCheepAreaMetaProcessor : ObjectProcessor {
             return;
         }
         // 赋值
+        area.CheepAreaDirection =
+            (end.X > instance.Position.X)
+                ? CheepCheepArea.CheepAreaDirectionEnum.Left
+                : CheepCheepArea.CheepAreaDirectionEnum.Right;
         area.CheepAreaType = Type;
-        area.CheepAreaRect = area.CheepAreaRect with { End = end };
-        area.CheepType = (CheepCheepArea.CheepTypeEnum)cheepType;
+        area.CheepAreaRect =
+            new Rect2(instance.Position, end - instance.Position + new Vector2(32f, 32f));
+        switch (Type) {
+            case CheepCheepArea.CheepAreaTypeEnum.Swim:
+                area.CheepType = cheepType switch {
+                    0 => CheepCheepArea.CheepTypeEnum.Red,
+                    1 => CheepCheepArea.CheepTypeEnum.Red,
+                    2 => CheepCheepArea.CheepTypeEnum.Green,
+                    _ => throw new ArgumentOutOfRangeException(),
+                };
+                area.CheepAreaLevel = cheepType switch {
+                    0 => CheepCheepArea.CheepAreaLevelEnum.Level1,
+                    1 => CheepCheepArea.CheepAreaLevelEnum.Level2,
+                    2 => CheepCheepArea.CheepAreaLevelEnum.Level1,
+                    _ => throw new ArgumentOutOfRangeException(),
+                };
+                break;
+            case CheepCheepArea.CheepAreaTypeEnum.Fly:
+                area.CheepType = cheepType switch {
+                    0 => CheepCheepArea.CheepTypeEnum.Red,
+                    1 => CheepCheepArea.CheepTypeEnum.Red,
+                    2 => CheepCheepArea.CheepTypeEnum.Blue,
+                    _ => throw new ArgumentOutOfRangeException(),
+                };
+                area.CheepAreaLevel = cheepType switch {
+                    0 => CheepCheepArea.CheepAreaLevelEnum.Level1,
+                    1 => CheepCheepArea.CheepAreaLevelEnum.Level2,
+                    2 => CheepCheepArea.CheepAreaLevelEnum.Level1,
+                    _ => throw new ArgumentOutOfRangeException(),
+                };
+                break;
+        }
     }
 }
