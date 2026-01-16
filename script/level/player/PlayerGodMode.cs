@@ -150,6 +150,13 @@ public partial class PlayerGodMode : Node {
                     break;
                 }
                 break;
+            
+            // 用于测试 Scenario
+#if TOOLS
+            case Key.P:
+                GameManager.IsLevelPass = true;
+                break;
+#endif            
         }
     }
     public override void _PhysicsProcess(double delta) {
