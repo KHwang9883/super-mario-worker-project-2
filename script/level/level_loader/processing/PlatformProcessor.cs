@@ -53,6 +53,8 @@ public partial class PlatformProcessor : ObjectProcessor {
         } else {
             offset = Vector2.Zero;
         }
+        offset += Vector2.Down;
+        offset += Vector2.Left;
         return node;
     }
 }
