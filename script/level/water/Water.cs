@@ -11,7 +11,7 @@ public partial class Water : Area2D {
     
     [Export] private AnimatedSprite2D _waterSurfaceSprite = null!;
     [Export] private Sprite2D _waterRect = null!;
-    [Export] private CollisionShape2D _collisionShape2D { get; set; } = null!;
+    [Export] private CollisionShape2D CollisionShape2D { get; set; } = null!;
     
     private Fluid? _fluid;
     private LevelConfig? _levelConfig;
@@ -33,6 +33,13 @@ public partial class Water : Area2D {
     
     private Vector2 _collisionShapeOriginPos;
 
+    public enum MeLoveTallCastle {
+        NotReady,
+        Build,
+        Collapse,
+    }
+    public MeLoveTallCastle ReallyLoveTallCastle = MeLoveTallCastle.NotReady;
+
     public override void _Ready() {
         _fluid ??= GetParent<Fluid>();
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
@@ -40,18 +47,26 @@ public partial class Water : Area2D {
         _levelConfig.SwitchSwitched += OnSwitchToggled;
         _originCollisionLayer = CollisionLayer;
 
-        _collisionShapeOriginPos = _collisionShape2D.Position;
+        _collisionShapeOriginPos = CollisionShape2D.Position;
+        
         
         // Position 初始化见 LevelConfig
         _autoFluid = _levelConfig.AutoFluid;
-        if (!_autoFluid) return;
-        _t1 = _levelConfig.FluidT1;
-        _t2 = _levelConfig.FluidT2;
-        _speed = _levelConfig.FluidSpeed;
-        _delay = _levelConfig.FluidDelay;
-        _target = _t1;
+        if (_autoFluid) {
+            _t1 = _levelConfig.FluidT1;
+            _t2 = _levelConfig.FluidT2;
+            _speed = _levelConfig.FluidSpeed;
+            _delay = _levelConfig.FluidDelay;
+            _target = _t1;
+        }
+        
+        Callable.From(() => {
+            ReallyLoveTallCastle = MeLoveTallCastle.Build;
+        }).CallDeferred();
     }
     public override void _PhysicsProcess(double delta) {
+        TallCastleCheck();
+        
         // 流体控件设置目标高度
         if (_fluidControlSet) {
             Position = Position with {
@@ -102,11 +117,11 @@ public partial class Water : Area2D {
         switch (_fluid.FluidType) {
             case Fluid.FluidTypeEnum.Water:
                 Visible = true;
-                _collisionShape2D.Position = _collisionShapeOriginPos;
+                CollisionShape2D.Position = _collisionShapeOriginPos;
                 break;
             case Fluid.FluidTypeEnum.Lava:
                 Visible = false;
-                _collisionShape2D.Position = new Vector2(0f, 16f);
+                CollisionShape2D.Position = new Vector2(0f, 16f);
                 break;
         }
     }
@@ -155,6 +170,28 @@ public partial class Water : Area2D {
         } else {
             Visible = true;
             CollisionLayer = _originCollisionLayer;
+        }
+    }
+
+    // SMWP1 关卡默认水位大于等于 1000000 像素的情况
+    // 对应关卡：Tall Castle 5(Beta).smwp
+    public void TallCastleCheck() {
+        if (_levelConfig == null) {
+            return;
+        }
+        if (_levelConfig.SmwpVersion < 2000) {
+            if (!(_levelConfig.WaterHeight > 999999f)) {
+                return;
+            }
+            if (ReallyLoveTallCastle == MeLoveTallCastle.Build) {
+                _levelConfig.WaterHeight -= (1000000 - 48);
+                Position = Position with { Y = _levelConfig.WaterHeight };
+                GD.Print("Tall Castle 5(Beta).smwp，你赢了");
+                _disappear = true;
+                Visible = false;
+                CollisionLayer = 0;
+                ReallyLoveTallCastle = MeLoveTallCastle.Collapse;
+            }
         }
     }
 }

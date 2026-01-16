@@ -16,6 +16,8 @@ public partial class Lava : Area2D {
     private bool _disappear;
     private uint _originCollisionLayer;
 
+    private bool _meLoveTallCastleSoMuch;
+    
     public override void _Ready() {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         _fluid ??= GetParent<Fluid>();
@@ -38,6 +40,8 @@ public partial class Lava : Area2D {
         }
     }
     public override void _PhysicsProcess(double delta) {
+        TallCastleCheck();
+        
         // 计算水块位置
         string currentAnim = _lavaSurfaceSprite.Animation;
         int currentFrame = _lavaSurfaceSprite.Frame;
@@ -84,6 +88,20 @@ public partial class Lava : Area2D {
         } else {
             Visible = true;
             CollisionLayer = _originCollisionLayer;
+        }
+    }
+    
+    // SMWP1 关卡默认水位大于等于 1000000 像素的情况
+    // 对应关卡：Tall Castle 5(Beta).smwp
+    public void TallCastleCheck() {
+        if (_water == null) {
+            return;
+        }
+        if (_water.ReallyLoveTallCastle == Water.MeLoveTallCastle.Collapse && !_meLoveTallCastleSoMuch) {
+            _disappear = true;
+            CollisionLayer = 0;
+            _meLoveTallCastleSoMuch = true;
+            //GD.Print("Tall Lava");
         }
     }
 }
