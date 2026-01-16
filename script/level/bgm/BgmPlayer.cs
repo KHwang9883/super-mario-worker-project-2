@@ -44,6 +44,7 @@ public partial class BgmPlayer : AudioStreamPlayer {
             
             // Fast Retry 读取 BGM 位置
             if (_levelConfig.BgmId != GameManager.CurrentBgmId) {
+                //GD.Print($"GameManager.CurrentBgmId: {GameManager.CurrentBgmId}");
                 GameManager.BgmPosition = 0f;
             }
             
@@ -114,6 +115,8 @@ public partial class BgmPlayer : AudioStreamPlayer {
             GD.PushError($"{this}: LevelConfig is null!");
             return;
         }
+        
+        GameManager.CurrentBgmId = _levelConfig.BgmId;
 
         switch (_levelConfig.BgmId) {
             // No Music
