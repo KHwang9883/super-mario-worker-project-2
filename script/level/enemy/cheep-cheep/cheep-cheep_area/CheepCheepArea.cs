@@ -54,7 +54,7 @@ public partial class CheepCheepArea : Area2D {
         if (!_isPlayerIn) return;
         
         _timer++;
-        GD.Print($"CheepCheepArea: _timer: {_timer}");
+        //GD.Print($"CheepCheepArea: _timer: {_timer}");
         
         switch (CheepAreaType) {
             case CheepAreaTypeEnum.Swim:
@@ -185,7 +185,7 @@ public partial class CheepCheepArea : Area2D {
         switch (CheepAreaType) {
             case CheepAreaTypeEnum.Swim:
                 if (GetTree().GetNodeCountInGroup("CreatedCheepCheepSwim") >= maxCount) {
-                    GD.Print("CheepCheepArea: Reach max count. Can't create cheep-cheep swim!");
+                    //GD.Print("CheepCheepArea: Reach max count. Can't create cheep-cheep swim!");
                     return;
                 }
                 _cheep = cheepScene.Instantiate<Node2D>();
@@ -198,7 +198,7 @@ public partial class CheepCheepArea : Area2D {
                 break;
             case CheepAreaTypeEnum.Fly:
                 if (GetTree().GetNodeCountInGroup("CreatedCheepCheepFly") >= maxCount) {
-                    GD.Print("CheepCheepArea: Reach max count. Can't create cheep-cheep fly!");
+                    //GD.Print("CheepCheepArea: Reach max count. Can't create cheep-cheep fly!");
                     return;
                 }
                 _cheep = cheepScene.Instantiate<Node2D>();

@@ -45,7 +45,7 @@ public partial class Checkpoint : Area2D {
                     GameManager.CheckpointWaterHeight = _water.Position.Y;
                     //GD.Print($"CheckpointWaterHeight: {GameManager.CheckpointWaterHeight}");
                 }
-                GameManager.CurrentBgmId = _levelConfig.BgmId;
+                GameManager.CheckpointBgmId = _levelConfig.BgmId;
                 GameManager.CheckpointBgpId = _levelConfig.BgpId;
                 GameManager.CheckpointRainyLevel = _levelConfig.RainyLevel;
                 GameManager.CheckpointFallingStarsLevel = _levelConfig.FallingStarsLevel;

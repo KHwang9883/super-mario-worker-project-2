@@ -38,7 +38,7 @@ public partial class BgmPlayer : AudioStreamPlayer {
             
             // Checkpoint 场景控制元件更改 BGM 记录
             if (GameManager.ActivatedCheckpoints.Count > 0) {
-                _levelConfig.BgmId = GameManager.CurrentBgmId;
+                _levelConfig.BgmId = GameManager.CheckpointBgmId;
                 //GD.Print($"_levelConfig.BgmId: {_levelConfig.BgmId}");
             }
             
