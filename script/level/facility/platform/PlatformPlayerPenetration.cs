@@ -3,6 +3,8 @@ using System;
 using SMWP.Level.Player;
 
 public partial class PlatformPlayerPenetration : Node {
+    [Export] private uint CollisionLayerWhenPlayerOnPenetration { get; set; }
+    
     private StaticBody2D? _parent;
     private Node? _player;
     private PlayerMovement? _playerMovement;
@@ -23,7 +25,9 @@ public partial class PlatformPlayerPenetration : Node {
         
         // 玩家在垂直移动平台上时，允许穿透其他平台
         _parent.SetCollisionLayer(
-            _playerMovement.OnVerticalPlatform ? (uint)0 : _collisionLayer
+            _playerMovement.OnVerticalPlatform
+                ? (uint)CollisionLayerWhenPlayerOnPenetration
+                : _collisionLayer
             );
         
         if (_isPlayerCurrentStep) _parent.SetCollisionLayer(_collisionLayer);

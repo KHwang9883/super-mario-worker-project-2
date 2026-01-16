@@ -28,6 +28,7 @@ one_way_collision = true
 
 [node name="PlayerPenetration" type="Node" parent="."]
 script = ExtResource("2_1x6e8")
+CollisionLayerWhenPlayerOnPenetration = 4
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
