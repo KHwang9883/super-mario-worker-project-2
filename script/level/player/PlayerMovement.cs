@@ -1045,11 +1045,20 @@ public partial class PlayerMovement : Node {
             GD.PushError("KoopaScrollDetect: LevelCamera is null!");
             return;
         }
-            
+        
         _levelCamera.LimitLeft = 0;
         _levelCamera.LimitTop = 0;
         _levelCamera.LimitRight = (int)_levelConfig.RoomWidth;
         _levelCamera.LimitBottom = (int)_levelConfig.RoomHeight;
+
+        _levelCamera.Position = _levelCamera.GetScreenCenterPosition();
+        _levelCamera.ResetPhysicsInterpolation();
+        /*
+        Callable.From(() => {
+            _levelCamera.Position = _levelCamera.GetScreenCenterPosition();
+            _levelCamera.ResetPhysicsInterpolation();
+        }).CallDeferred();
+        */
     }
 
     public void RaccoonRun() {
