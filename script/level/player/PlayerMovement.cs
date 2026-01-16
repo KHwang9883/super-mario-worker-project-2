@@ -922,8 +922,8 @@ public partial class PlayerMovement : Node {
             if (node is not ViewControl viewControl) continue;
             if (_player.Position.X > viewControl.ViewRect.Position.X
                 && _player.Position.X < viewControl.ViewRect.End.X
-                && _player.Position.Y > viewControl.ViewRect.Position.Y
-                && _player.Position.Y < viewControl.ViewRect.End.Y) {
+                && _player.Position.Y > viewControl.ViewRect.Position.Y - 32f
+                && _player.Position.Y < viewControl.ViewRect.End.Y + 32f) {
                 
                 _levelCamera.LimitLeft = (int)viewControl.ViewRect.Position.X;
                 _levelCamera.LimitTop = (int)viewControl.ViewRect.Position.Y;
