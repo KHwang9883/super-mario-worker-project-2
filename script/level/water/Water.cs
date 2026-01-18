@@ -12,7 +12,7 @@ public partial class Water : Area2D {
     [Export] private AnimatedSprite2D _waterSurfaceSprite = null!;
     [Export] private Sprite2D _waterRect = null!;
     [Export] private CollisionShape2D CollisionShape2D { get; set; } = null!;
-    
+
     private Fluid? _fluid;
     private LevelConfig? _levelConfig;
     private bool _autoFluid;
@@ -70,7 +70,8 @@ public partial class Water : Area2D {
         // 流体控件设置目标高度
         if (_fluidControlSet) {
             Position = Position with {
-                Y = Mathf.MoveToward(Position.Y, _fluidControlTargetHeight, _fluidControlSpeed),
+                Y = Mathf.MoveToward(Position.Y, _fluidControlTargetHeight,
+                    _fluidControlSpeed * 0.4f),
             };
             if (Math.Abs(Position.Y - _fluidControlTargetHeight) < _fluidControlSpeed) {
                 Position = Position with { Y = _fluidControlTargetHeight };
