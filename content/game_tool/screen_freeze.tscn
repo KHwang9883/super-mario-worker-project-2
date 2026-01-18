@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://ds6karhquifmk" path="res://script/util/SmwpFrameTimer.cs" id="3_liejv"]
 
 [node name="ScreenFreeze" type="CanvasLayer" node_paths=PackedStringArray("_frozenScreenSprite", "_loadingSprites", "_timer")]
+process_mode = 3
 process_priority = 2333
 editor_description = "玩家死亡后关卡重新加载好之前保持当前的画面，防止关卡未加载完毕就渲染而露馅"
 layer = 32
