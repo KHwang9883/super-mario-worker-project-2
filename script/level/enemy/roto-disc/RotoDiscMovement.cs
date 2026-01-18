@@ -29,6 +29,11 @@ public partial class RotoDiscMovement : Node {
     }
     public override void _PhysicsProcess(double delta) {
         if (_parent == null) return;
+
+        if (Mathf.Abs(Speed) >= 25f) {
+            _parent.PhysicsInterpolationMode = PhysicsInterpolationModeEnum.Off;
+        }
+        
         Angle = Mathf.Wrap(Angle + Speed, 0f, 360f);
         _parent.Position =
             new Vector2(
