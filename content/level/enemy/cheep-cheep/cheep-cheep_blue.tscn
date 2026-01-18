@@ -38,7 +38,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_58ydw"]
-size = Vector2(33, 30)
+size = Vector2(33, 29)
 
 [node name="CheepCheepBlue" type="CharacterBody2D"]
 z_index = 10
