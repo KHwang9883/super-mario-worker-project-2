@@ -1,12 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://dl6pdym47bg6e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqee4"]
-size = Vector2(64, 64)
+size = Vector2(64, 48)
 
 [node name="PassageInDown" type="Area2D"]
 collision_layer = 256
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_kqee4")
 debug_color = Color(0, 0.5364341, 0.9715254, 0.41960785)
