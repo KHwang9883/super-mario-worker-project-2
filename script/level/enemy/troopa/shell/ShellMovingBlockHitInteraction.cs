@@ -32,6 +32,9 @@ public partial class ShellMovingBlockHitInteraction : Node {
         }
         if (interactionWithBlockNode is not BlockHit blockHit) return;
         
+        // 不能撞击冰块
+        if (interactionWithBlockNode is IceBlock) return;
+        
         // 隐藏砖不触发
         if (blockHit.Hidden) return;
 
