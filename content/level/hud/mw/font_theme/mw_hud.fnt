@@ -9,7 +9,7 @@ char id=35   x=45    y=0     width=15    height=20    xoffset=1     yoffset=3   
 char id=36   x=60    y=0     width=15    height=20    xoffset=1     yoffset=3     xadvance=8    page=0  chnl=15
 char id=37   x=75    y=0     width=15    height=20    xoffset=1     yoffset=3     xadvance=11   page=0  chnl=15
 char id=38   x=90    y=0     width=15    height=20    xoffset=1     yoffset=3     xadvance=10   page=0  chnl=15
-char id=39   x=105   y=0     width=15    height=20    xoffset=1     yoffset=3     xadvance=5    page=0  chnl=15
+char id=39   x=105   y=0     width=15    height=20    xoffset=-2     yoffset=3     xadvance=5    page=0  chnl=15
 char id=40   x=120   y=0     width=15    height=20    xoffset=1     yoffset=3     xadvance=7    page=0  chnl=15
 char id=41   x=135   y=0     width=15    height=20    xoffset=1     yoffset=3     xadvance=7    page=0  chnl=15
 char id=42   x=150   y=0     width=15    height=20    xoffset=1     yoffset=3     xadvance=10   page=0  chnl=15
