@@ -15,14 +15,19 @@ public partial class Title : Node2D {
     
     private bool _inputReleased;
     
-    public enum TitleAnimationStatus { Spin, Light, Lighting, Over}
+    public enum TitleAnimationStatus { Spin, Light, Lighting, Over }
     private TitleAnimationStatus _animationStatus = TitleAnimationStatus.Spin;
     private float _spinAngle = 180f;
     private CanvasItemMaterial? _titleMaterial;
     private RandomNumberGenerator _rng = new();
 
     public override void _Ready() {
-        if (_titleToSpin == null) return;
+        ConfigManager.LoadConfig();
+        
+        if (_titleToSpin == null) {
+            GD.PushError("_titleToSpin is null!");
+            return;
+        }
         _titleToSpin.Visible = true;
         if (GameManager.TitleScreenAnimationFinished) {
             _animationStatus = TitleAnimationStatus.Light;

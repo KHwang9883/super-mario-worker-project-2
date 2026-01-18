@@ -5,7 +5,7 @@ using Godot.Collections;
 using SMWP;
 
 public static class ConfigManager {
-    public static ConfigFile SmwpConfig = new ConfigFile();
+    public static ConfigFile SmwpConfig = new();
     public static string? ConfigDirectory;
     public static readonly string ConfigFileName = "game_settings.cfg";
     public static string? ConfigPath;
