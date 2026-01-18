@@ -10,8 +10,11 @@ region = Rect2(192, 128, 32, 32)
 [node name="MediumCoral" type="Node2D"]
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(0, 32)
 repeat_times = 4
+follow_viewport = false
+ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 texture = SubResource("AtlasTexture_viouf")
