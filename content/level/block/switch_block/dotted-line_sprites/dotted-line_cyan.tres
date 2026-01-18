@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://cjfypky1itxii" path="res://content/level/block/switch_block/switch_block.png" id="1_l7ybf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uhtpo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7ybf"]
 atlas = ExtResource("1_l7ybf")
-region = Rect2(96, 32, 32, 32)
+region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dpbyw"]
 atlas = ExtResource("1_l7ybf")
@@ -14,7 +14,7 @@ region = Rect2(96, 64, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uhtpo")
+"texture": SubResource("AtlasTexture_l7ybf")
 }],
 "loop": false,
 "name": &"color-vision",
