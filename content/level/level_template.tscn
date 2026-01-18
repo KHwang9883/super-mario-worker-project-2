@@ -139,7 +139,6 @@ position = Vector2(0, 444)
 [connection signal="GameResumed" from="LevelConfig" to="GamePausePopup" method="hide"]
 [connection signal="ModuleResourceConvert" from="LevelConfig/BgmPlayer" to="LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="LevelConfig/BgmPlayer" to="LevelConfig/BgmPlayer" method="play"]
-[connection signal="tree_exiting" from="LevelConfig/BgmPlayer" to="LevelConfig/BgmPlayer" method="OnTreeExiting"]
 [connection signal="pressed" from="GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonYes" to="LevelConfig" method="QuitLevel"]
 [connection signal="pressed" from="GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonNo" to="LevelConfig" method="SetResume"]
 

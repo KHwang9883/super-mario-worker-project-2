@@ -24,6 +24,10 @@ public partial class BgmPlayer : AudioStreamPlayer {
     private float _underWaterVolume;
 
     public enum LoadExternalTypeEnum { Override, Custom }
+    
+    // Fast Retry Reparent
+    private Node? _parent;
+    private Viewport? _viewport;
 
     public override void _Ready() {
         _levelConfig = LevelConfigAccess.GetLevelConfig(this);
@@ -50,6 +54,14 @@ public partial class BgmPlayer : AudioStreamPlayer {
             
             SetBgm(false);
             Play(_levelConfig.FastRetry ? GameManager.BgmPosition : 0f);
+        }).CallDeferred();
+        
+        // Fast Retry Reparent
+        _parent ??= GetParent();
+        _viewport ??= GetViewport();
+        _parent.TreeExiting += OnParentExiting;
+        Callable.From(() => {
+            GetTree().SceneChanged += RecordFastRetryBgmPosition;
         }).CallDeferred();
     }
     public override void _PhysicsProcess(double delta) {
@@ -161,11 +173,12 @@ public partial class BgmPlayer : AudioStreamPlayer {
         Play();
     }
     
-    public void OnTreeExiting() {
+    public void RecordFastRetryBgmPosition() {
         // Fast Retry 记录 BGM 位置
         if (_levelConfig is not LevelConfig { FastRetry: true }) return;
         GameManager.BgmPosition = GetPlaybackPosition();
         //GD.Print(GameManager.BgmPosition);
+        Free();
     }
     
     public void Bgm146Sync() {
@@ -356,4 +369,15 @@ public partial class BgmPlayer : AudioStreamPlayer {
     }
     
     // BgmId 不合法自动为 No Music
+    
+    // Fast Retry Reparent
+    public void OnParentExiting() {
+        //Reparent(_viewport);
+        
+        _parent?.RemoveChild(this);
+        Callable.From(() => {
+            _viewport?.AddChild(this);
+            //GD.Print($"BgmPlayer Path when OnParentExiting: {GetPath()}");
+        }).CallDeferred();
+    }
 }
