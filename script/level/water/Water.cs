@@ -25,7 +25,7 @@ public partial class Water : Area2D {
     private bool _t1OrT2;
 
     private bool _fluidControlSet;
-    private float _fluidControlTargetHeight;
+    private float _fluidControlTargetHeight = -64f;
     private float _fluidControlSpeed;
 
     private bool _disappear;

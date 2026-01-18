@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class FluidArea : Area2D {
@@ -39,7 +40,9 @@ public partial class FluidArea : Area2D {
             GD.PushError($"{this}: _water is null!");
             return;
         }
-        _water.FluidControlSet(TargetHeight, Speed);
+        if (Math.Abs(_water.GetTargetHeight() - TargetHeight) < 0.08f) {
+            _water.FluidControlSet(TargetHeight, Speed);
+        }
 
         if (Reusable) {
             _set = false;
