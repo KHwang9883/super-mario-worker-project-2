@@ -23,7 +23,7 @@ public record struct ImitatorBuilder(
             GD.PushWarning($"Invalid imitator id: {imitator.Metadata}");
             return;
         }
-        if (align != CurrentAlign) {
+        if (align != CurrentAlign || IsOccupied(pos, align)) {
             if (CurrentTileMap is { } current) {
                 FinishedTileMaps.Add(current);
             }
@@ -33,7 +33,7 @@ public record struct ImitatorBuilder(
         }
         CurrentTileMap ??= NewTileMap();
         // 把模仿者添加到 tilemap 里
-        var tileCoord = (pos - align) / 32;
+        var tileCoord = ComputeTileCoord(pos, align);
         AddToCurrentTileMap(tileCoord, blockSerialNumber);
     }
 
@@ -47,6 +47,17 @@ public record struct ImitatorBuilder(
 
     public void Clear() {
         FinishedTileMaps.Clear();
+    }
+
+    /// <summary>
+    /// 判断当前正在构建的 TileMap 的某个格子是否已经被占用
+    /// </summary>
+    private bool IsOccupied(Vector2I pos, Vector2I align) {
+        return CurrentTileMap is { } tm && tm.GetCellSourceId(ComputeTileCoord(pos, align)) >= 0;
+    }
+
+    private static Vector2I ComputeTileCoord(Vector2I pos, Vector2I align) {
+        return (pos - align) / 32;
     }
     
     private Vector2I? CurrentAlign { get; set; }
