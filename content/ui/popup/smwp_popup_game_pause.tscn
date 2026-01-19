@@ -1,52 +1,66 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2yrgj2s3hg6f"]
+[gd_scene load_steps=4 format=3 uid="uid://d2yrgj2s3hg6f"]
 
+[ext_resource type="Script" uid="uid://e40okwmhfn1k" path="res://script/level/hud/SmwpPopupGamePause.cs" id="1_oc41n"]
 [ext_resource type="PackedScene" uid="uid://bxvt6eyfyn5b3" path="res://content/ui/popup/popup_component/smwp_popup_label.tscn" id="1_ug758"]
 [ext_resource type="PackedScene" uid="uid://caf7un75kne3a" path="res://content/ui/popup/popup_component/smwp_popup_button.tscn" id="3_genda"]
 
-[node name="GamePausePopup" type="PopupPanel"]
+[node name="GamePausePopup" type="Control"]
 process_mode = 3
-oversampling_override = 1.0
-initial_position = 2
-size = Vector2i(417, 100)
-visible = true
-always_on_top = true
-
-[node name="Control" type="Control" parent="."]
+z_index = 1024
 layout_mode = 3
-anchor_right = 0.99000007
-anchor_bottom = 0.96000004
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 0.16998291
+anchor_left = 0.17500001
+anchor_top = 0.4
+anchor_right = 0.827
+anchor_bottom = 0.60800004
+offset_right = -0.2800293
+offset_bottom = 0.15997314
 mouse_filter = 2
+script = ExtResource("1_oc41n")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+color = Color(0, 0, 0, 0.2509804)
+metadata/_edit_lock_ = true
 
-[node name="SetInitialLives" parent="Control/VBoxContainer" instance=ExtResource("1_ug758")]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.05
+anchor_right = 0.97
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="SetInitialLives" parent="VBoxContainer" instance=ExtResource("1_ug758")]
 layout_mode = 2
 size_flags_vertical = 2
 text = "Do you REALLY want to quit the level and go back to title screen???"
 autowrap_mode = 3
+metadata/_edit_lock_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
-[node name="ButtonYes" parent="Control/VBoxContainer/HBoxContainer" instance=ExtResource("3_genda")]
+[node name="ButtonYes" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_genda")]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Yes"
+metadata/_edit_lock_ = true
 
-[node name="ButtonNo" parent="Control/VBoxContainer/HBoxContainer" instance=ExtResource("3_genda")]
+[node name="ButtonNo" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_genda")]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "No"
+metadata/_edit_lock_ = true
 
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/ButtonNo" to="." method="hide"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonNo" to="." method="SetInvisible"]

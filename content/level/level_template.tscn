@@ -78,6 +78,7 @@ layer = 2
 material = SubResource("ShaderMaterial_h8cb6")
 position = Vector2(320, 240)
 texture = SubResource("GradientTexture2D_rgyew")
+metadata/_edit_lock_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="LevelConfig/Weather" groups=["canvas_modulate"]]
 process_mode = 4
@@ -85,10 +86,12 @@ material = SubResource("CanvasItemMaterial_kynl2")
 
 [node name="GamePausePopup" parent="." instance=ExtResource("1_f02dn")]
 visible = false
-
-[node name="Control" parent="GamePausePopup" index="1"]
-offset_right = 413.0
-offset_bottom = 96.0
+anchor_right = 0.17500001
+anchor_bottom = 0.4
+offset_left = 112.0
+offset_top = 192.0
+offset_right = 529.0
+offset_bottom = 292.0
 
 [node name="HUD" parent="." instance=ExtResource("11_f0nw8")]
 
@@ -135,11 +138,11 @@ _water = NodePath("../Water")
 [node name="Water" parent="Fluid" instance=ExtResource("29_s4pso")]
 position = Vector2(0, 444)
 
-[connection signal="GamePaused" from="LevelConfig" to="GamePausePopup" method="show"]
-[connection signal="GameResumed" from="LevelConfig" to="GamePausePopup" method="hide"]
+[connection signal="GamePaused" from="LevelConfig" to="GamePausePopup" method="SetVisible"]
+[connection signal="GameResumed" from="LevelConfig" to="GamePausePopup" method="SetInvisible"]
 [connection signal="ModuleResourceConvert" from="LevelConfig/BgmPlayer" to="LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="LevelConfig/BgmPlayer" to="LevelConfig/BgmPlayer" method="play"]
-[connection signal="pressed" from="GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonYes" to="LevelConfig" method="QuitLevel"]
-[connection signal="pressed" from="GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonNo" to="LevelConfig" method="SetResume"]
+[connection signal="pressed" from="GamePausePopup/VBoxContainer/HBoxContainer/ButtonYes" to="LevelConfig" method="QuitLevel"]
+[connection signal="pressed" from="GamePausePopup/VBoxContainer/HBoxContainer/ButtonNo" to="LevelConfig" method="SetResume"]
 
 [editable path="GamePausePopup"]

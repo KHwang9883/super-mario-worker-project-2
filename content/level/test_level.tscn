@@ -184,6 +184,7 @@ layer = 2
 material = SubResource("ShaderMaterial_h8cb6")
 position = Vector2(320, 240)
 texture = SubResource("GradientTexture2D_rgyew")
+metadata/_edit_lock_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="LevelTemplate/LevelConfig/Weather" groups=["canvas_modulate"]]
 process_mode = 4
@@ -191,10 +192,10 @@ material = SubResource("CanvasItemMaterial_kynl2")
 
 [node name="GamePausePopup" parent="LevelTemplate" instance=ExtResource("1_13tsj")]
 visible = false
-
-[node name="Control" parent="LevelTemplate/GamePausePopup" index="1"]
-offset_right = 413.0
-offset_bottom = 96.0
+offset_left = 112.0
+offset_top = 192.0
+offset_right = 529.0
+offset_bottom = 292.0
 
 [node name="HUD" parent="LevelTemplate" instance=ExtResource("11_qdvya")]
 
@@ -939,12 +940,12 @@ position = Vector2(9152, 384)
 [node name="TroopaGreen2" parent="." instance=ExtResource("91_x7uis")]
 position = Vector2(9456, 384)
 
-[connection signal="GamePaused" from="LevelTemplate/LevelConfig" to="LevelTemplate/GamePausePopup" method="show"]
-[connection signal="GameResumed" from="LevelTemplate/LevelConfig" to="LevelTemplate/GamePausePopup" method="hide"]
+[connection signal="GamePaused" from="LevelTemplate/LevelConfig" to="LevelTemplate/GamePausePopup" method="SetVisible"]
+[connection signal="GameResumed" from="LevelTemplate/LevelConfig" to="LevelTemplate/GamePausePopup" method="SetInvisible"]
 [connection signal="ModuleResourceConvert" from="LevelTemplate/LevelConfig/BgmPlayer" to="LevelTemplate/LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="LevelTemplate/LevelConfig/BgmPlayer" to="LevelTemplate/LevelConfig/BgmPlayer" method="play"]
-[connection signal="pressed" from="LevelTemplate/GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonYes" to="LevelTemplate/LevelConfig" method="QuitLevel"]
-[connection signal="pressed" from="LevelTemplate/GamePausePopup/Control/VBoxContainer/HBoxContainer/ButtonNo" to="LevelTemplate/LevelConfig" method="SetResume"]
+[connection signal="pressed" from="LevelTemplate/GamePausePopup/VBoxContainer/HBoxContainer/ButtonYes" to="LevelTemplate/LevelConfig" method="QuitLevel"]
+[connection signal="pressed" from="LevelTemplate/GamePausePopup/VBoxContainer/HBoxContainer/ButtonNo" to="LevelTemplate/LevelConfig" method="SetResume"]
 
 [editable path="LevelTemplate/GamePausePopup"]
 [editable path="QuestionBlock14"]

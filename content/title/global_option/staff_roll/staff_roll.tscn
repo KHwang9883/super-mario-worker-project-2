@@ -110,7 +110,7 @@ texture = ExtResource("6_e75c6")
 
 [node name="StaffRoll" type="Parallax2D" parent="." node_paths=PackedStringArray("staff_control_node")]
 editor_description = "重复尺寸设置为 Staff 高度 + 间隙"
-repeat_size = Vector2(0, 768)
+repeat_size = Vector2(0, 114514)
 autoscroll = Vector2(0, -75)
 script = SubResource("GDScript_84liu")
 staff_control_node = NodePath("Control")
@@ -127,7 +127,7 @@ anchors_preset = 0
 offset_left = 32.0
 offset_top = 496.0
 offset_right = 400.0
-offset_bottom = 1200.0
+offset_bottom = 1424.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="StaffRoll/Control"]
 layout_mode = 1
@@ -141,8 +141,10 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 size_flags_horizontal = 5
 theme = ExtResource("10_84liu")
-text = "SUPER MARIO WORKER PROJECT 2"
+theme_override_font_sizes/font_size = 19
+text = "Super Mario Worker Project 2"
 horizontal_alignment = 1
+uppercase = true
 metadata/_edit_lock_ = true
 
 [node name="EmptyLine" type="Label" parent="StaffRoll/Control/VBoxContainer"]
@@ -180,17 +182,30 @@ layout_mode = 2
 theme = ExtResource("10_84liu")
 metadata/_edit_lock_ = true
 
+[node name="EmptyLine3" type="Label" parent="StaffRoll/Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("10_84liu")
+metadata/_edit_lock_ = true
+
 [node name="SpecialThanksTo" type="Label" parent="StaffRoll/Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("10_84liu")
+theme_override_font_sizes/font_size = 19
 text = "Special Thanks To"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="AllBetaPlayers" type="Label" parent="StaffRoll/Control/VBoxContainer"]
+[node name="EmptyLine4" type="Label" parent="StaffRoll/Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("10_84liu")
-text = "All Beta Players
+metadata/_edit_lock_ = true
+
+[node name="DetailedSpecialThx" type="Label" parent="StaffRoll/Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("10_84liu")
+text = "SMWP 1 Staff
+All Beta Players
+
 And You!"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
