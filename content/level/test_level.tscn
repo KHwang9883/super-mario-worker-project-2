@@ -190,12 +190,13 @@ metadata/_edit_lock_ = true
 process_mode = 4
 material = SubResource("CanvasItemMaterial_kynl2")
 
-[node name="GamePausePopup" parent="LevelTemplate" instance=ExtResource("1_13tsj")]
+[node name="Pause" type="CanvasLayer" parent="LevelTemplate"]
+layer = 5
+
+[node name="GamePausePopup" parent="LevelTemplate/Pause" instance=ExtResource("1_13tsj")]
 visible = false
-offset_left = 112.0
-offset_top = 192.0
-offset_right = 529.0
-offset_bottom = 292.0
+offset_right = 417.0
+offset_bottom = 100.0
 
 [node name="HUD" parent="LevelTemplate" instance=ExtResource("11_qdvya")]
 
@@ -940,12 +941,12 @@ position = Vector2(9152, 384)
 [node name="TroopaGreen2" parent="." instance=ExtResource("91_x7uis")]
 position = Vector2(9456, 384)
 
-[connection signal="GamePaused" from="LevelTemplate/LevelConfig" to="LevelTemplate/GamePausePopup" method="SetVisible"]
-[connection signal="GameResumed" from="LevelTemplate/LevelConfig" to="LevelTemplate/GamePausePopup" method="SetInvisible"]
+[connection signal="GamePaused" from="LevelTemplate/LevelConfig" to="LevelTemplate/Pause/GamePausePopup" method="SetVisible"]
+[connection signal="GameResumed" from="LevelTemplate/LevelConfig" to="LevelTemplate/Pause/GamePausePopup" method="SetInvisible"]
 [connection signal="ModuleResourceConvert" from="LevelTemplate/LevelConfig/BgmPlayer" to="LevelTemplate/LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="LevelTemplate/LevelConfig/BgmPlayer" to="LevelTemplate/LevelConfig/BgmPlayer" method="play"]
-[connection signal="pressed" from="LevelTemplate/GamePausePopup/VBoxContainer/HBoxContainer/ButtonYes" to="LevelTemplate/LevelConfig" method="QuitLevel"]
-[connection signal="pressed" from="LevelTemplate/GamePausePopup/VBoxContainer/HBoxContainer/ButtonNo" to="LevelTemplate/LevelConfig" method="SetResume"]
+[connection signal="pressed" from="LevelTemplate/Pause/GamePausePopup/VBoxContainer/HBoxContainer/ButtonYes" to="LevelTemplate/LevelConfig" method="QuitLevel"]
+[connection signal="pressed" from="LevelTemplate/Pause/GamePausePopup/VBoxContainer/HBoxContainer/ButtonNo" to="LevelTemplate/LevelConfig" method="SetResume"]
 
-[editable path="LevelTemplate/GamePausePopup"]
+[editable path="LevelTemplate/Pause/GamePausePopup"]
 [editable path="QuestionBlock14"]

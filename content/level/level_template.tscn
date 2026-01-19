@@ -84,14 +84,15 @@ metadata/_edit_lock_ = true
 process_mode = 4
 material = SubResource("CanvasItemMaterial_kynl2")
 
-[node name="GamePausePopup" parent="." instance=ExtResource("1_f02dn")]
+[node name="Pause" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="GamePausePopup" parent="Pause" instance=ExtResource("1_f02dn")]
 visible = false
 anchor_right = 0.17500001
 anchor_bottom = 0.4
-offset_left = 112.0
-offset_top = 192.0
-offset_right = 529.0
-offset_bottom = 292.0
+offset_right = 417.0
+offset_bottom = 100.0
 
 [node name="HUD" parent="." instance=ExtResource("11_f0nw8")]
 
@@ -138,11 +139,11 @@ _water = NodePath("../Water")
 [node name="Water" parent="Fluid" instance=ExtResource("29_s4pso")]
 position = Vector2(0, 444)
 
-[connection signal="GamePaused" from="LevelConfig" to="GamePausePopup" method="SetVisible"]
-[connection signal="GameResumed" from="LevelConfig" to="GamePausePopup" method="SetInvisible"]
+[connection signal="GamePaused" from="LevelConfig" to="Pause/GamePausePopup" method="SetVisible"]
+[connection signal="GameResumed" from="LevelConfig" to="Pause/GamePausePopup" method="SetInvisible"]
 [connection signal="ModuleResourceConvert" from="LevelConfig/BgmPlayer" to="LevelConfig/BgmPlayer/ModuleResourceSettter" method="_on_module_resource_set"]
 [connection signal="finished" from="LevelConfig/BgmPlayer" to="LevelConfig/BgmPlayer" method="play"]
-[connection signal="pressed" from="GamePausePopup/VBoxContainer/HBoxContainer/ButtonYes" to="LevelConfig" method="QuitLevel"]
-[connection signal="pressed" from="GamePausePopup/VBoxContainer/HBoxContainer/ButtonNo" to="LevelConfig" method="SetResume"]
+[connection signal="pressed" from="Pause/GamePausePopup/VBoxContainer/HBoxContainer/ButtonYes" to="LevelConfig" method="QuitLevel"]
+[connection signal="pressed" from="Pause/GamePausePopup/VBoxContainer/HBoxContainer/ButtonNo" to="LevelConfig" method="SetResume"]
 
-[editable path="GamePausePopup"]
+[editable path="Pause/GamePausePopup"]
