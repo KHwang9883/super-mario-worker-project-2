@@ -19,6 +19,8 @@ public partial class LevelCamera : Camera2D {
     private Vector2 _originalPosition;
     public Vector2 DeltaPosition;
     public bool InitializationCompleted;
+
+    public ViewControl CurrentViewControl = null!;
     
     // Force Scroll
     public bool ForceScrollDisabled;

@@ -920,6 +920,7 @@ public partial class PlayerMovement : Node {
         }
         foreach (var node in viewControls) {
             if (node is not ViewControl viewControl) continue;
+            if (viewControl == _levelCamera.CurrentViewControl) continue;
             if (_player.Position.X > viewControl.ViewRect.Position.X
                 && _player.Position.X < viewControl.ViewRect.End.X
                 && _player.Position.Y > viewControl.ViewRect.Position.Y - 32f
@@ -941,6 +942,7 @@ public partial class PlayerMovement : Node {
                 viewControl.SetLevelScene();
                 
                 // 检测到一个镜头控制元件后即退出
+                _levelCamera.CurrentViewControl = viewControl;
                 return;
             }
         }
@@ -1053,6 +1055,8 @@ public partial class PlayerMovement : Node {
 
         _levelCamera.Position = _levelCamera.GetScreenCenterPosition();
         _levelCamera.ResetPhysicsInterpolation();
+
+        _levelCamera.CurrentViewControl = null!;
         /*
         Callable.From(() => {
             _levelCamera.Position = _levelCamera.GetScreenCenterPosition();
