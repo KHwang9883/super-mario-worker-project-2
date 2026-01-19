@@ -501,6 +501,7 @@ offset_left = 444.0
 offset_top = 128.0
 offset_right = 604.0
 offset_bottom = 256.0
+GlobalOptionMenuType = 1
 
 [node name="StaffRoll" parent="GlobalOptionMenu" index="2"]
 focus_neighbor_bottom = NodePath("")

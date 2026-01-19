@@ -13,21 +13,21 @@
 [ext_resource type="PackedScene" uid="uid://cungughiviaul" path="res://content/ui/popup/smwp_popup_custom_music_package.tscn" id="10_5c1ry"]
 [ext_resource type="PackedScene" uid="uid://lwkhbaiodods" path="res://content/ui/popup/smwp_popup_color_assist.tscn" id="12_opjjy"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrvep"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opjjy"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 draw_center = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mkpa"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxxdp"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 draw_center = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdnmx"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7q4w"]
 draw_center = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1a3sc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2g60"]
 draw_center = false
 
-[sub_resource type="FontVariation" id="FontVariation_kx81q"]
+[sub_resource type="FontVariation" id="FontVariation_12rpg"]
 base_font = ExtResource("3_051f2")
 variation_embolden = 1.0
 variation_transform = Transform2D(1, 0, 0, 1.4, 0, 0)
@@ -35,16 +35,16 @@ spacing_glyph = 1
 spacing_top = 5
 
 [sub_resource type="Theme" id="Theme_opjjy"]
-default_font = SubResource("FontVariation_kx81q")
+default_font = SubResource("FontVariation_12rpg")
 default_font_size = 9
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_outline_color = Color(0.2, 0.2, 0.2, 0.7294118)
 Button/constants/outline_size = 5
 Button/font_sizes/font_size = 11
-Button/styles/focus = SubResource("StyleBoxFlat_yrvep")
-Button/styles/hover = SubResource("StyleBoxFlat_6mkpa")
-Button/styles/normal = SubResource("StyleBoxFlat_wdnmx")
-Button/styles/pressed = SubResource("StyleBoxFlat_1a3sc")
+Button/styles/focus = SubResource("StyleBoxFlat_opjjy")
+Button/styles/hover = SubResource("StyleBoxFlat_sxxdp")
+Button/styles/normal = SubResource("StyleBoxFlat_h7q4w")
+Button/styles/pressed = SubResource("StyleBoxFlat_b2g60")
 
 [node name="GlobalOptions" type="Control" node_paths=PackedStringArray("InitialLivesButton", "InitialLivesEdit", "TemporaryFilesButton", "TemporaryFilesEdit", "DisplayModeButton", "CustomMusicButton", "CustomMusicEdit", "ColorAssistButton", "GodModeButton", "Framerate", "ShowFps")]
 layout_mode = 3
@@ -116,7 +116,7 @@ layout_mode = 0
 offset_left = 44.0
 offset_top = 100.0
 offset_right = 384.0
-offset_bottom = 296.0
+offset_bottom = 320.0
 
 [node name="InitialLives" type="Control" parent="VBoxContainerOptions"]
 layout_mode = 2
