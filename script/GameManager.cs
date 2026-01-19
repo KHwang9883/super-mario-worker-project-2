@@ -13,16 +13,17 @@ namespace SMWP;
 public partial class GameManager : Node {
     [Signal]
     public delegate void PlaySound1UPEventHandler();
+
     [Signal]
     public delegate void ScenarioNextLevelEventHandler();
 
     public static bool TitleScreenAnimationFinished;
-    
+
     public static bool GamePause;
 
     public static SmwlLevelData? LevelFileData;
     public static string? ScenarioFile;
-    
+
     public static int Time { get; set; }
     public static int Life { get; set; } = 4;
     public static int Score { get; set; }
@@ -35,10 +36,10 @@ public partial class GameManager : Node {
     public static PlayerSuit.SuitEnum PlayerSuitRestore = PlayerSuit.SuitEnum.Powered;
     public static PlayerSuit.PowerupEnum PlayerPowerupRestore = PlayerSuit.PowerupEnum.Raccoon;
     */
-    
+
     public static PlayerSuit.SuitEnum PlayerSuitRestore = PlayerSuit.SuitEnum.Small;
     public static PlayerSuit.PowerupEnum PlayerPowerupRestore = PlayerSuit.PowerupEnum.Fireball;
-    
+
     public static int CurrentCheckpointId;
     public static Array<int> ActivatedCheckpoints = [];
 
@@ -57,7 +58,7 @@ public partial class GameManager : Node {
 
     public static bool IsGameOver;
     public static bool IsLevelPass;
-    
+
     [Export] private ContinuousAudioStream2D _1UPAudioStream2DNode = null!;
     public static ContinuousAudioStream2D Sound1UPAudioStream2D = null!;
     private static Array<Node> _timeClearSounds = null!;
@@ -75,17 +76,20 @@ public partial class GameManager : Node {
     public static Dictionary<int, int> ScenarioNewLevelLineNum = [];
 
     public static string LoadCurrentDir;
-    
+
     public static int CurrentBgmId;
     public static float BgmPosition;
     public static string? CustomBgmPackage = "Example";
-    
+
     public static bool IsColorAccessibilityMode;
-    
+
     // Todo: Edit 部分完成前在全局设置界面中可调
     public static bool IsGodMode;
 
     public static bool ShowFps;
+
+    public enum FpsModeEnum { F50, F60, F90, F120, F0 };
+    public static FpsModeEnum FpsMode = FpsModeEnum.F0;
     
     // Todo: Edit Options (TemporaryFiles)
     public static int TemporaryFiles = 100;
@@ -99,6 +103,7 @@ public partial class GameManager : Node {
         
         // 读取配置文件
         ConfigManager.LoadConfig();
+        SetFramerate(this);
     }
     
     public override void _PhysicsProcess(double delta) {
@@ -295,6 +300,26 @@ public partial class GameManager : Node {
                 // 下一个关卡：删除当前关卡
                 EmitSignal(SignalName.ScenarioNextLevel);
             }
+        }
+    }
+
+    public static void SetFramerate(Node contextNode) {
+        var sceneTree = contextNode.GetTree();
+        if (FpsMode == GameManager.FpsModeEnum.F50) {
+            Engine.MaxFps = 50;
+            sceneTree.PhysicsInterpolation = true;
+        } else if (FpsMode == GameManager.FpsModeEnum.F60) {
+            Engine.MaxFps = 60;
+            sceneTree.PhysicsInterpolation = true;
+        } else if (FpsMode == GameManager.FpsModeEnum.F90) {
+            Engine.MaxFps = 90;
+            sceneTree.PhysicsInterpolation = true;
+        } else if (FpsMode == GameManager.FpsModeEnum.F120) {
+            Engine.MaxFps = 120;
+            sceneTree.PhysicsInterpolation = true;
+        } else if (FpsMode == GameManager.FpsModeEnum.F0) {
+            Engine.MaxFps = 0;
+            sceneTree.PhysicsInterpolation = false;
         }
     }
 }

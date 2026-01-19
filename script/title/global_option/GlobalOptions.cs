@@ -24,6 +24,7 @@ public partial class GlobalOptions : Control {
 
     [Export] public Button GodModeButton = null!;
 
+    [Export] public Button Framerate = null!;
     [Export] public Button ShowFps = null!;
     
     public override void _Ready() {
@@ -51,6 +52,14 @@ public partial class GlobalOptions : Control {
         CustomMusicButton.Text = GameManager.CustomBgmPackage.ToUpper();
         ColorAssistButton.Text = (GameManager.IsColorAccessibilityMode ? "Yes" : "No").ToUpper();
         GodModeButton.Text = (GameManager.IsGodMode ? "Yes" : "No").ToUpper();
+        Framerate.Text = GameManager.FpsMode switch {
+            GameManager.FpsModeEnum.F50 => "50 (SMWP 1)".ToUpper(),
+            GameManager.FpsModeEnum.F60 => "60",
+            GameManager.FpsModeEnum.F90 => "90",
+            GameManager.FpsModeEnum.F120 => "120",
+            GameManager.FpsModeEnum.F0 => "No Limit".ToUpper(),
+            _ => throw new ArgumentOutOfRangeException(),
+        };
         ShowFps.Text = (GameManager.ShowFps ? "Yes" : "No").ToUpper();
     }
     
@@ -85,6 +94,18 @@ public partial class GlobalOptions : Control {
     public void SetPlayLevelInGodMode() {
         GameManager.IsGodMode = !GameManager.IsGodMode;
         ConfigManager.SmwpConfig.SetValue("temporary_test_level", "play_level_in_god_mode", GameManager.IsGodMode);
+    }
+    public void SetFramerate() {
+        GameManager.FpsMode = GameManager.FpsMode switch {
+            GameManager.FpsModeEnum.F50 => GameManager.FpsModeEnum.F60,
+            GameManager.FpsModeEnum.F60 => GameManager.FpsModeEnum.F90,
+            GameManager.FpsModeEnum.F90 => GameManager.FpsModeEnum.F120,
+            GameManager.FpsModeEnum.F120 => GameManager.FpsModeEnum.F0,
+            GameManager.FpsModeEnum.F0 => GameManager.FpsModeEnum.F50,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+        GameManager.SetFramerate(this);
+        ConfigManager.SmwpConfig.SetValue("game_config", "framerate", Variant.From(GameManager.FpsMode));
     }
     public void SetShowFps() {
         GameManager.ShowFps = !GameManager.ShowFps;

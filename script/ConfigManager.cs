@@ -44,6 +44,8 @@ public static class ConfigManager {
         // IsGodMode: Temp for current version without editor part
         GameManager.IsGodMode = (bool)SmwpConfig.GetValue("temporary_test_level", "play_level_in_god_mode", false);
         
+        GameManager.FpsMode = (GameManager.FpsModeEnum)(int)SmwpConfig.GetValue("game_config", "framerate", Variant.From(GameManager.FpsMode == GameManager.FpsModeEnum.F120));
+        
         GameManager.ShowFps = (bool)SmwpConfig.GetValue("game_config", "show_fps", false);
         
         GameManager.LoadCurrentDir = (string)SmwpConfig.GetValue(
