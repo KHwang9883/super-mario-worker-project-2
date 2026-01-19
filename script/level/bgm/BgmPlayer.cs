@@ -12,6 +12,7 @@ public partial class BgmPlayer : AudioStreamPlayer {
     public delegate void ModuleResourceConvertEventHandler(AudioStreamPlayer player, string filePath);
     
     [Export] private AudioStreamPlayer _bgm146Player = null!;
+    
     private Node2D? _player;
     private PlayerDieAndHurt? _playerDieAndHurt;
     private PlayerSuit? _playerSuit;
@@ -175,7 +176,10 @@ public partial class BgmPlayer : AudioStreamPlayer {
     
     public void RecordFastRetryBgmPosition() {
         // Fast Retry 记录 BGM 位置
-        if (_levelConfig is not LevelConfig { FastRetry: true }) return;
+        if (_levelConfig is not LevelConfig { FastRetry: true }) {
+            Free();
+            return;
+        }
         GameManager.BgmPosition = GetPlaybackPosition();
         //GD.Print(GameManager.BgmPosition);
         Free();
