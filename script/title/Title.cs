@@ -22,7 +22,7 @@ public partial class Title : Node2D {
     private RandomNumberGenerator _rng = new();
 
     public override void _Ready() {
-        ConfigManager.LoadConfig();
+        ConfigManager.LoadGodMode();
         
         if (_titleToSpin == null) {
             GD.PushError("_titleToSpin is null!");

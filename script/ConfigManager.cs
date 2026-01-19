@@ -40,9 +40,8 @@ public static class ConfigManager {
         
         GameManager.IsColorAccessibilityMode =
             (bool)SmwpConfig.GetValue("game_config", "color_assist", false);
-        
-        // IsGodMode: Temp for current version without editor part
-        GameManager.IsGodMode = (bool)SmwpConfig.GetValue("temporary_test_level", "play_level_in_god_mode", false);
+
+        LoadGodMode();
         
         GameManager.FpsMode = (GameManager.FpsModeEnum)(int)SmwpConfig.GetValue("game_config", "framerate", Variant.From(GameManager.FpsMode == GameManager.FpsModeEnum.F120));
         
@@ -64,6 +63,11 @@ public static class ConfigManager {
         }
     }
 
+    public static void LoadGodMode() {
+        // IsGodMode: Temp for current version without editor part
+        GameManager.IsGodMode = (bool)SmwpConfig.GetValue("temporary_test_level", "play_level_in_god_mode", false);
+    }
+    
     public static void SaveConfig() {
         // 保存配置
         Callable.From(() => {
