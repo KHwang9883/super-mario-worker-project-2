@@ -27,7 +27,11 @@ public partial class PlatformHorizontal : AnimatableBody2D {
                 Position += new Vector2(SpeedX, 0f);
 
                 // 原地检测
-                if (MoveAndCollide(Vector2.Zero, true, 0.02f) != null) {
+                var result = MoveAndCollide(
+                    new Vector2(Mathf.Abs(SpeedX) / SpeedX * 0.1f, 0f), true, 0.02f
+                    );
+                if (result != null) {
+                    GD.Print(result);
                     SpeedX = -SpeedX;
                     Position = originPos;
                     MoveAndCollide(new Vector2(SpeedX, 0f), false, 0.02f);
