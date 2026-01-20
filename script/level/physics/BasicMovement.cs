@@ -20,6 +20,8 @@ public partial class BasicMovement : Node {
     
     protected const float FramerateOrigin = 50f;
     protected CharacterBody2D? Player;
+
+    private bool _notInWall;
     
     public override void _Ready() {
         MoveObject = (CharacterBody2D)GetParent();
@@ -85,14 +87,17 @@ public partial class BasicMovement : Node {
     public virtual void Move() {
         // 针对大部分敌人运动：卡墙处理
         if (MoveObject.MoveAndCollide(Vector2.Zero, true, 1f) == null) {
-            //if (!DelegateMoveProcess) {
-                MoveObject.MoveAndSlide();
-            //}
-            
-            // 针对极特殊情况，委托给 Interaction 组件处理运动（同时处理获取交互对象）
-            /*else {
-                EmitSignal(SignalName.MoveProcessDelegate, MoveObject.Velocity);
-            }*/
+            var originPosition = MoveObject.Position;
+            MoveObject.MoveAndSlide();
+            if (!_notInWall) {
+                var obj = MoveObject;
+                var isInWall = obj.IsOnWall() || obj.IsOnFloor() || obj.IsOnCeiling();
+                if (isInWall) {
+                    MoveObject.Position = originPosition;
+                } else {
+                    _notInWall = true;
+                }
+            }
         }
     }
     public virtual void SetMovementDirection() {
