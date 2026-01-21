@@ -3,7 +3,7 @@ using System;
 using SMWP.Level;
 
 public partial class KoopaScroll : Node2D {
-    [Export] public float ScrollTriggerDistance = 640f;
+    [Export] public float ScrollTriggerDistance = 620f;
     [Export] public float Speed = 1f;
     [Export] public int DefaultBgmId = 202;
 

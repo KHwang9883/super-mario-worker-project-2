@@ -143,6 +143,7 @@ public partial class PlayerMovement : Node {
     private bool _autoScrollCheckpointDetect;
     private bool _autoScrollCheckpointDetected;
     private int _forceScrollDeathDetectDelay;
+    private int _koopaScrollDetectDelay;
 
     public override void _Ready() {
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
@@ -272,7 +273,7 @@ public partial class PlayerMovement : Node {
                         : _maxWalkingSpeed;
                 }
             }
-
+            
             if (!Crouched && !Stuck) {
                 if (_left) {
                     SpeedX = Mathf.Clamp(SpeedX - acceleration, -maxSpeed, maxSpeed);
@@ -1010,6 +1011,10 @@ public partial class PlayerMovement : Node {
             GD.PushError("KoopaScrollDetect: LevelCamera is null!");
             return;
         }
+        if (_koopaScrollDetectDelay < 15) {
+            _koopaScrollDetectDelay++;
+            return;
+        }
         
         // 检测第一个滚屏节点
         if (_levelCamera.CameraMode == LevelCamera.CameraModeEnum.Koopa) return;
@@ -1019,7 +1024,7 @@ public partial class PlayerMovement : Node {
             if (node is not KoopaScroll koopaScroll) continue;
             var screen = ScreenUtils.GetScreenRect(this);
             var screenCenterX = screen.Position.X + screen.Size.X / 2f;
-            if (screenCenterX > koopaScroll.GlobalPosition.X - koopaScroll.ScrollTriggerDistance
+            if (screenCenterX > koopaScroll.GlobalPosition.X - (koopaScroll.ScrollTriggerDistance + 20f)
                 && screenCenterX < koopaScroll.GlobalPosition.X + koopaScroll.ScrollTriggerDistance) {
                 // 设置场景控制元件
                 koopaScroll.SetLevelScene();
