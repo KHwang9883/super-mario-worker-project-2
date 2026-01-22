@@ -919,9 +919,15 @@ public partial class PlayerMovement : Node {
             GD.PushError("ViewControlDetect: LevelConfig is null!");
             return;
         }
+        
+        ViewControl setViewControl = null!;
+        
         foreach (var node in viewControls) {
             if (node is not ViewControl viewControl) continue;
-            if (viewControl == _levelCamera.CurrentViewControl) continue;
+            if (viewControl == _levelCamera.CurrentViewControl) {
+                setViewControl = viewControl;
+                continue;
+            }
             if (_player.Position.X > viewControl.ViewRect.Position.X
                 && _player.Position.X < viewControl.ViewRect.End.X
                 && _player.Position.Y > viewControl.ViewRect.Position.Y
@@ -943,9 +949,14 @@ public partial class PlayerMovement : Node {
                 viewControl.SetLevelScene();
                 
                 // 检测到一个镜头控制元件后即退出
+                setViewControl = viewControl;
                 _levelCamera.CurrentViewControl = viewControl;
                 return;
             }
+        }
+
+        if (setViewControl == _levelCamera.CurrentViewControl) {
+            return;
         }
         
         // 没有镜头控制元件时恢复默认限制
