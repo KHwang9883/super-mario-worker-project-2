@@ -49,7 +49,7 @@ public partial class PlatformProcessor : ObjectProcessor {
         // 设置样式
         if (node.TryGetComponent(out PlatformStyleSet? styleSet)) {
             styleSet.PlatformStyle = style;
-            offset = styleSet.GetShapeFor(style).Size / 2;
+            offset = styleSet.GetShapeFor(style).Size / 2 + Vector2.Right * 2f;
         } else {
             offset = Vector2.Zero;
         }
