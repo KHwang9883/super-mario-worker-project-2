@@ -11,8 +11,13 @@ using Array = Godot.Collections.Array;
 namespace SMWP;
 
 public partial class GameManager : Node {
+    public static GameManager Instance { get; private set; }
+    
     [Signal]
     public delegate void PlaySound1UPEventHandler();
+    
+    [Signal]
+    public delegate void LevelPassedEventHandler();
 
     [Signal]
     public delegate void ScenarioNextLevelEventHandler();
@@ -57,7 +62,17 @@ public partial class GameManager : Node {
     public static int CheckpointBrightness;
 
     public static bool IsGameOver;
-    public static bool IsLevelPass;
+    private static bool _isLevelPass;
+
+    public static bool IsLevelPass {
+        get => _isLevelPass;
+        set {
+            _isLevelPass = value;
+            if (_isLevelPass) {
+                Instance.EmitSignal(SignalName.LevelPassed);
+            }
+        }
+    }
 
     [Export] private ContinuousAudioStream2D _1UPAudioStream2DNode = null!;
     public static ContinuousAudioStream2D Sound1UPAudioStream2D = null!;
@@ -98,6 +113,11 @@ public partial class GameManager : Node {
     public static PlayerMovement? PlayerMovementNode;
 
     public override void _Ready() {
+        if (Instance == null)
+            Instance = this;
+        else
+            QueueFree();
+        
         Sound1UPAudioStream2D = _1UPAudioStream2DNode;
         _timeClearSounds = GetNode("TimeClearSoundGroup").GetChildren();
         

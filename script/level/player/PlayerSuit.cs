@@ -43,6 +43,9 @@ public partial class PlayerSuit : Node {
     public override void _Ready() {
         Suit = GameManager.PlayerSuitRestore;
         Powerup = GameManager.PlayerPowerupRestore;
+        
+        var gameManager = (GameManager)GetTree().GetFirstNodeInGroup("game_manager");
+        gameManager.LevelPassed += LevelPassStatusRecord;
 
         _levelConfig ??= LevelConfigAccess.GetLevelConfig(this);
         Callable.From(() => {
@@ -55,11 +58,6 @@ public partial class PlayerSuit : Node {
         }).CallDeferred();
     }
     public override void _PhysicsProcess(double delta) {
-        if (GameManager.IsLevelPass) {
-            GameManager.PlayerSuitRestore = Suit;
-            GameManager.PlayerPowerupRestore = Powerup;
-        }
-        
         // 玩家光源与无敌星状态光源
         /*if (!_playerLight && !Starman) {
             _smwpPointLight2D.LightRadius = 0f;
@@ -98,5 +96,10 @@ public partial class PlayerSuit : Node {
         _starmanCombo.ResetCombo();
         EmitSignal(SignalName.PlayerStarmanFinished);
         if (bgmReset) EmitSignal(SignalName.PlayerStarmanFinishedBgmReset);
+    }
+
+    public void LevelPassStatusRecord() {
+        GameManager.PlayerSuitRestore = Suit;
+        GameManager.PlayerPowerupRestore = Powerup;
     }
 }
