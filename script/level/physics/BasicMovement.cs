@@ -88,15 +88,39 @@ public partial class BasicMovement : Node {
         // 针对大部分敌人运动：卡墙处理
         if (MoveObject.MoveAndCollide(Vector2.Zero, true, 1f) == null) {
             var originPosition = MoveObject.Position;
-            MoveObject.MoveAndSlide();
             if (!_notInWall) {
                 var obj = MoveObject;
-                var isInWall = obj.IsOnWall() || obj.IsOnFloor() || obj.IsOnCeiling();
+                bool isInWall = false;
+
+                obj.Position += Vector2.Up * 1f;
+                obj.Velocity = Vector2.Zero;
+                obj.MoveAndSlide();
+                isInWall = obj.IsOnFloorOnly();
+                obj.Position = originPosition;
+                
+                obj.Position += Vector2.Down * 1f;
+                obj.Velocity = Vector2.Zero;
+                obj.MoveAndSlide();
+                isInWall = obj.IsOnCeilingOnly() || isInWall;
+                obj.Position = originPosition;
+                
+                obj.Velocity = Vector2.Zero;
+                obj.MoveAndSlide();
+                isInWall = obj.IsOnWall() || isInWall;
+                obj.Position = originPosition;
+                
+                obj.Velocity = Vector2.Zero;
+                obj.MoveAndSlide();
+                isInWall = obj.IsOnWall() || isInWall;
+                obj.Position = originPosition;
+                
                 if (isInWall) {
                     MoveObject.Position = originPosition;
                 } else {
                     _notInWall = true;
                 }
+            } else {
+                MoveObject.MoveAndSlide();
             }
         }
     }

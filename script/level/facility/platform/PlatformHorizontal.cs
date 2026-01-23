@@ -32,9 +32,9 @@ public partial class PlatformHorizontal : AnimatableBody2D {
                     );
                 if (result != null) {
                     //GD.Print(result);
-                    SpeedX = -SpeedX;
                     Position = originPos;
                     MoveAndCollide(new Vector2(SpeedX, 0f), false, 0.02f);
+                    SpeedX = -SpeedX;
                 }
             }
         } else {
