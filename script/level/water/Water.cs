@@ -73,7 +73,7 @@ public partial class Water : Area2D {
                 Y = Mathf.MoveToward(Position.Y, _fluidControlTargetHeight,
                     _fluidControlSpeed * 0.4f),
             };
-            if (Math.Abs(Position.Y - _fluidControlTargetHeight) < _fluidControlSpeed) {
+            if (Math.Abs(Position.Y - _fluidControlTargetHeight) < _fluidControlSpeed * 0.4f) {
                 Position = Position with { Y = _fluidControlTargetHeight };
                 _fluidControlSet = false;
             }
@@ -148,7 +148,6 @@ public partial class Water : Area2D {
                 EmitSignal(SignalName.PlaySoundWaterLevel);
                 break;
             case Fluid.FluidTypeEnum.Lava:
-                CollisionLayer = 0;
                 EmitSignal(SignalName.PlaySoundLavaLevel);
                 break;
         }
