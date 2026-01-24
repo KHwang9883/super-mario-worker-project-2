@@ -928,8 +928,8 @@ public partial class PlayerMovement : Node {
                 setViewControl = viewControl;
                 continue;
             }
-            if (_player.Position.X > viewControl.ViewRect.Position.X
-                && _player.Position.X < viewControl.ViewRect.End.X
+            if (_player.Position.X > viewControl.ViewRect.Position.X - 48f
+                && _player.Position.X < viewControl.ViewRect.End.X + 48f
                 && _player.Position.Y > viewControl.ViewRect.Position.Y
                 && _player.Position.Y < viewControl.ViewRect.End.Y + 32f) {
                 
