@@ -144,6 +144,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_uaqjk")
 theme_override_colors/font_outline_color = Color(0.13725491, 0.13725491, 0.5176471, 1)
+theme_override_constants/paragraph_spacing = -8
 theme_override_constants/outline_size = 8
 text = "Level 1"
 horizontal_alignment = 1
