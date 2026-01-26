@@ -43,6 +43,8 @@ public static class ConfigManager {
 
         LoadGodMode();
         
+        GameManager.UnfocusPause = (bool)SmwpConfig.GetValue("game_config", "unfocus_pause", false);
+        
         GameManager.FpsMode = (GameManager.FpsModeEnum)(int)SmwpConfig.GetValue("game_config", "framerate", Variant.From(GameManager.FpsMode == GameManager.FpsModeEnum.F120));
         
         GameManager.ShowFps = (bool)SmwpConfig.GetValue("game_config", "show_fps", false);

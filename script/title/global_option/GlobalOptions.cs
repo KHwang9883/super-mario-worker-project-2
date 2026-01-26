@@ -23,6 +23,8 @@ public partial class GlobalOptions : Control {
     [Export] public Button ColorAssistButton = null!;
 
     [Export] public Button GodModeButton = null!;
+    
+    [Export] public Button UnfocusPauseButton = null!;
 
     [Export] public Button Framerate = null!;
     [Export] public Button ShowFps = null!;
@@ -52,6 +54,7 @@ public partial class GlobalOptions : Control {
         CustomMusicButton.Text = GameManager.CustomBgmPackage.ToUpper();
         ColorAssistButton.Text = (GameManager.IsColorAccessibilityMode ? "Yes" : "No").ToUpper();
         GodModeButton.Text = (GameManager.IsGodMode ? "Yes" : "No").ToUpper();
+        UnfocusPauseButton.Text = (GameManager.UnfocusPause ? "Yes" : "No").ToUpper();
         Framerate.Text = GameManager.FpsMode switch {
             GameManager.FpsModeEnum.F50 => "50 (SMWP 1)".ToUpper(),
             GameManager.FpsModeEnum.F60 => "60",
@@ -94,6 +97,11 @@ public partial class GlobalOptions : Control {
     public void SetPlayLevelInGodMode() {
         GameManager.IsGodMode = !GameManager.IsGodMode;
         ConfigManager.SmwpConfig.SetValue("temporary_test_level", "play_level_in_god_mode", GameManager.IsGodMode);
+    }
+    
+    public void SetUnfocusPause() {
+        GameManager.UnfocusPause = !GameManager.UnfocusPause;
+        ConfigManager.SmwpConfig.SetValue("game_config", "unfocus_pause", GameManager.UnfocusPause);
     }
     public void SetFramerate() {
         GameManager.FpsMode = GameManager.FpsMode switch {

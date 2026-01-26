@@ -72,6 +72,8 @@ public partial class LevelConfig : Node {
     
     private PackedScene? _backgroundScene;
     private BackgroundSet? _backgroundSet;
+
+    private bool _windowFoucsed = true;
     
     // 开关砖
     public enum SwitchTypeEnum {
@@ -150,6 +152,15 @@ public partial class LevelConfig : Node {
             else if (GameManager.GamePause) {
                 SetResume();
                 EmitSignal(SignalName.GameResumed);
+            }
+        }
+
+        // 窗口失焦暂停
+        if (GameManager.UnfocusPause) {
+            if (!GetTree().Root.HasFocus() && !GameManager.GamePause && !GameManager.IsLevelPass) {
+                GetTree().Paused = true;
+                GameManager.GamePause = true;
+                EmitSignal(SignalName.GamePaused);
             }
         }
 

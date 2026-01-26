@@ -111,6 +111,9 @@ public partial class GameManager : Node {
     
     public static Node2D? Player;
     public static PlayerMovement? PlayerMovementNode;
+    
+    // 失焦游戏暂停
+    public static bool UnfocusPause;
 
     public override void _Ready() {
         if (Instance == null)
