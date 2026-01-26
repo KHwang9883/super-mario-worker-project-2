@@ -4,7 +4,7 @@ using Godot.Collections;
 using JetBrains.Annotations;
 
 public partial class PlatformStyleSet : Node {
-    [Export] private AnimatedSprite2D _animatedSprite = null!;
+    [Export] private AnimatedSprite2D? _animatedSprite;
     [Export] private CollisionShape2D _collisionShape2D = null!;
     
     [Export] private RectangleShape2D _bridgeLong = GD.Load<RectangleShape2D>("uid://cjykfgkno6iho");
@@ -41,7 +41,9 @@ public partial class PlatformStyleSet : Node {
     [Export] private CollisionShape2D? _overlapCollisionShape2D;
 
     public override void _Ready() {
-        _animatedSprite.Animation = PlatformStyle.ToString();
+        if (_animatedSprite != null) {
+            _animatedSprite.Animation = PlatformStyle.ToString();
+        }
 
         if (!_shapeMapping.TryGetValue(PlatformStyle, out var shape)) return;
         _collisionShape2D.Shape = shape;

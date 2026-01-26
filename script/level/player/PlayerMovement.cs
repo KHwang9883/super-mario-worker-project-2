@@ -71,6 +71,8 @@ public partial class PlayerMovement : Node {
     private float _lastSpeedY;
     private float _maxFallingSpeed = 13f;
 
+    public bool OnHorizontalPlatformCarry;
+
     // 浣熊装
     public bool RaccoonFall;
     private int _raccoonFallTimer;

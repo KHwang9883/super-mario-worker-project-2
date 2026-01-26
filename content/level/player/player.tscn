@@ -95,7 +95,7 @@ position = Vector2(0, 12)
 shape = SubResource("ConvexPolygonShape2D_gdtqi")
 target_position = Vector2(0, 0)
 max_results = 6
-collision_mask = 1392
+collision_mask = 1394
 collide_with_areas = true
 
 [node name="OutWaterDetectSmall" type="ShapeCast2D" parent="."]
@@ -122,7 +122,7 @@ enabled = false
 shape = SubResource("ConvexPolygonShape2D_y66qv")
 target_position = Vector2(0, 0)
 max_results = 6
-collision_mask = 1392
+collision_mask = 1394
 collide_with_areas = true
 
 [node name="OutWaterDetectSuper" type="ShapeCast2D" parent="."]

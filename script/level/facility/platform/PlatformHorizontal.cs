@@ -3,6 +3,11 @@ using System;
 using SMWP.Level;
 
 public partial class PlatformHorizontal : AnimatableBody2D {
+    [Signal]
+    public delegate void PlatformCarryOnEventHandler();
+    [Signal]
+    public delegate void PlatformCarryOffEventHandler();
+    
     [Export] public float SpeedX = 1f;
     [Export] private Area2D? _overlapArea2D;
     private bool _turning;
@@ -68,5 +73,13 @@ public partial class PlatformHorizontal : AnimatableBody2D {
         //GD.Print($"Advanced {switchTypeEnum} Switch Switched!");
         SpeedX = -SpeedX;
         _targetSpeedX = -_targetSpeedX;
+    }
+
+    // 玩家被运动桥顺走
+    public void CarryOn() {
+        EmitSignal(SignalName.PlatformCarryOn);
+    }
+    public void CarryOff() {
+        EmitSignal(SignalName.PlatformCarryOff);
     }
 }

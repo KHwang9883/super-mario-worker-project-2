@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://5mfpp4cy76ja"]
+[gd_scene load_steps=46 format=3 uid="uid://5mfpp4cy76ja"]
 
 [ext_resource type="Script" uid="uid://blpaw4uxiexwt" path="res://script/level/facility/platform/PlatformHorizontal.cs" id="1_81tdp"]
 [ext_resource type="Texture2D" uid="uid://k6j8qciuuw1n" path="res://content/level/facility/platform/platform_sheet.png" id="1_vhtb1"]
@@ -10,6 +10,18 @@
 [ext_resource type="Shape2D" uid="uid://cpjxloxiaskl5" path="res://content/level/facility/platform/platform_castle_normal.tres" id="7_m0dxp"]
 [ext_resource type="Script" uid="uid://kj2nq1hyac4o" path="res://script/level/facility/platform/PlatformPlayerPenetration.cs" id="9_kn8jb"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="10_l2xg7"]
+[ext_resource type="Script" uid="uid://cgxvx8agna126" path="res://script/level/facility/platform/PlatformCarry.cs" id="11_fn4qu"]
+[ext_resource type="Shape2D" uid="uid://sv7xh5h02lef" path="res://content/level/facility/platform/platform_carry_collision_shape/platform_cloud_carry_slope.tres" id="12_m0dxp"]
+[ext_resource type="Shape2D" uid="uid://tmli4pss4x2e" path="res://content/level/facility/platform/platform_carry_collision_shape/platform_castle_normal_carry.tres" id="12_x2i5c"]
+[ext_resource type="Shape2D" uid="uid://dl4grj82obcrg" path="res://content/level/facility/platform/platform_carry_collision_shape/platform_bridge_normal_carry.tres" id="13_a0m7r"]
+[ext_resource type="Script" uid="uid://frhj4dgnt7kc" path="res://script/level/facility/platform/PlatformCarryStyleSet.cs" id="13_ilr5r"]
+[ext_resource type="Shape2D" uid="uid://fkm61g6eqlo0" path="res://content/level/facility/platform/platform_carry_collision_shape/platform_cloud_carry.tres" id="13_xgfoh"]
+[ext_resource type="Shape2D" uid="uid://duf0ma62b6md1" path="res://content/level/facility/platform/platform_carry_collision_shape/platform_bridge_short_carry.tres" id="14_aydcd"]
+[ext_resource type="Shape2D" uid="uid://ddur6cvwidas3" path="res://content/level/facility/platform/platform_carry_collision_shape/platform_castle_long_carry.tres" id="15_x2i5c"]
+[ext_resource type="Shape2D" uid="uid://but0pxuk05fmf" path="res://content/level/facility/platform/platform_carry_collision_shape/platform_castle_normal_carry_slope.tres" id="16_mg722"]
+[ext_resource type="Shape2D" uid="uid://dfmuo87yxffen" path="res://content/level/facility/platform/platform_carry_collision_shape/platform_bridge_normal_carry_slope.tres" id="17_uxa71"]
+[ext_resource type="Shape2D" uid="uid://bdxmrtp6pbc27" path="res://content/level/facility/platform/platform_carry_collision_shape/platform_bridge_short_carry_slope.tres" id="18_ubtc5"]
+[ext_resource type="Shape2D" uid="uid://nfa1kurxit7f" path="res://content/level/facility/platform/platform_carry_collision_shape/platform_castle_long_carry_slope.tres" id="20_724jl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q34yq"]
 atlas = ExtResource("1_vhtb1")
@@ -276,17 +288,18 @@ _overlapArea2D = NodePath("Overlap")
 sprite_frames = SubResource("SpriteFrames_1hrfa")
 animation = &"PurpleLong"
 autoplay = "RedLong"
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
-shape = ExtResource("2_81tdp")
+shape = ExtResource("7_m0dxp")
 one_way_collision = true
 
 [node name="PlatformStyleSet" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite", "_collisionShape2D", "_overlapCollisionShape2D")]
 script = ExtResource("3_kn8jb")
 _animatedSprite = NodePath("../AnimatedSprite2D")
 _collisionShape2D = NodePath("../CollisionShape2D")
-_shapeMapping = Dictionary[int, RectangleShape2D]({
+_shapeMapping = Dictionary[int, Shape2D]({
 0: ExtResource("2_81tdp"),
 1: ExtResource("4_l2xg7"),
 2: ExtResource("5_fn4qu"),
@@ -323,3 +336,72 @@ script = ExtResource("9_kn8jb")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("10_l2xg7")]
 Smwp1LightId = Array[int]([3])
+
+[node name="Node2DProvidingPosition" type="Node2D" parent="."]
+
+[node name="PlatformCarry" type="StaticBody2D" parent="Node2DProvidingPosition"]
+position = Vector2(0, 30)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("11_fn4qu")
+
+[node name="CarryCollision" type="CollisionShape2D" parent="Node2DProvidingPosition/PlatformCarry"]
+shape = ExtResource("12_x2i5c")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="PlatformCarryStyleSet" type="Node" parent="Node2DProvidingPosition/PlatformCarry/CarryCollision" node_paths=PackedStringArray("_platformStyleSet", "_carryShape2D")]
+script = ExtResource("13_ilr5r")
+_platformStyleSet = NodePath("../../../../PlatformStyleSet")
+_carryShape2D = NodePath("..")
+_shapeMapping = Dictionary[int, Shape2D]({
+0: ExtResource("13_a0m7r"),
+1: ExtResource("14_aydcd"),
+2: ExtResource("13_xgfoh"),
+3: ExtResource("13_a0m7r"),
+4: ExtResource("14_aydcd"),
+5: ExtResource("13_a0m7r"),
+6: ExtResource("14_aydcd"),
+7: ExtResource("13_a0m7r"),
+8: ExtResource("14_aydcd"),
+9: ExtResource("13_a0m7r"),
+10: ExtResource("14_aydcd"),
+11: ExtResource("13_a0m7r"),
+12: ExtResource("14_aydcd"),
+13: ExtResource("13_a0m7r"),
+14: ExtResource("14_aydcd"),
+15: ExtResource("15_x2i5c"),
+16: ExtResource("12_x2i5c"),
+17: ExtResource("15_x2i5c"),
+18: ExtResource("12_x2i5c")
+})
+
+[node name="CarryCollisionSlope" type="CollisionShape2D" parent="Node2DProvidingPosition/PlatformCarry"]
+shape = ExtResource("16_mg722")
+one_way_collision = true
+
+[node name="PlatformCarryStyleSet" type="Node" parent="Node2DProvidingPosition/PlatformCarry/CarryCollisionSlope" node_paths=PackedStringArray("_platformStyleSet", "_carryShape2D")]
+script = ExtResource("13_ilr5r")
+_platformStyleSet = NodePath("../../../../PlatformStyleSet")
+_carryShape2D = NodePath("..")
+_shapeMapping = Dictionary[int, Shape2D]({
+0: ExtResource("17_uxa71"),
+1: ExtResource("18_ubtc5"),
+2: ExtResource("12_m0dxp"),
+3: ExtResource("17_uxa71"),
+4: ExtResource("18_ubtc5"),
+5: ExtResource("17_uxa71"),
+6: ExtResource("18_ubtc5"),
+7: ExtResource("17_uxa71"),
+8: ExtResource("18_ubtc5"),
+9: ExtResource("17_uxa71"),
+10: ExtResource("18_ubtc5"),
+11: ExtResource("17_uxa71"),
+12: ExtResource("18_ubtc5"),
+13: ExtResource("17_uxa71"),
+14: ExtResource("18_ubtc5"),
+15: ExtResource("20_724jl"),
+16: ExtResource("16_mg722"),
+17: ExtResource("20_724jl"),
+18: ExtResource("16_mg722")
+})

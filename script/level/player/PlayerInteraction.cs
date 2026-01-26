@@ -57,6 +57,9 @@ public partial class PlayerInteraction : Node {
             
         // 奖励物
         BonusItemDetect(results);
+        
+        // 移动桥带走检测
+        MovingPlatformDetect(results);
 
         // 顶砖检测（考虑到游戏特性，不采用foreach判断）
         HitBlockDetect();
@@ -198,6 +201,31 @@ public partial class PlayerInteraction : Node {
                     EmitSignal(SignalName.PlayerPowerPlain);
                 }
             }
+        }
+    }
+    public void MovingPlatformDetect(Array<Node2D> results) {
+        if (_playerMediator == null || _player == null) {
+            return;
+        }
+        foreach (var result in results) {
+            // 仅支持水平运动桥
+            if (result is not PlatformHorizontal platformHorizontal) {
+                continue;
+            }
+            if (_player.IsOnFloor() && !_playerMediator.playerMovement.OnHorizontalPlatformCarry) {
+                _playerMediator.playerMovement.OnHorizontalPlatformCarry = true;
+            }
+            if (!_player.IsOnFloor()) {
+                _playerMediator.playerMovement.OnHorizontalPlatformCarry = false;
+                //GD.Print("Player overlapping with PlatformHorizontal, but can't be carry away");
+            }
+            platformHorizontal.CarryOff();
+            if (_playerMediator.playerMovement.OnHorizontalPlatformCarry) {
+                platformHorizontal.CarryOn();
+                _player.Position += new Vector2(platformHorizontal.SpeedX, 0f);
+                //GD.Print("Player is carried away by PlatformHorizontal");
+            }
+            break;
         }
     }
     public void HitBlockDetect() {
