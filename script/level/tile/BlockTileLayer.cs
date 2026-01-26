@@ -7,7 +7,7 @@ using SMWP.Level;
 public partial class BlockTileLayer : Node {
     [Export] private SmwlLevel? _smwlLevel;
     [Export] private Node2D _blockTile = null!;
-    [Export] private GDC.Dictionary<LevelConfig.LayerOrderEnum, int> _targetZIndex = null!;
+    [Export] public GDC.Dictionary<LevelConfig.LayerOrderEnum, int> TargetZIndex { get; private set; }= null!;
     
     private LevelConfig? _levelConfig;
 
@@ -25,13 +25,13 @@ public partial class BlockTileLayer : Node {
             
             _blockTile.ZIndex = _levelConfig.LayerOrder switch {
                 LevelConfig.LayerOrderEnum.Classic =>
-                    _targetZIndex.GetValueOrDefault(LevelConfig.LayerOrderEnum.Classic, _blockTile.ZIndex),
+                    TargetZIndex.GetValueOrDefault(LevelConfig.LayerOrderEnum.Classic, _blockTile.ZIndex),
                 
                 LevelConfig.LayerOrderEnum.WaterAbove =>
-                    _targetZIndex.GetValueOrDefault(LevelConfig.LayerOrderEnum.WaterAbove, _blockTile.ZIndex),
+                    TargetZIndex.GetValueOrDefault(LevelConfig.LayerOrderEnum.WaterAbove, _blockTile.ZIndex),
                 
                 LevelConfig.LayerOrderEnum.Modified =>
-                    _targetZIndex.GetValueOrDefault(LevelConfig.LayerOrderEnum.Modified, _blockTile.ZIndex),
+                    TargetZIndex.GetValueOrDefault(LevelConfig.LayerOrderEnum.Modified, _blockTile.ZIndex),
                 
                 _ => throw new ArgumentOutOfRangeException(),
             };

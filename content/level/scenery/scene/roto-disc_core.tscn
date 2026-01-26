@@ -1,13 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://7h1fe5wip7om"]
+[gd_scene load_steps=4 format=3 uid="uid://7h1fe5wip7om"]
 
 [ext_resource type="Texture2D" uid="uid://cklt741csu754" path="res://content/level/enemy/roto-disc/roto-disc_center.png" id="1_vkl0k"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="2_418k7"]
+[ext_resource type="Script" uid="uid://yka3buxett1v" path="res://script/level/enemy/roto-disc/RotoDiscLayer.cs" id="3_w7kqy"]
 
 [node name="RotoDiscCore" type="Node2D"]
-z_index = 360
+z_index = 41
 
 [node name="RotoDiscCenter" type="Sprite2D" parent="."]
 texture = ExtResource("1_vkl0k")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("2_418k7")]
 Smwp1LightId = Array[int]([9])
+
+[node name="RotoDiscLayer" type="Node" parent="." node_paths=PackedStringArray("_rotoDisc")]
+script = ExtResource("3_w7kqy")
+_rotoDisc = NodePath("..")
+IsRotoDiscCoreScenery = true

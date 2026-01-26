@@ -89,11 +89,11 @@ z_index = 90
 tile_set = ExtResource("7_fn8k0")
 collision_enabled = false
 
-[node name="BlockTileLayer" type="Node" parent="Block Tile Map" node_paths=PackedStringArray("_smwlLevel", "_blockTile")]
+[node name="BlockTileLayer" type="Node" parent="Block Tile Map" node_paths=PackedStringArray("_smwlLevel", "_blockTile") groups=["block_tile_layer"]]
 script = ExtResource("11_d3lay")
 _smwlLevel = NodePath("../..")
 _blockTile = NodePath("..")
-_targetZIndex = Dictionary[int, int]({
+TargetZIndex = Dictionary[int, int]({
 0: 350,
 1: 96,
 2: 50
@@ -105,7 +105,7 @@ metadata/_custom_type_script = "uid://c8yu81i46jf4r"
 
 [node name="OpenFile" type="FileDialog" parent="."]
 oversampling_override = 1.0
-title = "Open a SMWL File"
+title = "Open a File"
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.smwl")

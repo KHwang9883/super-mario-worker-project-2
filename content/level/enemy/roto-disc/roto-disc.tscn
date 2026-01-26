@@ -238,3 +238,4 @@ Smwp1LightId = Array[int]([36])
 [node name="RotoDiscLayer" type="Node" parent="." node_paths=PackedStringArray("_rotoDisc")]
 script = ExtResource("8_teaio")
 _rotoDisc = NodePath("..")
+_targetZIndex = 299
