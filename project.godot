@@ -22,7 +22,7 @@ config/icon="uid://cdllu6eprpokv"
 [autoload]
 
 GameManager="*res://content/game_manager.tscn"
-SoundManager="*res://content/sound/SoundManager.tscn"
+SoundManager="*res://content/sound/sound_manager.tscn"
 FpsDisplay="*res://content/game_tool/fps_display.tscn"
 LastInputDevice="*res://content/ui/last_input_device.tscn"
 ScreenFreeze="*res://content/game_tool/screen_freeze.tscn"

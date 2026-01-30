@@ -4,12 +4,14 @@ using SMWP.Level.Sound;
 using SMWP.Util;
 
 public partial class LakituMovement : Node {
+    [Signal]
+    public delegate void PlaySoundLakituThrowEventHandler();
+    
     [Export] private float _trackDistance = 150f;
     [Export] private float _reloadTime = 300f;
     [Export] private float _readyTime = 90f;
     [Export] private PackedScene _spinyBallScene = GD.Load<PackedScene>("uid://bbxcifwplt1gj");
     [Export] private AnimatedSprite2D _animatedSprite2D = null!;
-    [Export] private ContinuousAudioStream2D _lakituThrowSounds = null!;
     
     public enum LakituState { Reload, Ready, Threw }
     private LakituState _currentState = LakituState.Reload;
@@ -88,7 +90,7 @@ public partial class LakituMovement : Node {
             || _parent.Position.X > screen.End.X + 16f
             || _parent.Position.Y < screen.Position.Y - 24f
             || _parent.Position.Y > screen.End.Y + 24f) return;
-        _lakituThrowSounds.Play();
+        EmitSignal(SignalName.PlaySoundLakituThrow);
     }
     public void OnAnimationReadyFinished() {
         if (_animatedSprite2D.Animation == "blink") _animatedSprite2D.Animation = "default";

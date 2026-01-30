@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://ckwcmi42tdbmc" path="res://script/level/enemy/InteractionWithFireball.cs" id="3_47vhk"]
 [ext_resource type="Script" uid="uid://cmh1atpqlhvdm" path="res://script/level/enemy/thwomp/ThwompPlayerInteraction.cs" id="4_c4qcv"]
 [ext_resource type="Script" uid="uid://bkc8a0hddhajq" path="res://script/level/enemy/InteractionWithBeetroot.cs" id="4_g5e45"]
+[ext_resource type="PackedScene" uid="uid://c05wcbg2yju8s" path="res://content/sound/sound_effect.tscn" id="6_c4qcv"]
 [ext_resource type="AudioStream" uid="uid://bryms0br18kgn" path="res://content/sound/thwomp_grounded.se.wav" id="6_vpv1m"]
-[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="7_c4qcv"]
 [ext_resource type="AudioStream" uid="uid://cmfxc53g4wnnl" path="res://content/sound/thwomp_smile.se.wav" id="8_ulqxk"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="9_c4qcv"]
 
@@ -144,15 +144,11 @@ metadata/_custom_type_script = "uid://ckwcmi42tdbmc"
 script = ExtResource("4_g5e45")
 metadata/_custom_type_script = "uid://bkc8a0hddhajq"
 
-[node name="Stun" type="AudioStreamPlayer2D" parent="."]
+[node name="Stun" parent="." instance=ExtResource("6_c4qcv")]
 stream = ExtResource("6_vpv1m")
-script = ExtResource("7_c4qcv")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[node name="Taunt" type="AudioStreamPlayer2D" parent="."]
+[node name="Taunt" parent="." instance=ExtResource("6_c4qcv")]
 stream = ExtResource("8_ulqxk")
-script = ExtResource("7_c4qcv")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("9_c4qcv")]
 Smwp1LightId = Array[int]([39])

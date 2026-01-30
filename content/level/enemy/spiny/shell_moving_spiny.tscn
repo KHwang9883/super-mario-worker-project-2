@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bk4mdrcxhr7r4"]
+[gd_scene load_steps=24 format=3 uid="uid://bk4mdrcxhr7r4"]
 
 [ext_resource type="Texture2D" uid="uid://dc5wu780156es" path="res://content/level/enemy/spiny/shell_spiny.png" id="1_ecdhe"]
 [ext_resource type="Shape2D" uid="uid://1ttrcjiuuv6l" path="res://content/level/enemy/troopa/shell/shell_moving_shape.tres" id="2_kh1fm"]
@@ -11,12 +11,9 @@
 [ext_resource type="Script" uid="uid://bch1tqb6dv6q2" path="res://script/level/enemy/troopa/shell/ShellMovingInteraction.cs" id="9_2e5cs"]
 [ext_resource type="PackedScene" uid="uid://cf77lp7tg0d0l" path="res://content/level/score/combo_component.tscn" id="10_s05bb"]
 [ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/level/enemy/general_visible_on_screen_enabler_2d.tscn" id="11_jl1ur"]
+[ext_resource type="PackedScene" uid="uid://ys4qgqbg1b7j" path="res://content/level/enemy/enemy_sound_manager.tscn" id="11_oojll"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="12_fnvjg"]
-[ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="13_evdsl"]
-[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="14_7uw2h"]
-[ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="15_3h6im"]
-[ext_resource type="Script" uid="uid://cwwfegi1sp8pa" path="res://script/level/enemy/EnemyKickedSound.cs" id="16_phwyf"]
-[ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="17_pwsvh"]
+[ext_resource type="Script" uid="uid://nyj2lmkktmff" path="res://content/level/enemy/ShellSoundManager.cs" id="12_ie745"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="18_sbmil"]
 [ext_resource type="PackedScene" uid="uid://dptyprqct11s0" path="res://content/level/enemy/troopa/shell/walk_on_air.tscn" id="19_3a3er"]
 [ext_resource type="PackedScene" uid="uid://dv1l4euat0iyo" path="res://content/level/enemy/troopa/shell/perpetual_motion_machine.tscn" id="20_ebvs4"]
@@ -119,26 +116,15 @@ _shellCombo = NodePath("../ComboComponent")
 
 [node name="ComboComponent" parent="." instance=ExtResource("10_s05bb")]
 
+[node name="EnemySoundManager" parent="." instance=ExtResource("11_oojll")]
+script = ExtResource("12_ie745")
+PathToShellInteraction = NodePath("../ShellInteraction")
+
 [node name="GeneralVisibleOnScreenEnabler2d" parent="." instance=ExtResource("11_jl1ur")]
 
 [node name="OutOfBoundsQueueFree" type="Node" parent="."]
 script = ExtResource("12_fnvjg")
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
-
-[node name="Stomped" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("13_evdsl")
-script = ExtResource("14_7uw2h")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
-
-[node name="Kicked" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("15_3h6im")
-script = ExtResource("16_phwyf")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
-
-[node name="Bumped" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("17_pwsvh")
-script = ExtResource("14_7uw2h")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("18_sbmil")]
 Smwp1LightId = Array[int]([55])
@@ -154,11 +140,7 @@ _basicMovement = NodePath("../BasicMovement")
 [connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]
 [connection signal="GoombaStomped" from="EnemyInteraction" to="Die" method="OnDied" flags=3]
 [connection signal="NormalHitAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
-[connection signal="PlaySoundBumped" from="EnemyInteraction" to="Bumped" method="play"]
-[connection signal="PlaySoundKicked" from="EnemyInteraction" to="Kicked" method="play"]
-[connection signal="PlaySoundStomped" from="EnemyInteraction" to="Stomped" method="play"]
 [connection signal="FlipVCollided" from="ShellInteraction" to="Die" method="OnDied"]
 [connection signal="FlipVCollided" from="ShellInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="Harded" from="ShellInteraction" to="Die" method="OnDied"]
-[connection signal="Harded" from="ShellInteraction" to="Kicked" method="play"]
 [connection signal="screen_entered" from="GeneralVisibleOnScreenEnabler2d" to="BasicMovement" method="SetMovementDirection"]

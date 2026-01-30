@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmdemy70ia42t"]
+
+[ext_resource type="Texture2D" uid="uid://03g3moh5r1dr" path="res://content/level/facility/note_block/note_block.png" id="1_82u4m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sofxl"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg1qn"]
+atlas = ExtResource("1_82u4m")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80l20"]
+atlas = ExtResource("1_82u4m")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3vkw3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mg1qn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80l20")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="NoteBlock" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_sofxl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3vkw3")

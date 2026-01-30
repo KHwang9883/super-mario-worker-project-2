@@ -1,17 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://3aosn6ngfibc"]
 
 [ext_resource type="Script" uid="uid://ubxn4ynkmt5c" path="res://script/level/projectile​/enemy/fireball_piranha/FireballPiranhaCreator.cs" id="1_2oems"]
+[ext_resource type="PackedScene" uid="uid://c05wcbg2yju8s" path="res://content/sound/sound_effect.tscn" id="2_me4g2"]
 [ext_resource type="AudioStream" uid="uid://dbe1tmavcr73y" path="res://content/sound/fireball.se.wav" id="2_wvpw4"]
-[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="3_me4g2"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="4_wvpw4"]
 
 [node name="EnemyFireballCreator" type="Node2D"]
 script = ExtResource("1_2oems")
 
-[node name="Fireball" type="AudioStreamPlayer2D" parent="."]
+[node name="Fireball" parent="." instance=ExtResource("2_me4g2")]
 stream = ExtResource("2_wvpw4")
-script = ExtResource("3_me4g2")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("4_wvpw4")]
 

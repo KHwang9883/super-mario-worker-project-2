@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ix3t4xs7phce"]
+[gd_scene load_steps=15 format=3 uid="uid://ix3t4xs7phce"]
 
 [ext_resource type="Texture2D" uid="uid://b8ufbini7thyd" path="res://content/level/block/ice_block/ice_block.png" id="1_fdxcv"]
 [ext_resource type="Texture2D" uid="uid://bxytvrhlq1gpk" path="res://content/level/block/ice_block/ice_block_unstable.png" id="2_b23br"]
@@ -6,11 +6,12 @@
 [ext_resource type="Script" uid="uid://bncn541vox2ts" path="res://script/level/block/ice_block/IceBlock.cs" id="4_35lan"]
 [ext_resource type="PackedScene" uid="uid://dups68txi3mkw" path="res://content/level/block/hidden_block_tail_detector.tscn" id="4_om6ex"]
 [ext_resource type="PackedScene" uid="uid://doh3s55pkss2n" path="res://content/level/block/ice_block/ice_fragment.tscn" id="5_b23br"]
-[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="6_5f3ph"]
 [ext_resource type="AudioStream" uid="uid://dq5c43gr20kgc" path="res://content/sound/icebreak2.se.wav" id="6_35lan"]
 [ext_resource type="AudioStream" uid="uid://bvh8vnx7l5i38" path="res://content/sound/coin.se.wav" id="7_ekvub"]
+[ext_resource type="PackedScene" uid="uid://hatbsotp2ldh" path="res://content/level/block/block_sound_manager.tscn" id="7_llvxn"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="8_js8rh"]
 [ext_resource type="AudioStream" uid="uid://dortgawiobbkd" path="res://content/sound/icebreak1.se.wav" id="9_om6ex"]
+[ext_resource type="PackedScene" uid="uid://c05wcbg2yju8s" path="res://content/sound/sound_effect.tscn" id="11_llvxn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_om6ex"]
 animations = [{
@@ -57,6 +58,15 @@ _blockFragmentScene = ExtResource("5_b23br")
 _collisionShape2D = NodePath("../BlockCollisionShape2D")
 metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
 
+[node name="BlockSoundManager" parent="." instance=ExtResource("7_llvxn")]
+PathToBlockHit = NodePath("../IceBlock")
+
+[node name="Break" parent="BlockSoundManager" index="0"]
+stream = ExtResource("6_35lan")
+
+[node name="Bump" parent="BlockSoundManager" index="1"]
+stream = ExtResource("7_ekvub")
+
 [node name="GlobalLavaDetect" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
@@ -66,23 +76,13 @@ collision_mask = 16
 position = Vector2(0, -11)
 shape = SubResource("CircleShape2D_35lan")
 
-[node name="Break" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_35lan")
-script = ExtResource("6_5f3ph")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
-
-[node name="Bump" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_ekvub")
-
-[node name="IceBlockHit" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_om6ex")
-script = ExtResource("6_5f3ph")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
-
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("8_js8rh")]
 Smwp1LightId = Array[int]([2])
 
-[connection signal="BlockBreak" from="IceBlock" to="Break" method="play"]
-[connection signal="BlockBump" from="IceBlock" to="Bump" method="play"]
-[connection signal="PlaySoundIceBlockBreak" from="IceBlock" to="Break" method="play"]
+[node name="IceBlockHit" parent="." instance=ExtResource("11_llvxn")]
+stream = ExtResource("9_om6ex")
+
+[connection signal="PlaySoundIceBlockBreak" from="IceBlock" to="BlockSoundManager/Break" method="play"]
 [connection signal="PlaySoundIceBlockHit" from="IceBlock" to="IceBlockHit" method="play"]
+
+[editable path="BlockSoundManager"]

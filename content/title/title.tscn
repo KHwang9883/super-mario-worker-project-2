@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://2h2s1iqemydd"]
+[gd_scene load_steps=14 format=3 uid="uid://2h2s1iqemydd"]
 
 [ext_resource type="Script" uid="uid://cw5hkxqowq7mu" path="res://script/title/Title.cs" id="1_gkc87"]
 [ext_resource type="Texture2D" uid="uid://dynptqib5cdpd" path="res://content/title/title_screen.png" id="2_5v3jq"]
 [ext_resource type="Texture2D" uid="uid://dh8pt1ahn64yf" path="res://content/title/marioworker_cup_effect.png" id="3_60u3e"]
 [ext_resource type="Texture2D" uid="uid://b81bfbe1ttdeg" path="res://content/title/marioworker_cup.png" id="4_arrdh"]
 [ext_resource type="AudioStream" uid="uid://dl1dt6epfemd" path="res://content/sound/marioworker.me.wav" id="5_x2io1"]
-[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="6_i2sm7"]
 [ext_resource type="AudioStream" uid="uid://0mk2qecjh52v" path="res://content/sound/marioworker_cheer.me.mp3" id="7_5xeu1"]
 [ext_resource type="AudioStream" uid="uid://ba2ey5dmbvjdw" path="res://content/bgm/MW/ktkm120.it" id="8_5xeu1"]
 [ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="8_i2sm7"]
@@ -170,17 +169,13 @@ metadata/_edit_lock_ = true
 texture = ExtResource("4_arrdh")
 metadata/_edit_lock_ = true
 
-[node name="Marioworkering" type="AudioStreamPlayer2D" parent="."]
+[node name="Marioworkering" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_x2io1")
-script = ExtResource("6_i2sm7")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[node name="Cheer" type="AudioStreamPlayer2D" parent="."]
+[node name="Cheer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_5xeu1")
-script = ExtResource("6_i2sm7")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[node name="Title" type="AudioStreamPlayer2D" parent="."]
+[node name="Title" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_5xeu1")
 
 [node name="Control" type="Control" parent="."]

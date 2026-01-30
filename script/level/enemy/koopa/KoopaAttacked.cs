@@ -11,7 +11,6 @@ public partial class KoopaAttacked : Node {
     
     [Export] private PackedScene _koopaDeadScene = GD.Load<PackedScene>("uid://wfj3ukax5vf2");
     [Export] private AnimatedSprite2D _ani = null!;
-    [Export] private ContinuousAudioStream2D _defeatedSound = null!;
 
     private LevelConfig? _levelConfig;
     
@@ -52,7 +51,6 @@ public partial class KoopaAttacked : Node {
     public void OnAttacked() {
         if (KoopaEnergy <= 1) {
             KoopaEnergy = 0;
-            _defeatedSound.Play();
             EmitSignal(SignalName.KoopaDefeated);
             CreateDead();
             GetParent().QueueFree();

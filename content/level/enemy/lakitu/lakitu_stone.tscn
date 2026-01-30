@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://v7rsq0tg4vjv"]
+[gd_scene load_steps=30 format=4 uid="uid://v7rsq0tg4vjv"]
 
 [ext_resource type="Texture2D" uid="uid://cpk2bbp0t2vtv" path="res://content/level/enemy/lakitu/lakitu_stone.png" id="1_1vfv6"]
 [ext_resource type="Script" uid="uid://n0708hxxrd76" path="res://script/level/enemy/lakitu/LakituMovement.cs" id="2_qxplx"]
@@ -6,12 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cyyao6s17huup" path="res://content/level/enemy/spiny_stone/spiny_ball_stone.tscn" id="3_qxplx"]
 [ext_resource type="Script" uid="uid://bhpb0x3r0eiqf" path="res://script/level/enemy/EnemyDie.cs" id="4_kq6gb"]
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="5_dgkqh"]
+[ext_resource type="PackedScene" uid="uid://ys4qgqbg1b7j" path="res://content/level/enemy/enemy_sound_manager.tscn" id="7_1vfv6"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="7_vcsdm"]
-[ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="8_nmdgf"]
-[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="9_4qb1w"]
-[ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="10_p3mjr"]
-[ext_resource type="Script" uid="uid://cwwfegi1sp8pa" path="res://script/level/enemy/EnemyKickedSound.cs" id="11_0e1d3"]
-[ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="11_5i62f"]
+[ext_resource type="PackedScene" uid="uid://c05wcbg2yju8s" path="res://content/sound/sound_effect.tscn" id="11_qxplx"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="12_qxplx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qxplx"]
@@ -160,11 +157,10 @@ position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_28d7i")
 debug_color = Color(0.7170602, 0.4973575, 0.6084476, 0.41960785)
 
-[node name="LakituMovement" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D", "_lakituThrowSounds")]
+[node name="LakituMovement" type="Node" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
 script = ExtResource("2_qxplx")
 _spinyBallScene = ExtResource("3_qxplx")
 _animatedSprite2D = NodePath("../AnimatedSprite2D")
-_lakituThrowSounds = NodePath("../LakituThrowSounds")
 
 [node name="EnemyInteraction" type="Node" parent="."]
 script = ExtResource("3_0e1d3")
@@ -183,38 +179,21 @@ _animatedSprite2D = NodePath("../AnimatedSprite2D")
 script = ExtResource("5_dgkqh")
 metadata/_custom_type_script = "uid://cnbadhjt53rkc"
 
+[node name="EnemySoundManager" parent="." instance=ExtResource("7_1vfv6")]
+
 [node name="OutOfBoundsQueueFree" type="Node" parent="."]
 script = ExtResource("7_vcsdm")
 OutOfRoomDetection = false
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
 
-[node name="Stomped" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_nmdgf")
-script = ExtResource("9_4qb1w")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
-
-[node name="Kicked" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_p3mjr")
-script = ExtResource("11_0e1d3")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
-
-[node name="Bumped" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_5i62f")
-script = ExtResource("9_4qb1w")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
-
-[node name="LakituThrowSounds" type="AudioStreamPlayer2D" parent="."]
+[node name="LakituThrowSounds" parent="." instance=ExtResource("11_qxplx")]
 stream = SubResource("AudioStreamRandomizer_h2e36")
-script = ExtResource("9_4qb1w")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("12_qxplx")]
 z_index = 10
 Smwp1LightId = Array[int]([58])
 
+[connection signal="PlaySoundLakituThrow" from="LakituMovement" to="LakituThrowSounds" method="play"]
 [connection signal="ComboAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
 [connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]
 [connection signal="NormalHitAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
-[connection signal="PlaySoundBumped" from="EnemyInteraction" to="Bumped" method="play"]
-[connection signal="PlaySoundKicked" from="EnemyInteraction" to="Kicked" method="play"]
-[connection signal="PlaySoundStomped" from="EnemyInteraction" to="Stomped" method="play"]

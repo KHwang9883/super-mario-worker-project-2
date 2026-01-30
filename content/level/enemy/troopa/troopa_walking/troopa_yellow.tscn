@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cdxpkopiyqfi4"]
+[gd_scene load_steps=17 format=3 uid="uid://cdxpkopiyqfi4"]
 
 [ext_resource type="Texture2D" uid="uid://cqpakwwv6sres" path="res://content/level/enemy/troopa/troopa_walking/troopa_yellow.png" id="1_u632y"]
 [ext_resource type="Script" uid="uid://chn4gqrm87qtl" path="res://script/level/physics/BasicMovement.cs" id="2_b7m3e"]
@@ -9,12 +9,8 @@
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="7_2xn3g"]
 [ext_resource type="PackedScene" uid="uid://q40ma1wp5821" path="res://content/level/enemy/general_visible_on_screen_enabler_2d.tscn" id="8_fnn6e"]
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="9_pss2a"]
-[ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="10_hai2s"]
-[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="11_y88nh"]
-[ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="12_0sndg"]
-[ext_resource type="Script" uid="uid://cwwfegi1sp8pa" path="res://script/level/enemy/EnemyKickedSound.cs" id="13_klnlb"]
-[ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="13_lgb7w"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="14_0rkvk"]
+[ext_resource type="PackedScene" uid="uid://ys4qgqbg1b7j" path="res://content/level/enemy/enemy_sound_manager.tscn" id="15_bw47r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mhmg2"]
 atlas = ExtResource("1_u632y")
@@ -89,26 +85,13 @@ EnemyDeadPackedSceneUid = &"uid://bgl13w58xfp4t"
 script = ExtResource("7_2xn3g")
 metadata/_custom_type_script = "uid://cnbadhjt53rkc"
 
+[node name="EnemySoundManager" parent="." instance=ExtResource("15_bw47r")]
+
 [node name="GeneralVisibleOnScreenEnabler2d" parent="." instance=ExtResource("8_fnn6e")]
 
 [node name="OutOfBoundsQueueFree" type="Node" parent="."]
 script = ExtResource("9_pss2a")
 metadata/_custom_type_script = "uid://dxpd4d7mmxqtj"
-
-[node name="Stomped" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_hai2s")
-script = ExtResource("11_y88nh")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
-
-[node name="Kicked" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("12_0sndg")
-script = ExtResource("13_klnlb")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
-
-[node name="Bumped" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("13_lgb7w")
-script = ExtResource("11_y88nh")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("14_0rkvk")]
 Smwp1LightId = Array[int]([52])
@@ -117,7 +100,4 @@ Smwp1LightId = Array[int]([52])
 [connection signal="Died" from="EnemyInteraction" to="Die" method="OnDied"]
 [connection signal="GoombaStomped" from="EnemyInteraction" to="Die" method="OnDied" flags=3]
 [connection signal="NormalHitAddScore" from="EnemyInteraction" to="AddScoreComponent" method="AddScore"]
-[connection signal="PlaySoundBumped" from="EnemyInteraction" to="Bumped" method="play"]
-[connection signal="PlaySoundKicked" from="EnemyInteraction" to="Kicked" method="play"]
-[connection signal="PlaySoundStomped" from="EnemyInteraction" to="Stomped" method="play"]
 [connection signal="screen_entered" from="GeneralVisibleOnScreenEnabler2d" to="BasicMovement" method="SetMovementDirection"]

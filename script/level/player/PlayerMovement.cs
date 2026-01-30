@@ -87,7 +87,7 @@ public partial class PlayerMovement : Node {
     public int PMeterContinuousRunningTimer;
     private int _pMeterContinuousRunningTime = 35;
     private float _raccoonFlySpeedY = -8;
-    [Export] private ContinuousAudioStream2D _pMeterActiveSound = null!;
+    [Export] private AudioStreamPlayer _pMeterActiveSound = null!;
 
     private float _waterHorizontalAcceleration = 0.05f;
     private float _waterMaxWalkingSpeed = 1f;

@@ -4,9 +4,11 @@ using SMWP.Level.Physics;
 using SMWP.Level.Sound;
 
 public partial class KoopaMovement : BasicMovement {
+    [Signal]
+    public delegate void PlaySoundFlameEventHandler();
+    
     [Export] private PackedScene _projectileScene = GD.Load<PackedScene>("uid://cqqq3dudrdi2l");
     [Export] private AnimatedSprite2D? _animatedSprite2D;
-    [Export] private ContinuousAudioStream2D? _flameSound;
     [Export] private int _koopaSpeedX = 1;
     [Export] private int _koopaEdgeX = 200;
     [Export] private int _jumpTime = 100;
@@ -109,7 +111,7 @@ public partial class KoopaMovement : BasicMovement {
         if (_flameTimer > _flameTime) {
             Launch();
             _animatedSprite2D?.Play("default");
-            _flameSound?.Play();
+            EmitSignal(SignalName.PlaySoundFlame);
             _flameTimer = 0f;
         }
         

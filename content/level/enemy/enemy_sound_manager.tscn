@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://ys4qgqbg1b7j"]
+
+[ext_resource type="PackedScene" uid="uid://c05wcbg2yju8s" path="res://content/sound/sound_effect.tscn" id="1_g2ebu"]
+[ext_resource type="Script" uid="uid://bkdy11cxj8tdw" path="res://script/level/enemy/EnemySoundManager.cs" id="1_rjo56"]
+[ext_resource type="AudioStream" uid="uid://d21ca0ojgtlmw" path="res://content/sound/stomp.se.wav" id="2_s41l1"]
+[ext_resource type="AudioStream" uid="uid://c7yt3sme8ar5h" path="res://content/sound/kick.se.wav" id="3_rjo56"]
+[ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="4_2pgnr"]
+
+[node name="EnemySoundManager" type="Node"]
+script = ExtResource("1_rjo56")
+metadata/_custom_type_script = "uid://bkdy11cxj8tdw"
+
+[node name="Stomped" parent="." instance=ExtResource("1_g2ebu")]
+stream = ExtResource("2_s41l1")
+
+[node name="Kicked" parent="." instance=ExtResource("1_g2ebu")]
+stream = ExtResource("3_rjo56")
+
+[node name="Bumped" parent="." instance=ExtResource("1_g2ebu")]
+stream = ExtResource("4_2pgnr")

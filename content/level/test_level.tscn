@@ -241,7 +241,7 @@ TargetZIndex = Dictionary[int, int]({
 unique_name_in_owner = true
 process_priority = -10
 process_physics_priority = -10
-position = Vector2(8400, 400)
+position = Vector2(2312, 144)
 
 [node name="LevelCamera" parent="LevelTemplate" instance=ExtResource("10_8mywb")]
 position = Vector2(0, 9999999)

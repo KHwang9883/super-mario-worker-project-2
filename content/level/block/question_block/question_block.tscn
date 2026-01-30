@@ -1,13 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://bdb1my0j48chm"]
+[gd_scene load_steps=14 format=3 uid="uid://bdb1my0j48chm"]
 
 [ext_resource type="Texture2D" uid="uid://dgukcgfkib00u" path="res://content/level/block/question_block/question_block.png" id="1_m0yrx"]
 [ext_resource type="Texture2D" uid="uid://d1c6ljxopww0p" path="res://content/level/block/block_hit.png" id="2_w0lfn"]
-[ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="3_6b2no"]
 [ext_resource type="Script" uid="uid://csvist8po1wws" path="res://script/level/block/question_block/QuestionBlock.cs" id="3_m0yrx"]
 [ext_resource type="PackedScene" uid="uid://dsjr2jccad25d" path="res://content/level/block/block_collision_shape_2d.tscn" id="3_w0lfn"]
 [ext_resource type="PackedScene" uid="uid://dups68txi3mkw" path="res://content/level/block/hidden_block_tail_detector.tscn" id="4_3rmjw"]
-[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="4_a5iic"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="6_b28q0"]
+[ext_resource type="PackedScene" uid="uid://hatbsotp2ldh" path="res://content/level/block/block_sound_manager.tscn" id="6_bvcug"]
 [ext_resource type="AudioStream" uid="uid://bvh8vnx7l5i38" path="res://content/sound/coin.se.wav" id="6_m0yrx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bvcug"]
@@ -75,16 +74,12 @@ Sprite = NodePath("../Sprite2D")
 _collisionShape2D = NodePath("../BlockCollisionShape2D")
 metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
 
-[node name="Break" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_6b2no")
-script = ExtResource("4_a5iic")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
+[node name="BlockSoundManager" parent="." instance=ExtResource("6_bvcug")]
 
-[node name="Bump" type="AudioStreamPlayer2D" parent="."]
+[node name="Bump" parent="BlockSoundManager" index="1"]
 stream = ExtResource("6_m0yrx")
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("6_b28q0")]
 Smwp1LightId = Array[int]([10])
 
-[connection signal="BlockBreak" from="BlockHit" to="Break" method="play"]
-[connection signal="BlockBump" from="BlockHit" to="Bump" method="play"]
+[editable path="BlockSoundManager"]

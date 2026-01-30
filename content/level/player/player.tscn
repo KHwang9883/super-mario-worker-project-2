@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dwkukt5v4t3p5"]
+[gd_scene load_steps=42 format=3 uid="uid://dwkukt5v4t3p5"]
 
 [ext_resource type="SpriteFrames" uid="uid://bdp171jf0f5bh" path="res://content/level/player/player_suit/mario_raccoon.tres" id="1_0mhof"]
 [ext_resource type="SpriteFrames" uid="uid://bs88b30blplhb" path="res://content/level/player/player_suit/mario_small.tres" id="1_o23i7"]
@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://dt3n2b1ypresm" path="res://content/level/projectile​/player/player_beetroot/player_beetroot.tscn" id="16_1esvc"]
 [ext_resource type="AudioStream" uid="uid://bya5hq7ingpx1" path="res://content/sound/mario_jump.se.wav" id="16_sks62"]
 [ext_resource type="PackedScene" uid="uid://cf77lp7tg0d0l" path="res://content/level/score/combo_component.tscn" id="18_0cq6f"]
-[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="18_8jrco"]
 [ext_resource type="AudioStream" uid="uid://d0g5dfs0iupih" path="res://content/sound/mario_swim.se.wav" id="18_fmriv"]
 [ext_resource type="Script" uid="uid://daeveelxolofq" path="res://script/level/player/PlayerGodMode.cs" id="18_sfeyr"]
 [ext_resource type="AudioStream" uid="uid://dbe1tmavcr73y" path="res://content/sound/fireball.se.wav" id="19_8jrco"]
@@ -28,11 +27,11 @@
 [ext_resource type="Script" uid="uid://cnbadhjt53rkc" path="res://script/level/score/AddScoreComponent.cs" id="20_80kuj"]
 [ext_resource type="AudioStream" uid="uid://bfhqh4egowku5" path="res://content/sound/powerup.se.wav" id="20_pull8"]
 [ext_resource type="AudioStream" uid="uid://bqndr8vnrf8wk" path="res://content/sound/powerdown.se.wav" id="21_1esvc"]
+[ext_resource type="PackedScene" uid="uid://c05wcbg2yju8s" path="res://content/sound/sound_effect.tscn" id="23_8k4t3"]
 [ext_resource type="AudioStream" uid="uid://ux42m3p5b615" path="res://content/sound/gameover.me.wav" id="25_445xo"]
 [ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="26_otrx5"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="29_kphem"]
 [ext_resource type="AudioStream" uid="uid://bl5ufvx763kni" path="res://content/bgm/MW/ktkm3.it" id="29_lc6mo"]
-[ext_resource type="Script" uid="uid://bovsx2vj7p1o3" path="res://script/level/player/StarmanSound.cs" id="30_sba15"]
 [ext_resource type="AudioStream" uid="uid://d2357ld8v3x10" path="res://content/sound/smw_spin.wav" id="32_t5v1q"]
 [ext_resource type="AudioStream" uid="uid://woda5s14vv5r" path="res://content/sound/smb3_p_meter.wav" id="33_vkq5q"]
 
@@ -178,7 +177,7 @@ script = ExtResource("4_5unhu")
 _playerMediator = NodePath("..")
 _player = NodePath("../..")
 _playerDeadScene = ExtResource("5_3ac0f")
-_gameOverSound = NodePath("../../GameOver")
+_gameOverSound = NodePath("")
 _light = NodePath("../../SmwpPointLight2D")
 
 [node name="PlayerAnimation" type="Node" parent="PlayerMediator" node_paths=PackedStringArray("_playerMediator", "_ani", "_player")]
@@ -228,61 +227,35 @@ InternalScore = -1
 CustomPosition = Vector2(0, -24)
 metadata/_custom_type_script = "uid://cnbadhjt53rkc"
 
-[node name="Jump" type="AudioStreamPlayer2D" parent="."]
-process_mode = 3
+[node name="Jump" parent="." instance=ExtResource("23_8k4t3")]
 stream = ExtResource("16_sks62")
-script = ExtResource("18_8jrco")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[node name="Swim" type="AudioStreamPlayer2D" parent="."]
-process_mode = 3
+[node name="Swim" parent="." instance=ExtResource("23_8k4t3")]
 stream = ExtResource("18_fmriv")
-script = ExtResource("18_8jrco")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
-process_mode = 3
+[node name="Shoot" parent="." instance=ExtResource("23_8k4t3")]
 stream = ExtResource("19_8jrco")
-script = ExtResource("18_8jrco")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[node name="Powerup" type="AudioStreamPlayer2D" parent="."]
-process_mode = 3
+[node name="Powerup" parent="." instance=ExtResource("23_8k4t3")]
 stream = ExtResource("20_pull8")
-script = ExtResource("18_8jrco")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[node name="Powerdown" type="AudioStreamPlayer2D" parent="."]
-process_mode = 3
+[node name="Powerdown" parent="." instance=ExtResource("23_8k4t3")]
 stream = ExtResource("21_1esvc")
-script = ExtResource("18_8jrco")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[node name="GameOver" type="AudioStreamPlayer2D" parent="."]
-process_mode = 3
+[node name="GameOver" parent="." instance=ExtResource("23_8k4t3")]
 stream = ExtResource("25_445xo")
-script = ExtResource("18_8jrco")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[node name="Break" type="AudioStreamPlayer2D" parent="."]
+[node name="Break" parent="." instance=ExtResource("23_8k4t3")]
 stream = ExtResource("26_otrx5")
-script = ExtResource("18_8jrco")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[node name="Starman" type="AudioStreamPlayer2D" parent="."]
-process_mode = 3
+[node name="Starman" parent="." instance=ExtResource("23_8k4t3")]
 stream = ExtResource("29_lc6mo")
-script = ExtResource("30_sba15")
 
-[node name="Spin" type="AudioStreamPlayer2D" parent="."]
+[node name="Spin" parent="." instance=ExtResource("23_8k4t3")]
 stream = ExtResource("32_t5v1q")
-script = ExtResource("18_8jrco")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
-[node name="RaccoonRun" type="AudioStreamPlayer2D" parent="."]
+[node name="RaccoonRun" parent="." instance=ExtResource("23_8k4t3")]
 stream = ExtResource("33_vkq5q")
-script = ExtResource("18_8jrco")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("29_kphem")]
 editor_description = "玩家光源与无敌星状态光源一共有两个独立的标记，在 PlayerSuit 组件中特殊处理"
@@ -319,5 +292,4 @@ Smwp1LightId = Array[int]([1, 61])
 [connection signal="PlaySoundShoot" from="PlayerMediator/PlayerShoot" to="Shoot" method="play"]
 [connection signal="PlaySoundSpin" from="PlayerMediator/PlayerShoot" to="Spin" method="play"]
 [connection signal="AddLife" from="PlayerMediator/PlayerGodMode" to="AddScoreComponent" method="AddScore"]
-[connection signal="finished" from="GameOver" to="GameOver" method="queue_free"]
 [connection signal="finished" from="Starman" to="Starman" method="play"]

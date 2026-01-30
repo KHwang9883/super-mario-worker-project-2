@@ -1,14 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4b6pch7u4iem"]
+[gd_scene load_steps=8 format=3 uid="uid://b4b6pch7u4iem"]
 
 [ext_resource type="Texture2D" uid="uid://v4t3jxyn785" path="res://content/level/block/brick/brick.png" id="1_jlvh5"]
 [ext_resource type="PackedScene" uid="uid://dsjr2jccad25d" path="res://content/level/block/block_collision_shape_2d.tscn" id="2_7ej2m"]
 [ext_resource type="Script" uid="uid://cjjm8sgplsqf8" path="res://script/level/block/brick/BrickBlockHit.cs" id="2_ub6l2"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="6_isag7"]
-[ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="6_leqcw"]
-[ext_resource type="Script" uid="uid://yo6j623q6jsk" path="res://script/level/sound/ContinuousAudioStream2D.cs" id="7_67i3a"]
-[ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="8_67i3a"]
 [ext_resource type="Script" uid="uid://qph15p4aijrg" path="res://script/level/block/brick/BrickCoinSwitch.cs" id="8_bbsxl"]
 [ext_resource type="PackedScene" uid="uid://dups68txi3mkw" path="res://content/level/block/hidden_block_tail_detector.tscn" id="9_jjl7y"]
+[ext_resource type="PackedScene" uid="uid://hatbsotp2ldh" path="res://content/level/block/block_sound_manager.tscn" id="10_320sr"]
 
 [node name="Brick" type="StaticBody2D"]
 z_index = 45
@@ -31,13 +29,7 @@ _breakable = true
 _collisionShape2D = NodePath("../BlockCollisionShape2D")
 metadata/_custom_type_script = "uid://bbvkmhij3h6k5"
 
-[node name="Break" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_leqcw")
-script = ExtResource("7_67i3a")
-metadata/_custom_type_script = "uid://yo6j623q6jsk"
-
-[node name="Bump" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_67i3a")
+[node name="BlockSoundManager" parent="." instance=ExtResource("10_320sr")]
 
 [node name="SmwpPointLight2D" parent="." instance=ExtResource("6_isag7")]
 Smwp1LightId = Array[int]([17])
@@ -45,5 +37,4 @@ Smwp1LightId = Array[int]([17])
 [node name="BrickCoinSwitch" type="Node" parent="."]
 script = ExtResource("8_bbsxl")
 
-[connection signal="BlockBreak" from="BlockHit" to="Break" method="play"]
-[connection signal="BlockBump" from="BlockHit" to="Bump" method="play"]
+[editable path="BlockSoundManager"]

@@ -6,11 +6,11 @@ using SMWP.Level.Sound;
 
 public partial class KoopaDead : Node2D {
     [Signal]
+    public delegate void PlaySoundFallEventHandler();
+    [Signal]
     public delegate void PlaySoundLevelPassEventHandler();
     [Signal]
     public delegate void PlaySoundFasterLevelPassEventHandler();
-    
-    [Export] private ContinuousAudioStream2D _fallSound = null!;
     
     [Export] private PackedScene _smokeScene = GD.Load<PackedScene>("uid://c707h2fhiiirw");
     
@@ -46,7 +46,7 @@ public partial class KoopaDead : Node2D {
             }
         }
         if (_timer == 120) {
-            _fallSound.Play();
+            EmitSignal(SignalName.PlaySoundFall);
         }
         if (_timer > 120) {
             Position += new Vector2(0f, _speedY);

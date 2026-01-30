@@ -3,9 +3,11 @@ using System;
 using SMWP.Level.Sound;
 
 public partial class HammerBroShoot : Node {
+    [Signal]
+    public delegate void PlaySoundBroShootEventHandler();
+    
     [Export] private PackedScene _projectileScene = GD.Load<PackedScene>("uid://bcineprwgpk4w");
     [Export] private AnimatedSprite2D? _animatedSprite2D;
-    [Export] private ContinuousAudioStream2D? _shootSound;
     [Export] private float _shootTime = 250f;
     
     private Node2D? _parent;
@@ -28,7 +30,7 @@ public partial class HammerBroShoot : Node {
         if (_shootTimer > _shootTime) {
             Launch();
             _animatedSprite2D?.Play("default");
-            _shootSound?.Play();
+            EmitSignal(SignalName.PlaySoundBroShoot);
             _shootTimer = 0f;
         }
     }

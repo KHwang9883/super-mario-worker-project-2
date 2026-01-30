@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://hatbsotp2ldh"]
+
+[ext_resource type="PackedScene" uid="uid://c05wcbg2yju8s" path="res://content/sound/sound_effect.tscn" id="1_53siw"]
+[ext_resource type="Script" uid="uid://bk4ggj3doalh4" path="res://script/level/block/BlockSoundManager.cs" id="1_aktoi"]
+[ext_resource type="AudioStream" uid="uid://d1pem1t8aqskd" path="res://content/sound/break.se.wav" id="2_aktoi"]
+[ext_resource type="AudioStream" uid="uid://p5jfrknla5kw" path="res://content/sound/bump.se.wav" id="3_vau08"]
+
+[node name="BlockSoundManager" type="Node"]
+script = ExtResource("1_aktoi")
+metadata/_custom_type_script = "uid://bk4ggj3doalh4"
+
+[node name="Break" parent="." instance=ExtResource("1_53siw")]
+stream = ExtResource("2_aktoi")
+
+[node name="Bump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vau08")
