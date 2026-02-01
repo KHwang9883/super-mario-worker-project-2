@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://ds3uq7lyxof1e"]
+[gd_resource type="Theme" format=3 uid="uid://ds3uq7lyxof1e"]
 
 [ext_resource type="FontVariation" uid="uid://drebqqlb8awl" path="res://content/level/hud/mw/font_theme/mw_hud_with_fallback_variation.tres" id="1_x5e55"]
 

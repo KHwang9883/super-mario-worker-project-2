@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BackgroundDatabase" load_steps=67 format=3 uid="uid://bohmbrhgu2nbg"]
+[gd_resource type="Resource" script_class="BackgroundDatabase" format=3 uid="uid://bohmbrhgu2nbg"]
 
 [ext_resource type="Script" uid="uid://de0cij8gxtnh3" path="res://script/level/background/BackgroundDatabase.cs" id="1_lk4do"]
 [ext_resource type="PackedScene" uid="uid://b5sh4xptna6sa" path="res://content/level/background/bgp_1.tscn" id="1_lob34"]

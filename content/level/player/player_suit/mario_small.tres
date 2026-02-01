@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://bs88b30blplhb"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bs88b30blplhb"]
 
 [ext_resource type="Texture2D" uid="uid://pomneoabybfr" path="res://content/level/player/player_suit/mario_small.png" id="1_vxhk5"]
 

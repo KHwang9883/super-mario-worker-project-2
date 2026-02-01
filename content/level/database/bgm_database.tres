@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BgmDatabase" load_steps=381 format=3 uid="uid://c0wfvwbspss50"]
+[gd_resource type="Resource" script_class="BgmDatabase" format=3 uid="uid://c0wfvwbspss50"]
 
 [ext_resource type="AudioStream" uid="uid://dhyco5fwdqh1q" path="res://content/bgm/MW/ktkm1.it" id="1_5sqa8"]
 [ext_resource type="Script" uid="uid://dwxi777j7284f" path="res://script/level/bgm/BgmDatabase.cs" id="1_ryw4c"]

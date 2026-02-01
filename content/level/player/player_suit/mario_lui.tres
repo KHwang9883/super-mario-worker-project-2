@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://v113q2c6k865"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://v113q2c6k865"]
 
 [ext_resource type="Texture2D" uid="uid://d0gp6eik0xx1w" path="res://content/level/player/player_suit/mario_lui.png" id="1_ew37k"]
 

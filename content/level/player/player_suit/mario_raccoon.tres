@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=25 format=3 uid="uid://bdp171jf0f5bh"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bdp171jf0f5bh"]
 
 [ext_resource type="Texture2D" uid="uid://b6wcda4c08n1s" path="res://content/level/player/player_suit/mario_raccoon.png" id="1_8fpji"]
 

@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://d11sjnlbqehpu"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://d11sjnlbqehpu"]
 
 [ext_resource type="Texture2D" uid="uid://cjwmn08wu7riq" path="res://content/level/player/player_suit/mario_fireball.png" id="1_5uru1"]
 
