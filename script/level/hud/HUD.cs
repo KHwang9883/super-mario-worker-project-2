@@ -11,7 +11,8 @@ public partial class HUD : Control {
     public delegate void PlaySoundTimeWarningEventHandler();
     [Export] private Label _life = null!;
     [Export] private Label _score = null!;
-    [Export] private Label _levelTitle = null!;
+    [Export] private Label _levelTitle1 = null!;
+    [Export] private Label _levelTitle2 = null!;
     [Export] private Control _timeHUD = null!;
     [Export] private Label _timeCounter = null!;
     [Export] private Label _coin = null!;
@@ -70,10 +71,23 @@ public partial class HUD : Control {
         if (_levelConfig == null) {
             GD.PushError($"{this}: LevelConfig is null!");
         } else {
-            _levelTitle.Text = StringProcess.ConvertHashAndNewline(_levelConfig.LevelTitle);
-            // 版本号小于 1712 则自动加上 WORLD 标题
-            //GD.Print($"SmwpVersion: {_levelConfig.SmwpVersion}");
-            if (_levelConfig.SmwpVersion < 1712) _levelTitle.Text = "WORLD\n" + _levelTitle.Text;
+            string processedTitle = StringProcess.ConvertHashAndNewline(_levelConfig.LevelTitle);
+            
+            // 根据版本号处理标题显示
+            if (_levelConfig.SmwpVersion < 1712) {
+                _levelTitle1.Text = "WORLD";
+                _levelTitle2.Text = processedTitle;
+            } else {
+                // 将标题按第一行和其余部分分割
+                string[] titleLines = processedTitle.Split(new[] { "\n" }, 2, StringSplitOptions.None);
+                if (titleLines.Length > 0) {
+                    _levelTitle1.Text = titleLines[0];
+                    _levelTitle2.Text = titleLines.Length > 1 ? titleLines[1] : "";
+                } else {
+                    _levelTitle1.Text = "";
+                    _levelTitle2.Text = "";
+                }
+            }
         }
         
         // 负数时间不显示

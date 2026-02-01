@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://c1as2qsn1iqfx"]
+[gd_scene format=3 uid="uid://c1as2qsn1iqfx"]
 
 [ext_resource type="Script" uid="uid://c7ql70nglpnhx" path="res://script/level/hud/HUD.cs" id="1_p4kh2"]
 [ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="2_uaqjk"]
+[ext_resource type="PackedScene" uid="uid://cdav5kp7ryfa" path="res://content/level/hud/level_title.tscn" id="3_2807d"]
 [ext_resource type="Texture2D" uid="uid://celf82o4sjyxr" path="res://content/level/hud/mw/hud_mw_coin.png" id="3_f5a6m"]
 [ext_resource type="AudioStream" uid="uid://crsc1hhhou5gu" path="res://content/sound/time_warning.se.wav" id="4_2807d"]
 [ext_resource type="PackedScene" uid="uid://c05wcbg2yju8s" path="res://content/sound/sound_effect.tscn" id="4_f5a6m"]
@@ -76,26 +77,27 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" unique_id=905031317]
 layer = 4
 
-[node name="HUD" type="Control" parent="." node_paths=PackedStringArray("_life", "_score", "_levelTitle", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite", "_godPosition", "_levelInfo", "_switchSound", "_scrollDisabled", "_raccoonBar", "_raccoonActive", "_raccoonProgress")]
+[node name="HUD" type="Control" parent="." unique_id=380049497 node_paths=PackedStringArray("_life", "_score", "_levelTitle1", "_levelTitle2", "_timeHUD", "_timeCounter", "_coin", "_gameOverSprite", "_godPosition", "_levelInfo", "_switchSound", "_scrollDisabled", "_raccoonBar", "_raccoonActive", "_raccoonProgress")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 32.0
-offset_top = 10.0
+offset_top = 6.0
 offset_right = -22.0
-offset_bottom = -12.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_p4kh2")
 _life = NodePath("Life")
 _score = NodePath("Score")
-_levelTitle = NodePath("LevelTitle")
+_levelTitle1 = NodePath("LevelTitle1")
+_levelTitle2 = NodePath("LevelTitle1/LevelTitle2")
 _timeHUD = NodePath("Time")
 _timeCounter = NodePath("Time/TimeCounter")
 _coin = NodePath("Coin")
@@ -109,7 +111,7 @@ _raccoonActive = NodePath("Raccoon/PMeterActive")
 _raccoonProgress = NodePath("Raccoon/PMeterProgress")
 metadata/_edit_lock_ = true
 
-[node name="Life" type="Label" parent="HUD"]
+[node name="Life" type="Label" parent="HUD" unique_id=1829390947]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -121,7 +123,7 @@ text = "Mario 4"
 uppercase = true
 metadata/_edit_lock_ = true
 
-[node name="Score" type="Label" parent="HUD"]
+[node name="Score" type="Label" parent="HUD" unique_id=1995205676]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -134,24 +136,21 @@ text = "0"
 uppercase = true
 metadata/_edit_lock_ = true
 
-[node name="LevelTitle" type="Label" parent="HUD"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.33
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_uaqjk")
-theme_override_colors/font_outline_color = Color(0.13725491, 0.13725491, 0.5176471, 1)
-theme_override_constants/paragraph_spacing = -8
-theme_override_constants/outline_size = 8
-text = "Level 1"
-horizontal_alignment = 1
-uppercase = true
-metadata/_edit_lock_ = true
+[node name="LevelTitle1" parent="HUD" unique_id=854754606 instance=ExtResource("3_2807d")]
+layout_mode = 0
+offset_left = 192.0
+offset_right = 582.24
+offset_bottom = 25.0
+text = "World"
 
-[node name="Time" type="Control" parent="HUD"]
+[node name="LevelTitle2" parent="HUD/LevelTitle1" unique_id=501882483 instance=ExtResource("3_2807d")]
+layout_mode = 0
+offset_top = 15.0
+offset_right = 392.62
+offset_bottom = 473.0
+text = "Mario Worker"
+
+[node name="Time" type="Control" parent="HUD" unique_id=993222681]
 layout_mode = 1
 anchors_preset = 0
 offset_right = 40.0
@@ -159,7 +158,7 @@ offset_bottom = 40.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Time" type="Label" parent="HUD/Time"]
+[node name="Time" type="Label" parent="HUD/Time" unique_id=1161005074]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.92
@@ -175,7 +174,7 @@ horizontal_alignment = 1
 uppercase = true
 metadata/_edit_lock_ = true
 
-[node name="TimeCounter" type="Label" parent="HUD/Time"]
+[node name="TimeCounter" type="Label" parent="HUD/Time" unique_id=1818776473]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.92
@@ -192,7 +191,7 @@ horizontal_alignment = 1
 uppercase = true
 metadata/_edit_lock_ = true
 
-[node name="Coin" type="Label" parent="HUD"]
+[node name="Coin" type="Label" parent="HUD" unique_id=1608711654]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.303
@@ -206,7 +205,7 @@ text = "0"
 uppercase = true
 metadata/_edit_lock_ = true
 
-[node name="LevelInfo" type="Label" parent="HUD"]
+[node name="LevelInfo" type="Label" parent="HUD" unique_id=7918076]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -226,7 +225,7 @@ MF Style Pipe Exit: No"
 uppercase = true
 metadata/_edit_lock_ = true
 
-[node name="SwitchSound" type="Label" parent="HUD"]
+[node name="SwitchSound" type="Label" parent="HUD" unique_id=1523444029]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -241,9 +240,9 @@ vertical_alignment = 2
 uppercase = true
 metadata/_edit_lock_ = true
 
-[node name="Timer" type="Timer" parent="HUD/SwitchSound"]
+[node name="Timer" type="Timer" parent="HUD/SwitchSound" unique_id=1007438687]
 
-[node name="GodPosition" type="Label" parent="HUD"]
+[node name="GodPosition" type="Label" parent="HUD" unique_id=2023033871]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -258,7 +257,7 @@ vertical_alignment = 2
 uppercase = true
 metadata/_edit_lock_ = true
 
-[node name="ScrollDisabled" type="Label" parent="HUD"]
+[node name="ScrollDisabled" type="Label" parent="HUD" unique_id=1486776464]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -274,21 +273,21 @@ text = "Scroll Disabled"
 uppercase = true
 metadata/_edit_lock_ = true
 
-[node name="HUDCoin" type="AnimatedSprite2D" parent="HUD"]
+[node name="HUDCoin" type="AnimatedSprite2D" parent="HUD" unique_id=244026954]
 position = Vector2(167, 14)
 sprite_frames = SubResource("SpriteFrames_venmc")
 autoplay = "default"
 metadata/_edit_lock_ = true
 
-[node name="TimeWarning" parent="HUD" instance=ExtResource("4_f5a6m")]
+[node name="TimeWarning" parent="HUD" unique_id=1028494631 instance=ExtResource("4_f5a6m")]
 stream = ExtResource("4_2807d")
 
-[node name="GameOver" type="Sprite2D" parent="HUD"]
+[node name="GameOver" type="Sprite2D" parent="HUD" unique_id=738561557]
 visible = false
 position = Vector2(288, 230)
 texture = ExtResource("6_rb3u4")
 
-[node name="Raccoon" type="Control" parent="HUD"]
+[node name="Raccoon" type="Control" parent="HUD" unique_id=1394419015]
 anchors_preset = 0
 offset_left = 96.0
 offset_top = 438.0
@@ -297,17 +296,17 @@ offset_bottom = 518.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="PMeterActive" type="AnimatedSprite2D" parent="HUD/Raccoon"]
+[node name="PMeterActive" type="AnimatedSprite2D" parent="HUD/Raccoon" unique_id=1920235362]
 position = Vector2(112, 6)
 sprite_frames = SubResource("SpriteFrames_7081b")
 autoplay = "default"
 
-[node name="PMeterProgress" type="Sprite2D" parent="HUD/Raccoon"]
+[node name="PMeterProgress" type="Sprite2D" parent="HUD/Raccoon" unique_id=746323892]
 position = Vector2(48, 14)
 texture = ExtResource("8_2807d")
 vframes = 7
 
-[node name="MessageDisplay" type="Label" parent="." groups=["message_display"]]
+[node name="MessageDisplay" type="Label" parent="." unique_id=64715350 groups=["message_display"]]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -324,10 +323,10 @@ vertical_alignment = 2
 script = ExtResource("8_7081b")
 metadata/_edit_lock_ = true
 
-[node name="MsgDisplaySE" parent="MessageDisplay" instance=ExtResource("4_f5a6m")]
+[node name="MsgDisplaySE" parent="MessageDisplay" unique_id=241728967 instance=ExtResource("4_f5a6m")]
 stream = ExtResource("9_fv3wf")
 
-[node name="MsgUndisplaySE" parent="MessageDisplay" instance=ExtResource("4_f5a6m")]
+[node name="MsgUndisplaySE" parent="MessageDisplay" unique_id=1866219828 instance=ExtResource("4_f5a6m")]
 stream = ExtResource("10_8ujtp")
 
 [connection signal="PlaySoundTimeWarning" from="HUD" to="HUD/TimeWarning" method="play"]
