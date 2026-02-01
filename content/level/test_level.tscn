@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=4 uid="uid://c6beqw4lopqjr"]
+[gd_scene load_steps=101 format=4 uid="uid://c6beqw4lopqjr"]
 
 [ext_resource type="PackedScene" uid="uid://d2yrgj2s3hg6f" path="res://content/ui/popup/smwp_popup_game_pause.tscn" id="1_13tsj"]
 [ext_resource type="Resource" uid="uid://bohmbrhgu2nbg" path="res://content/level/database/background_resource.tres" id="2_27x5w"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bqu1llf503jdt" path="res://script/level/bgm/BgmPlayer.cs" id="4_u20sy"]
 [ext_resource type="AudioStream" uid="uid://dwtpjqoidtvn7" path="res://content/bgm/SMS2/sms46_2.ogg" id="5_i0wvf"]
 [ext_resource type="Script" uid="uid://b6e76elwifugs" path="res://script/level/bgm/module_resource_settter.gd" id="6_sw1t7"]
+[ext_resource type="Script" uid="uid://c3jim2jht02hh" path="res://content/sound/module_music_patch.gd" id="7_gx40e"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="7_tmrn4"]
 [ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/level/facility/solid/solid.png" id="8_1mjcm"]
 [ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="8_bfx67"]
@@ -165,6 +166,9 @@ stream = ExtResource("5_i0wvf")
 
 [node name="ModuleResourceSettter" type="Node" parent="LevelTemplate/LevelConfig/BgmPlayer"]
 script = ExtResource("6_sw1t7")
+
+[node name="ModuleMusicPatch" type="Node" parent="LevelTemplate/LevelConfig/BgmPlayer"]
+script = ExtResource("7_gx40e")
 
 [node name="Weather" type="Node" parent="LevelTemplate/LevelConfig"]
 process_mode = 1
@@ -950,3 +954,4 @@ position = Vector2(9456, 384)
 
 [editable path="LevelTemplate/Pause/GamePausePopup"]
 [editable path="QuestionBlock14"]
+[editable path="QuestionBlock14/BlockSoundManager"]

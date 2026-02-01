@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://2h2s1iqemydd"]
+[gd_scene load_steps=15 format=3 uid="uid://2h2s1iqemydd"]
 
 [ext_resource type="Script" uid="uid://cw5hkxqowq7mu" path="res://script/title/Title.cs" id="1_gkc87"]
 [ext_resource type="Texture2D" uid="uid://dynptqib5cdpd" path="res://content/title/title_screen.png" id="2_5v3jq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b81bfbe1ttdeg" path="res://content/title/marioworker_cup.png" id="4_arrdh"]
 [ext_resource type="AudioStream" uid="uid://dl1dt6epfemd" path="res://content/sound/marioworker.me.wav" id="5_x2io1"]
 [ext_resource type="AudioStream" uid="uid://0mk2qecjh52v" path="res://content/sound/marioworker_cheer.me.mp3" id="7_5xeu1"]
+[ext_resource type="Script" uid="uid://c3jim2jht02hh" path="res://content/sound/module_music_patch.gd" id="8_0si2u"]
 [ext_resource type="AudioStream" uid="uid://ba2ey5dmbvjdw" path="res://content/bgm/MW/ktkm120.it" id="8_5xeu1"]
 [ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="8_i2sm7"]
 
@@ -177,6 +178,9 @@ stream = ExtResource("7_5xeu1")
 
 [node name="Title" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_5xeu1")
+
+[node name="ModuleMusicPatch" type="Node" parent="Title"]
+script = ExtResource("8_0si2u")
 
 [node name="Control" type="Control" parent="."]
 process_mode = 4

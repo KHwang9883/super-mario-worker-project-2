@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://btrs3yxvgq8sl"]
+[gd_scene load_steps=25 format=3 uid="uid://btrs3yxvgq8sl"]
 
 [ext_resource type="PackedScene" uid="uid://d2yrgj2s3hg6f" path="res://content/ui/popup/smwp_popup_game_pause.tscn" id="1_f02dn"]
 [ext_resource type="Script" uid="uid://chusn3nxc5n13" path="res://script/level/LevelConfig.cs" id="2_lf2h4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://c0wfvwbspss50" path="res://content/level/database/bgm_database.tres" id="4_5iydm"]
 [ext_resource type="Script" uid="uid://bqu1llf503jdt" path="res://script/level/bgm/BgmPlayer.cs" id="5_cfkqe"]
 [ext_resource type="AudioStream" uid="uid://dwtpjqoidtvn7" path="res://content/bgm/SMS2/sms46_2.ogg" id="6_1lfyp"]
+[ext_resource type="Script" uid="uid://c3jim2jht02hh" path="res://content/sound/module_music_patch.gd" id="7_78fvj"]
 [ext_resource type="Script" uid="uid://b6e76elwifugs" path="res://script/level/bgm/module_resource_settter.gd" id="7_ccjs6"]
 [ext_resource type="PackedScene" uid="uid://b1dp7ghajo2rv" path="res://content/level/weather/weather_controller.tscn" id="8_ns3tf"]
 [ext_resource type="PackedScene" uid="uid://brdcmv5xpmxgc" path="res://content/level/weather/wind/wind.tscn" id="9_wdsgs"]
@@ -59,6 +60,9 @@ stream = ExtResource("6_1lfyp")
 
 [node name="ModuleResourceSettter" type="Node" parent="LevelConfig/BgmPlayer"]
 script = ExtResource("7_ccjs6")
+
+[node name="ModuleMusicPatch" type="Node" parent="LevelConfig/BgmPlayer"]
+script = ExtResource("7_78fvj")
 
 [node name="Weather" type="Node" parent="LevelConfig"]
 process_mode = 1
