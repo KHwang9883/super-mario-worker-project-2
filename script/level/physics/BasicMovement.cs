@@ -104,15 +104,31 @@ public partial class BasicMovement : Node {
                 isInWall = obj.IsOnCeilingOnly() || isInWall;
                 obj.Position = originPosition;
                 
-                obj.Velocity = Vector2.Zero;
+                var isInWallLeft = false;
+                
+                obj.Velocity = Vector2.Left * 1f;
                 obj.MoveAndSlide();
-                isInWall = obj.IsOnWall() || isInWall;
+                isInWallLeft = obj.IsOnWall();
                 obj.Position = originPosition;
                 
-                obj.Velocity = Vector2.Zero;
+                obj.Velocity = Vector2.Right * 1f;
                 obj.MoveAndSlide();
-                isInWall = obj.IsOnWall() || isInWall;
+                isInWallLeft = obj.IsOnWall() && isInWallLeft;
                 obj.Position = originPosition;
+                
+                var isInWallRight = false;
+                
+                obj.Velocity = Vector2.Right * 1f;
+                obj.MoveAndSlide();
+                isInWallRight = obj.IsOnWall();
+                obj.Position = originPosition;
+                
+                obj.Velocity = Vector2.Left * 1f;
+                obj.MoveAndSlide();
+                isInWallRight = obj.IsOnWall() && isInWallRight;
+                obj.Position = originPosition;
+                
+                isInWall = isInWall || isInWallLeft || isInWallRight;
                 
                 if (isInWall) {
                     MoveObject.Position = originPosition;
