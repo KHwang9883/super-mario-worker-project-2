@@ -117,10 +117,10 @@ public partial class Title : Node2D {
     }
     
     public void OnHomePressed() {
-        OS.ShellOpen("https://www.marioforever.net/");
+        OS.ShellOpen("https://smwp2.marioforever.net/");
     }
     public void OnHelpPressed() {
-        OS.ShellOpen("https://zh.wiki.marioforever.net/wiki/%E9%A6%96%E9%A1%B5");
+        OS.ShellOpen("https://zh.wiki.marioforever.net/wiki/Super_Mario_Worker_Project");
     }
     
     public void SetPlayLevelInitialLives() {
