@@ -14,5 +14,7 @@ dest_files=["res://.godot/imported/boss2.it-63b3da902891d30806339e1d2cb9f287.res
 
 force/mono=false
 playback/loop_mode=0
+playback/interpolation=2
+playback/emulate_amiga_filter=0
 load/skip_plugins=false
 load/skip_subsongs_init=false

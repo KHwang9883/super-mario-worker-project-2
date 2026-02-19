@@ -14,5 +14,7 @@ dest_files=["res://.godot/imported/ktkm21.mod-98ff5ed6d0ee3b1a2d214d75b5ae9af2.r
 
 force/mono=false
 playback/loop_mode=0
+playback/interpolation=2
+playback/emulate_amiga_filter=0
 load/skip_plugins=false
 load/skip_subsongs_init=false

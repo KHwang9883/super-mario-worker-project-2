@@ -12,12 +12,26 @@ env:
   PROJECT_PATH: .
 
 jobs:
-  export-windows:
-    name: Windows Export
-    runs-on: ubuntu-24.04  # Use 24.04 with godot 4
-    environment: export
+  builds:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - name: Linux
+          export_template: "Linux"
+          ext: "x86_64"
+        - name: Windows
+          export_template: "Windows Desktop"
+          ext: "exe"
+        - name: Android
+          export_template: "Android"
+          ext: "apk"
+    runs-on: ubuntu-24.04
+    permissions: write-all
     container:
       image: barichello/godot-ci:mono-4.6.1
+    name: Export ${{ matrix.name }}
+    environment: export
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -40,6 +54,9 @@ jobs:
           mkdir -v -p ~/.config/
           mv /root/.config/godot ~/.config/godot
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono
+          echo "$KEYSTORE" | base64 -d > /root/debug.keystore
+        env:
+          KEYSTORE: ${{ secrets.SECRET_KEYSTORE_BASE64 }}
       - name: Project Import
         run: |
           cd $PROJECT_PATH
@@ -48,16 +65,24 @@ jobs:
         run: |
           cd $PROJECT_PATH
           dotnet build
-      - name: Windows Build
+      - name: ${{ matrix.name }} Build
         run: |
-          mkdir -v -p build/windows
+          mkdir -v -p "build/${{ matrix.name }}"
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          echo 'start "" ".\${{ env.EXPORT_NAME }}.exe" --rendering-driver opengl3' > "$EXPORT_DIR/windows/Compatible_Launch.bat"
-          godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
-          echo "SMWP2 Build: [$(echo "${{ github.sha }}" | cut -c 1-7)](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) from $(date '+%d-%b-%Y %T')" > "$EXPORT_DIR/windows/Readme.md"
+          if [ "${{ matrix.name }}" = "Windows" ]; then
+            echo 'start "" ".\${{ env.EXPORT_NAME }}.exe" --rendering-driver opengl3' > "$EXPORT_DIR/${{ matrix.name }}/Compatible_Launch.bat"
+          fi
+          godot --headless --verbose --export-release "${{ matrix.export_template }}" "${EXPORT_DIR}/${{ matrix.name }}/${EXPORT_NAME}.${{ matrix.ext }}"
+          echo "SMWP2 Build: [$(echo "${{ github.sha }}" | cut -c 1-7)](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) from $(date '+%d-%b-%Y %T')" > "$EXPORT_DIR/${{ matrix.name }}/Readme.md"
+        env:
+          GODOT_ANDROID_KEYSTORE_RELEASE_PATH: "/root/debug.keystore"
+          GODOT_ANDROID_KEYSTORE_RELEASE_USER: ${{ secrets.SECRET_KEYSTORE_USER }}
+          GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD: ${{ secrets.SECRET_KEYSTORE_PASSWORD }}
+          GODOT_ANDROID_KEYSTORE_DEBUG_USER: "androiddebugkey"
+          GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: "android"
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: windows
-          path: build/windows
+          name: ${{ matrix.name }}
+          path: build/${{ matrix.name }}
