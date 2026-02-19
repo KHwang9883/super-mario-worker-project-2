@@ -81,8 +81,12 @@ jobs:
           GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD: ${{ secrets.SECRET_KEYSTORE_PASSWORD }}
           GODOT_ANDROID_KEYSTORE_DEBUG_USER: "androiddebugkey"
           GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: "android"
+      - name: Generate Build ID
+        run: |
+          BUILD_ID="SMWP2-${{ matrix.name }}-$(date +'%Y%m%d')-$(echo "${{ github.sha }}" | cut -c 1-7)"
+          echo "BUILD_ID=$BUILD_ID" >> $GITHUB_ENV
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.name }}
+          name: ${{ env.BUILD_ID }}
           path: build/${{ matrix.name }}
