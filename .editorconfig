@@ -20,3 +20,6 @@ trailing_comma_in_multiline_lists = true
 braces_for_ifelse = required
 braces_for_dowhile = required
 braces_for_while = required
+
+# Option for VS Code
+csharp_new_line_before_open_brace = none
