@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="5_cjcar"]
 [ext_resource type="Texture2D" uid="uid://dysfyto8dwkpc" path="res://content/level/projectile​/hammer.png" id="5_now24"]
 [ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="6_mmjt4"]
+[ext_resource type="Script" uid="uid://dqikk8qvajpn5" path="res://script/edit/草稿.cs" id="7_cjcar"]
 
 [node name="Edit" type="Node2D" unique_id=1819291731]
 
@@ -30,5 +31,8 @@ offset_bottom = 80.0
 text = "BACK TO TITLE"
 alignment = 1
 script = ExtResource("6_mmjt4")
+
+[node name="草稿" type="Node" parent="." unique_id=457639303]
+script = ExtResource("7_cjcar")
 
 [connection signal="pressed" from="BackToTitleButton" to="BackToTitleButton" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]

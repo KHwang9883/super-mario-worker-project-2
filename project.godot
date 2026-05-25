@@ -69,6 +69,10 @@ folder_colors={
 "res://script/": "gray"
 }
 
+[global_group]
+
+edit_cursor=""
+
 [input]
 
 move_up={

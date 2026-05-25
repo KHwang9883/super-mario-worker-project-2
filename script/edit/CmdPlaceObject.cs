@@ -5,11 +5,10 @@ namespace SMWP.Edit.Command;
 
 public partial class CmdPlaceObject : AbstractCmdEdit
 {
-	private Node2D? _cursorPositionProvider;
-
 	public override void Do() {
-		var position = _cursorPositionProvider!.GlobalPosition;
+		var position = GetViewport().GetMousePosition();
 		// 放置物品
+		GD.Print($"放置物品在 {position}");
 	}
 	public override void Undo() {
 		// 擦除物品
