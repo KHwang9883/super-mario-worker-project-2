@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=10 format=3 uid="uid://dlo4kx7bs0n66"]
+[gd_resource type="Resource" format=3 uid="uid://dlo4kx7bs0n66"]
 
 [ext_resource type="Resource" uid="uid://dae8xphsfx1wi" path="res://content/level/database/processors/platform_processor.tres" id="1_8isnt"]
 [ext_resource type="Script" uid="uid://cnqofymib37k" path="res://script/level/level_loader/processing/SmwpPlatformProcessorEntry.cs" id="1_m8aqu"]

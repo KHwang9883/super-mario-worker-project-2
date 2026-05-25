@@ -195,12 +195,16 @@ public partial class PlayerMovement : Node {
         var smwlLevel = (SmwlLevel)GetTree().GetFirstNodeInGroup("smwl_level");
         if (smwlLevel != null) {
             //GD.Print("PlayerMovement: SmwlLevel got.");
-            smwlLevel.LevelLoaded += ViewControlDetect;
+            smwlLevel.LevelLoaded += InitialViewControlDetect;
         }
         // 用于测试关卡测试
         else {
             Callable.From(ViewControlDetect).CallDeferred();
         }
+    }
+
+    public void InitialViewControlDetect() {
+        Callable.From(ViewControlDetect).CallDeferred();
     }
 
     public override void _PhysicsProcess(double delta) {

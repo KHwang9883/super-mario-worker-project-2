@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://2h2s1iqemydd"]
+[gd_scene format=3 uid="uid://2h2s1iqemydd"]
 
 [ext_resource type="Script" uid="uid://cw5hkxqowq7mu" path="res://script/title/Title.cs" id="1_gkc87"]
 [ext_resource type="Texture2D" uid="uid://dynptqib5cdpd" path="res://content/title/title_screen.png" id="2_5v3jq"]
@@ -124,7 +124,7 @@ _data = {
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rpivp"]
 blend_mode = 1
 
-[node name="Title" type="Node2D" node_paths=PackedStringArray("_titleToSpin", "_animationPlayer", "_marioworkerCup", "_control")]
+[node name="Title" type="Node2D" unique_id=1687134009 node_paths=PackedStringArray("_titleToSpin", "_animationPlayer", "_marioworkerCup", "_control")]
 script = ExtResource("1_gkc87")
 _titleToSpin = NodePath("TitleToSpin")
 _animationPlayer = NodePath("AnimationPlayer")
@@ -132,57 +132,55 @@ _marioworkerCup = NodePath("MarioworkerCup")
 _control = NodePath("Control")
 InitialFocusButton = NodePath("Control/Edit")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=256997877]
 active = false
-libraries = {
-&"": SubResource("AnimationLibrary_rpivp")
-}
-autoplay = "RESET"
+libraries/ = SubResource("AnimationLibrary_rpivp")
+autoplay = &"RESET"
 
-[node name="title_screen" type="Sprite2D" parent="."]
+[node name="title_screen" type="Sprite2D" parent="." unique_id=1008282609]
 use_parent_material = true
 position = Vector2(320, 240)
 texture = ExtResource("2_5v3jq")
 
-[node name="TitleToSpin" type="Node2D" parent="."]
+[node name="TitleToSpin" type="Node2D" parent="." unique_id=1561658882]
 visible = false
 material = SubResource("CanvasItemMaterial_gkc87")
 position = Vector2(320, 240)
 
-[node name="Parallax2D" type="Parallax2D" parent="TitleToSpin"]
+[node name="Parallax2D" type="Parallax2D" parent="TitleToSpin" unique_id=144908834]
 use_parent_material = true
 repeat_size = Vector2(640, 480)
 repeat_times = 2
 
-[node name="title_screen" type="Sprite2D" parent="TitleToSpin/Parallax2D"]
+[node name="title_screen" type="Sprite2D" parent="TitleToSpin/Parallax2D" unique_id=278969323]
 use_parent_material = true
 texture = ExtResource("2_5v3jq")
 
-[node name="MarioworkerCup" type="Node2D" parent="."]
+[node name="MarioworkerCup" type="Node2D" parent="." unique_id=1764920901]
 position = Vector2(64, 656)
 
-[node name="MarioworkerCupEffect" type="Sprite2D" parent="MarioworkerCup"]
+[node name="MarioworkerCupEffect" type="Sprite2D" parent="MarioworkerCup" unique_id=1616691789]
 material = SubResource("CanvasItemMaterial_rpivp")
 texture = ExtResource("3_60u3e")
 metadata/_edit_lock_ = true
 
-[node name="MarioworkerCup" type="Sprite2D" parent="MarioworkerCup"]
+[node name="MarioworkerCup" type="Sprite2D" parent="MarioworkerCup" unique_id=119821217]
 texture = ExtResource("4_arrdh")
 metadata/_edit_lock_ = true
 
-[node name="Marioworkering" type="AudioStreamPlayer" parent="."]
+[node name="Marioworkering" type="AudioStreamPlayer" parent="." unique_id=275387582]
 stream = ExtResource("5_x2io1")
 
-[node name="Cheer" type="AudioStreamPlayer" parent="."]
+[node name="Cheer" type="AudioStreamPlayer" parent="." unique_id=1803636619]
 stream = ExtResource("7_5xeu1")
 
-[node name="Title" type="AudioStreamPlayer" parent="."]
+[node name="Title" type="AudioStreamPlayer" parent="." unique_id=860410734]
 stream = ExtResource("8_5xeu1")
 
-[node name="ModuleMusicPatch" type="Node" parent="Title"]
+[node name="ModuleMusicPatch" type="Node" parent="Title" unique_id=1909554985]
 script = ExtResource("8_0si2u")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1031804254]
 process_mode = 4
 layout_mode = 3
 anchors_preset = 0
@@ -192,7 +190,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Edit" parent="Control" instance=ExtResource("8_i2sm7")]
+[node name="Edit" parent="Control" unique_id=848115872 instance=ExtResource("8_i2sm7")]
 layout_mode = 0
 offset_left = 132.0
 offset_top = 169.0
@@ -204,7 +202,7 @@ focus_next = NodePath("../UploadDownload")
 text = ""
 LightShining = true
 
-[node name="UploadDownload" parent="Control" instance=ExtResource("8_i2sm7")]
+[node name="UploadDownload" parent="Control" unique_id=910330028 instance=ExtResource("8_i2sm7")]
 layout_mode = 0
 offset_left = 272.0
 offset_top = 167.0
@@ -218,7 +216,7 @@ focus_previous = NodePath("../Edit")
 text = ""
 LightShining = true
 
-[node name="CreateScenario" parent="Control" instance=ExtResource("8_i2sm7")]
+[node name="CreateScenario" parent="Control" unique_id=1169866877 instance=ExtResource("8_i2sm7")]
 layout_mode = 0
 offset_left = 412.0
 offset_top = 169.0
@@ -232,7 +230,7 @@ focus_previous = NodePath("../UploadDownload")
 text = ""
 LightShining = true
 
-[node name="PlayLevel" parent="Control" instance=ExtResource("8_i2sm7")]
+[node name="PlayLevel" parent="Control" unique_id=546437063 instance=ExtResource("8_i2sm7")]
 layout_mode = 0
 offset_left = 132.0
 offset_top = 328.0
@@ -245,7 +243,7 @@ focus_previous = NodePath("../CreateScenario")
 text = ""
 LightShining = true
 
-[node name="PlayScenario" parent="Control" instance=ExtResource("8_i2sm7")]
+[node name="PlayScenario" parent="Control" unique_id=1660649228 instance=ExtResource("8_i2sm7")]
 layout_mode = 0
 offset_left = 272.0
 offset_top = 328.0
@@ -259,7 +257,7 @@ focus_previous = NodePath("../PlayLevel")
 text = ""
 LightShining = true
 
-[node name="Quit" parent="Control" instance=ExtResource("8_i2sm7")]
+[node name="Quit" parent="Control" unique_id=1101757027 instance=ExtResource("8_i2sm7")]
 layout_mode = 0
 offset_left = 412.0
 offset_top = 328.0
@@ -273,7 +271,7 @@ focus_previous = NodePath("../PlayScenario")
 text = ""
 LightShining = true
 
-[node name="Home" parent="Control" instance=ExtResource("8_i2sm7")]
+[node name="Home" parent="Control" unique_id=1774997250 instance=ExtResource("8_i2sm7")]
 layout_mode = 0
 offset_left = 558.0
 offset_top = 194.0
@@ -285,7 +283,7 @@ focus_next = NodePath("../Option")
 text = ""
 LightShining = true
 
-[node name="Option" parent="Control" instance=ExtResource("8_i2sm7")]
+[node name="Option" parent="Control" unique_id=1329621674 instance=ExtResource("8_i2sm7")]
 layout_mode = 0
 offset_left = 558.0
 offset_top = 275.0
@@ -299,7 +297,7 @@ focus_previous = NodePath("../Home")
 text = ""
 LightShining = true
 
-[node name="Help" parent="Control" instance=ExtResource("8_i2sm7")]
+[node name="Help" parent="Control" unique_id=203480454 instance=ExtResource("8_i2sm7")]
 layout_mode = 0
 offset_left = 557.0
 offset_top = 355.0
@@ -313,6 +311,7 @@ LightShining = true
 
 [connection signal="finished" from="Title" to="Title" method="play"]
 [connection signal="pressed" from="Control/Edit" to="." method="OnEditPressed"]
+[connection signal="pressed" from="Control/Edit" to="." method="JumpToScene" flags=3 binds= [&"uid://dhfpljg3c84k"]]
 [connection signal="pressed" from="Control/UploadDownload" to="." method="OnUploadDownloadPressed"]
 [connection signal="pressed" from="Control/CreateScenario" to="." method="OnCreateScenarioPressed"]
 [connection signal="pressed" from="Control/PlayLevel" to="." method="SetPlayLevelInitialLives"]

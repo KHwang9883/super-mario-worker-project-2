@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=100 format=3 uid="uid://ch6ocvrds2bxf"]
+[gd_resource type="Resource" script_class="SmwpObjectDatabase" format=3 uid="uid://ch6ocvrds2bxf"]
 
 [ext_resource type="PackedScene" uid="uid://d2kvp8mnj0j4u" path="res://content/level/enemy/goomba/goomba.tscn" id="1_bmvpb"]
 [ext_resource type="Script" uid="uid://cpxsb6lorrux4" path="res://script/level/data/SmwpObjectDatabaseEntry.cs" id="2_v7upk"]

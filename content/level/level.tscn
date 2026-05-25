@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c5d467llk4uur"]
+[gd_scene format=3 uid="uid://c5d467llk4uur"]
 
 [ext_resource type="Script" uid="uid://c7qw0nusd1p15" path="res://script/level/level_loader/SmwlLevel.cs" id="1_rpefo"]
 [ext_resource type="Script" uid="uid://c8yu81i46jf4r" path="res://script/level/level_loader/SmwlLoader.cs" id="1_wc7qm"]
@@ -66,7 +66,7 @@ Button/styles/hover = SubResource("StyleBoxFlat_6mkpa")
 Button/styles/normal = SubResource("StyleBoxFlat_wdnmx")
 Button/styles/pressed = SubResource("StyleBoxFlat_1a3sc")
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("BlocksTilemap", "DatabaseHolder", "ObstacleTileMap", "SmwlLoader", "OpenSmwlDialog") groups=["smwl_level"]]
+[node name="Level" type="Node2D" unique_id=2045664295 node_paths=PackedStringArray("BlocksTilemap", "DatabaseHolder", "ObstacleTileMap", "SmwlLoader", "OpenSmwlDialog") groups=["smwl_level"]]
 script = ExtResource("1_rpefo")
 LevelTemplate = ExtResource("2_s4cnv")
 BlocksTilemap = NodePath("Block Tile Map")
@@ -75,21 +75,21 @@ ObstacleTileMap = NodePath("Obstacle Tile Map")
 SmwlLoader = NodePath("SMWL Loader")
 OpenSmwlDialog = NodePath("OpenFile")
 
-[node name="Database Holder" type="Node" parent="."]
+[node name="Database Holder" type="Node" parent="." unique_id=955292778]
 script = ExtResource("5_y2vn4")
 BlockDatabase = ExtResource("6_4alqs")
 ObjectDatabases = Array[Object]([ExtResource("4_3dhsb"), ExtResource("6_228od"), ExtResource("7_ysoro"), ExtResource("8_ysoro")])
 
-[node name="Obstacle Tile Map" type="TileMapLayer" parent="."]
+[node name="Obstacle Tile Map" type="TileMapLayer" parent="." unique_id=1171793191]
 visible = false
 tile_set = ExtResource("2_dugl1")
 
-[node name="Block Tile Map" type="TileMapLayer" parent="."]
+[node name="Block Tile Map" type="TileMapLayer" parent="." unique_id=749495332]
 z_index = 90
 tile_set = ExtResource("7_fn8k0")
 collision_enabled = false
 
-[node name="BlockTileLayer" type="Node" parent="Block Tile Map" node_paths=PackedStringArray("_smwlLevel", "_blockTile") groups=["block_tile_layer"]]
+[node name="BlockTileLayer" type="Node" parent="Block Tile Map" unique_id=1358257481 node_paths=PackedStringArray("_smwlLevel", "_blockTile") groups=["block_tile_layer"]]
 script = ExtResource("11_d3lay")
 _smwlLevel = NodePath("../..")
 _blockTile = NodePath("..")
@@ -99,11 +99,11 @@ TargetZIndex = Dictionary[int, int]({
 2: 50
 })
 
-[node name="SMWL Loader" type="Node" parent="."]
+[node name="SMWL Loader" type="Node" parent="." unique_id=1377534919]
 script = ExtResource("1_wc7qm")
 metadata/_custom_type_script = "uid://c8yu81i46jf4r"
 
-[node name="OpenFile" type="FileDialog" parent="."]
+[node name="OpenFile" type="FileDialog" parent="." unique_id=978421278]
 oversampling_override = 1.0
 title = "Open a File"
 file_mode = 0
@@ -112,14 +112,14 @@ filters = PackedStringArray("*.smwl")
 use_native_dialog = true
 script = ExtResource("13_vqugj")
 
-[node name="Debug Camera" type="Camera2D" parent="."]
+[node name="Debug Camera" type="Camera2D" parent="." unique_id=1802236864]
 process_mode = 4
 position = Vector2(320, 240)
 enabled = false
 process_callback = 0
 script = SubResource("GDScript_fn8k0")
 
-[node name="Basic" type="Control" parent="."]
+[node name="Basic" type="Control" parent="." unique_id=23731380]
 z_index = -1024
 layout_mode = 3
 anchors_preset = 15
@@ -130,12 +130,12 @@ offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OptionBackground" type="Sprite2D" parent="Basic"]
+[node name="OptionBackground" type="Sprite2D" parent="Basic" unique_id=183847648]
 position = Vector2(320, 240)
 texture = ExtResource("13_ovbgs")
 metadata/_edit_lock_ = true
 
-[node name="Play" type="Label" parent="Basic"]
+[node name="Play" type="Label" parent="Basic" unique_id=1019623057]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -153,7 +153,7 @@ theme = ExtResource("14_vqugj")
 text = "Level is Loading..."
 uppercase = true
 
-[node name="Back" parent="Basic" instance=ExtResource("15_23xuv")]
+[node name="Back" parent="Basic" unique_id=126078564 instance=ExtResource("15_23xuv")]
 visible = false
 z_index = 1
 layout_mode = 0
@@ -169,10 +169,10 @@ alignment = 1
 script = ExtResource("17_20wvl")
 metadata/_edit_lock_ = true
 
-[node name="LoadFileButtonDisabled" type="Node" parent="Basic/Back"]
+[node name="LoadFileButtonDisabled" type="Node" parent="Basic/Back" unique_id=1470725021]
 script = ExtResource("19_23xuv")
 
-[node name="Sprite2D" type="Sprite2D" parent="Basic/Back"]
+[node name="Sprite2D" type="Sprite2D" parent="Basic/Back" unique_id=1538011195]
 z_index = -1
 position = Vector2(30, 17)
 texture = ExtResource("18_fjxnd")

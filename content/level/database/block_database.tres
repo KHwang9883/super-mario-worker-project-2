@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SmwpBlockDatabase" load_steps=331 format=3 uid="uid://dg3a08a8q43kb"]
+[gd_resource type="Resource" script_class="SmwpBlockDatabase" format=3 uid="uid://dg3a08a8q43kb"]
 
 [ext_resource type="Script" uid="uid://1wklxg1y4p3y" path="res://script/level/data/SmwpBlockDatabaseEntry.cs" id="1_5s5k5"]
 [ext_resource type="Script" uid="uid://pdhdk6xuqfgb" path="res://script/level/data/SmwpBlockDatabase.cs" id="1_8lkue"]

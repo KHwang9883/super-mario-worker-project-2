@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://csfrhrqrrnv4b"]
+
+[ext_resource type="Script" uid="uid://duqfyhbpabatq" path="res://script/edit/ContentScaleModeChanger.cs" id="1_qacq8"]
+
+[node name="ContentScaleModeChanger" type="Node" unique_id=1702989629]
+script = ExtResource("1_qacq8")

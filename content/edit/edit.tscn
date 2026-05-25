@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dhfpljg3c84k"]
+
+[ext_resource type="Texture2D" uid="uid://bacyk3kcgdd5w" path="res://icon.svg" id="1_h050v"]
+[ext_resource type="PackedScene" uid="uid://csfrhrqrrnv4b" path="res://content/edit/content_scale_mode_changer.tscn" id="2_k242g"]
+[ext_resource type="Script" uid="uid://74f23k3ysijl" path="res://script/edit/CursorSpriteManager.cs" id="4_d1w4j"]
+[ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="5_cjcar"]
+[ext_resource type="Texture2D" uid="uid://dysfyto8dwkpc" path="res://content/level/projectile​/hammer.png" id="5_now24"]
+[ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="6_mmjt4"]
+
+[node name="Edit" type="Node2D" unique_id=1819291731]
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=571990082]
+position = Vector2(352, 336)
+scale = Vector2(5, 5)
+texture = ExtResource("1_h050v")
+
+[node name="ContentScaleModeChanger" parent="." unique_id=1702989629 instance=ExtResource("2_k242g")]
+
+[node name="Cursor" parent="." unique_id=618884361 instance_placeholder="res://content/edit/cursor.tscn"]
+
+[node name="CursorSpriteManager" type="Node" parent="." unique_id=756329157]
+script = ExtResource("4_d1w4j")
+Imitator = ExtResource("5_now24")
+
+[node name="BackToTitleButton" parent="." unique_id=423046640 instance=ExtResource("5_cjcar")]
+offset_left = 896.0
+offset_top = 48.0
+offset_right = 1056.0
+offset_bottom = 80.0
+text = "BACK TO TITLE"
+alignment = 1
+script = ExtResource("6_mmjt4")
+
+[connection signal="pressed" from="BackToTitleButton" to="BackToTitleButton" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]

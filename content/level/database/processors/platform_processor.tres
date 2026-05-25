@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=24 format=3 uid="uid://dae8xphsfx1wi"]
+[gd_resource type="Resource" format=3 uid="uid://dae8xphsfx1wi"]
 
 [ext_resource type="PackedScene" uid="uid://bg6asflp8evek" path="res://content/level/facility/platform/platform_fall.tscn" id="1_8lewc"]
 [ext_resource type="Script" uid="uid://cnqofymib37k" path="res://script/level/level_loader/processing/SmwpPlatformProcessorEntry.cs" id="1_fv1s4"]

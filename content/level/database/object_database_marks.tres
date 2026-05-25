@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SmwpObjectDatabase" load_steps=64 format=3 uid="uid://dp3ucvu1lpy7l"]
+[gd_resource type="Resource" script_class="SmwpObjectDatabase" format=3 uid="uid://dp3ucvu1lpy7l"]
 
 [ext_resource type="Resource" uid="uid://dae8xphsfx1wi" path="res://content/level/database/processors/platform_processor.tres" id="1_3f7fm"]
 [ext_resource type="PackedScene" uid="uid://2i5erl0ya4vb" path="res://content/level/facility/giant_gate/giant_gate.tscn" id="1_qgjfj"]
