@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bds1nsim4looq"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_06h7r"]
+[ext_resource type="Texture2D" uid="uid://cwt7jk5e5rygs" path="res://content/level/facility/platform/plarform_horizontal_marker.png" id="2_u4c3l"]
+[ext_resource type="PackedScene" uid="uid://d2hm1ej2l7abm" path="res://content/level/facility/platform/plarform_horizontal_marker.tscn" id="3_4w3v3"]
+
+[node name="EditPlarformHorizontalMarker" type="Node2D" unique_id=746771726]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_06h7r")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+modulate = Color(1, 1, 1, 0.28235295)
+texture = ExtResource("2_u4c3l")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "plarform_horizontal_marker"
+SpawnScene = ExtResource("3_4w3v3")
+
+[editable path="EditObjectBase"]

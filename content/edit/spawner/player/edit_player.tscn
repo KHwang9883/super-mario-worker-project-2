@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bijrglje0hupg"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_7oo3j"]
+[ext_resource type="Texture2D" uid="uid://b8cct5v376sj8" path="res://content/level/player/edit_player.png" id="2_tqsbx"]
+[ext_resource type="PackedScene" uid="uid://dwkukt5v4t3p5" path="res://content/level/player/player.tscn" id="3_8fert"]
+
+[node name="EditPlayer" type="Node2D" unique_id=892746032]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_7oo3j")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = ExtResource("2_tqsbx")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "player"
+SpawnScene = ExtResource("3_8fert")
+
+[editable path="EditObjectBase"]

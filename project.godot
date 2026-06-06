@@ -59,6 +59,7 @@ folder_colors={
 "res://content/edit/spawner/bonus/": "yellow",
 "res://content/edit/spawner/enemy/": "orange",
 "res://content/edit/spawner/facility/": "yellow",
+"res://content/edit/spawner/player/": "pink",
 "res://content/edit/spawner/scenery/": "teal",
 "res://content/level/background/": "green",
 "res://content/level/block/": "orange",

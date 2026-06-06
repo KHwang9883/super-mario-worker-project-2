@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bxv0qpf8svykm"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_lgupr"]
+[ext_resource type="Texture2D" uid="uid://bdvq66jd0y6cu" path="res://content/level/block/message_block/message_block.png" id="2_dorg1"]
+[ext_resource type="PackedScene" uid="uid://1yjr75w8clry" path="res://content/level/block/message_block/message_block.tscn" id="3_ln1kc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vny04"]
+atlas = ExtResource("2_dorg1")
+region = Rect2(0, 0, 32, 32)
+
+[node name="EditMessageBlock" type="Node2D" unique_id=630191728]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_lgupr")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_vny04")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "message_block"
+SpawnScene = ExtResource("3_ln1kc")
+
+[editable path="EditObjectBase"]

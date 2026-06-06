@@ -10,7 +10,7 @@
 
 [node name="Edit" type="Node2D" unique_id=1819291731]
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=571990082]
+[node name="TestIcon" type="Sprite2D" parent="." unique_id=571990082]
 position = Vector2(352, 336)
 scale = Vector2(5, 5)
 texture = ExtResource("1_h050v")
