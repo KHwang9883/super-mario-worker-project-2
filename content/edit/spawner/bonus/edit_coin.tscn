@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dhsjuei8thlbw"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_gqvdy"]
+[ext_resource type="Texture2D" uid="uid://cuk5knhghyiik" path="res://content/level/bonus/coin/edit_coin.png" id="2_txl72"]
+[ext_resource type="PackedScene" uid="uid://b7p4i1t28bwi1" path="res://content/level/bonus/coin/coin.tscn" id="3_nm11q"]
+
+[node name="EditCoin" type="Node2D" unique_id=768201453]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_gqvdy")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = ExtResource("2_txl72")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "coin"
+SpawnScene = ExtResource("3_nm11q")
+
+[editable path="EditObjectBase"]

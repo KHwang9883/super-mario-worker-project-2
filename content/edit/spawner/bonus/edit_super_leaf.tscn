@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://duwo0xfuvoj0e"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_2d6ki"]
+[ext_resource type="Texture2D" uid="uid://klfyb7w6rtku" path="res://content/level/bonus/super_leaf/super_leaf.png" id="2_hslf7"]
+[ext_resource type="PackedScene" uid="uid://bdogcnnwijtjy" path="res://content/level/bonus/super_leaf/super_leaf.tscn" id="3_81k4i"]
+
+[node name="EditSuperLeaf" type="Node2D" unique_id=1683793863]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_2d6ki")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = ExtResource("2_hslf7")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "super_leaf"
+SpawnScene = ExtResource("3_81k4i")
+
+[editable path="EditObjectBase"]

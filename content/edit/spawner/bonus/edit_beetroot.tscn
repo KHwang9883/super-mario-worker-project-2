@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bdf8lme0ujrj4"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_4utxp"]
+[ext_resource type="Texture2D" uid="uid://bbleghncfqo2b" path="res://content/level/bonus/beetroot/beetroot.png" id="2_ehs3d"]
+[ext_resource type="PackedScene" uid="uid://bppnp31u6nq6s" path="res://content/level/bonus/beetroot/beetroot.tscn" id="3_vpcvb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6yh1"]
+atlas = ExtResource("2_ehs3d")
+region = Rect2(0, 0, 29, 34)
+
+[node name="EditBeetroot" type="Node2D" unique_id=1113898947]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_4utxp")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_u6yh1")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "beetroot"
+SpawnScene = ExtResource("3_vpcvb")
+
+[editable path="EditObjectBase"]

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://gifqovkrxy8b"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_x8rgj"]
+[ext_resource type="Texture2D" uid="uid://dm27nawonnxyh" path="res://content/level/bonus/mushroom/mushroom.png" id="2_r6y20"]
+[ext_resource type="PackedScene" uid="uid://06fvxuvjbor0" path="res://content/level/bonus/mushroom/mushroom.tscn" id="3_vq2ka"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rba6o"]
+atlas = ExtResource("2_r6y20")
+region = Rect2(0, 0, 31, 32)
+
+[node name="EditMushroom" type="Node2D" unique_id=9315419]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_x8rgj")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_rba6o")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "mushroom"
+SpawnScene = ExtResource("3_vq2ka")
+
+[editable path="EditObjectBase"]

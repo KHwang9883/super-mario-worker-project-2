@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b6vv3iwjv01hk"]
+
+[ext_resource type="PackedScene" uid="uid://b40qllinddxl8" path="res://content/edit/spawner/block/question_block/edit_question_block_hidden.tscn" id="1_47fvq"]
+[ext_resource type="PackedScene" uid="uid://cgegxokohdrj6" path="res://content/level/block/question_block/question_block_poisonous_mushroom.tscn" id="2_2k42j"]
+[ext_resource type="Texture2D" uid="uid://csb0kyl7vmlsu" path="res://content/level/bonus/poisonous_mushroom/poisonous_mushroom.png" id="2_4obf1"]
+
+[node name="EditQuestionBlockPoisonousMushroomHidden" unique_id=1501174275 instance=ExtResource("1_47fvq")]
+
+[node name="Sprite2D" parent="EditObjectBase/Sprite2D" parent_id_path=PackedInt32Array(428951645, 128442666) index="0" unique_id=808835078]
+texture = ExtResource("2_4obf1")
+
+[node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
+SpawnerName = "question_block_poisonous_mushroom_hidden"
+SpawnScene = ExtResource("2_2k42j")
+
+[editable path="EditObjectBase"]

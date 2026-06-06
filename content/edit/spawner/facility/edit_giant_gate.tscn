@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dobtftpk20pul"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_xjtk5"]
+[ext_resource type="Texture2D" uid="uid://vx853ae7hvse" path="res://content/level/facility/giant_gate/giant_gate.png" id="2_8ya2k"]
+[ext_resource type="PackedScene" uid="uid://2i5erl0ya4vb" path="res://content/level/facility/giant_gate/giant_gate.tscn" id="3_kxhua"]
+
+[node name="EditGiantGate" type="Node2D" unique_id=1548469938]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_xjtk5")]
+
+[node name="LeftTopMarker2D" parent="EditObjectBase" index="0" unique_id=763045300]
+position = Vector2(-48, -32)
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+position = Vector2(0, -143)
+texture = ExtResource("2_8ya2k")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "giant_gate"
+SpawnScene = ExtResource("3_kxhua")
+
+[editable path="EditObjectBase"]

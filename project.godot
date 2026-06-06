@@ -55,6 +55,7 @@ folder_colors={
 "res://content/bgm/": "blue",
 "res://content/edit/component/": "gray",
 "res://content/edit/room/": "purple",
+"res://content/edit/spawner/block/": "orange",
 "res://content/edit/spawner/bonus/": "yellow",
 "res://content/edit/spawner/enemy/": "orange",
 "res://content/edit/spawner/facility/": "yellow",

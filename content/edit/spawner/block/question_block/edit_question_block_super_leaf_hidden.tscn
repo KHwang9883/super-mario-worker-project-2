@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bdtmwj4owpuj7"]
+
+[ext_resource type="PackedScene" uid="uid://b40qllinddxl8" path="res://content/edit/spawner/block/question_block/edit_question_block_hidden.tscn" id="1_w2aj0"]
+[ext_resource type="Texture2D" uid="uid://klfyb7w6rtku" path="res://content/level/bonus/super_leaf/super_leaf.png" id="2_qb6d5"]
+[ext_resource type="PackedScene" uid="uid://dyepef8ckk2fl" path="res://content/level/block/question_block/question_block_super_leaf.tscn" id="3_qk68j"]
+
+[node name="EditQuestionBlockSuperLeafHidden" unique_id=1501174275 instance=ExtResource("1_w2aj0")]
+
+[node name="Sprite2D" parent="EditObjectBase/Sprite2D" parent_id_path=PackedInt32Array(428951645, 128442666) index="0" unique_id=808835078]
+texture = ExtResource("2_qb6d5")
+
+[node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
+SpawnerName = "question_block_super_leaf_hidden"
+SpawnScene = ExtResource("3_qk68j")
+
+[editable path="EditObjectBase"]

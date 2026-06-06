@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://t6kajxsbmco0"]
+
+[ext_resource type="PackedScene" uid="uid://b40qllinddxl8" path="res://content/edit/spawner/block/question_block/edit_question_block_hidden.tscn" id="1_5wy85"]
+[ext_resource type="Texture2D" uid="uid://bn7qbcsp3xe51" path="res://content/level/bonus/lui/lui.png" id="2_afhuw"]
+[ext_resource type="PackedScene" uid="uid://cm2xcnm1f2b50" path="res://content/level/block/question_block/question_block_lui.tscn" id="2_g5rkj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v210k"]
+atlas = ExtResource("2_afhuw")
+region = Rect2(0, 0, 33, 33)
+
+[node name="EditQuestionBlockLuiHidden" unique_id=1501174275 instance=ExtResource("1_5wy85")]
+
+[node name="Sprite2D" parent="EditObjectBase/Sprite2D" parent_id_path=PackedInt32Array(428951645, 128442666) index="0" unique_id=808835078]
+texture = SubResource("AtlasTexture_v210k")
+
+[node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
+SpawnerName = "question_block_lui_hidden"
+SpawnScene = ExtResource("2_g5rkj")
+
+[editable path="EditObjectBase"]

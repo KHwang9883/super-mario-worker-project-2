@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://f2igu8m6563s"]
+
+[ext_resource type="PackedScene" uid="uid://dgya7g6084dee" path="res://content/edit/spawner/block/question_block/edit_question_block.tscn" id="1_cjmk8"]
+[ext_resource type="Texture2D" uid="uid://6tphawnqs6fp" path="res://content/level/bonus/mushroom_life/mushroom_life.png" id="2_31xob"]
+[ext_resource type="PackedScene" uid="uid://c1kwue0ln0x4k" path="res://content/level/block/question_block/question_block_mushroom_life.tscn" id="3_wagew"]
+
+[node name="EditQuestionBlockMushroomLife" unique_id=1501174275 instance=ExtResource("1_cjmk8")]
+
+[node name="Sprite2D" parent="EditObjectBase/Sprite2D" parent_id_path=PackedInt32Array(428951645, 128442666) index="0" unique_id=808835078]
+texture = ExtResource("2_31xob")
+
+[node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
+SpawnerName = "question_block_mushroom_life"
+SpawnScene = ExtResource("3_wagew")
+
+[editable path="EditObjectBase"]

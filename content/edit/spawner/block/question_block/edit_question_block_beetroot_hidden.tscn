@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bah55k73ys7og"]
+
+[ext_resource type="PackedScene" uid="uid://b40qllinddxl8" path="res://content/edit/spawner/block/question_block/edit_question_block_hidden.tscn" id="1_11tn2"]
+[ext_resource type="Texture2D" uid="uid://bbleghncfqo2b" path="res://content/level/bonus/beetroot/beetroot.png" id="2_kviw3"]
+[ext_resource type="PackedScene" uid="uid://v2tmlf760e6k" path="res://content/level/block/question_block/question_block_beetroot.tscn" id="3_jd1l3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6yh1"]
+atlas = ExtResource("2_kviw3")
+region = Rect2(0, 0, 29, 34)
+
+[node name="EditQuestionBlockBeetrootHidden" unique_id=1501174275 instance=ExtResource("1_11tn2")]
+
+[node name="Sprite2D" parent="EditObjectBase/Sprite2D" parent_id_path=PackedInt32Array(428951645, 128442666) index="0" unique_id=808835078]
+texture = SubResource("AtlasTexture_u6yh1")
+
+[node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
+SpawnerName = "question_block_beetroot_hidden"
+SpawnScene = ExtResource("3_jd1l3")
+
+[editable path="EditObjectBase"]

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dtlsfuqqrbr3y"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_chqta"]
+[ext_resource type="Texture2D" uid="uid://bn7qbcsp3xe51" path="res://content/level/bonus/lui/lui.png" id="2_7gh0v"]
+[ext_resource type="PackedScene" uid="uid://506l0hik3qda" path="res://content/level/bonus/lui/lui.tscn" id="3_esc47"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v210k"]
+atlas = ExtResource("2_7gh0v")
+region = Rect2(0, 0, 33, 33)
+
+[node name="EditLui" type="Node2D" unique_id=442936974]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_chqta")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_v210k")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "lui"
+SpawnScene = ExtResource("3_esc47")
+
+[editable path="EditObjectBase"]

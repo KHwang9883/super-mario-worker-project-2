@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dgya7g6084dee"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_4nrph"]
+[ext_resource type="Texture2D" uid="uid://cvhpffld8vvx5" path="res://content/level/block/edit_question_block.png" id="2_rdapx"]
+[ext_resource type="PackedScene" uid="uid://bdb1my0j48chm" path="res://content/level/block/question_block/question_block.tscn" id="3_se3gg"]
+
+[node name="EditQuestionBlock" type="Node2D" unique_id=1501174275]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_4nrph")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = ExtResource("2_rdapx")
+
+[node name="Sprite2D" type="Sprite2D" parent="EditObjectBase/Sprite2D" index="0" unique_id=808835078]
+scale = Vector2(0.6, 0.6)
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "question_block"
+SpawnScene = ExtResource("3_se3gg")
+
+[editable path="EditObjectBase"]

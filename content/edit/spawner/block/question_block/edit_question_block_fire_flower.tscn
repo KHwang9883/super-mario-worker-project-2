@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://chk0ft21yv2p8"]
+
+[ext_resource type="PackedScene" uid="uid://dgya7g6084dee" path="res://content/edit/spawner/block/question_block/edit_question_block.tscn" id="1_x7hf3"]
+[ext_resource type="PackedScene" uid="uid://c1waxffc2n6a5" path="res://content/level/block/question_block/question_block_fire_flower.tscn" id="2_0hcb0"]
+[ext_resource type="Texture2D" uid="uid://80pb0n7fyml6" path="res://content/level/bonus/fire_flower/fire_flower.png" id="2_0ww57"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02ji6"]
+atlas = ExtResource("2_0ww57")
+region = Rect2(0, 0, 33, 32)
+
+[node name="EditQuestionBlockFireFlower" unique_id=1501174275 instance=ExtResource("1_x7hf3")]
+
+[node name="Sprite2D" parent="EditObjectBase/Sprite2D" parent_id_path=PackedInt32Array(428951645, 128442666) index="0" unique_id=808835078]
+texture = SubResource("AtlasTexture_02ji6")
+
+[node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
+SpawnerName = "question_block_fire_flower"
+SpawnScene = ExtResource("2_0hcb0")
+
+[editable path="EditObjectBase"]

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://skdw15g21j7k"]
+
+[ext_resource type="PackedScene" uid="uid://dgya7g6084dee" path="res://content/edit/spawner/block/question_block/edit_question_block.tscn" id="1_8kdw5"]
+[ext_resource type="Texture2D" uid="uid://drw5odpgj3kva" path="res://content/level/bonus/super_star/super_star.png" id="2_he806"]
+[ext_resource type="PackedScene" uid="uid://dbpq2pwyam4x3" path="res://content/level/block/question_block/question_block_super_star.tscn" id="3_h125o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skw4q"]
+atlas = ExtResource("2_he806")
+region = Rect2(0, 0, 33, 32)
+
+[node name="EditQuestionBlockSuperStar" unique_id=1501174275 instance=ExtResource("1_8kdw5")]
+
+[node name="Sprite2D" parent="EditObjectBase/Sprite2D" parent_id_path=PackedInt32Array(428951645, 128442666) index="0" unique_id=808835078]
+texture = SubResource("AtlasTexture_skw4q")
+
+[node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
+SpawnerName = "question_blockk_super_star"
+SpawnScene = ExtResource("3_h125o")
+
+[editable path="EditObjectBase"]
