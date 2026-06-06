@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bcutkrmwdleyo"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_2inu6"]
+[ext_resource type="Texture2D" uid="uid://csb0kyl7vmlsu" path="res://content/level/bonus/poisonous_mushroom/poisonous_mushroom.png" id="2_beisy"]
+[ext_resource type="PackedScene" uid="uid://dhq4p7f4dvkh4" path="res://content/level/bonus/poisonous_mushroom/poisonous_mushroom.tscn" id="3_g0o33"]
+
+[node name="EditPoisonousMushroom" type="Node2D" unique_id=660474027]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_2inu6")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = ExtResource("2_beisy")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "poisonous_mushroom"
+SpawnScene = ExtResource("3_g0o33")
+
+[editable path="EditObjectBase"]

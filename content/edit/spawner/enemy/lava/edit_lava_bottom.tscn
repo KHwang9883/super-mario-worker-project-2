@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://8ucush8jkjwr"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_vcanp"]
+[ext_resource type="PackedScene" uid="uid://c25jnama51dur" path="res://content/level/enemy/lava/lava_bottom.tscn" id="2_yx70o"]
+
+[sub_resource type="Gradient" id="Gradient_588n5"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.48235294, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j1x8r"]
+gradient = SubResource("Gradient_588n5")
+width = 32
+height = 32
+
+[node name="EditLavaBottom" type="Node2D" unique_id=1323518550]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_vcanp")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("GradientTexture2D_j1x8r")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "lava_bottom"
+SpawnScene = ExtResource("2_yx70o")
+
+[editable path="EditObjectBase"]

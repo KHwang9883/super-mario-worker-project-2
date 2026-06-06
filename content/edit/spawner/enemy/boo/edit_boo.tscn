@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dl6j2ra5yi4ed"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_mu31q"]
+[ext_resource type="Texture2D" uid="uid://b38qojpmrx2dv" path="res://content/level/enemy/boo/boo.png" id="2_0qrl7"]
+[ext_resource type="PackedScene" uid="uid://d35x6v4omtxlq" path="res://content/level/enemy/boo/boo.tscn" id="3_pidua"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yjvs"]
+atlas = ExtResource("2_0qrl7")
+region = Rect2(0, 0, 32, 32)
+
+[node name="EditBoo" type="Node2D" unique_id=230235288]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_mu31q")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_3yjvs")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "boo"
+SpawnScene = ExtResource("3_pidua")
+
+[editable path="EditObjectBase"]

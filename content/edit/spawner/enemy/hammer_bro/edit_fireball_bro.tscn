@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cq36wmrcaiwyv"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_v7ls5"]
+[ext_resource type="Texture2D" uid="uid://mkoly5p6sbcl" path="res://content/level/enemy/hammer_bro/fire_bro.png" id="2_dxgdf"]
+[ext_resource type="PackedScene" uid="uid://yeb5uqj5t0hc" path="res://content/level/enemy/hammer_bro/fireball_bro.tscn" id="3_hkrbi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grcxv"]
+atlas = ExtResource("2_dxgdf")
+region = Rect2(37, 1, 37, 48)
+
+[node name="EditFireballBro" type="Node2D" unique_id=1366708948]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_v7ls5")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+position = Vector2(3.5, -8)
+texture = SubResource("AtlasTexture_grcxv")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "fireball_bro"
+SpawnScene = ExtResource("3_hkrbi")
+
+[editable path="EditObjectBase"]

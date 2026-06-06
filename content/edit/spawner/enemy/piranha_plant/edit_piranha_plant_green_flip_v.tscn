@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bvlurdd2mh17n"]
+
+[ext_resource type="PackedScene" uid="uid://b2h1sarbuqnrq" path="res://content/edit/spawner/enemy/piranha_plant/edit_piranha_plant_green.tscn" id="1_o3uhm"]
+
+[node name="EditPiranhaPlantGreenFlipV" unique_id=2065257396 instance=ExtResource("1_o3uhm")]
+
+[node name="Sprite2D" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="1" unique_id=128442666]
+position = Vector2(0, 8)
+flip_v = true
+
+[editable path="EditObjectBase"]

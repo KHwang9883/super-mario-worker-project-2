@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dlp4q4y4jk4v8"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_wi35o"]
+[ext_resource type="Texture2D" uid="uid://d3ecln7pv6bo8" path="res://content/level/enemy/lakitu/lakitu.png" id="2_djrea"]
+[ext_resource type="PackedScene" uid="uid://cejpown37o253" path="res://content/level/enemy/lakitu/lakitu.tscn" id="3_c8set"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pae6"]
+atlas = ExtResource("2_djrea")
+region = Rect2(0, 0, 31, 48)
+
+[node name="EditLakitu" type="Node2D" unique_id=903846608]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_wi35o")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_0pae6")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "lakitu"
+SpawnScene = ExtResource("3_c8set")
+
+[editable path="EditObjectBase"]

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ivxtx4d8aehs"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_fjk5m"]
+[ext_resource type="Texture2D" uid="uid://dd06ty3n4qt07" path="res://content/level/enemy/podoboo/podoboo.png" id="2_tbbqq"]
+[ext_resource type="PackedScene" uid="uid://damomv48gttr6" path="res://content/level/enemy/podoboo/podoboo.tscn" id="3_ub7v2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81gfx"]
+atlas = ExtResource("2_tbbqq")
+region = Rect2(0, 0, 29, 34)
+
+[node name="EditPodoboo" type="Node2D" unique_id=256956280]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_fjk5m")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_81gfx")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "podoboo"
+SpawnScene = ExtResource("3_ub7v2")
+
+[editable path="EditObjectBase"]

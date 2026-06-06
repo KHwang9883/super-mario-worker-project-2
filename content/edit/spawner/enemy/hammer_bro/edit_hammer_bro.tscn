@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cqakhn6pvpw68"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_71jf7"]
+[ext_resource type="Texture2D" uid="uid://b70ursjs8g36f" path="res://content/level/enemy/hammer_bro/hammer_bro.png" id="2_qw77p"]
+[ext_resource type="PackedScene" uid="uid://bnnqci8eu7r01" path="res://content/level/enemy/hammer_bro/hammer_bro.tscn" id="3_vahx1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cwui"]
+atlas = ExtResource("2_qw77p")
+region = Rect2(37, 1, 37, 48)
+
+[node name="EditHammerBro" type="Node2D" unique_id=710565211]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_71jf7")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+position = Vector2(3.5, -8)
+texture = SubResource("AtlasTexture_0cwui")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "hammer_bro"
+SpawnScene = ExtResource("3_vahx1")
+
+[editable path="EditObjectBase"]

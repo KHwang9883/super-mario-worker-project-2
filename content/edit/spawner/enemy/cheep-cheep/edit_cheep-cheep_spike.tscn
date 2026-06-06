@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cahilwkv6lx1m"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_cpjh8"]
+[ext_resource type="Texture2D" uid="uid://dnoosi0vgipfv" path="res://content/level/enemy/cheep-cheep/cheep-cheep_spike.png" id="2_cpjh8"]
+[ext_resource type="PackedScene" uid="uid://b2252u3w05f1u" path="res://content/level/enemy/cheep-cheep/cheep-cheep_spike.tscn" id="3_4s8qt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbhi3"]
+atlas = ExtResource("2_cpjh8")
+region = Rect2(0, 0, 33, 38)
+
+[node name="EditCheepCheepSpike" type="Node2D" unique_id=1070373366]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_cpjh8")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+position = Vector2(0, -3)
+texture = SubResource("AtlasTexture_vbhi3")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "cheep-cheep_spike"
+SpawnScene = ExtResource("3_4s8qt")
+
+[editable path="EditObjectBase"]

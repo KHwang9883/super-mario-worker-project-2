@@ -10,13 +10,13 @@ region = Rect2(0, 0, 36, 30)
 
 [node name="EditShellStaticGreen" type="Node2D" unique_id=612081720]
 
-[node name="EditBase" parent="." unique_id=428951645 instance=ExtResource("1_v61l3")]
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_v61l3")]
 
-[node name="Sprite2D" parent="EditBase" index="1" unique_id=128442666]
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
 texture = SubResource("AtlasTexture_ldpyd")
 
-[node name="SpawnerObject" parent="EditBase" index="2" unique_id=1216185063]
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
 SpawnerName = "shell_static_green"
 SpawnScene = ExtResource("3_2kggm")
 
-[editable path="EditBase"]
+[editable path="EditObjectBase"]

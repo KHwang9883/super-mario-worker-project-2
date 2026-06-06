@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dji8fq742l24h"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_0gkfq"]
+[ext_resource type="Texture2D" uid="uid://cmi7wiiermvca" path="res://content/level/enemy/bullet_bill/bullet_bill_cannon.png" id="2_e5cr1"]
+[ext_resource type="PackedScene" uid="uid://dertrheuvws04" path="res://content/level/enemy/bullet_bill/bullet_bill_cannon.tscn" id="3_a22lo"]
+
+[node name="EditBulletBillCannon" type="Node2D" unique_id=1403468390]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_0gkfq")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = ExtResource("2_e5cr1")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "bullet_bill_cannon"
+SpawnScene = ExtResource("3_a22lo")
+
+[editable path="EditObjectBase"]

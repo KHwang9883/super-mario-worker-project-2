@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://btxnrn66pl45b"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_mdl0s"]
+[ext_resource type="Texture2D" uid="uid://bwdjhqdroox4o" path="res://content/level/enemy/spike/coral_electric.png" id="2_pa0sm"]
+[ext_resource type="PackedScene" uid="uid://unijmmxn54ok" path="res://content/level/enemy/spike/coral_electric.tscn" id="3_4o21e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4asy"]
+atlas = ExtResource("2_pa0sm")
+region = Rect2(0, 32, 32, 32)
+
+[node name="EditCoralElectric" type="Node2D" unique_id=581773754]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_mdl0s")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_r4asy")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "coral_electric"
+SpawnScene = ExtResource("3_4o21e")
+
+[editable path="EditObjectBase"]

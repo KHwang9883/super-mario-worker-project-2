@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://biqmmg775rva2"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_5gxgo"]
+[ext_resource type="Texture2D" uid="uid://bfbac4qsh4kkb" path="res://content/level/enemy/thwomp/thwomp.png" id="2_ssfq4"]
+[ext_resource type="PackedScene" uid="uid://c6sorpmpi4oap" path="res://content/level/enemy/thwomp/thwomp.tscn" id="2_wc28i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkwh3"]
+atlas = ExtResource("2_ssfq4")
+region = Rect2(0, 0, 64, 68)
+
+[node name="EditThwomp" type="Node2D" unique_id=459831440]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_5gxgo")]
+
+[node name="LeftTopMarker2D" parent="EditObjectBase" index="0" unique_id=763045300]
+position = Vector2(-16, 0)
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_kkwh3")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "thwomp"
+SpawnScene = ExtResource("2_wc28i")
+
+[editable path="EditObjectBase"]

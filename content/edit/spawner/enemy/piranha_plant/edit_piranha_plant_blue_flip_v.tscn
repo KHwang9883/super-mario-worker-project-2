@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dqe3plfntpw2s"]
+
+[ext_resource type="PackedScene" uid="uid://bvlurdd2mh17n" path="res://content/edit/spawner/enemy/piranha_plant/edit_piranha_plant_green_flip_v.tscn" id="1_jn0v8"]
+[ext_resource type="Texture2D" uid="uid://cx12038t8ot4y" path="res://content/level/enemy/piranha_plant/piranha_plant_blue.png" id="2_3ypm3"]
+[ext_resource type="PackedScene" uid="uid://chrmn2f5rir5y" path="res://content/level/enemy/piranha_plant/piranha_plant_blue.tscn" id="3_d43rw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwkrs"]
+atlas = ExtResource("2_3ypm3")
+region = Rect2(0, 49, 33, 48)
+
+[node name="EditPiranhaPlantBlueFlipV" unique_id=2065257396 instance=ExtResource("1_jn0v8")]
+
+[node name="Sprite2D" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_xwkrs")
+
+[node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
+SpawnerName = "piranha_plant_blue"
+SpawnScene = ExtResource("3_d43rw")
+
+[editable path="EditObjectBase"]

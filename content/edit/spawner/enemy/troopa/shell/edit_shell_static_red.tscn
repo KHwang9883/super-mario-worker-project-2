@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://gn6oysl126tv"]
+
+[ext_resource type="PackedScene" uid="uid://bpgrjqsucex5j" path="res://content/edit/spawner/enemy/troopa/shell/edit_shell_static_green.tscn" id="1_rt7b2"]
+[ext_resource type="Texture2D" uid="uid://beu17ywe4r7u8" path="res://content/level/enemy/troopa/shell/shell_red.png" id="2_107qu"]
+[ext_resource type="PackedScene" uid="uid://cecot3e5ux68q" path="res://content/level/enemy/troopa/shell/shell_static_red.tscn" id="3_107qu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr3f8"]
+atlas = ExtResource("2_107qu")
+region = Rect2(0, 0, 33, 28)
+
+[node name="EditShellStaticRed" unique_id=612081720 instance=ExtResource("1_rt7b2")]
+
+[node name="Sprite2D" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_rr3f8")
+
+[node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
+SpawnerName = "shell_static_red"
+SpawnScene = ExtResource("3_107qu")
+
+[editable path="EditObjectBase"]

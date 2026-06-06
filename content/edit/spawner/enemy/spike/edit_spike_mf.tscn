@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dpm2n8n8et16o"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_4c6j5"]
+[ext_resource type="Texture2D" uid="uid://dfgi13bjl7e8y" path="res://content/level/enemy/spike/spike_mf.png" id="2_c78kr"]
+[ext_resource type="PackedScene" uid="uid://1px4xtvk4nkg" path="res://content/level/enemy/spike/spike_mf.tscn" id="3_ufwod"]
+
+[node name="EditSpikeMf" type="Node2D" unique_id=384595110]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_4c6j5")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = ExtResource("2_c78kr")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "spike_mf"
+SpawnScene = ExtResource("3_ufwod")
+
+[editable path="EditObjectBase"]

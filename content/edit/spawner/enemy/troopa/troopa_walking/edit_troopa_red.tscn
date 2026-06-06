@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bjshn4e08nkbj"]
 
-[ext_resource type="PackedScene" uid="uid://c8imb1aq4o0wx" path="res://content/edit/spawner/buddies/troopa/edit_troopa_green.tscn" id="1_iip7l"]
+[ext_resource type="PackedScene" uid="uid://c8imb1aq4o0wx" path="res://content/edit/spawner/enemy/troopa/troopa_walking/edit_troopa_green.tscn" id="1_iip7l"]
 [ext_resource type="Texture2D" uid="uid://b4gqaa07gr0oq" path="res://content/level/enemy/troopa/troopa_walking/troopa_red.png" id="2_wb0cb"]
 [ext_resource type="PackedScene" uid="uid://dvxny3btmnf18" path="res://content/level/enemy/troopa/troopa_walking/troopa_red.tscn" id="3_mx5sd"]
 

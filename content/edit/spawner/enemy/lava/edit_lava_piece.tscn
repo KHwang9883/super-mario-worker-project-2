@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cm2it7aq1bwt"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_nyfo1"]
+[ext_resource type="Texture2D" uid="uid://2edet5tfn3qq" path="res://content/level/enemy/lava/lava_piece.png" id="2_ct2bx"]
+[ext_resource type="PackedScene" uid="uid://72d0sq841rbo" path="res://content/level/enemy/lava/lava_piece.tscn" id="3_ct2bx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ypb5"]
+atlas = ExtResource("2_ct2bx")
+region = Rect2(0, 2, 34, 34)
+
+[node name="EditLavaPiece" type="Node2D" unique_id=247484463]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_nyfo1")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_2ypb5")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "lava_piece"
+SpawnScene = ExtResource("3_ct2bx")
+
+[editable path="EditObjectBase"]

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://x1yq0f77pw56"]
+
+[ext_resource type="PackedScene" uid="uid://cs02qdt4h1p2s" path="res://content/edit/spawner/enemy/troopa/shell/edit_shell_moving_green.tscn" id="1_dsvt3"]
+[ext_resource type="Texture2D" uid="uid://d2cjxtjvxmw83" path="res://content/level/enemy/troopa/shell/shell_blue.png" id="2_c5dvp"]
+[ext_resource type="PackedScene" uid="uid://7whmweafbswk" path="res://content/level/enemy/troopa/shell/shell_moving_blue.tscn" id="3_8w078"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08pnm"]
+atlas = ExtResource("2_c5dvp")
+region = Rect2(0, 84, 32, 28)
+
+[node name="EditShellMovingBlue" unique_id=2145091018 instance=ExtResource("1_dsvt3")]
+
+[node name="Sprite2D" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_08pnm")
+
+[node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
+SpawnerName = "shell_moving_blue"
+SpawnScene = ExtResource("3_8w078")
+
+[editable path="EditObjectBase"]

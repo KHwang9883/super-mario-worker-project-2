@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ypkn5b5t31vl"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_bn43p"]
+[ext_resource type="Texture2D" uid="uid://pau5gllvaqrr" path="res://content/level/enemy/troopa/shell/shell_beetle.png" id="2_tpj43"]
+[ext_resource type="PackedScene" uid="uid://x2gl8vkl7afn" path="res://content/level/enemy/troopa/shell/shell_moving_beetle.tscn" id="3_rwu2v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjphc"]
+atlas = ExtResource("2_tpj43")
+region = Rect2(0, 28, 33, 28)
+
+[node name="EditShellMovingBeetle" type="Node2D" unique_id=1752390578]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_bn43p")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_fjphc")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "shell_moving_beetle"
+SpawnScene = ExtResource("3_rwu2v")
+
+[editable path="EditObjectBase"]

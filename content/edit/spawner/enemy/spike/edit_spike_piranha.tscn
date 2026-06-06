@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ddhur6iufu16r"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_algon"]
+[ext_resource type="Texture2D" uid="uid://b7ol2hory2nw4" path="res://content/level/enemy/spike/spike_piranha.png" id="2_amfs4"]
+[ext_resource type="PackedScene" uid="uid://dlfbxnforjjvx" path="res://content/level/enemy/spike/spike_piranha.tscn" id="3_epxqd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvts6"]
+atlas = ExtResource("2_amfs4")
+region = Rect2(0, 64, 32, 32)
+
+[node name="EditSpikePiranha" type="Node2D" unique_id=310034378]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_algon")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_nvts6")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "spike_piranha"
+SpawnScene = ExtResource("3_epxqd")
+
+[editable path="EditObjectBase"]

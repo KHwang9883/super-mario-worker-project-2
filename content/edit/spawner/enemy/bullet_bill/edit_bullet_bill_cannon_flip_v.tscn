@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://by6fp4lbn7isc"]
+
+[ext_resource type="PackedScene" uid="uid://dji8fq742l24h" path="res://content/edit/spawner/enemy/bullet_bill/edit_bullet_bill_cannon.tscn" id="1_rpn4f"]
+
+[node name="EditBulletBillCannonFlipV" unique_id=1403468390 instance=ExtResource("1_rpn4f")]
+
+[node name="Sprite2D" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="1" unique_id=128442666]
+flip_v = true
+
+[editable path="EditObjectBase"]

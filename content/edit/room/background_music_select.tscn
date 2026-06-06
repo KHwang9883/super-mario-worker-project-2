@@ -1,6 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://ch83cdc1rsc6v"]
+[gd_scene format=3 uid="uid://ch83cdc1rsc6v"]
 
-[ext_resource type="Texture2D" uid="uid://dncuqjuh6rn40" path="res://content/edit/bgm_select.png" id="1_n1js7"]
+[ext_resource type="Texture2D" uid="uid://dncuqjuh6rn40" path="res://content/edit/room/bgm_select.png" id="1_n1js7"]
 [ext_resource type="Script" uid="uid://lkh8d25dqqei" path="res://script/edit/BackgroundMusicSelect.cs" id="1_rncyr"]
 [ext_resource type="FontFile" uid="uid://cmajknwx1wwap" path="res://content/ui/font/ARIALBI.TTF" id="2_rncyr"]
 [ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="3_e2sm2"]

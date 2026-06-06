@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://drb74ico6go1p"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_esk2p"]
+[ext_resource type="Texture2D" uid="uid://dl8vjok5s2jtl" path="res://content/level/enemy/roto-disc/roto-disc.png" id="2_v8ntu"]
+[ext_resource type="PackedScene" uid="uid://fbxq1hg4e22f" path="res://content/level/enemy/roto-disc/roto-disc_still.tscn" id="3_sjh3x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ut2xo"]
+atlas = ExtResource("2_v8ntu")
+region = Rect2(2, 1, 32, 32)
+
+[node name="EditRotoDiscStill" type="Node2D" unique_id=1906034304]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_esk2p")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_ut2xo")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "roto-disc_still"
+SpawnScene = ExtResource("3_sjh3x")
+
+[editable path="EditObjectBase"]

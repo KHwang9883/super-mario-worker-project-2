@@ -52,6 +52,12 @@ enabled=PackedStringArray("res://addons/godot-openmpt/plugin.cfg")
 [file_customization]
 
 folder_colors={
+"res://content/edit/component/": "gray",
+"res://content/edit/room/": "purple",
+"res://content/edit/spawner/bonus/": "yellow",
+"res://content/edit/spawner/enemy/": "orange",
+"res://content/edit/spawner/facility/": "yellow",
+"res://content/edit/spawner/scenery/": "teal",
 "res://content/level/background/": "green",
 "res://content/level/block/": "orange",
 "res://content/level/bonus/": "yellow",

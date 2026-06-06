@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bvjnndxoadkm1"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_ayie6"]
+[ext_resource type="Texture2D" uid="uid://ck5su1mm04usw" path="res://content/level/enemy/spiny_stone/spiny_stone.png" id="2_abbw2"]
+[ext_resource type="PackedScene" uid="uid://cvcnyg3fqj8js" path="res://content/level/enemy/spiny_stone/spiny_stone.tscn" id="3_y4xnm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gl50s"]
+atlas = ExtResource("2_abbw2")
+region = Rect2(0, 0, 33, 32)
+
+[node name="EditSpinyStone" type="Node2D" unique_id=868094694]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_ayie6")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_gl50s")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "spiny_stone"
+SpawnScene = ExtResource("3_y4xnm")
+
+[editable path="EditObjectBase"]
