@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cpkj8tky7umpt"]
+
+[ext_resource type="PackedScene" uid="uid://dpm2n8n8et16o" path="res://content/edit/spawner/enemy/spike/edit_spike_mf.tscn" id="1_asu5a"]
+
+[node name="EditSpikeMfHR" unique_id=384595110 instance=ExtResource("1_asu5a")]
+
+[node name="Sprite2D" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="1" unique_id=128442666]
+rotation = 1.5707964
+
+[node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
+SpawnerName = "spike_mf_hr"
+
+[editable path="EditObjectBase"]
