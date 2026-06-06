@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c6iixdbmeknh0"]
+[gd_scene format=3 uid="uid://c6iixdbmeknh0"]
 
 [ext_resource type="Texture2D" uid="uid://6pahwp3aegan" path="res://content/level/enemy/troopa/shell/shell_green.png" id="1_6ud8b"]
 [ext_resource type="Shape2D" uid="uid://1ttrcjiuuv6l" path="res://content/level/enemy/troopa/shell/shell_moving_shape.tres" id="2_kj41t"]
@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://dxpd4d7mmxqtj" path="res://script/level/component/OutOfBoundsQueueFree.cs" id="8_w7xia"]
 [ext_resource type="Script" uid="uid://digqxtvu8efas" path="res://script/level/enemy/troopa/shell/GreenSwitchSwitched.cs" id="10_a3woh"]
 [ext_resource type="PackedScene" uid="uid://ys4qgqbg1b7j" path="res://content/level/enemy/enemy_sound_manager.tscn" id="12_kj41t"]
-[ext_resource type="Script" uid="uid://nyj2lmkktmff" path="res://content/level/enemy/ShellSoundManager.cs" id="13_11cv4"]
+[ext_resource type="Script" uid="uid://nyj2lmkktmff" path="res://ShellSoundManager.cs" id="13_11cv4"]
 [ext_resource type="PackedScene" uid="uid://bkak64p718ktt" path="res://content/level/weather/light/smwp_point_light_2d.tscn" id="16_1q4fm"]
 [ext_resource type="PackedScene" uid="uid://dptyprqct11s0" path="res://content/level/enemy/troopa/shell/walk_on_air.tscn" id="19_11cv4"]
 [ext_resource type="PackedScene" uid="uid://dv1l4euat0iyo" path="res://content/level/enemy/troopa/shell/perpetual_motion_machine.tscn" id="20_jg1hu"]

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://biqmwxxauwlx"]
+
+[ext_resource type="PackedScene" uid="uid://c8imb1aq4o0wx" path="res://content/edit/spawner/buddies/troopa/edit_troopa_green.tscn" id="1_r3ugv"]
+[ext_resource type="Texture2D" uid="uid://cqpakwwv6sres" path="res://content/level/enemy/troopa/troopa_walking/troopa_yellow.png" id="2_5lk7p"]
+[ext_resource type="PackedScene" uid="uid://cdxpkopiyqfi4" path="res://content/level/enemy/troopa/troopa_walking/troopa_yellow.tscn" id="3_drl5a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsvhm"]
+atlas = ExtResource("2_5lk7p")
+region = Rect2(0, 0, 32, 47)
+
+[node name="EditTroopaYellow" unique_id=1850209664 instance=ExtResource("1_r3ugv")]
+
+[node name="Sprite2D" parent="EditBase" parent_id_path=PackedInt32Array(428951645) index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_rsvhm")
+
+[node name="SpawnerObject" parent="EditBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
+SpawnerName = "troopa_yellow"
+SpawnScene = ExtResource("3_drl5a")
+
+[editable path="EditBase"]

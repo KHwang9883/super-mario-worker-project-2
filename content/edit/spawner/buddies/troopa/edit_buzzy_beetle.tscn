@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://br8hblfps7rtg"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_6p0na"]
+[ext_resource type="Texture2D" uid="uid://b2kxb062f181l" path="res://content/level/enemy/troopa/troopa_walking/buzzy_beetle.png" id="2_e4vhy"]
+[ext_resource type="PackedScene" uid="uid://cxq657y5vb3qe" path="res://content/level/enemy/troopa/troopa_walking/buzzy_beetle.tscn" id="3_s18pr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vxf7"]
+atlas = ExtResource("2_e4vhy")
+region = Rect2(0, 0, 31, 32)
+
+[node name="EditBuzzyBeetle" type="Node2D" unique_id=1681502881]
+
+[node name="EditBase" parent="." unique_id=428951645 instance=ExtResource("1_6p0na")]
+
+[node name="Sprite2D" parent="EditBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_6vxf7")
+
+[node name="SpawnerObject" parent="EditBase" index="2" unique_id=1216185063]
+SpawnerName = "buzzy_beetle"
+SpawnScene = ExtResource("3_s18pr")
+
+[editable path="EditBase"]

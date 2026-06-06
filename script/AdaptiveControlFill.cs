@@ -6,6 +6,8 @@ public partial class AdaptiveControlFill : Node {
     private Control? _control;
     private Viewport? _viewport;
     private Rect2 _visibleRect;
+    
+    private static readonly Vector2I DefaultResolution = new Vector2I(640, 480);
 
     public override void _Ready() {
         if (PathToControlNode == null) {
@@ -41,13 +43,13 @@ public partial class AdaptiveControlFill : Node {
 
         _visibleRect = _viewport.GetVisibleRect();
 
-        if (_visibleRect.Size.X < 640 || _visibleRect.Size.Y < 480) {
+        if (_visibleRect.Size.X < DefaultResolution.X || _visibleRect.Size.Y < DefaultResolution.Y) {
             _control.Position = Vector2.Zero;
-            _control.Size = new Vector2(640, 480);
+            _control.Size = new Vector2(DefaultResolution.X, DefaultResolution.Y);
 
             window.ContentScaleMode = Window.ContentScaleModeEnum.Viewport;
             window.ContentScaleAspect = Window.ContentScaleAspectEnum.Expand;
-            window.ContentScaleSize = new Vector2I(640, 480);
+            window.ContentScaleSize = new Vector2I(DefaultResolution.X, DefaultResolution.Y);
 
             ProjectSettings.SetSetting("display/window/stretch/mode", "visible_rect");
             GD.Print($"[{Time.GetTimeStringFromSystem()}] [GameRoomSize] stretch mode: {ProjectSettings.GetSetting("display/window/stretch/mode")}");

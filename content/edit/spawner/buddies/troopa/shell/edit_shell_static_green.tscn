@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bpgrjqsucex5j"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_v61l3"]
+[ext_resource type="Texture2D" uid="uid://6pahwp3aegan" path="res://content/level/enemy/troopa/shell/shell_green.png" id="2_jw5k3"]
+[ext_resource type="PackedScene" uid="uid://blc5665gyi7v8" path="res://content/level/enemy/troopa/shell/shell_static_green.tscn" id="3_2kggm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldpyd"]
+atlas = ExtResource("2_jw5k3")
+region = Rect2(0, 0, 36, 30)
+
+[node name="EditShellStaticGreen" type="Node2D" unique_id=612081720]
+
+[node name="EditBase" parent="." unique_id=428951645 instance=ExtResource("1_v61l3")]
+
+[node name="Sprite2D" parent="EditBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_ldpyd")
+
+[node name="SpawnerObject" parent="EditBase" index="2" unique_id=1216185063]
+SpawnerName = "shell_static_green"
+SpawnScene = ExtResource("3_2kggm")
+
+[editable path="EditBase"]
