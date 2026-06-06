@@ -1,15 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://boufs5b1hubqw"]
+[gd_scene format=3 uid="uid://boufs5b1hubqw"]
 
 [ext_resource type="Script" uid="uid://d057h6bs3i5wg" path="res://script/FpsDisplay.cs" id="1_362ng"]
+[ext_resource type="PackedScene" uid="uid://crtu68t2l58hf" path="res://content/ui/ui_margin_container.tscn" id="2_7ydkd"]
 [ext_resource type="Theme" uid="uid://ds3uq7lyxof1e" path="res://content/level/hud/mw/font_theme/mw_hud.tres" id="2_f2xjj"]
+[ext_resource type="Script" uid="uid://26excyyd1ohg" path="res://script/AdaptiveControlFill.cs" id="3_j4o55"]
 
-[node name="FpsDisplay" type="CanvasLayer" node_paths=PackedStringArray("_label")]
+[node name="FpsDisplay" type="CanvasLayer" unique_id=46968355 node_paths=PackedStringArray("_label")]
 process_mode = 3
 layer = 10
 script = ExtResource("1_362ng")
-_label = NodePath("Control/Fps")
+_label = NodePath("Control/UiMarginContainer/Fps")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=254996736]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 640.0
@@ -17,18 +19,26 @@ offset_bottom = 480.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Fps" type="Label" parent="Control"]
+[node name="UiMarginContainer" parent="Control" unique_id=1008609264 instance=ExtResource("2_7ydkd")]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
+anchors_preset = 2
+anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = 443.0
-offset_right = -457.0
-offset_bottom = -6.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_top = -40.0
+offset_right = 68.0
+offset_bottom = 0.0
+grow_vertical = 0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 9
+
+[node name="Fps" type="Label" parent="Control/UiMarginContainer" unique_id=1608884881]
+layout_mode = 2
 theme = ExtResource("2_f2xjj")
 text = "FPS: 50"
 vertical_alignment = 1
 uppercase = true
+
+[node name="AdaptiveControlFill" type="Node" parent="Control" unique_id=820144009]
+script = ExtResource("3_j4o55")

@@ -8,11 +8,12 @@ public partial class CursorSpriteManager : Node {
     public override void _Process(double delta) {
         base._Process(delta);
 
+        // TODO: 检测模仿者状态
 		// 测试模仿者鼠标图像
 		if (Input.IsActionJustPressed("move_jump")) {
 			DisplayServer.CursorSetCustomImage(Imitator);
 		}
-		if (Input.IsActionJustReleased("move_fire")) {
+		if (Input.IsActionJustPressed("move_fire")) {
 			DisplayServer.CursorSetCustomImage(Normal);
 		}
 	}

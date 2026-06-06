@@ -17,8 +17,6 @@ texture = ExtResource("1_h050v")
 
 [node name="ContentScaleModeChanger" parent="." unique_id=1702989629 instance=ExtResource("2_k242g")]
 
-[node name="Cursor" parent="." unique_id=618884361 instance_placeholder="res://content/edit/cursor.tscn"]
-
 [node name="CursorSpriteManager" type="Node" parent="." unique_id=756329157]
 script = ExtResource("4_d1w4j")
 Imitator = ExtResource("5_now24")
@@ -34,5 +32,19 @@ script = ExtResource("6_mmjt4")
 
 [node name="草稿" type="Node" parent="." unique_id=457639303]
 script = ExtResource("7_cjcar")
+
+[node name="Blocks" type="TileMapLayer" parent="." unique_id=1540009068]
+
+[node name="Objects" type="Node2D" parent="." unique_id=1884962938]
+
+[node name="Buddies" type="Node2D" parent="Objects" unique_id=718613767]
+
+[node name="Scenery" type="Node2D" parent="Objects" unique_id=2144959000]
+
+[node name="Marks" type="Node2D" parent="Objects" unique_id=355531142]
+
+[node name="Bonus" type="Node2D" parent="Objects" unique_id=15593284]
+
+[node name="LevelConfig" type="Node" parent="." unique_id=1204661431]
 
 [connection signal="pressed" from="BackToTitleButton" to="BackToTitleButton" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]

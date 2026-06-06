@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://cp77fvkyp4ks6"]
-
-[ext_resource type="Script" uid="uid://vnndoupykgxx" path="res://script/edit/CursorPosition.cs" id="2_ocbvp"]
-
-[node name="Cursor" type="Node2D" unique_id=618884361 groups=["edit_cursor"]]
-
-[node name="CursorPosition" type="Node" parent="." unique_id=220023926]
-script = ExtResource("2_ocbvp")
