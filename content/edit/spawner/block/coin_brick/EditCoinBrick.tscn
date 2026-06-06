@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c3dfaoje5p1ct"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_g67b3"]
+[ext_resource type="PackedScene" uid="uid://ct10bly3u1wme" path="res://content/level/block/coin_brick/coin_brick.tscn" id="2_j3t0g"]
+[ext_resource type="Texture2D" uid="uid://clns3f200bbhn" path="res://content/level/block/coin_brick/edit_coin_brick.png" id="2_r248d"]
+
+[node name="EditCoinBrick" type="Node2D" unique_id=80466462]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_g67b3")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = ExtResource("2_r248d")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "coin_brick"
+SpawnScene = ExtResource("2_j3t0g")
+
+[editable path="EditObjectBase"]

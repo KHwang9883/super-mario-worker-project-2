@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://2att2dx0hqw4"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_ffdom"]
+[ext_resource type="Texture2D" uid="uid://v4t3jxyn785" path="res://content/level/block/brick/brick.png" id="2_4v11p"]
+[ext_resource type="PackedScene" uid="uid://b4b6pch7u4iem" path="res://content/level/block/brick/brick.tscn" id="3_vewas"]
+
+[node name="EditBrick" type="Node2D" unique_id=569107887]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_ffdom")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = ExtResource("2_4v11p")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "brick"
+SpawnScene = ExtResource("3_vewas")
+
+[editable path="EditObjectBase"]
