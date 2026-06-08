@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dfui2i8ynfp8a"]
+
+[sub_resource type="FontVariation" id="FontVariation_vaoai"]
+
+[sub_resource type="FontVariation" id="FontVariation_afwqm"]
+base_font = SubResource("FontVariation_vaoai")
+variation_transform = Transform2D(1, 0.2, 0, 1.4, 0, 0)
+
+[node name="EditPlatformLabel" type="Label" unique_id=148784884]
+z_index = 1
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_afwqm")
+theme_override_font_sizes/font_size = 12
+text = "PLAT"

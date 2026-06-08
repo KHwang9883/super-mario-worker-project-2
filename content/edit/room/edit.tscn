@@ -7,6 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://dysfyto8dwkpc" path="res://content/level/projectile​/hammer.png" id="5_now24"]
 [ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="6_mmjt4"]
 [ext_resource type="Script" uid="uid://dqikk8qvajpn5" path="res://script/edit/草稿.cs" id="7_cjcar"]
+[ext_resource type="Script" uid="uid://bba0c5v8msl8v" path="res://script/edit/Grid.cs" id="8_bleet"]
+[ext_resource type="Script" uid="uid://c0r7y46iaodoj" path="res://script/edit/PaintObjectSet.cs" id="9_g0j6g"]
+[ext_resource type="Texture2D" uid="uid://c30tfd1s6hvdn" path="res://content/level/enemy/goomba/goomba.png" id="9_o4c2q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sodo"]
+atlas = ExtResource("9_o4c2q")
+region = Rect2(0, 0, 31, 32)
 
 [node name="Edit" type="Node2D" unique_id=1819291731]
 
@@ -46,5 +53,56 @@ script = ExtResource("7_cjcar")
 [node name="Bonus" type="Node2D" parent="Objects" unique_id=15593284]
 
 [node name="LevelConfig" type="Node" parent="." unique_id=1204661431]
+
+[node name="Grid" type="Node2D" parent="." unique_id=1285128187]
+script = ExtResource("8_bleet")
+
+[node name="Table" type="Control" parent="." unique_id=1451252397]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 80.0
+offset_bottom = 68.0
+
+[node name="GridContainer" type="GridContainer" parent="Table" unique_id=1285520759]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 33.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EditGoomba" type="Control" parent="Table" unique_id=365475971]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 0
+offset_left = 66.0
+offset_top = 41.0
+offset_right = 130.0
+offset_bottom = 105.0
+
+[node name="Button" type="Button" parent="Table/EditGoomba" unique_id=142661815]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="PaintObjectSet" type="Node" parent="Table/EditGoomba/Button" unique_id=1513094551]
+script = ExtResource("9_g0j6g")
+
+[node name="TextureRect" type="TextureRect" parent="Table/EditGoomba" unique_id=400972423]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_3sodo")
+expand_mode = 1
+stretch_mode = 3
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="BackToTitleButton" to="BackToTitleButton" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]

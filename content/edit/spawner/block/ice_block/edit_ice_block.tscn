@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cruikh23vw7vi"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_f8rme"]
+[ext_resource type="PackedScene" uid="uid://ix3t4xs7phce" path="res://content/level/block/ice_block/ice_block.tscn" id="2_pjfja"]
+[ext_resource type="Texture2D" uid="uid://b8ufbini7thyd" path="res://content/level/block/ice_block/ice_block.png" id="2_ucgqb"]
+
+[node name="EditIceBlock" type="Node2D" unique_id=152152856]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_f8rme")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = ExtResource("2_ucgqb")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerName = "ice_block"
+SpawnScene = ExtResource("2_pjfja")
+
+[editable path="EditObjectBase"]
