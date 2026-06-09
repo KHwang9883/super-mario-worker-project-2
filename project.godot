@@ -82,6 +82,7 @@ folder_colors={
 [global_group]
 
 edit_cursor=""
+edit_node=""
 
 [input]
 

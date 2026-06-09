@@ -12,7 +12,7 @@ func _ready():
 		
 	parent = get_parent() as AudioStreamPlayer
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	on_stream_changed()
 
 func on_stream_changed():

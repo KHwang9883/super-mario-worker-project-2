@@ -8,8 +8,10 @@
 [ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="6_mmjt4"]
 [ext_resource type="Script" uid="uid://dqikk8qvajpn5" path="res://script/edit/草稿.cs" id="7_cjcar"]
 [ext_resource type="Script" uid="uid://bba0c5v8msl8v" path="res://script/edit/Grid.cs" id="8_bleet"]
+[ext_resource type="PackedScene" uid="uid://d3tuxhxlbamt0" path="res://content/edit/spawner/enemy/goomba/edit_goomba.tscn" id="8_xls68"]
 [ext_resource type="Script" uid="uid://c0r7y46iaodoj" path="res://script/edit/PaintObjectSet.cs" id="9_g0j6g"]
 [ext_resource type="Texture2D" uid="uid://c30tfd1s6hvdn" path="res://content/level/enemy/goomba/goomba.png" id="9_o4c2q"]
+[ext_resource type="Script" uid="uid://bpo4opa3yumi7" path="res://script/edit/UndoRedoManager.cs" id="12_ercmj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3sodo"]
 atlas = ExtResource("9_o4c2q")
@@ -37,8 +39,9 @@ text = "BACK TO TITLE"
 alignment = 1
 script = ExtResource("6_mmjt4")
 
-[node name="草稿" type="Node" parent="." unique_id=457639303]
+[node name="草稿" type="Node" parent="." unique_id=457639303 groups=["edit_node"]]
 script = ExtResource("7_cjcar")
+CurrentSpawnerObjectScene = ExtResource("8_xls68")
 
 [node name="Blocks" type="TileMapLayer" parent="." unique_id=1540009068]
 
@@ -92,6 +95,7 @@ metadata/_edit_lock_ = true
 
 [node name="PaintObjectSet" type="Node" parent="Table/EditGoomba/Button" unique_id=1513094551]
 script = ExtResource("9_g0j6g")
+PaintObjectScene = ExtResource("8_xls68")
 
 [node name="TextureRect" type="TextureRect" parent="Table/EditGoomba" unique_id=400972423]
 layout_mode = 1
@@ -104,5 +108,34 @@ texture = SubResource("AtlasTexture_3sodo")
 expand_mode = 1
 stretch_mode = 3
 metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="." unique_id=1518039503]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 108.0
+offset_bottom = 238.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1810533706]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UndoButton" type="Button" parent="Control/VBoxContainer" unique_id=905954057]
+layout_mode = 2
+text = "为啥要
+撤销"
+
+[node name="RedoButton" type="Button" parent="Control/VBoxContainer" unique_id=496447814]
+layout_mode = 2
+text = "为啥要
+重做"
+
+[node name="MakeUndo" type="Node" parent="Control/VBoxContainer" unique_id=1121659298]
+script = ExtResource("12_ercmj")
+
+[node name="EraserButton" type="Button" parent="Control/VBoxContainer" unique_id=1146235687]
+layout_mode = 2
+text = "为啥要
+橡皮"
 
 [connection signal="pressed" from="BackToTitleButton" to="BackToTitleButton" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]
