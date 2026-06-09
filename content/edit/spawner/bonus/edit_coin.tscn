@@ -13,6 +13,7 @@ texture = ExtResource("2_txl72")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
 SpawnerType = 3
+SpawnerIdStr = "318"
 SpawnScene = ExtResource("3_nm11q")
 
 [editable path="EditObjectBase"]

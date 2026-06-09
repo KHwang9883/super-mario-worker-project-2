@@ -15,7 +15,8 @@ texture = ExtResource("2_rdapx")
 scale = Vector2(0.6, 0.6)
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "question_block"
+SpawnerType = 3
+SpawnerIdStr = "313"
 SpawnScene = ExtResource("3_se3gg")
 
 [editable path="EditObjectBase"]

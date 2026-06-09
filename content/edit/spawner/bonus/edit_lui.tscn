@@ -17,6 +17,7 @@ texture = SubResource("AtlasTexture_v210k")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
 SpawnerType = 3
+SpawnerIdStr = "322"
 SpawnScene = ExtResource("3_esc47")
 
 [editable path="EditObjectBase"]

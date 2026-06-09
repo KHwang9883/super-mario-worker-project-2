@@ -18,6 +18,10 @@ texture = ExtResource("2_6wj3y")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
 SpawnerType = 2
+SpawnerIdStr = "231"
 SpawnScene = ExtResource("3_oq6c0")
+MetaDict = Dictionary[String, String]({
+"t": "0"
+})
 
 [editable path="EditObjectBase"]

@@ -10,7 +10,7 @@
 texture = ExtResource("2_4obf1")
 
 [node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
-SpawnerName = "question_block_poisonous_mushroom_hidden"
+SpawnerIdStr = "312"
 SpawnScene = ExtResource("2_2k42j")
 
 [editable path="EditObjectBase"]
