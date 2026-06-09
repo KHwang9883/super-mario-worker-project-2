@@ -12,6 +12,7 @@
 position = Vector2(0, 0)
 
 [node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+modulate = Color(1, 1, 1, 0.28235295)
 position = Vector2(16, 16)
 texture = ExtResource("2_1or8k")
 
