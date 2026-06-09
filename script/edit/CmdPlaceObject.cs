@@ -9,6 +9,11 @@ public partial class CmdPlaceObject : AbstractCmdEdit {
 
     public Vector2 PlaceMousePosition;
 
+    public override void _EnterTree() {
+        base._EnterTree();
+        PlaceMousePosition = GetViewport().GetMousePosition();
+    }
+
     public override void Do() {
         var position = PlaceMousePosition;
         var gridPosition = new Vector2I((int)(position.X / 32f) * 32, (int)(position.Y / 32f) * 32);
@@ -17,6 +22,7 @@ public partial class CmdPlaceObject : AbstractCmdEdit {
             return;
         }
 		// 放置物品
+        // TODO: 放置物品有类型：Block、Buddies...，如果重叠时类型也相同那么不能放置
         SpawnerObject = SpawnerObjectScene.Instantiate<Node2D>();
         var offset = SpawnerObject.GetNode<Marker2D>("EditObjectBase/LeftTopMarker2D").Position;
         SpawnerObject.Position = gridPosition - offset;

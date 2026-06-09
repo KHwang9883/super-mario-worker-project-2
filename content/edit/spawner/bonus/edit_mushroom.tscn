@@ -16,7 +16,7 @@ region = Rect2(0, 0, 31, 32)
 texture = SubResource("AtlasTexture_rba6o")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "mushroom"
+SpawnerType = 3
 SpawnScene = ExtResource("3_vq2ka")
 
 [editable path="EditObjectBase"]

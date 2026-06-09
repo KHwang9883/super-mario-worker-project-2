@@ -17,7 +17,7 @@ position = Vector2(16, 16)
 texture = ExtResource("2_bwtrq")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "sealer"
+SpawnerType = 2
 SpawnScene = ExtResource("2_aju5u")
 
 [editable path="EditObjectBase"]

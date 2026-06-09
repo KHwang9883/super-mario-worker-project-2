@@ -12,7 +12,7 @@
 texture = ExtResource("2_ucgqb")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "ice_block"
+SpawnerType = 2
 SpawnScene = ExtResource("2_pjfja")
 
 [editable path="EditObjectBase"]

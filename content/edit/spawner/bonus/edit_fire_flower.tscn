@@ -16,7 +16,7 @@ region = Rect2(0, 0, 33, 32)
 texture = SubResource("AtlasTexture_02ji6")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "fire_flower"
+SpawnerType = 3
 SpawnScene = ExtResource("3_ie3ji")
 
 [editable path="EditObjectBase"]

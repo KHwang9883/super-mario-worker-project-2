@@ -14,7 +14,7 @@ region = Rect2(0, 0, 33, 33)
 texture = SubResource("AtlasTexture_v210k")
 
 [node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
-SpawnerName = "question_block_lui"
+SpawnerType = 3
 SpawnScene = ExtResource("3_uhgtl")
 
 [editable path="EditObjectBase"]

@@ -17,7 +17,7 @@ scale = Vector2(1, 0.5)
 texture = ExtResource("2_6wj3y")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "obstacle_half"
+SpawnerType = 2
 SpawnScene = ExtResource("3_oq6c0")
 
 [editable path="EditObjectBase"]

@@ -8,6 +8,6 @@
 modulate = Color(1, 1, 1, 0.28235295)
 
 [node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
-SpawnerName = "question_block_hidden"
+SpawnerType = 3
 
 [editable path="EditObjectBase"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cw7ibc1fhyh41"]
 
-[ext_resource type="PackedScene" uid="uid://c3dfaoje5p1ct" path="res://content/edit/spawner/block/coin_brick/EditCoinBrick.tscn" id="1_yw08i"]
+[ext_resource type="PackedScene" uid="uid://c3dfaoje5p1ct" path="res://content/edit/spawner/block/coin_brick/edit_coin_brick.tscn" id="1_yw08i"]
 
 [node name="EditCoinBrickHidden" unique_id=80466462 instance=ExtResource("1_yw08i")]
 

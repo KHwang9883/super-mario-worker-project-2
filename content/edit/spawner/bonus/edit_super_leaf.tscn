@@ -12,7 +12,7 @@
 texture = ExtResource("2_hslf7")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "super_leaf"
+SpawnerType = 3
 SpawnScene = ExtResource("3_81k4i")
 
 [editable path="EditObjectBase"]

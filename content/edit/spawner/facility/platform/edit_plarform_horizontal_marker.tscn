@@ -13,7 +13,7 @@ modulate = Color(1, 1, 1, 0.28235295)
 texture = ExtResource("2_u4c3l")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "plarform_horizontal_marker"
+SpawnerType = 2
 SpawnScene = ExtResource("3_4w3v3")
 
 [editable path="EditObjectBase"]

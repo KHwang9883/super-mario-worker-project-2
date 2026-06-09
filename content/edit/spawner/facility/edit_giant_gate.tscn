@@ -16,7 +16,7 @@ position = Vector2(0, -143)
 texture = ExtResource("2_8ya2k")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "giant_gate"
+SpawnerType = 2
 SpawnScene = ExtResource("3_kxhua")
 
 [editable path="EditObjectBase"]
