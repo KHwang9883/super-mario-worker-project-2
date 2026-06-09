@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 using SMWP.Edit.Command;
 
 public partial class UndoRedoManager : Node {
@@ -22,7 +23,6 @@ public partial class UndoRedoManager : Node {
         
         EditNode = GetTree().GetFirstNodeInGroup("edit_node");
         EditNode.ChildEnteredTree += OnEditNodeChildrenUpdated;
-        EditNode.ChildExitingTree += OnEditNodeChildrenUpdated;
         
         OnEditNodeChildrenUpdated();
     }
@@ -33,39 +33,43 @@ public partial class UndoRedoManager : Node {
             return;
         }
         
-        if (child is not AbstractCmdEdit) return;
-
         Commands = EditNode.GetChildren();
         // 存在撤回的情况下，之后有新的编辑操作，删除后面的 cmd 节点
         if (CurrentStep < Commands.Count - 1) {
             var commandsSize = Commands.Count;
-            for (int i = CurrentStep + 1; i < commandsSize; i++) {
-                Commands[i].QueueFree();
+            var preRemovingCommands = new GDC.Array<Node>();
+            for (int i = 0; i < commandsSize - CurrentStep - 1; i += 1) {
+                //Commands[CurrentStep].Free();
+                preRemovingCommands.Add(Commands[CurrentStep]);
+                Commands.Remove(Commands[CurrentStep]);
+            }
+            foreach (var node in preRemovingCommands) {
+                node.QueueFree();
             }
         }
-        CurrentStep = Commands.Count - 1;
+        CurrentStep = Commands.Count;
         UpdateButtons();
         StatusPrint();
     }
 
     public void OnUndoButtonPressed() {
+        CurrentStep--;
         if (Commands[CurrentStep] is not AbstractCmdEdit lastCmd) {
             GD.PushError("Undo command is null!");
             return;
         }
         lastCmd.Undo();
-        CurrentStep--;
         UpdateButtons();
         StatusPrint();
     }
     
     public void OnRedoButtonPressed() {
-        CurrentStep++;
         if (Commands[CurrentStep] is not AbstractCmdEdit lastCmd) {
             GD.PushError("Redo command is null!");
             return;
         }
         lastCmd.Do();
+        CurrentStep++;
         GD.Print("Redo!");
         UpdateButtons();
         StatusPrint();
@@ -81,11 +85,11 @@ public partial class UndoRedoManager : Node {
             return;
         }
         
-        UndoButton.Disabled = CurrentStep < 0;
-        RedoButton.Disabled = Commands.Count - 1 == CurrentStep;
+        UndoButton.Disabled = CurrentStep < 1;
+        RedoButton.Disabled = Commands.Count == CurrentStep;
     }
 
     public void StatusPrint() {
-        GD.Print($"CurrentStep: {CurrentStep}, Commands.Count - 1: {Commands.Count - 1}");
+        GD.Print($"CurrentStep: {CurrentStep}, Commands.Count: {Commands.Count}");
     }
 }

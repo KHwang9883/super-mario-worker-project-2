@@ -20,8 +20,10 @@ public partial class CmdPlaceObject : AbstractCmdEdit {
         SpawnerObject = SpawnerObjectScene.Instantiate<Node2D>();
         var offset = SpawnerObject.GetNode<Marker2D>("EditObjectBase/LeftTopMarker2D").Position;
         SpawnerObject.Position = gridPosition - offset;
-        AddChild(SpawnerObject);
-		GD.Print($"放置物品在 {gridPosition}");
+        Callable.From(() => { 
+            AddChild(SpawnerObject);
+            GD.Print($"放置物品在 {gridPosition}, 物品是 {SpawnerObject.GetPath()}");
+        }).CallDeferred();
 	}
 	public override void Undo() {
 		// 擦除物品
