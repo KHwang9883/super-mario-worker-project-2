@@ -12,7 +12,7 @@
 texture = ExtResource("2_c78kr")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "spike_mf"
+SpawnerIdStr = "037"
 SpawnScene = ExtResource("3_ufwod")
 
 [editable path="EditObjectBase"]

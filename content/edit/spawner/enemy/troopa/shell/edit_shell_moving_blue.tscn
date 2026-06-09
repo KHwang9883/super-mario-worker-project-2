@@ -14,7 +14,10 @@ region = Rect2(0, 84, 32, 28)
 texture = SubResource("AtlasTexture_08pnm")
 
 [node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
-SpawnerName = "shell_moving_blue"
+SpawnerIdStr = "043"
 SpawnScene = ExtResource("3_8w078")
+MetaDict = Dictionary[String, String]({
+"a": "5"
+})
 
 [editable path="EditObjectBase"]

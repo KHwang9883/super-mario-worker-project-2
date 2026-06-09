@@ -16,6 +16,7 @@ region = Rect2(0, 0, 31, 32)
 texture = SubResource("AtlasTexture_3sodo")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerIdStr = "001"
 SpawnScene = ExtResource("3_koq25")
 
 [editable path="EditObjectBase"]

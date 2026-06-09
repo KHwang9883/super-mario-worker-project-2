@@ -12,7 +12,10 @@
 texture = ExtResource("2_xkbgr")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "spike_mw"
+SpawnerIdStr = "022"
 SpawnScene = ExtResource("3_nwbeo")
+MetaDict = Dictionary[String, String]({
+"d": "0"
+})
 
 [editable path="EditObjectBase"]

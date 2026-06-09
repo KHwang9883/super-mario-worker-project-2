@@ -20,7 +20,7 @@ height = 32
 texture = SubResource("GradientTexture2D_j1x8r")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "lava_bottom"
+SpawnerIdStr = "028"
 SpawnScene = ExtResource("2_yx70o")
 
 [editable path="EditObjectBase"]

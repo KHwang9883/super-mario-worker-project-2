@@ -16,7 +16,7 @@ region = Rect2(0, 0, 33, 32)
 texture = SubResource("AtlasTexture_gl50s")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "spiny_stone"
+SpawnerIdStr = "025"
 SpawnScene = ExtResource("3_y4xnm")
 
 [editable path="EditObjectBase"]

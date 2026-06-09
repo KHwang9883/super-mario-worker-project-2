@@ -16,7 +16,7 @@ region = Rect2(2, 1, 32, 32)
 texture = SubResource("AtlasTexture_ut2xo")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "roto-disc_still"
+SpawnerIdStr = "042"
 SpawnScene = ExtResource("3_sjh3x")
 
 [editable path="EditObjectBase"]

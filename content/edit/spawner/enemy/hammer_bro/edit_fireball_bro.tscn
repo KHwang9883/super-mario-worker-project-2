@@ -17,7 +17,7 @@ position = Vector2(3.5, -8)
 texture = SubResource("AtlasTexture_grcxv")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "fireball_bro"
+SpawnerIdStr = "027"
 SpawnScene = ExtResource("3_hkrbi")
 
 [editable path="EditObjectBase"]

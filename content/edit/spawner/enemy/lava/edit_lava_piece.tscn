@@ -16,7 +16,7 @@ region = Rect2(0, 2, 34, 34)
 texture = SubResource("AtlasTexture_2ypb5")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "lava_piece"
+SpawnerIdStr = "018"
 SpawnScene = ExtResource("3_ct2bx")
 
 [editable path="EditObjectBase"]

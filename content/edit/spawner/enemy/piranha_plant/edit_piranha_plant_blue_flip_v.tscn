@@ -14,7 +14,7 @@ region = Rect2(0, 49, 33, 48)
 texture = SubResource("AtlasTexture_xwkrs")
 
 [node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
-SpawnerName = "piranha_plant_blue"
+SpawnerIdStr = "045"
 SpawnScene = ExtResource("3_d43rw")
 
 [editable path="EditObjectBase"]

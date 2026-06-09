@@ -14,7 +14,7 @@ region = Rect2(0, 51, 33, 46)
 texture = SubResource("AtlasTexture_vo80q")
 
 [node name="SpawnerObject" parent="EditBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
-SpawnerName = "troopa_fly_red"
+SpawnerIdStr = "033"
 SpawnScene = ExtResource("3_hfu1e")
 
 [editable path="EditBase"]

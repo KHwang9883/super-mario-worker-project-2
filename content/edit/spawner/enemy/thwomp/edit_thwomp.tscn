@@ -19,7 +19,7 @@ position = Vector2(-16, 0)
 texture = SubResource("AtlasTexture_kkwh3")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "thwomp"
+SpawnerIdStr = "023"
 SpawnScene = ExtResource("2_wc28i")
 
 [editable path="EditObjectBase"]

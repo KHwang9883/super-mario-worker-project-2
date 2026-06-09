@@ -17,7 +17,7 @@ position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_vko47")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "piranha_plant_green"
+SpawnerIdStr = "006"
 SpawnScene = ExtResource("2_48cbr")
 
 [editable path="EditObjectBase"]

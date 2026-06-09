@@ -16,7 +16,7 @@ region = Rect2(0, 0, 31, 32)
 texture = SubResource("AtlasTexture_6vxf7")
 
 [node name="SpawnerObject" parent="EditBase" index="2" unique_id=1216185063]
-SpawnerName = "buzzy_beetle"
+SpawnerIdStr = "032"
 SpawnScene = ExtResource("3_s18pr")
 
 [editable path="EditBase"]

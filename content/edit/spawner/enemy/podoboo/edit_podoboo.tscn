@@ -16,7 +16,7 @@ region = Rect2(0, 0, 29, 34)
 texture = SubResource("AtlasTexture_81gfx")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "podoboo"
+SpawnerIdStr = "021"
 SpawnScene = ExtResource("3_ub7v2")
 
 [editable path="EditObjectBase"]

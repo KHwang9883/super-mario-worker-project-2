@@ -9,6 +9,9 @@ rotation = 1.5707964
 flip_v = true
 
 [node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
-SpawnerName = "spike_piranha_hl"
+SpawnerIdStr = "017"
+MetaDict = Dictionary[String, String]({
+"d": "2"
+})
 
 [editable path="EditObjectBase"]

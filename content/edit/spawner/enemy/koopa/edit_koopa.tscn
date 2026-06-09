@@ -19,7 +19,7 @@ position = Vector2(-16, 4)
 texture = SubResource("AtlasTexture_i1or7")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "koopa"
+SpawnerIdStr = "024"
 SpawnScene = ExtResource("3_xmrdb")
 
 [editable path="EditObjectBase"]

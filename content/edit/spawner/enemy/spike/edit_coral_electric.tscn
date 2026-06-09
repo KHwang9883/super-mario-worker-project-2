@@ -16,7 +16,7 @@ region = Rect2(0, 32, 32, 32)
 texture = SubResource("AtlasTexture_r4asy")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "coral_electric"
+SpawnerIdStr = "036"
 SpawnScene = ExtResource("3_4o21e")
 
 [editable path="EditObjectBase"]

@@ -14,7 +14,7 @@ region = Rect2(0, 0, 31, 48)
 texture = SubResource("AtlasTexture_mc1hg")
 
 [node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
-SpawnerName = "lakitu_stone"
+SpawnerIdStr = "048"
 SpawnScene = ExtResource("2_lgou2")
 
 [editable path="EditObjectBase"]

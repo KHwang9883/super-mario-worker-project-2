@@ -16,7 +16,10 @@ region = Rect2(0, 64, 32, 32)
 texture = SubResource("AtlasTexture_nvts6")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "spike_piranha"
+SpawnerIdStr = "017"
 SpawnScene = ExtResource("3_epxqd")
+MetaDict = Dictionary[String, String]({
+"d": "0"
+})
 
 [editable path="EditObjectBase"]

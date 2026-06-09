@@ -16,7 +16,7 @@ region = Rect2(0, 0, 32, 32)
 texture = SubResource("AtlasTexture_3yjvs")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "boo"
+SpawnerIdStr = "031"
 SpawnScene = ExtResource("3_pidua")
 
 [editable path="EditObjectBase"]

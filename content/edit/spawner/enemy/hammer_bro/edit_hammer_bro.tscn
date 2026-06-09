@@ -17,7 +17,7 @@ position = Vector2(3.5, -8)
 texture = SubResource("AtlasTexture_0cwui")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "hammer_bro"
+SpawnerIdStr = "019"
 SpawnScene = ExtResource("3_vahx1")
 
 [editable path="EditObjectBase"]

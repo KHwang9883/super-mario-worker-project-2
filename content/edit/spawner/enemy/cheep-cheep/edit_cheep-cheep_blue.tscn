@@ -16,7 +16,7 @@ region = Rect2(0, 0, 33, 34)
 texture = SubResource("AtlasTexture_vbhi3")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "cheep-cheep_blue"
+SpawnerIdStr = "014"
 SpawnScene = ExtResource("3_6wedo")
 
 [editable path="EditObjectBase"]

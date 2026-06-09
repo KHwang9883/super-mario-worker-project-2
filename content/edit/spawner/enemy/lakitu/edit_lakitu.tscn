@@ -17,7 +17,7 @@ position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_0pae6")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "lakitu"
+SpawnerIdStr = "010"
 SpawnScene = ExtResource("3_c8set")
 
 [editable path="EditObjectBase"]

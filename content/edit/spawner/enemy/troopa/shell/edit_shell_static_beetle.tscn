@@ -16,7 +16,10 @@ region = Rect2(0, 0, 32, 28)
 texture = SubResource("AtlasTexture_d7fno")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
-SpawnerName = "shell_static_beetle"
+SpawnerIdStr = "043"
 SpawnScene = ExtResource("3_jjgc4")
+MetaDict = Dictionary[String, String]({
+"a": "8"
+})
 
 [editable path="EditObjectBase"]
