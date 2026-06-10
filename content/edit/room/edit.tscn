@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dqikk8qvajpn5" path="res://script/edit/草稿.cs" id="7_cjcar"]
 [ext_resource type="Script" uid="uid://bba0c5v8msl8v" path="res://script/edit/Grid.cs" id="8_bleet"]
 [ext_resource type="PackedScene" uid="uid://d3tuxhxlbamt0" path="res://content/edit/spawner/enemy/goomba/edit_goomba.tscn" id="8_xls68"]
+[ext_resource type="Texture2D" uid="uid://d1efjf687jw0q" path="res://icon_old.png" id="9_bm6o2"]
 [ext_resource type="Script" uid="uid://c0r7y46iaodoj" path="res://script/edit/PaintObjectButtonSet.cs" id="9_g0j6g"]
 [ext_resource type="Texture2D" uid="uid://c30tfd1s6hvdn" path="res://content/level/enemy/goomba/goomba.png" id="9_o4c2q"]
 [ext_resource type="Script" uid="uid://bpo4opa3yumi7" path="res://script/edit/UndoRedoManager.cs" id="12_ercmj"]
@@ -39,10 +40,15 @@ text = "BACK TO TITLE"
 alignment = 1
 script = ExtResource("6_mmjt4")
 
-[node name="草稿" type="Node" parent="." unique_id=457639303 groups=["edit_node"]]
+[node name="草稿" type="Node" parent="." unique_id=457639303 node_paths=PackedStringArray("PlaceObjectSprite2D") groups=["edit_node"]]
 script = ExtResource("7_cjcar")
 CurrentEditMode = 1
 CurrentSpawnerObjectScene = ExtResource("8_xls68")
+PlaceObjectSprite2D = NodePath("PlaceObjectPreview")
+
+[node name="PlaceObjectPreview" type="Sprite2D" parent="草稿" unique_id=1967546011]
+modulate = Color(1, 1, 1, 0.28235295)
+texture = ExtResource("9_bm6o2")
 
 [node name="Blocks" type="TileMapLayer" parent="." unique_id=1540009068]
 
