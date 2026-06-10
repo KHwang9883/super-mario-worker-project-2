@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using SMWP.Edit.Command;
 
 public partial class 草稿 : Node {
@@ -34,20 +33,6 @@ public partial class 草稿 : Node {
         _cachedOffset = GetPropertyWithoutInstantiate<Vector2>(_cachedScene, "LeftTopMarker2D", "position");
     }
     
-    // 鼠标点击放置物品
-    /*
-    public override void _Process(double delta) {
-        base._Process(delta);
-        if (Input.IsActionJustPressed("place_object")) {
-            PlaceObject();
-        }
-    }
-    */
-
-    public override void _Process(double delta) {
-        base._Process(delta);
-    }
-
     public void PlaceObjectPreview() {
         if (CurrentEditMode is not EditModeType.None and not EditModeType.EraseObject) {
             if (CurrentSpawnerObjectScene == null) return;
@@ -102,6 +87,7 @@ public partial class 草稿 : Node {
         return (false, default!);
     }
 
+    // 鼠标点击放置物品
     public override void _UnhandledInput(InputEvent @event) {
         base._UnhandledInput(@event);
 
