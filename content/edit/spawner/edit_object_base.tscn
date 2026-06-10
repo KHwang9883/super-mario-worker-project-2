@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://6qtxm78dyjcg" path="res://script/edit/SpawnerObject.cs" id="1_t0bus"]
 [ext_resource type="PackedScene" uid="uid://oxcq1n1rw6yj" path="res://content/level/bad_object.tscn" id="2_lxuya"]
+[ext_resource type="Shape2D" uid="uid://ck4piypkuht4j" path="res://content/edit/spawner/basic_spawner_rectangle_shape_2d.tres" id="3_mf5j6"]
 
 [node name="EditObjectBase" type="Node2D" unique_id=428951645]
 metadata/_edit_lock_ = true
@@ -17,3 +18,11 @@ metadata/_edit_lock_ = true
 script = ExtResource("1_t0bus")
 SpawnScene = ExtResource("2_lxuya")
 metadata/_custom_type_script = "uid://6qtxm78dyjcg"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1744609504]
+collision_layer = 65536
+collision_mask = 0
+metadata/edit_object = &""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1145159192]
+shape = ExtResource("3_mf5j6")

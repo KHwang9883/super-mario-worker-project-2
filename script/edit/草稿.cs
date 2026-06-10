@@ -21,7 +21,7 @@ public partial class 草稿 : Node {
     private PackedScene? _cachedScene;
     private Texture2D? _cachedTexture;
     private Vector2 _cachedOffset;
-
+    
     private void UpdateCache() {
         if (_cachedScene == CurrentSpawnerObjectScene) return;
         _cachedScene = CurrentSpawnerObjectScene;
@@ -46,7 +46,6 @@ public partial class 草稿 : Node {
 
     public override void _Process(double delta) {
         base._Process(delta);
-        
     }
 
     public void PlaceObjectPreview() {
@@ -108,12 +107,26 @@ public partial class 草稿 : Node {
 
         PlaceObjectPreview();
         
+        // TODO: 右键擦除物品（需要特别检查不在特别放置模式下）
+        /*
+        if (@event.IsActionPressed("erase_object")) {
+            EraseObject();
+        }
+        */
+        // 放置物品
         if (@event.IsActionPressed("place_object")) {
             switch (CurrentEditMode) {
-                case EditModeType.PlaceObject: PlaceObject(); break;
-                case EditModeType.EraseObject: EraseObject(); break;
+                case EditModeType.PlaceObject:
+                    if (!CanPlaceObject()) return;
+                    PlaceObject();
+                    break;
+                case EditModeType.EraseObject:
+                    EraseObject();
+                    break;
                 // TODO: Special Object
-                case EditModeType.RotoDisc: break;
+                case EditModeType.RotoDisc:
+                    if (!CanPlaceObject()) return;
+                    break;
             }
         }
     }
@@ -130,5 +143,25 @@ public partial class 草稿 : Node {
         Callable.From(() => {
             AddChild(cmdEraseObject);
         }).CallDeferred();
+    }
+
+    public bool CanPlaceObject() {
+        Vector2 mouseWorldPos = GetViewport().GetMousePosition();
+        var space = GetParent<Node2D>().GetWorld2D().DirectSpaceState;
+        var query = new PhysicsPointQueryParameters2D();
+        query.Position = mouseWorldPos;
+        query.CollideWithAreas = true;
+        query.CollideWithBodies = false;
+        var results = space.IntersectPoint(query);
+        if (results.Count == 0) return true;
+        foreach (var result in results) {
+            if (result.TryGetValue("collider", out var collider)) {
+                if (collider.As<Node>().HasMeta("edit_object")) {
+                    GD.Print("Can't place object!");
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

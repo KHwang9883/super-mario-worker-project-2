@@ -127,7 +127,7 @@ PrefabByType = Dictionary[int, PackedScene]({
 1: ExtResource("2_sf3lu"),
 2: ExtResource("3_pn0ku")
 })
-DataById = Dictionary[int, Object]({
+DataById = Dictionary[int, ExtResource("1_fv1s4")]({
 200: SubResource("Resource_dthx2"),
 201: SubResource("Resource_fv1s4"),
 202: SubResource("Resource_a5ron"),

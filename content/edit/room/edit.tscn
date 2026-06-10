@@ -14,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://c30tfd1s6hvdn" path="res://content/level/enemy/goomba/goomba.png" id="9_o4c2q"]
 [ext_resource type="Script" uid="uid://bpo4opa3yumi7" path="res://script/edit/UndoRedoManager.cs" id="12_ercmj"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bm6o2"]
+radius = 1.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3sodo"]
 atlas = ExtResource("9_o4c2q")
 region = Rect2(0, 0, 31, 32)
@@ -50,7 +53,19 @@ PlaceObjectSprite2D = NodePath("PlaceObjectPreview")
 modulate = Color(1, 1, 1, 0.28235295)
 texture = ExtResource("9_bm6o2")
 
+[node name="CursorArea2D" type="Area2D" parent="草稿" unique_id=735319348]
+collision_layer = 0
+collision_mask = 65536
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="草稿/CursorArea2D" unique_id=614892886]
+shape = SubResource("CircleShape2D_bm6o2")
+
+[node name="CursorAreaMovement" type="Node" parent="草稿/CursorArea2D" unique_id=466184049]
+
+[node name="CommandsNode" type="Node" parent="." unique_id=1104414865 groups=["commands_node"]]
+
 [node name="Blocks" type="TileMapLayer" parent="." unique_id=1540009068]
+visible = false
 
 [node name="Objects" type="Node2D" parent="." unique_id=1884962938]
 

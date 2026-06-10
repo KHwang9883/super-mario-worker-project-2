@@ -41,4 +41,4 @@ metadata/_custom_type_script = "uid://cnqofymib37k"
 [resource]
 script = ExtResource("1_xh0p3")
 DataSource = ExtResource("1_8isnt")
-ConfigByType = Array[Object]([SubResource("Resource_l2pm4"), SubResource("Resource_eylqe"), SubResource("Resource_m8aqu"), SubResource("Resource_ypuv5"), SubResource("Resource_o5wa7"), SubResource("Resource_rquas")])
+ConfigByType = [SubResource("Resource_l2pm4"), SubResource("Resource_eylqe"), SubResource("Resource_m8aqu"), SubResource("Resource_ypuv5"), SubResource("Resource_o5wa7"), SubResource("Resource_rquas")]

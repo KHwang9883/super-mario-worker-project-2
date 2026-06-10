@@ -10,7 +10,7 @@ public partial class UndoRedoManager : Node {
     public Button? UndoButton;
     public Button? RedoButton;
     
-    public Node? EditNode;
+    public Node? CommandsNode;
     public GDC.Array<Node> Commands = [];
 
     public int CurrentStep = 0;
@@ -21,19 +21,19 @@ public partial class UndoRedoManager : Node {
         RedoButton.Pressed += OnRedoButtonPressed;
         UndoButton.Pressed += OnUndoButtonPressed;
         
-        EditNode = GetTree().GetFirstNodeInGroup("edit_node");
-        EditNode.ChildEnteredTree += OnEditNodeChildrenUpdated;
+        CommandsNode = GetTree().GetFirstNodeInGroup("commands_node");
+        CommandsNode.ChildEnteredTree += OnEditNodeChildrenUpdated;
         
         OnEditNodeChildrenUpdated();
     }
     
     public void OnEditNodeChildrenUpdated(Node child = null!) {
-        if (EditNode == null) {
+        if (CommandsNode == null) {
             GD.PushError("EditNode is null!");
             return;
         }
         
-        Commands = EditNode.GetChildren();
+        Commands = CommandsNode.GetChildren();
         // 存在撤回的情况下，之后有新的编辑操作，删除后面的 cmd 节点
         if (CurrentStep < Commands.Count - 1) {
             var commandsSize = Commands.Count;
