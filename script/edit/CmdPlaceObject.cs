@@ -7,15 +7,15 @@ public partial class CmdPlaceObject : AbstractCmdEdit {
     public PackedScene? SpawnerObjectScene;
     public Node2D? SpawnerObject;
 
-    public Vector2 PlaceMousePosition;
+    public Vector2 PlaceCursorPosition;
 
     public override void _EnterTree() {
         base._EnterTree();
-        PlaceMousePosition = GetViewport().GetMousePosition();
+        PlaceCursorPosition = CursorPositionProvider.GetCursorPosition(this);
     }
 
     public override void Do() {
-        var position = PlaceMousePosition;
+        var position = PlaceCursorPosition;
         var gridPosition = new Vector2I((int)(position.X / 32f) * 32, (int)(position.Y / 32f) * 32);
         if (SpawnerObjectScene == null) {
             GD.PushError("SpawnerObjectScene is null! Can't be placed.");

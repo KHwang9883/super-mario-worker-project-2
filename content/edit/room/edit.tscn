@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://dje4ngrnrumyc" path="res://script/edit/PanelDrag.cs" id="14_m2sx4"]
 [ext_resource type="Texture2D" uid="uid://b7wkh1o3wjcxe" path="res://content/edit/placeholder_edit_panel.png" id="15_ue8vf"]
 [ext_resource type="PackedScene" uid="uid://crtu68t2l58hf" path="res://content/ui/ui_margin_container.tscn" id="16_o43ii"]
+[ext_resource type="Script" uid="uid://dd67yp3cdje8e" path="res://script/edit/EditCameraMovement.cs" id="17_o43ii"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm6o2"]
 radius = 1.0
@@ -36,15 +37,6 @@ texture = ExtResource("1_h050v")
 [node name="CursorSpriteManager" type="Node" parent="." unique_id=756329157]
 script = ExtResource("4_d1w4j")
 Imitator = ExtResource("5_now24")
-
-[node name="BackToTitleButton" parent="." unique_id=423046640 instance=ExtResource("5_cjcar")]
-offset_left = 896.0
-offset_top = 48.0
-offset_right = 1056.0
-offset_bottom = 80.0
-text = "BACK TO TITLE"
-alignment = 1
-script = ExtResource("6_mmjt4")
 
 [node name="草稿" type="Node" parent="." unique_id=457639303 node_paths=PackedStringArray("PlaceObjectSprite2D") groups=["edit_node"]]
 script = ExtResource("7_cjcar")
@@ -85,13 +77,22 @@ visible = false
 [node name="Grid" type="Node2D" parent="." unique_id=1285128187]
 script = ExtResource("8_bleet")
 
-[node name="Table" type="Control" parent="." unique_id=1451252397]
+[node name="BackToTitleButton" parent="." unique_id=423046640 instance=ExtResource("5_cjcar")]
+offset_left = 896.0
+offset_top = 48.0
+offset_right = 1056.0
+offset_bottom = 80.0
+text = "BACK TO TITLE"
+alignment = 1
+script = ExtResource("6_mmjt4")
+
+[node name="ObjectTableControl" type="Control" parent="." unique_id=1451252397]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 80.0
 offset_bottom = 68.0
 
-[node name="GridContainer" type="GridContainer" parent="Table" unique_id=1285520759]
+[node name="GridContainer" type="GridContainer" parent="ObjectTableControl" unique_id=1285520759]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,7 +102,7 @@ offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="EditGoomba" type="Control" parent="Table" unique_id=365475971]
+[node name="EditGoomba" type="Control" parent="ObjectTableControl" unique_id=365475971]
 custom_minimum_size = Vector2(64, 64)
 anchors_preset = 0
 offset_left = 66.0
@@ -109,7 +110,7 @@ offset_top = 41.0
 offset_right = 130.0
 offset_bottom = 105.0
 
-[node name="Button" type="Button" parent="Table/EditGoomba" unique_id=142661815]
+[node name="Button" type="Button" parent="ObjectTableControl/EditGoomba" unique_id=142661815]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -118,11 +119,11 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="PaintObjectSet" type="Node" parent="Table/EditGoomba/Button" unique_id=1513094551]
+[node name="PaintObjectSet" type="Node" parent="ObjectTableControl/EditGoomba/Button" unique_id=1513094551]
 script = ExtResource("9_g0j6g")
 PaintObjectScene = ExtResource("8_xls68")
 
-[node name="TextureRect" type="TextureRect" parent="Table/EditGoomba" unique_id=400972423]
+[node name="TextureRect" type="TextureRect" parent="ObjectTableControl/EditGoomba" unique_id=400972423]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -134,31 +135,31 @@ expand_mode = 1
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Control" type="Control" parent="." unique_id=1518039503]
+[node name="UndoRedoControl" type="Control" parent="." unique_id=1518039503]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 108.0
 offset_bottom = 238.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1810533706]
+[node name="VBoxContainer" type="VBoxContainer" parent="UndoRedoControl" unique_id=1810533706]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="UndoButton" type="Button" parent="Control/VBoxContainer" unique_id=905954057]
+[node name="UndoButton" type="Button" parent="UndoRedoControl/VBoxContainer" unique_id=905954057]
 layout_mode = 2
 text = "为啥要
 撤销"
 
-[node name="RedoButton" type="Button" parent="Control/VBoxContainer" unique_id=496447814]
+[node name="RedoButton" type="Button" parent="UndoRedoControl/VBoxContainer" unique_id=496447814]
 layout_mode = 2
 text = "为啥要
 重做"
 
-[node name="MakeUndo" type="Node" parent="Control/VBoxContainer" unique_id=1121659298]
+[node name="MakeUndo" type="Node" parent="UndoRedoControl/VBoxContainer" unique_id=1121659298]
 script = ExtResource("12_ercmj")
 
-[node name="EraserButton" type="Button" parent="Control/VBoxContainer" unique_id=1146235687]
+[node name="EraserButton" type="Button" parent="UndoRedoControl/VBoxContainer" unique_id=1146235687]
 layout_mode = 2
 text = "为啥要
 橡皮"
@@ -191,7 +192,7 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 64
+theme_override_constants/margin_top = 84
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 metadata/_edit_lock_ = true
@@ -229,5 +230,49 @@ alignment = 0
 layout_mode = 2
 text = "PREF's"
 alignment = 0
+
+[node name="CameraUiScaleControl" type="Control" parent="." unique_id=922262971]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 180.0
+offset_top = 148.0
+offset_right = 220.0
+offset_bottom = 188.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CameraUiScaleControl" unique_id=39490394]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CameraUiScaleControl/HBoxContainer" unique_id=1517351427]
+layout_mode = 2
+
+[node name="CameraScaleLabel" type="Label" parent="CameraUiScaleControl/HBoxContainer/VBoxContainer" unique_id=1721932341]
+layout_mode = 2
+text = "镜头缩放"
+
+[node name="CameraScaleUpButton" type="Button" parent="CameraUiScaleControl/HBoxContainer/VBoxContainer" unique_id=1136611597]
+layout_mode = 2
+
+[node name="CameraScaleDownButton" type="Button" parent="CameraUiScaleControl/HBoxContainer/VBoxContainer" unique_id=119460374]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CameraUiScaleControl/HBoxContainer" unique_id=1986081742]
+layout_mode = 2
+
+[node name="UiScaleLabel" type="Label" parent="CameraUiScaleControl/HBoxContainer/VBoxContainer2" unique_id=139166192]
+layout_mode = 2
+text = "UI缩放"
+
+[node name="UiScaleUpButton" type="Button" parent="CameraUiScaleControl/HBoxContainer/VBoxContainer2" unique_id=503485238]
+layout_mode = 2
+
+[node name="UiScaleDownButton" type="Button" parent="CameraUiScaleControl/HBoxContainer/VBoxContainer2" unique_id=1767312622]
+layout_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=730095805]
+
+[node name="EditCameraMovement" type="Node" parent="Camera2D" unique_id=19527400]
+script = ExtResource("17_o43ii")
 
 [connection signal="pressed" from="BackToTitleButton" to="BackToTitleButton" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]

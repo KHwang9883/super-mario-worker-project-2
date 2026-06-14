@@ -3,12 +3,12 @@ using System;
 using SMWP.Edit.Command;
 
 public partial class CmdEraseObject : AbstractCmdEdit {
-    public Vector2 EraseMousePosition;
+    public Vector2 EraseCursorPosition;
     public GDC.Array<Node2D> ErasedNodes = [];
     
     public override void _EnterTree() {
         base._EnterTree();
-        EraseMousePosition = GetViewport().GetMousePosition();
+        EraseCursorPosition = CursorPositionProvider.GetCursorPosition(this);
     }
 
     public override void Do() {

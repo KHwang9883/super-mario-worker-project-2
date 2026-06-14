@@ -43,8 +43,8 @@ public partial class 草稿 : Node {
             }
             UpdateCache();
             PlaceObjectSprite2D.Texture = _cachedTexture;
-            var mousePosition = GetViewport().GetMousePosition();
-            var gridPosition = new Vector2((int)(mousePosition.X / 32f) * 32, (int)(mousePosition.Y / 32f) * 32);
+            var cursorPosition = CursorPositionProvider.GetCursorPosition(this);
+            var gridPosition = new Vector2((int)(cursorPosition.X / 32f) * 32, (int)(cursorPosition.Y / 32f) * 32);
             PlaceObjectSprite2D.Position = gridPosition - _cachedOffset;
         }
     }
@@ -132,10 +132,10 @@ public partial class 草稿 : Node {
     }
 
     public bool CanPlaceObject() {
-        Vector2 mouseWorldPos = GetViewport().GetMousePosition();
+        Vector2 cursorWorldPos = CursorPositionProvider.GetCursorPosition(this);
         var space = GetParent<Node2D>().GetWorld2D().DirectSpaceState;
         var query = new PhysicsPointQueryParameters2D();
-        query.Position = mouseWorldPos;
+        query.Position = cursorWorldPos;
         query.CollideWithAreas = true;
         query.CollideWithBodies = false;
         var results = space.IntersectPoint(query);
