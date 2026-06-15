@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://d1efjf687jw0q" path="res://icon_old.png" id="9_bm6o2"]
 [ext_resource type="Script" uid="uid://c0r7y46iaodoj" path="res://script/edit/PaintObjectButtonSet.cs" id="9_g0j6g"]
 [ext_resource type="Texture2D" uid="uid://c30tfd1s6hvdn" path="res://content/level/enemy/goomba/goomba.png" id="9_o4c2q"]
-[ext_resource type="Script" uid="uid://bypjc6h8fwhtx" path="res://script/edit/FitCanvasSize.cs" id="10_pe1k0"]
 [ext_resource type="Script" uid="uid://bpo4opa3yumi7" path="res://script/edit/UndoRedoManager.cs" id="12_ercmj"]
 [ext_resource type="Script" uid="uid://dje4ngrnrumyc" path="res://script/edit/PanelDrag.cs" id="14_m2sx4"]
 [ext_resource type="Texture2D" uid="uid://b7wkh1o3wjcxe" path="res://content/edit/placeholder_edit_panel.png" id="15_ue8vf"]
@@ -88,13 +87,7 @@ script = ExtResource("17_o43ii")
 [node name="EditCanvasLayer" type="CanvasLayer" parent="." unique_id=365219437]
 
 [node name="Control" type="Control" parent="EditCanvasLayer" unique_id=581907491]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("10_pe1k0")
+layout_mode = 0
 
 [node name="BackToTitleButton" parent="EditCanvasLayer/Control" unique_id=423046640 instance=ExtResource("5_cjcar")]
 layout_mode = 1
@@ -308,11 +301,11 @@ layout_mode = 2
 layout_mode = 2
 text = "UI缩放"
 
-[node name="UiScaleManager" type="Node" parent="EditCanvasLayer/Control/CameraUiScaleControl/HBoxContainer/VBoxContainer2" unique_id=1724250340 node_paths=PackedStringArray("UiScaleUpButton", "UiScaleDownButton", "UiCanvas")]
+[node name="UiScaleManager" type="Node" parent="EditCanvasLayer/Control/CameraUiScaleControl/HBoxContainer/VBoxContainer2" unique_id=1724250340 node_paths=PackedStringArray("UiScaleUpButton", "UiScaleDownButton", "UiControl")]
 script = ExtResource("18_t2ycv")
 UiScaleUpButton = NodePath("../UiScaleUpButton")
 UiScaleDownButton = NodePath("../UiScaleDownButton")
-UiCanvas = NodePath("../../../../..")
+UiControl = NodePath("../../../..")
 
 [node name="UiScaleUpButton" type="Button" parent="EditCanvasLayer/Control/CameraUiScaleControl/HBoxContainer/VBoxContainer2" unique_id=503485238]
 layout_mode = 2

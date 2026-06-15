@@ -6,6 +6,7 @@ public partial class CameraScaleManager : Node {
     [Export] public Button? CameraScaleDownButton;
     [Export] public Camera2D? Camera;
 
+    private float _zoom = 1f;
     private const float ZoomStep = 0.2f;
 
     public override void _Ready() {
@@ -27,7 +28,8 @@ public partial class CameraScaleManager : Node {
             GD.PushError("Camera is null");
             return;
         }
-        Camera.Zoom += new Vector2(ZoomStep, ZoomStep);
+        _zoom += ZoomStep;
+        Camera.Zoom = new Vector2(_zoom, _zoom);
     }
 
     public void OnScaleDownButtonPressed() {
@@ -35,6 +37,7 @@ public partial class CameraScaleManager : Node {
             GD.PushError("Camera is null");
             return;
         }
-        Camera.Zoom -= new Vector2(ZoomStep, ZoomStep);
+        _zoom -= ZoomStep;
+        Camera.Zoom = new Vector2(_zoom, _zoom);
     }
 }
