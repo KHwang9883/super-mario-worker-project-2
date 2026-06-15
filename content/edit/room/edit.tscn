@@ -306,6 +306,7 @@ script = ExtResource("18_t2ycv")
 UiScaleUpButton = NodePath("../UiScaleUpButton")
 UiScaleDownButton = NodePath("../UiScaleDownButton")
 UiControl = NodePath("../../../..")
+FloatingPanelPaths = [NodePath("../../../../PanelDrag")]
 
 [node name="UiScaleUpButton" type="Button" parent="EditCanvasLayer/Control/CameraUiScaleControl/HBoxContainer/VBoxContainer2" unique_id=503485238]
 layout_mode = 2

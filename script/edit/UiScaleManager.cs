@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 
 public partial class UiScaleManager : Node {
     [Export] public Button? UiScaleUpButton;
@@ -12,10 +13,17 @@ public partial class UiScaleManager : Node {
     /// <summary>过渡速度，越大越快。0 表示瞬间切换。</summary>
     [Export] public float LerpSpeed = 36f;
 
+    /// <summary>缩放时保持屏幕位置不变的浮动面板节点（如 PanelDrag）。</summary>
+    [Export] public NodePath[]? FloatingPanelPaths;
+
+    private Control[]? _floatingPanels;
+
     private int _presetIndex;
     private float _currentZoom = 1f;
     private float _targetZoom = 1f;
     private bool _needsProcess;
+
+    private readonly Dictionary<Control, Vector2> _savedPositions = new();
 
     public override void _Ready() {
         base._Ready();
@@ -36,6 +44,7 @@ public partial class UiScaleManager : Node {
             UiControl.AnchorRight = 0;
             UiControl.AnchorBottom = 0;
         }
+        ResolveFloatingPanels();
         _presetIndex = FindClosestPreset(1.0f);
 
         ConfigManager.LoadConfig();
@@ -56,6 +65,7 @@ public partial class UiScaleManager : Node {
             _currentZoom = _targetZoom;
             UpdateLayout();
             _needsProcess = false;
+            _savedPositions.Clear();
             SaveZoom();
         }
     }
@@ -74,6 +84,7 @@ public partial class UiScaleManager : Node {
     }
 
     private void OnViewportSizeChanged() {
+        _savedPositions.Clear();
         UpdateLayout();
     }
 
@@ -82,6 +93,35 @@ public partial class UiScaleManager : Node {
         var viewportSize = GetViewport().GetVisibleRect().Size;
         UiControl.Scale = new Vector2(_currentZoom, _currentZoom);
         UiControl.Size = viewportSize / _currentZoom;
+
+        if (_savedPositions.Count > 0) {
+            foreach (var kvp in _savedPositions) {
+                kvp.Key.Position = kvp.Value / _currentZoom;
+            }
+        }
+    }
+
+    private void ResolveFloatingPanels() {
+        if (FloatingPanelPaths == null || FloatingPanelPaths.Length == 0) {
+            _floatingPanels = null;
+            return;
+        }
+        _floatingPanels = new Control[FloatingPanelPaths.Length];
+        for (int i = 0; i < FloatingPanelPaths.Length; i++) {
+            if (FloatingPanelPaths[i] != null) {
+                _floatingPanels[i] = GetNodeOrNull<Control>(FloatingPanelPaths[i]);
+            }
+        }
+    }
+
+    private void SaveFloatingPanelPositions() {
+        _savedPositions.Clear();
+        if (_floatingPanels == null) return;
+        foreach (var panel in _floatingPanels) {
+            if (panel != null) {
+                _savedPositions[panel] = panel.Position * _currentZoom;
+            }
+        }
     }
 
     private void SaveZoom() {
@@ -92,6 +132,7 @@ public partial class UiScaleManager : Node {
     public void OnScaleUpButtonPressed() {
         if (UiControl == null) return;
         if (_presetIndex < ZoomPresets.Length - 1) {
+            SaveFloatingPanelPositions();
             _presetIndex++;
             _targetZoom = ZoomPresets[_presetIndex];
             _needsProcess = true;
@@ -101,6 +142,7 @@ public partial class UiScaleManager : Node {
     public void OnScaleDownButtonPressed() {
         if (UiControl == null) return;
         if (_presetIndex > 0) {
+            SaveFloatingPanelPositions();
             _presetIndex--;
             _targetZoom = ZoomPresets[_presetIndex];
             _needsProcess = true;
