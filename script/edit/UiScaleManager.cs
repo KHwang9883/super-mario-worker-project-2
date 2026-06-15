@@ -53,6 +53,7 @@ public partial class UiScaleManager : Node {
         _presetIndex = FindClosestPreset(savedZoom);
         _currentZoom = ZoomPresets[_presetIndex];
         _targetZoom = _currentZoom;
+        UpdateButtonStates();
         UpdateLayout();
     }
 
@@ -124,6 +125,11 @@ public partial class UiScaleManager : Node {
         }
     }
 
+    private void UpdateButtonStates() {
+        UiScaleUpButton!.Disabled = _presetIndex >= ZoomPresets.Length - 1;
+        UiScaleDownButton!.Disabled = _presetIndex <= 0;
+    }
+
     private void SaveZoom() {
         ConfigManager.SmwpConfig.SetValue("edit", "ui_zoom", _currentZoom);
         ConfigManager.SaveConfig();
@@ -134,6 +140,7 @@ public partial class UiScaleManager : Node {
         if (_presetIndex < ZoomPresets.Length - 1) {
             SaveFloatingPanelPositions();
             _presetIndex++;
+            UpdateButtonStates();
             _targetZoom = ZoomPresets[_presetIndex];
             _needsProcess = true;
         }
@@ -144,6 +151,7 @@ public partial class UiScaleManager : Node {
         if (_presetIndex > 0) {
             SaveFloatingPanelPositions();
             _presetIndex--;
+            UpdateButtonStates();
             _targetZoom = ZoomPresets[_presetIndex];
             _needsProcess = true;
         }
