@@ -34,7 +34,10 @@ public partial class CameraScaleManager : Node {
         CameraScaleUpButton.Pressed += OnScaleUpButtonPressed;
         CameraScaleDownButton.Pressed += OnScaleDownButtonPressed;
 
-        _presetIndex = FindClosestPreset(1.0f);
+        ConfigManager.LoadConfig();
+        float savedZoom = (float)ConfigManager.SmwpConfig.GetValue("edit", "camera_zoom", 1.0f);
+
+        _presetIndex = FindClosestPreset(savedZoom);
         _currentZoom = ZoomPresets[_presetIndex];
         _targetZoom = _currentZoom;
         ApplyZoom();
@@ -49,6 +52,7 @@ public partial class CameraScaleManager : Node {
             _currentZoom = _targetZoom;
             ApplyZoom();
             _needsProcess = false;
+            SaveZoom();
         }
     }
 
@@ -68,6 +72,11 @@ public partial class CameraScaleManager : Node {
     private void ApplyZoom() {
         if (Camera == null) return;
         Camera.Zoom = new Vector2(_currentZoom, _currentZoom);
+    }
+
+    private void SaveZoom() {
+        ConfigManager.SmwpConfig.SetValue("edit", "camera_zoom", _currentZoom);
+        ConfigManager.SaveConfig();
     }
 
     public void OnScaleUpButtonPressed() {

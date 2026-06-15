@@ -37,6 +37,11 @@ public partial class UiScaleManager : Node {
             UiControl.AnchorBottom = 0;
         }
         _presetIndex = FindClosestPreset(1.0f);
+
+        ConfigManager.LoadConfig();
+        float savedZoom = (float)ConfigManager.SmwpConfig.GetValue("edit", "ui_zoom", 1.0f);
+
+        _presetIndex = FindClosestPreset(savedZoom);
         _currentZoom = ZoomPresets[_presetIndex];
         _targetZoom = _currentZoom;
         UpdateLayout();
@@ -51,6 +56,7 @@ public partial class UiScaleManager : Node {
             _currentZoom = _targetZoom;
             UpdateLayout();
             _needsProcess = false;
+            SaveZoom();
         }
     }
 
@@ -76,6 +82,11 @@ public partial class UiScaleManager : Node {
         var viewportSize = GetViewport().GetVisibleRect().Size;
         UiControl.Scale = new Vector2(_currentZoom, _currentZoom);
         UiControl.Size = viewportSize / _currentZoom;
+    }
+
+    private void SaveZoom() {
+        ConfigManager.SmwpConfig.SetValue("edit", "ui_zoom", _currentZoom);
+        ConfigManager.SaveConfig();
     }
 
     public void OnScaleUpButtonPressed() {
