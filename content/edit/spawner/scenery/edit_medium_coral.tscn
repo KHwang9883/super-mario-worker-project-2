@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dfay1l62liew1"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_tool"]
+[ext_resource type="Texture2D" uid="uid://460qhqvwlbcj" path="res://content/level/scenery/texture/re_scenery.png" id="2_tex"]
+[ext_resource type="PackedScene" uid="uid://coydtpdr4yyk0" path="res://content/level/scenery/scene/medium_coral.tscn" id="3_scene"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("2_tex")
+region = Rect2(192, 128, 32, 32)
+
+[node name="EditMediumCoral" type="Node2D" unique_id=1500000006]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_tool")]
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerType = 1
+SpawnerIdStr = "140"
+SpawnScene = ExtResource("3_scene")
+
+[node name="Parallax2D" type="Parallax2D" parent="EditObjectBase" unique_id=2007861906]
+repeat_size = Vector2(0, 32)
+repeat_times = 4
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EditObjectBase/Parallax2D" unique_id=280193775]
+texture = SubResource("AtlasTexture_1")
+metadata/_edit_lock_ = true
+
+[editable path="EditObjectBase"]

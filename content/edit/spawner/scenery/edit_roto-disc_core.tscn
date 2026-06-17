@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://byfxhvo2s0j3g"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_tool"]
+[ext_resource type="Texture2D" uid="uid://cklt741csu754" path="res://content/level/enemy/roto-disc/roto-disc_center.png" id="2_tex"]
+[ext_resource type="PackedScene" uid="uid://7h1fe5wip7om" path="res://content/level/scenery/scene/roto-disc_core.tscn" id="3_scene"]
+
+[node name="EditRotoDiscCore" type="Node2D" unique_id=1500000033]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_tool")]
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = ExtResource("2_tex")
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerType = 1
+SpawnerIdStr = "138"
+SpawnScene = ExtResource("3_scene")
+
+[editable path="EditObjectBase"]

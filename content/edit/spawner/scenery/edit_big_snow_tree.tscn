@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dfappwjiwuxtn"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_mmwfg"]
+[ext_resource type="Texture2D" uid="uid://460qhqvwlbcj" path="res://content/level/scenery/texture/re_scenery.png" id="2_qhuh3"]
+[ext_resource type="PackedScene" uid="uid://cwmmrcmb6gqni" path="res://content/level/scenery/scene/big_snow_tree.tscn" id="3_qhuh3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iahoi"]
+atlas = ExtResource("2_qhuh3")
+region = Rect2(224, 0, 32, 96)
+
+[node name="EditBigSnowTree" type="Node2D" unique_id=402301403]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_mmwfg")]
+
+[node name="LeftTopMarker2D" parent="EditObjectBase" index="0" unique_id=763045300]
+position = Vector2(-16, -32)
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = SubResource("AtlasTexture_iahoi")
+offset = Vector2(0, -48)
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerType = 1
+SpawnerIdStr = "127"
+SpawnScene = ExtResource("3_qhuh3")
+
+[node name="Area2D" parent="EditObjectBase" index="3" unique_id=1744609504]
+position = Vector2(0, -16)
+
+[editable path="EditObjectBase"]

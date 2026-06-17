@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cs1j5uk1hd5m6"]
+
+[ext_resource type="PackedScene" uid="uid://dxxxnvh0r5nfq" path="res://content/edit/spawner/edit_object_base.tscn" id="1_tool"]
+[ext_resource type="Texture2D" uid="uid://dxoiigch25lua" path="res://content/level/scenery/texture/dark_fence.png" id="2_tex"]
+[ext_resource type="PackedScene" uid="uid://7hx8wh5i2vqt" path="res://content/level/scenery/scene/dark_fence.tscn" id="3_scene"]
+
+[node name="EditDarkFence" type="Node2D" unique_id=1500000027]
+
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_tool")]
+
+[node name="LeftTopMarker2D" parent="EditObjectBase" index="0" unique_id=763045300]
+position = Vector2(-16, -32)
+
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+texture = ExtResource("2_tex")
+offset = Vector2(0, -16)
+
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
+SpawnerType = 1
+SpawnerIdStr = "111"
+SpawnScene = ExtResource("3_scene")
+
+[node name="Area2D" parent="EditObjectBase" index="3" unique_id=1744609504]
+position = Vector2(0, -16)
+
+[editable path="EditObjectBase"]
