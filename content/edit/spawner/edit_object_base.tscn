@@ -22,7 +22,6 @@ metadata/_custom_type_script = "uid://6qtxm78dyjcg"
 [node name="Area2D" type="Area2D" parent="." unique_id=1744609504]
 collision_layer = 65536
 collision_mask = 0
-metadata/edit_object = &""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1145159192]
 shape = ExtResource("3_mf5j6")
