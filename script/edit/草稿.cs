@@ -27,6 +27,7 @@ public partial class 草稿 : Node {
             _cachedTexture = sprite2DNode.Texture;
             var spawnerObjectNode = _cachedEditInstance.GetNode<SpawnerObject>("EditObjectBase/SpawnerObject");
             _cachedEditType = spawnerObjectNode.SpawnerType;
+            _cachedId = spawnerObjectNode.SpawnerIdStr;
         }
     }
 
@@ -35,6 +36,7 @@ public partial class 草稿 : Node {
     private Texture2D? _cachedTexture;
     private Vector2 _cachedOffset;
     private SpawnerObject.SpawnerEditType _cachedEditType = SpawnerObject.SpawnerEditType.Buddy;
+    private string _cachedId = "";
 
     [Export]
     public Sprite2D? PlaceObjectSprite2D;
@@ -114,7 +116,13 @@ public partial class 草稿 : Node {
                 
                 if (spawnerObject == null) continue;
 
-                if (spawnerObject.SpawnerType == _cachedEditType) return false;
+                if (spawnerObject.SpawnerType == _cachedEditType) {
+                    // 遇到同类型物品检测到重叠不允许放置
+                    if (_cachedEditType != SpawnerObject.SpawnerEditType.Mark) return false;
+                    
+                    // Marks以SpawnerIdStr为单位进行检测
+                    if (spawnerObject.SpawnerIdStr == _cachedId) return false;
+                }
                 
                 /*
                 if (collider.As<Node>().HasMeta("edit_object")) {
