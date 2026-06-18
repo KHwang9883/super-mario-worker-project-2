@@ -25,6 +25,8 @@ public partial class 草稿 : Node {
             _cachedOffset = marker2DNode.Position;
             var sprite2DNode = _cachedEditInstance.GetNode<Sprite2D>("EditObjectBase/Sprite2D");
             _cachedTexture = sprite2DNode.Texture;
+            var spawnerObjectNode = _cachedEditInstance.GetNode<SpawnerObject>("EditObjectBase/SpawnerObject");
+            _cachedEditType = spawnerObjectNode.SpawnerType;
         }
     }
 
@@ -32,6 +34,7 @@ public partial class 草稿 : Node {
     private Node? _cachedEditInstance;
     private Texture2D? _cachedTexture;
     private Vector2 _cachedOffset;
+    private SpawnerObject.SpawnerEditType _cachedEditType = SpawnerObject.SpawnerEditType.Buddy;
 
     [Export]
     public Sprite2D? PlaceObjectSprite2D;
@@ -102,12 +105,17 @@ public partial class 草稿 : Node {
         query.Position = cursorWorldPos;
         query.CollideWithAreas = true;
         query.CollideWithBodies = false;
-        query.CollisionMask = 1 << 6;
+        query.CollisionMask = 1 << 16;
         var results = space.IntersectPoint(query);
         if (results.Count == 0) return true;
         foreach (var result in results) {
             if (result.TryGetValue("collider", out var collider)) {
-                return false;
+                var spawnerObject = collider.As<Node>().GetNodeOrNull<SpawnerObject>("%SpawnerObject");
+                
+                if (spawnerObject == null) continue;
+
+                if (spawnerObject.SpawnerType == _cachedEditType) return false;
+                
                 /*
                 if (collider.As<Node>().HasMeta("edit_object")) {
                     GD.Print("Can't place object!");
