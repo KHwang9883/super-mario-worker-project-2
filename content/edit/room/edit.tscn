@@ -10,22 +10,623 @@
 [ext_resource type="Script" uid="uid://bba0c5v8msl8v" path="res://script/edit/Grid.cs" id="8_bleet"]
 [ext_resource type="PackedScene" uid="uid://d3tuxhxlbamt0" path="res://content/edit/spawner/enemy/goomba/edit_goomba.tscn" id="8_xls68"]
 [ext_resource type="Texture2D" uid="uid://d1efjf687jw0q" path="res://icon_old.png" id="9_bm6o2"]
-[ext_resource type="Script" uid="uid://c0r7y46iaodoj" path="res://script/edit/PaintObjectButtonSet.cs" id="9_g0j6g"]
-[ext_resource type="Texture2D" uid="uid://c30tfd1s6hvdn" path="res://content/level/enemy/goomba/goomba.png" id="9_o4c2q"]
 [ext_resource type="Script" uid="uid://bpo4opa3yumi7" path="res://script/edit/UndoRedoManager.cs" id="12_ercmj"]
+[ext_resource type="PackedScene" uid="uid://dquj5ns4hy2mu" path="res://content/edit/edit_object_choose.tscn" id="12_pe1k0"]
+[ext_resource type="PackedScene" uid="uid://c8imb1aq4o0wx" path="res://content/edit/spawner/enemy/troopa/troopa_walking/edit_troopa_green.tscn" id="13_5xdc1"]
+[ext_resource type="Texture2D" uid="uid://chuec77o8a5yn" path="res://content/level/enemy/troopa/troopa_walking/troopa_green.png" id="14_14e7h"]
 [ext_resource type="Script" uid="uid://dje4ngrnrumyc" path="res://script/edit/PanelDrag.cs" id="14_m2sx4"]
+[ext_resource type="PackedScene" uid="uid://bjshn4e08nkbj" path="res://content/edit/spawner/enemy/troopa/troopa_walking/edit_troopa_red.tscn" id="15_14e7h"]
 [ext_resource type="Texture2D" uid="uid://b7wkh1o3wjcxe" path="res://content/edit/placeholder_edit_panel.png" id="15_ue8vf"]
+[ext_resource type="Texture2D" uid="uid://b4gqaa07gr0oq" path="res://content/level/enemy/troopa/troopa_walking/troopa_red.png" id="16_4mfue"]
 [ext_resource type="PackedScene" uid="uid://crtu68t2l58hf" path="res://content/ui/ui_margin_container.tscn" id="16_o43ii"]
+[ext_resource type="PackedScene" uid="uid://cxqwqnd8a2aa0" path="res://content/edit/spawner/enemy/troopa/troopa_fly/edit_troopa_fly_green.tscn" id="17_i1k03"]
+[ext_resource type="PackedScene" uid="uid://37f2oij1riie" path="res://content/edit/spawner/enemy/troopa/troopa_walking/edit_troopa_blue.tscn" id="17_ivjbd"]
 [ext_resource type="Script" uid="uid://kpa6em5ps166" path="res://script/edit/CameraScaleManager.cs" id="17_mxsbj"]
 [ext_resource type="Script" uid="uid://dd67yp3cdje8e" path="res://script/edit/EditCameraMovement.cs" id="17_o43ii"]
+[ext_resource type="Texture2D" uid="uid://cs65iy4m45oyw" path="res://content/level/enemy/troopa/troopa_walking/troopa_blue.png" id="18_hp03k"]
+[ext_resource type="Texture2D" uid="uid://cthgyajriutuc" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_green.png" id="18_i4spi"]
 [ext_resource type="Script" uid="uid://c1bpgfs618xml" path="res://script/edit/UiScaleManager.cs" id="18_t2ycv"]
+[ext_resource type="PackedScene" uid="uid://c4esatxbckw4h" path="res://content/edit/spawner/enemy/troopa/troopa_fly/edit_troopa_fly_red.tscn" id="19_ivjbd"]
+[ext_resource type="Texture2D" uid="uid://cf2kwk5tqyywc" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_red.png" id="20_hp03k"]
+[ext_resource type="PackedScene" uid="uid://bvlurdd2mh17n" path="res://content/edit/spawner/enemy/piranha_plant/edit_piranha_plant_green_flip_v.tscn" id="45_xclfj"]
+[ext_resource type="PackedScene" uid="uid://by6fp4lbn7isc" path="res://content/edit/spawner/enemy/bullet_bill/edit_bullet_bill_cannon_flip_v.tscn" id="72_00t1q"]
+[ext_resource type="PackedScene" uid="uid://c8nbya7ggbl3e" path="res://content/edit/spawner/enemy/bullet_bill/edit_missile_bill_cannon_flip_v.tscn" id="75_xclfj"]
+[ext_resource type="PackedScene" uid="uid://cdra4m4xwaovv" path="res://content/edit/spawner/block/question_block/edit_question_block_beetroot.tscn" id="197_vg0yh"]
+[ext_resource type="Texture2D" uid="uid://v4t3jxyn785" path="res://content/level/block/brick/brick.png" id="new_ext_100"]
+[ext_resource type="Texture2D" uid="uid://clns3f200bbhn" path="res://content/level/block/coin_brick/edit_coin_brick.png" id="new_ext_101"]
+[ext_resource type="Texture2D" uid="uid://cvhpffld8vvx5" path="res://content/level/block/edit_question_block.png" id="new_ext_102"]
+[ext_resource type="Texture2D" uid="uid://b8ufbini7thyd" path="res://content/level/block/ice_block/ice_block.png" id="new_ext_103"]
+[ext_resource type="Texture2D" uid="uid://bdvq66jd0y6cu" path="res://content/level/block/message_block/message_block.png" id="new_ext_104"]
+[ext_resource type="Texture2D" uid="uid://bbleghncfqo2b" path="res://content/level/bonus/beetroot/beetroot.png" id="new_ext_105"]
+[ext_resource type="Texture2D" uid="uid://cuk5knhghyiik" path="res://content/level/bonus/coin/edit_coin.png" id="new_ext_106"]
+[ext_resource type="Texture2D" uid="uid://80pb0n7fyml6" path="res://content/level/bonus/fire_flower/fire_flower.png" id="new_ext_107"]
+[ext_resource type="Texture2D" uid="uid://bn7qbcsp3xe51" path="res://content/level/bonus/lui/lui.png" id="new_ext_108"]
+[ext_resource type="Texture2D" uid="uid://dm27nawonnxyh" path="res://content/level/bonus/mushroom/mushroom.png" id="new_ext_109"]
+[ext_resource type="Texture2D" uid="uid://6tphawnqs6fp" path="res://content/level/bonus/mushroom_life/mushroom_life.png" id="new_ext_110"]
+[ext_resource type="Texture2D" uid="uid://csb0kyl7vmlsu" path="res://content/level/bonus/poisonous_mushroom/poisonous_mushroom.png" id="new_ext_111"]
+[ext_resource type="Texture2D" uid="uid://klfyb7w6rtku" path="res://content/level/bonus/super_leaf/super_leaf.png" id="new_ext_112"]
+[ext_resource type="Texture2D" uid="uid://drw5odpgj3kva" path="res://content/level/bonus/super_star/super_star.png" id="new_ext_113"]
+[ext_resource type="Texture2D" uid="uid://b38qojpmrx2dv" path="res://content/level/enemy/boo/boo.png" id="new_ext_114"]
+[ext_resource type="Texture2D" uid="uid://cmi7wiiermvca" path="res://content/level/enemy/bullet_bill/bullet_bill_cannon.png" id="new_ext_115"]
+[ext_resource type="Texture2D" uid="uid://dtykcvcseq842" path="res://content/level/enemy/bullet_bill/edit_missile_bill_cannon.png" id="new_ext_116"]
+[ext_resource type="Texture2D" uid="uid://66meqaywp1ch" path="res://content/level/enemy/cheep-cheep/cheep-cheep_blue.png" id="new_ext_117"]
+[ext_resource type="Texture2D" uid="uid://1p4mde7kurkp" path="res://content/level/enemy/cheep-cheep/cheep-cheep_green.png" id="new_ext_118"]
+[ext_resource type="Texture2D" uid="uid://bryb2sxf30n8v" path="res://content/level/enemy/cheep-cheep/cheep-cheep_red.png" id="new_ext_119"]
+[ext_resource type="Texture2D" uid="uid://dnoosi0vgipfv" path="res://content/level/enemy/cheep-cheep/cheep-cheep_spike.png" id="new_ext_120"]
+[ext_resource type="Texture2D" uid="uid://mkoly5p6sbcl" path="res://content/level/enemy/hammer_bro/fire_bro.png" id="new_ext_121"]
+[ext_resource type="Texture2D" uid="uid://b70ursjs8g36f" path="res://content/level/enemy/hammer_bro/hammer_bro.png" id="new_ext_122"]
+[ext_resource type="Texture2D" uid="uid://53eehyol5jig" path="res://content/level/enemy/koopa/koopa.png" id="new_ext_123"]
+[ext_resource type="Texture2D" uid="uid://d3ecln7pv6bo8" path="res://content/level/enemy/lakitu/lakitu.png" id="new_ext_124"]
+[ext_resource type="Texture2D" uid="uid://cpk2bbp0t2vtv" path="res://content/level/enemy/lakitu/lakitu_stone.png" id="new_ext_125"]
+[ext_resource type="Texture2D" uid="uid://2edet5tfn3qq" path="res://content/level/enemy/lava/lava_piece.png" id="new_ext_126"]
+[ext_resource type="Texture2D" uid="uid://cx12038t8ot4y" path="res://content/level/enemy/piranha_plant/piranha_plant_blue.png" id="new_ext_127"]
+[ext_resource type="Texture2D" uid="uid://b6w64t6t3e13o" path="res://content/level/enemy/piranha_plant/piranha_plant_fire.png" id="new_ext_128"]
+[ext_resource type="Texture2D" uid="uid://b28y4grnkehdj" path="res://content/level/enemy/piranha_plant/piranha_plant_green.png" id="new_ext_129"]
+[ext_resource type="Texture2D" uid="uid://fp1lrcqrvk5j" path="res://content/level/enemy/piranha_plant/piranha_plant_stone.png" id="new_ext_130"]
+[ext_resource type="Texture2D" uid="uid://dd06ty3n4qt07" path="res://content/level/enemy/podoboo/podoboo.png" id="new_ext_131"]
+[ext_resource type="Texture2D" uid="uid://dl8vjok5s2jtl" path="res://content/level/enemy/roto-disc/roto-disc.png" id="new_ext_132"]
+[ext_resource type="Texture2D" uid="uid://cklt741csu754" path="res://content/level/enemy/roto-disc/roto-disc_center.png" id="new_ext_133"]
+[ext_resource type="Texture2D" uid="uid://bwdjhqdroox4o" path="res://content/level/enemy/spike/coral_electric.png" id="new_ext_134"]
+[ext_resource type="Texture2D" uid="uid://dfgi13bjl7e8y" path="res://content/level/enemy/spike/spike_mf.png" id="new_ext_135"]
+[ext_resource type="Texture2D" uid="uid://d1wy24w5drx2a" path="res://content/level/enemy/spike/spike_mw.png" id="new_ext_136"]
+[ext_resource type="Texture2D" uid="uid://b7ol2hory2nw4" path="res://content/level/enemy/spike/spike_piranha.png" id="new_ext_137"]
+[ext_resource type="Texture2D" uid="uid://c8id45lbmq788" path="res://content/level/enemy/spiny/spiny.png" id="new_ext_138"]
+[ext_resource type="Texture2D" uid="uid://ck5su1mm04usw" path="res://content/level/enemy/spiny_stone/spiny_stone.png" id="new_ext_139"]
+[ext_resource type="Texture2D" uid="uid://bfbac4qsh4kkb" path="res://content/level/enemy/thwomp/thwomp.png" id="new_ext_140"]
+[ext_resource type="Texture2D" uid="uid://pau5gllvaqrr" path="res://content/level/enemy/troopa/shell/shell_beetle.png" id="new_ext_141"]
+[ext_resource type="Texture2D" uid="uid://d2cjxtjvxmw83" path="res://content/level/enemy/troopa/shell/shell_blue.png" id="new_ext_142"]
+[ext_resource type="Texture2D" uid="uid://6pahwp3aegan" path="res://content/level/enemy/troopa/shell/shell_green.png" id="new_ext_143"]
+[ext_resource type="Texture2D" uid="uid://beu17ywe4r7u8" path="res://content/level/enemy/troopa/shell/shell_red.png" id="new_ext_144"]
+[ext_resource type="Texture2D" uid="uid://bx2mfyon04o57" path="res://content/level/enemy/troopa/shell/shell_yellow.png" id="new_ext_145"]
+[ext_resource type="Texture2D" uid="uid://b2kxb062f181l" path="res://content/level/enemy/troopa/troopa_walking/buzzy_beetle.png" id="new_ext_146"]
+[ext_resource type="Texture2D" uid="uid://cqpakwwv6sres" path="res://content/level/enemy/troopa/troopa_walking/troopa_yellow.png" id="new_ext_147"]
+[ext_resource type="Texture2D" uid="uid://cnuberf305gsi" path="res://content/level/facility/checkpoint/checkpoint.png" id="new_ext_148"]
+[ext_resource type="Texture2D" uid="uid://vx853ae7hvse" path="res://content/level/facility/giant_gate/giant_gate.png" id="new_ext_149"]
+[ext_resource type="Texture2D" uid="uid://ddpy71r4lydw8" path="res://content/level/facility/legde/platform_solid.png" id="new_ext_150"]
+[ext_resource type="Texture2D" uid="uid://ctgoinhohi0te" path="res://content/level/facility/legde/platform_solid_player.png" id="new_ext_151"]
+[ext_resource type="Texture2D" uid="uid://cwt7jk5e5rygs" path="res://content/level/facility/platform/plarform_horizontal_marker.png" id="new_ext_152"]
+[ext_resource type="Texture2D" uid="uid://k6j8qciuuw1n" path="res://content/level/facility/platform/platform_sheet.png" id="new_ext_153"]
+[ext_resource type="Texture2D" uid="uid://ctbo3ckyiiiqn" path="res://content/level/facility/sealer/edit_sealer.png" id="new_ext_154"]
+[ext_resource type="Texture2D" uid="uid://dd6j0tdrxhhio" path="res://content/level/facility/solid/solid.png" id="new_ext_155"]
+[ext_resource type="Texture2D" uid="uid://b8cct5v376sj8" path="res://content/level/player/edit_player.png" id="new_ext_156"]
+[ext_resource type="Texture2D" uid="uid://cglgnto78yvr4" path="res://content/level/scenery/texture/bridge_fence.png" id="new_ext_157"]
+[ext_resource type="Texture2D" uid="uid://bkir48byw1olb" path="res://content/level/scenery/texture/bright_light.png" id="new_ext_158"]
+[ext_resource type="Texture2D" uid="uid://c6m1j3uvg1gqg" path="res://content/level/scenery/texture/cloud_dark.png" id="new_ext_159"]
+[ext_resource type="Texture2D" uid="uid://dniphrciu570q" path="res://content/level/scenery/texture/cloud_desert.png" id="new_ext_160"]
+[ext_resource type="Texture2D" uid="uid://boki7wecidgb5" path="res://content/level/scenery/texture/cloud_grey.png" id="new_ext_161"]
+[ext_resource type="Texture2D" uid="uid://t2id5lqq3w20" path="res://content/level/scenery/texture/cloud_orange.png" id="new_ext_162"]
+[ext_resource type="Texture2D" uid="uid://b2cdctnaskkjk" path="res://content/level/scenery/texture/cloud_white.png" id="new_ext_163"]
+[ext_resource type="Texture2D" uid="uid://dxoiigch25lua" path="res://content/level/scenery/texture/dark_fence.png" id="new_ext_164"]
+[ext_resource type="Texture2D" uid="uid://ds8w77a7p4v7w" path="res://content/level/scenery/texture/fence.png" id="new_ext_165"]
+[ext_resource type="Texture2D" uid="uid://do7e3o4rxs4qi" path="res://content/level/scenery/texture/grass_dark.png" id="new_ext_166"]
+[ext_resource type="Texture2D" uid="uid://q06jlhtqouka" path="res://content/level/scenery/texture/grass_desert.png" id="new_ext_167"]
+[ext_resource type="Texture2D" uid="uid://c2k1w80nlmcb7" path="res://content/level/scenery/texture/grass_green.png" id="new_ext_168"]
+[ext_resource type="Texture2D" uid="uid://bete6rrqe2h2f" path="res://content/level/scenery/texture/grass_red.png" id="new_ext_169"]
+[ext_resource type="Texture2D" uid="uid://dy4iu2qiii5ne" path="res://content/level/scenery/texture/grass_white.png" id="new_ext_170"]
+[ext_resource type="Texture2D" uid="uid://c36ifxwwp62y" path="res://content/level/scenery/texture/lava_fall.png" id="new_ext_171"]
+[ext_resource type="Texture2D" uid="uid://460qhqvwlbcj" path="res://content/level/scenery/texture/re_scenery.png" id="new_ext_172"]
+[ext_resource type="Texture2D" uid="uid://c0g141y4pna8f" path="res://content/level/scenery/texture/snow_fence.png" id="new_ext_173"]
+[ext_resource type="PackedScene" uid="uid://2att2dx0hqw4" path="res://content/edit/spawner/block/brick/edit_brick.tscn" id="new_ext_174"]
+[ext_resource type="PackedScene" uid="uid://c3dfaoje5p1ct" path="res://content/edit/spawner/block/coin_brick/edit_coin_brick.tscn" id="new_ext_175"]
+[ext_resource type="PackedScene" uid="uid://cruikh23vw7vi" path="res://content/edit/spawner/block/ice_block/edit_ice_block.tscn" id="new_ext_176"]
+[ext_resource type="PackedScene" uid="uid://bxv0qpf8svykm" path="res://content/edit/spawner/block/message_block/edit_message_block.tscn" id="new_ext_177"]
+[ext_resource type="PackedScene" uid="uid://dgya7g6084dee" path="res://content/edit/spawner/block/question_block/edit_question_block.tscn" id="new_ext_178"]
+[ext_resource type="PackedScene" uid="uid://bah55k73ys7og" path="res://content/edit/spawner/block/question_block/edit_question_block_beetroot_hidden.tscn" id="new_ext_179"]
+[ext_resource type="PackedScene" uid="uid://chk0ft21yv2p8" path="res://content/edit/spawner/block/question_block/edit_question_block_fire_flower.tscn" id="new_ext_180"]
+[ext_resource type="PackedScene" uid="uid://c50geli3ldtrn" path="res://content/edit/spawner/block/question_block/edit_question_block_fire_flower_hidden.tscn" id="new_ext_181"]
+[ext_resource type="PackedScene" uid="uid://60dknwiuhox1" path="res://content/edit/spawner/block/question_block/edit_question_block_lui.tscn" id="new_ext_182"]
+[ext_resource type="PackedScene" uid="uid://t6kajxsbmco0" path="res://content/edit/spawner/block/question_block/edit_question_block_lui_hidden.tscn" id="new_ext_183"]
+[ext_resource type="PackedScene" uid="uid://f2igu8m6563s" path="res://content/edit/spawner/block/question_block/edit_question_block_mushroom_life.tscn" id="new_ext_184"]
+[ext_resource type="PackedScene" uid="uid://d0kia0ssjjlxx" path="res://content/edit/spawner/block/question_block/edit_question_block_mushroom_life_hidden.tscn" id="new_ext_185"]
+[ext_resource type="PackedScene" uid="uid://bml5au5jevr6g" path="res://content/edit/spawner/block/question_block/edit_question_block_poisonous_mushroom.tscn" id="new_ext_186"]
+[ext_resource type="PackedScene" uid="uid://b6vv3iwjv01hk" path="res://content/edit/spawner/block/question_block/edit_question_block_poisonous_mushroom_hidden.tscn" id="new_ext_187"]
+[ext_resource type="PackedScene" uid="uid://momgcrdw6t1v" path="res://content/edit/spawner/block/question_block/edit_question_block_super_leaf.tscn" id="new_ext_188"]
+[ext_resource type="PackedScene" uid="uid://bdtmwj4owpuj7" path="res://content/edit/spawner/block/question_block/edit_question_block_super_leaf_hidden.tscn" id="new_ext_189"]
+[ext_resource type="PackedScene" uid="uid://skdw15g21j7k" path="res://content/edit/spawner/block/question_block/edit_question_block_super_star.tscn" id="new_ext_190"]
+[ext_resource type="PackedScene" uid="uid://7pl3m8ofetta" path="res://content/edit/spawner/block/question_block/edit_question_block_super_star_hidden.tscn" id="new_ext_191"]
+[ext_resource type="PackedScene" uid="uid://bdf8lme0ujrj4" path="res://content/edit/spawner/bonus/edit_beetroot.tscn" id="new_ext_192"]
+[ext_resource type="PackedScene" uid="uid://dhsjuei8thlbw" path="res://content/edit/spawner/bonus/edit_coin.tscn" id="new_ext_193"]
+[ext_resource type="PackedScene" uid="uid://7vs2mtw43f5p" path="res://content/edit/spawner/bonus/edit_fire_flower.tscn" id="new_ext_194"]
+[ext_resource type="PackedScene" uid="uid://dtlsfuqqrbr3y" path="res://content/edit/spawner/bonus/edit_lui.tscn" id="new_ext_195"]
+[ext_resource type="PackedScene" uid="uid://gifqovkrxy8b" path="res://content/edit/spawner/bonus/edit_mushroom.tscn" id="new_ext_196"]
+[ext_resource type="PackedScene" uid="uid://ckl4xggs124a2" path="res://content/edit/spawner/bonus/edit_mushroom_life.tscn" id="new_ext_197"]
+[ext_resource type="PackedScene" uid="uid://bcutkrmwdleyo" path="res://content/edit/spawner/bonus/edit_poisonous_mushroom.tscn" id="new_ext_198"]
+[ext_resource type="PackedScene" uid="uid://duwo0xfuvoj0e" path="res://content/edit/spawner/bonus/edit_super_leaf.tscn" id="new_ext_199"]
+[ext_resource type="PackedScene" uid="uid://b0nl5ci4pg4xk" path="res://content/edit/spawner/bonus/edit_super_star.tscn" id="new_ext_200"]
+[ext_resource type="PackedScene" uid="uid://dl6j2ra5yi4ed" path="res://content/edit/spawner/enemy/boo/edit_boo.tscn" id="new_ext_201"]
+[ext_resource type="PackedScene" uid="uid://dji8fq742l24h" path="res://content/edit/spawner/enemy/bullet_bill/edit_bullet_bill_cannon.tscn" id="new_ext_202"]
+[ext_resource type="PackedScene" uid="uid://clytpgamiu12o" path="res://content/edit/spawner/enemy/bullet_bill/edit_missile_bill_cannon.tscn" id="new_ext_203"]
+[ext_resource type="PackedScene" uid="uid://boahntrayw8pn" path="res://content/edit/spawner/enemy/cheep-cheep/edit_cheep-cheep_blue.tscn" id="new_ext_204"]
+[ext_resource type="PackedScene" uid="uid://cb4l6hf32wqy4" path="res://content/edit/spawner/enemy/cheep-cheep/edit_cheep-cheep_green.tscn" id="new_ext_205"]
+[ext_resource type="PackedScene" uid="uid://b5wgy1ikhyuwf" path="res://content/edit/spawner/enemy/cheep-cheep/edit_cheep-cheep_red.tscn" id="new_ext_206"]
+[ext_resource type="PackedScene" uid="uid://cahilwkv6lx1m" path="res://content/edit/spawner/enemy/cheep-cheep/edit_cheep-cheep_spike.tscn" id="new_ext_207"]
+[ext_resource type="PackedScene" uid="uid://cq36wmrcaiwyv" path="res://content/edit/spawner/enemy/hammer_bro/edit_fireball_bro.tscn" id="new_ext_208"]
+[ext_resource type="PackedScene" uid="uid://cqakhn6pvpw68" path="res://content/edit/spawner/enemy/hammer_bro/edit_hammer_bro.tscn" id="new_ext_209"]
+[ext_resource type="PackedScene" uid="uid://b4glsc6poc7mo" path="res://content/edit/spawner/enemy/koopa/edit_koopa.tscn" id="new_ext_210"]
+[ext_resource type="PackedScene" uid="uid://dlp4q4y4jk4v8" path="res://content/edit/spawner/enemy/lakitu/edit_lakitu.tscn" id="new_ext_211"]
+[ext_resource type="PackedScene" uid="uid://b0m1qr3y58brt" path="res://content/edit/spawner/enemy/lakitu/edit_lakitu_stone.tscn" id="new_ext_212"]
+[ext_resource type="PackedScene" uid="uid://cm2it7aq1bwt" path="res://content/edit/spawner/enemy/lava/edit_lava_piece.tscn" id="new_ext_213"]
+[ext_resource type="PackedScene" uid="uid://dggqrlvdy6g4a" path="res://content/edit/spawner/enemy/piranha_plant/edit_piranha_plant_blue.tscn" id="new_ext_214"]
+[ext_resource type="PackedScene" uid="uid://dqe3plfntpw2s" path="res://content/edit/spawner/enemy/piranha_plant/edit_piranha_plant_blue_flip_v.tscn" id="new_ext_215"]
+[ext_resource type="PackedScene" uid="uid://bv8g2y36kk3d4" path="res://content/edit/spawner/enemy/piranha_plant/edit_piranha_plant_fire.tscn" id="new_ext_216"]
+[ext_resource type="PackedScene" uid="uid://cbmqu6fn3nia" path="res://content/edit/spawner/enemy/piranha_plant/edit_piranha_plant_fire_flip_v.tscn" id="new_ext_217"]
+[ext_resource type="PackedScene" uid="uid://b2h1sarbuqnrq" path="res://content/edit/spawner/enemy/piranha_plant/edit_piranha_plant_green.tscn" id="new_ext_218"]
+[ext_resource type="PackedScene" uid="uid://bvm6cepyl3vm3" path="res://content/edit/spawner/enemy/piranha_plant/edit_piranha_plant_stone.tscn" id="new_ext_219"]
+[ext_resource type="PackedScene" uid="uid://br2kqvhu4twv0" path="res://content/edit/spawner/enemy/piranha_plant/edit_piranha_plant_stone_flip_v.tscn" id="new_ext_220"]
+[ext_resource type="PackedScene" uid="uid://ivxtx4d8aehs" path="res://content/edit/spawner/enemy/podoboo/edit_podoboo.tscn" id="new_ext_221"]
+[ext_resource type="PackedScene" uid="uid://drb74ico6go1p" path="res://content/edit/spawner/enemy/roto-disc/edit_roto-disc_still.tscn" id="new_ext_222"]
+[ext_resource type="PackedScene" uid="uid://btxnrn66pl45b" path="res://content/edit/spawner/enemy/spike/edit_coral_electric.tscn" id="new_ext_223"]
+[ext_resource type="PackedScene" uid="uid://dpm2n8n8et16o" path="res://content/edit/spawner/enemy/spike/edit_spike_mf.tscn" id="new_ext_224"]
+[ext_resource type="PackedScene" uid="uid://dgty7wqy8t385" path="res://content/edit/spawner/enemy/spike/edit_spike_mw.tscn" id="new_ext_225"]
+[ext_resource type="PackedScene" uid="uid://ddhur6iufu16r" path="res://content/edit/spawner/enemy/spike/edit_spike_piranha.tscn" id="new_ext_226"]
+[ext_resource type="PackedScene" uid="uid://dkuxaeqrjvxdj" path="res://content/edit/spawner/enemy/spiny/edit_spiny.tscn" id="new_ext_227"]
+[ext_resource type="PackedScene" uid="uid://bvjnndxoadkm1" path="res://content/edit/spawner/enemy/spiny/edit_spiny_stone.tscn" id="new_ext_228"]
+[ext_resource type="PackedScene" uid="uid://biqmmg775rva2" path="res://content/edit/spawner/enemy/thwomp/edit_thwomp.tscn" id="new_ext_229"]
+[ext_resource type="PackedScene" uid="uid://ypkn5b5t31vl" path="res://content/edit/spawner/enemy/troopa/shell/edit_shell_moving_beetle.tscn" id="new_ext_230"]
+[ext_resource type="PackedScene" uid="uid://x1yq0f77pw56" path="res://content/edit/spawner/enemy/troopa/shell/edit_shell_moving_blue.tscn" id="new_ext_231"]
+[ext_resource type="PackedScene" uid="uid://cs02qdt4h1p2s" path="res://content/edit/spawner/enemy/troopa/shell/edit_shell_moving_green.tscn" id="new_ext_232"]
+[ext_resource type="PackedScene" uid="uid://dyoiiomh22b8s" path="res://content/edit/spawner/enemy/troopa/shell/edit_shell_moving_red.tscn" id="new_ext_233"]
+[ext_resource type="PackedScene" uid="uid://ckcldakvkgaq7" path="res://content/edit/spawner/enemy/troopa/shell/edit_shell_moving_yellow.tscn" id="new_ext_234"]
+[ext_resource type="PackedScene" uid="uid://dxbc7ceknwgry" path="res://content/edit/spawner/enemy/troopa/shell/edit_shell_static_beetle.tscn" id="new_ext_235"]
+[ext_resource type="PackedScene" uid="uid://oad3dnhcuuev" path="res://content/edit/spawner/enemy/troopa/shell/edit_shell_static_blue.tscn" id="new_ext_236"]
+[ext_resource type="PackedScene" uid="uid://bpgrjqsucex5j" path="res://content/edit/spawner/enemy/troopa/shell/edit_shell_static_green.tscn" id="new_ext_237"]
+[ext_resource type="PackedScene" uid="uid://gn6oysl126tv" path="res://content/edit/spawner/enemy/troopa/shell/edit_shell_static_red.tscn" id="new_ext_238"]
+[ext_resource type="PackedScene" uid="uid://50ae1v1pmh61" path="res://content/edit/spawner/enemy/troopa/shell/edit_shell_static_yellow.tscn" id="new_ext_239"]
+[ext_resource type="PackedScene" uid="uid://br8hblfps7rtg" path="res://content/edit/spawner/enemy/troopa/troopa_walking/edit_buzzy_beetle.tscn" id="new_ext_240"]
+[ext_resource type="PackedScene" uid="uid://biqmwxxauwlx" path="res://content/edit/spawner/enemy/troopa/troopa_walking/edit_troopa_yellow.tscn" id="new_ext_241"]
+[ext_resource type="PackedScene" uid="uid://l6yov1vlj5ds" path="res://content/edit/spawner/facility/edit_checkpoint.tscn" id="new_ext_242"]
+[ext_resource type="PackedScene" uid="uid://dobtftpk20pul" path="res://content/edit/spawner/facility/edit_giant_gate.tscn" id="new_ext_243"]
+[ext_resource type="PackedScene" uid="uid://wmysaw0ojtlp" path="res://content/edit/spawner/facility/edit_obstacle_half.tscn" id="new_ext_244"]
+[ext_resource type="PackedScene" uid="uid://cskjrn33q16t3" path="res://content/edit/spawner/facility/edit_platform_solid.tscn" id="new_ext_245"]
+[ext_resource type="PackedScene" uid="uid://bioqgmed182or" path="res://content/edit/spawner/facility/edit_platform_solid_player.tscn" id="new_ext_246"]
+[ext_resource type="PackedScene" uid="uid://cl4ex1swg44x3" path="res://content/edit/spawner/facility/edit_sealer.tscn" id="new_ext_247"]
+[ext_resource type="PackedScene" uid="uid://3ywkrxwdcy56" path="res://content/edit/spawner/facility/edit_solid.tscn" id="new_ext_248"]
+[ext_resource type="PackedScene" uid="uid://bds1nsim4looq" path="res://content/edit/spawner/facility/platform/edit_plarform_horizontal_marker.tscn" id="new_ext_249"]
+[ext_resource type="PackedScene" uid="uid://cakfd2rorx7mw" path="res://content/edit/spawner/facility/platform/edit_platform_fall_red_long.tscn" id="new_ext_250"]
+[ext_resource type="PackedScene" uid="uid://bijrglje0hupg" path="res://content/edit/spawner/player/edit_player.tscn" id="new_ext_251"]
+[ext_resource type="PackedScene" uid="uid://cevx7gv11rdow" path="res://content/edit/spawner/scenery/edit_base_bottom.tscn" id="new_ext_252"]
+[ext_resource type="PackedScene" uid="uid://cspk32sn0n4nk" path="res://content/edit/spawner/scenery/edit_big_dark_tree.tscn" id="new_ext_253"]
+[ext_resource type="PackedScene" uid="uid://k3ouixmhj6c1" path="res://content/edit/spawner/scenery/edit_big_desert_tree.tscn" id="new_ext_254"]
+[ext_resource type="PackedScene" uid="uid://cphbhd7hsyaju" path="res://content/edit/spawner/scenery/edit_big_dusk_tree.tscn" id="new_ext_255"]
+[ext_resource type="PackedScene" uid="uid://qfqjwjs61kj3" path="res://content/edit/spawner/scenery/edit_big_night_tree.tscn" id="new_ext_256"]
+[ext_resource type="PackedScene" uid="uid://dfappwjiwuxtn" path="res://content/edit/spawner/scenery/edit_big_snow_tree.tscn" id="new_ext_257"]
+[ext_resource type="PackedScene" uid="uid://dmjxnn3vqxsyi" path="res://content/edit/spawner/scenery/edit_big_tree.tscn" id="new_ext_258"]
+[ext_resource type="PackedScene" uid="uid://plw58dm3jycs" path="res://content/edit/spawner/scenery/edit_bridge_fence.tscn" id="new_ext_259"]
+[ext_resource type="PackedScene" uid="uid://cs0ci7ik3pdpj" path="res://content/edit/spawner/scenery/edit_bright_light.tscn" id="new_ext_260"]
+[ext_resource type="PackedScene" uid="uid://5ts2tajop58e" path="res://content/edit/spawner/scenery/edit_bush.tscn" id="new_ext_261"]
+[ext_resource type="PackedScene" uid="uid://cl3woqsqk50bx" path="res://content/edit/spawner/scenery/edit_cannon_base.tscn" id="new_ext_262"]
+[ext_resource type="PackedScene" uid="uid://bywsc2vm78dbn" path="res://content/edit/spawner/scenery/edit_castle.tscn" id="new_ext_263"]
+[ext_resource type="PackedScene" uid="uid://givdtwe6slxp" path="res://content/edit/spawner/scenery/edit_cloud.tscn" id="new_ext_264"]
+[ext_resource type="PackedScene" uid="uid://bppkujj07t0j3" path="res://content/edit/spawner/scenery/edit_dark_bush.tscn" id="new_ext_265"]
+[ext_resource type="PackedScene" uid="uid://dnl6q0u6ikl6y" path="res://content/edit/spawner/scenery/edit_dark_cloud.tscn" id="new_ext_266"]
+[ext_resource type="PackedScene" uid="uid://cyy3f346ig5i0" path="res://content/edit/spawner/scenery/edit_dark_coral.tscn" id="new_ext_267"]
+[ext_resource type="PackedScene" uid="uid://cs1j5uk1hd5m6" path="res://content/edit/spawner/scenery/edit_dark_fence.tscn" id="new_ext_268"]
+[ext_resource type="PackedScene" uid="uid://bd2b740nn0bsy" path="res://content/edit/spawner/scenery/edit_dark_tree.tscn" id="new_ext_269"]
+[ext_resource type="PackedScene" uid="uid://6wwca7v3jd2l" path="res://content/edit/spawner/scenery/edit_desert_bush.tscn" id="new_ext_270"]
+[ext_resource type="PackedScene" uid="uid://cwqrbhhku4o0f" path="res://content/edit/spawner/scenery/edit_desert_cloud.tscn" id="new_ext_271"]
+[ext_resource type="PackedScene" uid="uid://ct4mxyxvmd6cd" path="res://content/edit/spawner/scenery/edit_desert_tree.tscn" id="new_ext_272"]
+[ext_resource type="PackedScene" uid="uid://bjhju0ybbxm55" path="res://content/edit/spawner/scenery/edit_disabled_light.tscn" id="new_ext_273"]
+[ext_resource type="PackedScene" uid="uid://cgfl0lyrcyn4y" path="res://content/edit/spawner/scenery/edit_dusk_bush.tscn" id="new_ext_274"]
+[ext_resource type="PackedScene" uid="uid://bkr1lvtbtmwy3" path="res://content/edit/spawner/scenery/edit_dusk_cloud.tscn" id="new_ext_275"]
+[ext_resource type="PackedScene" uid="uid://baqjeld7eu1ow" path="res://content/edit/spawner/scenery/edit_dusk_tree.tscn" id="new_ext_276"]
+[ext_resource type="PackedScene" uid="uid://bsur13rnbqwkp" path="res://content/edit/spawner/scenery/edit_fence.tscn" id="new_ext_277"]
+[ext_resource type="PackedScene" uid="uid://caq0y62sd3s7u" path="res://content/edit/spawner/scenery/edit_fort.tscn" id="new_ext_278"]
+[ext_resource type="PackedScene" uid="uid://bpg005ow8nko3" path="res://content/edit/spawner/scenery/edit_grey_cloud.tscn" id="new_ext_279"]
+[ext_resource type="PackedScene" uid="uid://bq0eyo5nsniuk" path="res://content/edit/spawner/scenery/edit_lava_fall.tscn" id="new_ext_280"]
+[ext_resource type="PackedScene" uid="uid://dqwwth2f4r6gs" path="res://content/edit/spawner/scenery/edit_light_coral.tscn" id="new_ext_281"]
+[ext_resource type="PackedScene" uid="uid://dfay1l62liew1" path="res://content/edit/spawner/scenery/edit_medium_coral.tscn" id="new_ext_282"]
+[ext_resource type="PackedScene" uid="uid://d2bgai3qnjq5n" path="res://content/edit/spawner/scenery/edit_night_tree.tscn" id="new_ext_283"]
+[ext_resource type="PackedScene" uid="uid://d3vgdiuiwvlxr" path="res://content/edit/spawner/scenery/edit_portrait.tscn" id="new_ext_284"]
+[ext_resource type="PackedScene" uid="uid://bp042q5x3xgdc" path="res://content/edit/spawner/scenery/edit_reverse_base.tscn" id="new_ext_285"]
+[ext_resource type="PackedScene" uid="uid://byfxhvo2s0j3g" path="res://content/edit/spawner/scenery/edit_roto-disc_core.tscn" id="new_ext_286"]
+[ext_resource type="PackedScene" uid="uid://ccl4lmglq3hvb" path="res://content/edit/spawner/scenery/edit_small_tree.tscn" id="new_ext_287"]
+[ext_resource type="PackedScene" uid="uid://c1t03oom4wq1c" path="res://content/edit/spawner/scenery/edit_snow_bush.tscn" id="new_ext_288"]
+[ext_resource type="PackedScene" uid="uid://chx0a8ekydq3c" path="res://content/edit/spawner/scenery/edit_snow_castle.tscn" id="new_ext_289"]
+[ext_resource type="PackedScene" uid="uid://dll64pvpfai1r" path="res://content/edit/spawner/scenery/edit_snow_fence.tscn" id="new_ext_290"]
+[ext_resource type="PackedScene" uid="uid://bp4q7ox384vm7" path="res://content/edit/spawner/scenery/edit_snow_fort.tscn" id="new_ext_291"]
+[ext_resource type="PackedScene" uid="uid://cfmtye4smcu06" path="res://content/edit/spawner/scenery/edit_snow_tree.tscn" id="new_ext_292"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm6o2"]
 radius = 1.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3sodo"]
-atlas = ExtResource("9_o4c2q")
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4alm"]
+atlas = ExtResource("14_14e7h")
+region = Rect2(0, 0, 32, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx5sd"]
+atlas = ExtResource("16_4mfue")
+region = Rect2(0, 0, 32, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x65ne"]
+atlas = ExtResource("18_hp03k")
+region = Rect2(0, 0, 32, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_48"]
+atlas = ExtResource("new_ext_147")
+region = Rect2(0, 0, 32, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_47"]
+atlas = ExtResource("new_ext_146")
 region = Rect2(0, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8jqr"]
+atlas = ExtResource("18_i4spi")
+region = Rect2(0, 51, 33, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo80q"]
+atlas = ExtResource("20_hp03k")
+region = Rect2(0, 51, 33, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldpyd"]
+atlas = ExtResource("new_ext_143")
+region = Rect2(0, 0, 36, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr3f8"]
+atlas = ExtResource("new_ext_144")
+region = Rect2(0, 0, 33, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_op20h"]
+atlas = ExtResource("new_ext_142")
+region = Rect2(0, 0, 33, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4k1rq"]
+atlas = ExtResource("new_ext_145")
+region = Rect2(0, 0, 35, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7fno"]
+atlas = ExtResource("new_ext_141")
+region = Rect2(0, 0, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_44"]
+atlas = ExtResource("new_ext_143")
+region = Rect2(1, 31, 35, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_45"]
+atlas = ExtResource("new_ext_144")
+region = Rect2(0, 28, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_43"]
+atlas = ExtResource("new_ext_142")
+region = Rect2(0, 84, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_46"]
+atlas = ExtResource("new_ext_145")
+region = Rect2(1, 31, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_42"]
+atlas = ExtResource("new_ext_141")
+region = Rect2(0, 28, 33, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_30"]
+atlas = ExtResource("new_ext_129")
+region = Rect2(0, 49, 33, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_29"]
+atlas = ExtResource("new_ext_128")
+region = Rect2(0, 49, 33, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_28"]
+atlas = ExtResource("new_ext_127")
+region = Rect2(0, 49, 33, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_31"]
+atlas = ExtResource("new_ext_130")
+region = Rect2(0, 49, 33, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_25"]
+atlas = ExtResource("new_ext_124")
+region = Rect2(0, 0, 31, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_26"]
+atlas = ExtResource("new_ext_125")
+region = Rect2(0, 0, 31, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_39"]
+atlas = ExtResource("new_ext_138")
+region = Rect2(0, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_40"]
+atlas = ExtResource("new_ext_139")
+region = Rect2(0, 0, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_38"]
+atlas = ExtResource("new_ext_137")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_37"]
+atlas = ExtResource("new_ext_136")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_36"]
+atlas = ExtResource("new_ext_135")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_33"]
+atlas = ExtResource("new_ext_132")
+region = Rect2(2, 1, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_16"]
+atlas = ExtResource("new_ext_115")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_17"]
+atlas = ExtResource("new_ext_116")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_18"]
+atlas = ExtResource("new_ext_117")
+region = Rect2(0, 0, 33, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_19"]
+atlas = ExtResource("new_ext_118")
+region = Rect2(0, 0, 33, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_20"]
+atlas = ExtResource("new_ext_119")
+region = Rect2(0, 0, 33, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_21"]
+atlas = ExtResource("new_ext_120")
+region = Rect2(0, 0, 33, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_35"]
+atlas = ExtResource("new_ext_134")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_22"]
+atlas = ExtResource("new_ext_121")
+region = Rect2(37, 1, 37, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_23"]
+atlas = ExtResource("new_ext_122")
+region = Rect2(37, 1, 37, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_15"]
+atlas = ExtResource("new_ext_114")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_12"]
+atlas = ExtResource("new_ext_111")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_27"]
+atlas = ExtResource("new_ext_126")
+region = Rect2(0, 2, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_32"]
+atlas = ExtResource("new_ext_131")
+region = Rect2(0, 0, 29, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_41"]
+atlas = ExtResource("new_ext_140")
+region = Rect2(0, 0, 64, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_24"]
+atlas = ExtResource("new_ext_123")
+region = Rect2(0, 0, 67, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("new_ext_163")
+region = Rect2(0, 0, 100, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hfr8"]
+atlas = ExtResource("new_ext_168")
+region = Rect2(0, 0, 65, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vg0yh"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(0, 32, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73e38"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(32, 0, 32, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_66"]
+atlas = ExtResource("new_ext_165")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gn5m"]
+atlas = ExtResource("new_ext_161")
+region = Rect2(0, 0, 65, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3731"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(64, 32, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_78"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(96, 0, 32, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmiuk"]
+atlas = ExtResource("new_ext_158")
+region = Rect2(0, 0, 54, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5ylf"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(160, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0sry"]
+atlas = ExtResource("new_ext_162")
+region = Rect2(0, 0, 65, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjcft"]
+atlas = ExtResource("new_ext_169")
+region = Rect2(0, 0, 65, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gvwf"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(128, 32, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_77"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(160, 0, 32, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_58"]
+atlas = ExtResource("new_ext_157")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_92"]
+atlas = ExtResource("new_ext_159")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8fan"]
+atlas = ExtResource("new_ext_166")
+region = Rect2(0, 0, 66, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4je67"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(320, 32, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_75"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(352, 0, 32, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_65"]
+atlas = ExtResource("new_ext_164")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puw3g"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r78bl"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(128, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw1gq"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(128, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_34"]
+atlas = ExtResource("new_ext_133")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0tw1"]
+atlas = ExtResource("new_ext_170")
+region = Rect2(0, 0, 65, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3e8n"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(192, 32, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iahoi"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(224, 0, 32, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6tj7"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(704, 160, 192, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33ex7"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(640, 160, 320, 352)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00t1q"]
+atlas = ExtResource("new_ext_167")
+region = Rect2(0, 0, 65, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xclfj"]
+atlas = ExtResource("new_ext_160")
+region = Rect2(0, 0, 65, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3wku"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(256, 32, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_76"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(288, 0, 32, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5y02"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(384, 160, 192, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfae4"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(320, 160, 320, 352)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro2mq"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(384, 0, 128, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eybko"]
+atlas = ExtResource("new_ext_171")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xoyyh"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(192, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpa0e"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(192, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0o80o"]
+atlas = ExtResource("new_ext_172")
+region = Rect2(192, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_57"]
+atlas = ExtResource("new_ext_156")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_49"]
+atlas = ExtResource("new_ext_148")
+region = Rect2(0, 0, 107, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_50"]
+atlas = ExtResource("new_ext_149")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_56"]
+atlas = ExtResource("new_ext_155")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_51"]
+atlas = ExtResource("new_ext_150")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_52"]
+atlas = ExtResource("new_ext_151")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_55"]
+atlas = ExtResource("new_ext_154")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_53"]
+atlas = ExtResource("new_ext_152")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_54"]
+atlas = ExtResource("new_ext_153")
+region = Rect2(0, 0, 160, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_4"]
+atlas = ExtResource("new_ext_103")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_5"]
+atlas = ExtResource("new_ext_104")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_10"]
+atlas = ExtResource("new_ext_109")
+region = Rect2(0, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_8"]
+atlas = ExtResource("new_ext_107")
+region = Rect2(0, 0, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_6"]
+atlas = ExtResource("new_ext_105")
+region = Rect2(0, 0, 29, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_9"]
+atlas = ExtResource("new_ext_108")
+region = Rect2(0, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_13"]
+atlas = ExtResource("new_ext_112")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_14"]
+atlas = ExtResource("new_ext_113")
+region = Rect2(0, 0, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_11"]
+atlas = ExtResource("new_ext_110")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_3"]
+atlas = ExtResource("new_ext_102")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_1"]
+atlas = ExtResource("new_ext_100")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_2"]
+atlas = ExtResource("new_ext_101")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_7"]
+atlas = ExtResource("new_ext_106")
 
 [node name="Edit" type="Node2D" unique_id=1819291731]
 
@@ -96,15 +697,21 @@ grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_lock_ = true
 
-[node name="BackToTitleButton" parent="EditCanvasLayer/Control" unique_id=423046640 instance=ExtResource("5_cjcar")]
+[node name="BackToTitle" parent="EditCanvasLayer/Control" unique_id=1008609264 instance=ExtResource("16_o43ii")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -160.0
+offset_left = -40.0
 offset_right = 0.0
-offset_bottom = 32.0
 grow_horizontal = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="BackToTitleButton" parent="EditCanvasLayer/Control/BackToTitle" unique_id=423046640 instance=ExtResource("5_cjcar")]
+layout_mode = 2
 text = "BACK TO TITLE"
 alignment = 1
 script = ExtResource("6_mmjt4")
@@ -114,48 +721,1279 @@ anchors_preset = 0
 offset_right = 80.0
 offset_bottom = 68.0
 
-[node name="GridContainer" type="GridContainer" parent="EditCanvasLayer/Control/ObjectTableControl" unique_id=1285520759]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 33.0
-offset_bottom = 31.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Buddies" type="VBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl" unique_id=633320903]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="EditGoomba" type="Control" parent="EditCanvasLayer/Control/ObjectTableControl" unique_id=365475971]
-custom_minimum_size = Vector2(64, 64)
-anchors_preset = 0
-offset_left = 66.0
-offset_top = 41.0
-offset_right = 130.0
-offset_bottom = 105.0
+[node name="HBoxContainer" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies" unique_id=1311151507]
+layout_mode = 2
 
-[node name="Button" type="Button" parent="EditCanvasLayer/Control/ObjectTableControl/EditGoomba" unique_id=142661815]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
+[node name="EditGoomba" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer" unique_id=331817807 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
 
-[node name="PaintObjectSet" type="Node" parent="EditCanvasLayer/Control/ObjectTableControl/EditGoomba/Button" unique_id=1513094551]
-script = ExtResource("9_g0j6g")
-PaintObjectScene = ExtResource("8_xls68")
+[node name="HBoxContainer2" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies" unique_id=1866165755]
+layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/EditGoomba" unique_id=400972423]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_3sodo")
-expand_mode = 1
-stretch_mode = 3
-metadata/_edit_lock_ = true
+[node name="EditTroopaGreen" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2" unique_id=2089743686 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditTroopaGreen/Button" parent_id_path=PackedInt32Array(2089743686, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("13_5xdc1")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditTroopaGreen" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_b4alm")
+
+[node name="EditTroopaRed" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2" unique_id=766727802 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditTroopaRed/Button" parent_id_path=PackedInt32Array(766727802, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("15_14e7h")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditTroopaRed" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_mx5sd")
+
+[node name="EditTroopaBlue" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2" unique_id=1702236787 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditTroopaBlue/Button" parent_id_path=PackedInt32Array(1702236787, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("17_ivjbd")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditTroopaBlue" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_x65ne")
+
+[node name="EditTroopaYellow" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2" unique_id=-294967229 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditTroopaYellow/Button" parent_id_path=PackedInt32Array(-294967229, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_241")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditTroopaYellow" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_48")
+
+[node name="EditBuzzyBeetle" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2" unique_id=-294967230 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditBuzzyBeetle/Button" parent_id_path=PackedInt32Array(-294967230, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_240")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditBuzzyBeetle" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_47")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies" unique_id=1795120336]
+layout_mode = 2
+
+[node name="EditTroopaFlyGreen" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer3" unique_id=821945690 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer3/EditTroopaFlyGreen/Button" parent_id_path=PackedInt32Array(821945690, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("17_i1k03")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer3/EditTroopaFlyGreen" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_f8jqr")
+
+[node name="EditTroopaFlyRed" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer3" unique_id=391221412 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer3/EditTroopaFlyRed/Button" parent_id_path=PackedInt32Array(391221412, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("19_ivjbd")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer3/EditTroopaFlyRed" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_vo80q")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies" unique_id=1693398632]
+layout_mode = 2
+
+[node name="EditShellStaticGreen" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4" unique_id=-294967233 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticGreen/Button" parent_id_path=PackedInt32Array(-294967233, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_237")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticGreen" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_ldpyd")
+
+[node name="EditShellStaticRed" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4" unique_id=-294967232 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticRed/Button" parent_id_path=PackedInt32Array(-294967232, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_238")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticRed" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_rr3f8")
+
+[node name="EditShellStaticBlue" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4" unique_id=-294967234 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticBlue/Button" parent_id_path=PackedInt32Array(-294967234, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_236")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticBlue" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_op20h")
+
+[node name="EditShellStaticYellow" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4" unique_id=-294967231 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticYellow/Button" parent_id_path=PackedInt32Array(-294967231, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_239")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticYellow" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_4k1rq")
+
+[node name="EditShellStaticBeetle" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4" unique_id=-294967235 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticBeetle/Button" parent_id_path=PackedInt32Array(-294967235, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_235")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticBeetle" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_d7fno")
+
+[node name="HBoxContainer12" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies" unique_id=1450946447]
+layout_mode = 2
+
+[node name="EditShellMovingGreen" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12" unique_id=-294967238 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingGreen/Button" parent_id_path=PackedInt32Array(-294967238, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_232")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingGreen" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_44")
+
+[node name="EditShellMovingRed" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12" unique_id=-294967237 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingRed/Button" parent_id_path=PackedInt32Array(-294967237, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_233")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingRed" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_45")
+
+[node name="EditShellMovingBlue" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12" unique_id=-294967239 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingBlue/Button" parent_id_path=PackedInt32Array(-294967239, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_231")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingBlue" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_43")
+
+[node name="EditShellMovingYellow" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12" unique_id=-294967236 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingYellow/Button" parent_id_path=PackedInt32Array(-294967236, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_234")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingYellow" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_46")
+
+[node name="EditShellMovingBeetle" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12" unique_id=-294967240 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingBeetle/Button" parent_id_path=PackedInt32Array(-294967240, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_230")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingBeetle" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_42")
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies" unique_id=582091203]
+layout_mode = 2
+
+[node name="EditPiranhaPlantGreen" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5" unique_id=-294967252 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5/EditPiranhaPlantGreen/Button" parent_id_path=PackedInt32Array(-294967252, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_218")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5/EditPiranhaPlantGreen" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_30")
+
+[node name="EditPiranhaPlantGreen2" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5" unique_id=1038998268 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5/EditPiranhaPlantGreen2/Button" parent_id_path=PackedInt32Array(1038998268, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("45_xclfj")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5/EditPiranhaPlantGreen2" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_30")
+flip_v = true
+
+[node name="EditPiranhaPlantFire" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5" unique_id=-294967254 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5/EditPiranhaPlantFire/Button" parent_id_path=PackedInt32Array(-294967254, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_216")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5/EditPiranhaPlantFire" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_29")
+
+[node name="EditPiranhaPlantFireFlipV" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5" unique_id=-294967253 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5/EditPiranhaPlantFireFlipV/Button" parent_id_path=PackedInt32Array(-294967253, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_217")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5/EditPiranhaPlantFireFlipV" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_29")
+flip_v = true
+
+[node name="HBoxContainer13" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies" unique_id=357031477]
+layout_mode = 2
+
+[node name="EditPiranhaPlantBlue" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13" unique_id=-294967256 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13/EditPiranhaPlantBlue/Button" parent_id_path=PackedInt32Array(-294967256, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_214")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13/EditPiranhaPlantBlue" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_28")
+
+[node name="EditPiranhaPlantBlueFlipV" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13" unique_id=-294967255 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13/EditPiranhaPlantBlueFlipV/Button" parent_id_path=PackedInt32Array(-294967255, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_215")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13/EditPiranhaPlantBlueFlipV" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_28")
+flip_v = true
+
+[node name="EditPiranhaPlantStone" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13" unique_id=-294967251 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13/EditPiranhaPlantStone/Button" parent_id_path=PackedInt32Array(-294967251, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_219")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13/EditPiranhaPlantStone" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_31")
+
+[node name="EditPiranhaPlantStoneFlipV" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13" unique_id=-294967250 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13/EditPiranhaPlantStoneFlipV/Button" parent_id_path=PackedInt32Array(-294967250, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_220")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13/EditPiranhaPlantStoneFlipV" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_31")
+flip_v = true
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies" unique_id=2105268230]
+layout_mode = 2
+
+[node name="EditLakitu" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11" unique_id=-294967259 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11/EditLakitu/Button" parent_id_path=PackedInt32Array(-294967259, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_211")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11/EditLakitu" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_25")
+
+[node name="EditLakituStone" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11" unique_id=-294967258 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11/EditLakituStone/Button" parent_id_path=PackedInt32Array(-294967258, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_212")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11/EditLakituStone" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_26")
+
+[node name="EditSpiny" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11" unique_id=-294967243 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11/EditSpiny/Button" parent_id_path=PackedInt32Array(-294967243, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_227")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11/EditSpiny" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_39")
+
+[node name="EditSpinyStone" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11" unique_id=-294967242 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11/EditSpinyStone/Button" parent_id_path=PackedInt32Array(-294967242, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_228")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11/EditSpinyStone" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_40")
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies" unique_id=1012301841]
+layout_mode = 2
+
+[node name="EditSpikePiranha" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6" unique_id=-294967244 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6/EditSpikePiranha/Button" parent_id_path=PackedInt32Array(-294967244, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_226")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6/EditSpikePiranha" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_38")
+
+[node name="EditSpikeMw" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6" unique_id=-294967245 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6/EditSpikeMw/Button" parent_id_path=PackedInt32Array(-294967245, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_225")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6/EditSpikeMw" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_37")
+
+[node name="EditSpikeMf" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6" unique_id=-294967246 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6/EditSpikeMf/Button" parent_id_path=PackedInt32Array(-294967246, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_224")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6/EditSpikeMf" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_36")
+
+[node name="EditRotoDiscStill" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6" unique_id=-294967248 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6/EditRotoDiscStill/Button" parent_id_path=PackedInt32Array(-294967248, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_222")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6/EditRotoDiscStill" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_33")
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies" unique_id=707657450]
+layout_mode = 2
+
+[node name="EditBulletBillCannon" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7" unique_id=-294967268 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7/EditBulletBillCannon/Button" parent_id_path=PackedInt32Array(-294967268, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_202")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7/EditBulletBillCannon" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_16")
+
+[node name="EditBulletBillCannonFlipV" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7" unique_id=1414397143 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7/EditBulletBillCannonFlipV/Button" parent_id_path=PackedInt32Array(1414397143, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("72_00t1q")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7/EditBulletBillCannonFlipV" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_16")
+flip_v = true
+
+[node name="EditMissileBillCannon" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7" unique_id=-294967267 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7/EditMissileBillCannon/Button" parent_id_path=PackedInt32Array(-294967267, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_203")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7/EditMissileBillCannon" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_17")
+
+[node name="EditMissileBillCannonFlipV" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7" unique_id=154817823 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7/EditMissileBillCannonFlipV/Button" parent_id_path=PackedInt32Array(154817823, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("75_xclfj")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7/EditMissileBillCannonFlipV" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_17")
+flip_v = true
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies" unique_id=130937922]
+layout_mode = 2
+
+[node name="EditCheepCheepBlue" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8" unique_id=-294967266 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCheepCheepBlue/Button" parent_id_path=PackedInt32Array(-294967266, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_204")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCheepCheepBlue" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_18")
+
+[node name="EditCheepCheepGreen" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8" unique_id=-294967265 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCheepCheepGreen/Button" parent_id_path=PackedInt32Array(-294967265, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_205")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCheepCheepGreen" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_19")
+
+[node name="EditCheepCheepRed" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8" unique_id=-294967264 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCheepCheepRed/Button" parent_id_path=PackedInt32Array(-294967264, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_206")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCheepCheepRed" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_20")
+
+[node name="EditCheepCheepSpike" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8" unique_id=-294967263 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCheepCheepSpike/Button" parent_id_path=PackedInt32Array(-294967263, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_207")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCheepCheepSpike" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_21")
+
+[node name="EditCoralElectric" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8" unique_id=-294967247 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCoralElectric/Button" parent_id_path=PackedInt32Array(-294967247, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_223")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCoralElectric" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_35")
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies" unique_id=1045049308]
+layout_mode = 2
+
+[node name="EditFireballBro" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9" unique_id=-294967262 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9/EditFireballBro/Button" parent_id_path=PackedInt32Array(-294967262, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_208")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9/EditFireballBro" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_22")
+
+[node name="EditHammerBro" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9" unique_id=-294967261 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9/EditHammerBro/Button" parent_id_path=PackedInt32Array(-294967261, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_209")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9/EditHammerBro" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_23")
+
+[node name="EditBoo" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9" unique_id=-294967269 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9/EditBoo/Button" parent_id_path=PackedInt32Array(-294967269, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_201")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9/EditBoo" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_15")
+
+[node name="EditPoisonousMushroom" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9" unique_id=-294967272 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9/EditPoisonousMushroom/Button" parent_id_path=PackedInt32Array(-294967272, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_198")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9/EditPoisonousMushroom" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_12")
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies" unique_id=1170987841]
+layout_mode = 2
+
+[node name="EditLavaPiece" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10" unique_id=-294967257 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10/EditLavaPiece/Button" parent_id_path=PackedInt32Array(-294967257, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_213")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10/EditLavaPiece" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_27")
+
+[node name="EditPodoboo" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10" unique_id=-294967249 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10/EditPodoboo/Button" parent_id_path=PackedInt32Array(-294967249, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_221")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10/EditPodoboo" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_32")
+
+[node name="EditThwomp" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10" unique_id=-294967241 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10/EditThwomp/Button" parent_id_path=PackedInt32Array(-294967241, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_229")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10/EditThwomp" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_41")
+
+[node name="EditKoopa" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10" unique_id=-294967260 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10/EditKoopa/Button" parent_id_path=PackedInt32Array(-294967260, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_210")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10/EditKoopa" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_24")
+
+[node name="Scenery" type="VBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl" unique_id=161890864]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery" unique_id=13328117]
+layout_mode = 2
+
+[node name="EditCloud" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer" unique_id=-294967206 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditCloud/Button" parent_id_path=PackedInt32Array(-294967206, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_264")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditCloud" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_1")
+
+[node name="EditBush" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer" unique_id=-294967209 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditBush/Button" parent_id_path=PackedInt32Array(-294967209, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_261")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditBush" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_8hfr8")
+
+[node name="EditSmallTree" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer" unique_id=-294967183 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditSmallTree/Button" parent_id_path=PackedInt32Array(-294967183, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_287")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditSmallTree" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_vg0yh")
+
+[node name="EditBigTree" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer" unique_id=-294967212 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditBigTree/Button" parent_id_path=PackedInt32Array(-294967212, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_258")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditBigTree" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_73e38")
+
+[node name="EditFence" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer" unique_id=-294967193 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditFence/Button" parent_id_path=PackedInt32Array(-294967193, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_277")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditFence" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_66")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery" unique_id=547030691]
+layout_mode = 2
+
+[node name="EditGreyCloud" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2" unique_id=-294967191 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditGreyCloud/Button" parent_id_path=PackedInt32Array(-294967191, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_279")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditGreyCloud" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_6gn5m")
+
+[node name="EditNightTree" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2" unique_id=-294967187 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditNightTree/Button" parent_id_path=PackedInt32Array(-294967187, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_283")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditNightTree" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_t3731")
+
+[node name="EditBigNightTree" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2" unique_id=-294967214 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditBigNightTree/Button" parent_id_path=PackedInt32Array(-294967214, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_256")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditBigNightTree" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_78")
+
+[node name="EditBrightLight" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2" unique_id=-294967210 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditBrightLight/Button" parent_id_path=PackedInt32Array(-294967210, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_260")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditBrightLight" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_wmiuk")
+
+[node name="EditDisabledLight" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2" unique_id=-294967197 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditDisabledLight/Button" parent_id_path=PackedInt32Array(-294967197, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_273")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditDisabledLight" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_j5ylf")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery" unique_id=2000538943]
+layout_mode = 2
+
+[node name="EditDuskCloud" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3" unique_id=-294967195 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditDuskCloud/Button" parent_id_path=PackedInt32Array(-294967195, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_275")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditDuskCloud" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_g0sry")
+
+[node name="EditDuskBush" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3" unique_id=-294967196 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditDuskBush/Button" parent_id_path=PackedInt32Array(-294967196, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_274")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditDuskBush" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_hjcft")
+
+[node name="EditDuskTree" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3" unique_id=-294967194 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditDuskTree/Button" parent_id_path=PackedInt32Array(-294967194, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_276")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditDuskTree" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_8gvwf")
+
+[node name="EditBigDuskTree" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3" unique_id=-294967215 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditBigDuskTree/Button" parent_id_path=PackedInt32Array(-294967215, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_255")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditBigDuskTree" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_77")
+
+[node name="EditBridgeFence" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3" unique_id=-294967211 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditBridgeFence/Button" parent_id_path=PackedInt32Array(-294967211, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_259")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditBridgeFence" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_58")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery" unique_id=1362891519]
+layout_mode = 2
+
+[node name="EditDarkCloud" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4" unique_id=-294967204 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditDarkCloud/Button" parent_id_path=PackedInt32Array(-294967204, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_266")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditDarkCloud" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_92")
+
+[node name="EditDarkBush" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4" unique_id=-294967205 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditDarkBush/Button" parent_id_path=PackedInt32Array(-294967205, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_265")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditDarkBush" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_w8fan")
+
+[node name="EditDarkTree" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4" unique_id=-294967201 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditDarkTree/Button" parent_id_path=PackedInt32Array(-294967201, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_269")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditDarkTree" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_4je67")
+
+[node name="EditBigDarkTree" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4" unique_id=-294967217 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditBigDarkTree/Button" parent_id_path=PackedInt32Array(-294967217, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_253")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditBigDarkTree" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_75")
+
+[node name="EditDarkFence" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4" unique_id=-294967202 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditDarkFence/Button" parent_id_path=PackedInt32Array(-294967202, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_268")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditDarkFence" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_65")
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery" unique_id=842250774]
+layout_mode = 2
+
+[node name="EditCannonBase" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5" unique_id=-294967208 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5/EditCannonBase/Button" parent_id_path=PackedInt32Array(-294967208, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_262")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5/EditCannonBase" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_puw3g")
+
+[node name="EditBaseBottom" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5" unique_id=-294967218 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5/EditBaseBottom/Button" parent_id_path=PackedInt32Array(-294967218, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_252")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5/EditBaseBottom" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_r78bl")
+
+[node name="EditReverseBase" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5" unique_id=-294967185 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5/EditReverseBase/Button" parent_id_path=PackedInt32Array(-294967185, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_285")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5/EditReverseBase" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_iw1gq")
+
+[node name="EditRotoDiscCore" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5" unique_id=-294967184 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5/EditRotoDiscCore/Button" parent_id_path=PackedInt32Array(-294967184, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_286")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5/EditRotoDiscCore" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_34")
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery" unique_id=216723139]
+layout_mode = 2
+
+[node name="EditSnowBush" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6" unique_id=-294967182 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowBush/Button" parent_id_path=PackedInt32Array(-294967182, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_288")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowBush" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_v0tw1")
+
+[node name="EditSnowTree" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6" unique_id=-294967178 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowTree/Button" parent_id_path=PackedInt32Array(-294967178, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_292")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowTree" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_e3e8n")
+
+[node name="EditBigSnowTree" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6" unique_id=-294967213 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditBigSnowTree/Button" parent_id_path=PackedInt32Array(-294967213, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_257")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditBigSnowTree" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_iahoi")
+
+[node name="EditSnowFence" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6" unique_id=-294967180 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowFence/Button" parent_id_path=PackedInt32Array(-294967180, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_290")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowFence" index="1" unique_id=977284360]
+texture = ExtResource("new_ext_173")
+
+[node name="EditSnowFort" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6" unique_id=-294967179 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowFort/Button" parent_id_path=PackedInt32Array(-294967179, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_291")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowFort" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_y6tj7")
+
+[node name="EditSnowCastle" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6" unique_id=-294967181 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowCastle/Button" parent_id_path=PackedInt32Array(-294967181, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_289")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowCastle" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_33ex7")
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery" unique_id=1689608023]
+layout_mode = 2
+
+[node name="EditDesertBush" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7" unique_id=-294967200 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7/EditDesertBush/Button" parent_id_path=PackedInt32Array(-294967200, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_270")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7/EditDesertBush" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_00t1q")
+
+[node name="EditDesertCloud" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7" unique_id=-294967199 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7/EditDesertCloud/Button" parent_id_path=PackedInt32Array(-294967199, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_271")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7/EditDesertCloud" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_xclfj")
+
+[node name="EditDesertTree" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7" unique_id=-294967198 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7/EditDesertTree/Button" parent_id_path=PackedInt32Array(-294967198, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_272")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7/EditDesertTree" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_j3wku")
+
+[node name="EditBigDesertTree" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7" unique_id=-294967216 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7/EditBigDesertTree/Button" parent_id_path=PackedInt32Array(-294967216, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_254")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7/EditBigDesertTree" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_76")
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery" unique_id=639204242]
+layout_mode = 2
+
+[node name="EditFort" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8" unique_id=-294967192 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8/EditFort/Button" parent_id_path=PackedInt32Array(-294967192, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_278")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8/EditFort" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_u5y02")
+
+[node name="EditCastle" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8" unique_id=-294967207 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8/EditCastle/Button" parent_id_path=PackedInt32Array(-294967207, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_263")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8/EditCastle" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_jfae4")
+
+[node name="EditPortrait" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8" unique_id=-294967186 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8/EditPortrait/Button" parent_id_path=PackedInt32Array(-294967186, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_284")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8/EditPortrait" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_ro2mq")
+
+[node name="EditLavaFall" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8" unique_id=-294967190 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8/EditLavaFall/Button" parent_id_path=PackedInt32Array(-294967190, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_280")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8/EditLavaFall" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_eybko")
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery" unique_id=2046084286]
+layout_mode = 2
+
+[node name="EditLightCoral" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer9" unique_id=-294967189 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer9/EditLightCoral/Button" parent_id_path=PackedInt32Array(-294967189, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_281")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer9/EditLightCoral" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_xoyyh")
+
+[node name="EditMediumCoral" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer9" unique_id=-294967188 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer9/EditMediumCoral/Button" parent_id_path=PackedInt32Array(-294967188, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_282")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer9/EditMediumCoral" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_vpa0e")
+
+[node name="EditDarkCoral" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer9" unique_id=-294967203 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer9/EditDarkCoral/Button" parent_id_path=PackedInt32Array(-294967203, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_267")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer9/EditDarkCoral" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_0o80o")
+
+[node name="Marks" type="VBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl" unique_id=272116691]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Marks" unique_id=1612351674]
+layout_mode = 2
+
+[node name="EditPlayer" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer" unique_id=-294967219 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer/EditPlayer/Button" parent_id_path=PackedInt32Array(-294967219, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_251")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer/EditPlayer" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_57")
+
+[node name="EditCheckpoint" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer" unique_id=-294967228 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer/EditCheckpoint/Button" parent_id_path=PackedInt32Array(-294967228, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_242")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer/EditCheckpoint" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_49")
+
+[node name="EditGiantGate" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer" unique_id=-294967227 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer/EditGiantGate/Button" parent_id_path=PackedInt32Array(-294967227, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_243")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer/EditGiantGate" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_50")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Marks" unique_id=1132961148]
+layout_mode = 2
+
+[node name="EditSolid_facility_edit_solid" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2" unique_id=-294967222 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditSolid_facility_edit_solid/Button" parent_id_path=PackedInt32Array(-294967222, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_248")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditSolid_facility_edit_solid" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_56")
+
+[node name="EditSolid" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2" unique_id=-294967226 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditSolid/Button" parent_id_path=PackedInt32Array(-294967226, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_244")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditSolid" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_56")
+
+[node name="EditPlatformSolid" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2" unique_id=-294967225 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditPlatformSolid/Button" parent_id_path=PackedInt32Array(-294967225, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_245")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditPlatformSolid" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_51")
+
+[node name="EditPlatformSolidPlayer" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2" unique_id=-294967224 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditPlatformSolidPlayer/Button" parent_id_path=PackedInt32Array(-294967224, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_246")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditPlatformSolidPlayer" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_52")
+
+[node name="EditSealer" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2" unique_id=-294967223 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditSealer/Button" parent_id_path=PackedInt32Array(-294967223, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_247")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditSealer" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_55")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Marks" unique_id=294228680]
+layout_mode = 2
+
+[node name="EditPlarformHorizontalMarker" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer3" unique_id=-294967221 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer3/EditPlarformHorizontalMarker/Button" parent_id_path=PackedInt32Array(-294967221, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_249")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer3/EditPlarformHorizontalMarker" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_53")
+
+[node name="EditPlatformFallRedLong" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer3" unique_id=-294967220 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer3/EditPlatformFallRedLong/Button" parent_id_path=PackedInt32Array(-294967220, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_250")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer3/EditPlatformFallRedLong" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_54")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Marks" unique_id=735969608]
+layout_mode = 2
+
+[node name="EditIceBlock" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer4" unique_id=-294967294 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer4/EditIceBlock/Button" parent_id_path=PackedInt32Array(-294967294, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_176")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer4/EditIceBlock" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_4")
+
+[node name="EditMessageBlock" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer4" unique_id=-294967293 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer4/EditMessageBlock/Button" parent_id_path=PackedInt32Array(-294967293, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_177")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer4/EditMessageBlock" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_5")
+
+[node name="Bonus" type="VBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl" unique_id=1017388336]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus" unique_id=1915683935]
+layout_mode = 2
+
+[node name="EditMushroom" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer" unique_id=-294967274 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditMushroom/Button" parent_id_path=PackedInt32Array(-294967274, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_196")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditMushroom" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_10")
+
+[node name="EditFireFlower" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer" unique_id=-294967276 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditFireFlower/Button" parent_id_path=PackedInt32Array(-294967276, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_194")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditFireFlower" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_8")
+
+[node name="EditBeetroot" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer" unique_id=-294967278 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditBeetroot/Button" parent_id_path=PackedInt32Array(-294967278, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_192")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditBeetroot" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_6")
+
+[node name="EditLui" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer" unique_id=-294967275 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditLui/Button" parent_id_path=PackedInt32Array(-294967275, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_195")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditLui" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_9")
+
+[node name="EditSuperLeaf" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer" unique_id=-294967271 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditSuperLeaf/Button" parent_id_path=PackedInt32Array(-294967271, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_199")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditSuperLeaf" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_13")
+
+[node name="EditSuperStar" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer" unique_id=-294967270 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditSuperStar/Button" parent_id_path=PackedInt32Array(-294967270, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_200")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditSuperStar" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_14")
+
+[node name="EditMushroomLife" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer" unique_id=-294967273 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditMushroomLife/Button" parent_id_path=PackedInt32Array(-294967273, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_197")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditMushroomLife" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_11")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus" unique_id=733754762]
+layout_mode = 2
+
+[node name="EditQuestionBlockPoisonousMushroom" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2" unique_id=-294967284 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockPoisonousMushroom/Button" parent_id_path=PackedInt32Array(-294967284, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_186")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockPoisonousMushroom" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_12")
+
+[node name="EditQuestionBlockFireFlower" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2" unique_id=-294967290 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockFireFlower/Button" parent_id_path=PackedInt32Array(-294967290, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_180")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockFireFlower" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_8")
+
+[node name="EditQuestionBlockBeetrootHidden" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2" unique_id=2084469978 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockBeetrootHidden/Button" parent_id_path=PackedInt32Array(2084469978, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("197_vg0yh")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockBeetrootHidden" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_6")
+
+[node name="EditQuestionBlockLui" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2" unique_id=-294967288 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockLui/Button" parent_id_path=PackedInt32Array(-294967288, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_182")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockLui" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_9")
+
+[node name="EditQuestionBlockSuperLeaf" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2" unique_id=-294967282 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockSuperLeaf/Button" parent_id_path=PackedInt32Array(-294967282, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_188")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockSuperLeaf" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_13")
+
+[node name="EditQuestionBlockSuperStar" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2" unique_id=-294967280 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockSuperStar/Button" parent_id_path=PackedInt32Array(-294967280, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_190")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockSuperStar" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_14")
+
+[node name="EditQuestionBlockMushroomLife" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2" unique_id=-294967286 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockMushroomLife/Button" parent_id_path=PackedInt32Array(-294967286, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_184")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockMushroomLife" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_11")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus" unique_id=1164511957]
+layout_mode = 2
+
+[node name="EditQuestionBlockPoisonousMushroomHidden" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3" unique_id=-294967283 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockPoisonousMushroomHidden/Button" parent_id_path=PackedInt32Array(-294967283, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_187")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockPoisonousMushroomHidden" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_12")
+
+[node name="EditQuestionBlockFireFlowerHidden" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3" unique_id=-294967289 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockFireFlowerHidden/Button" parent_id_path=PackedInt32Array(-294967289, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_181")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockFireFlowerHidden" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_8")
+
+[node name="EditQuestionBlockBeetrootHidden" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3" unique_id=-294967291 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockBeetrootHidden/Button" parent_id_path=PackedInt32Array(-294967291, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_179")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockBeetrootHidden" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_6")
+
+[node name="EditQuestionBlockLuiHidden" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3" unique_id=-294967287 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockLuiHidden/Button" parent_id_path=PackedInt32Array(-294967287, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_183")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockLuiHidden" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_9")
+
+[node name="EditQuestionBlockSuperLeafHidden" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3" unique_id=-294967281 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockSuperLeafHidden/Button" parent_id_path=PackedInt32Array(-294967281, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_189")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockSuperLeafHidden" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_13")
+
+[node name="EditQuestionBlockSuperStarHidden" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3" unique_id=-294967279 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockSuperStarHidden/Button" parent_id_path=PackedInt32Array(-294967279, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_191")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockSuperStarHidden" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_14")
+
+[node name="EditQuestionBlockMushroomLifeHidden" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3" unique_id=-294967285 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockMushroomLifeHidden/Button" parent_id_path=PackedInt32Array(-294967285, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_185")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockMushroomLifeHidden" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_11")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus" unique_id=436983222]
+layout_mode = 2
+
+[node name="EditQuestionBlock" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4" unique_id=-294967292 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4/EditQuestionBlock/Button" parent_id_path=PackedInt32Array(-294967292, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_178")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4/EditQuestionBlock" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_3")
+
+[node name="EditBrick" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4" unique_id=-294967296 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4/EditBrick/Button" parent_id_path=PackedInt32Array(-294967296, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_174")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4/EditBrick" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_1")
+
+[node name="EditCoinBrick" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4" unique_id=-294967295 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4/EditCoinBrick/Button" parent_id_path=PackedInt32Array(-294967295, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_175")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4/EditCoinBrick" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_2")
+
+[node name="EditCoin" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4" unique_id=-294967277 instance=ExtResource("12_pe1k0")]
+layout_mode = 2
+
+[node name="PaintObjectSet" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4/EditCoin/Button" parent_id_path=PackedInt32Array(-294967277, 603000286) index="0" unique_id=2110916783]
+PaintObjectScene = ExtResource("new_ext_193")
+
+[node name="TextureRect" parent="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4/EditCoin" index="1" unique_id=977284360]
+texture = SubResource("AtlasTexture_new_7")
 
 [node name="UndoRedoControl" type="Control" parent="EditCanvasLayer/Control" unique_id=1518039503]
 layout_mode = 1
@@ -195,8 +2033,10 @@ text = "为啥要
 [node name="PanelDrag" type="Panel" parent="EditCanvasLayer/Control" unique_id=451492991]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_right = 170.0
-offset_bottom = 342.0
+offset_left = 652.0
+offset_top = -29.0
+offset_right = 822.0
+offset_bottom = 313.0
 script = ExtResource("14_m2sx4")
 metadata/_custom_type_script = "uid://dje4ngrnrumyc"
 
@@ -210,8 +2050,9 @@ grow_vertical = 2
 texture = ExtResource("15_ue8vf")
 expand_mode = 5
 stretch_mode = 4
+metadata/_edit_lock_ = true
 
-[node name="UiMarginContainer" parent="EditCanvasLayer/Control/PanelDrag" unique_id=1008609264 instance=ExtResource("16_o43ii")]
+[node name="UiMarginContainer" parent="EditCanvasLayer/Control/PanelDrag" unique_id=423389543 instance=ExtResource("16_o43ii")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -325,4 +2166,134 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "-"
 
-[connection signal="pressed" from="EditCanvasLayer/Control/BackToTitleButton" to="EditCanvasLayer/Control/BackToTitleButton" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]
+[connection signal="pressed" from="EditCanvasLayer/Control/BackToTitle/BackToTitleButton" to="EditCanvasLayer/Control/BackToTitle/BackToTitleButton" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]
+
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer/EditGoomba"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditTroopaGreen"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditTroopaRed"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditTroopaBlue"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditTroopaYellow"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditBuzzyBeetle"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer3/EditTroopaFlyGreen"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer3/EditTroopaFlyRed"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticGreen"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticRed"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticBlue"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticYellow"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer4/EditShellStaticBeetle"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingGreen"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingRed"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingBlue"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingYellow"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer12/EditShellMovingBeetle"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5/EditPiranhaPlantGreen"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5/EditPiranhaPlantGreen2"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5/EditPiranhaPlantFire"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer5/EditPiranhaPlantFireFlipV"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13/EditPiranhaPlantBlue"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13/EditPiranhaPlantBlueFlipV"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13/EditPiranhaPlantStone"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer13/EditPiranhaPlantStoneFlipV"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11/EditLakitu"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11/EditLakituStone"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11/EditSpiny"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer11/EditSpinyStone"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6/EditSpikePiranha"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6/EditSpikeMw"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6/EditSpikeMf"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer6/EditRotoDiscStill"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7/EditBulletBillCannon"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7/EditBulletBillCannonFlipV"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7/EditMissileBillCannon"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer7/EditMissileBillCannonFlipV"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCheepCheepBlue"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCheepCheepGreen"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCheepCheepRed"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCheepCheepSpike"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer8/EditCoralElectric"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9/EditFireballBro"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9/EditHammerBro"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9/EditBoo"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer9/EditPoisonousMushroom"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10/EditLavaPiece"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10/EditPodoboo"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10/EditThwomp"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer10/EditKoopa"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditCloud"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditBush"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditSmallTree"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditBigTree"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer/EditFence"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditGreyCloud"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditNightTree"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditBigNightTree"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditBrightLight"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer2/EditDisabledLight"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditDuskCloud"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditDuskBush"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditDuskTree"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditBigDuskTree"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer3/EditBridgeFence"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditDarkCloud"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditDarkBush"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditDarkTree"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditBigDarkTree"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer4/EditDarkFence"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5/EditCannonBase"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5/EditBaseBottom"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5/EditReverseBase"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer5/EditRotoDiscCore"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowBush"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowTree"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditBigSnowTree"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowFence"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowFort"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer6/EditSnowCastle"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7/EditDesertBush"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7/EditDesertCloud"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7/EditDesertTree"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer7/EditBigDesertTree"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8/EditFort"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8/EditCastle"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8/EditPortrait"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer8/EditLavaFall"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer9/EditLightCoral"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer9/EditMediumCoral"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Scenery/HBoxContainer9/EditDarkCoral"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer/EditPlayer"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer/EditCheckpoint"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer/EditGiantGate"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditSolid_facility_edit_solid"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditSolid"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditPlatformSolid"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditPlatformSolidPlayer"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer2/EditSealer"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer3/EditPlarformHorizontalMarker"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer3/EditPlatformFallRedLong"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer4/EditIceBlock"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Marks/HBoxContainer4/EditMessageBlock"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditMushroom"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditFireFlower"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditBeetroot"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditLui"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditSuperLeaf"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditSuperStar"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer/EditMushroomLife"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockPoisonousMushroom"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockFireFlower"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockBeetrootHidden"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockLui"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockSuperLeaf"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockSuperStar"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer2/EditQuestionBlockMushroomLife"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockPoisonousMushroomHidden"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockFireFlowerHidden"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockBeetrootHidden"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockLuiHidden"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockSuperLeafHidden"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockSuperStarHidden"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer3/EditQuestionBlockMushroomLifeHidden"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4/EditQuestionBlock"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4/EditBrick"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4/EditCoinBrick"]
+[editable path="EditCanvasLayer/Control/ObjectTableControl/Bonus/HBoxContainer4/EditCoin"]
