@@ -2,11 +2,20 @@ using Godot;
 using System;
 
 public partial class ContentScaleModeChanger : Node {
+    private Window? _window;
+    
 	public override void _Ready() {
-		GetTree().Root.ContentScaleMode = Window.ContentScaleModeEnum.Disabled;
+        _window = GetTree().Root;
+        bool isMaximized = (_window.Mode == Window.ModeEnum.Maximized);
+        _window.ContentScaleMode = Window.ContentScaleModeEnum.Disabled;
+        Callable.From(() => {
+            if (isMaximized) _window.Mode = Window.ModeEnum.Maximized;
+        }).CallDeferred();
 	}
 
 	public override void _ExitTree() {
-		GetTree().Root.ContentScaleMode = Window.ContentScaleModeEnum.CanvasItems;
+        if (_window == null) return;
+        
+        _window.ContentScaleMode = Window.ContentScaleModeEnum.CanvasItems;
 	}
 }
