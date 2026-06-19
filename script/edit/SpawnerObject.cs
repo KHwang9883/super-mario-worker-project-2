@@ -14,5 +14,7 @@ public partial class SpawnerObject : Node {
     [Export] public string SpawnerIdStr = "";
     [Export] public PackedScene SpawnScene = null!;
     
+    [Export] public Vector2 GridOffset = Vector2.Zero;
+    
     [Export] public GDC.Dictionary<string, string> MetaDict = null!;
 }

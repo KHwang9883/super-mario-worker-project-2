@@ -21,13 +21,14 @@ public partial class 草稿 : Node {
                 return;
             }
             _cachedEditInstance = _currentSpawnerObjectScene.Instantiate();
-            var marker2DNode = _cachedEditInstance.GetNode<Marker2D>("EditObjectBase/LeftTopMarker2D");
-            _cachedOffset = marker2DNode.Position;
             var sprite2DNode = _cachedEditInstance.GetNode<Sprite2D>("EditObjectBase/Sprite2D");
             _cachedTexture = sprite2DNode.Texture;
+            var marker2DNode = _cachedEditInstance.GetNode<Marker2D>("EditObjectBase/LeftTopMarker2D");
+            _cachedOffset = marker2DNode.Position - (sprite2DNode.Position + sprite2DNode.Offset);
             var spawnerObjectNode = _cachedEditInstance.GetNode<SpawnerObject>("EditObjectBase/SpawnerObject");
             _cachedEditType = spawnerObjectNode.SpawnerType;
             _cachedId = spawnerObjectNode.SpawnerIdStr;
+            _cachedGridOffset = spawnerObjectNode.GridOffset;
         }
     }
 
@@ -37,11 +38,11 @@ public partial class 草稿 : Node {
     private Vector2 _cachedOffset;
     private SpawnerObject.SpawnerEditType _cachedEditType = SpawnerObject.SpawnerEditType.Buddy;
     private string _cachedId = "";
+    private Vector2 _cachedGridOffset;
 
     [Export] private Node _commandNode = null!;
 
-    [Export]
-    public Sprite2D? PlaceObjectSprite2D;
+    [Export] public Sprite2D? PlaceObjectSprite2D;
     
     public void PlaceObjectPreview() {
         if (CurrentEditMode is not EditModeType.None and not EditModeType.EraseObject) {
@@ -52,8 +53,8 @@ public partial class 草稿 : Node {
                 return;
             }
             PlaceObjectSprite2D.Texture = _cachedTexture;
-            var cursorPosition = CursorPositionProvider.GetCursorPosition(this);
-            var gridPosition = new Vector2((int)(cursorPosition.X / 32f) * 32, (int)(cursorPosition.Y / 32f) * 32);
+            var cursorPosition = CursorPositionProvider.GetCursorPosition(this) - _cachedGridOffset;
+            var gridPosition = new Vector2((int)(cursorPosition.X / 32f) * 32, (int)(cursorPosition.Y / 32f) * 32) + _cachedGridOffset;
             PlaceObjectSprite2D.Position = gridPosition - _cachedOffset;
         }
     }

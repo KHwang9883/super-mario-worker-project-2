@@ -12,12 +12,19 @@ region = Rect2(0, 49, 33, 48)
 
 [node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_qhkyk")]
 
+[node name="LeftTopMarker2D" parent="EditObjectBase" index="0" unique_id=763045300]
+position = Vector2(-16, 0)
+
 [node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
-position = Vector2(0, -8)
+position = Vector2(0, 8)
 texture = SubResource("AtlasTexture_vko47")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
 SpawnerIdStr = "006"
 SpawnScene = ExtResource("2_48cbr")
+GridOffset = Vector2(16, 0)
+
+[node name="Area2D" parent="EditObjectBase" index="3" unique_id=1744609504]
+position = Vector2(0, 16)
 
 [editable path="EditObjectBase"]
