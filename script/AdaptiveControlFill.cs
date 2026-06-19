@@ -36,31 +36,14 @@ public partial class AdaptiveControlFill : Node {
         if (_viewport == null || _control == null) return;
 
         var window = _control.GetWindow();
+        
         // 如果不是 Disabled 模式，则跳过自适应（留给其他缩放机制处理）
         if (window.ContentScaleMode != Window.ContentScaleModeEnum.Disabled) {
+            _control.Size = DefaultResolution;
             return;
         }
 
         _visibleRect = _viewport.GetVisibleRect();
-
-        if (_visibleRect.Size.X < DefaultResolution.X || _visibleRect.Size.Y < DefaultResolution.Y) {
-            _control.Position = Vector2.Zero;
-            _control.Size = new Vector2(DefaultResolution.X, DefaultResolution.Y);
-
-            window.ContentScaleMode = Window.ContentScaleModeEnum.Viewport;
-            window.ContentScaleAspect = Window.ContentScaleAspectEnum.Expand;
-            window.ContentScaleSize = new Vector2I(DefaultResolution.X, DefaultResolution.Y);
-
-            ProjectSettings.SetSetting("display/window/stretch/mode", "visible_rect");
-            GD.Print($"[{Time.GetTimeStringFromSystem()}] [GameRoomSize] stretch mode: {ProjectSettings.GetSetting("display/window/stretch/mode")}");
-            return;
-        }
-
-        var viewportTransform = _viewport.GetCanvasTransform();
-        var roomPosition = viewportTransform.AffineInverse() * _visibleRect.Position;
-        var roomSize = _visibleRect.Size / viewportTransform.Scale;
-
-        _control.Position = roomPosition;
-        _control.Size = roomSize;
+        _control.Size = _visibleRect.Size;
     }
 }
