@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="5_cjcar"]
 [ext_resource type="Texture2D" uid="uid://dysfyto8dwkpc" path="res://content/level/projectile​/hammer.png" id="5_now24"]
 [ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="6_mmjt4"]
-[ext_resource type="Script" uid="uid://dqikk8qvajpn5" path="res://script/edit/草稿.cs" id="7_cjcar"]
+[ext_resource type="Script" uid="uid://dqikk8qvajpn5" path="res://script/edit/EditManager.cs" id="7_cjcar"]
 [ext_resource type="Script" uid="uid://bba0c5v8msl8v" path="res://script/edit/Grid.cs" id="8_bleet"]
 [ext_resource type="PackedScene" uid="uid://d3tuxhxlbamt0" path="res://content/edit/spawner/enemy/goomba/edit_goomba.tscn" id="8_xls68"]
 [ext_resource type="Texture2D" uid="uid://d1efjf687jw0q" path="res://icon_old.png" id="9_bm6o2"]
@@ -32,6 +32,9 @@
 [ext_resource type="PackedScene" uid="uid://by6fp4lbn7isc" path="res://content/edit/spawner/enemy/bullet_bill/edit_bullet_bill_cannon_flip_v.tscn" id="72_00t1q"]
 [ext_resource type="PackedScene" uid="uid://c8nbya7ggbl3e" path="res://content/edit/spawner/enemy/bullet_bill/edit_missile_bill_cannon_flip_v.tscn" id="75_xclfj"]
 [ext_resource type="PackedScene" uid="uid://cdra4m4xwaovv" path="res://content/edit/spawner/block/question_block/edit_question_block_beetroot.tscn" id="197_vg0yh"]
+[ext_resource type="Script" uid="uid://dtlelidg68oxe" path="res://script/edit/LevelSave.cs" id="226_g0sry"]
+[ext_resource type="Script" uid="uid://b2pggkge3nsdd" path="res://script/edit/LevelLoad.cs" id="227_hjcft"]
+[ext_resource type="Script" uid="uid://dj6as2yv7d26l" path="res://script/edit/LevelSettings.cs" id="228_8gvwf"]
 [ext_resource type="Texture2D" uid="uid://v4t3jxyn785" path="res://content/level/block/brick/brick.png" id="new_ext_100"]
 [ext_resource type="Texture2D" uid="uid://clns3f200bbhn" path="res://content/level/block/coin_brick/edit_coin_brick.png" id="new_ext_101"]
 [ext_resource type="Texture2D" uid="uid://cvhpffld8vvx5" path="res://content/level/block/edit_question_block.png" id="new_ext_102"]
@@ -641,50 +644,58 @@ texture = ExtResource("1_h050v")
 script = ExtResource("4_d1w4j")
 Imitator = ExtResource("5_now24")
 
-[node name="草稿" type="Node" parent="." unique_id=457639303 node_paths=PackedStringArray("_commandNode", "PlaceObjectSprite2D") groups=["edit_node"]]
+[node name="EditManager" type="Node" parent="." unique_id=457639303 node_paths=PackedStringArray("_commandNode", "PlaceObjectSprite2D") groups=["edit_node"]]
 script = ExtResource("7_cjcar")
 CurrentEditMode = 1
 CurrentSpawnerObjectScene = ExtResource("8_xls68")
 _commandNode = NodePath("../CommandsNode")
 PlaceObjectSprite2D = NodePath("PlaceObjectPreview")
 
-[node name="PlaceObjectPreview" type="Sprite2D" parent="草稿" unique_id=1967546011]
+[node name="PlaceObjectPreview" type="Sprite2D" parent="EditManager" unique_id=1967546011]
 modulate = Color(1, 1, 1, 0.28235295)
 texture = ExtResource("9_bm6o2")
 
-[node name="CursorArea2D" type="Area2D" parent="草稿" unique_id=735319348]
+[node name="CursorArea2D" type="Area2D" parent="EditManager" unique_id=735319348]
+process_mode = 4
 collision_layer = 0
 collision_mask = 65536
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="草稿/CursorArea2D" unique_id=614892886]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EditManager/CursorArea2D" unique_id=614892886]
 shape = SubResource("CircleShape2D_bm6o2")
 
-[node name="CursorAreaMovement" type="Node" parent="草稿/CursorArea2D" unique_id=466184049]
+[node name="CursorAreaMovement" type="Node" parent="EditManager/CursorArea2D" unique_id=466184049]
 
 [node name="CommandsNode" type="Node" parent="." unique_id=1104414865 groups=["commands_node"]]
 
 [node name="Blocks" type="TileMapLayer" parent="." unique_id=1540009068]
 visible = false
 
-[node name="Objects" type="Node2D" parent="." unique_id=1884962938]
-
-[node name="Buddies" type="Node2D" parent="Objects" unique_id=718613767]
-
-[node name="Scenery" type="Node2D" parent="Objects" unique_id=2144959000]
-
-[node name="Marks" type="Node2D" parent="Objects" unique_id=355531142]
-
-[node name="Bonus" type="Node2D" parent="Objects" unique_id=15593284]
-
-[node name="LevelConfig" type="Node" parent="." unique_id=1204661431]
+[node name="ObjectsNode2D" type="Node2D" parent="." unique_id=1884962938 groups=["objects_node_2d"]]
 
 [node name="Grid" type="Node2D" parent="." unique_id=1285128187]
 script = ExtResource("8_bleet")
 
 [node name="EditCamera2D" type="Camera2D" parent="." unique_id=730095805]
+limit_left = 0
+limit_top = 0
 
 [node name="EditCameraMovement" type="Node" parent="EditCamera2D" unique_id=19527400]
 script = ExtResource("17_o43ii")
+
+[node name="LevelSave" type="Node" parent="." unique_id=403948996 node_paths=PackedStringArray("Settings", "BlocksTileMapLayer", "ObjectNode2D")]
+script = ExtResource("226_g0sry")
+Settings = NodePath("../LevelSettings")
+BlocksTileMapLayer = NodePath("../Blocks")
+ObjectNode2D = NodePath("../ObjectsNode2D")
+
+[node name="LevelLoad" type="Node" parent="." unique_id=1792912262 node_paths=PackedStringArray("Settings", "BlocksTileMapLayer", "ObjectNode2D")]
+script = ExtResource("227_hjcft")
+Settings = NodePath("../LevelSettings")
+BlocksTileMapLayer = NodePath("../Blocks")
+ObjectNode2D = NodePath("../ObjectsNode2D")
+
+[node name="LevelSettings" type="Node" parent="." unique_id=552836083]
+script = ExtResource("228_8gvwf")
 
 [node name="EditCanvasLayer" type="CanvasLayer" parent="." unique_id=365219437]
 

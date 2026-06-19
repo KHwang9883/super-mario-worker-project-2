@@ -84,6 +84,7 @@ folder_colors={
 edit_cursor=""
 edit_node=""
 commands_node=""
+objects_node_2d=""
 
 [input]
 

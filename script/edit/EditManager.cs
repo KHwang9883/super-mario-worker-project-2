@@ -1,7 +1,7 @@
 using Godot;
 using SMWP.Edit.Command;
 
-public partial class 草稿 : Node {
+public partial class EditManager : Node {
     public enum EditModeType {
         None,
         PlaceObject,
