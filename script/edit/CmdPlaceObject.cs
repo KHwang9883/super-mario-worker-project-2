@@ -6,13 +6,7 @@ namespace SMWP.Edit.Command;
 public partial class CmdPlaceObject : AbstractCmdEdit {
     public PackedScene? SpawnerObjectScene;
     public Node2D? EditObjectInstance;
-
-    public Vector2 PlaceCursorPosition;
-
-    public override void _EnterTree() {
-        base._EnterTree();
-        PlaceCursorPosition = CursorPositionProvider.GetCursorPosition(this);
-    }
+    public Vector2 PlacePosition;
 
     public override void Do() {
         if (SpawnerObjectScene == null) {
@@ -22,14 +16,11 @@ public partial class CmdPlaceObject : AbstractCmdEdit {
 		// 放置物品
         // TODO: 放置物品有类型：Block、Buddies...，如果重叠时类型也相同那么不能放置
         EditObjectInstance = SpawnerObjectScene.Instantiate<Node2D>();
-        var gridOffset = EditObjectInstance.GetNode<SpawnerObject>("EditObjectBase/SpawnerObject").GridOffset;
-        var position = PlaceCursorPosition - gridOffset;
-        var gridPosition = new Vector2I((int)(position.X / 32f) * 32, (int)(position.Y / 32f) * 32) + gridOffset;
-        var offset = EditObjectInstance.GetNode<Marker2D>("EditObjectBase/LeftTopMarker2D").Position;
-        EditObjectInstance.Position = gridPosition - offset;
+        EditObjectInstance.Position = PlacePosition;
         Callable.From(() => { 
+            // TODO: 在其他Node2D节点下放置物品，而不是当前节点
             AddChild(EditObjectInstance);
-            GD.Print($"放置物品在 {gridPosition}, 物品是 {EditObjectInstance.GetPath()}");
+            GD.Print($"放置物品在 {PlacePosition}, 物品是 {EditObjectInstance.GetPath()}");
         }).CallDeferred();
 	}
 	public override void Undo() {

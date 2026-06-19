@@ -13,6 +13,7 @@ region = Rect2(0, 51, 33, 46)
 [node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_ulems")]
 
 [node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
+position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_f8jqr")
 
 [node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]

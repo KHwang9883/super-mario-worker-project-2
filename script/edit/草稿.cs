@@ -23,8 +23,10 @@ public partial class 草稿 : Node {
             _cachedEditInstance = _currentSpawnerObjectScene.Instantiate();
             var sprite2DNode = _cachedEditInstance.GetNode<Sprite2D>("EditObjectBase/Sprite2D");
             _cachedTexture = sprite2DNode.Texture;
+            _cachedFlipV = sprite2DNode.FlipV;
             var marker2DNode = _cachedEditInstance.GetNode<Marker2D>("EditObjectBase/LeftTopMarker2D");
-            _cachedOffset = marker2DNode.Position - (sprite2DNode.Position + sprite2DNode.Offset);
+            _cachedSpriteOffset = sprite2DNode.Position + sprite2DNode.Offset;
+            _cachedOffset = marker2DNode.Position - _cachedSpriteOffset;
             var spawnerObjectNode = _cachedEditInstance.GetNode<SpawnerObject>("EditObjectBase/SpawnerObject");
             _cachedEditType = spawnerObjectNode.SpawnerType;
             _cachedId = spawnerObjectNode.SpawnerIdStr;
@@ -39,6 +41,9 @@ public partial class 草稿 : Node {
     private SpawnerObject.SpawnerEditType _cachedEditType = SpawnerObject.SpawnerEditType.Buddy;
     private string _cachedId = "";
     private Vector2 _cachedGridOffset;
+    private bool _cachedFlipV;
+    private Vector2 _cachedPlacePosition;
+    private Vector2 _cachedSpriteOffset;
 
     [Export] private Node _commandNode = null!;
 
@@ -55,7 +60,9 @@ public partial class 草稿 : Node {
             PlaceObjectSprite2D.Texture = _cachedTexture;
             var cursorPosition = CursorPositionProvider.GetCursorPosition(this) - _cachedGridOffset;
             var gridPosition = new Vector2((int)(cursorPosition.X / 32f) * 32, (int)(cursorPosition.Y / 32f) * 32) + _cachedGridOffset;
-            PlaceObjectSprite2D.Position = gridPosition - _cachedOffset;
+            _cachedPlacePosition = gridPosition - _cachedOffset;
+            PlaceObjectSprite2D.Position = _cachedPlacePosition;
+            PlaceObjectSprite2D.FlipV = _cachedFlipV;
         }
     }
 
@@ -94,6 +101,7 @@ public partial class 草稿 : Node {
     public void PlaceObject() {
         var cmdPlaceObject = new CmdPlaceObject();
         cmdPlaceObject.SpawnerObjectScene = _currentSpawnerObjectScene;
+        cmdPlaceObject.PlacePosition = _cachedPlacePosition - _cachedSpriteOffset;
         Callable.From(() => {
             _commandNode.AddChild(cmdPlaceObject);
         }).CallDeferred();
