@@ -641,10 +641,11 @@ texture = ExtResource("1_h050v")
 script = ExtResource("4_d1w4j")
 Imitator = ExtResource("5_now24")
 
-[node name="草稿" type="Node" parent="." unique_id=457639303 node_paths=PackedStringArray("PlaceObjectSprite2D") groups=["edit_node"]]
+[node name="草稿" type="Node" parent="." unique_id=457639303 node_paths=PackedStringArray("_commandNode", "PlaceObjectSprite2D") groups=["edit_node"]]
 script = ExtResource("7_cjcar")
 CurrentEditMode = 1
 CurrentSpawnerObjectScene = ExtResource("8_xls68")
+_commandNode = NodePath("../CommandsNode")
 PlaceObjectSprite2D = NodePath("PlaceObjectPreview")
 
 [node name="PlaceObjectPreview" type="Sprite2D" parent="草稿" unique_id=1967546011]
@@ -694,7 +695,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="BackToTitle" parent="EditCanvasLayer/Control" unique_id=1008609264 instance=ExtResource("16_o43ii")]

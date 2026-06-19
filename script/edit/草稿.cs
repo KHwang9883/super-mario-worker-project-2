@@ -38,6 +38,8 @@ public partial class 草稿 : Node {
     private SpawnerObject.SpawnerEditType _cachedEditType = SpawnerObject.SpawnerEditType.Buddy;
     private string _cachedId = "";
 
+    [Export] private Node _commandNode = null!;
+
     [Export]
     public Sprite2D? PlaceObjectSprite2D;
     
@@ -57,9 +59,12 @@ public partial class 草稿 : Node {
     }
 
     // 鼠标点击放置物品
-    public override void _UnhandledInput(InputEvent @event) {
-        base._UnhandledInput(@event);
+    public override void _Process(double delta) {
+        base._Process(delta);
 
+        // 悬停在 Control 节点上不允许操作
+        if (GetViewport().GuiGetHoveredControl() != null) return;
+        
         if (CanPlaceObject()) PlaceObjectPreview();
         
         // TODO: 右键擦除物品（需要特别检查不在特别放置模式下）
@@ -69,7 +74,7 @@ public partial class 草稿 : Node {
         }
         */
         // 放置物品
-        if (@event.IsActionPressed("place_object")) {
+        if (IsButtonPressed("place_object")) {
             switch (CurrentEditMode) {
                 case EditModeType.PlaceObject:
                     if (!CanPlaceObject()) return;
@@ -89,14 +94,14 @@ public partial class 草稿 : Node {
         var cmdPlaceObject = new CmdPlaceObject();
         cmdPlaceObject.SpawnerObjectScene = _currentSpawnerObjectScene;
         Callable.From(() => {
-            AddChild(cmdPlaceObject);
+            _commandNode.AddChild(cmdPlaceObject);
         }).CallDeferred();
     }
 
     public void EraseObject() {
         var cmdEraseObject = new CmdEraseObject();
         Callable.From(() => {
-            AddChild(cmdEraseObject);
+            _commandNode.AddChild(cmdEraseObject);
         }).CallDeferred();
     }
 
@@ -133,5 +138,13 @@ public partial class 草稿 : Node {
             }
         }
         return true;
+    }
+
+    public bool IsButtonPressed(string button) {
+        return Input.IsActionPressed(button);
+    }
+
+    public bool IsButtonJustPressed(string button) {
+        return Input.IsActionJustPressed(button);
     }
 }

@@ -10,15 +10,15 @@ region = Rect2(0, 0, 32, 47)
 
 [node name="EditTroopaGreen" type="Node2D" unique_id=1850209664]
 
-[node name="EditBase" parent="." unique_id=428951645 instance=ExtResource("1_j4am8")]
+[node name="EditObjectBase" parent="." unique_id=428951645 instance=ExtResource("1_j4am8")]
 
-[node name="Sprite2D" parent="EditBase" index="1" unique_id=128442666]
+[node name="Sprite2D" parent="EditObjectBase" index="1" unique_id=128442666]
 position = Vector2(0, 2)
 texture = SubResource("AtlasTexture_b4alm")
 offset = Vector2(0, -8)
 
-[node name="SpawnerObject" parent="EditBase" index="2" unique_id=1216185063]
+[node name="SpawnerObject" parent="EditObjectBase" index="2" unique_id=1216185063]
 SpawnerIdStr = "002"
 SpawnScene = ExtResource("3_av4xv")
 
-[editable path="EditBase"]
+[editable path="EditObjectBase"]
