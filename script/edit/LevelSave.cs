@@ -37,8 +37,8 @@ public partial class LevelSave : Node {
             var objectDict = new GDC.Dictionary();
             objectDict["id"] = spawnerObjectNode.SpawnerIdStr;
             // TODO: 微调的时候改谁的位置？
-            // 这里暂定祖节点
-            objectDict["pos"] = spawnerObjectNode.GetNode<Node2D>("../..").Position;
+            // 这里暂定 Marker2D 全局位置（和SMWP1偏移保持一致）
+            objectDict["pos"] = spawnerObjectNode.GetNode<Marker2D>("../LeftTopMarker2D").GlobalPosition;
             objectDict["meta"] = spawnerObjectNode.MetaDict;
             objArray.Add(objectDict);
         }
