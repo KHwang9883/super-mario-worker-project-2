@@ -35,6 +35,7 @@
 [ext_resource type="Script" uid="uid://dtlelidg68oxe" path="res://script/edit/LevelSave.cs" id="226_g0sry"]
 [ext_resource type="Script" uid="uid://b2pggkge3nsdd" path="res://script/edit/LevelLoad.cs" id="227_hjcft"]
 [ext_resource type="Script" uid="uid://dj6as2yv7d26l" path="res://script/edit/LevelSettings.cs" id="228_8gvwf"]
+[ext_resource type="Script" uid="uid://cayiadpkhvsar" path="res://script/LoadCurrentDirSave.cs" id="229_hjcft"]
 [ext_resource type="Texture2D" uid="uid://v4t3jxyn785" path="res://content/level/block/brick/brick.png" id="new_ext_100"]
 [ext_resource type="Texture2D" uid="uid://clns3f200bbhn" path="res://content/level/block/coin_brick/edit_coin_brick.png" id="new_ext_101"]
 [ext_resource type="Texture2D" uid="uid://cvhpffld8vvx5" path="res://content/level/block/edit_question_block.png" id="new_ext_102"]
@@ -682,14 +683,17 @@ limit_top = 0
 [node name="EditCameraMovement" type="Node" parent="EditCamera2D" unique_id=19527400]
 script = ExtResource("17_o43ii")
 
-[node name="LevelSave" type="Node" parent="." unique_id=403948996 node_paths=PackedStringArray("Settings", "BlocksTileMapLayer", "ObjectNode2D")]
+[node name="LevelSave" type="Node" parent="." unique_id=403948996 node_paths=PackedStringArray("DialogWindow", "Settings", "BlocksTileMapLayer", "ObjectNode2D")]
 script = ExtResource("226_g0sry")
+DialogWindow = NodePath("../SaveFile")
+CompressLevel = true
 Settings = NodePath("../LevelSettings")
 BlocksTileMapLayer = NodePath("../Blocks")
 ObjectNode2D = NodePath("../ObjectsNode2D")
 
-[node name="LevelLoad" type="Node" parent="." unique_id=1792912262 node_paths=PackedStringArray("Settings", "BlocksTileMapLayer", "ObjectNode2D")]
+[node name="LevelLoad" type="Node" parent="." unique_id=1792912262 node_paths=PackedStringArray("DialogWindow", "Settings", "BlocksTileMapLayer", "ObjectNode2D")]
 script = ExtResource("227_hjcft")
+DialogWindow = NodePath("../LoadFile")
 Settings = NodePath("../LevelSettings")
 BlocksTileMapLayer = NodePath("../Blocks")
 ObjectNode2D = NodePath("../ObjectsNode2D")
@@ -2177,6 +2181,28 @@ text = "+"
 layout_mode = 2
 size_flags_vertical = 3
 text = "-"
+
+[node name="SaveFile" type="FileDialog" parent="." unique_id=1408239207]
+oversampling_override = 1.0
+title = "Save a Level"
+position = Vector2i(0, 36)
+visible = true
+access = 2
+filters = PackedStringArray("*.smwl")
+use_native_dialog = true
+script = ExtResource("229_hjcft")
+DialogMode = 1
+
+[node name="LoadFile" type="FileDialog" parent="." unique_id=486387000]
+oversampling_override = 1.0
+title = "Open a File"
+ok_button_text = "Load"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.smwl")
+use_native_dialog = true
+script = ExtResource("229_hjcft")
+DialogMode = 2
 
 [connection signal="pressed" from="EditCanvasLayer/Control/BackToTitle/BackToTitleButton" to="EditCanvasLayer/Control/BackToTitle/BackToTitleButton" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]
 

@@ -1,7 +1,14 @@
 using Godot;
 using System;
+using System.IO;
+using System.IO.Compression;
+using System.Text;
+using FileAccess = Godot.FileAccess;
 
 public partial class LevelSave : Node {
+    [ExportGroup("Ref")]
+    [Export] public FileDialog DialogWindow = null!;
+    
     [ExportCategory("Compress Setting")]
     [Export] public bool CompressLevel = false;
 
@@ -10,22 +17,66 @@ public partial class LevelSave : Node {
     [Export] public TileMapLayer BlocksTileMapLayer { get; set; } = null!;
     [Export] public Node2D ObjectNode2D { get; set; } = null!;
 
-    public string CurrentFilePath = "user://";
+    public GDC.Dictionary LevelDict = new();
+    
+    public string CurrentPath = "user://Untitled Level.smwl";
+
+    public override void _Ready() {
+        base._Ready();
+        //DialogWindow.Confirmed += OnFileDialogConfirmed;
+        //DialogWindow.Confirmed += SaveLevel;
+        DialogWindow.FileSelected += OnSaveAFile;
+    }
 
     public void SaveLevel() {
-        // TODO: Save Level
-
-        var levelDict = new GDC.Dictionary();
+        // Clear cached level data
+        LevelDict.Clear();
         
         // Save version
-        levelDict["version"] = Settings.SmwpVersion;
+        LevelDict["version"] = Settings.SmwpVersion;
         
-        // TODO: Save level settings
+        // Save level settings
+        SaveLevelSettings();
         
         // Save tilemap data
-        levelDict["blocks"] = BlocksTileMapLayer.TileMapData;
+        LevelDict["blocks"] = BlocksTileMapLayer.TileMapData;
         
         // Save objects data
+        SaveObjects();
+        
+        // To JSON
+        string json = Json.Stringify(LevelDict, "\t");
+        GD.Print("Level data: " + json);
+        
+        // Compress (Optional)
+        byte[] jsonBytes = Encoding.UTF8.GetBytes(json);
+        byte[] compressedBytes;
+        if (CompressLevel) {
+            using var output = new MemoryStream();
+            using (var gzip = new GZipStream(output, CompressionLevel.Fastest)) {
+                gzip.Write(jsonBytes, 0, jsonBytes.Length);
+            }
+            compressedBytes = output.ToArray();
+        } else {
+            compressedBytes = jsonBytes;
+        }
+        
+        // Save to disc
+        string fullPath = CurrentPath;
+        using var file = FileAccess.Open(fullPath, FileAccess.ModeFlags.Write);
+        if (file == null) {
+            GD.PushError($"无法打开文件保存: {fullPath}");
+            return;
+        }
+        file.StoreBuffer(compressedBytes);
+        GD.Print($"Level saved to: {fullPath}");
+    }
+
+    public void SaveLevelSettings() {
+        // TODO: Save level settings
+    }
+
+    public void SaveObjects() {
         var objArray = new GDC.Array();
         foreach (var editNode in ObjectNode2D.GetChildren()) {
             var spawnerObjectNode = editNode.GetNodeOrNull<SpawnerObject>("EditObjectBase/SpawnerObject");
@@ -36,22 +87,28 @@ public partial class LevelSave : Node {
             
             var objectDict = new GDC.Dictionary();
             objectDict["id"] = spawnerObjectNode.SpawnerIdStr;
-            // TODO: 微调的时候改谁的位置？
-            // 这里暂定 Marker2D 全局位置（和SMWP1偏移保持一致）
+            // 这里保存 Marker2D 全局位置（和SMWP1偏移保持一致）
             objectDict["pos"] = spawnerObjectNode.GetNode<Marker2D>("../LeftTopMarker2D").GlobalPosition;
             objectDict["meta"] = spawnerObjectNode.MetaDict;
             objArray.Add(objectDict);
         }
-        levelDict["objects"] = objArray;
-        
-        // To JSON
-        string json = Json.Stringify(levelDict, "\t");
-        
-        // Compress (Optional)
-        if (CompressLevel) {
-            // TODO: Compress data
-        }
-        
-        // TODO: Save to disc
+        LevelDict["objects"] = objArray;
     }
+
+    public void OnFileDialogConfirmed() {
+        GD.Print("2333333");
+        CurrentPath = DialogWindow.CurrentPath;
+    }
+
+    public void OnSaveAFile(string path = "") {
+        GD.Print("2333333");
+        CurrentPath = DialogWindow.CurrentPath;
+        SaveLevel();
+    }
+    /*
+    public void OnFileDialogFileSelected(string path) {
+        SaveLevel();
+        CurrentFile = DialogWindow.CurrentFile;
+    }
+    */
 }

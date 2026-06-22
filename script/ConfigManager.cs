@@ -49,9 +49,15 @@ public static class ConfigManager {
         
         GameManager.ShowFps = (bool)SmwpConfig.GetValue("game_config", "show_fps", false);
         
-        GameManager.LoadCurrentDir = (string)SmwpConfig.GetValue(
-            "misc", "load_current_dir", OS.GetExecutablePath().GetBaseDir()
+        GameManager.PlayLoadCurrentDir = (string)SmwpConfig.GetValue(
+            "misc", "play_load_current_dir", OS.GetExecutablePath().GetBaseDir()
             );
+        GameManager.EditSaveCurrentDir = (string)SmwpConfig.GetValue(
+            "misc", "edit_save_current_dir", OS.GetExecutablePath().GetBaseDir()
+        );
+        GameManager.EditLoadCurrentDir = (string)SmwpConfig.GetValue(
+            "misc", "edit_load_current_dir", OS.GetExecutablePath().GetBaseDir()
+        );
         
         // Control Config
         var actions = InputMap.GetActions();
