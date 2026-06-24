@@ -2,11 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://dgya7g6084dee" path="res://content/edit/spawner/block/question_block/edit_question_block.tscn" id="1_e3ku8"]
 [ext_resource type="PackedScene" uid="uid://v2tmlf760e6k" path="res://content/level/block/question_block/question_block_beetroot.tscn" id="2_a0bb6"]
+[ext_resource type="Texture2D" uid="uid://bbleghncfqo2b" path="res://content/level/bonus/beetroot/beetroot.png" id="2_mo8wo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_new_6"]
+atlas = ExtResource("2_mo8wo")
+region = Rect2(0, 0, 29, 34)
 
 [node name="EditQuestionBlockBeetroot" unique_id=1501174275 instance=ExtResource("1_e3ku8")]
 
+[node name="Sprite2D" parent="EditObjectBase/Sprite2D" parent_id_path=PackedInt32Array(428951645, 128442666) index="0" unique_id=808835078]
+texture = SubResource("AtlasTexture_new_6")
+
 [node name="SpawnerObject" parent="EditObjectBase" parent_id_path=PackedInt32Array(428951645) index="2" unique_id=1216185063]
-SpawnerType = 3
 SpawnerIdStr = "302"
 SpawnScene = ExtResource("2_a0bb6")
 

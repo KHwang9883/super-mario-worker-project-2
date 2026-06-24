@@ -24,6 +24,7 @@ public partial class EditManager : Node {
             var sprite2DNode = _cachedEditInstance.GetNode<Sprite2D>("EditObjectBase/Sprite2D");
             _cachedTexture = sprite2DNode.Texture;
             _cachedFlipV = sprite2DNode.FlipV;
+            _cachedScale = sprite2DNode.Scale;
             var marker2DNode = _cachedEditInstance.GetNode<Marker2D>("EditObjectBase/LeftTopMarker2D");
             _cachedSpriteOffset = sprite2DNode.Position + sprite2DNode.Offset;
             _cachedOffset = marker2DNode.Position - _cachedSpriteOffset;
@@ -44,6 +45,7 @@ public partial class EditManager : Node {
     private bool _cachedFlipV;
     private Vector2 _cachedPlacePosition;
     private Vector2 _cachedSpriteOffset;
+    private Vector2 _cachedScale;
 
     [Export] private Node _commandNode = null!;
 
@@ -63,6 +65,7 @@ public partial class EditManager : Node {
             _cachedPlacePosition = gridPosition - _cachedOffset;
             PlaceObjectSprite2D.Position = _cachedPlacePosition;
             PlaceObjectSprite2D.FlipV = _cachedFlipV;
+            PlaceObjectSprite2D.Scale = _cachedScale;
         }
     }
 

@@ -4,6 +4,7 @@ using System;
 [GlobalClass]
 public partial class ControlVisibility : Node {
     [Export] public NodePath ToParent = "..";
+    
     private Control _parent = null!;
 
     public override void _Ready() {
@@ -14,5 +15,8 @@ public partial class ControlVisibility : Node {
     }
     public void MakeInvisible() {
         _parent.Visible = false;
+    }
+    public void ToggleVisibility() {
+        _parent.Visible = !_parent.Visible;
     }
 }

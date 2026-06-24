@@ -25,6 +25,11 @@ public partial class LevelSave : Node {
 
     public override void _Ready() {
         base._Ready();
+        // Godot 官方人员说 AcceptWindow 类的 Confirmed 信号不是给 FileDialog 用的
+        // Confirmed 信号用在 Native Window 会 bug（点确认框后不发射信号），Godot 窗口则不会
+        // 官方表示如果要用就必须用 FileDialog 的信号，比如 FileSelected
+        // 然后他们在 pull request 中加了 Godot 4.8 要完善 Confirmed 信号相关文档的 pr
+        // 何意味
         //DialogWindow.Confirmed += OnFileDialogConfirmed;
         //DialogWindow.Confirmed += SaveLevel;
         DialogWindow.FileSelected += OnSaveAFile;
@@ -93,19 +98,15 @@ public partial class LevelSave : Node {
             objectDict["id"] = spawnerObjectNode.SpawnerIdStr;
             // 这里保存 Marker2D 全局位置（和SMWP1偏移保持一致）
             objectDict["pos"] = spawnerObjectNode.GetNode<Marker2D>("../LeftTopMarker2D").GlobalPosition;
-            objectDict["meta"] = spawnerObjectNode.MetaDict;
+            if (spawnerObjectNode.MetaDict != null) {
+                objectDict["meta"] = spawnerObjectNode.MetaDict;
+            }
             objArray.Add(objectDict);
         }
         LevelDict["objects"] = objArray;
     }
 
-    public void OnFileDialogConfirmed() {
-        GD.Print("2333333");
-        CurrentPath = DialogWindow.CurrentPath;
-    }
-
     public void OnSaveAFile(string path = "") {
-        GD.Print("2333333");
         CurrentPath = DialogWindow.CurrentPath;
         SaveLevel();
     }

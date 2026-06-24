@@ -16,5 +16,5 @@ public partial class SpawnerObject : Node {
     
     [Export] public Vector2 GridOffset = Vector2.Zero;
     
-    [Export] public GDC.Dictionary<string, string> MetaDict = null!;
+    [Export] public GDC.Dictionary<string, string>? MetaDict;
 }
