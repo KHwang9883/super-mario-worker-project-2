@@ -8,7 +8,7 @@ public partial class UiScaleManager : Node {
 
     /// <summary>放大档位，从小到大排列。1.0 必须在数组中，作为默认值。</summary>
     [Export] public float[] ZoomPresets =
-        [0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 2.0f, 3.0f, 5.0f];
+        [0.5f, 0.75f, 1.0f, 1.125f, 1.25f, 1.5f, 1.75f, 2.0f, 2.5f, 3.0f, 4.0f];
 
     /// <summary>过渡速度，越大越快。0 表示瞬间切换。</summary>
     [Export] public float LerpSpeed = 36f;
