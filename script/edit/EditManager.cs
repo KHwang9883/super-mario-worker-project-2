@@ -2,6 +2,9 @@ using Godot;
 using SMWP.Edit.Command;
 
 public partial class EditManager : Node {
+    [Signal]
+    public delegate void CurrentSpawnerChangedEventHandler();
+    
     public enum EditModeType {
         None,
         PlaceObject,
@@ -32,6 +35,7 @@ public partial class EditManager : Node {
             _cachedEditType = spawnerObjectNode.SpawnerType;
             _cachedId = spawnerObjectNode.SpawnerIdStr;
             _cachedGridOffset = spawnerObjectNode.GridOffset;
+            EmitSignal(SignalName.CurrentSpawnerChanged);
         }
     }
 

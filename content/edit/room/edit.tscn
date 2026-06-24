@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bp2o2sissltwg" path="res://content/ui/smwp_button.tscn" id="5_cjcar"]
 [ext_resource type="Texture2D" uid="uid://dysfyto8dwkpc" path="res://content/level/projectile​/hammer.png" id="5_now24"]
 [ext_resource type="Script" uid="uid://bwb13j85jw8c8" path="res://script/ui/JumpToSceneButton.cs" id="6_mmjt4"]
+[ext_resource type="PackedScene" uid="uid://c05wcbg2yju8s" path="res://content/sound/sound_effect.tscn" id="7_0o80o"]
 [ext_resource type="Script" uid="uid://dqikk8qvajpn5" path="res://script/edit/EditManager.cs" id="7_cjcar"]
 [ext_resource type="Script" uid="uid://bba0c5v8msl8v" path="res://script/edit/Grid.cs" id="8_bleet"]
+[ext_resource type="AudioStream" uid="uid://dbe1tmavcr73y" path="res://content/sound/fireball.se.wav" id="8_j5ylf"]
 [ext_resource type="PackedScene" uid="uid://d3tuxhxlbamt0" path="res://content/edit/spawner/enemy/goomba/edit_goomba.tscn" id="8_xls68"]
 [ext_resource type="Texture2D" uid="uid://d1efjf687jw0q" path="res://icon_old.png" id="9_bm6o2"]
 [ext_resource type="Script" uid="uid://bpo4opa3yumi7" path="res://script/edit/UndoRedoManager.cs" id="12_ercmj"]
@@ -672,6 +674,9 @@ collision_mask = 65536
 shape = SubResource("CircleShape2D_bm6o2")
 
 [node name="CursorAreaMovement" type="Node" parent="EditManager/CursorArea2D" unique_id=466184049]
+
+[node name="SelectItemSE" parent="EditManager" unique_id=1984537010 instance=ExtResource("7_0o80o")]
+stream = ExtResource("8_j5ylf")
 
 [node name="CommandsNode" type="Node" parent="." unique_id=1104414865 groups=["commands_node"]]
 
@@ -2776,6 +2781,7 @@ use_native_dialog = true
 script = ExtResource("229_hjcft")
 DialogMode = 2
 
+[connection signal="CurrentSpawnerChanged" from="EditManager" to="EditManager/SelectItemSE" method="play"]
 [connection signal="LevelSaved" from="LevelSave" to="EditCanvasLayer/Control/ControlPopup/EditPopupManager" method="SetPopupText" binds= [&"Level saved."]]
 [connection signal="TextChanged" from="EditCanvasLayer/Control/ControlPopup/EditPopupManager" to="EditCanvasLayer/Control/ControlPopup/ControlVisibility" method="MakeVisible"]
 [connection signal="pressed" from="EditCanvasLayer/Control/ControlPopup/PanelDragPopup/UiMarginContainer/VBoxContainer/Button" to="EditCanvasLayer/Control/ControlPopup/ControlVisibility" method="MakeInvisible"]
