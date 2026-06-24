@@ -51,7 +51,6 @@ public partial class LoadCurrentDirSave : FileDialog {
 
     public override void _Ready() {
         ConfigKeyName = ConfigKeyNameMap[DialogMode];
-        // 初始加载时从 GameManager 读取已有路径
         CurrentDir = GetCurrentDirFromGameManager();
         Confirmed += SaveCurrentDir;
         FileSelected += SaveCurrentDir;

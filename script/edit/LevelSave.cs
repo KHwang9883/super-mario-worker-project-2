@@ -6,6 +6,8 @@ using System.Text;
 using FileAccess = Godot.FileAccess;
 
 public partial class LevelSave : Node {
+    [Signal] public delegate void LevelSavedEventHandler();
+    
     [ExportGroup("Ref")]
     [Export] public FileDialog DialogWindow = null!;
     
@@ -70,6 +72,8 @@ public partial class LevelSave : Node {
         }
         file.StoreBuffer(compressedBytes);
         GD.Print($"Level saved to: {fullPath}");
+
+        EmitSignal(SignalName.LevelSaved);
     }
 
     public void SaveLevelSettings() {

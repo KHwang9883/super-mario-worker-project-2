@@ -36,6 +36,11 @@
 [ext_resource type="Script" uid="uid://b2pggkge3nsdd" path="res://script/edit/LevelLoad.cs" id="227_hjcft"]
 [ext_resource type="Script" uid="uid://dj6as2yv7d26l" path="res://script/edit/LevelSettings.cs" id="228_8gvwf"]
 [ext_resource type="Script" uid="uid://cayiadpkhvsar" path="res://script/LoadCurrentDirSave.cs" id="229_hjcft"]
+[ext_resource type="Script" uid="uid://dt25k2tg16rtx" path="res://script/edit/EditPopupManager.cs" id="229_iw1gq"]
+[ext_resource type="Script" uid="uid://bsw4540u8imik" path="res://script/edit/ControlVisibility.cs" id="230_jfae4"]
+[ext_resource type="PackedScene" uid="uid://bxvt6eyfyn5b3" path="res://content/ui/popup/popup_component/smwp_popup_label.tscn" id="231_0o80o"]
+[ext_resource type="PackedScene" uid="uid://0qk4cef678ct" path="res://content/ui/popup/popup_component/smwp_popup_line_edit.tscn" id="232_j5ylf"]
+[ext_resource type="PackedScene" uid="uid://caf7un75kne3a" path="res://content/ui/popup/popup_component/smwp_popup_button.tscn" id="233_u5y02"]
 [ext_resource type="Texture2D" uid="uid://v4t3jxyn785" path="res://content/level/block/brick/brick.png" id="new_ext_100"]
 [ext_resource type="Texture2D" uid="uid://clns3f200bbhn" path="res://content/level/block/coin_brick/edit_coin_brick.png" id="new_ext_101"]
 [ext_resource type="Texture2D" uid="uid://cvhpffld8vvx5" path="res://content/level/block/edit_question_block.png" id="new_ext_102"]
@@ -686,7 +691,6 @@ script = ExtResource("17_o43ii")
 [node name="LevelSave" type="Node" parent="." unique_id=403948996 node_paths=PackedStringArray("DialogWindow", "Settings", "BlocksTileMapLayer", "ObjectNode2D")]
 script = ExtResource("226_g0sry")
 DialogWindow = NodePath("../SaveFile")
-CompressLevel = true
 Settings = NodePath("../LevelSettings")
 BlocksTileMapLayer = NodePath("../Blocks")
 ObjectNode2D = NodePath("../ObjectsNode2D")
@@ -2182,11 +2186,97 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "-"
 
+[node name="UiMarginContainer" parent="EditCanvasLayer/Control" unique_id=128041065 instance=ExtResource("16_o43ii")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -49.5
+offset_right = 0.0
+offset_bottom = 49.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditCanvasLayer/Control/UiMarginContainer" unique_id=1388044523]
+layout_mode = 2
+
+[node name="SmwpButton" parent="EditCanvasLayer/Control/UiMarginContainer/VBoxContainer" unique_id=1987102076 instance=ExtResource("5_cjcar")]
+layout_mode = 2
+text = "SAVE"
+
+[node name="SmwpButton2" parent="EditCanvasLayer/Control/UiMarginContainer/VBoxContainer" unique_id=261004752 instance=ExtResource("5_cjcar")]
+layout_mode = 2
+text = "SAVE AS"
+
+[node name="SmwpButton3" parent="EditCanvasLayer/Control/UiMarginContainer/VBoxContainer" unique_id=1836021333 instance=ExtResource("5_cjcar")]
+layout_mode = 2
+text = "LOAD"
+
+[node name="PanelDragPopup" type="Panel" parent="EditCanvasLayer/Control" unique_id=1013828600]
+visible = false
+custom_minimum_size = Vector2(256, 63)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -31.5
+offset_right = 128.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_m2sx4")
+metadata/_custom_type_script = "uid://dje4ngrnrumyc"
+
+[node name="EditPopupManager" type="Node" parent="EditCanvasLayer/Control/PanelDragPopup" unique_id=1789046218 node_paths=PackedStringArray("PopupLabel")]
+script = ExtResource("229_iw1gq")
+PopupLabel = NodePath("../UiMarginContainer/VBoxContainer/PopupLabel")
+
+[node name="ControlVisibility" type="Node" parent="EditCanvasLayer/Control/PanelDragPopup" unique_id=229471349]
+script = ExtResource("230_jfae4")
+metadata/_custom_type_script = "uid://bsw4540u8imik"
+
+[node name="UiMarginContainer" parent="EditCanvasLayer/Control/PanelDragPopup" unique_id=1816549993 instance=ExtResource("16_o43ii")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditCanvasLayer/Control/PanelDragPopup/UiMarginContainer" unique_id=1811895784]
+layout_mode = 2
+
+[node name="PopupLabel" parent="EditCanvasLayer/Control/PanelDragPopup/UiMarginContainer/VBoxContainer" unique_id=979172227 instance=ExtResource("231_0o80o")]
+layout_mode = 2
+text = "Edit Popup Hint."
+
+[node name="LineEdit" parent="EditCanvasLayer/Control/PanelDragPopup/UiMarginContainer/VBoxContainer" unique_id=2121799957 instance=ExtResource("232_j5ylf")]
+visible = false
+layout_mode = 2
+
+[node name="Button" parent="EditCanvasLayer/Control/PanelDragPopup/UiMarginContainer/VBoxContainer" unique_id=2031425480 instance=ExtResource("233_u5y02")]
+layout_mode = 2
+
 [node name="SaveFile" type="FileDialog" parent="." unique_id=1408239207]
 oversampling_override = 1.0
 title = "Save a Level"
 position = Vector2i(0, 36)
-visible = true
 access = 2
 filters = PackedStringArray("*.smwl")
 use_native_dialog = true
@@ -2204,7 +2294,12 @@ use_native_dialog = true
 script = ExtResource("229_hjcft")
 DialogMode = 2
 
+[connection signal="LevelSaved" from="LevelSave" to="EditCanvasLayer/Control/PanelDragPopup/EditPopupManager" method="SetPopupText" binds= [&"Level saved."]]
 [connection signal="pressed" from="EditCanvasLayer/Control/BackToTitle/BackToTitleButton" to="EditCanvasLayer/Control/BackToTitle/BackToTitleButton" method="JumpToScene" flags=3 binds= [&"uid://2h2s1iqemydd"]]
+[connection signal="pressed" from="EditCanvasLayer/Control/UiMarginContainer/VBoxContainer/SmwpButton2" to="SaveFile" method="show"]
+[connection signal="pressed" from="EditCanvasLayer/Control/UiMarginContainer/VBoxContainer/SmwpButton3" to="LoadFile" method="show"]
+[connection signal="TextChanged" from="EditCanvasLayer/Control/PanelDragPopup/EditPopupManager" to="EditCanvasLayer/Control/PanelDragPopup/ControlVisibility" method="MakeVisible"]
+[connection signal="pressed" from="EditCanvasLayer/Control/PanelDragPopup/UiMarginContainer/VBoxContainer/Button" to="EditCanvasLayer/Control/PanelDragPopup/ControlVisibility" method="MakeInvisible"]
 
 [editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer/EditGoomba"]
 [editable path="EditCanvasLayer/Control/ObjectTableControl/Buddies/HBoxContainer2/EditTroopaGreen"]
