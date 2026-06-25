@@ -2670,6 +2670,7 @@ script = ExtResource("12_ercmj")
 
 [node name="EraserButton" type="Button" parent="EditCanvasLayer/Control/UndoRedoControl/VBoxContainer" unique_id=1146235687]
 layout_mode = 2
+disabled = true
 text = "为啥要
 橡皮"
 

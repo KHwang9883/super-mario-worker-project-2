@@ -95,14 +95,19 @@ public partial class EditManager : Node {
                     if (!CanPlaceObject()) return;
                     PlaceObject();
                     break;
-                case EditModeType.EraseObject:
-                    EraseObject();
-                    break;
                 // TODO: Special Object
                 case EditModeType.RotoDisc:
                     if (!CanPlaceObject()) return;
                     break;
             }
+        }
+        if (IsButtonPressed("erase_object")) {
+            if (CurrentEditMode is EditModeType.PlaceObject or EditModeType.EraseObject) {
+                CurrentEditMode = EditModeType.EraseObject;
+                EraseObject();
+            }
+        } else {
+            if (CurrentEditMode == EditModeType.EraseObject) CurrentEditMode = EditModeType.PlaceObject;
         }
     }
     public void PlaceObject() {
@@ -116,6 +121,9 @@ public partial class EditManager : Node {
 
     public void EraseObject() {
         var cmdEraseObject = new CmdEraseObject();
+        cmdEraseObject.SpawnerObjectType = _cachedEditType;
+        cmdEraseObject.SpawnerObjectId = _cachedId;
+        cmdEraseObject.ErasePosition = CursorPositionProvider.GetCursorPosition(this);
         Callable.From(() => {
             _commandNode.AddChild(cmdEraseObject);
         }).CallDeferred();
@@ -144,13 +152,6 @@ public partial class EditManager : Node {
                     // Marks以SpawnerIdStr为单位进行检测
                     if (spawnerObject.SpawnerIdStr == _cachedId) return false;
                 }
-                
-                /*
-                if (collider.As<Node>().HasMeta("edit_object")) {
-                    GD.Print("Can't place object!");
-                    return false;
-                }
-                */
             }
         }
         return true;
