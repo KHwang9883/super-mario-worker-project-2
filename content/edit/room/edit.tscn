@@ -859,6 +859,7 @@ alignment = 0
 
 [node name="PanelDragBlocks" type="Panel" parent="EditCanvasLayer/Control" unique_id=2032265459]
 visible = false
+z_index = 10
 custom_minimum_size = Vector2(500, 1024)
 layout_mode = 0
 offset_right = 500.0
@@ -886,10 +887,11 @@ theme_override_constants/margin_bottom = 16
 
 [node name="PanelDragBuddies" type="Panel" parent="EditCanvasLayer/Control" unique_id=2124857542]
 visible = false
+z_index = 10
 custom_minimum_size = Vector2(500, 960)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 500.0
+offset_bottom = 960.0
 script = ExtResource("14_m2sx4")
 metadata/_custom_type_script = "uid://dje4ngrnrumyc"
 
@@ -1416,10 +1418,11 @@ stretch_mode = 5
 
 [node name="PanelDragScenery" type="Panel" parent="EditCanvasLayer/Control" unique_id=978404571]
 visible = false
+z_index = 10
 custom_minimum_size = Vector2(500, 640)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 500.0
+offset_bottom = 640.0
 script = ExtResource("14_m2sx4")
 metadata/_custom_type_script = "uid://dje4ngrnrumyc"
 
@@ -1859,10 +1862,11 @@ texture = SubResource("AtlasTexture_0o80o")
 
 [node name="PanelDragMarks" type="Panel" parent="EditCanvasLayer/Control" unique_id=1886331569]
 visible = false
+z_index = 10
 custom_minimum_size = Vector2(500, 480)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 500.0
+offset_bottom = 480.0
 script = ExtResource("14_m2sx4")
 metadata/_custom_type_script = "uid://dje4ngrnrumyc"
 
@@ -2013,10 +2017,12 @@ PaintObjectScene = ExtResource("new_ext_177")
 texture = SubResource("AtlasTexture_new_5")
 
 [node name="PanelDragBonus" type="Panel" parent="EditCanvasLayer/Control" unique_id=1481781907]
+visible = false
+z_index = 10
 custom_minimum_size = Vector2(500, 320)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 500.0
+offset_bottom = 320.0
 script = ExtResource("14_m2sx4")
 metadata/_custom_type_script = "uid://dje4ngrnrumyc"
 
@@ -2581,10 +2587,11 @@ texture = SubResource("AtlasTexture_new_7")
 
 [node name="PanelDragPrefs" type="Panel" parent="EditCanvasLayer/Control" unique_id=893445696]
 visible = false
+z_index = 10
 custom_minimum_size = Vector2(500, 1024)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 500.0
+offset_bottom = 1024.0
 script = ExtResource("14_m2sx4")
 metadata/_custom_type_script = "uid://dje4ngrnrumyc"
 

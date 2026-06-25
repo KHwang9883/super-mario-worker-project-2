@@ -5,8 +5,13 @@ using System;
 public partial class PanelDrag : Panel {
     private bool _dragging = false;
     private Vector2 _dragOffset = Vector2.Zero;
-
+    private int _originZIndex = 0;
+    
     public const float BorderDistance = 64f;
+
+    public override void _Ready() {
+        _originZIndex = Math.Max(_originZIndex, ZIndex);
+    }
 
     public override void _EnterTree() {
         base._EnterTree();
@@ -34,8 +39,15 @@ public partial class PanelDrag : Panel {
                 _dragging = true;
                 _dragOffset = GlobalToParentLocal(GetGlobalMousePosition()) - Position;
                 AcceptEvent();
+                
+                // 调整优先级
+                ZIndex = _originZIndex + 10;
+                //ProcessPriority = -10;
+                GetParent().MoveChild(this, GetParent().GetChildCount() - 1);
             }
             else {
+                ZIndex = _originZIndex;
+                //ProcessPriority = 0;
                 _dragging = false;
                 AcceptEvent();
             }
