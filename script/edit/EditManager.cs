@@ -63,6 +63,8 @@ public partial class EditManager : Node {
                 //GD.PushError("PlaceObjectSprite2D is null!");
                 return;
             }
+            PlaceObjectSprite2D.Visible = true;
+            
             PlaceObjectSprite2D.Texture = _cachedTexture;
             var cursorPosition = CursorPositionProvider.GetCursorPosition(this) - _cachedGridOffset;
             var gridPosition = new Vector2((int)(cursorPosition.X / 32f) * 32, (int)(cursorPosition.Y / 32f) * 32) + _cachedGridOffset;
@@ -78,7 +80,10 @@ public partial class EditManager : Node {
         base._Process(delta);
 
         // 悬停在 Control 节点上不允许操作
-        if (GetViewport().GuiGetHoveredControl() != null) return;
+        PlaceObjectSprite2D?.SetVisible(false);
+        if (GetViewport().GuiGetHoveredControl() != null) {
+            return;
+        }
         
         if (CanPlaceObject()) PlaceObjectPreview();
         
@@ -92,18 +97,19 @@ public partial class EditManager : Node {
         if (IsButtonPressed("place_object")) {
             switch (CurrentEditMode) {
                 case EditModeType.PlaceObject:
-                    if (!CanPlaceObject()) return;
+                    if (!CanPlaceObject()) break;
                     PlaceObject();
                     break;
                 // TODO: Special Object
                 case EditModeType.RotoDisc:
-                    if (!CanPlaceObject()) return;
+                    if (!CanPlaceObject()) break;
                     break;
             }
         }
         if (IsButtonPressed("erase_object")) {
             if (CurrentEditMode is EditModeType.PlaceObject or EditModeType.EraseObject) {
                 CurrentEditMode = EditModeType.EraseObject;
+                if (!CanPlaceObject(true)) return;
                 EraseObject();
             }
         } else {
@@ -129,7 +135,7 @@ public partial class EditManager : Node {
         }).CallDeferred();
     }
 
-    public bool CanPlaceObject() {
+    public bool CanPlaceObject(bool erase = false) {
         Vector2 cursorWorldPos = CursorPositionProvider.GetCursorPosition(this);
         var space = GetParent<Node2D>().GetWorld2D().DirectSpaceState;
         var query = new PhysicsPointQueryParameters2D();
@@ -138,7 +144,7 @@ public partial class EditManager : Node {
         query.CollideWithBodies = false;
         query.CollisionMask = 1 << 16;
         var results = space.IntersectPoint(query);
-        if (results.Count == 0) return true;
+        if (results.Count == 0) return true ^ erase;
         foreach (var result in results) {
             if (result.TryGetValue("collider", out var collider)) {
                 var spawnerObject = collider.As<Node>().GetNodeOrNull<SpawnerObject>("%SpawnerObject");
@@ -147,10 +153,10 @@ public partial class EditManager : Node {
 
                 if (spawnerObject.SpawnerType == _cachedEditType) {
                     // 遇到同类型物品检测到重叠不允许放置
-                    if (_cachedEditType != SpawnerObject.SpawnerEditType.Mark) return false;
+                    if (_cachedEditType != SpawnerObject.SpawnerEditType.Mark) return false ^ erase;
                     
                     // Marks以SpawnerIdStr为单位进行检测
-                    if (spawnerObject.SpawnerIdStr == _cachedId) return false;
+                    if (spawnerObject.SpawnerIdStr == _cachedId) return false ^ erase;
                 }
             }
         }
