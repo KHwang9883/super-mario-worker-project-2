@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://c1bpgfs618xml" path="res://script/edit/UiScaleManager.cs" id="18_t2ycv"]
 [ext_resource type="PackedScene" uid="uid://c4esatxbckw4h" path="res://content/edit/spawner/enemy/troopa/troopa_fly/edit_troopa_fly_red.tscn" id="19_ivjbd"]
 [ext_resource type="Texture2D" uid="uid://cf2kwk5tqyywc" path="res://content/level/enemy/troopa/troopa_fly/troopa_fly_red.png" id="20_hp03k"]
+[ext_resource type="PackedScene" uid="uid://ku27p0krnk62" path="res://content/edit/edit_object_category_label.tscn" id="23_j5ylf"]
 [ext_resource type="PackedScene" uid="uid://bvlurdd2mh17n" path="res://content/edit/spawner/enemy/piranha_plant/edit_piranha_plant_green_flip_v.tscn" id="45_xclfj"]
 [ext_resource type="PackedScene" uid="uid://by6fp4lbn7isc" path="res://content/edit/spawner/enemy/bullet_bill/edit_bullet_bill_cannon_flip_v.tscn" id="72_00t1q"]
 [ext_resource type="PackedScene" uid="uid://c8nbya7ggbl3e" path="res://content/edit/spawner/enemy/bullet_bill/edit_missile_bill_cannon_flip_v.tscn" id="75_xclfj"]
@@ -885,6 +886,10 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
+[node name="EditObjectCategoryLabel" parent="EditCanvasLayer/Control/PanelDragBlocks/UiMarginContainer" unique_id=511686149 instance=ExtResource("23_j5ylf")]
+layout_mode = 2
+text = "Blocks"
+
 [node name="PanelDragBuddies" type="Panel" parent="EditCanvasLayer/Control" unique_id=2124857542]
 visible = false
 z_index = 10
@@ -915,6 +920,10 @@ theme_override_constants/margin_bottom = 16
 
 [node name="Buddies" type="VBoxContainer" parent="EditCanvasLayer/Control/PanelDragBuddies/UiMarginContainer" unique_id=633320903]
 layout_mode = 2
+
+[node name="EditObjectCategoryLabel" parent="EditCanvasLayer/Control/PanelDragBuddies/UiMarginContainer/Buddies" unique_id=950345965 instance=ExtResource("23_j5ylf")]
+layout_mode = 2
+text = "Buddies"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EditCanvasLayer/Control/PanelDragBuddies/UiMarginContainer/Buddies" unique_id=1311151507]
 layout_mode = 2
@@ -1447,6 +1456,10 @@ theme_override_constants/margin_bottom = 16
 [node name="Scenery" type="VBoxContainer" parent="EditCanvasLayer/Control/PanelDragScenery/UiMarginContainer" unique_id=161890864]
 layout_mode = 2
 
+[node name="EditObjectCategoryLabel" parent="EditCanvasLayer/Control/PanelDragScenery/UiMarginContainer/Scenery" unique_id=350895767 instance=ExtResource("23_j5ylf")]
+layout_mode = 2
+text = "Scenery"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="EditCanvasLayer/Control/PanelDragScenery/UiMarginContainer/Scenery" unique_id=13328117]
 layout_mode = 2
 
@@ -1891,6 +1904,10 @@ theme_override_constants/margin_bottom = 16
 [node name="Marks" type="VBoxContainer" parent="EditCanvasLayer/Control/PanelDragMarks/UiMarginContainer" unique_id=272116691]
 layout_mode = 2
 
+[node name="EditObjectCategoryLabel" parent="EditCanvasLayer/Control/PanelDragMarks/UiMarginContainer/Marks" unique_id=1510634820 instance=ExtResource("23_j5ylf")]
+layout_mode = 2
+text = "Marks"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="EditCanvasLayer/Control/PanelDragMarks/UiMarginContainer/Marks" unique_id=1612351674]
 layout_mode = 2
 
@@ -2046,6 +2063,10 @@ theme_override_constants/margin_bottom = 16
 
 [node name="Bonus" type="VBoxContainer" parent="EditCanvasLayer/Control/PanelDragBonus/UiMarginContainer" unique_id=1017388336]
 layout_mode = 2
+
+[node name="EditObjectCategoryLabel" parent="EditCanvasLayer/Control/PanelDragBonus/UiMarginContainer/Bonus" unique_id=930641779 instance=ExtResource("23_j5ylf")]
+layout_mode = 2
+text = "Bonus"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EditCanvasLayer/Control/PanelDragBonus/UiMarginContainer/Bonus" unique_id=1915683935]
 layout_mode = 2
@@ -2612,6 +2633,10 @@ theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
+
+[node name="EditObjectCategoryLabel" parent="EditCanvasLayer/Control/PanelDragPrefs/UiMarginContainer" unique_id=770893665 instance=ExtResource("23_j5ylf")]
+layout_mode = 2
+text = "Prefs"
 
 [node name="UndoRedoControl" type="Control" parent="EditCanvasLayer/Control" unique_id=1518039503]
 layout_mode = 1

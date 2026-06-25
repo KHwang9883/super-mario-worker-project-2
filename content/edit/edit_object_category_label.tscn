@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://ku27p0krnk62"]
+
+[node name="EditObjectCategoryLabel" type="Label" unique_id=511686149]
+text = "CategoryName"
